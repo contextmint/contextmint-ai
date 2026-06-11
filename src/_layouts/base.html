@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% if title %}{{ title }}{% else %}{{ site.name }}{% endif %}</title>
+  {% if description %}
+  <meta name="description" content="{{ description }}" />
+  {% endif %}
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="{{ site.name }}" />
+  <meta property="og:title" content="{% if title %}{{ title }}{% else %}{{ site.name }}{% endif %}" />
+  {% if description %}
+  <meta property="og:description" content="{{ description }}" />
+  {% endif %}
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+  <meta property="og:image" content="{{ site.url }}/assets/img/og-images/home.png" />
+
+  <link rel="icon" href="/assets/img/logos/favicon.svg" type="image/svg+xml" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/components.css" />
+  {% if pageCss %}
+  <link rel="stylesheet" href="/assets/css/pages/{{ pageCss }}" />
+  {% endif %}
+</head>
+<body>
+  {% include "nav.html" %}
+
+  <main id="main-content">
+    {{ content }}
+  </main>
+
+  {% include "footer.html" %}
+
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>
