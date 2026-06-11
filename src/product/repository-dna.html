@@ -1,0 +1,60 @@
+---
+layout: base.html
+title: Repository DNA | ContextMint
+description: Repository DNA Report — understand any codebase in under five minutes with deterministic structure, ownership, and convention analysis.
+pageCss: product.css
+---
+
+<header class="page-hero">
+  <div class="container">
+    <nav class="breadcrumb"><a href="/product/">Product</a> / Repository DNA</nav>
+    <div class="feature-hero-icon">ONBOARDING · GATE-AHA</div>
+    <h1>Repository DNA Report</h1>
+    <p class="lead">
+      A one-page engineering summary reachable in one click — structure, ownership, hotspots,
+      and conventions. The Tier 1 adoption gate for every new repo.
+    </p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container container-narrow">
+    <div class="metric-row">
+      <div class="metric"><strong>&lt; 5 min</strong><span>To useful mental model</span></div>
+      <div class="metric"><strong>1 click</strong><span>From VS Code panel</span></div>
+      <div class="metric"><strong>0 cloud</strong><span>Deterministic on local index</span></div>
+    </div>
+    <div class="split">
+      <div>
+        <h2>What you get</h2>
+        <ul class="check-list">
+          <li>Module and package topology map</li>
+          <li>CODEOWNERS and inferred ownership</li>
+          <li>Hot files and change-frequency signals</li>
+          <li>Detected conventions and learner proposals</li>
+          <li>Feature Lite mapping (entry points → features)</li>
+        </ul>
+      </div>
+      <div class="diagram-box">
+        <div class="node">Repository DNA Report</div>
+        <div class="edge">├── structure graph</div>
+        <div class="edge">├── ownership resolution</div>
+        <div class="edge">├── convention fingerprints</div>
+        <div class="edge">├── feature entry points</div>
+        <div class="edge">└── optional LLM narrative (opt-in)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container container-tight text-center">
+    <h2 class="section-title">First-day onboarding</h2>
+    <p class="muted">
+      New engineers and AI agents start from the same truth. DNA is the front door to the
+      Engineering Reality Graph — before blast radius, before merge review.
+    </p>
+  </div>
+</section>
+
+{% include "cta-band.html", ctaTitle: "See DNA on your repository", ctaText: "We will index a sample repo live and walk through the report." %}

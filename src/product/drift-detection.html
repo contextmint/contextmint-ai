@@ -1,0 +1,45 @@
+---
+layout: base.html
+title: Drift Detection | ContextMint
+description: Architecture drift detection — separate bad drift from accepted evolution with governed baselines and actionable alerts.
+pageCss: product.css
+---
+
+<header class="page-hero">
+  <div class="container">
+    <nav class="breadcrumb"><a href="/product/">Product</a> / Drift Detection</nav>
+    <div class="feature-hero-icon">ARCHITECTURE GOVERNANCE · GATE-DRIFT</div>
+    <h1>Drift Detection</h1>
+    <p class="lead">
+      Compare live code against architecture intent and accepted baselines. Suppress noise from
+      deliberate evolution; alert on violations that matter.
+    </p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container container-narrow">
+    <div class="grid grid-2">
+      <div class="card">
+        <h3 style="margin: 0 0 8px; color: var(--color-danger);">Bad drift</h3>
+        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
+          New direct DB access in API layer violates ADR-12 layering rule. No accepted baseline on record.
+        </p>
+      </div>
+      <div class="card card--highlight">
+        <h3 style="margin: 0 0 8px; color: var(--color-trust);">Accepted evolution</h3>
+        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
+          Pattern change approved in PR #2102 and recorded as accepted baseline pair. Alert suppressed.
+        </p>
+      </div>
+    </div>
+    <ul class="check-list" style="margin-top: 32px;">
+      <li>Graph vs contract/convention comparison — deterministic</li>
+      <li>Accepted baseline pairs for intentional architecture changes</li>
+      <li>Integration with PR checks and engineering scorecards</li>
+      <li>edge_class and verification_status on fabric edges</li>
+    </ul>
+  </div>
+</section>
+
+{% include "cta-band.html" %}

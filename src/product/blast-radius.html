@@ -1,0 +1,54 @@
+---
+layout: base.html
+title: Blast Radius | ContextMint
+description: Blast radius and impact forecasting — know what breaks in under ten seconds with pre-computed transitive dependency closure.
+pageCss: product.css
+---
+
+<header class="page-hero">
+  <div class="container">
+    <nav class="breadcrumb"><a href="/product/">Product</a> / Blast Radius</nav>
+    <div class="feature-hero-icon">IMPACT · GATE-IMPACT</div>
+    <h1>Blast Radius</h1>
+    <p class="lead">
+      Pre-computed transitive impact across services, files, and features. Graph traversal only —
+      no LLM guessing when you need to know what breaks.
+    </p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container container-narrow">
+    <div class="metric-row">
+      <div class="metric"><strong>&lt; 10 sec</strong><span>Impact query latency</span></div>
+      <div class="metric"><strong>Index-time</strong><span>Closure pre-computed</span></div>
+      <div class="metric"><strong>Evidence</strong><span>Dependency path cited</span></div>
+    </div>
+    <div class="card card--canvas">
+      <div class="query">What breaks if Payments API is removed?</div>
+      <div class="diagram-box" style="margin-top: 16px; border: none; padding: 0;">
+        <div class="node">Payments API</div>
+        <div class="edge">├─► Checkout Service (direct)</div>
+        <div class="edge">├─► Billing Worker (direct)</div>
+        <div class="edge">├─► Subscription Service (transitive)</div>
+        <div class="edge">└─► 14 more downstream nodes…</div>
+        <div style="margin-top: 12px; color: var(--color-warning);">⚠ ADR-12 event-sourcing boundary touched</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container container-narrow split">
+    <div>
+      <h2>Built for PR review</h2>
+      <p>Every changed file expands to affected features, teams, and services before reviewers open the diff.</p>
+    </div>
+    <div>
+      <h2>MCP &amp; API</h2>
+      <p>Expose <span class="mono">get_blast_radius</span> to agents with the same deterministic graph your humans trust.</p>
+    </div>
+  </div>
+</section>
+
+{% include "cta-band.html" %}

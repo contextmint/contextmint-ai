@@ -1,0 +1,42 @@
+---
+layout: base.html
+title: CLI | ContextMint
+description: ContextMint CLI guide — workspace indexing, graph queries, and pack automation from the terminal.
+pageCss: product.css
+---
+
+<header class="page-hero">
+  <div class="container">
+    <nav class="breadcrumb"><a href="/developers/">Developers</a> / CLI</nav>
+    <div class="pill">COMMAND LINE</div>
+    <h1>ContextMint CLI</h1>
+    <p class="lead">
+      Automate indexing, health checks, and graph queries in CI and platform scripts — the same
+      operations available in the VS Code extension.
+    </p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container container-narrow">
+    <h2 class="section-title">Common commands</h2>
+    <div class="code-block" style="margin-bottom: 16px;">
+      <span class="cm"># Check backend health</span><br />
+      contextmint health --url http://localhost:8000<br /><br />
+      <span class="cm"># Trigger workspace reindex</span><br />
+      contextmint index --workspace ./my-repo<br /><br />
+      <span class="cm"># Query blast radius (JSON output)</span><br />
+      contextmint blast-radius --target services/payments-api<br /><br />
+      <span class="cm"># Build context pack</span><br />
+      contextmint pack build --name architecture
+    </div>
+    <ul class="check-list">
+      <li>JSON output for CI pipeline integration</li>
+      <li>Exit codes aligned with gate scripts (GATE-AHA, GATE-IMPACT)</li>
+      <li>Configurable via environment variables — no hardcoded endpoints</li>
+      <li>Early access — request demo for CLI package distribution</li>
+    </ul>
+  </div>
+</section>
+
+{% include "cta-band.html", ctaTitle: "CLI early access", ctaText: "Platform teams can join the CLI beta for CI integration and gate automation." %}

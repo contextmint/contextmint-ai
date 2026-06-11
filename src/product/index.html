@@ -1,0 +1,88 @@
+---
+layout: base.html
+title: Product | ContextMint
+description: ContextMint platform overview — Engineering Reality Graph, Repository DNA, blast radius, decision graph, drift detection, and agent governance.
+pageCss: product.css
+---
+
+<header class="page-hero">
+  <div class="container">
+    <div class="pill">PLATFORM</div>
+    <h1>The Engineering Reality Graph</h1>
+    <p class="lead">
+      ContextMint continuously reconstructs ownership, dependencies, architecture intent, deployment
+      context, and policy into a single queryable graph — deterministic first, AI-assisted second.
+    </p>
+    <div class="cta" style="margin-top: 24px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+      <a class="btn btn-primary" href="/request-demo.html">Request Demo</a>
+      <a class="btn btn-secondary" href="/#decision-engine">See PR evaluation</a>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Core capabilities</h2>
+    <p class="muted">Every capability answers a North Star outcome — with evidence, not guesses.</p>
+    <div class="grid grid-3">
+      <a class="feature-card" href="/product/repository-dna.html">
+        <h3>Repository DNA</h3>
+        <p>Understand a new repo in under five minutes. One-page summary: structure, owners, hotspots, conventions.</p>
+        <span class="tag">GATE-AHA · ONBOARDING</span>
+      </a>
+      <a class="feature-card" href="/product/blast-radius.html">
+        <h3>Blast Radius</h3>
+        <p>Impact of any change in under ten seconds. Transitive dependency closure across services and features.</p>
+        <span class="tag">IMPACT · PRE-COMPUTED</span>
+      </a>
+      <a class="feature-card" href="/product/decision-graph.html">
+        <h3>Decision Graph</h3>
+        <p>Why does this convention exist? Trace decisions from ADRs and PRs to code with evidence links.</p>
+        <span class="tag">INSTITUTIONAL MEMORY</span>
+      </a>
+      <a class="feature-card" href="/product/drift-detection.html">
+        <h3>Drift Detection</h3>
+        <p>Separate bad drift from accepted evolution. Alerts on architecture and convention violations.</p>
+        <span class="tag">GOVERNANCE</span>
+      </a>
+      <a class="feature-card" href="/product/agent-governance.html">
+        <h3>Agent Governance</h3>
+        <p>MCP tools with RBAC. Agents read graph truth and propose changes — never silent writes.</p>
+        <span class="tag">MCP · POLICY ENGINE</span>
+      </a>
+      <a class="feature-card" href="/solutions/cto-vp-engineering.html">
+        <h3>Engineering Scorecards</h3>
+        <p>Executive metrics with governed definitions. Compare team health with audit-ready metadata.</p>
+        <span class="tag">EXECUTIVE · AF BLOCK</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container container-narrow">
+    <h2 class="section-title">Deterministic first, AI second</h2>
+    <div class="split">
+      <div>
+        <h2>Authoritative graph</h2>
+        <ul class="check-list">
+          <li>Blast radius — graph traversal only</li>
+          <li>Feature mapping — heuristics + import closure</li>
+          <li>Drift — graph vs contract/convention</li>
+          <li>DNA report body — deterministic; LLM polish opt-in</li>
+        </ul>
+      </div>
+      <div>
+        <h2>AI-assisted layer</h2>
+        <ul class="check-list">
+          <li>Chat narrates with fabric citations</li>
+          <li>Decision extraction for ambiguous cases</li>
+          <li>Review findings after linter/AST checks</li>
+          <li>Never overrides graph without human confirm</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "cta-band.html" %}

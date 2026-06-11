@@ -1,0 +1,84 @@
+/* Product pages: feature layouts, diagrams */
+
+.feature-hero-icon {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-trust);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.metric-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 32px 0;
+}
+
+.metric {
+  text-align: center;
+  padding: 20px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 10px;
+}
+
+.metric strong {
+  display: block;
+  font-size: 1.5rem;
+  color: var(--color-trust);
+  margin-bottom: 4px;
+}
+
+.metric span {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.diagram-box {
+  padding: 24px;
+  background: var(--bg-canvas);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 2;
+  color: var(--text-secondary);
+}
+
+.diagram-box .node {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.diagram-box .edge {
+  color: var(--text-tertiary);
+}
+
+.check-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.check-list li {
+  padding: 10px 0 10px 28px;
+  position: relative;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.check-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--color-trust);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .metric-row {
+    grid-template-columns: 1fr;
+  }
+}

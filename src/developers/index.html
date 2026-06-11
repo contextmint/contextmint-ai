@@ -1,0 +1,57 @@
+---
+layout: base.html
+title: Developers | ContextMint
+description: ContextMint developer center — MCP server, CLI, API reference, and integration guides for ContextLoom.
+pageCss: product.css
+---
+
+<header class="page-hero">
+  <div class="container">
+    <div class="pill">DEVELOPERS</div>
+    <h1>Build on engineering reality</h1>
+    <p class="lead">
+      Integrate ContextMint via MCP tools, REST API, and CLI. Same deterministic graph your
+      IDE uses — available to agents and automation.
+    </p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-3">
+      <a class="feature-card" href="/developers/mcp-server.html">
+        <h3>MCP Server</h3>
+        <p>Model Context Protocol tools for blast radius, features, decisions, and traces. Agent-native contracts.</p>
+        <span class="tag">CURSOR · COPILOT · CUSTOM AGENTS</span>
+      </a>
+      <a class="feature-card" href="/developers/cli.html">
+        <h3>CLI</h3>
+        <p>Index workspaces, query the graph, and trigger pack builds from your terminal and CI pipelines.</p>
+        <span class="tag">AUTOMATION · CI</span>
+      </a>
+      <a class="feature-card" href="/developers/api-reference.html">
+        <h3>API Reference</h3>
+        <p>FastAPI backend — health, search, fabric, packs, actions, and observability endpoints.</p>
+        <span class="tag">REST · OPENAPI</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container container-narrow">
+    <h2 class="section-title">Quick start</h2>
+    <div class="code-block">
+      <span class="cm"># Install ContextLoom extension (VS Code)</span><br />
+      <span class="cm"># Start local backend</span><br />
+      uvicorn main:app --reload --port 8000<br /><br />
+      <span class="cm"># Verify health</span><br />
+      curl http://localhost:8000/api/health
+    </div>
+    <p class="muted" style="margin-top: 24px; margin-bottom: 0;">
+      Full setup guide ships with the product repository. Request early access for the standalone CLI package.
+    </p>
+  </div>
+</section>
+
+{% include "cta-band.html", ctaTitle: "Need integration support?", ctaText: "We help platform teams wire MCP and API into internal developer portals." %}

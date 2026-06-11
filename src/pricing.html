@@ -1,0 +1,94 @@
+---
+layout: base.html
+title: Pricing | ContextMint
+description: ContextMint pricing — local-first developer tier, team plans, and enterprise with SSO, audit, and compliance packaging.
+---
+
+<header class="page-hero">
+  <div class="container">
+    <div class="pill">PRICING</div>
+    <h1>Start local. Scale with confidence.</h1>
+    <p class="lead">
+      Full local indexing and search on every tier. Cloud and enterprise features unlock as your team grows.
+    </p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <h3>Developer</h3>
+        <p class="mono" style="color: var(--text-tertiary); font-size: 0.85rem;">Individual · local-first</p>
+        <div class="price">Free</div>
+        <p class="price-note">During early access</p>
+        <ul>
+          <li>ContextLoom VS Code extension</li>
+          <li>Local hybrid search (BM25 + vector)</li>
+          <li>Repository DNA report</li>
+          <li>Single workspace</li>
+          <li>Ollama-powered — no code leaves device</li>
+        </ul>
+        <a class="btn btn-secondary" href="/request-demo.html">Join Waitlist</a>
+      </div>
+
+      <div class="pricing-card pricing-card--featured">
+        <h3>Team</h3>
+        <p class="mono" style="color: var(--color-action); font-size: 0.85rem;">SMB · platform engineering</p>
+        <div class="price">$1<span style="font-size: 1rem; font-weight: 500;">/mo</span></div>
+        <p class="price-note">Per seat · 6-month trial available</p>
+        <ul>
+          <li>Everything in Developer</li>
+          <li>Multi-workspace indexing</li>
+          <li>Blast radius &amp; decision graph</li>
+          <li>Drift detection alerts</li>
+          <li>Shared context packs</li>
+          <li>Team audit log (cloud sync)</li>
+        </ul>
+        <a class="btn btn-primary" href="/request-demo.html">Start Trial</a>
+      </div>
+
+      <div class="pricing-card">
+        <h3>Enterprise</h3>
+        <p class="mono" style="color: var(--text-tertiary); font-size: 0.85rem;">SSO · compliance · air-gap</p>
+        <div class="price">Custom</div>
+        <p class="price-note">Annual contract</p>
+        <ul>
+          <li>Everything in Team</li>
+          <li>SSO (SAML/OIDC) &amp; RBAC</li>
+          <li>Engineering scorecards</li>
+          <li>MCP agent governance</li>
+          <li>SOC 2 evidence collectors</li>
+          <li>Air-gapped / Helm deployment</li>
+        </ul>
+        <a class="btn btn-secondary" href="/request-demo.html">Talk to Sales</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container container-narrow text-center">
+    <h2 class="section-title">Frequently asked</h2>
+    <div class="card text-left" style="text-align: left; margin-bottom: 16px;">
+      <strong>Does my code leave my machine on the Developer tier?</strong>
+      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">
+        No. Indexing, embeddings, and chat run locally via Ollama. Cloud routing is opt-in on higher tiers.
+      </p>
+    </div>
+    <div class="card text-left" style="text-align: left; margin-bottom: 16px;">
+      <strong>What happens after the Team trial?</strong>
+      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">
+        Continue on Team or downgrade to Developer local-only. No silent charges — you confirm before billing starts.
+      </p>
+    </div>
+    <div class="card text-left" style="text-align: left;">
+      <strong>Is Enterprise required for MCP and agents?</strong>
+      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">
+        MCP read tools are available on Team. Agent write governance, policy engine, and audit export are Enterprise.
+      </p>
+    </div>
+  </div>
+</section>
+
+{% include "cta-band.html", ctaTitle: "Not sure which tier fits?", ctaText: "Tell us about your team size and compliance needs — we will recommend a path." %}

@@ -1,0 +1,67 @@
+---
+layout: base.html
+title: API Reference | ContextMint
+description: ContextMint REST API overview — health, search, fabric, context packs, actions, and observability endpoints.
+pageCss: product.css
+---
+
+<header class="page-hero">
+  <div class="container">
+    <nav class="breadcrumb"><a href="/developers/">Developers</a> / API Reference</nav>
+    <div class="pill">REST API</div>
+    <h1>API reference</h1>
+    <p class="lead">
+      FastAPI backend served locally by default. OpenAPI schema available at
+      <span class="mono">/docs</span> when the server is running.
+    </p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container container-narrow">
+    <h2 class="section-title">Core endpoints</h2>
+    <div class="card" style="margin-bottom: 12px;">
+      <code class="mono" style="color: var(--color-trust);">GET /api/health</code>
+      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">Server and dependency health check.</p>
+    </div>
+    <div class="card" style="margin-bottom: 12px;">
+      <code class="mono" style="color: var(--color-trust);">POST /api/search</code>
+      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">Hybrid BM25 + vector retrieval with workspace scoping.</p>
+    </div>
+    <div class="card" style="margin-bottom: 12px;">
+      <code class="mono" style="color: var(--color-trust);">GET /fabric/explain</code>
+      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">Blast radius and impact explanation with evidence paths.</p>
+    </div>
+    <div class="card" style="margin-bottom: 12px;">
+      <code class="mono" style="color: var(--color-trust);">POST /fabric/correct</code>
+      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">Human correction — sets verification_status to verified.</p>
+    </div>
+    <div class="card" style="margin-bottom: 12px;">
+      <code class="mono" style="color: var(--color-trust);">POST /fabric/propose</code>
+      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">Queue proposed graph mutations for review.</p>
+    </div>
+    <div class="card" style="margin-bottom: 12px;">
+      <code class="mono" style="color: var(--color-trust);">GET /api/packs/*</code>
+      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">Context pack builder, sync, and manifest APIs.</p>
+    </div>
+    <div class="card">
+      <code class="mono" style="color: var(--color-trust);">GET /api/actions/stats</code>
+      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">Acceptance and proposal statistics for governance dashboards.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container container-tight text-center">
+    <h2 class="section-title">Interactive docs</h2>
+    <p class="muted">
+      Start the local server and open Swagger UI for the full schema, request bodies, and response models.
+    </p>
+    <div class="code-block" style="text-align: left; max-width: 480px; margin: 0 auto;">
+      uvicorn main:app --reload --port 8000<br />
+      <span class="cm"># → http://localhost:8000/docs</span>
+    </div>
+  </div>
+</section>
+
+{% include "cta-band.html" %}

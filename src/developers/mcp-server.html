@@ -1,0 +1,70 @@
+---
+layout: base.html
+title: MCP Server | ContextMint
+description: ContextMint MCP server — tool contracts for get_blast_radius, get_feature, get_decision, and agent governance.
+pageCss: product.css
+---
+
+<header class="page-hero">
+  <div class="container">
+    <nav class="breadcrumb"><a href="/developers/">Developers</a> / MCP Server</nav>
+    <div class="pill">MODEL CONTEXT PROTOCOL</div>
+    <h1>MCP tools &amp; contracts</h1>
+    <p class="lead">
+      Expose deterministic engineering reality to AI agents. Every tool returns graph evidence —
+      validated against <span class="mono">AgentContextContract</span> schema.
+    </p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container container-narrow">
+    <h2 class="section-title">Tool catalog</h2>
+    <div class="card" style="margin-bottom: 16px;">
+      <h3 style="margin: 0 0 8px; font-family: var(--font-mono); font-size: 1rem;">get_blast_radius</h3>
+      <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
+        Returns impacted services, files, and teams for a target node. Maps to
+        <span class="mono">/fabric/explain</span> or pre-computed closure.
+      </p>
+    </div>
+    <div class="card" style="margin-bottom: 16px;">
+      <h3 style="margin: 0 0 8px; font-family: var(--font-mono); font-size: 1rem;">get_feature</h3>
+      <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
+        Feature registry lookup — entry points, owners, and related graph nodes.
+      </p>
+    </div>
+    <div class="card" style="margin-bottom: 16px;">
+      <h3 style="margin: 0 0 8px; font-family: var(--font-mono); font-size: 1rem;">get_decision</h3>
+      <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
+        Decision graph trace with evidence ledger and verification status.
+      </p>
+    </div>
+    <div class="card">
+      <h3 style="margin: 0 0 8px; font-family: var(--font-mono); font-size: 1rem;">get_trace</h3>
+      <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
+        Deployment → feature → failure path (Enterprise, post AP-3).
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container container-narrow">
+    <h2 class="section-title">Cursor / IDE configuration</h2>
+    <div class="code-block">
+{<br />
+&nbsp;&nbsp;<span class="str">"mcpServers"</span>: {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">"contextmint"</span>: {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">"url"</span>: <span class="str">"http://localhost:8000/mcp"</span>,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">"headers"</span>: { <span class="str">"Authorization"</span>: <span class="str">"Bearer ${CONTEXTMINT_TOKEN}"</span> }<br />
+&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;}<br />
+}
+    </div>
+    <p class="muted" style="margin-bottom: 0;">
+      Token and RBAC scopes are configured per workspace. See <a href="/product/agent-governance.html" style="color: var(--color-action);">Agent Governance</a> for policy details.
+    </p>
+  </div>
+</section>
+
+{% include "cta-band.html" %}

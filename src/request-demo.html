@@ -1,0 +1,74 @@
+---
+layout: base.html
+title: Request Demo | ContextMint
+description: Schedule a ContextMint demo — see engineering reality verification, blast radius, and agent governance in your stack.
+pageJs: form.js
+---
+
+<header class="page-hero">
+  <div class="container">
+    <div class="pill">CONTACT</div>
+    <h1>Request a demo</h1>
+    <p class="lead">
+      See how ContextMint verifies ownership, dependencies, architecture, and policy before
+      AI-generated changes reach your reviewers.
+    </p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <form id="demo-form" class="form card" novalidate>
+      <div class="form-fields">
+        <div class="form-group">
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="name" required autocomplete="name" />
+        </div>
+        <div class="form-group">
+          <label for="email">Work email</label>
+          <input type="email" id="email" name="email" required autocomplete="email" />
+        </div>
+        <div class="form-group">
+          <label for="company">Company</label>
+          <input type="text" id="company" name="company" required autocomplete="organization" />
+        </div>
+        <div class="form-group">
+          <label for="role">Role</label>
+          <select id="role" name="role" required>
+            <option value="">Select…</option>
+            <option value="cto">CTO / VP Engineering</option>
+            <option value="platform">Platform / DevOps</option>
+            <option value="security">Security / Compliance</option>
+            <option value="staff">Staff Engineer / Architect</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="team-size">Engineering team size</label>
+          <select id="team-size" name="team-size">
+            <option value="">Select…</option>
+            <option value="1-10">1–10</option>
+            <option value="11-50">11–50</option>
+            <option value="51-200">51–200</option>
+            <option value="200+">200+</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">What are you trying to solve?</label>
+          <textarea id="message" name="message" placeholder="e.g. AI PR review, blast radius, SOC 2 audit trail…"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Submit request</button>
+        <p class="mono text-center" style="margin-top: 16px; font-size: 0.75rem; color: var(--text-tertiary);">
+          We typically respond within one business day.
+        </p>
+      </div>
+      <div class="form-success">
+        <strong>Thank you — request received.</strong>
+        <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">
+          Our team will reach out shortly. For urgent inquiries, email
+          <a href="mailto:hello@contextmint.ai" style="color: var(--color-action);">hello@contextmint.ai</a>.
+        </p>
+      </div>
+    </form>
+  </div>
+</section>

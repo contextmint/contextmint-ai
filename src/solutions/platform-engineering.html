@@ -1,0 +1,54 @@
+---
+layout: base.html
+title: Platform Engineering | ContextMint
+description: Platform engineering solutions — CI/CD graph, external memory, context packs, MCP integration, and PR verification.
+pageCss: product.css
+---
+
+<header class="page-hero">
+  <div class="container">
+    <nav class="breadcrumb"><a href="/solutions/">Solutions</a> / Platform Engineering</nav>
+    <div class="pill">PLATFORM · DEVOPS</div>
+    <h1>External memory for your internal developer platform</h1>
+    <p class="lead">
+      Context packs, CI/CD deployment graph, MCP tools, and PR verification — the layer between
+      your IDP and AI-generated code.
+    </p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container container-narrow split">
+    <div>
+      <h2>CI/CD &amp; deployment graph</h2>
+      <p>Trace code → feature → deployment → incident. Connect pipeline metadata to the Engineering Reality Graph (AP-1).</p>
+      <ul class="check-list">
+        <li>Deployment nodes linked to services</li>
+        <li>Impact queries span runtime and code</li>
+        <li>GATE-V31A for graph correctness</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Context packs</h2>
+      <p>Per-repo <span class="mono">manifest.yaml</span> + markdown knowledge injected into chat and agents. Auto-sync on index bump.</p>
+      <ul class="check-list">
+        <li>@pack:name in VS Code chat</li>
+        <li>Pack builder API for platform teams</li>
+        <li>Versioned with repo generation</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container container-tight text-center">
+    <h2 class="section-title">PR gate for AI-generated code</h2>
+    <p class="muted">
+      Plug ContextMint into your review flow. Every PR gets ownership, blast radius, ADR, and
+      policy checks before human reviewers — with evidence attached.
+    </p>
+    <a class="btn btn-secondary" href="/#decision-engine">See example evaluation</a>
+  </div>
+</section>
+
+{% include "cta-band.html" %}

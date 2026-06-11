@@ -1,0 +1,54 @@
+---
+layout: base.html
+title: Decision Graph | ContextMint
+description: Institutional memory via decision graph — trace why conventions exist from ADRs, PRs, and issues to code with evidence.
+pageCss: product.css
+---
+
+<header class="page-hero">
+  <div class="container">
+    <nav class="breadcrumb"><a href="/product/">Product</a> / Decision Graph</nav>
+    <div class="feature-hero-icon">INSTITUTIONAL MEMORY</div>
+    <h1>Decision Graph</h1>
+    <p class="lead">
+      Know why a convention exists. Link decisions ← PRs ← issues ← docs ← files in a traceable
+      graph with verification status on every edge.
+    </p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container container-narrow">
+    <div class="diagram-box">
+      <div class="node">ADR-12: Event sourcing for orders</div>
+      <div class="edge">└─ implemented_by ─► checkout/order_events.py</div>
+      <div class="edge">└─ referenced_in ─► PR #1847 (approved)</div>
+      <div class="edge">└─ supersedes ─► ADR-08 (deprecated pattern)</div>
+      <div style="margin-top: 16px;">
+        <span style="color: var(--color-trust);">verification_status: verified</span>
+        <span style="color: var(--text-tertiary);"> · evidence_ledger: 3 sources</span>
+      </div>
+    </div>
+    <div class="split" style="margin-top: 32px;">
+      <div>
+        <h2>Extraction pipeline</h2>
+        <ul class="check-list">
+          <li>Parse ADRs and decisions.md deterministically</li>
+          <li>Link PR and issue references as evidence</li>
+          <li>LLM assist only for ambiguous extractions</li>
+          <li>Human correction via POST /fabric/correct</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Outcomes</h2>
+        <ul class="check-list">
+          <li>Answer &ldquo;why does X work this way?&rdquo; in seconds</li>
+          <li>Onboard engineers without oral tradition</li>
+          <li>Agents cite fabric nodes in chat responses</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "cta-band.html", ctaTitle: "Stop losing architectural context", ctaText: "See decision traces linked to the files your team changes every day." %}

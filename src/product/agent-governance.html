@@ -1,0 +1,51 @@
+---
+layout: base.html
+title: Agent Governance | ContextMint
+description: MCP and agent RBAC — governed tool access, policy engine, and no silent writes for AI coding agents.
+pageCss: product.css
+---
+
+<header class="page-hero">
+  <div class="container">
+    <nav class="breadcrumb"><a href="/product/">Product</a> / Agent Governance</nav>
+    <div class="feature-hero-icon">MCP · RBAC · POLICY ENGINE</div>
+    <h1>Agent Governance</h1>
+    <p class="lead">
+      AI agents query engineering reality through MCP — with role-based tool access, policy
+      enforcement, and human confirmation on every material write.
+    </p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container container-narrow">
+    <h2 class="section-title">MCP tools (read)</h2>
+    <div class="code-block">
+      <span class="cm"># Available MCP tools</span><br />
+      <span class="kw">get_blast_radius</span>(target) → impacted services + evidence<br />
+      <span class="kw">get_feature</span>(name) → feature registry entry<br />
+      <span class="kw">get_decision</span>(id) → decision graph trace<br />
+      <span class="kw">get_trace</span>(deployment) → CI/CD path (Enterprise)
+    </div>
+    <div class="split" style="margin-top: 32px;">
+      <div>
+        <h2>Policy engine</h2>
+        <ul class="check-list">
+          <li>Single PolicyEngine for agents, actions, and scorecards</li>
+          <li>PCI, ownership, and custom policy graphs</li>
+          <li>GATE-AGENT validates MCP JSON against schema</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Safety defaults</h2>
+        <ul class="check-list">
+          <li><span class="mono">auto_applied: false</span> until GATE-EXEC passes</li>
+          <li>Proposals queue — graph mutations require approval</li>
+          <li>Audit JSONL for fabric_propose events</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "cta-band.html", ctaTitle: "Govern agents before they govern your repo", ctaText: "Walk through MCP contracts and RBAC for your IDE agents." %}
