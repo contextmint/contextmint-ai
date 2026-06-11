@@ -1,8 +1,11 @@
+# Manual deploy only — do NOT enable GitHub Pages until you are ready to replace
+# the live placeholder at contextmint.ai.
+#
+# To publish later: Settings → Pages → Source: GitHub Actions, then run this workflow.
+
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:

@@ -1,8 +1,10 @@
 # ContextMint Marketing Site
 
-Eleventy (11ty) static site for [ContextMint](https://contextmint.ai), deployed to **GitHub Pages**.
+Eleventy (11ty) static site for ContextMint.
 
-The product (backend + VS Code extension) lives in **Azure DevOps** (`repo-awareness`). This repository is **standalone** — marketing and public web only.
+**This repo is private source control only.** The live domain [contextmint.ai](https://contextmint.ai) currently serves a separate placeholder — do **not** enable GitHub Pages until you are ready to replace it.
+
+The product (backend + VS Code extension) lives in **Azure DevOps** (`repo-awareness`).
 
 ## Prerequisites
 
@@ -67,8 +69,8 @@ Use this when creating the **standalone** repo (contents of this folder become t
 
 ### 1. Create the GitHub repository
 
-1. On GitHub: **New repository** → name e.g. `contextmint-ai` or `contextmint-website`
-2. Public or private (GitHub Pages works on both for paid/private; public repo is simplest)
+1. On GitHub: **New repository** → name `contextmint-ai`
+2. **Private** — code storage only; no public site from this repo yet
 3. Do **not** add a README, `.gitignore`, or license — this folder already has them
 
 ### 2. Push this folder as the repo root
@@ -86,23 +88,20 @@ git push -u origin main
 
 Organization: [github.com/contextmint](https://github.com/contextmint)
 
-### 3. Enable GitHub Pages
+### 3. Do not enable GitHub Pages yet
 
-1. Repo **Settings → Pages**
-2. **Build and deployment → Source:** GitHub Actions
-3. After the first push, the workflow `.github/workflows/deploy.yml` builds and publishes `_site/`
+Leave **Settings → Pages** disabled. Your placeholder at `contextmint.ai` stays live until you deliberately switch.
 
-### 4. Custom domain (optional)
+### 4. When ready to go live (later)
 
-1. **Settings → Pages → Custom domain:** `contextmint.ai`
-2. Add the DNS records GitHub shows (usually `A` + `CNAME`)
-3. Update `src/_data/site.json` → `"url": "https://contextmint.ai"` (used for OpenGraph tags)
+1. **Settings → Pages → Source:** GitHub Actions
+2. Point DNS for `contextmint.ai` at GitHub (replacing the placeholder host)
+3. **Actions → Deploy to GitHub Pages → Run workflow** (manual only)
+4. Update `src/_data/site.json` → `"url": "https://contextmint.ai"`
 
-## Ongoing deploy
+## Deploy
 
-Every push to `main` triggers a build and deploy. No Azure DevOps pipeline is required for the site.
-
-To deploy manually: **Actions → Deploy to GitHub Pages → Run workflow**.
+Pushes to `main` do **not** publish the site. Deploy is manual via **Actions → Deploy to GitHub Pages → Run workflow** after Pages is enabled.
 
 ## Relationship to the product repo
 
