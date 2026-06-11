@@ -1,17 +1,18 @@
 ---
 layout: base.html
-title: Request Demo | ContextMint
-description: Schedule a ContextMint demo — see engineering reality verification, blast radius, and agent governance in your stack.
+title: Book a Demo | ContextMint
+description: Discuss your AI governance challenges with ContextMint — verify AI-generated changes before production.
 pageJs: form.js
 ---
 
 <header class="page-hero">
   <div class="container">
-    <div class="pill">CONTACT</div>
-    <h1>Request a demo</h1>
+    <div class="pill">DEMO</div>
+    <h1>Discuss your AI governance challenges</h1>
     <p class="lead">
-      See how ContextMint verifies ownership, dependencies, architecture, and policy before
-      AI-generated changes reach your reviewers.
+      Buyers care about outcomes — not architecture reviews. Tell us what you are trying to
+      govern: AI-generated PRs, agent tool access, compliance evidence, or review bottlenecks.
+      We will show how the Verification Engine addresses it.
     </p>
   </div>
 </header>
@@ -44,6 +45,17 @@ pageJs: form.js
           </select>
         </div>
         <div class="form-group">
+          <label for="challenge">Primary governance challenge</label>
+          <select id="challenge" name="challenge">
+            <option value="">Select…</option>
+            <option value="ai-prs">AI-generated PR review &amp; verification</option>
+            <option value="agents">MCP / agent tool governance</option>
+            <option value="compliance">Audit trail &amp; compliance evidence</option>
+            <option value="velocity">Review bottleneck at AI velocity</option>
+            <option value="design-partner">Design partner / early access</option>
+          </select>
+        </div>
+        <div class="form-group">
           <label for="team-size">Engineering team size</label>
           <select id="team-size" name="team-size">
             <option value="">Select…</option>
@@ -54,19 +66,19 @@ pageJs: form.js
           </select>
         </div>
         <div class="form-group">
-          <label for="message">What are you trying to solve?</label>
-          <textarea id="message" name="message" placeholder="e.g. AI PR review, blast radius, SOC 2 audit trail…"></textarea>
+          <label for="message">Anything else we should know?</label>
+          <textarea id="message" name="message" placeholder="Optional context for the conversation…"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary" style="width: 100%;">Submit request</button>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Submit</button>
         <p class="mono text-center" style="margin-top: 16px; font-size: 0.75rem; color: var(--text-tertiary);">
           We typically respond within one business day.
         </p>
       </div>
       <div class="form-success">
-        <strong>Thank you — request received.</strong>
+        <strong>Thank you — we will be in touch.</strong>
         <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">
-          Our team will reach out shortly. For urgent inquiries, email
-          <a href="mailto:hello@contextmint.ai" style="color: var(--color-action);">hello@contextmint.ai</a>.
+          A member of our team will reach out to discuss your governance challenges.
+          Urgent inquiries: <a href="mailto:hello@contextmint.ai" style="color: var(--color-action);">hello@contextmint.ai</a>
         </p>
       </div>
     </form>

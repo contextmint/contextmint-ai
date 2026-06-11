@@ -1,86 +1,88 @@
 ---
 layout: base.html
-title: Product | ContextMint
-description: ContextMint platform overview — Engineering Reality Graph, Repository DNA, blast radius, decision graph, drift detection, and agent governance.
+title: Product | ContextMint Verification Engine
+description: ContextMint Verification Engine — verify AI-generated changes before production, powered by Repository DNA, blast radius, decision graph, and drift detection.
 pageCss: product.css
 ---
 
 <header class="page-hero">
   <div class="container">
-    <div class="pill">PLATFORM</div>
-    <h1>The Engineering Reality Graph</h1>
+    <div class="pill">PRODUCT</div>
+    <h1>The Verification Engine</h1>
     <p class="lead">
-      ContextMint continuously reconstructs ownership, dependencies, architecture intent, deployment
-      context, and policy into a single queryable graph — deterministic first, AI-assisted second.
+      <strong>Core promise:</strong> verify AI-generated changes before production. Every recommendation
+      is backed by deterministic graph evidence — ownership, blast radius, architecture intent,
+      drift, and policy.
     </p>
     <div class="cta" style="margin-top: 24px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-      <a class="btn btn-primary" href="/request-demo.html">Request Demo</a>
-      <a class="btn btn-secondary" href="/#decision-engine">See PR evaluation</a>
+      <a class="btn btn-primary" href="/request-demo.html">Book a Demo</a>
+      <a class="btn btn-secondary" href="/#verification-engine">See PR verification</a>
     </div>
   </div>
 </header>
 
 <section class="section">
-  <div class="container">
-    <h2 class="section-title">Core capabilities</h2>
-    <p class="muted">Every capability answers a North Star outcome — with evidence, not guesses.</p>
-    <div class="grid grid-3">
-      <a class="feature-card" href="/product/repository-dna.html">
-        <h3>Repository DNA</h3>
-        <p>Understand a new repo in under five minutes. One-page summary: structure, owners, hotspots, conventions.</p>
-        <span class="tag">GATE-AHA · ONBOARDING</span>
-      </a>
-      <a class="feature-card" href="/product/blast-radius.html">
-        <h3>Blast Radius</h3>
-        <p>Impact of any change in under ten seconds. Transitive dependency closure across services and features.</p>
-        <span class="tag">IMPACT · PRE-COMPUTED</span>
-      </a>
-      <a class="feature-card" href="/product/decision-graph.html">
-        <h3>Decision Graph</h3>
-        <p>Why does this convention exist? Trace decisions from ADRs and PRs to code with evidence links.</p>
-        <span class="tag">INSTITUTIONAL MEMORY</span>
-      </a>
-      <a class="feature-card" href="/product/drift-detection.html">
-        <h3>Drift Detection</h3>
-        <p>Separate bad drift from accepted evolution. Alerts on architecture and convention violations.</p>
-        <span class="tag">GOVERNANCE</span>
-      </a>
-      <a class="feature-card" href="/product/agent-governance.html">
-        <h3>Agent Governance</h3>
-        <p>MCP tools with RBAC. Agents read graph truth and propose changes — never silent writes.</p>
-        <span class="tag">MCP · POLICY ENGINE</span>
-      </a>
-      <a class="feature-card" href="/solutions/cto-vp-engineering.html">
-        <h3>Engineering Scorecards</h3>
-        <p>Executive metrics with governed definitions. Compare team health with audit-ready metadata.</p>
-        <span class="tag">EXECUTIVE · AF BLOCK</span>
-      </a>
+  <div class="container container-narrow">
+    <h2 class="section-title">What you buy</h2>
+    <p class="muted">One outcome. Not five products.</p>
+    <div class="card card--highlight" style="text-align: center; padding: 32px;">
+      <p style="margin: 0 0 8px; font-size: 1.25rem; font-weight: 600; color: var(--text-primary);">
+        Verify every change before it ships
+      </p>
+      <p style="margin: 0; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">
+        Policy checks &middot; ownership resolution &middot; blast radius &middot; architecture validation
+        &middot; drift detection &middot; agent governance &middot; audit trail
+      </p>
     </div>
   </div>
 </section>
 
 <section class="section section--surface">
+  <div class="container">
+    <h2 class="section-title">Powered by</h2>
+    <p class="muted">These capabilities exist to deliver the verification promise — not as standalone SKUs.</p>
+    {% include "powered-by.html" %}
+  </div>
+</section>
+
+<section class="section">
   <div class="container container-narrow">
-    <h2 class="section-title">Deterministic first, AI second</h2>
-    <div class="split">
-      <div>
-        <h2>Authoritative graph</h2>
-        <ul class="check-list">
-          <li>Blast radius — graph traversal only</li>
-          <li>Feature mapping — heuristics + import closure</li>
-          <li>Drift — graph vs contract/convention</li>
-          <li>DNA report body — deterministic; LLM polish opt-in</li>
-        </ul>
-      </div>
-      <div>
-        <h2>AI-assisted layer</h2>
-        <ul class="check-list">
-          <li>Chat narrates with fabric citations</li>
-          <li>Decision extraction for ambiguous cases</li>
-          <li>Review findings after linter/AST checks</li>
-          <li>Never overrides graph without human confirm</li>
-        </ul>
-      </div>
+    <h2 class="section-title">Under the hood</h2>
+    <p class="muted" style="margin-bottom: 24px;">
+      The Engineering Reality Graph reconstructs ownership, dependencies, architecture intent,
+      deployment context, and policy into one queryable source of truth. Deterministic first;
+      AI narrates with fabric citations — never overrides graph truth without human confirmation.
+    </p>
+    <div class="diagram-box">
+      <div class="node">Engineering Reality Graph</div>
+      <div class="edge">├── ownership graph</div>
+      <div class="edge">├── dependency / blast radius graph</div>
+      <div class="edge">├── architecture intent (ADRs, decisions)</div>
+      <div class="edge">├── policy graph (PCI, RBAC, custom rules)</div>
+      <div class="edge">└── drift baselines (accepted vs violation)</div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container container-narrow split">
+    <div>
+      <h2>Deterministic verification</h2>
+      <ul class="check-list">
+        <li>Blast radius — graph traversal only</li>
+        <li>Drift — graph vs contract/convention</li>
+        <li>DNA report — deterministic body</li>
+        <li>Scorecards — governed metric definitions</li>
+      </ul>
+    </div>
+    <div>
+      <h2>AI-assisted, not AI-decided</h2>
+      <ul class="check-list">
+        <li>Chat cites fabric evidence on repo facts</li>
+        <li>Agents use MCP read tools under RBAC</li>
+        <li>Proposals queue — no silent writes</li>
+        <li>Humans confirm material changes</li>
+      </ul>
     </div>
   </div>
 </section>
