@@ -1,7 +1,11 @@
 {
   "name": "ContextMint",
-  "tagline": "Verify AI-generated changes before production",
+  "tagline": "Evidence-based AI decisions with human oversight",
   "url": "https://contextmint.ai",
   "extensionName": "ContextLoom",
+  "contactEmail": "hello@contextmint.ai",
+  "formspreeFormId": "",
+  "founderName": "Your Name",
+  "founderTitle": "Founder & CEO",
   "year": 2026
 }

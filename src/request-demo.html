@@ -19,7 +19,13 @@ pageJs: form.js
 
 <section class="section">
   <div class="container">
-    <form id="demo-form" class="form card" novalidate>
+    <form
+      id="demo-form"
+      class="form card"
+      novalidate
+      data-formspree-id="{{ site.formspreeFormId }}"
+      data-contact-email="{{ site.contactEmail }}"
+    >
       <div class="form-fields">
         <div class="form-group">
           <label for="name">Full name</label>

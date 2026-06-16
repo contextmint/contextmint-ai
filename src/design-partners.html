@@ -1,0 +1,136 @@
+---
+layout: base.html
+title: Design Partners | ContextMint
+description: Join ContextMint as a design partner — local-first AI governance for engineering teams in the UAE, MENA, and globally.
+pageJs: form.js
+---
+
+<header class="page-hero">
+  <div class="container">
+    <div class="pill">DESIGN PARTNERS · UAE &amp; MENA</div>
+    <h1>Co-build governable AI for engineering teams</h1>
+    <p class="lead">
+      We are recruiting a small cohort of design partners — especially in
+      <strong>fintech, platform engineering, and regulated digital teams</strong> — to pilot
+      ContextMint before general availability. No 30-minute call required to start: reply async
+      via the form below.
+    </p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container container-narrow split">
+    <div>
+      <h2>What you get</h2>
+      <ul>
+        <li>Early access to ContextMint Engine + ContextLoom VS Code extension</li>
+        <li>Local-first deployment — code and embeddings stay on your infrastructure</li>
+        <li>Context Lens + quality map for audit-friendly AI-assisted development</li>
+        <li>Direct line to product engineering; influence the roadmap</li>
+        <li>Pilot summary report for your security and platform stakeholders</li>
+      </ul>
+    </div>
+    <div>
+      <h2>What we ask</h2>
+      <ul>
+        <li>Named pilot lead (platform, security, or engineering)</li>
+        <li>10–30 developers on one team or repo for 30 days</li>
+        <li>Feedback at week 2 and week 4 (async OK)</li>
+        <li>Honest assessment of fit for regulated / sovereign AI dev workflows</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container container-narrow">
+    <h2 class="section-title">Ideal fit</h2>
+    <div class="grid grid-2">
+      <div class="card">
+        <strong>You blocked or limited Copilot / Cursor</strong>
+        <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">
+          Because of data residency, audit requirements, or ungoverned auto-edits.
+        </p>
+      </div>
+      <div class="card">
+        <strong>You need evidence, not vibes</strong>
+        <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">
+          Human gates before inference and before apply — with logs your reviewers can trust.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title text-center">Express interest (async)</h2>
+    <p class="muted text-center" style="margin-bottom: 24px;">
+      Select <strong>Design partner / early access</strong> below. We respond within one business day.
+    </p>
+    <form
+      id="demo-form"
+      class="form card"
+      novalidate
+      data-formspree-id="{{ site.formspreeFormId }}"
+      data-contact-email="{{ site.contactEmail }}"
+    >
+      <div class="form-fields">
+        <div class="form-group">
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="name" required autocomplete="name" />
+        </div>
+        <div class="form-group">
+          <label for="email">Work email</label>
+          <input type="email" id="email" name="email" required autocomplete="email" />
+        </div>
+        <div class="form-group">
+          <label for="company">Organization</label>
+          <input type="text" id="company" name="company" required autocomplete="organization" />
+        </div>
+        <div class="form-group">
+          <label for="role">Role</label>
+          <select id="role" name="role" required>
+            <option value="">Select…</option>
+            <option value="cto">CTO / VP Engineering</option>
+            <option value="platform">Platform / DevOps</option>
+            <option value="security">Security / Compliance</option>
+            <option value="staff">Staff Engineer / Architect</option>
+            <option value="research">Research / Education</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <input type="hidden" name="challenge" value="design-partner" />
+        <div class="form-group">
+          <label for="team-size">Engineering team size</label>
+          <select id="team-size" name="team-size">
+            <option value="">Select…</option>
+            <option value="1-10">1–10</option>
+            <option value="11-50">11–50</option>
+            <option value="51-200">51–200</option>
+            <option value="200+">200+</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Primary constraint (optional)</label>
+          <textarea
+            id="message"
+            name="message"
+            placeholder="e.g. Cannot send code to US cloud AI; need audit trail for AI-assisted edits…"
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Submit interest</button>
+        <p class="mono text-center" style="margin-top: 16px; font-size: 0.75rem; color: var(--text-tertiary);">
+          Prefer email? <a href="mailto:{{ site.contactEmail }}" style="color: var(--color-action);">{{ site.contactEmail }}</a>
+        </p>
+      </div>
+      <div class="form-success">
+        <strong>Thank you — we will be in touch.</strong>
+        <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">
+          We will follow up with a one-page pilot proposal. Urgent:
+          <a href="mailto:{{ site.contactEmail }}" style="color: var(--color-action);">{{ site.contactEmail }}</a>
+        </p>
+      </div>
+    </form>
+  </div>
+</section>
