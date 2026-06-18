@@ -1,0 +1,22 @@
+<aside class="doc-sidebar" aria-label="Documentation navigation">
+  <p class="doc-sidebar__title"><a href="/docs/">User documentation</a></p>
+  <nav class="doc-sidebar__nav">
+    <a href="/docs/" class="doc-sidebar__link{% if page.url == '/docs/' or page.url == '/docs/index.html' %} doc-sidebar__link--active{% endif %}">Overview</a>
+    <a href="/docs/installation.html" class="doc-sidebar__link{% if page.url contains '/docs/installation' %} doc-sidebar__link--active{% endif %}">Installation &amp; setup</a>
+    <a href="/docs/chat-and-lanes.html" class="doc-sidebar__link{% if page.url contains '/docs/chat-and-lanes' %} doc-sidebar__link--active{% endif %}">Chat, modes &amp; lanes</a>
+    <a href="/docs/context-lens-packs.html" class="doc-sidebar__link{% if page.url contains '/docs/context-lens-packs' %} doc-sidebar__link--active{% endif %}">Context Lens &amp; packs</a>
+    <a href="/docs/engine-operator.html" class="doc-sidebar__link{% if page.url contains '/docs/engine-operator' %} doc-sidebar__link--active{% endif %}">Engine operator guide</a>
+    <a href="/docs/indexing-readiness.html" class="doc-sidebar__link{% if page.url contains '/docs/indexing-readiness' %} doc-sidebar__link--active{% endif %}">Indexing &amp; readiness</a>
+    <a href="/docs/patches-governance.html" class="doc-sidebar__link{% if page.url contains '/docs/patches-governance' %} doc-sidebar__link--active{% endif %}">Patches &amp; governance</a>
+    <a href="/docs/settings.html" class="doc-sidebar__link{% if page.url contains '/docs/settings' %} doc-sidebar__link--active{% endif %}">Settings reference</a>
+    <a href="/docs/byok-enterprise.html" class="doc-sidebar__link{% if page.url contains '/docs/byok-enterprise' %} doc-sidebar__link--active{% endif %}">BYOK &amp; enterprise</a>
+    <a href="/docs/glossary.html" class="doc-sidebar__link{% if page.url contains '/docs/glossary' %} doc-sidebar__link--active{% endif %}">Glossary</a>
+  </nav>
+  <p class="doc-sidebar__title doc-sidebar__title--sub">Related</p>
+  <nav class="doc-sidebar__nav">
+    <a href="/getting-started.html" class="doc-sidebar__link">Quick start (5 min)</a>
+    <a href="/features.html" class="doc-sidebar__link">Features (v1.0)</a>
+    <a href="/support/troubleshooting.html" class="doc-sidebar__link">Troubleshooting</a>
+    <a href="/developers/" class="doc-sidebar__link">Developers</a>
+  </nav>
+</aside>

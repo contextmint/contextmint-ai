@@ -1,0 +1,343 @@
+---
+layout: support-article.html
+title: Troubleshooting | ContextMint Support
+description: Fix common ContextMint problems — install, Engine, Ollama, extension, indexing, chat, Context Lens, patches, cloud, and diagnostics.
+pageCss: product.css
+---
+
+<h1>Troubleshooting</h1>
+<p class="doc-lead">
+  Symptom → likely cause → what to do. For concepts and workflows, see
+  <a href="/docs/">user documentation</a>. Quick Q&amp;A: <a href="/faq.html">FAQ</a>.
+</p>
+
+<div class="trouble-block" id="install">
+  <h2>Install &amp; first run</h2>
+  <p class="muted" style="margin-bottom: 16px;">
+    <strong>Installing now?</strong> Use the dedicated
+    <a href="/docs/installation.html#installation-support">installation support</a> section first — it is the primary guide for setup issues.
+  </p>
+
+  <details class="faq-item">
+    <summary>Engine installs but tray icon never appears</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> App started minimized or OS blocked startup.</p>
+      <p><strong>Fix:</strong> Check system tray overflow (^) on Windows. Relaunch Engine from Start menu. On Linux, confirm tray applet is running.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>Extension installed but no ContextMint activity bar icon</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> Extension disabled, wrong VS Code profile, or activation error.</p>
+      <p><strong>Fix:</strong> Extensions → enable {{ site.extensionName }}. Reload window. Check Output → “ContextMint” for activation errors.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>First-run wizard loops or cannot find Python</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> Dev layout vs packaged bundle path mismatch.</p>
+      <p><strong>Fix:</strong> Engine → Settings → set backend path to shipped bundle. Reinstall latest Engine build. For source dev, point pythonPath at project venv.</p>
+    </div>
+  </details>
+</div>
+
+<div class="trouble-block" id="engine">
+  <h2>Engine &amp; server</h2>
+
+  <details class="faq-item">
+    <summary>Status bar shows “server offline” / chat blocked</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> API not listening on configured URL.</p>
+      <p><strong>Fix:</strong> Engine → Start all. Verify <code>http://localhost:8000/api/health</code>. Check firewall blocking loopback. If using shared server, verify <code>serverUrl</code> and TLS.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>Server stuck on “Starting”</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> Port 8000 in use, Python crash on boot, or zombie process.</p>
+      <p><strong>Fix:</strong> Engine → Logs. Stop all, kill stray python/contextmint processes, change port in Settings if needed, Start all again.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>Health OK but extension never leaves Starting</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> Stale readiness poll, wrong serverUrl, or index status timeout.</p>
+      <p><strong>Fix:</strong> Reload VS Code window. Confirm serverUrl has no trailing path typo. Engine → Server → restart server.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>Redis / data layer warnings on Overview</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> Optional Redis not running (some enterprise configs).</p>
+      <p><strong>Fix:</strong> For local-first pilot, often safe to ignore if chat works. For team server, start Redis per deployment guide or disable Redis-dependent features in server config.</p>
+    </div>
+  </details>
+</div>
+
+<div class="trouble-block" id="ollama">
+  <h2>Ollama &amp; models</h2>
+
+  <details class="faq-item">
+    <summary>Phase shows Limited — Ollama offline</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> Ollama not running or wrong URL.</p>
+      <p><strong>Fix:</strong> Engine → Ollama → Start / Restart. Install Ollama if missing. Default URL <code>http://localhost:11434</code>.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>Chat streams empty or “model not found”</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> Chat model not pulled in Ollama.</p>
+      <p><strong>Fix:</strong> Engine → Models → pull default chat model. Match model name in server defaults.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>Indexing very slow or embed errors</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> Missing embed model, GPU/CPU overload, or disk pressure.</p>
+      <p><strong>Fix:</strong> Pull embed model in Models tab. Reduce concurrent indexing if tunable. Exclude large binary dirs via ignore rules.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>First answer after restart is very slow</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> Cold model load in Ollama.</p>
+      <p><strong>Fix:</strong> Expected once per restart. Server runs background warmup; send a short ping message to load model before important queries.</p>
+    </div>
+  </details>
+</div>
+
+<div class="trouble-block" id="extension">
+  <h2>Extension &amp; connectivity</h2>
+
+  <details class="faq-item">
+    <summary>Wrong workspace / no retrieval for my repo</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> Multi-root workspace, unregistered folder, or path mismatch on shared server.</p>
+      <p><strong>Fix:</strong> Open the repo root folder. Engine → Indexing → confirm workspace listed. Enterprise: paths on server must match VS Code folder paths.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>Remote SSH — extension cannot reach server</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> serverUrl points at localhost on remote host while browser test uses local machine.</p>
+      <p><strong>Fix:</strong> Run Engine on SSH host or use team serverUrl reachable from remote extension host. Port-forward 8000 if required.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>enterpriseMode / auth failures (401)</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> OIDC token missing or expired.</p>
+      <p><strong>Fix:</strong> Re-authenticate per org SSO flow. Confirm oidcProviderId matches server. Check server audit for auth errors.</p>
+    </div>
+  </details>
+</div>
+
+<div class="trouble-block" id="indexing">
+  <h2>Indexing &amp; search</h2>
+
+  <details class="faq-item">
+    <summary>Indexing stuck at 0% or never finishes</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> Permission errors, huge repo, or crashed background task.</p>
+      <p><strong>Fix:</strong> Engine → Indexing → view errors. Engine → Logs. Trigger manual reindex. Exclude <code>node_modules</code>, build artifacts via ignore config.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>Chat says “no repo matches” for known files</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> File not indexed yet, wrong lane (Repo with empty index), or query mismatch.</p>
+      <p><strong>Fix:</strong> Open file in editor (priority index). Wait for indexing. Attach file explicitly. Try Hybrid lane. Use symbol-rich query for code lookups.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>Reindex after every small change</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> Embed model changed, hash cache cleared, or watcher storm.</p>
+      <p><strong>Fix:</strong> Stabilize embed model in Models tab. Check logs for repeated full reindex triggers. Pause bulk file operations during initial index.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>Readiness Error phase</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> Indexer exception, corrupt local store, or disk full.</p>
+      <p><strong>Fix:</strong> Engine → Indexing error detail. Free disk space. Last resort: clear workspace index data and full reindex (backup first).</p>
+    </div>
+  </details>
+</div>
+
+<div class="trouble-block" id="chat">
+  <h2>Chat &amp; context lanes</h2>
+
+  <details class="faq-item">
+    <summary>Planning question gets “I don’t have context” in Repo lane</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> Expected — Repo lane refuses to speculate without evidence.</p>
+      <p><strong>Fix:</strong> Switch to <strong>Work</strong> lane or accept <strong>Use Work lane</strong> banner. Attach notes or activate a session pack.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>Work lane still feels empty</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> No packs built, no attachments.</p>
+      <p><strong>Fix:</strong> Build session/repo packs. Attach markdown or spec files. Paste key context as attachment.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>Stream hangs — spinner never ends</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> Ollama hang, cloud timeout, or SSE disconnect.</p>
+      <p><strong>Fix:</strong> Click Cancel (send button). Restart Ollama. Check Logs. Reduce context size / attachment count. Retry with Local model only.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>Cloud routing fails but local works</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> Invalid API key, provider outage, or cloudEnabled false.</p>
+      <p><strong>Fix:</strong> Re-run Configure Cloud API Key. Enable trust.cloudEnabled. Check provider status. Inspect routing badge for tier used.</p>
+    </div>
+  </details>
+</div>
+
+<div class="trouble-block" id="lens">
+  <h2>Context Lens &amp; packs</h2>
+
+  <details class="faq-item">
+    <summary>Context Lens never appears</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> lensPreviewEnabled off and first-N sends exhausted.</p>
+      <p><strong>Fix:</strong> Enable <code>contextmint.trust.lensPreviewEnabled</code>. Toggle preview from compose or trust settings.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>@pack:name not found</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> Pack not built or wrong name in manifest.</p>
+      <p><strong>Fix:</strong> Packs panel → Scan &amp; learn. Verify <code>manifest.yaml</code> name matches @pack reference.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>Stale pack banner every session</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> Sources changed faster than auto-sync.</p>
+      <p><strong>Fix:</strong> Rebuild pack. Enable autoSync with appropriate debounce. Commit pack sources if intentional.</p>
+    </div>
+  </details>
+</div>
+
+<div class="trouble-block" id="patches">
+  <h2>Patches &amp; assisted actions</h2>
+
+  <details class="faq-item">
+    <summary>Propose patch button missing or disabled</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> Not in Agent mode, readiness blocked, or sandbox policy.</p>
+      <p><strong>Fix:</strong> Switch to Agent mode. Confirm Ready/Limited/Indexing phase. Check sandbox.enabled settings.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>Apply failed / partial write</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> File permissions, git conflict, or path outside workspace.</p>
+      <p><strong>Fix:</strong> Review diff in patch preview. Ensure files writable. Use git to revert. Check Output for apply errors.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>Governance drawer empty</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> No quality scan run for workspace.</p>
+      <p><strong>Fix:</strong> Engine → Quality → run scan. Wait for completion. Retry chat with governance preview enabled.</p>
+    </div>
+  </details>
+</div>
+
+<div class="trouble-block" id="cloud">
+  <h2>Cloud &amp; enterprise</h2>
+
+  <details class="faq-item">
+    <summary>Shared server — workspace path not found</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> Server indexes <code>/data/repos/foo</code> but VS Code opens <code>C:\foo</code>.</p>
+      <p><strong>Fix:</strong> Align paths via Remote SSH same absolute path or server-side path mapping. Re-register workspace on server.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>TLS / certificate errors to team API</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> Corporate MITM or self-signed cert not trusted.</p>
+      <p><strong>Fix:</strong> Install org root CA on dev machine. Use valid internal cert on API ingress. Temporary dev-only: trust proxy settings per IT policy.</p>
+    </div>
+  </details>
+</div>
+
+<div class="trouble-block" id="performance">
+  <h2>Performance</h2>
+
+  <details class="faq-item">
+    <summary>High CPU during indexing + chat</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> Embed batch + chat inference competing on same machine.</p>
+      <p><strong>Fix:</strong> Let initial index complete. Use smaller chat model. Pause inline completion. Schedule large reindex off-hours.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>Context Lens slow on large repos</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> Many chunks retrieved before cap.</p>
+      <p><strong>Fix:</strong> Narrow question. Attach specific files. Exclude irrelevant chunks in lens. Tune max context settings on server if operator.</p>
+    </div>
+  </details>
+</div>
+
+<div class="trouble-block" id="diagnostics">
+  <h2>Diagnostics &amp; getting help</h2>
+
+  <details class="faq-item">
+    <summary>What to collect before contacting support</summary>
+    <div class="faq-item__body">
+      <ol>
+        <li>Engine → About → export <strong>support bundle</strong></li>
+        <li>Engine and extension version numbers</li>
+        <li>OS version and VS Code version</li>
+        <li>Steps to reproduce, readiness phase, context lane used</li>
+        <li>Relevant redacted log lines from Engine → Logs</li>
+      </ol>
+      <p>
+        Email <a href="mailto:{{ site.contactEmail }}">{{ site.contactEmail }}</a> or open
+        <a href="{{ site.issuesUrl }}">GitHub issue</a> for release builds.
+      </p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>Design partner escalation</summary>
+    <div class="faq-item__body">
+      <p>
+        Pilot cohorts get direct engineering channel. See
+        <a href="/design-partners.html">Design Partners</a> or your onboarding contact.
+      </p>
+    </div>
+  </details>
+</div>

@@ -1,0 +1,56 @@
+---
+layout: doc.html
+title: BYOK & Enterprise | ContextMint Docs
+description: Bring-your-own-key cloud routing, context redaction, shared on-prem API server, OIDC, and Remote SSH path alignment.
+pageCss: product.css
+---
+
+<h1>BYOK &amp; enterprise deployment</h1>
+<p class="doc-lead">
+  Default ContextMint is <strong>local-first</strong>: code and indexes stay on your machine. Teams that
+  need shared infrastructure or approved cloud models enable optional paths below — all off by default.
+</p>
+
+<h2>Local-first (default)</h2>
+<ul>
+  <li>Engine + Ollama on loopback</li>
+  <li>API keys not required</li>
+  <li>No egress of source code for indexing or local inference</li>
+</ul>
+
+<h2>BYOK cloud routing</h2>
+<p>When platform policy allows external inference:</p>
+<ol>
+  <li>Enable <code>contextmint.trust.cloudEnabled</code></li>
+  <li>Run command <strong>ContextMint: Configure Cloud API Key</strong></li>
+  <li>Keys stored in VS Code <strong>SecretStorage</strong> — never in Engine config or server logs</li>
+  <li>Select <strong>Cloud</strong> or <strong>Auto</strong> in compose model picker</li>
+</ol>
+<p>
+  Only <strong>redacted assembled context</strong> is sent to the provider you choose. Routing badge and
+  inspector show cloud tier when used.
+</p>
+
+<h2>Shared on-prem API server (pilot)</h2>
+<p>Platform team deploys Docker/Helm stack; developers configure:</p>
+<ul>
+  <li><code>contextmint.server.serverUrl</code> — HTTPS internal hostname</li>
+  <li><code>contextmint.trust.enterpriseMode</code> — true when auth required</li>
+  <li>OIDC provider ID and JWT validation on server</li>
+</ul>
+<p>
+  Extension does <strong>not</strong> install Engine. Workspace paths on the server must match what developers
+  open in VS Code (Remote SSH workspace folders or consistent mount paths).
+</p>
+
+<h2>Security review artifacts</h2>
+<p>
+  Design partners receive architecture summaries, data-flow diagrams, and questionnaire support.
+  Contact <a href="mailto:{{ site.contactEmail }}">{{ site.contactEmail }}</a> or
+  <a href="/design-partners.html">apply as a design partner</a>.
+</p>
+
+<p class="muted">
+  Full trust model: <a href="/trust.html">Trust &amp; Security</a>.
+  Problems: <a href="/support/troubleshooting.html#cloud">Troubleshooting → Cloud &amp; enterprise</a>.
+</p>

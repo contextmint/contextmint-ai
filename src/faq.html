@@ -11,7 +11,9 @@ pageCss: product.css
     <h1>Common questions</h1>
     <p class="lead">
       Quick answers for engineers and platform teams evaluating ContextMint.
-      For install steps, see the <a href="/getting-started.html" style="color: var(--color-action);">getting started guide</a>.
+      For install steps, see <a href="/getting-started.html" style="color: var(--color-action);">getting started</a>.
+      For symptom fixes, see <a href="/support/troubleshooting.html" style="color: var(--color-action);">troubleshooting</a>.
+      For depth, see <a href="/docs/" style="color: var(--color-action);">user documentation</a>.
     </p>
   </div>
 </header>
@@ -73,12 +75,26 @@ pageCss: product.css
     </details>
 
     <details class="faq-item">
+      <summary>Can I ask non-code or planning questions in chat?</summary>
+      <div class="faq-item__body">
+        <p>
+          Yes — use the compose <strong>Context</strong> selector. <strong>Repo</strong> (default)
+          answers only from your indexed codebase. <strong>Work</strong> is for planning, comms, and
+          concepts using session packs and attachments without a repo file search.
+          <strong>Hybrid</strong> combines repo evidence with reasoned recommendations. ContextMint is
+          not a generic ChatGPT replacement; lanes keep repo answers trustworthy.
+        </p>
+      </div>
+    </details>
+
+    <details class="faq-item">
       <summary>Why is chat blocked while “indexing”?</summary>
       <div class="faq-item__body">
         <p>
-          Full chat unlocks when your workspace index reaches <strong>Ready</strong>. Large repos
-          may take several minutes on first open. You can monitor progress in Engine → Indexing and
-          on the readiness card in VS Code.
+          Chat is <strong>not</strong> blocked during background indexing — answers use whatever is
+          indexed so far and improve as files finish. The readiness card may show an indexing banner;
+          you can still send messages. If chat is fully blocked, check for server offline or index
+          <strong>error</strong> state in Engine → Health.
         </p>
       </div>
     </details>

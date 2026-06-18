@@ -1,0 +1,68 @@
+---
+layout: doc.html
+title: Glossary | ContextMint Docs
+description: ContextMint terminology — Engine, workspace ID, context lanes, progressive RAG, glass box, gates, and more.
+pageCss: product.css
+---
+
+<h1>Glossary</h1>
+<p class="doc-lead">Shared vocabulary for ContextMint product, support, and documentation.</p>
+
+<dl class="faq-list" style="gap: 0;">
+  <details class="faq-item" open>
+    <summary>ContextMint Engine</summary>
+    <div class="faq-item__body"><p>Desktop tray application that runs the Python API server, manages Ollama, indexing, logs, and operator UI tabs.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary>{{ site.extensionName }} (extension)</summary>
+    <div class="faq-item__body"><p>VS Code extension — chat webview, Context Lens, packs panel, quality/governance UI. Connects to Engine over HTTP.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary>Workspace ID</summary>
+    <div class="faq-item__body"><p>12-character hex identifier for a registered folder. Stable per repo path; used in API calls and audit.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary>Context lane</summary>
+    <div class="faq-item__body"><p>Repo (full RAG), Work (packs/attachments only), or Hybrid (RAG + recommendations). Selected in compose ⋯ → Context.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary>Progressive RAG</summary>
+    <div class="faq-item__body"><p>Retrieval uses partial index + active file + grep while background indexing is still running.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary>Context Lens</summary>
+    <div class="faq-item__body"><p>Gate 1 — pre-send preview of chunks, scores, routing, and governance before LLM inference.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary>Context pack</summary>
+    <div class="faq-item__body"><p>Curated markdown knowledge with manifest; activated via @pack:name or packs panel.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary>Glass box</summary>
+    <div class="faq-item__body"><p>Transparent routing — provenance chips, routing badge, reasoning timeline, inspector drawer.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary>Readiness phase</summary>
+    <div class="faq-item__body"><p>Unified UI state: offline, starting, indexing, ready, limited, error. Gates chat send only for offline/starting/error.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary>Ollama</summary>
+    <div class="faq-item__body"><p>Local LLM runtime for embeddings and chat on the default path. Engine manages lifecycle.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary>BYOK</summary>
+    <div class="faq-item__body"><p>Bring your own key — optional cloud provider routing with keys in VS Code secrets.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary>Quality map</summary>
+    <div class="faq-item__body"><p>Stored governance scan results (clones, structure) surfaced in lens governance drawer.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary>Assisted action</summary>
+    <div class="faq-item__body"><p>Structured proposed change with risk level; human confirms before apply.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary>Support bundle</summary>
+    <div class="faq-item__body"><p>Export from Engine → About — versions, redacted config, logs for support tickets.</p></div>
+  </details>
+</dl>

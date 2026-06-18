@@ -1,0 +1,59 @@
+---
+layout: doc.html
+title: Patches & Governance | ContextMint Docs
+description: Assisted actions, patch preview gate 2, quality map, DRY governance, and audit-friendly telemetry.
+pageCss: product.css
+---
+
+<h1>Patches &amp; governance</h1>
+<p class="doc-lead">
+  ContextMint enforces <strong>human gates</strong>: evidence before inference (Context Lens), diffs before
+  apply (patch preview). Governance signals inform — and optionally gate — high-risk changes.
+</p>
+
+<h2>Gate 1 — Context Lens</h2>
+<p>See <a href="/docs/context-lens-packs.html">Context Lens &amp; packs</a>. You approve retrieved context before the model answers.</p>
+
+<h2>Gate 2 — Patch preview</h2>
+<p>In <strong>Agent</strong> mode, proposed edits appear as a unified diff:</p>
+<ul>
+  <li>Review added/removed lines per file</li>
+  <li>Accept applies to workspace (or sandbox worktree when enabled)</li>
+  <li>Reject discards the proposal — no silent writes</li>
+</ul>
+
+<h2>Assisted actions</h2>
+<p>
+  Structured action cards (refactors, test scaffolding, etc.) include risk level and reasoning references.
+  Confirm or cancel explicitly; telemetry mirrors audit metadata (no file contents in telemetry POST).
+</p>
+
+<h2>Quality map</h2>
+<p>
+  Engine → Quality runs scans for clones, near-duplicates, and structure signals. Findings appear in the
+  governance drawer during Context Lens. In <strong>Repo</strong> lane, governed chat may apply DRY shortcuts
+  when high-confidence duplicate patterns match your question.
+</p>
+
+<h2>Governed chat scope</h2>
+<p>
+  Quality-map shortcuts apply in <strong>Repo</strong> context lane only. <strong>Work</strong> and
+  <strong>Hybrid</strong> lanes use standard assembly without governed duplicate routing.
+</p>
+
+<h2>Audit &amp; telemetry</h2>
+<ul>
+  <li>Server writes audit JSONL per workspace (chat streams, actions, indexing events)</li>
+  <li>Optional <code>POST /api/v1/telemetry/action</code> for sampled client mirrors</li>
+  <li>Lane metrics on <code>GET /api/observability/metrics</code> for operators</li>
+</ul>
+
+<h2>Enterprise posture</h2>
+<p>
+  Regulated teams pair local-first defaults with shared on-prem API, OIDC, and BYOK cloud routing.
+  See <a href="/trust.html">Trust &amp; Security</a> and <a href="/docs/byok-enterprise.html">BYOK &amp; enterprise</a>.
+</p>
+
+<p class="muted">
+  Problems: <a href="/support/troubleshooting.html#patches">Troubleshooting → Patches &amp; actions</a>.
+</p>

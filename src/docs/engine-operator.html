@@ -1,0 +1,86 @@
+---
+layout: doc.html
+title: Engine Operator Guide | ContextMint Docs
+description: Operate ContextMint Engine — Overview, Server, Ollama, Models, Indexing, Quality, Logs, Settings, and support bundle.
+pageCss: product.css
+---
+
+<h1>Engine operator guide</h1>
+<p class="doc-lead">
+  <strong>ContextMint Engine</strong> is the desktop tray app that manages the Python API server, Ollama,
+  indexing jobs, and operator diagnostics. Developers use VS Code for daily chat; operators and leads use Engine
+  for health and capacity.
+</p>
+
+<h2>Tray &amp; lifecycle</h2>
+<ul>
+  <li><strong>Start all</strong> — API server + Ollama (local-first)</li>
+  <li><strong>Stop all</strong> — graceful shutdown; extension shows offline</li>
+  <li>Autostart options in Settings (OS service / login — platform-dependent)</li>
+</ul>
+
+<h2>Overview tab</h2>
+<p>At-a-glance cards:</p>
+<ul>
+  <li><strong>Readiness</strong> — server, Ollama, Redis (if used), data layer notes</li>
+  <li><strong>Workspaces</strong> — registered repos, indexing state, drill-down to Indexing / Quality</li>
+  <li><strong>Chat lanes (session)</strong> — Repo / Work / Hybrid stream counts and Work-lane suggest metrics</li>
+</ul>
+
+<h2>Server tab</h2>
+<ul>
+  <li>Port and bind address (default loopback)</li>
+  <li>Restart server without quitting Engine</li>
+  <li>Link to <code>/api/health</code> for raw health JSON</li>
+</ul>
+
+<h2>Ollama tab</h2>
+<ul>
+  <li>Runtime status and URL</li>
+  <li>Restart Ollama process</li>
+  <li>First-run: install link if binary not found</li>
+</ul>
+
+<h2>Models tab</h2>
+<ul>
+  <li>Installed models vs available pulls</li>
+  <li>Embed model used for indexing (changing it may require reindex)</li>
+  <li>Default chat model for local routing</li>
+</ul>
+
+<h2>Indexing tab</h2>
+<ul>
+  <li>Per-workspace progress, file counts, errors</li>
+  <li>Manual reindex / activate workspace actions</li>
+  <li>Drill-down for file-level status on large repos</li>
+</ul>
+
+<h2>Quality tab</h2>
+<ul>
+  <li>Run quality scans (clones, structure signals)</li>
+  <li>Findings feed governance drawer in VS Code</li>
+  <li>Scan progress for long-running repos</li>
+</ul>
+
+<h2>Logs tab</h2>
+<ul>
+  <li>Tail server logs with time window filter</li>
+  <li>Use when chat or indexing fails intermittently</li>
+</ul>
+
+<h2>Settings tab</h2>
+<ul>
+  <li>Python path, backend bundle path</li>
+  <li>Server URL override, Ollama URL</li>
+  <li>Operator tunables mirrored from server defaults where exposed</li>
+</ul>
+
+<h2>About &amp; support bundle</h2>
+<p>
+  Export a <strong>support bundle</strong> (versions, config redacted, recent logs) when filing
+  <a href="{{ site.issuesUrl }}">GitHub issues</a> or emailing {{ site.contactEmail }}.
+</p>
+
+<p class="muted">
+  Problems: <a href="/support/troubleshooting.html#engine">Troubleshooting → Engine &amp; server</a>.
+</p>

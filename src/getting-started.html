@@ -14,7 +14,8 @@ pageCss: product.css
       local-first: Engine on your machine manages the server and Ollama; the extension connects over
       loopback. Enterprise teams can run a <strong>shared on-prem API server</strong> instead — see
       <a href="/trust.html" style="color: var(--color-action);">deployment models</a>.
-      After install, see <a href="/features.html" style="color: var(--color-action);">what ships in v1.0</a>.
+      If anything fails during install, open
+      <a href="/docs/installation.html#installation-support" style="color: var(--color-action);">installation support</a> first.
     </p>
   </div>
 </header>
@@ -113,10 +114,17 @@ pageCss: product.css
       <li>Wait for readiness <strong>Ready</strong> (indexing may take a few minutes on large repos).</li>
       <li>Review Context Lens, then send your first question.</li>
     </ol>
-    <p class="muted" style="margin-top: 16px; margin-bottom: 0;">
+    <p class="muted" style="margin-top: 16px;">
+      In the compose <strong>⋯</strong> menu, set <strong>Context</strong> to <strong>Repo</strong> for
+      codebase questions (default), <strong>Work</strong> for planning or comms, or <strong>Hybrid</strong>
+      when you want repo evidence plus recommendations.
+    </p>
+    <p class="muted" style="margin-top: 8px; margin-bottom: 0;">
       Status bar shows <strong>{{ site.extensionName }} | Ready</strong> when Engine and the backend
       are healthy. Full v1.0 capability list:
       <a href="/features.html" style="color: var(--color-action);">Features →</a>
+      · <a href="/docs/" style="color: var(--color-action);">User documentation →</a>
+      · <a href="/support/troubleshooting.html" style="color: var(--color-action);">Troubleshooting →</a>
     </p>
   </div>
 </section>
@@ -176,12 +184,13 @@ pageCss: product.css
       <p class="muted">Common fixes before you email support.</p>
       <ul>
         <li>Server offline → open Engine and <strong>Start all</strong></li>
-        <li>Chat blocked while indexing → wait for readiness to reach <strong>Ready</strong></li>
-        <li>Ollama offline → degraded mode; repo search works, generation may be limited</li>
+        <li>Chat blocked → usually <strong>offline</strong> or <strong>starting</strong> — not indexing</li>
+        <li>Ollama offline → <strong>Limited</strong> mode; search may work, generation degraded</li>
       </ul>
       <p style="margin-top: 16px;">
-        <a class="btn btn-secondary" href="/faq.html">Read the FAQ</a>
-        <a class="btn btn-secondary" href="/support.html" style="margin-left: 8px;">Contact support</a>
+        <a class="btn btn-secondary" href="/support/troubleshooting.html">Troubleshooting</a>
+        <a class="btn btn-secondary" href="/docs/" style="margin-left: 8px;">User docs</a>
+        <a class="btn btn-secondary" href="/faq.html" style="margin-left: 8px;">FAQ</a>
       </p>
     </div>
   </div>

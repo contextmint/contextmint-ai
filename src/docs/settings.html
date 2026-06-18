@@ -1,0 +1,73 @@
+---
+layout: doc.html
+title: Settings Reference | ContextMint Docs
+description: Key ContextMint VS Code extension and Engine settings — server URL, context lanes, trust gate, cloud routing, and indexing behavior.
+pageCss: product.css
+---
+
+<h1>Settings reference</h1>
+<p class="doc-lead">
+  ContextMint settings live in VS Code <strong>Settings</strong> (search “ContextMint”) and in Engine
+  <strong>Settings</strong> for operator paths. Values below use the <code>contextmint.*</code> namespace.
+</p>
+
+<h2>Server &amp; connectivity</h2>
+<ul>
+  <li><code>contextmint.server.serverUrl</code> — API base (default <code>http://localhost:8000</code>)</li>
+  <li><code>contextmint.server.serverTimeoutMs</code> — health / request timeout</li>
+  <li><code>contextmint.server.autoStart</code> — extension dev helper only; packaged mode uses Engine</li>
+</ul>
+
+<h2>Chat</h2>
+<ul>
+  <li><code>contextmint.chat.defaultModel</code> — Auto | local | cloud</li>
+  <li><code>contextmint.chat.placement</code> — side panel vs editor placement</li>
+  <li><code>contextmint.chat.maxHistorySend</code> — messages included in stream body</li>
+  <li><code>contextmint.chat.reasoningCollapseOnAnswer</code> — collapse reasoning panel when answer starts</li>
+  <li><code>contextmint.chat.cloudThinkingEnabled</code> — extended thinking for supported cloud models</li>
+</ul>
+
+<h2>Context lanes (U-065+)</h2>
+<ul>
+  <li><code>contextmint.chat.contextLanesEnabled</code> — show Repo / Work / Hybrid selector</li>
+  <li><code>contextmint.chat.defaultContextLane</code> — repo | work | hybrid</li>
+  <li><code>contextmint.chat.repoLanePlaceholder</code> — compose hint for Repo lane</li>
+  <li><code>contextmint.chat.workLanePlaceholder</code> — compose hint for Work lane</li>
+  <li><code>contextmint.chat.hybridLanePlaceholder</code> — compose hint for Hybrid lane</li>
+  <li><code>contextmint.chat.laneSuggestEnabled</code> — banner when repo retrieval is weak</li>
+  <li><code>contextmint.chat.laneSuggestPrompt</code> — banner text</li>
+  <li><code>contextmint.chat.laneSuggestWorkButtonLabel</code> — retry button label</li>
+</ul>
+
+<h2>Trust &amp; preview</h2>
+<ul>
+  <li><code>contextmint.trust.trustGateEnabled</code> — extra confirm on sensitive sends</li>
+  <li><code>contextmint.trust.lensPreviewEnabled</code> — Context Lens before inference</li>
+  <li><code>contextmint.trust.lensPreviewFirstNSends</code> — auto-preview for first N sends per session</li>
+  <li><code>contextmint.trust.cloudEnabled</code> — allow cloud tier in routing</li>
+  <li><code>contextmint.trust.enterpriseMode</code> — OIDC / shared server auth path</li>
+</ul>
+
+<h2>Packs</h2>
+<ul>
+  <li><code>contextmint.packs.autoSync</code> — debounced rebuild on source changes</li>
+  <li><code>contextmint.packs.syncDebounceMs</code> — debounce interval</li>
+</ul>
+
+<h2>Inline completion (optional)</h2>
+<ul>
+  <li><code>contextmint.inline.enabled</code> — ghost text completions</li>
+  <li><code>contextmint.inline.pauseWhileIndexing</code> — reduce load during bulk index</li>
+  <li><code>contextmint.inline.yieldToChat</code> — defer inline when chat is streaming</li>
+</ul>
+
+<h2>Backend defaults (operators)</h2>
+<p>
+  Server tunables live in <code>contextmint.defaults.yaml</code> on the API host — chat token caps,
+  lane suggest thresholds, indexing concurrency, etc. Engine Settings exposes a subset; full list is in
+  the operator repo documentation for self-hosted deployments.
+</p>
+
+<p class="muted">
+  Problems: <a href="/support/troubleshooting.html#extension">Troubleshooting → Extension</a>.
+</p>

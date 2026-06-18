@@ -1,0 +1,118 @@
+---
+layout: doc.html
+title: Chat, Modes & Context Lanes | ContextMint Docs
+description: Ask, Plan, and Agent modes; Repo, Work, and Hybrid context lanes; attachments, sessions, provenance chips, and Work-lane auto-suggest.
+pageCss: product.css
+---
+
+<h1>Chat, modes &amp; context lanes</h1>
+<p class="doc-lead">
+  ContextMint chat is a governed copilot — not a generic web chat. You choose <strong>how much autonomy</strong>
+  the model has (mode) and <strong>what evidence</strong> it may use (context lane).
+</p>
+
+<h2>Opening chat</h2>
+<ul>
+  <li>Activity bar → ContextMint chat view</li>
+  <li>Shortcut: <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>L</kbd> (Windows/Linux; macOS may differ per keymap)</li>
+</ul>
+
+<h2>Modes: Ask, Plan, Agent</h2>
+<table class="muted" style="width:100%; border-collapse: collapse; font-size: 0.9rem;">
+  <thead>
+    <tr style="text-align:left; border-bottom: 1px solid var(--border-default);">
+      <th style="padding:8px 0;">Mode</th>
+      <th style="padding:8px 0;">Behavior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom: 1px solid var(--border-subtle);">
+      <td style="padding:10px 0;"><strong>Ask</strong></td>
+      <td style="padding:10px 0;">Q&amp;A and explanations; no autonomous file edits</td>
+    </tr>
+    <tr style="border-bottom: 1px solid var(--border-subtle);">
+      <td style="padding:10px 0;"><strong>Plan</strong></td>
+      <td style="padding:10px 0;">Structured plans and todos; still human-gated before apply</td>
+    </tr>
+    <tr>
+      <td style="padding:10px 0;"><strong>Agent</strong></td>
+      <td style="padding:10px 0;">Proposes patches and assisted actions; gate 2 preview before writes</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Context lanes: Repo, Work, Hybrid</h2>
+<p>
+  Open the compose <strong>⋯</strong> menu → <strong>Context</strong> to select a lane. The choice persists per workspace.
+</p>
+
+<table class="muted" style="width:100%; border-collapse: collapse; font-size: 0.9rem;">
+  <thead>
+    <tr style="text-align:left; border-bottom: 1px solid var(--border-default);">
+      <th style="padding:8px 0;">Lane</th>
+      <th style="padding:8px 0;">Retrieval</th>
+      <th style="padding:8px 0;">Best for</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom: 1px solid var(--border-subtle);">
+      <td style="padding:10px 0;"><strong>Repo</strong> (default)</td>
+      <td style="padding:10px 0;">Full hybrid search (vector + BM25) + grep</td>
+      <td style="padding:10px 0;">“What does our code do?” — answers only from retrieved context</td>
+    </tr>
+    <tr style="border-bottom: 1px solid var(--border-subtle);">
+      <td style="padding:10px 0;"><strong>Work</strong></td>
+      <td style="padding:10px 0;">Session packs + attachments + editor selection — no vector repo search</td>
+      <td style="padding:10px 0;">Planning, stakeholder comms, concepts — job-relevant but not file lookups</td>
+    </tr>
+    <tr>
+      <td style="padding:10px 0;"><strong>Hybrid</strong></td>
+      <td style="padding:10px 0;">Full RAG</td>
+      <td style="padding:10px 0;">“Should we ship X?” — repo evidence plus labeled recommendations</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Provenance chips (answers)</h3>
+<p>After a response, you may see a small label such as:</p>
+<ul>
+  <li><strong>From your codebase</strong> — Repo lane with retrieved chunks</li>
+  <li><strong>Work notes</strong> — Work lane (packs/attachments, not a repo search)</li>
+  <li><strong>Repo + recommendations</strong> — Hybrid lane</li>
+  <li><strong>No repo matches</strong> — Repo lane found little indexed context</li>
+</ul>
+
+<h3>Work-lane auto-suggest</h3>
+<p>
+  On <strong>Repo</strong> lane, if retrieval is weak for a planning-style question, ContextMint may show a banner:
+  “Little repo context matched — retry in Work lane?” Click <strong>Use Work lane</strong> to re-send the same
+  question without vector search.
+</p>
+
+<h2>Attachments &amp; context files</h2>
+<ul>
+  <li>Use the attach control to pin files as chips before sending</li>
+  <li>Attached paths get full-fidelity chunks in the assembler prompt</li>
+  <li>Open editor files are boosted in search and indexed with priority</li>
+</ul>
+
+<h2>Chat sessions</h2>
+<p>
+  Start a new session from the session list; history is stored per workspace up to configured limits.
+  Sessions are local to your machine (or your team server in enterprise mode).
+</p>
+
+<h2>Model routing</h2>
+<p>
+  Compose bar model selector: <strong>Auto</strong>, <strong>Local</strong> (Ollama), or <strong>Cloud</strong>
+  when BYOK is enabled. The routing badge on answers shows which tier ran.
+</p>
+
+<h2>When chat is blocked</h2>
+<p>Send is blocked only when readiness is <strong>offline</strong>, <strong>starting</strong>, or <strong>error</strong>.
+  <strong>Indexing</strong> does <em>not</em> block send — answers improve as more files finish indexing.</p>
+
+<p class="muted">
+  Deep dive on retrieval: <a href="/docs/indexing-readiness.html">Indexing &amp; readiness</a>.
+  Problems: <a href="/support/troubleshooting.html#chat">Troubleshooting → Chat</a>.
+</p>

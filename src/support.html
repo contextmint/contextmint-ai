@@ -1,7 +1,7 @@
 ---
 layout: base.html
 title: Support | ContextMint
-description: Get help with ContextMint Engine, the VS Code extension, deployment models, FAQ, and contact.
+description: Get help with ContextMint — troubleshooting, user documentation, FAQ, and contact.
 pageCss: product.css
 ---
 
@@ -10,8 +10,8 @@ pageCss: product.css
     <div class="pill">SUPPORT</div>
     <h1>We are here to help</h1>
     <p class="lead">
-      Self-serve guides for install and troubleshooting. Design partners and enterprise pilots
-      get direct engineering access during onboarding.
+      Start with <a href="/docs/installation.html#installation-support" style="color: var(--color-action);">installation support</a>
+      during setup, then troubleshooting for other symptoms. Design partners and enterprise pilots get direct engineering access.
     </p>
   </div>
 </header>
@@ -19,30 +19,50 @@ pageCss: product.css
 <section class="section">
   <div class="container">
     <div class="grid grid-2">
-      <a class="feature-card" href="/features.html">
-        <h3>Features (v1.0)</h3>
-        <p>Chat modes, Context Lens, packs, quality map, Engine tabs, and glass-box routing.</p>
-        <span class="tag">IN PILOT · AUG 2026</span>
+      <a class="feature-card" href="/docs/installation.html">
+        <h3>Installation help (first line)</h3>
+        <p>Full install guide plus symptom → fix when Engine, Ollama, or the extension misbehaves during setup.</p>
+        <span class="tag">START HERE IF STUCK</span>
+      </a>
+      <a class="feature-card" href="/support/troubleshooting.html">
+        <h3>Troubleshooting</h3>
+        <p>Install, Engine, Ollama, indexing, chat, lanes, Context Lens, patches, cloud — symptom → fix.</p>
+        <span class="tag">START HERE</span>
+      </a>
+      <a class="feature-card" href="/docs/">
+        <h3>User documentation</h3>
+        <p>In-depth guides: installation, chat &amp; lanes, Engine operator, indexing, settings, glossary.</p>
+        <span class="tag">IN DEPTH</span>
       </a>
       <a class="feature-card" href="/getting-started.html">
         <h3>Getting started</h3>
-        <p>Install Engine, extension, chat modes, Context Lens, packs, and more.</p>
+        <p>Install Engine + extension in about five minutes — local-first path.</p>
         <span class="tag">INSTALL · 5 MIN</span>
       </a>
       <a class="feature-card" href="/faq.html">
         <h3>FAQ</h3>
-        <p>Server offline, indexing, Ollama, BYOK, shared on-prem server, Context Lens, and access tiers.</p>
-        <span class="tag">SELF-SERVE</span>
+        <p>Short answers: deployment, privacy, Ollama, BYOK, Context Lens, access tiers.</p>
+        <span class="tag">QUICK ANSWERS</span>
+      </a>
+      <a class="feature-card" href="/features.html">
+        <h3>Features (v1.0)</h3>
+        <p>Capability list: modes, lanes, packs, quality map, glass-box routing.</p>
+        <span class="tag">WHAT SHIPS</span>
       </a>
       <a class="feature-card" href="/trust.html">
         <h3>Trust &amp; deployment</h3>
-        <p>Local-first default, shared on-prem server pilots, BYOK, and enterprise auth.</p>
+        <p>Local-first, shared on-prem server, BYOK, enterprise auth.</p>
         <span class="tag">SECURITY · OPS</span>
       </a>
       <a class="feature-card" href="mailto:{{ site.contactEmail }}">
         <h3>Email support</h3>
         <p>{{ site.contactEmail }} — we aim to reply within one business day.</p>
         <span class="tag">HELLO@CONTEXTMINT.AI</span>
+      </a>
+      <a class="feature-card" href="{{ site.issuesUrl }}">
+        <h3>Report an issue</h3>
+        <p>GitHub issues for release builds — attach Engine support bundle when possible.</p>
+        <span class="tag">GITHUB</span>
       </a>
     </div>
   </div>
@@ -56,12 +76,10 @@ pageCss: product.css
       and a pilot summary for stakeholders. Apply via
       <a href="/design-partners.html" style="color: var(--color-action);">Design Partners</a>.
     </p>
-    <h2 class="section-title" style="margin-top: 40px;">Report an issue</h2>
+    <h2 class="section-title" style="margin-top: 40px;">Developers</h2>
     <p class="muted" style="margin-bottom: 0;">
-      For release builds, open an issue at
-      <a href="{{ site.issuesUrl }}" style="color: var(--color-action);">GitHub</a>
-      with Engine version, OS, and steps to reproduce. Attach a support bundle from
-      Engine → About when possible.
+      API, MCP, and CLI integration: <a href="/developers/" style="color: var(--color-action);">Developer center</a>.
+      REST reference: <a href="/developers/api-reference.html" style="color: var(--color-action);">API reference</a>.
     </p>
   </div>
 </section>
