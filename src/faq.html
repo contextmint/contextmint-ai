@@ -1,0 +1,212 @@
+---
+layout: base.html
+title: FAQ | ContextMint
+description: Frequently asked questions about ContextMint Engine, local-first setup, shared on-prem server pilots, BYOK, and design partner access.
+pageCss: product.css
+---
+
+<header class="page-hero">
+  <div class="container">
+    <div class="pill">FAQ</div>
+    <h1>Common questions</h1>
+    <p class="lead">
+      Quick answers for engineers and platform teams evaluating ContextMint.
+      For install steps, see the <a href="/getting-started.html" style="color: var(--color-action);">getting started guide</a>.
+    </p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container container-narrow faq-list">
+    <details class="faq-item">
+      <summary>What do I need to install?</summary>
+      <div class="faq-item__body">
+        <p>
+          Two components: <strong>ContextMint Engine</strong> (desktop app) and the
+          <strong>{{ site.extensionName }}</strong> VS Code extension. Engine runs the Python
+          server and Ollama; the extension is the chat and governance UI. See
+          <a href="/getting-started.html">getting started</a> and
+          <a href="/features.html">features (v1.0)</a>.
+        </p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Does my source code leave my machine?</summary>
+      <div class="faq-item__body">
+        <p>
+          On the default local-first path, indexing, embeddings, retrieval, and inference run on
+          your infrastructure via Ollama — source is not required to leave your device. If you
+          opt in to BYOK cloud routing, only redacted assembled context is sent to a provider you
+          choose; API keys stay in VS Code secrets and never pass through Engine. See
+          <a href="/trust.html">Trust &amp; Security</a>.
+        </p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>What is the difference between Engine and the extension?</summary>
+      <div class="faq-item__body">
+        <p>
+          <strong>Engine</strong> owns process lifecycle: server, Ollama, indexing operations,
+          logs, and settings. <strong>{{ site.extensionName }}</strong> connects to
+          <code>localhost:8000</code>, shows chat, Context Lens, quality map, and assisted
+          actions — it does not spawn the server in packaged mode.
+        </p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Why is chat blocked or showing “server offline”?</summary>
+      <div class="faq-item__body">
+        <p>
+          <strong>Local-first (default):</strong> open <strong>ContextMint Engine</strong> from the
+          tray and use <strong>Start all</strong>. The extension probes health on loopback; if Engine
+          is stopped, chat is gated until the backend is healthy again.
+        </p>
+        <p style="margin-top: 12px;">
+          <strong>Shared on-prem server:</strong> confirm <code>ContextMint.serverUrl</code> points at
+          your team API host, HTTPS/TLS is valid, and <code>enterpriseMode</code> + OIDC are configured
+          if auth is enabled on the server. The extension does not install or start Engine in remote mode.
+        </p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Why is chat blocked while “indexing”?</summary>
+      <div class="faq-item__body">
+        <p>
+          Full chat unlocks when your workspace index reaches <strong>Ready</strong>. Large repos
+          may take several minutes on first open. You can monitor progress in Engine → Indexing and
+          on the readiness card in VS Code.
+        </p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Do I need Ollama?</summary>
+      <div class="faq-item__body">
+        <p>
+          Yes for local model inference. Engine’s first-run wizard detects Ollama and links to
+          install if missing. If Ollama is offline, repo search may still work but AI generation
+          runs in a degraded <strong>limited</strong> mode.
+        </p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>What is Context Lens?</summary>
+      <div class="faq-item__body">
+        <p>
+          Context Lens is the pre-send preview: retrieved chunks, relevance scores, routing choice,
+          and optional governance notes — so you approve evidence <em>before</em> the model runs.
+          It is gate 1 in the human-in-the-loop workflow.
+        </p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>How is ContextMint different from autocomplete assistants?</summary>
+      <div class="faq-item__body">
+        <p>
+          ContextMint is a <strong>decision-control plane</strong>, not a speed-first autocomplete
+          tool. It governs what evidence the model sees and what changes can apply, with
+          audit-friendly telemetry. Human gates before inference and before apply matter more than
+          raw generation throughput for regulated engineering workflows.
+        </p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Can we run a shared ContextMint server on-prem?</summary>
+      <div class="faq-item__body">
+        <p>
+          Yes — for <strong>enterprise pilots</strong> with platform engineering support. Deploy the
+          API server stack (Docker Compose or Helm) on your infrastructure. Developers set
+          <code>ContextMint.serverUrl</code> to that host and enable <code>enterpriseMode</code> for
+          OIDC Bearer auth. The server must be able to read the workspace path being indexed — typically
+          via <strong>VS Code Remote SSH</strong>, a <strong>mounted monorepo</strong>, or a dev VM where
+          code and API run on the same host.
+        </p>
+        <p style="margin-top: 12px;">
+          This is <strong>not</strong> the Engine desktop app (tray console is local-only). A laptop
+          with a local-only clone cannot index through a remote server URL unless paths align. See
+          <a href="/trust.html">Trust &amp; Security → Deployment models</a>.
+        </p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>What is the difference between Engine and a team API server?</summary>
+      <div class="faq-item__body">
+        <p>
+          <strong>ContextMint Engine</strong> is the per-machine operator console: tray app, first-run
+          wizard, Ollama lifecycle, logs, and settings. It runs the API on loopback for individual
+          developers — this is the v1.0 default.
+        </p>
+        <p style="margin-top: 12px;">
+          A <strong>team API server</strong> is the same Python backend packaged for Docker/Kubernetes
+          on customer infrastructure — shared Ollama, Chroma index, Redis rate limiting, and SSO. The
+          extension becomes a thin client pointed at <code>serverUrl</code>. Ops owns deploy, mounts,
+          and auth — not the Engine installer.
+        </p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Can I use my own cloud API keys (BYOK)?</summary>
+      <div class="faq-item__body">
+        <p>
+          Yes — <strong>optional and off by default</strong>. Enable cloud routing in extension
+          settings, store provider keys in VS Code secrets (OS keychain), and the extension streams
+          directly to approved providers such as OpenAI, Anthropic, or Groq. Keys never pass through
+          the Python engine. Assembled context is redacted before any cloud dispatch. The default
+          path remains local Ollama on your infrastructure. See
+          <a href="/trust.html">Trust &amp; Security</a>.
+        </p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>What ships in v1.0 vs the Verification Engine roadmap?</summary>
+      <div class="faq-item__body">
+        <p>
+          <strong>v1.0 (today):</strong> local Engine + extension — Context Lens, chat modes, packs,
+          quality map, assisted patch preview, glass-box routing, and Engine operator tabs. See the
+          full list on <a href="/features.html">Features (v1.0)</a>.
+        </p>
+        <p style="margin-top: 12px;">
+          <strong>Roadmap:</strong> PR verification gates, blast radius product SKUs, decision graph,
+          drift scorecards, and enterprise CLI packaging — see the
+          <a href="/roadmap.html">roadmap</a>, <a href="/product/">Verification Engine vision</a>,
+          and the homepage verification example.
+        </p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>How do I get early access or join as a design partner?</summary>
+      <div class="faq-item__body">
+        <p>
+          Submit the form on <a href="/design-partners.html">Design Partners</a> or
+          <a href="/request-demo.html">Book a Demo</a>. Design partners get a structured 30-day
+          pilot with direct engineering access; early access waitlist is for individuals and
+          small teams. See <a href="/pricing.html">Early Access</a>.
+        </p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Where do I report bugs or get help?</summary>
+      <div class="faq-item__body">
+        <p>
+          Email <a href="mailto:{{ site.contactEmail }}">{{ site.contactEmail }}</a> or visit
+          <a href="/support.html">Support</a>. GitHub issues for the open release channel:
+          <a href="{{ site.issuesUrl }}">{{ site.issuesUrl }}</a>.
+        </p>
+      </div>
+    </details>
+  </div>
+</section>
+
+{% include "cta-band.html", ctaTitle: "Still have questions?", ctaText: "We respond within one business day on design partner and demo requests." %}

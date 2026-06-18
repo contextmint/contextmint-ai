@@ -1,7 +1,7 @@
 ---
 layout: base.html
 title: Privacy Policy | ContextMint
-description: ContextMint privacy policy — how we handle data on local-first and cloud tiers.
+description: ContextMint privacy policy — local-first default, optional BYOK cloud routing, and data handling by tier.
 ---
 
 <header class="page-hero">
@@ -17,14 +17,34 @@ description: ContextMint privacy policy — how we handle data on local-first an
     <p>
       ContextMint Ltd (&ldquo;ContextMint&rdquo;, &ldquo;we&rdquo;) provides engineering intelligence software.
       This policy describes how we collect, use, and protect information when you use our website,
-      VS Code extension (ContextLoom), and related services.
+      VS Code extension, and related services.
     </p>
 
     <h2>Local-first tier</h2>
     <p>
       On the Developer tier, repository indexing, embeddings, and chat inference run locally on your
-      machine. We do not receive your source code unless you explicitly enable cloud features or
-      contact support with diagnostic logs you choose to share.
+      machine by default (ContextMint Engine + extension). We do not receive your source code unless
+      you explicitly enable optional cloud routing, use a customer-operated shared API server you
+      configure, contact support with diagnostic logs you choose to share, or use team sync features
+      on higher tiers.
+    </p>
+
+    <h2>Optional cloud (BYOK)</h2>
+    <p>
+      Cloud LLM routing is opt-in and disabled by default. When enabled, you supply provider API keys
+      stored in VS Code secrets on your device — ContextMint does not store or receive those keys.
+      Assembled context is redacted before dispatch to your chosen provider (for example OpenAI,
+      Anthropic, or Groq). You control whether any cloud path is used; local Ollama remains the
+      default for sovereign workflows.
+    </p>
+
+    <h2>Shared on-prem API server (enterprise)</h2>
+    <p>
+      When your organization deploys a shared ContextMint API server on infrastructure you control,
+      indexing and inference run on that server — not on ContextMint Ltd infrastructure. Your
+      platform team configures authentication, repository mounts, and data retention. ContextMint Ltd
+      does not host or receive your source code in this model unless you separately enable optional
+      cloud routing or support diagnostics.
     </p>
 
     <h2>Information we collect</h2>

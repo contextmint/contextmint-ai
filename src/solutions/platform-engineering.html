@@ -1,7 +1,7 @@
 ---
 layout: base.html
 title: Platform Engineering | ContextMint
-description: Platform engineering solutions — CI/CD graph, external memory, context packs, MCP integration, and PR verification.
+description: Platform engineering solutions — CI/CD graph, context packs, MCP, shared on-prem server pilots, and PR verification.
 pageCss: product.css
 ---
 
@@ -41,6 +41,19 @@ pageCss: product.css
 </section>
 
 <section class="section section--surface">
+  <div class="container container-narrow">
+    <h2 class="section-title">Deploy in your IDP</h2>
+    <p class="muted">
+      <strong>Default:</strong> developers run ContextMint Engine locally — sovereign, no shared server.
+      <strong>Enterprise pilots</strong> can deploy a shared on-prem API server (Docker / Helm) for teams
+      that index a mounted monorepo or use VS Code Remote SSH. The extension connects via
+      <code>serverUrl</code> + OIDC — platform ops owns mounts, auth, and path alignment.
+      <a href="/trust.html" style="color: var(--color-action);">Deployment models →</a>
+    </p>
+  </div>
+</section>
+
+<section class="section">
   <div class="container container-tight text-center">
     <h2 class="section-title">PR gate for AI-generated code</h2>
     <p class="muted">

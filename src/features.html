@@ -1,0 +1,195 @@
+---
+layout: base.html
+title: Features in v1.0 | ContextMint
+description: What ships in ContextMint v1.0 — Engine operator console, VS Code chat modes, Context Lens, packs, quality map, and glass-box routing.
+pageCss: product.css
+---
+
+<header class="page-hero">
+  <div class="container">
+    <div class="pill">IN PILOT · V1.0 AUGUST 2026</div>
+    <h1>What design partners run today</h1>
+    <p class="lead">
+      ContextMint v1.0 ships August 2026. Until then, design partners run a
+      <strong>local-first decision-control plane</strong> — not generic chat.
+      This page lists capabilities available in the Engine desktop app and VS Code extension pilot today.
+      PR verification, blast-radius product SKUs, and the standalone CLI remain on the
+      <a href="/roadmap.html#verification-engine" style="color: var(--color-action);">roadmap</a>
+      (see also the <a href="/product/" style="color: var(--color-action);">Verification Engine vision</a>).
+    </p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container container-narrow">
+    <h2 class="section-title">Two components</h2>
+    <div class="grid grid-2">
+      <div class="card">
+        <h3 style="margin: 0 0 8px;">ContextMint Engine</h3>
+        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
+          Tray-native operator console: server and Ollama lifecycle, models, multi-repo indexing
+          status, quality scans, logs, and support bundle export. System, Light, or Dark theme.
+        </p>
+      </div>
+      <div class="card">
+        <h3 style="margin: 0 0 8px;">{{ site.extensionName }} extension</h3>
+        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
+          Where engineers work: repo-aware chat, Context Lens, context packs, quality findings,
+          assisted patch preview, and session history — connected to Engine on loopback by default.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container container-narrow">
+    <h2 class="section-title">Human gates (evidence before action)</h2>
+    <div class="grid grid-2" style="margin-top: 16px;">
+      <div class="card">
+        <h3 style="margin: 0 0 8px;">Context Lens — gate 1</h3>
+        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
+          Pre-send preview of retrieved chunks, relevance scores, routing choice, and governance
+          notes. Approve or exclude evidence <em>before</em> the model runs. Optional trust gate
+          can require explicit confirmation on early sends.
+        </p>
+      </div>
+      <div class="card">
+        <h3 style="margin: 0 0 8px;">Patch preview — gate 2</h3>
+        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
+          Assisted actions propose unified diffs; you review and confirm before anything applies.
+          Quality-map clone signals can block apply on high-severity findings when configured.
+          No silent writes to your repo.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container container-narrow">
+    <h2 class="section-title">VS Code chat &amp; compose</h2>
+    <ul class="check-list">
+      <li><strong>Ask / Plan / Agent</strong> modes — scope how much autonomy the model has per message</li>
+      <li><strong>Attach context files</strong> — pin specific files as chips before you send</li>
+      <li><strong>Chat sessions</strong> — new chat, session list, and stored history per workspace</li>
+      <li><strong>Model routing</strong> — Auto, Local (Ollama), or Cloud when BYOK is enabled</li>
+      <li><strong>Suggested prompts</strong> — repo-aware starters when readiness is empty</li>
+      <li><strong>Dual-layer answers</strong> — plain summary with optional “more technical detail” expand</li>
+      <li><strong>Readiness phases</strong> — status bar and card show offline, indexing, limited, or ready</li>
+    </ul>
+    <p class="muted" style="margin-top: 16px; margin-bottom: 0;">
+      Open chat with <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>L</kbd> or the ContextMint
+      activity bar. See <a href="/getting-started.html" style="color: var(--color-action);">getting started</a>.
+    </p>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container container-narrow">
+    <h2 class="section-title">Glass box — see how the model was routed</h2>
+    <p class="muted">
+      ContextMint is a decision-control plane, not a black-box autocomplete sidebar.
+    </p>
+    <ul class="check-list" style="margin-top: 16px;">
+      <li><strong>Routing badge</strong> — which tier and model were selected (local vs cloud)</li>
+      <li><strong>Provenance breakdown</strong> — where retrieved context came from</li>
+      <li><strong>Reasoning timeline / trace log</strong> — step-by-step transparency panel for debugging</li>
+      <li><strong>Context Lens scores</strong> — relevance per chunk before inference</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container container-narrow">
+    <h2 class="section-title">Context packs &amp; conventions</h2>
+    <div class="grid grid-2" style="margin-top: 16px;">
+      <div class="card">
+        <h3 style="margin: 0 0 8px;">Context packs</h3>
+        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
+          Per-repo <span class="mono">manifest.yaml</span> plus markdown knowledge. Activate with
+          <span class="mono">@pack:name</span> in chat. Pack panel lists, builds, and auto-syncs when
+          source files change (debounced).
+        </p>
+      </div>
+      <div class="card">
+        <h3 style="margin: 0 0 8px;">Conventions learner</h3>
+        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
+          Conventions panel surfaces active rules, pending proposals, and audit history — human
+          approval before conventions enter the graph. Complements the quality map and DNA vision on
+          the <a href="/roadmap.html#verification-engine" style="color: var(--color-action);">roadmap</a>
+          (<a href="/product/repository-dna.html" style="color: var(--color-action);">Repository DNA</a>).
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container container-narrow">
+    <h2 class="section-title">Engine operator console</h2>
+    <p class="muted">
+      Engine is recovery and lifecycle control — not a daily dashboard. Tray-first; open the window
+      when you need to diagnose.
+    </p>
+    <ul class="check-list" style="margin-top: 16px;">
+      <li><strong>Overview</strong> — readiness issues and Start all / Stop all</li>
+      <li><strong>Server · Ollama</strong> — process status and lifecycle actions</li>
+      <li><strong>Models</strong> — pull and apply embedding and chat models (first-run wizard guides setup)</li>
+      <li><strong>Indexing</strong> — multi-repo table with per-workspace status, chunks, and file-type stats</li>
+      <li><strong>Quality</strong> — run scans; findings feed the extension quality map</li>
+      <li><strong>Logs · About</strong> — diagnostics and redacted support bundle export</li>
+      <li><strong>Settings</strong> — paths, ports, start at login, theme (System / Light / Dark)</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container container-narrow">
+    <h2 class="section-title">Quality map</h2>
+    <p class="muted" style="margin-bottom: 0;">
+      Stored governance findings from your repo — clone pairs, near-duplicates, and structure signals.
+      Inform-only by default; optional gates can block assisted apply on high-severity clones. Run scans
+      from the extension command palette or Engine → Quality.
+    </p>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container container-narrow">
+    <h2 class="section-title">Optional &amp; preview (off by default)</h2>
+    <p class="muted">
+      Available in settings for teams that opt in — not required for the sovereign local-first path.
+    </p>
+    <ul class="check-list" style="margin-top: 16px;">
+      <li><strong>BYOK cloud routing</strong> — OpenAI, Anthropic, Groq; keys in VS Code secrets; egress redaction (<a href="/trust.html">trust center</a>)</li>
+      <li><strong>Git sandbox worktrees</strong> — isolated test/apply in a worktree (server + extension flags)</li>
+      <li><strong>Inline ghost-text completion</strong> — local FIM when inline backend is enabled</li>
+      <li><strong>Shared on-prem API server</strong> — enterprise pilot with Docker/Helm (<a href="/trust.html#deployment">deployment models</a>)</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container container-narrow split">
+    <div>
+      <h2>On the roadmap</h2>
+      <p class="muted">
+        Three tiers: what ships in v1.0, what design partners co-build in 2026, and the
+        Verification Engine direction ahead — PR gates, blast radius, drift, and enterprise packaging.
+      </p>
+      <a class="btn btn-secondary" href="/roadmap.html">View roadmap</a>
+      <a class="btn btn-secondary" href="/product/" style="margin-left: 8px;">Verification Engine vision</a>
+    </div>
+    <div>
+      <h2>Install</h2>
+      <p class="muted">
+        Engine installer + VS Code extension. First chat in minutes on the local-first path.
+      </p>
+      <a class="btn btn-primary" href="/getting-started.html">Getting started</a>
+      <a class="btn btn-secondary" href="/faq.html" style="margin-left: 8px;">FAQ</a>
+    </div>
+  </div>
+</section>
+
+{% include "cta-band.html", ctaTitle: "Want a guided walkthrough?", ctaText: "Design partners get direct engineering support for the first 30 days." %}

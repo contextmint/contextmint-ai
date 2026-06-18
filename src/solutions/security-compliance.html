@@ -37,16 +37,31 @@ pageCss: product.css
       </div>
     </div>
     <ul class="check-list" style="margin-top: 32px;">
-      <li>SSO (SAML/OIDC) and role-based access control</li>
+      <li>Local-first default — Engine + extension per developer (GA-ready)</li>
+      <li>Shared on-prem API server — Docker / Helm pilot with platform ops</li>
+      <li>SSO (OIDC) and role-based access control per workspace</li>
       <li>Audit log export for compliance reviews</li>
-      <li>SOC 2 evidence collectors (Enterprise roadmap)</li>
-      <li>Air-gapped Helm deployment for regulated sectors</li>
-      <li>Local-first option — code never required in cloud</li>
+      <li>SOC 2 evidence collectors (<a href="/roadmap.html#verification-engine" style="color: var(--color-action);">Enterprise roadmap</a>)</li>
+      <li>Path alignment required for shared server (Remote SSH or mounted monorepo)</li>
+      <li>Optional BYOK hybrid routing with egress redaction (off by default)</li>
     </ul>
   </div>
 </section>
 
 <section class="section section--surface">
+  <div class="container container-narrow">
+    <h2 class="section-title">Deployment fit for security review</h2>
+    <p class="muted" style="margin-bottom: 0;">
+      Most regulated pilots start <strong>local-first</strong> (sovereign Ollama on each workstation).
+      Teams that need a <strong>shared GPU host</strong> use the on-prem API server with VS Code
+      Remote SSH or a mounted monorepo — not laptop clones pointing at a remote URL without path
+      alignment. We document both models and the limitation in the
+      <a href="/trust.html" style="color: var(--color-action);">Trust center</a>.
+    </p>
+  </div>
+</section>
+
+<section class="section">
   <div class="container container-tight text-center">
     <p class="muted">
       Need a security questionnaire completed? We provide architecture diagrams, data flow

@@ -2,10 +2,151 @@
   "name": "ContextMint",
   "tagline": "Evidence-based AI decisions with human oversight",
   "url": "https://contextmint.ai",
-  "extensionName": "ContextLoom",
+  "extensionName": "ContextMint",
+  "releasesUrl": "https://github.com/contextmint/contextmint/releases",
+  "issuesUrl": "https://github.com/contextmint/contextmint/issues",
   "contactEmail": "hello@contextmint.ai",
   "formspreeFormId": "",
-  "founderName": "Your Name",
-  "founderTitle": "Founder & CEO",
-  "year": 2026
+  "founderName": "Anis Batliwala",
+  "founderTitle": "Founder, CEO & CTO",
+  "year": 2026,
+  "announcement": {
+    "enabled": true,
+    "id": "design-partners-august-2026",
+    "label": "Design partners",
+    "text": "v1.0 ships August 2026 — Engine + Context Lens in pilot today.",
+    "ctaText": "Join the cohort",
+    "ctaHref": "/design-partners.html",
+    "dismissible": true
+  },
+  "operatorConsoleCarousel": {
+    "intervalSeconds": 10,
+    "slides": [
+      {
+        "file": "engine-overview.png",
+        "label": "Overview",
+        "alt": "ContextMint Engine Overview showing Running status, Readiness, and Data layer cards"
+      },
+      {
+        "file": "engine-server.png",
+        "label": "Server",
+        "alt": "ContextMint Engine Server tab with lifecycle controls and port status"
+      },
+      {
+        "file": "engine-ollama.png",
+        "label": "Ollama",
+        "alt": "ContextMint Engine Ollama tab showing local model runtime status"
+      },
+      {
+        "file": "engine-models.png",
+        "label": "Models",
+        "alt": "ContextMint Engine Models tab listing installed and available models"
+      },
+      {
+        "file": "engine-indexing.png",
+        "label": "Indexing",
+        "alt": "ContextMint Engine Indexing tab with repository scan progress"
+      },
+      {
+        "file": "engine-indexing-details.png",
+        "label": "Indexing",
+        "alt": "ContextMint Engine Indexing tab with repository scan progress"
+      },
+      {
+        "file": "engine-quality.png",
+        "label": "Quality",
+        "alt": "ContextMint Engine Quality tab with retrieval and governance checks"
+      },
+      {
+        "file": "engine-quality-details.png",
+        "label": "Quality",
+        "alt": "ContextMint Engine Quality tab with retrieval and governance checks"
+      },
+      {
+        "file": "engine-logs.png",
+        "label": "Logs",
+        "alt": "ContextMint Engine Logs tab streaming operator diagnostics"
+      },
+      {
+        "file": "engine-settings.png",
+        "label": "Settings",
+        "alt": "ContextMint Engine Settings tab for paths, ports, and preferences"
+      },
+      {
+        "file": "engine-about.png",
+        "label": "About",
+        "alt": "ContextMint Engine About tab with version and support links"
+      }
+    ]
+  },
+  "extensionWorkflowCarousel": {
+    "intervalSeconds": 10,
+    "slides": [
+      {
+        "file": "vscode-readiness.png",
+        "label": "Readiness",
+        "alt": "ContextMint VS Code panel with repo readiness card and suggested prompts"
+      },
+      {
+        "file": "vscode-compose.png",
+        "label": "Compose",
+        "alt": "ContextMint compose bar showing Ask mode, attached context, and a sample question"
+      },
+      {
+        "file": "vscode-chat.png",
+        "label": "Chat",
+        "alt": "ContextMint chat thread with assistant answer and local routing badge"
+      },
+      {
+        "file": "vscode-chat-sources.png",
+        "label": "Chat Sources",
+        "alt": "ContextMint chat thread with assistant answer and local routing badge"
+      },
+      {
+        "file": "vscode-chat-assisted-actions.png",
+        "label": "Chat Assisted Actions",
+        "alt": "ContextMint chat thread with assistant answer and local routing badge"
+      },
+      {
+        "file": "vscode-inspector-search.png",
+        "label": "Inspector",
+        "alt": "ContextMint inspector drawer showing routing provenance and reasoning trace"
+      },
+      {
+        "file": "vscode-inspector-route.png",
+        "label": "Inspector Route",
+        "alt": "ContextMint inspector drawer showing routing provenance and reasoning trace"
+      },
+      {
+        "file": "vscode-inspector-generate.png",
+        "label": "Inspector Generate",
+        "alt": "ContextMint inspector drawer showing routing provenance and reasoning trace"
+      },
+      {
+        "file": "vscode-patch.png",
+        "label": "Patch preview",
+        "alt": "ContextMint assisted patch preview with unified diff before apply"
+      }
+    ]
+  },
+  "contextLensCarousel": {
+    "intervalSeconds": 10,
+    "slides": [
+      {
+        "file": "lens-strip.png",
+        "label": "Summary",
+        "alt": "Context Lens collapsed strip showing chunk count and model routing summary"
+      },
+      {
+        "file": "context-lens.png",
+        "label": "Evidence",
+        "alt": "Context Lens expanded drawer with retrieved chunks and relevance scores"
+      },
+      {
+        "file": "lens-governance.png",
+        "label": "Governance",
+        "alt": "Context Lens drawer showing governance findings and inform-only signals"
+      }
+    ]
+  }
 }

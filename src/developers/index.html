@@ -1,7 +1,7 @@
 ---
 layout: base.html
 title: Developers | ContextMint
-description: ContextMint developer center — MCP server, CLI, API reference, and integration guides for ContextLoom.
+description: ContextMint developer center — MCP server, CLI, API reference, and integration guides.
 pageCss: product.css
 ---
 
@@ -22,7 +22,7 @@ pageCss: product.css
       <a class="feature-card" href="/developers/mcp-server.html">
         <h3>MCP Server</h3>
         <p>Model Context Protocol tools for blast radius, features, decisions, and traces. Agent-native contracts.</p>
-        <span class="tag">CURSOR · COPILOT · CUSTOM AGENTS</span>
+        <span class="tag">MCP CLIENTS · IDE AGENTS · CUSTOM AGENTS</span>
       </a>
       <a class="feature-card" href="/developers/cli.html">
         <h3>CLI</h3>
@@ -42,14 +42,15 @@ pageCss: product.css
   <div class="container container-narrow">
     <h2 class="section-title">Quick start</h2>
     <div class="code-block">
-      <span class="cm"># Install ContextLoom extension (VS Code)</span><br />
+      <span class="cm"># Install ContextMint extension (VS Code)</span><br />
       <span class="cm"># Start local backend</span><br />
-      uvicorn main:app --reload --port 8000<br /><br />
+      contextmint serve<br /><br />
       <span class="cm"># Verify health</span><br />
       curl http://localhost:8000/api/health
     </div>
     <p class="muted" style="margin-top: 24px; margin-bottom: 0;">
-      Full setup guide ships with the product repository. Request early access for the standalone CLI package.
+      Full setup: <a href="/getting-started.html" style="color: var(--color-action);">Getting started guide</a>.
+      Request early access for the standalone CLI package.
     </p>
   </div>
 </section>

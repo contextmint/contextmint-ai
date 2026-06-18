@@ -1,0 +1,190 @@
+---
+layout: base.html
+title: Getting Started | ContextMint
+description: Install ContextMint Engine and the VS Code extension — local-first default, plus enterprise shared-server pilot notes.
+pageCss: product.css
+---
+
+<header class="page-hero">
+  <div class="container">
+    <div class="pill">GETTING STARTED</div>
+    <h1>Install Engine + extension</h1>
+    <p class="lead">
+      ContextMint ships as a VS Code extension plus a backend. The <strong>default path</strong> is
+      local-first: Engine on your machine manages the server and Ollama; the extension connects over
+      loopback. Enterprise teams can run a <strong>shared on-prem API server</strong> instead — see
+      <a href="/trust.html" style="color: var(--color-action);">deployment models</a>.
+      After install, see <a href="/features.html" style="color: var(--color-action);">what ships in v1.0</a>.
+    </p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container container-narrow">
+    <h2 class="section-title">Choose your deployment</h2>
+    <div class="grid grid-2">
+      <div class="card">
+        <strong style="color: var(--color-trust);">Local-first (start here)</strong>
+        <p class="muted" style="margin: 8px 0 0; font-size: 0.9rem;">
+          Engine + extension on the same machine. Sovereign, GA-ready, no shared server. Follow
+          Steps 1–3 below.
+        </p>
+      </div>
+      <div class="card">
+        <strong style="color: var(--color-action);">Shared on-prem server (enterprise pilot)</strong>
+        <p class="muted" style="margin: 8px 0 0; font-size: 0.9rem;">
+          Platform team deploys Docker/Helm API stack. Extension sets
+          <code>ContextMint.serverUrl</code> + <code>enterpriseMode</code>. Requires path alignment
+          (Remote SSH or mounted repo). <a href="/trust.html">Full guide →</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container container-narrow">
+    <h2 class="section-title">Local-first — what you need</h2>
+    <ul class="check-list">
+      <li>Windows 10+, macOS 12+, or Linux x64</li>
+      <li>VS Code 1.85 or later</li>
+      <li><a href="https://ollama.com" style="color: var(--color-action);">Ollama</a> installed (Engine can guide first-run setup)</li>
+      <li>A code workspace you want to index</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container container-narrow">
+    <h2 class="section-title">Step 1 — ContextMint Engine</h2>
+    <p class="muted">
+      Engine installs like Ollama or Docker Desktop: a menubar/tray app with a utilitarian
+      operator window when you open it. Pick <strong>System</strong>, <strong>Light</strong>, or
+      <strong>Dark</strong> from the header or Settings. Download the installer from
+      <a href="{{ site.releasesUrl }}" style="color: var(--color-action);">GitHub Releases</a>.
+    </p>
+    <div class="card" style="margin-top: 16px;">
+      <table class="mono" style="width: 100%; font-size: 0.85rem; border-collapse: collapse;">
+        <tbody>
+          <tr>
+            <td style="padding: 8px 0; color: var(--text-secondary);">Windows x64</td>
+            <td style="padding: 8px 0;"><code>contextmint-engine-win-x64.msi</code></td>
+          </tr>
+          <tr>
+            <td style="padding: 8px 0; color: var(--text-secondary);">macOS</td>
+            <td style="padding: 8px 0;"><code>contextmint-engine-macos-universal.dmg</code></td>
+          </tr>
+          <tr>
+            <td style="padding: 8px 0; color: var(--text-secondary);">Linux x64</td>
+            <td style="padding: 8px 0;"><code>contextmint-engine-linux-x64.AppImage</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin-top: 16px; margin-bottom: 0;">
+      First launch runs a short wizard: Ollama detect, start services, and a link to install the
+      extension. <strong>Start at login</strong> is on by default — change it in Engine → Settings.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container container-narrow">
+    <h2 class="section-title">Step 2 — {{ site.extensionName }} extension</h2>
+    <p class="muted">
+      Install from the VS Code Marketplace, or sideload the <code>.vsix</code> from the same
+      <a href="{{ site.releasesUrl }}" style="color: var(--color-action);">GitHub Release</a>
+      as Engine.
+    </p>
+    <p class="muted" style="margin-bottom: 0;">
+      Open any workspace folder. The extension connects to <code>localhost:8000</code> and
+      registers your repo for indexing automatically.
+    </p>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container container-narrow">
+    <h2 class="section-title">Step 3 — First chat</h2>
+    <ol class="steps-list">
+      <li>Confirm Engine tray shows server healthy (green).</li>
+      <li>Open VS Code on your project folder.</li>
+      <li>Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>L</kbd> or open Chat from the activity bar.</li>
+      <li>Wait for readiness <strong>Ready</strong> (indexing may take a few minutes on large repos).</li>
+      <li>Review Context Lens, then send your first question.</li>
+    </ol>
+    <p class="muted" style="margin-top: 16px; margin-bottom: 0;">
+      Status bar shows <strong>{{ site.extensionName }} | Ready</strong> when Engine and the backend
+      are healthy. Full v1.0 capability list:
+      <a href="/features.html" style="color: var(--color-action);">Features →</a>
+    </p>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container container-narrow">
+    <h2 class="section-title">Optional — cloud routing (BYOK)</h2>
+    <p class="muted" style="margin-bottom: 0;">
+      Not required for the default workflow. If your team approves hybrid inference, enable
+      <strong>cloud routing</strong> in extension settings and add provider API keys via
+      <strong>ContextMint: Configure Cloud API Key</strong>. Keys are stored in VS Code secrets
+      on your machine — never in Engine or server config. Assembled context is redacted before
+      any cloud dispatch. Local Ollama remains the default. Details:
+      <a href="/faq.html" style="color: var(--color-action);">FAQ</a> ·
+      <a href="/trust.html" style="color: var(--color-action);">Trust &amp; Security</a>.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container container-narrow">
+    <h2 class="section-title">Enterprise — shared on-prem server (pilot)</h2>
+    <p class="muted">
+      For regulated teams sharing one GPU host or monorepo index. Not a substitute for Engine on
+      every laptop — this is a <strong>platform-operated API server</strong> with guided setup.
+    </p>
+    <ol class="steps-list" style="margin-top: 16px;">
+      <li>Platform team deploys the API stack (Docker Compose or Helm) on customer infrastructure with Ollama, Chroma, and Redis.</li>
+      <li>Mount or clone the repository on the server host so indexing paths match what developers open in VS Code (Remote SSH is the common pattern).</li>
+      <li>Enable server auth (<code>AUTH__ENABLED</code>), configure OIDC issuer/audience, and domain allowlists.</li>
+      <li>Each developer: install the extension only, set <code>ContextMint.serverUrl</code> to the team HTTPS endpoint, enable <code>ContextMint.enterpriseMode</code>, and set <code>ContextMint.oidcProviderId</code> (e.g. <code>microsoft</code>).</li>
+      <li>Optional: configure <code>ContextMint.localFallbackUrl</code> if chat should fall back to a local engine when the team server is unreachable.</li>
+    </ol>
+    <p class="muted" style="margin-top: 16px; margin-bottom: 0;">
+      Contact us for a design-partner pilot — we provide architecture review, path strategy, and
+      security questionnaire support. Details:
+      <a href="/trust.html" style="color: var(--color-action);">Trust center</a> ·
+      <a href="/design-partners.html" style="color: var(--color-action);">Design partners</a>.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container container-narrow split">
+    <div>
+      <h2>Operate from the tray</h2>
+      <p class="muted">Engine is not a daily dashboard — it is recovery and lifecycle control.</p>
+      <ul>
+        <li><strong>Tray</strong> — green / amber / red at a glance; Start all / Stop all</li>
+        <li><strong>Overview</strong> — readiness issues when something needs attention</li>
+        <li><strong>Server · Ollama · Indexing</strong> — drill down only when debugging</li>
+        <li><strong>Logs / About</strong> — diagnostics and support bundle export</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Stuck?</h2>
+      <p class="muted">Common fixes before you email support.</p>
+      <ul>
+        <li>Server offline → open Engine and <strong>Start all</strong></li>
+        <li>Chat blocked while indexing → wait for readiness to reach <strong>Ready</strong></li>
+        <li>Ollama offline → degraded mode; repo search works, generation may be limited</li>
+      </ul>
+      <p style="margin-top: 16px;">
+        <a class="btn btn-secondary" href="/faq.html">Read the FAQ</a>
+        <a class="btn btn-secondary" href="/support.html" style="margin-left: 8px;">Contact support</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+{% include "cta-band.html", ctaTitle: "Need a guided pilot?", ctaText: "Design partners get direct engineering support for the first 30 days." %}

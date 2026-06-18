@@ -1,0 +1,176 @@
+---
+layout: base.html
+title: Roadmap | ContextMint
+description: ContextMint product roadmap — what ships in v1.0 today, what design partners co-build in 2026, and the Verification Engine direction ahead.
+pageCss: product.css
+---
+
+<header class="page-hero">
+  <div class="container">
+    <div class="pill">PRODUCT DIRECTION</div>
+    <h1>Roadmap</h1>
+    <p class="lead">
+      One outcome: <strong>verify AI-generated changes before production</strong>. This page is
+      directional — not a delivery schedule. v1.0 ships August 2026; design partners shape what
+      comes next.
+    </p>
+    <div class="cta" style="margin-top: 24px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+      <a class="btn btn-primary" href="/design-partners.html">Join design partners</a>
+      <a class="btn btn-secondary" href="/features.html">Features in v1.0</a>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container container-narrow">
+    <article class="roadmap-tier" id="v1">
+      <div class="roadmap-tier__head">
+        <span class="roadmap-status roadmap-status--available">Available now</span>
+        <h2 class="section-title" style="margin-bottom: 0;">v1.0 foundation</h2>
+      </div>
+      <p class="muted">
+        Local-first <strong>decision-control plane</strong> for software teams — evidence before
+        inference, human approval before repo changes. Design partners run this today; general
+        availability August 2026.
+      </p>
+      <ul class="check-list">
+        <li>
+          <strong>ContextMint Engine</strong> — tray-native operator console (server, Ollama, models,
+          indexing, quality scans, logs, support bundle)
+        </li>
+        <li>
+          <strong>VS Code extension</strong> — Ask / Plan / Agent modes, chat sessions, attach
+          context, suggested prompts
+        </li>
+        <li>
+          <strong>Context Lens (gate 1)</strong> — preview retrieved chunks, scores, routing, and
+          governance notes before the model runs
+        </li>
+        <li>
+          <strong>Patch preview (gate 2)</strong> — review unified diffs before anything applies;
+          no silent writes
+        </li>
+        <li>
+          <strong>Quality map</strong> — stored governance findings (clones, near-duplicates,
+          structure signals) with optional apply gates
+        </li>
+        <li>
+          <strong>Context packs</strong> — per-repo manifests with <span class="mono">@pack:name</span>
+          activation and auto-sync
+        </li>
+        <li>
+          <strong>Glass-box routing</strong> — provenance breakdown, routing badge, reasoning
+          trace for power users
+        </li>
+        <li>
+          <strong>Conventions learner</strong> — proposals and audit history with human approval
+          before rules enter the graph
+        </li>
+        <li>
+          <strong>Local-first default</strong> — Engine + Ollama on loopback; code stays on device
+        </li>
+      </ul>
+      <p class="muted" style="margin-top: 16px; margin-bottom: 0;">
+        Optional (off by default): BYOK cloud routing, git sandbox worktrees, inline completion,
+        shared on-prem API server for enterprise pilots —
+        <a href="/features.html" style="color: var(--color-action);">full v1.0 list</a>.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container container-narrow">
+    <article class="roadmap-tier" id="design-partners">
+      <div class="roadmap-tier__head">
+        <span class="roadmap-status roadmap-status--pilot">With design partners</span>
+        <h2 class="section-title" style="margin-bottom: 0;">2026 pilot cohort</h2>
+      </div>
+      <p class="muted">
+        Structured 30-day pilots with platform and security teams. You get direct engineering
+        access; we get honest signal on fit for regulated and sovereign AI dev workflows.
+      </p>
+      <ul class="check-list">
+        <li><strong>Guided pilot playbook</strong> — week-2 and week-4 feedback (async OK)</li>
+        <li>
+          <strong>Deployment path review</strong> — local Engine per developer or shared on-prem
+          server (<a href="/trust.html#deployment" style="color: var(--color-action);">deployment models</a>)
+        </li>
+        <li><strong>Security questionnaire support</strong> — architecture summaries for stakeholders</li>
+        <li><strong>Priority input</strong> — influence verification workflows and enterprise packaging</li>
+        <li><strong>Team rollout patterns</strong> — Docker / Helm shared-server pilots with platform engineering</li>
+        <li><strong>Pilot summary report</strong> — outcomes for security and engineering leadership</li>
+      </ul>
+      <p style="margin-top: 20px; margin-bottom: 0;">
+        <a class="btn btn-primary" href="/design-partners.html">Apply for design partner</a>
+        <a class="btn btn-secondary" href="/request-demo.html" style="margin-left: 8px;">Book a demo</a>
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container container-narrow">
+    <article class="roadmap-tier" id="verification-engine">
+      <div class="roadmap-tier__head">
+        <span class="roadmap-status roadmap-status--planned">Planned direction</span>
+        <h2 class="section-title" style="margin-bottom: 0;">Verification Engine</h2>
+      </div>
+      <p class="muted">
+        Capabilities that build on the v1.0 foundation — deterministic graph evidence first; AI
+        narrates with citations, never overrides graph truth without human confirmation. Order and
+        timing evolve with design partner feedback; no public quarters until after v1.0 GA.
+      </p>
+      <ul class="check-list">
+        <li>
+          <strong>PR verification gates</strong> — ownership, impact, and policy checked on every
+          change (<a href="/product/" style="color: var(--color-action);">vision</a>)
+        </li>
+        <li>
+          <strong>Blast radius</strong> — graph traversal for impacted services, files, and teams
+          (<a href="/product/blast-radius.html" style="color: var(--color-action);">learn more</a>)
+        </li>
+        <li>
+          <strong>Repository DNA</strong> — deterministic repo health and convention baselines
+          (<a href="/product/repository-dna.html" style="color: var(--color-action);">learn more</a>)
+        </li>
+        <li>
+          <strong>Decision graph</strong> — architecture intent and ADR traceability
+          (<a href="/product/decision-graph.html" style="color: var(--color-action);">learn more</a>)
+        </li>
+        <li>
+          <strong>Drift detection</strong> — scorecards for accepted vs violation baselines
+          (<a href="/product/drift-detection.html" style="color: var(--color-action);">learn more</a>)
+        </li>
+        <li>
+          <strong>Agent governance</strong> — policy-scoped tool contracts for AI agents in CI
+          (<a href="/product/agent-governance.html" style="color: var(--color-action);">learn more</a>)
+        </li>
+        <li><strong>Enterprise SSO (OIDC)</strong> and workspace RBAC on shared server deployments</li>
+        <li><strong>SOC 2 evidence packaging</strong> — formal compliance collectors (enterprise roadmap)</li>
+        <li><strong>Enterprise CLI packaging</strong> — graph queries and verification in CI pipelines</li>
+        <li>
+          <strong>MCP server for agents</strong> — blast radius, features, and decisions as tool
+          contracts (<a href="/developers/mcp-server.html" style="color: var(--color-action);">contracts</a>)
+        </li>
+      </ul>
+      <p class="muted" style="margin-top: 16px; margin-bottom: 0;">
+        <a class="btn btn-secondary" href="/product/">Explore the Verification Engine</a>
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container container-narrow text-center">
+    <p class="muted" style="margin: 0; font-size: 0.9rem; line-height: 1.6;">
+      Capabilities and order may change as we learn from pilots. What ships in v1.0 is documented on
+      <a href="/features.html" style="color: var(--color-action);">Features</a>.
+      Governance and compliance claims follow our
+      <a href="/trust.html" style="color: var(--color-action);">trust center</a> — we do not
+      promise autonomous governance or certification.
+    </p>
+  </div>
+</section>
+
+{% include "cta-band.html", ctaTitle: "Shape what ships next", ctaText: "Design partners get a direct line to product engineering and priority input on the roadmap." %}

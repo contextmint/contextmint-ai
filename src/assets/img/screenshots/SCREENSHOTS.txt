@@ -1,0 +1,66 @@
+Product captures — drop PNG files here (1280px wide recommended).
+
+
+
+Engine operator console (homepage carousel — column 1):
+
+  engine-overview.png   Overview tab
+
+  engine-server.png     Server tab
+
+  engine-ollama.png     Ollama tab
+
+  engine-models.png     Models tab
+
+  engine-indexing.png   Indexing tab
+
+  engine-quality.png    Quality tab
+
+  engine-logs.png       Logs tab
+
+  engine-settings.png   Settings tab
+
+  engine-about.png      About tab
+
+
+
+VS Code extension workflow (homepage carousel — column 2):
+
+  vscode-readiness.png  Readiness card + suggested prompts
+
+  vscode-compose.png    Compose bar (Ask mode, attach chips)
+
+  vscode-chat.png       Active chat + routing badge
+
+  vscode-inspector.png  Inspector / glass-box trace
+
+  vscode-patch.png        Assisted patch preview (gate 2)
+
+
+
+Context Lens (homepage carousel — column 3):
+
+  lens-strip.png        Collapsed summary strip
+
+  context-lens.png      Expanded drawer with chunk scores (Evidence)
+
+  lens-governance.png   Governance findings in drawer
+
+
+
+Carousel config: src/_data/site.json
+
+  operatorConsoleCarousel
+
+  extensionWorkflowCarousel
+
+  contextLensCarousel
+
+
+
+Click any carousel slide on the homepage to open the lightbox enlargement.
+
+
+
+After adding files: npm run build
+

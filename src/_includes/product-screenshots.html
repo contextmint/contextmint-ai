@@ -1,0 +1,86 @@
+<section class="section" id="product-in-action">
+  <div class="container">
+    <h2 class="section-title text-center">Your machine, governed</h2>
+    <p class="muted text-center product-in-action__lead">
+      ContextMint Engine is a <strong>tray-native operator console</strong> — like Ollama or Docker Desktop,
+      not a SaaS dashboard. It follows your OS theme, shows readiness at a glance, and stays out of the way
+      until you need to start, stop, or diagnose. {{ site.extensionName }} is where engineers work.
+      <span class="product-in-action__hint">Click any screenshot to enlarge.</span>
+    </p>
+    <div class="product-visual-grid">
+      <figure class="product-visual product-visual--capture">
+        {% include "product-carousel.html",
+          carousel: site.operatorConsoleCarousel,
+          carouselId: "engine",
+          ariaLabel: "Operator console screenshots",
+          frameClass: "light",
+          placeholderHint: "Operator console tab"
+        %}
+        <figcaption>
+          <span class="product-visual__tag">Operator console</span>
+          Every tab at a glance — overview, server, models, indexing, and more. Tray-first the rest of the time.
+        </figcaption>
+      </figure>
+      <figure class="product-visual product-visual--capture">
+        {% include "product-carousel.html",
+          carousel: site.extensionWorkflowCarousel,
+          carouselId: "vscode",
+          ariaLabel: "VS Code extension workflow screenshots",
+          frameClass: "",
+          placeholderHint: "Where developers work"
+        %}
+        <figcaption>
+          <span class="product-visual__tag">Work surface</span>
+          Readiness → compose → chat → inspector → patch preview. Evidence before inference.
+        </figcaption>
+      </figure>
+      <figure class="product-visual product-visual--capture">
+        {% include "product-carousel.html",
+          carousel: site.contextLensCarousel,
+          carouselId: "context-lens",
+          ariaLabel: "Context Lens screenshots",
+          frameClass: "",
+          placeholderHint: "Gate 1 — preview before send"
+        %}
+        <figcaption>
+          <span class="product-visual__tag">Human gate</span>
+          Summary strip, retrieved evidence, and governance notes before the model runs.
+        </figcaption>
+      </figure>
+    </div>
+    <p class="text-center" style="margin-top: 28px;">
+      <a class="btn btn-secondary" href="/getting-started.html">Getting started guide</a>
+      <a class="btn btn-secondary" href="/features.html" style="margin-left: 8px;">Features (v1.0)</a>
+    </p>
+  </div>
+</section>
+
+<div
+  id="screenshot-lightbox"
+  class="screenshot-lightbox"
+  hidden
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="screenshot-lightbox-title"
+>
+  <button type="button" class="screenshot-lightbox__backdrop" aria-label="Close enlarged view" tabindex="-1"></button>
+  <div class="screenshot-lightbox__panel" role="document">
+    <div class="screenshot-lightbox__header">
+      <p id="screenshot-lightbox-title" class="screenshot-lightbox__title"></p>
+      <p class="screenshot-lightbox__counter" aria-live="polite"></p>
+      <button type="button" class="screenshot-lightbox__close" aria-label="Close">&#10005;</button>
+    </div>
+    <div class="screenshot-lightbox__stage">
+      <button type="button" class="screenshot-lightbox__nav screenshot-lightbox__nav--prev" aria-label="Previous slide">
+        <span aria-hidden="true">&#8249;</span>
+      </button>
+      <img class="screenshot-lightbox__img" alt="" width="1280" height="800" />
+      <button type="button" class="screenshot-lightbox__nav screenshot-lightbox__nav--next" aria-label="Next slide">
+        <span aria-hidden="true">&#8250;</span>
+      </button>
+    </div>
+    <div class="screenshot-lightbox__dots" role="tablist" aria-label="Enlarged slideshow"></div>
+    <p class="screenshot-lightbox__kbd-hint">Arrow keys to browse · Esc to close</p>
+  </div>
+</div>

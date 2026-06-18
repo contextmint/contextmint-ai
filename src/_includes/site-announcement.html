@@ -1,0 +1,30 @@
+{% if site.announcement.enabled %}
+<aside
+  class="site-announcement"
+  id="site-announcement"
+  data-announcement-id="{{ site.announcement.id }}"
+  role="region"
+  aria-label="Site announcement"
+>
+  <div class="container site-announcement__inner">
+    <p class="site-announcement__text">
+      <span class="site-announcement__label">{{ site.announcement.label }}</span>
+      {{ site.announcement.text }}
+      {% if site.announcement.ctaHref %}
+      <a class="site-announcement__cta" href="{{ site.announcement.ctaHref }}">
+        {{ site.announcement.ctaText | default: "Learn more" }} →
+      </a>
+      {% endif %}
+    </p>
+    {% if site.announcement.dismissible %}
+    <button
+      type="button"
+      class="site-announcement__dismiss"
+      aria-label="Dismiss announcement"
+    >
+      <span aria-hidden="true">×</span>
+    </button>
+    {% endif %}
+  </div>
+</aside>
+{% endif %}

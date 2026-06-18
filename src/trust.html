@@ -1,7 +1,7 @@
 ---
 layout: base.html
 title: Trust & Security | ContextMint
-description: ContextMint security posture — local-first architecture, RBAC, audit trails, deterministic verification, and enterprise compliance readiness.
+description: ContextMint security posture — local-first default, optional BYOK, shared on-prem server pilots, RBAC, and audit trails.
 ---
 
 <header class="page-hero">
@@ -46,29 +46,109 @@ description: ContextMint security posture — local-first architecture, RBAC, au
           Export-ready for SOC 2 and internal security audits.
         </p>
       </div>
+      <div class="card">
+        <h3 style="margin: 0 0 12px;">Optional cloud (BYOK)</h3>
+        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
+          Cloud LLM routing is opt-in and disabled by default. Provider API keys live in VS Code
+          secrets on the developer machine — never in server config. Assembled context is redacted
+          before any approved cloud dispatch. Local Ollama remains the default for sovereign workflows.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface" id="deployment">
+  <div class="container container-narrow">
+    <h2 class="section-title">Deployment models</h2>
+    <p class="muted">
+      ContextMint supports two architectures. The <strong>default and GA-ready path</strong> is
+      local-first. Shared on-prem server mode is available for <strong>guided enterprise pilots</strong>
+      with platform engineering support.
+    </p>
+    <div class="grid grid-2" style="margin-top: 24px;">
+      <div class="card">
+        <h3 style="margin: 0 0 8px;">Local-first (default)</h3>
+        <p style="margin: 0 0 12px; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
+          <strong>ContextMint Engine</strong> on each developer machine runs the API server and
+          Ollama. The VS Code extension connects to <code>localhost:8000</code>. Indexing,
+          embeddings, and inference stay on the workstation — the path v1.0 is built for.
+        </p>
+        <p class="mono" style="margin: 0; font-size: 0.8rem; color: var(--text-tertiary);">
+          Ready now · sovereign · no shared server required
+        </p>
+      </div>
+      <div class="card">
+        <h3 style="margin: 0 0 8px;">Shared on-prem API server (pilot)</h3>
+        <p style="margin: 0 0 12px; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
+          A customer-hosted <strong>API server stack</strong> (Docker Compose or Helm) runs on your
+          infrastructure with Ollama, Chroma, and Redis. Developers point the extension at
+          <code>ContextMint.serverUrl</code> and authenticate with OIDC. This is <em>not</em> the
+          Engine desktop app — team deploy uses the server container, not the tray operator console.
+        </p>
+        <p class="mono" style="margin: 0; font-size: 0.8rem; color: var(--text-tertiary);">
+          Design-partner / pilot · ops setup required
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container container-narrow">
+    <h2 class="section-title">Shared server — what works today</h2>
+    <p class="muted">
+      The server indexes <strong>filesystem paths it can read</strong>. The extension registers the
+      open workspace path with the server. These patterns work for on-prem pilots:
+    </p>
+    <ul class="check-list" style="margin-top: 16px;">
+      <li><strong>VS Code Remote SSH</strong> — workspace path is on the same host as the API server</li>
+      <li><strong>Shared monorepo on a mounted volume</strong> — server indexes the mount; developers use matching paths</li>
+      <li><strong>Dev VM or build agent</strong> — code and ContextMint API co-located on one machine</li>
+      <li><strong>OIDC / SSO</strong> — extension <code>enterpriseMode</code> forwards Bearer tokens; server validates JWT issuer and audience</li>
+      <li><strong>HTTPS ingress</strong> — nginx + TLS in front of the API (Docker / Helm templates provided)</li>
+    </ul>
+    <div class="card" style="margin-top: 24px; border-color: var(--color-warning);">
+      <strong style="color: var(--color-warning);">Important limitation</strong>
+      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
+        Pointing a laptop with a <em>local-only</em> clone (e.g.
+        <code>C:\dev\repo</code>) at a remote corporate server URL does <strong>not</strong> work
+        out of the box — the server cannot read paths that exist only on the developer machine.
+        Platform teams must align repo location, mounts, or Remote SSH before indexing. We help
+        design partners validate this during the 30-day pilot.
+      </p>
     </div>
   </div>
 </section>
 
 <section class="section section--surface">
   <div class="container container-narrow">
-    <h2 class="section-title">Enterprise deployment options</h2>
+    <h2 class="section-title">Enterprise controls</h2>
     <ul class="check-list">
-      <li>SSO via SAML / OIDC (Enterprise)</li>
-      <li>Self-hosted server mode for team sync</li>
-      <li>Air-gapped Helm chart for regulated environments</li>
+      <li>SSO via OIDC (Microsoft Entra ID, Okta, Keycloak, and other compliant IdPs)</li>
+      <li>Role-based access — <span class="mono">viewer</span>, <span class="mono">dev</span>, <span class="mono">admin</span> per workspace</li>
+      <li>Self-hosted API server — Docker Compose or Helm on customer infrastructure</li>
+      <li>Air-gapped Helm chart for regulated environments (pilot packaging with runbooks)</li>
+      <li>Optional BYOK cloud routing with egress redaction (off by default)</li>
+      <li>Audit log export and rate limiting (Redis-backed on team server)</li>
       <li>Tenant isolation with <span class="mono">tenant_id</span> / <span class="mono">owner_id</span> on graph entities</li>
       <li>Evidence ledger with <span class="mono">verification_status</span> per fabric edge</li>
     </ul>
+    <p class="muted" style="margin-top: 24px; margin-bottom: 0;">
+      SOC 2 Type II and formal compliance packaging are on the
+      <a href="/roadmap.html#verification-engine" style="color: var(--color-action);">Enterprise roadmap</a>.
+      Shared-server
+      auth hardening and turnkey path alignment are active design-partner workstreams.
+    </p>
   </div>
 </section>
 
 <section class="section">
   <div class="container container-tight text-center">
     <p class="muted">
-      SOC 2 Type II and formal compliance packaging are on the Enterprise roadmap.
-      Contact us for security questionnaires and architecture review sessions.
+      Need a security questionnaire or architecture review for local-first vs shared-server deployment?
     </p>
     <a class="btn btn-primary" href="/request-demo.html">Request security briefing</a>
+    <a class="btn btn-secondary" href="/getting-started.html" style="margin-left: 12px;">Getting started</a>
   </div>
 </section>

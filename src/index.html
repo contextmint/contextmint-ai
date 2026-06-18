@@ -3,6 +3,7 @@ layout: base.html
 title: ContextMint | AI Writes Code. We Decide What Can Ship.
 description: ContextMint verifies AI-generated changes before production — ownership, dependencies, architecture intent, and policy with traceable evidence.
 pageCss: home.css
+pageJs: product-carousel.js
 ---
 
 <!-- HERO -->
@@ -24,19 +25,20 @@ pageCss: home.css
   </div>
 </header>
 
-<!-- SHIPPING NOW (v1.0) -->
-<section class="section section--surface" id="shipping-now">
+<!-- IN PILOT (v1.0 August 2026) -->
+<section class="section section--surface" id="pilot-now">
   <div class="container container-narrow">
-    <h2 class="section-title">Shipping now</h2>
+    <h2 class="section-title">In pilot now</h2>
     <p class="muted">
-      ContextMint v1.0 is a <strong>local-first AI decision-control plane</strong> for software teams —
-      not generic chat. Evidence before inference. Human approval before code changes.
+      <strong>v1.0 ships August 2026.</strong> Design partners already run ContextMint as a
+      <strong>local-first AI decision-control plane</strong> for software teams — not generic chat.
+      Evidence before inference. Human approval before code changes.
     </p>
     <div class="grid grid-3" style="margin-top: 24px;">
       <div class="card">
         <strong style="color: var(--color-trust);">ContextMint Engine</strong>
         <p class="mono" style="margin-top: 8px; font-size: 0.85rem;">
-          Desktop control plane for your local server and Ollama — one stack, one place to operate.
+          Tray-native operator console — readiness, server, and Ollama status. System, Light, or Dark theme.
         </p>
       </div>
       <div class="card">
@@ -53,11 +55,20 @@ pageCss: home.css
       </div>
     </div>
     <p class="text-center muted" style="margin-top: 24px; font-size: 0.9rem;">
+      <strong>Default:</strong> local Engine + Ollama per developer (GA-ready).
+      <a href="/features.html" style="color: var(--color-action);">What ships in v1.0 →</a>
+      Shared on-prem API server available for enterprise pilots —
+      <a href="/trust.html" style="color: var(--color-action);">deployment models</a>.
+      Optional BYOK cloud routing is off by default.
       <strong>Roadmap:</strong> PR verification, blast radius, and enterprise SSO build on this foundation.
-      <a href="/product/" style="color: var(--color-action);">See the Verification Engine vision →</a>
+      <a href="/roadmap.html" style="color: var(--color-action);">Roadmap →</a>
+      · <a href="/product/" style="color: var(--color-action);">Verification Engine vision →</a>
+      · <a href="/getting-started.html" style="color: var(--color-action);">Getting started →</a>
     </p>
   </div>
 </section>
+
+{% include "product-screenshots.html" %}
 
 <!-- Outcomes -->
 <section class="section" style="padding-top: 0;">

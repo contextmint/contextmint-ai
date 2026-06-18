@@ -107,7 +107,7 @@ Pushes to `main` do **not** publish the site. Deploy is manual via **Actions →
 
 | Repository | Platform | Contents |
 |------------|----------|----------|
-| `repo-awareness` | Azure DevOps | Backend, ContextLoom VS Code extension, internal docs |
+| `repo-awareness` | Azure DevOps | Backend, ContextMint VS Code extension, internal docs |
 | [`contextmint/contextmint-ai`](https://github.com/contextmint/contextmint-ai) | GitHub | Public marketing site → GitHub Pages |
 
 When product features ship in Azure DevOps, update copy and pages here in a separate commit/PR on GitHub.

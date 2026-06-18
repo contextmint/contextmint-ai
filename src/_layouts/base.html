@@ -15,7 +15,7 @@
   <meta property="og:description" content="{{ description }}" />
   {% endif %}
   <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
-  <meta property="og:image" content="{{ site.url }}/assets/img/og-images/home.png" />
+  <meta property="og:image" content="{{ site.url }}/assets/img/og-images/home.svg" />
 
   <link rel="icon" href="/assets/img/logos/favicon.svg" type="image/svg+xml" />
 
@@ -32,7 +32,8 @@
   <link rel="stylesheet" href="/assets/css/pages/{{ pageCss }}" />
   {% endif %}
 </head>
-<body>
+<body{% if site.announcement.enabled %} class="has-announcement"{% endif %}>
+  {% include "site-announcement.html" %}
   {% include "nav.html" %}
 
   <main id="main-content">
