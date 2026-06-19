@@ -11,14 +11,15 @@ pageCss: product.css
     {% include "verification-badge.html" %}
     <h1>Repository DNA Report</h1>
     <p class="lead">
-      A one-page engineering summary reachable in one click — structure, ownership, hotspots,
-      and conventions. The Tier 1 adoption gate for every new repo.
+      <strong>In plain terms:</strong> a one-page <em>health snapshot</em> of any repo — structure, who owns what,
+      hotspots, and conventions — so reviewers onboard in minutes, not weeks.
     </p>
   </div>
 </header>
 
 <section class="section">
   <div class="container container-narrow">
+    {% include "roadmap-planned-banner.html", badge: "Verification Engine", title: "DNA report productization on roadmap", message: "v1.0 readiness card and quality map cover overlapping signals today. The formal DNA report and Tier-1 adoption gate ship with the Verification Engine." %}
     <div class="metric-row">
       <div class="metric"><strong>&lt; 5 min</strong><span>To useful mental model</span></div>
       <div class="metric"><strong>1 click</strong><span>From VS Code panel</span></div>

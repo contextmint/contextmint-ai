@@ -11,14 +11,15 @@ pageCss: product.css
     {% include "verification-badge.html" %}
     <h1>Decision Graph</h1>
     <p class="lead">
-      Know why a convention exists. Link decisions ← PRs ← issues ← docs ← files in a traceable
-      graph with verification status on every edge.
+      <strong>In plain terms:</strong> know <em>why</em> the code works this way — ADRs, approved PRs, and issues
+      linked to the files they affect, with verification status on every claim.
     </p>
   </div>
 </header>
 
 <section class="section">
   <div class="container container-narrow">
+    {% include "roadmap-planned-banner.html", badge: "Verification Engine", title: "Full decision graph on roadmap", message: "v1.0 captures conventions and quality findings. Institutional ADR ↔ code linkage at scale ships with the Verification Engine." %}
     <div class="diagram-box">
       <div class="node">ADR-12: Event sourcing for orders</div>
       <div class="edge">└─ implemented_by ─► checkout/order_events.py</div>

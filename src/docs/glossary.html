@@ -1,7 +1,7 @@
 ---
 layout: doc.html
 title: Glossary | ContextMint Docs
-description: ContextMint terminology — Engine, workspace ID, context lanes, progressive RAG, glass box, gates, and more.
+description: ContextMint terminology — Engine, context lanes, blast radius, MCP, Verification Engine, and more.
 pageCss: product.css
 ---
 
@@ -80,5 +80,69 @@ pageCss: product.css
   <details class="faq-item">
     <summary>Support bundle</summary>
     <div class="faq-item__body"><p>Export from Engine → About — versions, redacted config, logs for support tickets.</p></div>
+  </details>
+</dl>
+
+<h2 id="operational-intelligence">Operational intelligence &amp; reconciliation (roadmap)</h2>
+<p class="muted">Planned after v1.0 — see <a href="/roadmap.html#operational-intelligence">Roadmap → Operational intelligence</a>. Not shipped today.</p>
+
+<dl class="faq-list" style="gap: 0;">
+  <details class="faq-item" id="knowledge-reconciliation">
+    <summary>Knowledge reconciliation</summary>
+    <div class="faq-item__body"><p>When sources disagree (e.g. Git blame, CODEOWNERS, team memory, stale docs), return <strong>one scored answer</strong> with supporting and conflicting evidence listed — not four similar snippets. Distinct from <em>index reconciliation</em>, which keeps search indexes in sync with the repo.</p></div>
+  </details>
+  <details class="faq-item" id="operational-intelligence-retrieval">
+    <summary>Operational intelligence retrieval (OIR)</summary>
+    <div class="faq-item__body"><p>Retrieval scored by relevance <strong>and</strong> trust, freshness, and evidence coverage — not vector similarity alone. Roadmap enhancement to hybrid search after the Knowledge Fabric layer ships.</p></div>
+  </details>
+  <details class="faq-item" id="symbol-aware-retrieval">
+    <summary>Symbol-aware retrieval</summary>
+    <div class="faq-item__body"><p>Search returns named artifacts — file, symbol, line range — not anonymous chunks. Ships in v1.0 citations and Context Lens evidence preview.</p></div>
+  </details>
+</dl>
+
+<h2 id="verification-engine">Verification Engine &amp; roadmap terms</h2>
+<p class="muted">These capabilities are <strong>product direction</strong> after v1.0 — see <a href="/roadmap.html">Roadmap</a> and <a href="/product/">Verification Engine</a>. Plain-language overview: <a href="/product/#terminology">Terms explained</a>.</p>
+
+<dl class="faq-list" style="gap: 0;">
+  <details class="faq-item" id="blast-radius">
+    <summary>Blast radius</summary>
+    <div class="faq-item__body"><p>If you change or remove X, what else breaks? ContextMint walks real dependency links (imports, services, features) to list downstream impact — graph traversal, not an LLM guess. Target: under 10 seconds per query at PR review time.</p></div>
+  </details>
+  <details class="faq-item" id="verification-engine-term">
+    <summary>Verification Engine</summary>
+    <div class="faq-item__body"><p>Future product layer: check every PR or AI change against ownership, blast radius, architecture rules, and policy before merge. v1.0 ships the foundation (Engine, chat, Context Lens, quality map, gates).</p></div>
+  </details>
+  <details class="faq-item" id="engineering-reality-graph">
+    <summary>Engineering Reality Graph (Fabric)</summary>
+    <div class="faq-item__body"><p>Unified map of repo + org facts: ownership, dependencies, ADRs/decisions, policies, and drift baselines. Chat and agents cite this graph instead of inventing structure.</p></div>
+  </details>
+  <details class="faq-item" id="repository-dna">
+    <summary>Repository DNA</summary>
+    <div class="faq-item__body"><p>One-page engineering summary — topology, CODEOWNERS, hotspots, conventions — for fast onboarding and review context.</p></div>
+  </details>
+  <details class="faq-item" id="decision-graph">
+    <summary>Decision graph</summary>
+    <div class="faq-item__body"><p>Links architecture decisions (ADRs), PRs, issues, and docs to the code they explain. Answers &ldquo;why is it built this way?&rdquo; with verification status per edge.</p></div>
+  </details>
+  <details class="faq-item" id="drift">
+    <summary>Drift (architecture drift)</summary>
+    <div class="faq-item__body"><p>Live code diverging from recorded intent. <strong>Bad drift</strong> = unintended violation. <strong>Accepted drift</strong> = deliberate change recorded so alerts stop firing.</p></div>
+  </details>
+  <details class="faq-item" id="mcp">
+    <summary>MCP (Model Context Protocol)</summary>
+    <div class="faq-item__body"><p>Open standard for AI clients to call typed tools (e.g. <code>get_blast_radius</code>) with JSON responses. ContextMint&apos;s MCP server is <strong>planned</strong> — read-only graph tools under RBAC; not available in v1.0. See <a href="/developers/mcp-server.html">MCP server (roadmap)</a>.</p></div>
+  </details>
+  <details class="faq-item" id="agent-governance">
+    <summary>Agent governance</summary>
+    <div class="faq-item__body"><p>Policy and RBAC for AI agents: scoped read tools, queued proposals, audit trail, and mandatory human patch preview before writes. MCP layer on roadmap; Gates 1 &amp; 2 ship in v1.0.</p></div>
+  </details>
+  <details class="faq-item" id="fabric-citation">
+    <summary>Fabric citation</summary>
+    <div class="faq-item__body"><p>Machine-readable pointer in chat metadata to a graph node or edge (decision, feature, dependency path) — so answers trace to evidence, not prose alone. Roadmap enhancement to chat SSE.</p></div>
+  </details>
+  <details class="faq-item" id="sovereign-server">
+    <summary>Sovereign server (deployment profile)</summary>
+    <div class="faq-item__body"><p>Shared on-prem API + heavy models (e.g. vLLM) on customer GPU; developers use extension only with OIDC. Distinct from laptop <strong>local-first</strong> (Engine + Ollama). Planned — see engineering blueprint; not Hub71 demo topology.</p></div>
   </details>
 </dl>

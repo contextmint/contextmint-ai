@@ -11,14 +11,15 @@ pageCss: product.css
     {% include "verification-badge.html" %}
     <h1>Drift Detection</h1>
     <p class="lead">
-      Compare live code against architecture intent and accepted baselines. Suppress noise from
-      deliberate evolution; alert on violations that matter.
+      <strong>In plain terms:</strong> spot when code <em>drifts</em> away from agreed architecture — and tell
+      <strong>bad violations</strong> apart from <strong>approved evolution</strong> you meant to allow.
     </p>
   </div>
 </header>
 
 <section class="section">
   <div class="container container-narrow">
+    {% include "roadmap-planned-banner.html", badge: "Verification Engine", title: "Automated drift gates on roadmap", message: "v1.0 quality map surfaces structure and duplicate signals today. Graph-vs-contract drift with accepted baselines ships with PR verification." %}
     <div class="grid grid-2">
       <div class="card">
         <h3 style="margin: 0 0 8px; color: var(--color-danger);">Bad drift</h3>

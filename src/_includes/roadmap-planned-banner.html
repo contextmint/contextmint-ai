@@ -1,0 +1,11 @@
+<div class="notice-banner notice-banner--planned" role="note">
+  <span class="roadmap-status roadmap-status--planned">{{ badge | default: "Roadmap" }}</span>
+  <p style="margin: 10px 0 0;">
+    <strong>{{ title | default: "Not in v1.0 yet" }}</strong> —
+    {{ message | default: "This page describes a planned capability. What ships today is on" }}
+    <a href="/features.html" style="color: var(--color-action);">Features in v1.0</a>.
+    {% if extraLink %}
+    {{ extraLink }}
+    {% endif %}
+  </p>
+</div>

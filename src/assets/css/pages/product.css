@@ -194,6 +194,62 @@ kbd {
   border-color: var(--border-default);
 }
 
+.notice-banner {
+  padding: 14px 18px;
+  border-radius: 8px;
+  border: 1px solid var(--border-default);
+  background: var(--bg-surface);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.notice-banner--planned {
+  border-left: 3px solid var(--color-warning);
+}
+
+.notice-banner--available {
+  border-left: 3px solid var(--color-trust);
+}
+
+.jargon-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 0;
+}
+
+.jargon-item dt {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 6px;
+  font-size: 1rem;
+}
+
+.jargon-item dd {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.dev-card-tag {
+  display: inline-block;
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.dev-card-tag--live {
+  color: var(--color-trust);
+}
+
+.dev-card-tag--roadmap {
+  color: var(--color-warning);
+}
+
 @media (max-width: 768px) {
   .metric-row {
     grid-template-columns: 1fr;

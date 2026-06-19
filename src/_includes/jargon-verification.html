@@ -1,0 +1,84 @@
+<section class="section section--surface" id="terminology">
+  <div class="container container-narrow">
+    <h2 class="section-title">Terms explained (plain language)</h2>
+    <p class="muted" style="margin-bottom: 20px;">
+      ContextMint uses precise engineering words. Here is what they mean for your team — without assuming graph-theory background.
+      Full v1.0 terms: <a href="/docs/glossary.html">User glossary</a>.
+    </p>
+    <dl class="jargon-list">
+      <div class="jargon-item">
+        <dt>Blast radius</dt>
+        <dd>
+          <strong>If you change or break X, what else is affected?</strong> ContextMint walks real dependency links
+          (imports, service calls, shared modules) to list downstream files, services, and features — like a ripple map,
+          not a guess from an LLM.
+        </dd>
+      </div>
+      <div class="jargon-item">
+        <dt>Verification Engine</dt>
+        <dd>
+          The <strong>future product direction</strong> after v1.0: automatically check every PR or AI-generated change
+          against ownership, impact, architecture rules, and policy <em>before</em> merge. v1.0 lays the foundation
+          (quality map, gates, local chat); PR-wide verification is on the <a href="/roadmap.html">roadmap</a>.
+        </dd>
+      </div>
+      <div class="jargon-item">
+        <dt>Engineering Reality Graph (Fabric)</dt>
+        <dd>
+          A <strong>living map</strong> of your repo and org facts: who owns which files, how modules depend on each other,
+          recorded architecture decisions (ADRs), and policy rules. Chat and agents can <em>cite</em> this map instead of inventing answers.
+        </dd>
+      </div>
+      <div class="jargon-item">
+        <dt>Repository DNA</dt>
+        <dd>
+          A <strong>one-page health summary</strong> of a codebase — structure, owners, hotspots, and conventions —
+          so a new engineer or reviewer understands the repo in minutes instead of weeks.
+        </dd>
+      </div>
+      <div class="jargon-item">
+        <dt>Decision graph</dt>
+        <dd>
+          Links <strong>why</strong> the code looks the way it does: architecture decision records (ADRs), approved PRs,
+          and issues connected to the files they affect. Answers &ldquo;why do we do it this way?&rdquo; with evidence.
+        </dd>
+      </div>
+      <div class="jargon-item">
+        <dt>Drift</dt>
+        <dd>
+          When live code <strong>diverges</strong> from agreed architecture or conventions. <em>Bad drift</em> is an unintended violation;
+          <em>accepted drift</em> is an approved change recorded so alerts do not fire again.
+        </dd>
+      </div>
+      <div class="jargon-item">
+        <dt>MCP (Model Context Protocol)</dt>
+        <dd>
+          A <strong>standard way for AI tools</strong> (Cursor, Claude Desktop, custom agents) to call read-only functions on your
+          engineering data — like <span class="mono">get_blast_radius</span> — with structured JSON instead of scraping chat text.
+          Planned for a future release; not connectable in v1.0.
+        </dd>
+      </div>
+      <div class="jargon-item">
+        <dt>Agent governance</dt>
+        <dd>
+          <strong>Rules for AI agents</strong> that touch your repo: which tools they may call, what they may read, and that
+          every write still goes through human-reviewed patch preview — no silent auto-apply.
+        </dd>
+      </div>
+      <div class="jargon-item">
+        <dt>Gate 1 / Gate 2</dt>
+        <dd>
+          <strong>Gate 1</strong> = Context Lens — you approve evidence <em>before</em> the model runs.
+          <strong>Gate 2</strong> = patch preview — you approve diffs <em>before</em> anything writes to disk. Ships in v1.0.
+        </dd>
+      </div>
+      <div class="jargon-item">
+        <dt>Quality map</dt>
+        <dd>
+          <strong>Stored scan results</strong> (duplicate code, structure signals, patterns) shown in Context Lens and governance UI.
+          Answers come from findings on disk, not model imagination. Ships in v1.0.
+        </dd>
+      </div>
+    </dl>
+  </div>
+</section>

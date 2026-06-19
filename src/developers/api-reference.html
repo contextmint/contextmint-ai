@@ -1,7 +1,7 @@
 ---
 layout: base.html
 title: API Reference | ContextMint
-description: ContextMint REST API overview — health, search, fabric, context packs, actions, and observability endpoints.
+description: ContextMint REST API overview — v1.0 health, chat, search, packs, quality; Fabric endpoints on the Verification Engine roadmap.
 pageCss: product.css
 ---
 
@@ -11,42 +11,58 @@ pageCss: product.css
     <div class="pill">REST API</div>
     <h1>API reference</h1>
     <p class="lead">
-      FastAPI backend served locally by default. OpenAPI schema available at
-      <span class="mono">/docs</span> when the server is running.
+      FastAPI backend on loopback by default. OpenAPI schema at <span class="mono">/docs</span> when
+      <span class="mono">contextmint serve</span> or Engine is running.
     </p>
   </div>
 </header>
 
 <section class="section">
   <div class="container container-narrow">
-    <h2 class="section-title">Core endpoints</h2>
+    <h2 class="section-title">v1.0 — available today</h2>
     <div class="card" style="margin-bottom: 12px;">
       <code class="mono" style="color: var(--color-trust);">GET /api/health</code>
       <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">Server and dependency health check.</p>
+    </div>
+    <div class="card" style="margin-bottom: 12px;">
+      <code class="mono" style="color: var(--color-trust);">GET /api/engine/status</code>
+      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">Engine session state — server, Ollama, readiness.</p>
+    </div>
+    <div class="card" style="margin-bottom: 12px;">
+      <code class="mono" style="color: var(--color-trust);">POST /api/v1/chat/stream</code>
+      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">Repo-aware chat with SSE; optional image attachments (multimodal).</p>
     </div>
     <div class="card" style="margin-bottom: 12px;">
       <code class="mono" style="color: var(--color-trust);">POST /api/search</code>
       <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">Hybrid BM25 + vector retrieval with workspace scoping.</p>
     </div>
     <div class="card" style="margin-bottom: 12px;">
-      <code class="mono" style="color: var(--color-trust);">GET /fabric/explain</code>
-      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">Blast radius and impact explanation with evidence paths.</p>
-    </div>
-    <div class="card" style="margin-bottom: 12px;">
-      <code class="mono" style="color: var(--color-trust);">POST /fabric/correct</code>
-      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">Human correction — sets verification_status to verified.</p>
-    </div>
-    <div class="card" style="margin-bottom: 12px;">
-      <code class="mono" style="color: var(--color-trust);">POST /fabric/propose</code>
-      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">Queue proposed graph mutations for review.</p>
+      <code class="mono" style="color: var(--color-trust);">POST /api/argus/audit</code>
+      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;"><strong>ARGUS</strong> visual audit — structured UI findings (report only).</p>
     </div>
     <div class="card" style="margin-bottom: 12px;">
       <code class="mono" style="color: var(--color-trust);">GET /api/packs/*</code>
       <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">Context pack builder, sync, and manifest APIs.</p>
     </div>
     <div class="card">
-      <code class="mono" style="color: var(--color-trust);">GET /api/actions/stats</code>
-      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">Acceptance and proposal statistics for governance dashboards.</p>
+      <code class="mono" style="color: var(--color-trust);">GET /api/quality/*</code>
+      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">Quality map scans, findings store, governance lens data.</p>
+    </div>
+
+    <h2 class="section-title" style="margin-top: 40px;">Verification Engine — roadmap</h2>
+    {% include "roadmap-planned-banner.html", badge: "Fabric APIs", title: "Graph verification endpoints planned", message: "These power blast radius, decision graph, and agent proposals — not required for v1.0 chat and quality map." %}
+
+    <div class="card" style="margin-bottom: 12px;">
+      <code class="mono" style="color: var(--text-secondary);">GET /fabric/explain</code>
+      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;"><strong>Blast radius</strong> — impact paths with evidence (graph traversal, not LLM).</p>
+    </div>
+    <div class="card" style="margin-bottom: 12px;">
+      <code class="mono" style="color: var(--text-secondary);">POST /fabric/correct</code>
+      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">Human correction on graph edges — sets verification status.</p>
+    </div>
+    <div class="card">
+      <code class="mono" style="color: var(--text-secondary);">POST /fabric/propose</code>
+      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">Queue proposed graph mutations for human review (agents).</p>
     </div>
   </div>
 </section>
@@ -55,12 +71,15 @@ pageCss: product.css
   <div class="container container-tight text-center">
     <h2 class="section-title">Interactive docs</h2>
     <p class="muted">
-      Start the local server and open Swagger UI for the full schema, request bodies, and response models.
+      Start the server and open Swagger UI for the full v1.0 schema.
     </p>
     <div class="code-block" style="text-align: left; max-width: 480px; margin: 0 auto;">
-      uvicorn main:app --reload --port 8000<br />
+      contextmint serve<br />
       <span class="cm"># → http://localhost:8000/docs</span>
     </div>
+    <p class="muted" style="margin-top: 20px; margin-bottom: 0;">
+      Terms: <a href="/docs/glossary.html" style="color: var(--color-action);">Glossary</a>
+    </p>
   </div>
 </section>
 

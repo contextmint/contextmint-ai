@@ -1,7 +1,7 @@
 ---
 layout: base.html
 title: Roadmap | ContextMint
-description: ContextMint product roadmap — what ships in v1.0 today, what design partners co-build in 2026, and the Verification Engine direction ahead.
+description: ContextMint product roadmap — v1.0 today, design partners in 2026, operational intelligence and knowledge reconciliation ahead, plus the Verification Engine direction.
 pageCss: product.css
 ---
 
@@ -75,6 +75,10 @@ pageCss: product.css
           report only, human-gated fixes
         </li>
         <li>
+          <strong>Symbol-aware retrieval</strong> — citations name file, symbol, and line range — not
+          anonymous text chunks
+        </li>
+        <li>
           <strong>Local-first default</strong> — Engine + Ollama on loopback; code stays on device
         </li>
       </ul>
@@ -118,6 +122,50 @@ pageCss: product.css
 </section>
 
 <section class="section">
+  <div class="container container-narrow">
+    <article class="roadmap-tier" id="operational-intelligence">
+      <div class="roadmap-tier__head">
+        <span class="roadmap-status roadmap-status--planned">Planned direction</span>
+        <h2 class="section-title" style="margin-bottom: 0;">Operational intelligence</h2>
+      </div>
+      <p class="muted">
+        v1.0 retrieves <strong>named engineering artifacts</strong> (function, file, lines) with
+        hybrid search and human gates. The next layer scores <strong>belief</strong>, not similarity
+        alone — and reconciles conflicting signals into one auditable answer. This is
+        <strong>roadmap</strong>, not shipped in v1.0.
+      </p>
+      <ul class="check-list">
+        <li>
+          <strong>Knowledge reconciliation</strong> — when Git, CODEOWNERS, team memory, and docs
+          disagree, surface one scored claim with supporting and conflicting evidence — not four
+          snippets
+        </li>
+        <li>
+          <strong>Operational intelligence retrieval (OIR)</strong> — rank answers by relevance
+          <em>and</em> trust, freshness, and evidence coverage
+        </li>
+        <li>
+          <strong>Knowledge Fabric</strong> — code, memory, ownership, and (later) ops signals as
+          projections over one model — not separate siloed pipelines
+        </li>
+        <li>
+          <strong>Summary-first retrieval</strong> — semantic compression at index time for large
+          repos; expand to raw code only when confidence is low
+        </li>
+        <li>
+          <strong>Ownership reconciliation MVP</strong> — “Who owns this file or domain?” with
+          explicit conflict surfacing and audit trail
+        </li>
+      </ul>
+      <p class="muted" style="margin-top: 16px; margin-bottom: 0;">
+        We do not claim trust-weighted retrieval or cross-system reconciliation until product gates
+        pass. v1.0 already ships evidence preview in Context Lens and symbol-aware citations.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="section section--surface">
   <div class="container container-narrow">
     <article class="roadmap-tier" id="verification-engine">
       <div class="roadmap-tier__head">
@@ -165,12 +213,13 @@ pageCss: product.css
       </ul>
       <p class="muted" style="margin-top: 16px; margin-bottom: 0;">
         <a class="btn btn-secondary" href="/product/">Explore the Verification Engine</a>
+        <a class="btn btn-secondary" href="/docs/glossary.html#verification-engine" style="margin-left: 8px;">Terms explained</a>
       </p>
     </article>
   </div>
 </section>
 
-<section class="section section--surface">
+<section class="section">
   <div class="container container-narrow text-center">
     <p class="muted" style="margin: 0; font-size: 0.9rem; line-height: 1.6;">
       Capabilities and order may change as we learn from pilots. What ships in v1.0 is documented on

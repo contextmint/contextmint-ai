@@ -1,7 +1,7 @@
 ---
 layout: base.html
 title: Blast Radius | ContextMint
-description: Blast radius and impact forecasting — know what breaks in under ten seconds with pre-computed transitive dependency closure.
+description: Blast radius (roadmap) — know what else breaks when you change a file or service, using graph traversal not LLM guesses.
 pageCss: product.css
 ---
 
@@ -9,18 +9,28 @@ pageCss: product.css
   <div class="container">
     <nav class="breadcrumb"><a href="/product/">Product</a> / Blast Radius</nav>
     {% include "verification-badge.html" %}
-    <h1>Blast Radius</h1>
+    <h1>Blast radius</h1>
     <p class="lead">
-      Pre-computed transitive impact across services, files, and features. Graph traversal only —
-      no LLM guessing when you need to know what breaks.
+      <strong>In plain terms:</strong> if you change or remove something, what else is affected?
+      Pre-computed dependency closure across services, files, and features — graph math, not model imagination.
     </p>
   </div>
 </header>
 
 <section class="section">
   <div class="container container-narrow">
+    {% include "roadmap-planned-banner.html", badge: "Verification Engine", title: "PR-wide blast radius on roadmap", message: "v1.0 includes quality map and governance findings in chat. Sub-10-second impact queries across the full service graph ship with the Verification Engine." %}
+
+    <h2 class="section-title">What blast radius means</h2>
+    <p class="muted">
+      Borrowed from incident response: the <strong>blast radius</strong> of a change is everything that could break downstream.
+      ContextMint builds this from imports, service dependencies, and feature links in your
+      <a href="/docs/glossary.html#engineering-reality-graph" style="color: var(--color-action);">engineering graph</a> —
+      so reviewers see impact <em>before</em> opening a 2,000-line diff.
+    </p>
+
     <div class="metric-row">
-      <div class="metric"><strong>&lt; 10 sec</strong><span>Impact query latency</span></div>
+      <div class="metric"><strong>&lt; 10 sec</strong><span>Target query latency</span></div>
       <div class="metric"><strong>Index-time</strong><span>Closure pre-computed</span></div>
       <div class="metric"><strong>Evidence</strong><span>Dependency path cited</span></div>
     </div>
@@ -45,8 +55,8 @@ pageCss: product.css
       <p>Every changed file expands to affected features, teams, and services before reviewers open the diff.</p>
     </div>
     <div>
-      <h2>MCP &amp; API</h2>
-      <p>Expose <span class="mono">get_blast_radius</span> to agents with the same deterministic graph your humans trust.</p>
+      <h2>MCP &amp; API (planned)</h2>
+      <p>Expose <span class="mono">get_blast_radius</span> to agents with the same deterministic graph humans trust — see <a href="/developers/mcp-server.html" style="color: var(--color-action);">MCP server</a>.</p>
     </div>
   </div>
 </section>

@@ -10,9 +10,13 @@ pageCss: product.css
     <div class="pill">PRODUCT</div>
     <h1>The Verification Engine</h1>
     <p class="lead">
-      <strong>Core promise:</strong> verify AI-generated changes before production. Every recommendation
-      is backed by deterministic graph evidence — ownership, blast radius, architecture intent,
-      drift, and policy.
+      <strong>Product direction (after v1.0):</strong> verify AI-generated changes before production.
+      Every recommendation backed by deterministic graph evidence — ownership, <strong>blast radius</strong>,
+      architecture intent, drift, and policy. Not a separate SKU; built on the v1.0 foundation you can run today.
+    </p>
+    <p class="muted" style="margin-top: 16px; font-size: 0.95rem;">
+      <span class="roadmap-status roadmap-status--available">v1.0 ships now</span>
+      <a href="/features.html" style="color: var(--color-action); margin-left: 8px;">See what is available today →</a>
     </p>
     <div class="cta" style="margin-top: 24px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
       <a class="btn btn-primary" href="/request-demo.html">Book a Demo</a>
@@ -23,8 +27,8 @@ pageCss: product.css
 
 <section class="section">
   <div class="container container-narrow">
-    <h2 class="section-title">What you buy</h2>
-    <p class="muted">One outcome. Not five products.</p>
+    <h2 class="section-title">What you buy (target outcome)</h2>
+    <p class="muted">One outcome when the Verification Engine is fully delivered — not five separate products today.</p>
     <div class="card card--highlight" style="text-align: center; padding: 32px;">
       <p style="margin: 0 0 8px; font-size: 1.25rem; font-weight: 600; color: var(--text-primary);">
         Verify every change before it ships
@@ -78,13 +82,15 @@ pageCss: product.css
     <div>
       <h2>AI-assisted, not AI-decided</h2>
       <ul class="check-list">
-        <li>Chat cites fabric evidence on repo facts</li>
-        <li>Agents use MCP read tools under RBAC</li>
+        <li>Chat cites graph evidence on repo facts (roadmap: fabric citations)</li>
+        <li>Agents use MCP read tools under RBAC (roadmap)</li>
         <li>Proposals queue — no silent writes</li>
-        <li>Humans confirm material changes</li>
+        <li>Humans confirm material changes — Gate 1 &amp; 2 in v1.0 today</li>
       </ul>
     </div>
   </div>
 </section>
+
+{% include "jargon-verification.html" %}
 
 {% include "cta-band.html" %}

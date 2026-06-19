@@ -1,7 +1,7 @@
 ---
 layout: base.html
 title: MCP Server | ContextMint
-description: ContextMint MCP server — tool contracts for get_blast_radius, get_feature, get_decision, and agent governance.
+description: ContextMint MCP server (roadmap) — planned tool contracts for blast radius, features, decisions, and agent governance.
 pageCss: product.css
 ---
 
@@ -11,46 +11,67 @@ pageCss: product.css
     <div class="pill">MODEL CONTEXT PROTOCOL</div>
     <h1>MCP tools &amp; contracts</h1>
     <p class="lead">
-      Expose deterministic engineering reality to AI agents. Every tool returns graph evidence —
-      validated against <span class="mono">AgentContextContract</span> schema.
+      <strong>Planned capability.</strong> Expose deterministic engineering facts to AI agents via the
+      <a href="/docs/glossary.html#mcp" style="color: var(--color-action);">Model Context Protocol (MCP)</a> —
+      blast radius, features, and decisions as structured tools, not chat guesses.
     </p>
   </div>
 </header>
 
 <section class="section">
   <div class="container container-narrow">
-    <h2 class="section-title">Tool catalog</h2>
+    {% include "roadmap-planned-banner.html", badge: "Roadmap", title: "MCP server not in v1.0", message: "Tool contracts below are the target design for the Verification Engine wave. You cannot connect to http://localhost:8000/mcp today. v1.0 ships Engine, chat, Context Lens, quality map, and image evidence instead." %}
+
+    <h2 class="section-title">What is MCP?</h2>
+    <p class="muted">
+      <strong>MCP</strong> is an open protocol so AI clients (Cursor, Claude Desktop, internal agents) can call
+      <em>tools</em> with typed inputs and JSON outputs — like REST for agents. ContextMint&apos;s MCP layer will expose
+      <strong>read-only</strong> graph queries your security team can scope with RBAC. Writes still use human-gated patch preview.
+    </p>
+
+    <h2 class="section-title" style="margin-top: 32px;">Planned tool catalog</h2>
     <div class="card" style="margin-bottom: 16px;">
       <h3 style="margin: 0 0 8px; font-family: var(--font-mono); font-size: 1rem;">get_blast_radius</h3>
-      <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
-        Returns impacted services, files, and teams for a target node. Maps to
-        <span class="mono">/fabric/explain</span> or pre-computed closure.
+      <p style="margin: 0 0 8px; color: var(--text-secondary); font-size: 0.9rem;">
+        <strong>Blast radius</strong> — list impacted services, files, and teams if a node changes or fails.
+        Maps to <span class="mono">/fabric/explain</span> or a pre-computed dependency closure.
       </p>
+      <p style="margin: 0; color: var(--text-tertiary); font-size: 0.85rem;">Example ask: &ldquo;What breaks if we remove Payments API?&rdquo;</p>
     </div>
     <div class="card" style="margin-bottom: 16px;">
       <h3 style="margin: 0 0 8px; font-family: var(--font-mono); font-size: 1rem;">get_feature</h3>
       <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
-        Feature registry lookup — entry points, owners, and related graph nodes.
+        <strong>Feature registry</strong> lookup — entry points, owners, and related graph nodes for a named product feature.
       </p>
     </div>
     <div class="card" style="margin-bottom: 16px;">
       <h3 style="margin: 0 0 8px; font-family: var(--font-mono); font-size: 1rem;">get_decision</h3>
       <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
-        Decision graph trace with evidence ledger and verification status.
+        <strong>Decision graph</strong> trace — ADRs and architecture intent with evidence ledger and verification status.
       </p>
     </div>
     <div class="card">
       <h3 style="margin: 0 0 8px; font-family: var(--font-mono); font-size: 1rem;">get_trace</h3>
       <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
-        Deployment → feature → failure path (Enterprise, post AP-3).
+        CI/CD path — deployment → feature → failure linkage (enterprise, after external-memory graph work).
       </p>
     </div>
+
+    <h2 class="section-title" style="margin-top: 32px;">Response contract</h2>
+    <p class="muted">
+      Every tool response will validate against <span class="mono">AgentContextContract</span> — a fixed JSON schema so agents
+      and CI gates can trust fields like <span class="mono">verification_status</span> and evidence paths. See
+      <a href="/product/agent-governance.html" style="color: var(--color-action);">Agent governance</a>.
+    </p>
   </div>
 </section>
 
 <section class="section section--surface">
   <div class="container container-narrow">
-    <h2 class="section-title">MCP client configuration</h2>
+    <h2 class="section-title">Example client config (when shipped)</h2>
+    <p class="muted" style="margin-bottom: 16px;">
+      Illustrative only — endpoint and auth will match your deployment profile (local Engine or sovereign server).
+    </p>
     <div class="code-block">
 {<br />
 &nbsp;&nbsp;<span class="str">"mcpServers"</span>: {<br />
@@ -62,7 +83,8 @@ pageCss: product.css
 }
     </div>
     <p class="muted" style="margin-bottom: 0;">
-      Token and RBAC scopes are configured per workspace. See <a href="/product/agent-governance.html" style="color: var(--color-action);">Agent Governance</a> for policy details.
+      Timeline: <a href="/roadmap.html" style="color: var(--color-action);">Roadmap</a> · Verification Engine ·
+      <a href="/docs/glossary.html" style="color: var(--color-action);">Glossary</a>
     </p>
   </div>
 </section>

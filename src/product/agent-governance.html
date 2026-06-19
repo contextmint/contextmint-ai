@@ -1,7 +1,7 @@
 ---
 layout: base.html
 title: Agent Governance | ContextMint
-description: MCP and agent RBAC — governed tool access, policy engine, and no silent writes for AI coding agents.
+description: Agent governance (roadmap) — MCP read tools, RBAC, policy engine, and no silent writes for AI coding agents.
 pageCss: product.css
 ---
 
@@ -11,41 +11,57 @@ pageCss: product.css
     {% include "verification-badge.html" %}
     <h1>Agent Governance</h1>
     <p class="lead">
-      AI agents query engineering reality through MCP — with role-based tool access, policy
-      enforcement, and human confirmation on every material write.
+      <strong>Planned for the Verification Engine.</strong> Let AI agents read engineering facts through
+      <a href="/developers/mcp-server.html" style="color: var(--color-action);">MCP tools</a> under role-based access —
+      while every write still requires human-reviewed patch preview (Gate 2).
     </p>
   </div>
 </header>
 
 <section class="section">
   <div class="container container-narrow">
-    <h2 class="section-title">MCP tools (read)</h2>
+    {% include "roadmap-planned-banner.html", badge: "Roadmap", title: "Agent MCP layer not in v1.0", message: "v1.0 already enforces human gates in the IDE: Context Lens (Gate 1) and patch preview (Gate 2). Agent-specific MCP and RBAC ship with the graph verification wave." %}
+
+    <h2 class="section-title">What is agent governance?</h2>
+    <p class="muted">
+      When coding agents act on your repo, governance answers: <strong>what may they read?</strong>,
+      <strong>what may they propose?</strong>, and <strong>who must approve writes?</strong>
+      ContextMint&apos;s model: agents get <em>read tools</em> on the engineering graph; mutations queue as proposals —
+      never silent <span class="mono">auto_applied</span> on your main branch.
+    </p>
+
+    <h2 class="section-title" style="margin-top: 32px;">Planned MCP tools (read)</h2>
     <div class="code-block">
-      <span class="cm"># Available MCP tools</span><br />
-      <span class="kw">get_blast_radius</span>(target) → impacted services + evidence<br />
+      <span class="cm"># Target tool surface (read-only)</span><br />
+      <span class="kw">get_blast_radius</span>(target) → impacted services + evidence paths<br />
       <span class="kw">get_feature</span>(name) → feature registry entry<br />
-      <span class="kw">get_decision</span>(id) → decision graph trace<br />
-      <span class="kw">get_trace</span>(deployment) → CI/CD path (Enterprise)
+      <span class="kw">get_decision</span>(id) → decision / ADR graph trace<br />
+      <span class="kw">get_trace</span>(deployment) → CI/CD path (enterprise, later)
     </div>
+    <p class="muted" style="margin-top: 12px;">
+      <strong>MCP</strong> = Model Context Protocol — a standard for agents to call typed tools. See
+      <a href="/docs/glossary.html#mcp" style="color: var(--color-action);">Glossary → MCP</a>.
+    </p>
+
     <div class="split" style="margin-top: 32px;">
       <div>
         <h2>Policy engine</h2>
         <ul class="check-list">
-          <li>Single PolicyEngine for agents, actions, and scorecards</li>
-          <li>PCI, ownership, and custom policy graphs</li>
-          <li>GATE-AGENT validates MCP JSON against schema</li>
+          <li>One policy module for agents, assisted actions, and scorecards</li>
+          <li>Custom rules (ownership, PCI boundaries, blast thresholds)</li>
+          <li>Responses validate against <span class="mono">AgentContextContract</span> JSON schema</li>
         </ul>
       </div>
       <div>
         <h2>Safety defaults</h2>
         <ul class="check-list">
-          <li><span class="mono">auto_applied: false</span> until GATE-EXEC passes</li>
-          <li>Proposals queue — graph mutations require approval</li>
-          <li>Audit JSONL for fabric_propose events</li>
+          <li>No auto-apply on main workspace until execution gates pass</li>
+          <li>Graph proposals queue for human approval</li>
+          <li>Audit trail for agent propose events</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-{% include "cta-band.html", ctaTitle: "Govern agents before they govern your repo", ctaText: "Walk through MCP contracts and RBAC for your IDE agents." %}
+{% include "cta-band.html", ctaTitle: "Govern agents before they govern your repo", ctaText: "Walk through MCP contracts and RBAC on a design-partner roadmap session." %}
