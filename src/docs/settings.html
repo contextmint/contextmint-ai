@@ -27,7 +27,7 @@ pageCss: product.css
   <li><code>contextmint.chat.cloudThinkingEnabled</code> — extended thinking for supported cloud models</li>
 </ul>
 
-<h2>Context lanes (U-065+)</h2>
+<h2>Context lanes</h2>
 <ul>
   <li><code>contextmint.chat.contextLanesEnabled</code> — show Repo / Work / Hybrid selector</li>
   <li><code>contextmint.chat.defaultContextLane</code> — repo | work | hybrid</li>
@@ -53,6 +53,22 @@ pageCss: product.css
   <li><code>contextmint.packs.autoSync</code> — debounced rebuild on source changes</li>
   <li><code>contextmint.packs.syncDebounceMs</code> — debounce interval</li>
 </ul>
+
+<h2 id="image-evidence">Image evidence &amp; ARGUS</h2>
+<ul>
+  <li><code>contextmint.chat.imageAttachmentsEnabled</code> — paste / drop / picker for screenshots</li>
+  <li><code>contextmint.chat.imageMaxCountPerMessage</code> — max images per send (default 3)</li>
+  <li><code>contextmint.chat.imageMaxBytes</code> — per-image size cap (default 5&nbsp;MiB)</li>
+  <li><code>contextmint.chat.imageSensitivityNotice</code> — first-attach privacy notice text</li>
+  <li><code>contextmint.chat.pullVisionModelPrompt</code> — CTA when no local VLM installed</li>
+  <li><code>contextmint.chat.cloudVisionOptInHint</code> — secondary hint for optional BYOK vision</li>
+  <li><code>contextmint.argus.auditButtonLabel</code> — Lens action label (default “Run visual audit”)</li>
+</ul>
+<p>
+  Server-side tunables (<code>chat.image_*</code>, <code>argus.enabled</code>, <code>argus.vlm_model</code>, …)
+  live in operator defaults on the API host. See
+  <a href="/docs/image-evidence-argus.html">Image evidence &amp; ARGUS</a>.
+</p>
 
 <h2>Inline completion (optional)</h2>
 <ul>

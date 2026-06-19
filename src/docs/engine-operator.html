@@ -46,6 +46,7 @@ pageCss: product.css
   <li>Installed models vs available pulls</li>
   <li>Embed model used for indexing (changing it may require reindex)</li>
   <li>Default chat model for local routing</li>
+  <li><strong>Vision models</strong> — pull <code>moondream</code>, <code>llava</code>, or <code>qwen2-vl</code> for screenshot Q&amp;A and ARGUS audits</li>
 </ul>
 
 <h2>Indexing tab</h2>
@@ -78,7 +79,7 @@ pageCss: product.css
 <h2>About &amp; support bundle</h2>
 <p>
   Export a <strong>support bundle</strong> (versions, config redacted, recent logs) when filing
-  <a href="{{ site.issuesUrl }}">GitHub issues</a> or emailing {{ site.contactEmail }}.
+  <a href="{{ site.issuesUrl }}">GitHub issues</a>{% if site.emailVisible %} or emailing {{ site.contactEmail }}{% endif %}.
 </p>
 
 <p class="muted">

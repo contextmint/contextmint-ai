@@ -184,12 +184,42 @@ pageCss: product.css
     </details>
 
     <details class="faq-item">
+      <summary>Can I paste screenshots in chat?</summary>
+      <div class="faq-item__body">
+        <p>
+          Yes. Paste, drag-drop, or pick <strong>PNG</strong>, <strong>JPEG</strong>, or <strong>WebP</strong>
+          images in the compose bar and ask questions about what you see. ContextMint previews images in
+          Context Lens and routes through a <strong>local Ollama vision model</strong> by default — no cloud
+          API key required. Optional BYOK cloud vision is available when you explicitly select a vision model.
+        </p>
+        <p style="margin-top: 12px;">
+          See <a href="/docs/image-evidence-argus.html">Image evidence &amp; ARGUS</a>.
+        </p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>What is ARGUS?</summary>
+      <div class="faq-item__body">
+        <p>
+          <strong>ARGUS</strong> is ContextMint’s structured visual audit on UI screenshots. From Context Lens,
+          click <strong>Run visual audit</strong> to get severity-tagged findings (including WCAG references).
+          ARGUS is <strong>report only</strong> — it never auto-fixes your repo. You can hand off to patch
+          preview if you choose to act on a finding.
+        </p>
+        <p style="margin-top: 12px;">
+          Sandbox audits (Playwright capture in preview worktree) are available when git sandbox is enabled.
+        </p>
+      </div>
+    </details>
+
+    <details class="faq-item">
       <summary>What ships in v1.0 vs the Verification Engine roadmap?</summary>
       <div class="faq-item__body">
         <p>
-          <strong>v1.0 (today):</strong> local Engine + extension — Context Lens, chat modes, packs,
-          quality map, assisted patch preview, glass-box routing, and Engine operator tabs. See the
-          full list on <a href="/features.html">Features (v1.0)</a>.
+          <strong>v1.0 (today):</strong> local Engine + extension — Context Lens, chat modes, image evidence,
+          ARGUS visual audit, packs, quality map, assisted patch preview, glass-box routing, and Engine
+          operator tabs. See the full list on <a href="/features.html">Features (v1.0)</a>.
         </p>
         <p style="margin-top: 12px;">
           <strong>Roadmap:</strong> PR verification gates, blast radius product SKUs, decision graph,
@@ -216,8 +246,12 @@ pageCss: product.css
       <summary>Where do I report bugs or get help?</summary>
       <div class="faq-item__body">
         <p>
+          {% if site.emailVisible %}
           Email <a href="mailto:{{ site.contactEmail }}">{{ site.contactEmail }}</a> or visit
           <a href="/support.html">Support</a>. GitHub issues for the open release channel:
+          {% else %}
+          Visit <a href="/support.html">Support</a> and open a GitHub issue for the release channel:
+          {% endif %}
           <a href="{{ site.issuesUrl }}">{{ site.issuesUrl }}</a>.
         </p>
       </div>

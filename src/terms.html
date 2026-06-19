@@ -61,8 +61,15 @@ description: ContextMint terms of service for website, extension, and platform u
     </p>
 
     <h2>Contact</h2>
+    {% if site.emailVisible %}
     <p>
-      <a href="mailto:legal@contextmint.ai" style="color: var(--color-action);">legal@contextmint.ai</a>
+      {% include "email-link.html", address: site.legalEmail %}
     </p>
+    {% else %}
+    <p class="muted">
+      Legal contact email will be published when our inbox is live.
+      For product support, open a <a href="{{ site.issuesUrl }}" style="color: var(--color-action);">GitHub issue</a>.
+    </p>
+    {% endif %}
   </div>
 </section>

@@ -31,6 +31,21 @@ pageCss: product.css
   inspector show cloud tier when used.
 </p>
 
+<h2>Cloud vision (optional multimodal)</h2>
+<p>
+  When cloud routing is enabled, you may <strong>explicitly</strong> select a cloud vision-capable model for
+  messages with image attachments. Images are <em>not</em> automatically sent to the cloud when you attach
+  them — local Ollama vision remains the default even if API keys are configured.
+</p>
+<ul>
+  <li>Multimodal parts are assembled in the extension; keys stay in VS Code SecretStorage</li>
+  <li>Supported providers include OpenAI- and Anthropic-compatible vision APIs when configured</li>
+  <li>ARGUS visual audit defaults to <strong>local</strong> vision — independent of cloud chat keys</li>
+</ul>
+<p>
+  Details: <a href="/docs/image-evidence-argus.html">Image evidence &amp; ARGUS</a>.
+</p>
+
 <h2>Shared on-prem API server (pilot)</h2>
 <p>Platform team deploys Docker/Helm stack; developers configure:</p>
 <ul>
@@ -46,7 +61,10 @@ pageCss: product.css
 <h2>Security review artifacts</h2>
 <p>
   Design partners receive architecture summaries, data-flow diagrams, and questionnaire support.
+  <a href="/design-partners.html">apply as a design partner</a>.
+  {% if site.emailVisible %}
   Contact <a href="mailto:{{ site.contactEmail }}">{{ site.contactEmail }}</a> or
+  {% endif %}
   <a href="/design-partners.html">apply as a design partner</a>.
 </p>
 

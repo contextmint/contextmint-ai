@@ -1,7 +1,7 @@
 ---
 layout: support-article.html
 title: Troubleshooting | ContextMint Support
-description: Fix common ContextMint problems — install, Engine, Ollama, extension, indexing, chat, Context Lens, patches, cloud, and diagnostics.
+description: Fix common ContextMint problems — install, Engine, Ollama, extension, indexing, chat, image evidence, ARGUS, Context Lens, patches, cloud, and diagnostics.
 pageCss: product.css
 ---
 
@@ -215,6 +215,70 @@ pageCss: product.css
   </details>
 </div>
 
+<div class="trouble-block" id="vision-argus">
+  <h2>Image evidence &amp; ARGUS</h2>
+
+  <details class="faq-item">
+    <summary>Paste does nothing / no image chip</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> Image attachments disabled, wrong format, or file too large.</p>
+      <p><strong>Fix:</strong> Enable <code>contextmint.chat.imageAttachmentsEnabled</code>. Use PNG, JPEG, or WebP — not SVG. Max 5&nbsp;MiB per image. Check Output → ContextMint for validation errors.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>Lens shows needs_vlm / “Pull a vision model”</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> No Ollama vision model installed.</p>
+      <p><strong>Fix:</strong> Engine → Models → pull <code>moondream</code> (small) or <code>llava</code>. Restart Ollama if pull succeeded but route still fails. Cloud API keys do not replace a local VLM unless you explicitly select cloud vision.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>Image question answered without using the screenshot</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> Text-only model selected, or vision route fell back after VLM error.</p>
+      <p><strong>Fix:</strong> Confirm Lens shows <strong>local</strong> or <strong>cloud</strong> vision route before send. Pull/update vision model. Check Engine → Logs for multimodal errors. Retry with Local model + installed VLM.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>Vision answer very slow or OOM</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> Large VLM on limited VRAM; chat + vision models competing.</p>
+      <p><strong>Fix:</strong> Use <code>moondream</code> on laptops. Let chat model unload between turns if operator enabled unload-before-vision. Reduce attached image count. Close other GPU-heavy apps.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>Run visual audit disabled or no findings</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> ARGUS disabled on server, audit running during stream, or VLM returned empty JSON.</p>
+      <p><strong>Fix:</strong> Wait for chat stream to finish. Confirm local VLM installed. Retry with a clear UI screenshot. Check <code>argus.enabled</code> on server defaults. Engine → Logs for <code>/api/argus/audit</code> errors.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>Sandbox audit shows deps_unavailable</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> Preview worktree could not install dependencies within timeout.</p>
+      <p><strong>Fix:</strong> Open sandbox worktree manually and fix <code>npm ci</code> / install errors. Increase <code>argus.deps_install_timeout_sec</code> on server if repo is large. Use paste audit path when sandbox bootstrap is not required.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>Expected local route but badge shows cloud</summary>
+    <div class="faq-item__body">
+      <p><strong>Cause:</strong> You explicitly selected a cloud vision model in compose.</p>
+      <p><strong>Fix:</strong> Select <strong>Local</strong> or <strong>Auto</strong> with local VLM installed. Attaching images alone should not force cloud — if it does, file a bug with support bundle and vision route from Lens.</p>
+    </div>
+  </details>
+
+  <p class="muted" style="margin-top: 16px;">
+    Guide: <a href="/docs/image-evidence-argus.html">Image evidence &amp; ARGUS</a>.
+  </p>
+</div>
+
 <div class="trouble-block" id="lens">
   <h2>Context Lens &amp; packs</h2>
 
@@ -325,8 +389,7 @@ pageCss: product.css
         <li>Relevant redacted log lines from Engine → Logs</li>
       </ol>
       <p>
-        Email <a href="mailto:{{ site.contactEmail }}">{{ site.contactEmail }}</a> or open
-        <a href="{{ site.issuesUrl }}">GitHub issue</a> for release builds.
+        {% include "support-escalation.html" %}
       </p>
     </div>
   </details>

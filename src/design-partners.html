@@ -74,6 +74,8 @@ pageJs: form.js
       novalidate
       data-formspree-id="{{ site.formspreeFormId }}"
       data-contact-email="{{ site.contactEmail }}"
+      data-email-visible="{% if site.emailVisible %}true{% else %}false{% endif %}"
+      data-issues-url="{{ site.issuesUrl }}"
     >
       <div class="form-fields">
         <div class="form-group">
@@ -120,15 +122,27 @@ pageJs: form.js
           ></textarea>
         </div>
         <button type="submit" class="btn btn-primary" style="width: 100%;">Submit interest</button>
+        <p class="form-inline-error mono text-center" hidden role="alert" style="margin-top: 16px; font-size: 0.8rem; color: var(--color-warn, #f59e0b);"></p>
+        {% if site.emailVisible %}
         <p class="mono text-center" style="margin-top: 16px; font-size: 0.75rem; color: var(--text-tertiary);">
-          Prefer email? <a href="mailto:{{ site.contactEmail }}" style="color: var(--color-action);">{{ site.contactEmail }}</a>
+          Prefer email? {% include "email-link.html", address: site.contactEmail %}
         </p>
+        {% else %}
+        <p class="mono text-center" style="margin-top: 16px; font-size: 0.75rem; color: var(--text-tertiary);">
+          Email contact is not live yet — use the form when Formspree is configured, or
+          <a href="{{ site.issuesUrl }}" style="color: var(--color-action);">GitHub issues</a>.
+        </p>
+        {% endif %}
       </div>
       <div class="form-success">
         <strong>Thank you — we will be in touch.</strong>
         <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">
-          We will follow up with a one-page pilot proposal. Urgent:
-          <a href="mailto:{{ site.contactEmail }}" style="color: var(--color-action);">{{ site.contactEmail }}</a>
+          We will follow up with a one-page pilot proposal.
+          {% if site.emailVisible %}
+          Urgent: {% include "email-link.html", address: site.contactEmail %}
+          {% else %}
+          Urgent: <a href="{{ site.issuesUrl }}" style="color: var(--color-action);">GitHub issues</a>.
+          {% endif %}
         </p>
       </div>
     </form>

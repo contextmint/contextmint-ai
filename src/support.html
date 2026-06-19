@@ -26,12 +26,12 @@ pageCss: product.css
       </a>
       <a class="feature-card" href="/support/troubleshooting.html">
         <h3>Troubleshooting</h3>
-        <p>Install, Engine, Ollama, indexing, chat, lanes, Context Lens, patches, cloud — symptom → fix.</p>
+        <p>Install, Engine, Ollama, indexing, chat, lanes, image evidence, ARGUS, Context Lens, patches, cloud — symptom → fix.</p>
         <span class="tag">START HERE</span>
       </a>
       <a class="feature-card" href="/docs/">
         <h3>User documentation</h3>
-        <p>In-depth guides: installation, chat &amp; lanes, Engine operator, indexing, settings, glossary.</p>
+        <p>In-depth guides: installation, chat &amp; lanes, image evidence &amp; ARGUS, Engine operator, indexing, settings, glossary.</p>
         <span class="tag">IN DEPTH</span>
       </a>
       <a class="feature-card" href="/getting-started.html">
@@ -46,7 +46,7 @@ pageCss: product.css
       </a>
       <a class="feature-card" href="/features.html">
         <h3>Features (v1.0)</h3>
-        <p>Capability list: modes, lanes, packs, quality map, glass-box routing.</p>
+        <p>Capability list: modes, lanes, image evidence, ARGUS, packs, quality map, glass-box routing.</p>
         <span class="tag">WHAT SHIPS</span>
       </a>
       <a class="feature-card" href="/trust.html">
@@ -54,11 +54,13 @@ pageCss: product.css
         <p>Local-first, shared on-prem server, BYOK, enterprise auth.</p>
         <span class="tag">SECURITY · OPS</span>
       </a>
+      {% if site.emailVisible %}
       <a class="feature-card" href="mailto:{{ site.contactEmail }}">
         <h3>Email support</h3>
         <p>{{ site.contactEmail }} — we aim to reply within one business day.</p>
         <span class="tag">HELLO@CONTEXTMINT.AI</span>
       </a>
+      {% endif %}
       <a class="feature-card" href="{{ site.issuesUrl }}">
         <h3>Report an issue</h3>
         <p>GitHub issues for release builds — attach Engine support bundle when possible.</p>

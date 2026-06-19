@@ -7,8 +7,9 @@ Use this when replacing the placeholder at [contextmint.ai](https://contextmint.
 1. Edit `src/_data/site.json`:
    - `founderName` — your full name
    - `founderTitle` — e.g. `Founder & CEO` or `Founder, CEO & CTO`
-   - `contactEmail` — working inbox (hello@contextmint.ai must receive mail)
-   - `formspreeFormId` — optional; get from [formspree.io](https://formspree.io) (free tier). Leave empty to use mailto fallback.
+   - `contactEmail`, `legalEmail`, `privacyEmail` — inboxes (kept in config even when hidden)
+   - `emailVisible` — set `true` when mail is live; while `false`, no mailto links or mailto form fallback are shown
+   - `formspreeFormId` — optional; get from [formspree.io](https://formspree.io) (free tier). Required for demo/design-partner forms while `emailVisible` is false.
 
 2. Local verify:
    ```bash

@@ -1,7 +1,7 @@
 ---
 layout: doc.html
 title: Chat, Modes & Context Lanes | ContextMint Docs
-description: Ask, Plan, and Agent modes; Repo, Work, and Hybrid context lanes; attachments, sessions, provenance chips, and Work-lane auto-suggest.
+description: Ask, Plan, and Agent modes; Repo, Work, and Hybrid context lanes; file and image attachments, sessions, provenance chips, and Work-lane auto-suggest.
 pageCss: product.css
 ---
 
@@ -95,6 +95,21 @@ pageCss: product.css
   <li>Attached paths get full-fidelity chunks in the assembler prompt</li>
   <li>Open editor files are boosted in search and indexed with priority</li>
 </ul>
+
+<h2>Image evidence (screenshots)</h2>
+<p>
+  Paste, drag-drop, or pick <strong>PNG</strong>, <strong>JPEG</strong>, or <strong>WebP</strong> images in the
+  compose bar. Image chips appear beside file chips. Context Lens shows thumbnails and the
+  <strong>vision route</strong> (<code>local</code> by default) before you send.
+</p>
+<ul>
+  <li>Local Ollama vision is the default — no cloud API key required to attach images</li>
+  <li>Repo and Hybrid lanes combine images with retrieved code; Work lane combines images with packs</li>
+  <li>Use <strong>Run visual audit</strong> in Lens for ARGUS structured findings (separate from chat Q&amp;A)</li>
+</ul>
+<p>
+  Full guide: <a href="/docs/image-evidence-argus.html">Image evidence &amp; ARGUS</a>.
+</p>
 
 <h2>Chat sessions</h2>
 <p>

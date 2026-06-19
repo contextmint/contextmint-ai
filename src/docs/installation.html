@@ -80,8 +80,12 @@ pageCss: product.css
 <h2 id="installation-support">Installation support (first line)</h2>
 <p>
   Use this section when setup does not match the happy path above. Work through the symptom that matches
-  what you see in Engine or VS Code. Only after these steps should you export a support bundle or email
-  <a href="mailto:{{ site.contactEmail }}">{{ site.contactEmail }}</a>.
+  what you see in Engine or VS Code. Only after these steps should you export a support bundle and
+  {% if site.emailVisible %}
+  email <a href="mailto:{{ site.contactEmail }}">{{ site.contactEmail }}</a>.
+  {% else %}
+  open a <a href="{{ site.issuesUrl }}">GitHub issue</a>.
+  {% endif %}
 </p>
 
 <h3>Decision guide</h3>
@@ -177,7 +181,7 @@ pageCss: product.css
 <ol>
   <li>Engine → <strong>About</strong> → <strong>Download support bundle</strong> (or Logs tab).</li>
   <li>Note Engine version, OS, and steps you already tried from this page.</li>
-  <li><a href="{{ site.issuesUrl }}">GitHub issue</a> (release builds) or email <a href="mailto:{{ site.contactEmail }}">{{ site.contactEmail }}</a>.</li>
+  <li>{% include "support-escalation.html" %}</li>
   <li>Design partners: use your named engineering channel.</li>
 </ol>
 

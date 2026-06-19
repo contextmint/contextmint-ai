@@ -62,6 +62,22 @@ pageCss: product.css
     <div class="faq-item__body"><p>Structured proposed change with risk level; human confirms before apply.</p></div>
   </details>
   <details class="faq-item">
+    <summary>Image evidence</summary>
+    <div class="faq-item__body"><p>Screenshot or image file attached to a chat message — paste, drag-drop, or file picker. Normalized, previewed in Context Lens, and sent to a vision-capable model. Default path is local Ollama; not indexed as repo chunks.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary>Vision route</summary>
+    <div class="faq-item__body"><p>Which tier will answer an image question: <code>local</code> (Ollama VLM), <code>cloud</code> (explicit BYOK vision model), or <code>needs_vlm</code> (pull a vision model in Engine).</p></div>
+  </details>
+  <details class="faq-item">
+    <summary>ARGUS</summary>
+    <div class="faq-item__body"><p>Automated Review for GUI Usability &amp; Standards — structured visual audit on screenshots. Returns severity-tagged findings (including WCAG references). Report only; no auto-fix. Paste path from chat; sandbox path via Playwright in preview worktree.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary>Visual audit</summary>
+    <div class="faq-item__body"><p>User-facing action (<strong>Run visual audit</strong>) that invokes ARGUS on the current image evidence. Distinct from chat Q&amp;A — optimized for findings JSON, not conversational answers.</p></div>
+  </details>
+  <details class="faq-item">
     <summary>Support bundle</summary>
     <div class="faq-item__body"><p>Export from Engine → About — versions, redacted config, logs for support tickets.</p></div>
   </details>

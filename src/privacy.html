@@ -67,7 +67,7 @@ description: ContextMint privacy policy — local-first default, optional BYOK c
     <p>
       Account data is retained while your subscription is active and for a reasonable period afterward
       for legal and billing purposes. You may request deletion by contacting
-      <a href="mailto:privacy@contextmint.ai" style="color: var(--color-action);">privacy@contextmint.ai</a>.
+      {% include "email-link.html", address: site.privacyEmail %}.
     </p>
 
     <h2>Your rights</h2>
@@ -79,7 +79,11 @@ description: ContextMint privacy policy — local-first default, optional BYOK c
     <h2>Contact</h2>
     <p>
       ContextMint Ltd, United Kingdom<br />
-      Email: <a href="mailto:privacy@contextmint.ai" style="color: var(--color-action);">privacy@contextmint.ai</a>
+      {% if site.emailVisible %}
+      Email: {% include "email-link.html", address: site.privacyEmail %}
+      {% else %}
+      <span class="muted">Privacy contact email will be published when our inbox is live.</span>
+      {% endif %}
     </p>
   </div>
 </section>

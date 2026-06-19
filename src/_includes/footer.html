@@ -24,7 +24,10 @@
         <a href="/support/troubleshooting.html">Troubleshooting</a>
         <a href="/getting-started.html">Getting started</a>
         <a href="/faq.html">FAQ</a>
+        <a href="{{ site.issuesUrl }}">GitHub issues</a>
+        {% if site.emailVisible %}
         <a href="mailto:{{ site.contactEmail }}">{{ site.contactEmail }}</a>
+        {% endif %}
       </div>
 
       <div class="site-footer__col">

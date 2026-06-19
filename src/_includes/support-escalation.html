@@ -1,0 +1,10 @@
+{% comment %}
+  Support escalation — email hidden until site.emailVisible is true.
+  contactEmail, legalEmail, privacyEmail remain in site.json for later re-enable.
+{% endcomment %}
+{% if site.emailVisible %}
+  Email <a href="mailto:{{ site.contactEmail }}">{{ site.contactEmail }}</a> or open
+  <a href="{{ site.issuesUrl }}">GitHub issue</a> for release builds.
+{% else %}
+  Open a <a href="{{ site.issuesUrl }}">GitHub issue</a> for release builds.
+{% endif %}

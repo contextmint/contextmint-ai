@@ -7,11 +7,30 @@
   }
 
   var formId = form.getAttribute("data-formspree-id") || "";
-  var contactEmail = form.getAttribute("data-contact-email") || "hello@contextmint.ai";
+  var contactEmail = form.getAttribute("data-contact-email") || "";
+  var emailVisible = form.getAttribute("data-email-visible") === "true";
+  var issuesUrl = form.getAttribute("data-issues-url") || "https://github.com/contextmint/contextmint/issues";
+  var inlineError = form.querySelector(".form-inline-error");
 
   function showSuccess() {
     form.classList.add("is-submitted");
     form.setAttribute("aria-live", "polite");
+    hideInlineError();
+  }
+
+  function showInlineError(message) {
+    if (!inlineError) {
+      return;
+    }
+    inlineError.textContent = message;
+    inlineError.hidden = false;
+  }
+
+  function hideInlineError() {
+    if (inlineError) {
+      inlineError.hidden = true;
+      inlineError.textContent = "";
+    }
   }
 
   function fieldValue(name) {
@@ -20,6 +39,12 @@
   }
 
   function openMailtoFallback() {
+    if (!emailVisible || !contactEmail) {
+      showInlineError(
+        "Email is not available yet. Open a GitHub issue: " + issuesUrl
+      );
+      return;
+    }
     var subject = encodeURIComponent("ContextMint inquiry — " + fieldValue("company"));
     var body = encodeURIComponent(
       [
@@ -39,6 +64,7 @@
 
   form.addEventListener("submit", function (event) {
     event.preventDefault();
+    hideInlineError();
 
     if (!fieldValue("email")) {
       var emailField = form.querySelector('[name="email"]');

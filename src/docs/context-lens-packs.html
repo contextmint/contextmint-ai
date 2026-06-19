@@ -21,9 +21,10 @@ pageCss: product.css
 
 <h3>Lens UI regions</h3>
 <ul>
-  <li><strong>Summary strip</strong> — chunk count, model route, lane label when applicable</li>
-  <li><strong>Evidence drawer</strong> — per-file chunks with relevance scores</li>
+  <li><strong>Summary strip</strong> — chunk count, model route, vision route when images attached, lane label when applicable</li>
+  <li><strong>Evidence drawer</strong> — per-file chunks with relevance scores; image thumbnail strip when screenshots attached</li>
   <li><strong>Governance drawer</strong> — quality-map findings (inform-only or gated per policy)</li>
+  <li><strong>Actions</strong> — <strong>Send</strong> (chat) and <strong>Run visual audit</strong> (ARGUS) when image evidence is present</li>
 </ul>
 
 <h3>Scores and filtering</h3>
@@ -62,7 +63,9 @@ pageCss: product.css
 <h2>Trust gate</h2>
 <p>
   When <code>trustGateEnabled</code> is on, sensitive sends may require an extra confirmation step
-  before Context Lens or inference proceeds. See <a href="/docs/patches-governance.html">Patches &amp; governance</a>.
+  before Context Lens or inference proceeds — including sends with attached screenshots.
+  See <a href="/docs/patches-governance.html">Patches &amp; governance</a> and
+  <a href="/docs/image-evidence-argus.html">Image evidence &amp; ARGUS</a>.
 </p>
 
 <p class="muted">

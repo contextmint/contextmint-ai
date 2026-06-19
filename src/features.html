@@ -1,7 +1,7 @@
 ---
 layout: base.html
 title: Features in v1.0 | ContextMint
-description: What ships in ContextMint v1.0 — Engine operator console, VS Code chat modes, Context Lens, packs, quality map, and glass-box routing.
+description: What ships in ContextMint v1.0 — Engine operator console, VS Code chat modes, image evidence, ARGUS visual audit, Context Lens, packs, quality map, and glass-box routing.
 pageCss: product.css
 ---
 
@@ -34,8 +34,9 @@ pageCss: product.css
       <div class="card">
         <h3 style="margin: 0 0 8px;">{{ site.extensionName }} extension</h3>
         <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-          Where engineers work: repo-aware chat, Context Lens, context packs, quality findings,
-          assisted patch preview, and session history — connected to Engine on loopback by default.
+          Where engineers work: repo-aware chat, screenshot vision, ARGUS visual audit, Context Lens,
+          context packs, quality findings, assisted patch preview, and session history — connected to
+          Engine on loopback by default.
         </p>
       </div>
     </div>
@@ -73,6 +74,7 @@ pageCss: product.css
       <li><strong>Ask / Plan / Agent</strong> modes — scope how much autonomy the model has per message</li>
       <li><strong>Context lanes — Repo / Work / Hybrid</strong> — repo-grounded answers vs work planning/comms vs evidence + recommendations</li>
       <li><strong>Attach context files</strong> — pin specific files as chips before you send</li>
+      <li><strong>Image evidence</strong> — paste, drop, or pick PNG/JPEG/WebP screenshots; local Ollama vision by default</li>
       <li><strong>Chat sessions</strong> — new chat, session list, and stored history per workspace</li>
       <li><strong>Model routing</strong> — Auto, Local (Ollama), or Cloud when BYOK is enabled</li>
       <li><strong>Suggested prompts</strong> — repo-aware starters when readiness is empty</li>
@@ -93,10 +95,48 @@ pageCss: product.css
       ContextMint is a decision-control plane, not a black-box autocomplete sidebar.
     </p>
     <ul class="check-list" style="margin-top: 16px;">
-      <li><strong>Routing badge</strong> — which tier and model were selected (local vs cloud)</li>
+      <li><strong>Routing badge</strong> — which tier and model were selected (local vs cloud); vision route when images attached</li>
       <li><strong>Provenance breakdown</strong> — where retrieved context came from</li>
       <li><strong>Reasoning timeline / trace log</strong> — step-by-step transparency panel for debugging</li>
       <li><strong>Context Lens scores</strong> — relevance per chunk before inference</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container container-narrow">
+    <h2 class="section-title">Image evidence &amp; local vision</h2>
+    <p class="muted">
+      Paste UI screenshots and ask what you see — without sending code to a cloud API by default.
+      ContextMint normalizes images, previews them in Context Lens, and routes through a local
+      Ollama vision model when one is installed.
+    </p>
+    <ul class="check-list" style="margin-top: 16px;">
+      <li><strong>Paste / drop / file picker</strong> — up to 3 images per message (PNG, JPEG, WebP)</li>
+      <li><strong>Local-first routing</strong> — cloud keys do not force cloud vision on attach</li>
+      <li><strong>Context Lens preview</strong> — thumbnails, vision route label, trust gate support</li>
+      <li><strong>Pull vision model CTA</strong> — Engine → Models when no VLM is installed (<code>moondream</code>, <code>llava</code>, …)</li>
+      <li><strong>Lane-aware</strong> — image + RAG on Repo/Hybrid; image + packs on Work</li>
+      <li><strong>Optional BYOK cloud vision</strong> — explicit model choice only; off by default</li>
+    </ul>
+    <p class="muted" style="margin-top: 16px; margin-bottom: 0;">
+      Deep dive: <a href="/docs/image-evidence-argus.html" style="color: var(--color-action);">Image evidence &amp; ARGUS</a>.
+    </p>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container container-narrow">
+    <h2 class="section-title">ARGUS — visual audit</h2>
+    <p class="muted">
+      Structured UI review on the same vision stack as chat — findings you can act on, never silent fixes.
+    </p>
+    <ul class="check-list" style="margin-top: 16px;">
+      <li><strong>Run visual audit</strong> — from Context Lens or message actions on pasted screenshots</li>
+      <li><strong>WCAG-tagged findings</strong> — severity, category, description, optional rule reference</li>
+      <li><strong>Sandbox audit</strong> — Playwright capture in git preview worktree when sandbox is enabled</li>
+      <li><strong>Report only</strong> — handoff to patch preview (gate 2) if you choose to fix; no auto-apply</li>
+      <li><strong>Local VLM default</strong> — shares Ollama vision with chat; no API key required</li>
     </ul>
   </div>
 </section>
@@ -136,7 +176,7 @@ pageCss: product.css
     <ul class="check-list" style="margin-top: 16px;">
       <li><strong>Overview</strong> — readiness issues and Start all / Stop all</li>
       <li><strong>Server · Ollama</strong> — process status and lifecycle actions</li>
-      <li><strong>Models</strong> — pull and apply embedding and chat models (first-run wizard guides setup)</li>
+      <li><strong>Models</strong> — pull and apply embedding, chat, and <strong>vision</strong> models (first-run wizard guides setup)</li>
       <li><strong>Indexing</strong> — multi-repo table with per-workspace status, chunks, and file-type stats</li>
       <li><strong>Quality</strong> — run scans; findings feed the extension quality map</li>
       <li><strong>Logs · About</strong> — diagnostics and redacted support bundle export</li>
@@ -163,7 +203,7 @@ pageCss: product.css
       Available in settings for teams that opt in — not required for the sovereign local-first path.
     </p>
     <ul class="check-list" style="margin-top: 16px;">
-      <li><strong>BYOK cloud routing</strong> — OpenAI, Anthropic, Groq; keys in VS Code secrets; egress redaction (<a href="/trust.html">trust center</a>)</li>
+      <li><strong>BYOK cloud routing</strong> — OpenAI, Anthropic, Groq; keys in VS Code secrets; optional cloud vision when you select a vision model (<a href="/trust.html">trust center</a>)</li>
       <li><strong>Git sandbox worktrees</strong> — isolated test/apply in a worktree (server + extension flags)</li>
       <li><strong>Inline ghost-text completion</strong> — local FIM when inline backend is enabled</li>
       <li><strong>Shared on-prem API server</strong> — enterprise pilot with Docker/Helm (<a href="/trust.html#deployment">deployment models</a>)</li>

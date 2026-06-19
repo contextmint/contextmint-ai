@@ -25,6 +25,8 @@ pageJs: form.js
       novalidate
       data-formspree-id="{{ site.formspreeFormId }}"
       data-contact-email="{{ site.contactEmail }}"
+      data-email-visible="{% if site.emailVisible %}true{% else %}false{% endif %}"
+      data-issues-url="{{ site.issuesUrl }}"
     >
       <div class="form-fields">
         <div class="form-group">
@@ -76,15 +78,25 @@ pageJs: form.js
           <textarea id="message" name="message" placeholder="Optional context for the conversation…"></textarea>
         </div>
         <button type="submit" class="btn btn-primary" style="width: 100%;">Submit</button>
+        <p class="form-inline-error mono text-center" hidden role="alert" style="margin-top: 16px; font-size: 0.8rem; color: var(--color-warn, #f59e0b);"></p>
         <p class="mono text-center" style="margin-top: 16px; font-size: 0.75rem; color: var(--text-tertiary);">
+          {% if site.emailVisible %}
           We typically respond within one business day.
+          {% else %}
+          Form delivery is via Formspree when configured; otherwise use
+          <a href="{{ site.issuesUrl }}" style="color: var(--color-action);">GitHub issues</a>.
+          {% endif %}
         </p>
       </div>
       <div class="form-success">
         <strong>Thank you — we will be in touch.</strong>
         <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">
           A member of our team will reach out to discuss your governance challenges.
-          Urgent inquiries: <a href="mailto:hello@contextmint.ai" style="color: var(--color-action);">hello@contextmint.ai</a>
+          {% if site.emailVisible %}
+          Urgent inquiries: {% include "email-link.html", address: site.contactEmail %}
+          {% else %}
+          Urgent inquiries: <a href="{{ site.issuesUrl }}" style="color: var(--color-action);">GitHub issues</a>.
+          {% endif %}
         </p>
       </div>
     </form>
