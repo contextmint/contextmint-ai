@@ -17,8 +17,8 @@
     "enabled": true,
     "id": "design-partners-august-2026",
     "label": "Design partners",
-    "text": "v1.0 ships August 2026 — Engine + Context Lens in pilot today.",
-    "ctaText": "Join the cohort",
+    "text": "v1.0 ships August 2026 — design partner intake opens by end of July.",
+    "ctaText": "Program details",
     "ctaHref": "/design-partners.html",
     "dismissible": true
   },
@@ -124,11 +124,6 @@
         "file": "vscode-inspector-generate.png",
         "label": "Inspector Generate",
         "alt": "ContextMint inspector drawer showing routing provenance and reasoning trace"
-      },
-      {
-        "file": "vscode-patch.png",
-        "label": "Patch preview",
-        "alt": "ContextMint assisted patch preview with unified diff before apply"
       }
     ]
   },
@@ -144,11 +139,6 @@
         "file": "context-lens.png",
         "label": "Evidence",
         "alt": "Context Lens expanded drawer with retrieved chunks and relevance scores"
-      },
-      {
-        "file": "lens-governance.png",
-        "label": "Governance",
-        "alt": "Context Lens drawer showing governance findings and inform-only signals"
       }
     ]
   }

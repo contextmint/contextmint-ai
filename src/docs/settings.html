@@ -1,89 +1,278 @@
 ---
 layout: doc.html
 title: Settings Reference | ContextMint Docs
-description: Key ContextMint VS Code extension and Engine settings — server URL, context lanes, trust gate, cloud routing, and indexing behavior.
+description: Complete ContextMint VS Code extension settings — generated from package.json with defaults, grouped by topic. Engine-managed keys marked.
 pageCss: product.css
 ---
 
-<h1>Settings reference</h1>
+<h1>VS Code extension settings</h1>
 <p class="doc-lead">
-  ContextMint settings live in VS Code <strong>Settings</strong> (search “ContextMint”) and in Engine
-  <strong>Settings</strong> for operator paths. Values below use the <code>contextmint.*</code> namespace.
+  All <code>contextmint.*</code> keys for the {{ site.extensionName }} extension. Open
+  <strong>VS Code → Settings</strong> and search <code>contextmint</code>, or edit
+  <code>settings.json</code> directly. Server-side tunables (token caps, indexing, ARGUS backend)
+  live on the API host — see <a href="/docs/engine-operator.html">Engine operator guide</a>.
 </p>
 
-<h2>Server &amp; connectivity</h2>
-<ul>
-  <li><code>contextmint.server.serverUrl</code> — API base (default <code>http://localhost:8000</code>)</li>
-  <li><code>contextmint.server.serverTimeoutMs</code> — health / request timeout</li>
-  <li><code>contextmint.server.autoStart</code> — extension dev helper only; packaged mode uses Engine</li>
-</ul>
+<div class="settings-callout">
+  <strong>Engine mode (default):</strong> use
+  {% for key in extensionSettings.operatorKeys %}
+    <code>{{ key }}</code>{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+  in VS Code. Manage server, Ollama, and models in <strong>ContextMint Engine → Settings</strong>.
+</div>
 
-<h2>Chat</h2>
-<ul>
-  <li><code>contextmint.chat.defaultModel</code> — Auto | local | cloud</li>
-  <li><code>contextmint.chat.placement</code> — side panel vs editor placement</li>
-  <li><code>contextmint.chat.maxHistorySend</code> — messages included in stream body</li>
-  <li><code>contextmint.chat.reasoningCollapseOnAnswer</code> — collapse reasoning panel when answer starts</li>
-  <li><code>contextmint.chat.cloudThinkingEnabled</code> — extended thinking for supported cloud models</li>
-</ul>
+<p class="muted settings-meta">
+  {{ extensionSettings.totalCount }} settings · generated {{ extensionSettings.generatedAt }} from
+  <span class="mono">{{ extensionSettings.source }}</span>.
+  Regenerate after extension releases: <span class="mono">npm run gen:settings</span> in
+  <span class="mono">contextmint-ai/</span>.
+</p>
 
-<h2>Context lanes</h2>
-<ul>
-  <li><code>contextmint.chat.contextLanesEnabled</code> — show Repo / Work / Hybrid selector</li>
-  <li><code>contextmint.chat.defaultContextLane</code> — repo | work | hybrid</li>
-  <li><code>contextmint.chat.repoLanePlaceholder</code> — compose hint for Repo lane</li>
-  <li><code>contextmint.chat.workLanePlaceholder</code> — compose hint for Work lane</li>
-  <li><code>contextmint.chat.hybridLanePlaceholder</code> — compose hint for Hybrid lane</li>
-  <li><code>contextmint.chat.laneSuggestEnabled</code> — banner when repo retrieval is weak</li>
-  <li><code>contextmint.chat.laneSuggestPrompt</code> — banner text</li>
-  <li><code>contextmint.chat.laneSuggestWorkButtonLabel</code> — retry button label</li>
-</ul>
-
-<h2>Trust &amp; preview</h2>
-<ul>
-  <li><code>contextmint.trust.trustGateEnabled</code> — extra confirm on sensitive sends</li>
-  <li><code>contextmint.trust.lensPreviewEnabled</code> — Context Lens before inference</li>
-  <li><code>contextmint.trust.lensPreviewFirstNSends</code> — auto-preview for first N sends per session</li>
-  <li><code>contextmint.trust.cloudEnabled</code> — allow cloud tier in routing</li>
-  <li><code>contextmint.trust.enterpriseMode</code> — OIDC / shared server auth path</li>
-</ul>
-
-<h2>Packs</h2>
-<ul>
-  <li><code>contextmint.packs.autoSync</code> — debounced rebuild on source changes</li>
-  <li><code>contextmint.packs.syncDebounceMs</code> — debounce interval</li>
-</ul>
-
-<h2 id="image-evidence">Image evidence &amp; ARGUS</h2>
-<ul>
-  <li><code>contextmint.chat.imageAttachmentsEnabled</code> — paste / drop / picker for screenshots</li>
-  <li><code>contextmint.chat.imageMaxCountPerMessage</code> — max images per send (default 3)</li>
-  <li><code>contextmint.chat.imageMaxBytes</code> — per-image size cap (default 5&nbsp;MiB)</li>
-  <li><code>contextmint.chat.imageSensitivityNotice</code> — first-attach privacy notice text</li>
-  <li><code>contextmint.chat.pullVisionModelPrompt</code> — CTA when no local VLM installed</li>
-  <li><code>contextmint.chat.cloudVisionOptInHint</code> — secondary hint for optional BYOK vision</li>
-  <li><code>contextmint.argus.auditButtonLabel</code> — Lens action label (default “Run visual audit”)</li>
-</ul>
 <p>
-  Server-side tunables (<code>chat.image_*</code>, <code>argus.enabled</code>, <code>argus.vlm_model</code>, …)
-  live in operator defaults on the API host. See
-  <a href="/docs/image-evidence-argus.html">Image evidence &amp; ARGUS</a>.
+  <label class="settings-filter-label" for="settings-filter">Filter</label>
+  <input
+    type="search"
+    id="settings-filter"
+    class="settings-filter-input"
+    placeholder="Search by setting name or description…"
+    autocomplete="off"
+  />
 </p>
 
-<h2>Inline completion (optional)</h2>
-<ul>
-  <li><code>contextmint.inline.enabled</code> — ghost text completions</li>
-  <li><code>contextmint.inline.pauseWhileIndexing</code> — reduce load during bulk index</li>
-  <li><code>contextmint.inline.yieldToChat</code> — defer inline when chat is streaming</li>
-</ul>
+<p class="settings-toc muted">
+  Jump to:
+  <a href="#usage-extension-retrieval">Extension retrieval guide</a> ·
+  <a href="#server-yaml">Server structural flags</a> ·
+  <a href="#usage-server-structural">Server usage &amp; rollout</a>
+</p>
 
-<h2>Backend defaults (operators)</h2>
+{% if extensionSettings.retrievalGuide %}
+<section class="settings-section settings-usage-section" id="usage-extension-retrieval">
+  <h2>{{ extensionSettings.retrievalGuide.title }}</h2>
+  <p class="muted">{{ extensionSettings.retrievalGuide.summary }}</p>
+  <p class="muted">
+    Related server keys:
+    <a href="{{ extensionSettings.retrievalGuide.serverLinkAnchor }}">Structural query planning (server)</a>.
+  </p>
+  {% if extensionSettings.retrievalGuide.tips %}
+  <p class="settings-verify-label">Tips</p>
+  <ul class="settings-verify-list">
+    {% for tip in extensionSettings.retrievalGuide.tips %}
+    <li>{{ tip }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</section>
+{% endif %}
+
+{% for section in extensionSettings.sections %}
+<section class="settings-section" id="settings-{{ section.id }}">
+  <h2>{{ section.title }}</h2>
+  <p class="muted">{{ section.description }}</p>
+  <div class="settings-table-wrap">
+    <table class="settings-table">
+      <thead>
+        <tr>
+          <th scope="col">Setting</th>
+          <th scope="col">Default</th>
+          <th scope="col">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in section.settings %}
+        <tr
+          class="settings-row{% if row.usage %} settings-setting-card__head{% endif %}{% if row.deprecated %} settings-row--deprecated{% endif %}{% if row.operator %} settings-row--operator{% endif %}"
+          data-setting="{{ row.id | downcase }}"
+        >
+          <td class="settings-table__key">
+            {% if row.usage %}<span class="settings-card-label">Setting</span>{% endif %}
+            <code>{{ row.id }}</code>
+            {% if row.operator %}<span class="settings-badge settings-badge--operator">operator</span>{% endif %}
+            {% if row.deprecated %}<span class="settings-badge settings-badge--deprecated">engine-managed</span>{% endif %}
+          </td>
+          <td class="settings-table__default mono">
+            {% if row.usage %}<span class="settings-card-label settings-card-label--inline">Default</span>{% endif %}
+            {{ row.default }}
+          </td>
+          <td class="settings-table__desc">
+            {% if row.usage %}<span class="settings-card-label settings-card-label--inline">Description</span>{% endif %}
+            {{ row.description }}
+          </td>
+        </tr>
+        {% if row.usage %}
+        <tr class="settings-row settings-setting-card__usage" data-setting="{{ row.id | downcase }}">
+          <td colspan="3" class="settings-usage-cell">
+            <span class="settings-card-label settings-card-label--usage">Usage guide</span>
+            {% include "settings-usage-block.html", usage: row.usage, settingId: row.id %}
+          </td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endfor %}
+
+<h2 id="engine-settings">ContextMint Engine settings</h2>
 <p>
-  Server tunables live in <code>contextmint.defaults.yaml</code> on the API host — chat token caps,
-  lane suggest thresholds, indexing concurrency, etc. Engine Settings exposes a subset; full list is in
-  the operator repo documentation for self-hosted deployments.
+  Paths, ports, autostart, and model picks for the desktop operator app are <strong>not</strong>
+  duplicated here. Use <strong>Engine → Settings</strong> or
+  <code>~/.contextmint/engine/settings.yaml</code> on the machine running Engine.
+  See <a href="/docs/engine-operator.html">Engine operator guide</a>.
 </p>
+
+<h2 id="server-yaml">API server defaults (operators)</h2>
+<p>
+  Backend tunables (<code>chat.max_turns</code>, indexing concurrency, ARGUS, sandbox flags) ship in
+  <code>contextmint.defaults.yaml</code> on the API host with optional overlay at
+  <code>~/.contextmint/server.defaults.yaml</code>. See
+  <a href="/docs/engine-operator.html">Engine operator guide</a> for where to apply server overlays.
+</p>
+
+{% if serverChatSettings %}
+<section class="settings-section" id="settings-structural-plans">
+  <h2>Structural plan: <code>{{ serverChatSettings.planDefinition.planId }}</code></h2>
+  <p class="muted">
+    <code>api_registration_chain</code> is a <strong>plan definition</strong> (not a VS Code setting).
+    Declared in <span class="mono">{{ serverChatSettings.planDefinition.path }}</span>
+    · intent <span class="mono">{{ serverChatSettings.planDefinition.intent }}</span>
+    · paraphrase rules <span class="mono">{{ serverChatSettings.planDefinition.rulesPath }}</span>.
+    {{ serverChatSettings.planDefinition.description }}
+  </p>
+  <p class="muted settings-meta">
+    Server chat keys below · generated {{ serverChatSettings.generatedAt }} from
+    <span class="mono">{{ serverChatSettings.source }}</span>
+    · overlay <span class="mono">{{ serverChatSettings.overlayPath }}</span>.
+  </p>
+</section>
+
+{% if serverChatSettings.usageGuide %}
+<section class="settings-section settings-usage-section" id="usage-server-structural">
+  <h2>{{ serverChatSettings.usageGuide.title }}</h2>
+  <p class="muted">{{ serverChatSettings.usageGuide.summary }}</p>
+
+  <h3 class="settings-usage-subhead">Rollout scenarios</h3>
+  <div class="settings-table-wrap">
+    <table class="settings-table settings-table--compact">
+      <thead>
+        <tr>
+          <th scope="col">Scenario</th>
+          <th scope="col">api_surface</th>
+          <th scope="col">route_registry</th>
+          <th scope="col">plan_selector</th>
+          <th scope="col">knowledge_lookup</th>
+          <th scope="col">plan_executor</th>
+          <th scope="col">intent_classifier</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for scenario in serverChatSettings.usageGuide.rolloutScenarios %}
+        <tr>
+          <td>{{ scenario.name }}</td>
+          <td class="mono">{% if scenario.flags.api_surface %}✓{% else %}—{% endif %}</td>
+          <td class="mono">{% if scenario.flags.route_registry %}✓{% else %}—{% endif %}</td>
+          <td class="mono">{% if scenario.flags.plan_selector %}✓{% else %}—{% endif %}</td>
+          <td class="mono">{% if scenario.flags.knowledge_lookup %}✓{% else %}—{% endif %}</td>
+          <td class="mono">{% if scenario.flags.plan_executor %}✓{% else %}—{% endif %}</td>
+          <td class="mono">
+            {% if scenario.flags.intent_classifier == "optional" %}optional{% elsif scenario.flags.intent_classifier %}✓{% else %}—{% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="settings-usage-subhead">Dependencies</h3>
+  <ul class="settings-verify-list">
+    {% for note in serverChatSettings.usageGuide.dependencyNotes %}
+    <li>{{ note }}</li>
+    {% endfor %}
+  </ul>
+
+  <h3 class="settings-usage-subhead">How to check</h3>
+  <ul class="settings-verify-list">
+    {% for tip in serverChatSettings.usageGuide.verifyTips %}
+    <li>{{ tip }}</li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+{% for section in serverChatSettings.sections %}
+<section class="settings-section" id="settings-server-{{ section.id }}">
+  <h2>{{ section.title }}</h2>
+  <p class="muted">{{ section.description }}</p>
+  <div class="settings-table-wrap">
+    <table class="settings-table">
+      <thead>
+        <tr>
+          <th scope="col">Key</th>
+          <th scope="col">Default</th>
+          <th scope="col">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in section.settings %}
+        <tr
+          class="settings-row{% if row.usage %} settings-setting-card__head{% endif %}{% if row.operator %} settings-row--operator{% endif %}"
+          data-setting="{{ row.id | downcase }}"
+        >
+          <td class="settings-table__key">
+            {% if row.usage %}<span class="settings-card-label">Setting</span>{% endif %}
+            <code>{{ row.id }}</code>
+            {% if row.operator %}<span class="settings-badge settings-badge--operator">operator</span>{% endif %}
+          </td>
+          <td class="settings-table__default mono">
+            {% if row.usage %}<span class="settings-card-label settings-card-label--inline">Default</span>{% endif %}
+            {{ row.default }}
+          </td>
+          <td class="settings-table__desc">
+            {% if row.usage %}<span class="settings-card-label settings-card-label--inline">Description</span>{% endif %}
+            {{ row.description }}
+          </td>
+        </tr>
+        {% if row.usage %}
+        <tr class="settings-row settings-setting-card__usage" data-setting="{{ row.id | downcase }}">
+          <td colspan="3" class="settings-usage-cell">
+            <span class="settings-card-label settings-card-label--usage">Usage guide</span>
+            {% include "settings-usage-block.html", usage: row.usage, settingId: row.id %}
+          </td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endfor %}
+{% endif %}
 
 <p class="muted">
-  Problems: <a href="/support/troubleshooting.html#extension">Troubleshooting → Extension</a>.
+  Problems: <a href="/support/troubleshooting.html#extension">Troubleshooting → Extension</a> ·
+  <a href="/docs/byok-enterprise.html">BYOK &amp; enterprise</a> ·
+  <a href="/docs/glossary.html">Glossary</a>
 </p>
+
+<script>
+(function () {
+  var input = document.getElementById("settings-filter");
+  if (!input) return;
+  input.addEventListener("input", function () {
+    var q = (input.value || "").trim().toLowerCase();
+    document.querySelectorAll(".settings-row").forEach(function (row) {
+      var hay = (row.getAttribute("data-setting") || "") + " " + (row.textContent || "");
+      row.style.display = !q || hay.toLowerCase().indexOf(q) !== -1 ? "" : "none";
+    });
+    document.querySelectorAll(".settings-section").forEach(function (section) {
+      var visible = section.querySelectorAll('.settings-row:not([style*="display: none"])').length;
+      if (!q) {
+        section.style.display = "";
+        return;
+      }
+      section.style.display = visible > 0 ? "" : "none";
+    });
+  });
+})();
+</script>

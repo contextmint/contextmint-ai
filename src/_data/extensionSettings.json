@@ -1,0 +1,1280 @@
+{
+  "generatedAt": "2026-06-23",
+  "source": "extensions/contextmint-vscode/package.json",
+  "totalCount": 131,
+  "operatorKeys": [
+    "contextmint.serverUrl",
+    "contextmint.engine.dashboardUrl",
+    "contextmint.engine.devAllowExtensionSpawn",
+    "contextmint.logLevel"
+  ],
+  "sections": [
+    {
+      "id": "operator",
+      "title": "Operator essentials (start here)",
+      "description": "With ContextMint Engine installed, change these in VS Code only. Server lifecycle, Ollama, models, and indexing are managed in Engine → Settings.",
+      "settings": [
+        {
+          "id": "contextmint.engine.dashboardUrl",
+          "description": "Local ContextMint Engine dashboard URL (tray / operator console).",
+          "default": "http://localhost:8765",
+          "deprecated": false,
+          "operator": true,
+          "type": "string"
+        },
+        {
+          "id": "contextmint.engine.devAllowExtensionSpawn",
+          "description": "Git-clone dev mode only: allow extension-managed server spawn when Engine is absent.",
+          "default": "false",
+          "deprecated": false,
+          "operator": true,
+          "type": "boolean"
+        },
+        {
+          "id": "contextmint.logLevel",
+          "description": "Controls how much ContextMint logs to the 'ContextMint Trace' Output Channel. Set to 'trace' to also write a log file (Output → ContextMint Trace).",
+          "default": "info",
+          "deprecated": false,
+          "operator": true,
+          "type": "string"
+        },
+        {
+          "id": "contextmint.serverUrl",
+          "description": "ContextMint engine URL",
+          "default": "http://127.0.0.1:8000",
+          "deprecated": false,
+          "operator": true,
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "id": "connectivity",
+      "title": "Server & connectivity",
+      "description": "How the extension reaches the API. For remote/team servers set serverUrl to your on-prem host and see BYOK & enterprise.",
+      "settings": [
+        {
+          "id": "contextmint.localFallbackUrl",
+          "description": "Fallback engine URL used when the enterprise server (serverUrl) is unreachable. Only applies when enterpriseMode is enabled.",
+          "default": "http://127.0.0.1:8000",
+          "deprecated": false,
+          "operator": false,
+          "type": "string"
+        },
+        {
+          "id": "contextmint.serverTimeoutMs",
+          "description": "Timeout in ms for server health and index-status check requests. Increase on slow networks.",
+          "default": "8000",
+          "deprecated": true,
+          "operator": false,
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "id": "chat",
+      "title": "Chat, sessions & lanes",
+      "description": "Compose placement, history limits, context lanes (Repo / Work / Hybrid), client grep, trivial-query fast path, and answer formatting.",
+      "settings": [
+        {
+          "id": "contextmint.chat.answerDualLayerEnabled",
+          "description": "Show a plain-language answer first; hide developer detail behind “More technical detail”.",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean"
+        },
+        {
+          "id": "contextmint.chat.answerTechnicalExpandLabel",
+          "description": "Label for the expandable technical section under assistant replies.",
+          "default": "More technical detail",
+          "deprecated": false,
+          "operator": false,
+          "type": "string"
+        },
+        {
+          "id": "contextmint.chat.canonicalOverviewGrepHeadLines",
+          "description": "File head lines used when entry-point grep has no keyword match.",
+          "default": "10",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Entry files lack keyword overlap — need more head lines from main.py, api.py, etc.",
+            "whenDisable": "Grep snippets are too large for tight token budgets.",
+            "pros": [
+              "Helps overview when keywords miss file headers"
+            ],
+            "cons": [
+              "Larger snippets per grep hit"
+            ],
+            "recommendation": "Tune together with canonicalOverviewGrepMaxSnippets."
+          }
+        },
+        {
+          "id": "contextmint.chat.canonicalOverviewGrepMaxSnippets",
+          "description": "Max entry-point grep snippets on architecture and overview questions.",
+          "default": "4",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Architecture or “how does this repo work?” prompts need more entry-point file snippets.",
+            "whenDisable": "Overview answers already cite main.py, api.py, and the extension — reduce grep competition.",
+            "pros": [
+              "Boosts entry-point anchors for high-level architecture questions"
+            ],
+            "cons": [
+              "More grep slots on a query type sensitive to noise"
+            ],
+            "recommendation": "Leave default unless entry paths are missing from overview answers."
+          }
+        },
+        {
+          "id": "contextmint.chat.clientGrepEnabled",
+          "description": "Grep the local workspace before chat and send hits to the server (demo / indexing handoff).",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "Demo visibility, indexing handoff, or symbol-heavy prompts where local workspace search helps before server retrieval.",
+            "whenDisable": "Noisy local paths polluting architecture or overview answers; reduce client-side work on large monorepos.",
+            "pros": [
+              "Surfaces open-file and keyword hits before the stream starts",
+              "Useful while the index is still building (with indexingOnly)"
+            ],
+            "cons": [
+              "Can pull in docs, session packs, or non-code files into context",
+              "Server still budgets and may down-rank meta paths on overview questions"
+            ],
+            "recommendation": "Keep enabled for development; tighten grep limits if overview answers feel noisy."
+          }
+        },
+        {
+          "id": "contextmint.chat.clientGrepIndexingOnly",
+          "description": "When true, client grep runs only while the workspace index is building.",
+          "default": "false",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "Limit grep noise after the index is ready — search locally only while indexing is in progress.",
+            "whenDisable": "You rely on client grep for every chat turn (demos, offline symbol lookup).",
+            "pros": [
+              "Cuts post-index grep pollution",
+              "Faster sends when the index is ready"
+            ],
+            "cons": [
+              "No client-side path hints after indexing completes"
+            ],
+            "recommendation": "Consider enabling on laptops with limited RAM after the index is ready."
+          }
+        },
+        {
+          "id": "contextmint.chat.clientGrepKeepPanelOpen",
+          "description": "Keep the Reasoning panel expanded after chat when local grep found files (demo visibility).",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean"
+        },
+        {
+          "id": "contextmint.chat.clientGrepKeywordMinLength",
+          "description": "Minimum keyword length for client-side workspace grep.",
+          "default": "3",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.chat.clientGrepMaxFiles",
+          "description": "Max workspace files scanned per client grep pass.",
+          "default": "120",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Large workspaces where keyword search needs a wider scan (slower).",
+            "whenDisable": "Performance issues or excessive grep time before send.",
+            "pros": [
+              "Broader local coverage"
+            ],
+            "cons": [
+              "Slower pre-stream; more noise risk"
+            ],
+            "recommendation": "Lower on laptops if compose feels sluggish."
+          }
+        },
+        {
+          "id": "contextmint.chat.clientGrepMaxSnippets",
+          "description": "Max grep snippets sent with each chat request.",
+          "default": "8",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Raise briefly for dense symbol-navigation demos.",
+            "whenDisable": "Lower (e.g. 4–6) when sources feel noisy or the token budget is tight.",
+            "pros": [
+              "More local evidence for symbol questions"
+            ],
+            "cons": [
+              "More tokens competing with packs and server retrieval on overview prompts"
+            ],
+            "recommendation": "Default 8 is balanced; lower if sources look cluttered."
+          }
+        },
+        {
+          "id": "contextmint.chat.cloudThinkingBudgetMinTokens",
+          "description": "Minimum thinking budget required before enabling Claude extended thinking.",
+          "default": "1024",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.chat.cloudThinkingBudgetTokens",
+          "description": "Token budget for Claude extended thinking when using your own Anthropic API key.",
+          "default": "10000",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.chat.cloudThinkingEnabled",
+          "description": "Request and stream model-level thinking from BYOC/BYOK cloud providers (Claude extended thinking, OpenAI reasoning models).",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean"
+        },
+        {
+          "id": "contextmint.chat.cloudVisionOptInHint",
+          "description": "Secondary hint for optional cloud vision with your own API key.",
+          "default": "Or use your own cloud API key (optional)",
+          "deprecated": false,
+          "operator": false,
+          "type": "string"
+        },
+        {
+          "id": "contextmint.chat.contextLanesEnabled",
+          "description": "Enable Repo / Work / Hybrid context lanes in chat compose.",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean"
+        },
+        {
+          "id": "contextmint.chat.defaultContextLane",
+          "description": "Default context lane for new chat sessions.",
+          "default": "repo",
+          "deprecated": false,
+          "operator": false,
+          "type": "string"
+        },
+        {
+          "id": "contextmint.chat.governanceTrustChipEnabled",
+          "description": "Show HIGH/MEDIUM/LOW trust chip under store-backed quality answers.",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean"
+        },
+        {
+          "id": "contextmint.chat.hybridLanePlaceholder",
+          "description": "Compose placeholder when Hybrid lane is selected.",
+          "default": "Ask how repo evidence informs your decision…",
+          "deprecated": false,
+          "operator": false,
+          "type": "string"
+        },
+        {
+          "id": "contextmint.chat.imageAttachmentsEnabled",
+          "description": "Enable paste, drop, and file-picker image attachments in chat compose.",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean"
+        },
+        {
+          "id": "contextmint.chat.imageMaxBytes",
+          "description": "Maximum bytes per image before ingest rejects the file.",
+          "default": "5242880",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.chat.imageMaxCountPerMessage",
+          "description": "Maximum images per outgoing chat message.",
+          "default": "3",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.chat.imageSensitivityNotice",
+          "description": "First-time Context Lens notice when attaching images.",
+          "default": "Screenshots may contain sensitive information.",
+          "deprecated": false,
+          "operator": false,
+          "type": "string"
+        },
+        {
+          "id": "contextmint.chat.imageTempTtlSec",
+          "description": "Temporary image blob lifetime (seconds) under ~/.contextmint/images/.",
+          "default": "3600",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.chat.laneSuggestEnabled",
+          "description": "Suggest the Work lane when repository retrieval looks weak.",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean"
+        },
+        {
+          "id": "contextmint.chat.laneSuggestPrompt",
+          "description": "Banner text when Work lane is suggested.",
+          "default": "Little repo context matched — retry in Work lane?",
+          "deprecated": false,
+          "operator": false,
+          "type": "string"
+        },
+        {
+          "id": "contextmint.chat.laneSuggestWorkButtonLabel",
+          "description": "Button label for accepting Work lane suggestion.",
+          "default": "Use Work lane",
+          "deprecated": false,
+          "operator": false,
+          "type": "string"
+        },
+        {
+          "id": "contextmint.chat.maxHistorySend",
+          "description": "Max prior turns sent to the server per chat request.",
+          "default": "13",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.chat.maxHistoryStored",
+          "description": "Max chat messages stored per session in extension state.",
+          "default": "200",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.chat.maxMessagesDisplay",
+          "description": "Max messages rendered in the chat webview (DOM cap).",
+          "default": "200",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.chat.maxSessionsStored",
+          "description": "Max chat sessions kept in extension storage.",
+          "default": "30",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.chat.maxTraceDisplay",
+          "description": "Max trace/reasoning lines shown in the transparency panel.",
+          "default": "50",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.chat.placement",
+          "description": "Where chat opens: auto (sidebar, then editor tab fallback), sidePanel (Activity Bar only), or editor (tab beside code).",
+          "default": "auto",
+          "deprecated": false,
+          "operator": false,
+          "type": "string"
+        },
+        {
+          "id": "contextmint.chat.pullVisionModelPrompt",
+          "description": "Primary call-to-action when no local vision model is installed.",
+          "default": "Pull a vision model… (free, local)",
+          "deprecated": false,
+          "operator": false,
+          "type": "string"
+        },
+        {
+          "id": "contextmint.chat.reasoningCollapseOnAnswer",
+          "description": "Collapse the Reasoning panel automatically when the assistant answer finishes.",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean"
+        },
+        {
+          "id": "contextmint.chat.reasoningThinkingMaxHeightPx",
+          "description": "Max height (px) of the live model-reasoning area while streaming.",
+          "default": "160",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.chat.repoLanePlaceholder",
+          "description": "Compose placeholder when Repo lane is selected.",
+          "default": "Ask about your code…",
+          "deprecated": false,
+          "operator": false,
+          "type": "string"
+        },
+        {
+          "id": "contextmint.chat.trivialQueryFastPathEnabled",
+          "description": "Skip client grep and retrieval UI for short greetings (hi, hello, etc.).",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "Recommended — skips full retrieval for short greetings like hi or hello.",
+            "whenDisable": "Testing that even trivial prompts route through the full pipeline.",
+            "pros": [
+              "Instant greeting; no false retrieval UI",
+              "Saves tokens and latency"
+            ],
+            "cons": [
+              "Mis-tuned patterns could classify a real question as trivial (rare)"
+            ],
+            "recommendation": "Keep enabled."
+          }
+        },
+        {
+          "id": "contextmint.chat.trivialQueryGreetingRegex",
+          "description": "Regex; matching queries are trivial even above trivialQueryMaxWords.",
+          "default": "^(?:hi|hello|hey|thanks|thank you|ok|okay|yo)(?:[!?.]|$|\\s)",
+          "deprecated": false,
+          "operator": false,
+          "type": "string"
+        },
+        {
+          "id": "contextmint.chat.trivialQueryMaxWords",
+          "description": "Queries with at most this many tokens are treated as trivial greetings.",
+          "default": "3",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "N/A — max word count for the greeting shortcut.",
+            "whenDisable": "N/A",
+            "pros": [
+              "Prevents long prompts from using the greeting shortcut"
+            ],
+            "cons": [
+              "Too low may not match natural short greetings"
+            ],
+            "recommendation": "Default 3 works for most teams; change only with pattern review."
+          }
+        },
+        {
+          "id": "contextmint.chat.viewRevealMaxAttempts",
+          "description": "Max poll attempts when opening chat in the activity-bar sidebar.",
+          "default": "30",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.chat.viewRevealPollIntervalMs",
+          "description": "Poll interval (ms) while waiting for the sidebar chat webview to resolve.",
+          "default": "100",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.chat.workLanePlaceholder",
+          "description": "Compose placeholder when Work lane is selected.",
+          "default": "Ask about planning, comms, or concepts…",
+          "deprecated": false,
+          "operator": false,
+          "type": "string"
+        },
+        {
+          "id": "contextmint.defaultModel",
+          "description": "Default model mode shown in the chat header dropdown.",
+          "default": "auto",
+          "deprecated": false,
+          "operator": false,
+          "type": "string"
+        },
+        {
+          "id": "contextmint.maxAttachedFiles",
+          "description": "Maximum number of files that can be attached as context for a single chat message.",
+          "default": "10",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.maxSessionsInList",
+          "description": "Maximum number of past chat sessions to show in the sessions list.",
+          "default": "6",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "id": "trust",
+      "title": "Context Lens, trust gate & cloud",
+      "description": "Pre-send Context Lens preview, optional trust gate, cloud routing toggle, and enterprise auth fields.",
+      "settings": [
+        {
+          "id": "contextmint.cloudEnabled",
+          "description": "Enable cloud LLM provider routing (opt-in)",
+          "default": "false",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean"
+        },
+        {
+          "id": "contextmint.enterpriseMode",
+          "description": "Connect to a shared enterprise ContextMint server. When enabled, VS Code's built-in OIDC authentication forwards a Bearer token with every request. Falls back to the local engine (localFallbackUrl) if the enterprise server is unreachable.",
+          "default": "false",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean"
+        },
+        {
+          "id": "contextmint.lensPreviewEnabled",
+          "description": "Show Context Lens preview before send (first N sends per workspace).",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "First few sends per workspace — good for new users learning Context Lens.",
+            "whenDisable": "Experienced users who already validated retrieval quality.",
+            "pros": [
+              "Preview matches sources before the LLM runs",
+              "Teaches the Context Lens workflow"
+            ],
+            "cons": [
+              "Extra step before send"
+            ],
+            "recommendation": "Keep enabled for new workspaces; lower firstNSends after sign-off."
+          }
+        },
+        {
+          "id": "contextmint.lensPreviewFirstNSends",
+          "description": "Number of sends per workspace that show Context Lens preview by default.",
+          "default": "3",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.localJwtSecret",
+          "description": "Optional HS256 secret for auto-signed localhost JWTs. When empty, ContextMint reads AUTH__JWT_SECRET from the workspace .env file.",
+          "default": "",
+          "deprecated": false,
+          "operator": false,
+          "type": "string"
+        },
+        {
+          "id": "contextmint.oidcProviderId",
+          "description": "VS Code authentication provider ID for enterprise SSO (e.g. 'microsoft', 'github', or a custom provider). Only used when enterpriseMode is enabled.",
+          "default": "",
+          "deprecated": false,
+          "operator": false,
+          "type": "string"
+        },
+        {
+          "id": "contextmint.trustGateEnabled",
+          "description": "Preview retrieved context chunks and routing before each send. Allows removing chunks before the request is dispatched.",
+          "default": "false",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "Operators who want to exclude specific chunks in Context Lens before every send.",
+            "whenDisable": "Default faster send flow; use lens preview for occasional checks instead.",
+            "pros": [
+              "Manual chunk exclusion before dispatch",
+              "Catches bad retrieval before the LLM runs"
+            ],
+            "cons": [
+              "Extra click every message when enabled",
+              "Can slow demo flows"
+            ],
+            "recommendation": "Off for demos; on for cautious pilot testers."
+          }
+        },
+        {
+          "id": "contextmint.xaiDevMode",
+          "description": "Show developer XAI features per response: raw prompt viewer, routing detail. Requires DEBUG_MODE=true on the server.",
+          "default": "false",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "id": "governance",
+      "title": "Governance & quality map",
+      "description": "Quality scan UI, pre-send governance notes in Context Lens, and assisted-apply gate for duplication findings.",
+      "settings": [
+        {
+          "id": "contextmint.governance.applyGateEnabled",
+          "description": "Block assisted apply when a patch touches high-severity clone or near-duplicate findings.",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean"
+        },
+        {
+          "id": "contextmint.governance.drawerMaxFindings",
+          "description": "Maximum governance findings loaded into the readiness drawer.",
+          "default": "50",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.governance.previewEnabled",
+          "description": "Show governance note count on the Context Lens strip before Send.",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean"
+        },
+        {
+          "id": "contextmint.governance.previewExcludeKinds",
+          "description": "Finding kinds hidden from Context Lens pre-send preview (repo-wide duplication noise). Full list remains in Quality map drawer.",
+          "default": "[\"clone\",\"near_duplicate\"]",
+          "deprecated": false,
+          "operator": false,
+          "type": "array"
+        },
+        {
+          "id": "contextmint.governance.previewMaxFindings",
+          "description": "Maximum governance findings listed in the Context Lens pre-send preview.",
+          "default": "5",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.governance.qualityScanPollIntervalMs",
+          "description": "Poll interval in ms for GET /workspace/quality/status while a scan runs.",
+          "default": "2000",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.governance.qualityScanTimeoutMs",
+          "description": "Max wait in ms while polling a background quality scan (readiness card / command palette).",
+          "default": "300000",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.governance.readinessRowEnabled",
+          "description": "Show the Quality map row on the readiness card when the repo index is ready.",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "id": "packs",
+      "title": "Repo memory (packs)",
+      "description": "Auto-sync draft packs when repo files change.",
+      "settings": [
+        {
+          "id": "contextmint.packs.autoSync",
+          "description": "Automatically sync context pack source_files when repo files change (Phase 13).",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean"
+        },
+        {
+          "id": "contextmint.packs.syncDebounceMs",
+          "description": "Debounce (ms) before applying pack sync after file changes.",
+          "default": "1500",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "id": "argus",
+      "title": "Image evidence & ARGUS",
+      "description": "Screenshot attachments, vision routing hints, and the Run visual audit action. See Image evidence & ARGUS for the full workflow.",
+      "settings": [
+        {
+          "id": "contextmint.argus.auditButtonLabel",
+          "description": "Context Lens / message action label for visual paste audit.",
+          "default": "Run visual audit",
+          "deprecated": false,
+          "operator": false,
+          "type": "string"
+        },
+        {
+          "id": "contextmint.argus.auditTimeoutMs",
+          "description": "Timeout for visual audit requests (vision model + browser capture).",
+          "default": "30000",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "id": "sandbox",
+      "title": "Sandbox (beta)",
+      "description": "Isolated git worktrees for assisted patch preview. Requires server sandbox.enabled and extension sandbox.enabled.",
+      "settings": [
+        {
+          "id": "contextmint.sandbox.enabled",
+          "description": "Enable git worktree sandbox for isolated test and apply. Requires sandbox enabled on the server.",
+          "default": "false",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean"
+        },
+        {
+          "id": "contextmint.sandbox.heartbeatIntervalMs",
+          "description": "Interval (ms) for sandbox heartbeat PATCH while a sandbox is active.",
+          "default": "30000",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "id": "inline",
+      "title": "Inline completion (optional)",
+      "description": "Ghost-text completions in the editor. Off by default.",
+      "settings": [
+        {
+          "id": "contextmint.inline.clientTimeoutMs",
+          "description": "Abort inline completion request after this many milliseconds.",
+          "default": "1500",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.inline.debounceMs",
+          "description": "Debounce before requesting inline completion.",
+          "default": "300",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.inline.enabled",
+          "description": "Enable local FIM inline ghost-text completion (requires inline backend).",
+          "default": "false",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean"
+        },
+        {
+          "id": "contextmint.inline.languages",
+          "description": "Comma-separated language IDs eligible for inline completion.",
+          "default": "typescript,javascript,python,go,rust",
+          "deprecated": false,
+          "operator": false,
+          "type": "string"
+        },
+        {
+          "id": "contextmint.inline.maxPrefixChars",
+          "description": "Max prefix characters sent to the inline completion endpoint.",
+          "default": "2000",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.inline.maxSuffixChars",
+          "description": "Max suffix characters sent to the inline completion endpoint.",
+          "default": "512",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.inline.multiline",
+          "description": "Allow multi-line inline completions (opt-in).",
+          "default": "false",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean"
+        },
+        {
+          "id": "contextmint.inline.pauseWhileIndexing",
+          "description": "Pause inline completion while the workspace index is running.",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean"
+        },
+        {
+          "id": "contextmint.inline.yieldToChat",
+          "description": "Skip inline requests while a chat stream is active.",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "id": "design",
+      "title": "Design tokens (advanced)",
+      "description": "Webview spacing, motion, and Context Lens drawer caps. Rarely changed.",
+      "settings": [
+        {
+          "id": "contextmint.design.accentColor",
+          "description": "Brand accent color for status dots, links, and success states.",
+          "default": "#10b981",
+          "deprecated": false,
+          "operator": false,
+          "type": "string"
+        },
+        {
+          "id": "contextmint.design.attachChipMaxWidthPx",
+          "description": "Maximum pixel width of compose attachment filename chips.",
+          "default": "140",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.design.drawerDurationMs",
+          "description": "Drawer and slide-up panel open/close animation duration (ms).",
+          "default": "200",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.design.maxContextLensFiles",
+          "description": "Maximum file cards shown in the Context Lens drawer.",
+          "default": "12",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.design.motionDurationMs",
+          "description": "Default UI motion duration (ms) for unspecified transitions.",
+          "default": "200",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.design.radiusLg",
+          "description": "Large border radius (px) for drawers and modals.",
+          "default": "8",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.design.radiusMd",
+          "description": "Medium border radius (px) for inputs and cards.",
+          "default": "4",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.design.radiusSm",
+          "description": "Small border radius (px) for chips and badges.",
+          "default": "2",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.design.readinessPulseDurationMs",
+          "description": "Readiness status dot pulse animation duration (ms) while indexing.",
+          "default": "1200",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.design.spacingLg",
+          "description": "Large spacing scale step (px) for panel gutters.",
+          "default": "16",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.design.spacingMd",
+          "description": "Medium spacing scale step (px) for card and section padding.",
+          "default": "12",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.design.spacingSm",
+          "description": "Small spacing scale step (px) for inline padding and chip gaps.",
+          "default": "8",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.design.spacingXl",
+          "description": "Extra-large spacing scale step (px) for section breaks.",
+          "default": "24",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.design.spacingXs",
+          "description": "Extra-small spacing scale step (px) for compact UI gaps.",
+          "default": "4",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.design.timelineStepDurationMs",
+          "description": "Reasoning timeline step completion animation duration (ms).",
+          "default": "150",
+          "deprecated": false,
+          "operator": false,
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "id": "engine",
+      "title": "Engine detection",
+      "description": "Lock file, poll intervals, and status bar — dev/operator plumbing.",
+      "settings": [
+        {
+          "id": "contextmint.engine.lockPath",
+          "description": "Path to ContextMint Engine session lock (session.json).",
+          "default": "~/.ContextMint/engine/session.json",
+          "deprecated": true,
+          "operator": false,
+          "type": "string"
+        },
+        {
+          "id": "contextmint.engine.lockStaleSec",
+          "description": "Treat engine session.json as stale after this many seconds.",
+          "default": "30",
+          "deprecated": true,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.engine.pollIntervalMs",
+          "description": "Reserved interval (ms) for optional Engine status refresh. The engine status bar primarily updates from SystemState polls (contextmint.server.systemStatePollIntervalMs).",
+          "default": "60000",
+          "deprecated": true,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.engine.showStatusBarItem",
+          "description": "Show optional ContextMint Engine status bar item (E-004). Click opens the Engine dashboard.",
+          "default": "true",
+          "deprecated": true,
+          "operator": false,
+          "type": "boolean"
+        },
+        {
+          "id": "contextmint.engine.statusTimeoutMs",
+          "description": "HTTP timeout (ms) for GET /api/engine/status.",
+          "default": "2000",
+          "deprecated": true,
+          "operator": false,
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "id": "models",
+      "title": "Model catalogs (Engine-managed)",
+      "description": "Curated embed/chat/vision model lists and RAM heuristics. Managed by Engine in normal installs; extension reads models from the API.",
+      "settings": [
+        {
+          "id": "contextmint.models.hfApiTimeoutMs",
+          "description": "Hugging Face model metadata fetch timeout.",
+          "default": "15000",
+          "deprecated": true,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.models.installedListPollMs",
+          "description": "Refresh installed Ollama models while the Models tab is open.",
+          "default": "10000",
+          "deprecated": true,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.models.knownChatModels",
+          "description": "Quick-pick aliases for chat models, including RAM warning tiers.",
+          "default": "[5 presets] llama3.1, qwen2.5-coder:1.5b, qwen2.5-coder:3b, qwen2.5-coder:7b…",
+          "deprecated": true,
+          "operator": false,
+          "type": "array"
+        },
+        {
+          "id": "contextmint.models.knownEmbedModels",
+          "description": "Quick-pick aliases for embedding models.",
+          "default": "[3 presets] bge-m3, bge-large, nomic-embed-text",
+          "deprecated": true,
+          "operator": false,
+          "type": "array"
+        },
+        {
+          "id": "contextmint.models.knownVisionModels",
+          "description": "Curated local-first vision models plus optional cloud entries.",
+          "default": "[5 presets] moondream, llava, qwen2-vl, gpt-4o…",
+          "deprecated": true,
+          "operator": false,
+          "type": "array"
+        },
+        {
+          "id": "contextmint.models.pullProgressPollMs",
+          "description": "Ollama pull progress poll interval.",
+          "default": "2000",
+          "deprecated": true,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.models.ramEstimateMultiplier",
+          "description": "Multiply GGUF size to estimate KV cache RAM overhead.",
+          "default": "1.3",
+          "deprecated": true,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.models.ramHeadroomGb",
+          "description": "Gigabytes reserved for OS, IDE, and index when blocking a model download.",
+          "default": "2",
+          "deprecated": true,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.models.ramWarnUtilizationRatio",
+          "description": "Warn when estimated model RAM exceeds this fraction of available RAM.",
+          "default": "0.55",
+          "deprecated": true,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.models.recommendedPresets",
+          "description": "Hugging Face GGUF import presets when a model is not yet installed.",
+          "default": "—",
+          "deprecated": true,
+          "operator": false,
+          "type": "array"
+        },
+        {
+          "id": "contextmint.server.ollamaAutoStart",
+          "description": "Deprecated — extension no longer starts Ollama. Use ContextMint Engine to manage ollama serve.",
+          "default": "false",
+          "deprecated": true,
+          "operator": false,
+          "type": "boolean"
+        },
+        {
+          "id": "contextmint.server.ollamaChatModel",
+          "description": "Ollama chat model for local inference (mirrors backend ollama_chat_model). Empty uses server default.",
+          "default": "",
+          "deprecated": true,
+          "operator": false,
+          "type": "string"
+        },
+        {
+          "id": "contextmint.server.ollamaEmbedModel",
+          "description": "Ollama embedding model for repo index / search (mirrors backend ollama_model).",
+          "default": "nomic-embed-text",
+          "deprecated": true,
+          "operator": false,
+          "type": "string"
+        },
+        {
+          "id": "contextmint.server.ollamaInstallUrl",
+          "description": "Ollama install page opened from the missing-daemon prompt.",
+          "default": "https://ollama.ai",
+          "deprecated": true,
+          "operator": false,
+          "type": "string"
+        },
+        {
+          "id": "contextmint.server.ollamaProbeTimeoutMs",
+          "description": "Timeout (ms) for each Ollama GET /api/tags probe.",
+          "default": "2000",
+          "deprecated": true,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.server.ollamaProbeTimeoutMsDuringIndexing",
+          "description": "Ollama probe timeout (ms) while indexing is active.",
+          "default": "6000",
+          "deprecated": true,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.server.ollamaUrl",
+          "description": "Ollama base URL probed during local ServerManager startup (GET /api/tags).",
+          "default": "http://localhost:11434",
+          "deprecated": true,
+          "operator": false,
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "id": "engine-managed",
+      "title": "Engine-managed (deprecated in extension UI)",
+      "description": "Still defined for git-clone dev workflows. In packaged Engine mode these are hidden or deprecated — configure the equivalent in ContextMint Engine instead.",
+      "settings": [
+        {
+          "id": "contextmint.autoStart",
+          "description": "Deprecated — extension no longer starts the server. Use ContextMint Engine. When true, legacy path may still attempt dev spawn (not recommended).",
+          "default": "false",
+          "deprecated": true,
+          "operator": false,
+          "type": "boolean"
+        },
+        {
+          "id": "contextmint.backendPath",
+          "description": "Absolute path to the folder containing main.py (the ContextMint server root).",
+          "default": "",
+          "deprecated": true,
+          "operator": false,
+          "type": "string"
+        },
+        {
+          "id": "contextmint.pythonPath",
+          "description": "Python executable used to start the server (e.g. '/path/to/.venv/bin/python' or 'python3').",
+          "default": "python",
+          "deprecated": true,
+          "operator": false,
+          "type": "string"
+        },
+        {
+          "id": "contextmint.server.binaryVersion",
+          "description": "",
+          "default": "0.1.0",
+          "deprecated": true,
+          "operator": false,
+          "type": "string"
+        },
+        {
+          "id": "contextmint.server.healthCheckTimeoutMs",
+          "description": "Timeout (ms) for each GET /api/health probe.",
+          "default": "5000",
+          "deprecated": true,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.server.healthFailureThreshold",
+          "description": "Consecutive failed health polls (with no index-status response) before marking the server offline when idle.",
+          "default": "2",
+          "deprecated": true,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.server.healthFailureThresholdDuringIndexing",
+          "description": "Consecutive failed health polls before marking the server offline while indexing is active.",
+          "default": "3",
+          "deprecated": true,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.server.healthPollIntervalMs",
+          "description": "Interval (ms) between health polls while waiting for the server binary to start.",
+          "default": "500",
+          "deprecated": true,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.server.healthPollMaxAttempts",
+          "description": "Max health poll attempts after spawning the server binary.",
+          "default": "30",
+          "deprecated": true,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.server.releasesBaseUrl",
+          "description": "",
+          "default": "https://github.com/contextmint/contextmint/releases/download",
+          "deprecated": true,
+          "operator": false,
+          "type": "string"
+        },
+        {
+          "id": "contextmint.server.systemStateIndexPollIntervalMs",
+          "description": "Interval (ms) between system-state polls while indexing.",
+          "default": "8000",
+          "deprecated": true,
+          "operator": false,
+          "type": "number"
+        },
+        {
+          "id": "contextmint.server.systemStatePollIntervalMs",
+          "description": "Interval (ms) between system-state polls when the repo is idle.",
+          "default": "30000",
+          "deprecated": true,
+          "operator": false,
+          "type": "number"
+        }
+      ]
+    }
+  ],
+  "retrievalGuide": {
+    "id": "extension-retrieval",
+    "title": "Retrieval & context assembly (extension)",
+    "summary": "These VS Code settings control what the extension adds before the API assembles context. They complement — but do not replace — server-side structural flags below. High-level architecture answers are mostly shaped on the server; local grep can still add noise if left wide open after indexing finishes.",
+    "serverLinkAnchor": "#settings-server-structural-query-planning",
+    "tips": [
+      "For “how does this repo work?” questions, keep client grep reasonable and let indexing finish first.",
+      "For “how is this route registered?” questions, server structural flags matter more than extension grep.",
+      "If answers cite the wrong files, lower clientGrepMaxSnippets or enable clientGrepIndexingOnly."
+    ]
+  }
+}

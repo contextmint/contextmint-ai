@@ -1,7 +1,7 @@
 ---
 layout: base.html
 title: Roadmap | ContextMint
-description: ContextMint product roadmap — v1.0 today, design partners in 2026, operational intelligence and knowledge reconciliation ahead, plus the Verification Engine direction.
+description: ContextMint product roadmap — v1.0 shipping now, v2.0 Engineering Intelligence Platform, Track B enterprise and compliance, plus Verification Engine direction.
 pageCss: product.css
 ---
 
@@ -10,10 +10,28 @@ pageCss: product.css
     <div class="pill">PRODUCT DIRECTION</div>
     <h1>Roadmap</h1>
     <p class="lead">
-      One outcome: <strong>verify AI-generated changes before production</strong>. This page is
-      directional — not a delivery schedule. v1.0 ships August 2026; design partners shape what
-      comes next.
+      Three horizons: <strong>v1.0</strong> ships the decision-control plane today;
+      <strong>v2.0</strong> unifies engineering intelligence on one Knowledge Fabric;
+      <strong>Track B</strong> extends the same core to org-wide knowledge with enterprise
+      controls. Directional — not a delivery schedule.
     </p>
+    <nav class="roadmap-horizons" aria-label="Roadmap horizons">
+      <a class="roadmap-horizon-card" href="#v1">
+        <span class="roadmap-status roadmap-status--available">v1.0 · now</span>
+        <strong>Decision-control plane</strong>
+        <span>Engine, Context Lens, quality map, federated governance lookup — August 2026 GA.</span>
+      </a>
+      <a class="roadmap-horizon-card" href="#v2">
+        <span class="roadmap-status roadmap-status--planned">v2.0 · Q1 2027</span>
+        <strong>Engineering Intelligence Platform</strong>
+        <span>Knowledge Fabric, institutional memory, CHRONOS, operational intelligence retrieval.</span>
+      </a>
+      <a class="roadmap-horizon-card" href="#track-b">
+        <span class="roadmap-status roadmap-status--enterprise">Track B · end 2027</span>
+        <strong>Enterprise &amp; compliance</strong>
+        <span>Jira, Confluence, SharePoint, Git, and org knowledge — plus SSO, RBAC, and audit.</span>
+      </a>
+    </nav>
     <div class="cta" style="margin-top: 24px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
       <a class="btn btn-primary" href="/design-partners.html">Join design partners</a>
       <a class="btn btn-secondary" href="/features.html">Features in v1.0</a>
@@ -21,17 +39,32 @@ pageCss: product.css
   </div>
 </header>
 
+<section class="section section--surface">
+  <div class="container container-narrow">
+    <h2 class="section-title text-center" style="font-size: 1.1rem;">At a glance</h2>
+    <pre class="roadmap-timeline" aria-label="Roadmap timeline">2026 H2               2027 Q1                  2027 Q4                 2028+
+  │                     │                        │                       │
+  v1.0 GA               v2.0 MVP                 Track B MVP             Verification Engine
+  Design partners       Knowledge Fabric         Jira · Confluence       PR gates · blast radius
+  Git + code (today)    Memory · CHRONOS · OIR   SharePoint · Git · docs SSO at scale</pre>
+    <p class="muted text-center" style="margin: 16px 0 0; font-size: 0.85rem;">
+      Capabilities and order evolve with design partner feedback. We label <strong>shipping</strong> vs
+      <strong>planned</strong> explicitly — no certification or autonomous-governance claims.
+    </p>
+  </div>
+</section>
+
 <section class="section">
   <div class="container container-narrow">
     <article class="roadmap-tier" id="v1">
       <div class="roadmap-tier__head">
-        <span class="roadmap-status roadmap-status--available">Available now</span>
-        <h2 class="section-title" style="margin-bottom: 0;">v1.0 foundation</h2>
+        <span class="roadmap-status roadmap-status--available">v1.0 · available now</span>
+        <h2 class="section-title" style="margin-bottom: 0;">Decision-control plane</h2>
       </div>
       <p class="muted">
         Local-first <strong>decision-control plane</strong> for software teams — evidence before
         inference, human approval before repo changes. Design partners run this today; general
-        availability August 2026.
+        availability <strong>August 2026</strong>.
       </p>
       <ul class="check-list">
         <li>
@@ -53,6 +86,10 @@ pageCss: product.css
         <li>
           <strong>Quality map</strong> — stored governance findings (clones, near-duplicates,
           structure signals) with optional apply gates
+        </li>
+        <li>
+          <strong>Federated query router v0.1</strong> — governance <em>lookup</em> reads the Findings
+          Store first (store-first, tier-agnostic facts, trust metadata) — not chat-time rediscovery
         </li>
         <li>
           <strong>Context packs</strong> — per-repo manifests with <span class="mono">@pack:name</span>
@@ -99,8 +136,27 @@ pageCss: product.css
         <h2 class="section-title" style="margin-bottom: 0;">2026 pilot cohort</h2>
       </div>
       <p class="muted">
-        Structured 30-day pilots with platform and security teams. You get direct engineering
-        access; we get honest signal on fit for regulated and sovereign AI dev workflows.
+        A <strong>30-day evaluation pilot</strong> is a bounded proof-of-concept — not a product
+        subscription limit. After onboarding, <strong>10–30 developers</strong> on one team or repo
+        use ContextMint in real work for <strong>one calendar month</strong>; we review together and
+        deliver a written summary for security and platform leadership. Extendable to
+        <strong>90 days</strong> when the pilot is going well.
+      </p>
+      <div class="notice-banner notice-banner--available" style="margin: 20px 0;">
+        <strong>What &ldquo;30 days&rdquo; means:</strong>
+        <ul style="margin: 10px 0 0; padding-left: 1.2rem; line-height: 1.6;">
+          <li><strong>Week 0</strong> — install Engine + extension; index one repo; security path agreed</li>
+          <li><strong>Weeks 1–4</strong> — daily dev usage with Context Lens and patch preview gates</li>
+          <li><strong>Week 2 &amp; 4</strong> — short async feedback (email or form — no standing meetings required)</li>
+          <li><strong>End of month</strong> — pilot summary report + go / extend / stop decision</li>
+        </ul>
+      </div>
+      <p class="muted">
+        You get direct engineering access; we get honest signal on fit for regulated and sovereign
+        AI dev workflows — and priority input on
+        <a href="#v2" style="color: var(--color-action);">v2.0</a> and
+        <a href="#track-b" style="color: var(--color-action);">Track B</a> (including which knowledge
+        systems to connect first).
       </p>
       <ul class="check-list">
         <li><strong>Guided pilot playbook</strong> — week-2 and week-4 feedback (async OK)</li>
@@ -109,7 +165,7 @@ pageCss: product.css
           server (<a href="/trust.html#deployment" style="color: var(--color-action);">deployment models</a>)
         </li>
         <li><strong>Security questionnaire support</strong> — architecture summaries for stakeholders</li>
-        <li><strong>Priority input</strong> — influence verification workflows and enterprise packaging</li>
+        <li><strong>Priority input</strong> — influence v2.0 Fabric scope and Track B enterprise packaging</li>
         <li><strong>Team rollout patterns</strong> — Docker / Helm shared-server pilots with platform engineering</li>
         <li><strong>Pilot summary report</strong> — outcomes for security and engineering leadership</li>
       </ul>
@@ -123,43 +179,99 @@ pageCss: product.css
 
 <section class="section">
   <div class="container container-narrow">
-    <article class="roadmap-tier" id="operational-intelligence">
+    <article class="roadmap-tier" id="v2">
       <div class="roadmap-tier__head">
-        <span class="roadmap-status roadmap-status--planned">Planned direction</span>
-        <h2 class="section-title" style="margin-bottom: 0;">Operational intelligence</h2>
+        <span class="roadmap-status roadmap-status--planned">v2.0 · target Q1 2027</span>
+        <h2 class="section-title" style="margin-bottom: 0;">Engineering Intelligence Platform</h2>
       </div>
       <p class="muted">
-        v1.0 retrieves <strong>named engineering artifacts</strong> (function, file, lines) with
-        hybrid search and human gates. The next layer scores <strong>belief</strong>, not similarity
-        alone — and reconciles conflicting signals into one auditable answer. This is
-        <strong>roadmap</strong>, not shipped in v1.0.
+        After v1.0 exit, ContextMint becomes one <strong>living digital twin</strong> of the
+        engineering system — not seven siloed tools. Retrieval, memory, health analysis, temporal
+        forensics, and multimodal validation become <strong>query projections</strong> over a single
+        logical model: the <strong>Knowledge Fabric</strong>. Starts post–v1.0 freeze; target MVP
+        <strong>first quarter of 2027 (Q1)</strong>.
+      </p>
+      <div class="notice-banner notice-banner--planned" style="margin: 20px 0;">
+        <strong>Philosophy:</strong> Do not build 7 tools. Build 1 Fabric — users experience Memory Tab,
+        Architecture Console, CHRONOS bisect, ORACLE prefetch, ARGUS audit, and MESH delegation as
+        surfaces; engineers maintain one ingestion pipeline and one schema.
+      </div>
+      <h3 style="margin: 24px 0 12px; font-size: 1rem;">Six waves (post–v1.0)</h3>
+      <div class="grid grid-2" style="gap: 12px;">
+        <div class="card" style="padding: 14px;">
+          <strong style="font-size: 0.9rem;">Wave 1 — Institutional memory</strong>
+          <p class="muted" style="margin: 6px 0 0; font-size: 0.85rem;">
+            Fabric shadow-write, learner approval gate, Memory Tab — conventions become graph nodes with evidence.
+          </p>
+        </div>
+        <div class="card" style="padding: 14px;">
+          <strong style="font-size: 0.9rem;">Wave 2 — Temporal &amp; structural</strong>
+          <p class="muted" style="margin: 6px 0 0; font-size: 0.85rem;">
+            CHRONOS checkpoint forensics, health analysis, Architecture Tab — graph/metadata first, not commit embeddings.
+          </p>
+        </div>
+        <div class="card" style="padding: 14px;">
+          <strong style="font-size: 0.9rem;">Wave 3 — Zero-latency UX</strong>
+          <p class="muted" style="margin: 6px 0 0; font-size: 0.85rem;">
+            ORACLE prefetch — intent + retrieval context cached before you ask; extends v1 PERF layers.
+          </p>
+        </div>
+        <div class="card" style="padding: 14px;">
+          <strong style="font-size: 0.9rem;">Wave 4 — Multimodal validation</strong>
+          <p class="muted" style="margin: 6px 0 0; font-size: 0.85rem;">
+            ARGUS audit reports in sandbox — structured findings, human reviews fixes separately.
+          </p>
+        </div>
+        <div class="card" style="padding: 14px;">
+          <strong style="font-size: 0.9rem;">Wave 5 — Distributed compute (lite)</strong>
+          <p class="muted" style="margin: 6px 0 0; font-size: 0.85rem;">
+            MESH-Lite — explicit trusted peers for heavy VLM/health jobs; no auto-discovery swarm.
+          </p>
+        </div>
+        <div class="card" style="padding: 14px;">
+          <strong style="font-size: 0.9rem;">Wave 6 — conditional</strong>
+          <p class="muted" style="margin: 6px 0 0; font-size: 0.85rem;">
+            Full mesh only if Wave 5 proves measurable runtime benefit in dogfood.
+          </p>
+        </div>
+      </div>
+      <h3 id="operational-intelligence" style="margin: 28px 0 12px; font-size: 1rem;">Operational intelligence (within v2.0)</h3>
+      <p class="muted">
+        v1.0 retrieves <strong>named engineering artifacts</strong> with hybrid search and human gates.
+        v2.0 adds scoring <strong>belief</strong>, not similarity alone — and reconciles conflicting
+        signals into one auditable answer.
       </p>
       <ul class="check-list">
         <li>
           <strong>Knowledge reconciliation</strong> — when Git, CODEOWNERS, team memory, and docs
-          disagree, surface one scored claim with supporting and conflicting evidence — not four
-          snippets
+          disagree, surface one scored claim with supporting and conflicting evidence
         </li>
         <li>
-          <strong>Operational intelligence retrieval (OIR)</strong> — rank answers by relevance
+          <strong>Operational intelligence retrieval (OIR)</strong> — rank by relevance
           <em>and</em> trust, freshness, and evidence coverage
         </li>
         <li>
-          <strong>Knowledge Fabric</strong> — code, memory, ownership, and (later) ops signals as
-          projections over one model — not separate siloed pipelines
+          <strong>Domain-aware retrieval</strong> — files and symbols tagged to domains; filter by
+          ownership and architectural boundaries, not chunks alone
         </li>
         <li>
-          <strong>Summary-first retrieval</strong> — semantic compression at index time for large
-          repos; expand to raw code only when confidence is low
+          <strong>Repository DNA + Feature Registry Lite</strong> — deterministic health baselines and
+          feature traceability on the Fabric
         </li>
         <li>
-          <strong>Ownership reconciliation MVP</strong> — “Who owns this file or domain?” with
-          explicit conflict surfacing and audit trail
+          <strong>Summary-first retrieval</strong> — semantic compression at index time; expand to
+          raw code only when confidence is low
+        </li>
+        <li>
+          <strong>RBAC + audit foundations</strong> — <span class="mono">tenant_id</span> /
+          <span class="mono">owner_id</span> on Fabric nodes; immutable audit schema (full enterprise
+          packaging continues in <a href="#track-b" style="color: var(--color-action);">Track B</a>)
         </li>
       </ul>
       <p class="muted" style="margin-top: 16px; margin-bottom: 0;">
         We do not claim trust-weighted retrieval or cross-system reconciliation until product gates
-        pass. v1.0 already ships evidence preview in Context Lens and symbol-aware citations.
+        pass. v1.0 already ships store-first governance lookup and symbol-aware citations.
+        <a href="/docs/glossary.html#operational-intelligence" style="color: var(--color-action);">Glossary →</a>
       </p>
     </article>
   </div>
@@ -167,15 +279,90 @@ pageCss: product.css
 
 <section class="section section--surface">
   <div class="container container-narrow">
+    <article class="roadmap-tier" id="track-b">
+      <div class="roadmap-tier__head">
+        <span class="roadmap-status roadmap-status--enterprise">Track B · target end 2027</span>
+        <h2 class="section-title" style="margin-bottom: 0;">Enterprise &amp; organizational knowledge</h2>
+      </div>
+      <p class="muted">
+        <strong>Track B</strong> extends ContextMint from developer code intelligence into an
+        <strong>explainable organizational knowledge platform</strong> — same retrieval core and
+        local-first posture, with security and compliance controls that regulated buyers require.
+        Builds on the v2.0 Fabric; target MVP <strong>end of 2027</strong>. Design partners are
+        already prioritizing which external systems to connect first.
+      </p>
+      <div class="notice-banner notice-banner--planned" style="margin: 20px 0;">
+        <strong>Connected knowledge (Track B):</strong> One governed index across the systems your
+        teams already use — not code in isolation. v1.0 indexes <strong>Git repos</strong> today;
+        Track B adds adapter-based ingest for
+        <strong>Jira</strong> (issues, epics, ownership),
+        <strong>Confluence</strong> (wikis, ADRs, runbooks),
+        <strong>SharePoint</strong> (document libraries, policies),
+        <strong>Git</strong> (multi-repo and org-wide code graph), and
+        <strong>other knowledge bases</strong> (Notion, internal portals, ticket systems — partner-driven
+        priority). Answers cite the source system with ACL respected per document.
+      </div>
+      <h3 style="margin: 24px 0 12px; font-size: 1rem;">Security-first build order</h3>
+      <ul class="check-list">
+        <li>
+          <strong>Foundation controls (B0)</strong> — unified authorization on every read path;
+          cache keys scoped to tenant + role; explainable score breakdown fields
+        </li>
+        <li>
+          <strong>Security boundary (B3)</strong> — document-level ACL enforcement; hard multi-tenant
+          isolation (scoped storage roots, per-tenant keys, no cross-tenant joins)
+        </li>
+        <li>
+          <strong>External knowledge adapters (B1+)</strong> — Jira, Confluence, SharePoint, Git
+          org-graph, and partner-selected knowledge bases; async ingest queue with ACL from each source
+        </li>
+        <li>
+          <strong>Document ingestion (B1)</strong> — PDF, DOCX, and exported wiki pages with async
+          queue, backpressure, and quarantine for OCR-heavy workloads
+        </li>
+        <li>
+          <strong>Metadata + PII (B2)</strong> — policy-driven redaction modes; metadata boosts bounded
+          so base retrieval ranking stays stable and explainable
+        </li>
+        <li>
+          <strong>Enterprise surface (B4)</strong> — OIDC/SAML SSO, API gateway policies, admin console
+          for roles, retention, index health, and audit browsing
+        </li>
+        <li>
+          <strong>Compliance packaging (B5)</strong> — GDPR deletion proof, air-gapped Helm/Docker
+          bundles, tamper-evident audit (hash-chain + signed checkpoints), SOC 2 evidence collectors
+        </li>
+      </ul>
+      <h3 style="margin: 24px 0 12px; font-size: 1rem;">Outcomes for design partners</h3>
+      <ul class="check-list">
+        <li>Ask questions across <strong>code + Jira + Confluence + SharePoint</strong> — one answer with cited evidence, not four conflicting snippets</li>
+        <li>One platform for engineering and internal docs — same Context Lens and human-gate model</li>
+        <li>Team server deployment with SSO — extension connects to shared on-prem API, not loopback-only</li>
+        <li>Compliance exports your security team can run without vendor workshops</li>
+        <li>No cloud egress unless explicitly enabled per workspace or tenant</li>
+      </ul>
+      <p class="muted" style="margin-top: 16px; margin-bottom: 0;">
+        We do not claim live Jira/Confluence/SharePoint connectors, SOC 2 certification, or FedRAMP
+        until gated. Adapter order follows design-partner demand; v1.0 pilots stay Git-first.
+        <a href="/solutions/security-compliance.html" style="color: var(--color-action);">Security use cases →</a>
+        · <a href="/design-partners.html" style="color: var(--color-action);">Co-shape Track B →</a>
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container container-narrow">
     <article class="roadmap-tier" id="verification-engine">
       <div class="roadmap-tier__head">
-        <span class="roadmap-status roadmap-status--planned">Planned direction</span>
+        <span class="roadmap-status roadmap-status--planned">Beyond v2.0</span>
         <h2 class="section-title" style="margin-bottom: 0;">Verification Engine</h2>
       </div>
       <p class="muted">
-        Capabilities that build on the v1.0 foundation — deterministic graph evidence first; AI
-        narrates with citations, never overrides graph truth without human confirmation. Order and
-        timing evolve with design partner feedback; no public quarters until after v1.0 GA.
+        Longer-horizon capabilities on top of the Fabric — deterministic graph evidence first; AI
+        narrates with citations, never overrides graph truth without human confirmation. Timing
+        evolves with design partner feedback; many items follow <strong>Track B (end 2027)</strong>
+        and extend into <strong>2028+</strong>.
       </p>
       <ul class="check-list">
         <li>
@@ -203,13 +390,12 @@ pageCss: product.css
           (<a href="/product/agent-governance.html" style="color: var(--color-action);">learn more</a>)
         </li>
         <li><strong>ARGUS insights tab</strong> — cross-session audit history and team dashboards (beyond v1 paste + sandbox)</li>
-        <li><strong>Enterprise SSO (OIDC)</strong> and workspace RBAC on shared server deployments</li>
-        <li><strong>SOC 2 evidence packaging</strong> — formal compliance collectors (enterprise roadmap)</li>
         <li><strong>Enterprise CLI packaging</strong> — graph queries and verification in CI pipelines</li>
         <li>
           <strong>MCP server for agents</strong> — blast radius, features, and decisions as tool
           contracts (<a href="/developers/mcp-server.html" style="color: var(--color-action);">contracts</a>)
         </li>
+        <li><strong>CI/CD deployment graph</strong> — pipeline and release context linked to code changes (after Track B knowledge fabric)</li>
       </ul>
       <p class="muted" style="margin-top: 16px; margin-bottom: 0;">
         <a class="btn btn-secondary" href="/product/">Explore the Verification Engine</a>
@@ -219,7 +405,7 @@ pageCss: product.css
   </div>
 </section>
 
-<section class="section">
+<section class="section section--surface">
   <div class="container container-narrow text-center">
     <p class="muted" style="margin: 0; font-size: 0.9rem; line-height: 1.6;">
       Capabilities and order may change as we learn from pilots. What ships in v1.0 is documented on
@@ -231,4 +417,4 @@ pageCss: product.css
   </div>
 </section>
 
-{% include "cta-band.html", ctaTitle: "Shape what ships next", ctaText: "Design partners get a direct line to product engineering and priority input on the roadmap." %}
+{% include "cta-band.html", ctaTitle: "Shape what ships next", ctaText: "Design partners get a direct line to product engineering — especially for v2.0 Fabric scope and Track B enterprise requirements." %}

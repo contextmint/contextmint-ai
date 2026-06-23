@@ -29,6 +29,16 @@ npm run build
 
 Output is written to `_site/`.
 
+### Extension settings reference
+
+The [Settings reference](/docs/settings.html) page is generated from `extensions/contextmint-vscode/package.json` when that path exists in the monorepo:
+
+```bash
+npm run gen:settings   # writes src/_data/extensionSettings.json
+```
+
+In the standalone GitHub `contextmint-ai` repo, commit `src/_data/extensionSettings.json` and run `npm run build` — the generator reuses the committed file when the extension package is absent.
+
 ## Project structure
 
 ```
@@ -36,6 +46,8 @@ Output is written to `_site/`.
 ├── .github/workflows/        # GitHub Pages deploy (runs on push to main)
 ├── src/
 │   ├── _data/site.json       # Global site variables (name, URL, etc.)
+│   ├── _data/extensionSettings.json  # Generated VS Code settings catalog
+│   ├── scripts/gen-extension-settings-doc.mjs
 │   ├── _includes/            # nav.html, footer.html — edit once, all pages update
 │   ├── _layouts/base.html    # Page shell (<head>, nav, footer)
 │   ├── index.html            # Homepage

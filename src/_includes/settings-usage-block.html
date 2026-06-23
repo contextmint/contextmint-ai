@@ -1,0 +1,42 @@
+<div class="settings-usage-block" id="usage-{{ settingId | replace: '.', '-' }}">
+  <section class="settings-usage-panel settings-usage-panel--when" aria-labelledby="usage-when-{{ settingId | replace: '.', '-' }}">
+    <h4 class="settings-usage-panel__title" id="usage-when-{{ settingId | replace: '.', '-' }}">When to enable or disable</h4>
+    <div class="settings-usage-grid">
+      <div class="settings-usage-item">
+        <h5 class="settings-usage-item__label">Enable when</h5>
+        <p>{{ usage.whenEnable }}</p>
+      </div>
+      <div class="settings-usage-item">
+        <h5 class="settings-usage-item__label">Disable when</h5>
+        <p>{{ usage.whenDisable }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="settings-usage-panel settings-usage-panel--tradeoffs" aria-labelledby="usage-tradeoffs-{{ settingId | replace: '.', '-' }}">
+    <h4 class="settings-usage-panel__title" id="usage-tradeoffs-{{ settingId | replace: '.', '-' }}">Trade-offs</h4>
+    <div class="settings-usage-columns">
+      <div class="settings-usage-item settings-usage-item--pros">
+        <h5 class="settings-usage-item__label">Pros</h5>
+        <ul>
+          {% for item in usage.pros %}
+          <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="settings-usage-item settings-usage-item--cons">
+        <h5 class="settings-usage-item__label">Cons</h5>
+        <ul>
+          {% for item in usage.cons %}
+          <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="settings-usage-panel settings-usage-panel--recommendation" aria-labelledby="usage-rec-{{ settingId | replace: '.', '-' }}">
+    <h4 class="settings-usage-panel__title" id="usage-rec-{{ settingId | replace: '.', '-' }}">Recommendation</h4>
+    <p class="settings-usage-panel__body">{{ usage.recommendation }}</p>
+  </section>
+</div>
