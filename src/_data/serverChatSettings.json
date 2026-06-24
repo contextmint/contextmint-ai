@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-23",
+  "generatedAt": "2026-06-24",
   "source": "config/contextmint.defaults.yaml",
   "overlayPath": "~/.contextmint/server.defaults.yaml",
   "planDefinition": {
@@ -61,7 +61,7 @@
         },
         {
           "id": "chat.plan_selector_enabled",
-          "default": "false",
+          "default": "true",
           "description": "Evidence-based plan selector for structural questions. Off by default until you verify on your hardware.",
           "operator": true,
           "type": "boolean",
@@ -105,7 +105,7 @@
         },
         {
           "id": "chat.knowledge_object_lookup_enabled",
-          "default": "false",
+          "default": "true",
           "description": "Render structured route facts from the registry when the plan selector chooses a lookup path.",
           "operator": true,
           "type": "boolean",
