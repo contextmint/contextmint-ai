@@ -8,7 +8,7 @@ The product (backend + VS Code extension) lives in **Azure DevOps** (`repo-aware
 
 ## Prerequisites
 
-- Node.js 18+ (20 recommended)
+- Node.js 18+ (24 recommended for CI; matches GitHub Actions)
 - npm
 - A GitHub account (for hosting and deploy)
 
