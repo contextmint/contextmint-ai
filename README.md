@@ -37,7 +37,7 @@ The [Settings reference](/docs/settings.html) page is generated from `extensions
 npm run gen:settings   # writes src/_data/extensionSettings.json
 ```
 
-In the standalone GitHub `contextmint-ai` repo, commit `src/_data/extensionSettings.json` and run `npm run build` — the generator reuses the committed file when the extension package is absent.
+In the standalone GitHub `contextmint-ai` repo, commit `src/_data/extensionSettings.json` and `src/_data/serverChatSettings.json`, then run `npm run build` — each generator reuses the committed file when the monorepo source paths are absent.
 
 ## Project structure
 
@@ -47,6 +47,7 @@ In the standalone GitHub `contextmint-ai` repo, commit `src/_data/extensionSetti
 ├── src/
 │   ├── _data/site.json       # Global site variables (name, URL, etc.)
 │   ├── _data/extensionSettings.json  # Generated VS Code settings catalog
+│   ├── _data/serverChatSettings.json # Generated server chat / structural plan catalog
 │   ├── scripts/gen-extension-settings-doc.mjs
 │   ├── _includes/            # nav.html, footer.html — edit once, all pages update
 │   ├── _layouts/base.html    # Page shell (<head>, nav, footer)

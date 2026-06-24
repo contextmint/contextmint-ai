@@ -127,6 +127,21 @@ function readPlanMeta(planText) {
 }
 
 function main() {
+  const sourcesMissing = !fs.existsSync(DEFAULTS_PATH) || !fs.existsSync(PLAN_PATH);
+  if (sourcesMissing) {
+    if (fs.existsSync(OUT_PATH)) {
+      const missing = [DEFAULTS_PATH, PLAN_PATH].filter((p) => !fs.existsSync(p));
+      console.warn(
+        `Skip: ${missing.join(", ")} not found (standalone site repo). Using committed ${OUT_PATH}`,
+      );
+      return;
+    }
+    console.error(
+      `Missing monorepo config (${DEFAULTS_PATH}, ${PLAN_PATH}) and no committed ${OUT_PATH}`,
+    );
+    process.exit(1);
+  }
+
   const defaultsText = fs.readFileSync(DEFAULTS_PATH, "utf8");
   const planText = fs.readFileSync(PLAN_PATH, "utf8");
   const { planId, intent } = readPlanMeta(planText);
