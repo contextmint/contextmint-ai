@@ -26,35 +26,35 @@ const STRUCTURAL_SETTINGS = [
     id: "chat.api_surface_enabled",
     yamlKey: "api_surface_enabled",
     description:
-      "Route-wiring mode for questions like “how is this endpoint registered?”. When true, the server injects handler → router → app entry context.",
+      "Legacy pattern-detection bridge for route-wiring questions. Superseded by the query router and knowledge layer — disable in production unless debugging a regression.",
     operator: true,
   },
   {
     id: "chat.route_registry_enabled",
     yamlKey: "route_registry_enabled",
     description:
-      "Use the indexed route registry for fast lookup. Turn off only to isolate registry or extractor issues.",
+      "Index-time route registry (RouteObject knowledge). Powers O(1) structural lookup on any workspace the extractor supports.",
     operator: true,
   },
   {
     id: "chat.plan_selector_enabled",
     yamlKey: "plan_selector_enabled",
     description:
-      "Evidence-based plan selector for structural questions. Off by default until you verify on your hardware.",
+      "Query router — routes structural questions to knowledge lookup, graph expand, or full search + expand. Production default.",
     operator: true,
   },
   {
     id: "chat.plan_executor_enabled",
     yamlKey: "plan_executor_enabled",
     description:
-      "Run declarative YAML plans for graph reconstruct answers. Requires plan_selector for the full path; off by default.",
+      "Optional declarative YAML plans for graph reconstruct when registry lookup misses. Off by default.",
     operator: true,
   },
   {
     id: "chat.knowledge_object_lookup_enabled",
     yamlKey: "knowledge_object_lookup_enabled",
     description:
-      "Render structured route facts from the registry when the plan selector chooses a lookup path.",
+      "Render structured facts from index-time knowledge objects when the query router selects a lookup path.",
     operator: true,
   },
   {
@@ -169,21 +169,21 @@ function main() {
       path: "config/plans/api_registration_chain.yaml",
       rulesPath: "config/intent_classifier_rules.yaml",
       description:
-        "Declarative reconstruct plan for API route registration chains (handler → app/api.py → main.py). Not a boolean flag — selected by plan selector or api_surface bridge when structural wiring is detected.",
+        "Optional declarative graph-reconstruct plan for route registration chains. Selected by the query router when lookup misses and reconstruct is enabled — not a boolean toggle.",
     },
     sections: [
       {
-        id: "structural-query-planning",
-        title: "Structural query planning (server)",
+        id: "evidence-assembly",
+        title: "Evidence assembly (server)",
         description:
-          "Server-side tunables for route-wiring and API structure questions. Set in contextmint.defaults.yaml on the API host or ~/.contextmint/server.defaults.yaml overlay. VS Code extension settings do not control these keys.",
+          "Server-side tunables for how ContextMint assembles evidence: index-time knowledge objects first, then hybrid search + expand (file windows, workspace grep, dependency graph). Set in contextmint.defaults.yaml on the API host or ~/.contextmint/server.defaults.yaml overlay. VS Code extension settings do not control these keys.",
         settings,
       },
     ],
     usageGuide: {
-      title: "When to enable or disable structural flags",
+      title: "Evidence assembly rollout",
       summary:
-        "Turn on one layer at a time. api_surface is the default production path; plan_selector, knowledge lookup, executor, and intent classifier are advanced options for staging and pilots.",
+        "Production default: query router + route registry + knowledge lookup on; optional graph executor and intent classifier for staging. LLM inference for evidence selection is off by default (last resort only). api_surface is a legacy rollback bridge — not the primary path.",
       rolloutScenarios: SERVER_ROLLOUT_SCENARIOS,
       dependencyNotes: SERVER_DEPENDENCY_NOTES,
       verifyTips: SERVER_VERIFY_TIPS,

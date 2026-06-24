@@ -83,6 +83,20 @@ pageCss: product.css
   </details>
 </dl>
 
+<h2 id="evidence-assembly">Evidence assembly (v1.0)</h2>
+<p class="muted">Shipped in v1.0 pilot — workspace-agnostic; not tied to one framework layout.</p>
+
+<dl class="faq-list" style="gap: 0;">
+  <details class="faq-item" id="knowledge-objects">
+    <summary>Knowledge objects</summary>
+    <div class="faq-item__body"><p>Structural facts extracted <strong>once at index time</strong> (for example <code>RouteObject</code> for API routes) and stored in registry sidecars. The query router answers deterministic structural questions from these objects before running full search.</p></div>
+  </details>
+  <details class="faq-item" id="retrieve-expand-infer">
+    <summary>Retrieve → Expand → Infer</summary>
+    <div class="faq-item__body"><p>When knowledge lookup misses or the question is semantic, ContextMint runs hybrid search, then <strong>expands</strong> around hits (file windows, workspace grep, dependency-graph neighbours). Optional LLM evidence selection is <strong>last resort only</strong> — tier-gated and off by default.</p></div>
+  </details>
+</dl>
+
 <h2 id="operational-intelligence">Operational intelligence &amp; reconciliation (v2.0 roadmap)</h2>
 <p class="muted">Planned in <a href="/roadmap.html#v2">v2.0 Engineering Intelligence</a> — see also <a href="/roadmap.html#operational-intelligence">operational intelligence</a> and <a href="/roadmap.html#track-b">Track B</a>. Not shipped in v1.0.</p>
 
@@ -93,7 +107,7 @@ pageCss: product.css
   </details>
   <details class="faq-item" id="operational-intelligence-retrieval">
     <summary>Operational intelligence retrieval (OIR)</summary>
-    <div class="faq-item__body"><p>Retrieval scored by relevance <strong>and</strong> trust, freshness, and evidence coverage — not vector similarity alone. Roadmap enhancement to hybrid search after the Knowledge Fabric layer ships.</p></div>
+    <div class="faq-item__body"><p>Retrieval scored by relevance <strong>and</strong> trust, freshness, and evidence coverage — not vector similarity alone. Planned enhancement on the v2.0 Knowledge Fabric; v1.0 ships hybrid search + expand with human gates.</p></div>
   </details>
   <details class="faq-item" id="symbol-aware-retrieval">
     <summary>Symbol-aware retrieval</summary>

@@ -47,7 +47,7 @@ In the standalone GitHub `contextmint-ai` repo, commit `src/_data/extensionSetti
 ├── src/
 │   ├── _data/site.json       # Global site variables (name, URL, etc.)
 │   ├── _data/extensionSettings.json  # Generated VS Code settings catalog
-│   ├── _data/serverChatSettings.json # Generated server chat / structural plan catalog
+│   ├── _data/serverChatSettings.json # Generated server evidence-assembly catalog
 │   ├── scripts/gen-extension-settings-doc.mjs
 │   ├── _includes/            # nav.html, footer.html — edit once, all pages update
 │   ├── _layouts/base.html    # Page shell (<head>, nav, footer)

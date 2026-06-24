@@ -1,6 +1,7 @@
 /**
  * Operator usage copy for contextmint-ai settings docs (server + extension).
  * User-facing language only — no internal ticket IDs, plan codes, or CI script names.
+ * Aligned with workspace-agnostic Retrieve → Expand → Infer (ADR-015).
  */
 
 /** @typedef {{ whenEnable: string, whenDisable: string, pros: string[], cons: string[], recommendation: string }} SettingUsage */
@@ -9,105 +10,104 @@
 export const SERVER_SETTING_USAGE = {
   "chat.api_surface_enabled": {
     whenEnable:
-      "Production installs where users ask how API routes are wired (handler → router → app entry). Keep on unless you are isolating a retrieval bug.",
+      "Legacy rollback only — when you need the older pattern-detection bridge while isolating query-router regressions.",
     whenDisable:
-      "Emergency rollback, comparing plain search-only answers, or debugging whether route-chain context is causing bad sources.",
+      "Normal operation — the query router and knowledge layer handle structural questions without path-pattern boosts.",
     pros: [
-      "Proven path for route-wiring questions — traces handler → registration hub → mount chain",
-      "Works without the advanced plan selector or executor (simpler stack)",
-      "On by default — no operator action required",
+      "Familiar fallback during staged rollouts",
+      "Can be toggled independently of the query router",
     ],
     cons: [
-      "Uses pattern detection, not the full evidence-based plan selector",
-      "Best tuned for FastAPI-style layouts; other frameworks rely more on the route registry long-term",
-      "Rare misclassification could over-boost API-related files",
+      "Not workspace-agnostic — pattern boosts can favour one framework layout",
+      "Superseded by index-time knowledge objects plus search + expand",
+      "May compete with registry lookup on structural questions",
     ],
-    recommendation: "Keep enabled unless you have a documented regression.",
+    recommendation: "Disable in production unless you are debugging a documented regression.",
   },
   "chat.route_registry_enabled": {
     whenEnable:
-      "Normal operation after indexing completes. Required for fast registry lookups when the plan selector is on.",
+      "Always — after indexing completes. Powers index-time route knowledge (RouteObject lookup) for structural questions.",
     whenDisable:
-      "Suspected stale route registry, extractor debugging, or forcing graph-reconstruct only.",
+      "Extractor debugging, suspected stale registry, or forcing expand-only retrieval.",
     pros: [
-      "Fast, deterministic route lookup at query time",
-      "Foundation for structured route answers",
-      "Can be turned off without disabling all structural retrieval",
+      "O(1) route facts from index-time extraction — any framework the extractor supports",
+      "Foundation for knowledge-layer answers before search runs",
+      "Works across workspaces without golden-path tables",
     ],
     cons: [
-      "Quality depends on index-time route extraction (coverage and drift)",
+      "Quality depends on index-time route extraction coverage",
       "Stale until you re-index after route changes",
-      "Limited benefit while the plan selector stays off",
+      "Little value if extractors miss your stack",
     ],
-    recommendation: "Keep enabled; re-index if lookup quality is poor.",
+    recommendation: "Keep enabled; re-index if structural answers miss routes.",
   },
   "chat.plan_selector_enabled": {
     whenEnable:
-      "Staging or pilot when you want evidence-based routing instead of pattern detection alone — after you have verified behavior on your hardware.",
+      "Production default — routes questions to knowledge lookup, graph expand, or full search based on workspace signals.",
     whenDisable:
-      "Selector regression, before hardware verification, or rollback to the simpler api_surface path only.",
+      "Emergency rollback to generic hybrid search only, or before hardware verification on a new host.",
     pros: [
-      "Repository signals drive routing — not regex alone",
-      "New structural plans via YAML instead of new server code",
-      "Enables registry lookup when paired with knowledge_object_lookup",
+      "Workspace-agnostic query router — not regex or repo layout alone",
+      "Structural facts from knowledge layer first; semantic questions fall through to search + expand",
+      "Enables knowledge object lookup when the registry has a hit",
     ],
     cons: [
-      "More moving parts; weak signals fall back to generic search",
-      "Chat may still use the simpler api_surface path until fully migrated",
-      "Works best with a healthy route registry and code graph",
+      "More moving parts than search-only mode",
+      "Weak extractor coverage falls through to expand paths (slower)",
+      "Works best with a healthy route registry and dependency graph",
     ],
-    recommendation: "Pilot on staging first; confirm route-wiring answers before production.",
+    recommendation: "Keep enabled in production after indexing completes.",
   },
   "chat.knowledge_object_lookup_enabled": {
     whenEnable:
-      "Together with plan_selector_enabled when registry lookup quality is good on your workspace.",
+      "Production default — render structured route facts from the index-time registry when the query router selects a lookup path.",
     whenDisable:
-      "Renderer issues, wrong agreement banners, or preferring narration from search chunks only.",
+      "Renderer issues, agreement-banner bugs, or preferring narration from expanded excerpts only.",
     pros: [
-      "Deterministic route facts — fewer invented handler names",
+      "Deterministic structural facts — fewer invented handler or path names",
       "Faster and cheaper than full graph reconstruct plus LLM",
-      "Answers cite registry facts instead of guessing structure",
+      "Answers cite registry objects instead of guessing wiring",
     ],
     cons: [
       "Only helps when the registry has a hit for the question",
-      "Little benefit if registry quality is weak",
+      "Little benefit if extractor coverage is weak on your stack",
       "Renderer must stay aligned with Context Lens in the extension",
     ],
-    recommendation: "Enable with plan_selector after registry quality looks solid.",
+    recommendation: "Keep enabled with plan_selector after registry quality looks solid.",
   },
   "chat.plan_executor_enabled": {
     whenEnable:
-      "After plan selector and route registry prove value — when you need declarative graph walks for reconstruct answers.",
+      "Staging or pilot when registry misses structural questions and you need declarative graph walks for reconstruct answers.",
     whenDisable:
-      "Reconstruct is unstable, registry hit rate is low, or you are not ready for the advanced stack.",
+      "Default production — graph reconstruct at query time is slower than registry lookup or expand.",
     pros: [
-      "Declarative api_registration_chain plan in YAML",
-      "Replaces legacy registration-chain logic over time",
-      "Complexity capped (operations, depth, time)",
+      "Declarative YAML plans for graph reconstruct when lookup misses",
+      "Complexity capped (operations, depth, wall time)",
+      "Optional layer — not required for most route-wiring questions",
     ],
     cons: [
-      "Graph reconstruct at query time — slower than registry lookup",
-      "Heavy reconstruct use may signal registry gaps",
+      "Graph reconstruct at query time — higher latency than knowledge lookup",
+      "Heavy use may signal registry or extractor gaps worth fixing at index time",
       "Enable only after selector and registry prove value",
     ],
-    recommendation: "Enable last among structural flags, one layer at a time.",
+    recommendation: "Off in production unless reconstruct answers are required and lookup is insufficient.",
   },
   "chat.intent_classifier_enabled": {
     whenEnable:
-      "With plan_selector on, when paraphrased questions miss routing (e.g. “how do I enter the system?”) and fall back to generic search.",
+      "Optional polish when paraphrased questions miss routing probes and fall back to generic search.",
     whenDisable:
-      "Debugging the selector, before the selector is on, or too many false structural hints.",
+      "Default — keyword and structural probes are enough for most workspaces.",
     pros: [
-      "Catches paraphrases when keyword probes miss",
+      "Catches paraphrases when probes miss",
       "Adds candidates only — never removes existing probe hits",
-      "Regex fast path in v1 — no ML model required",
+      "Regex fast path — no ML model required",
     ],
     cons: [
       "Small gain when registry and probes already work",
       "Bad rules could weakly boost reconstruct paths",
       "ML model path reserved for a future release",
     ],
-    recommendation: "Optional polish after plan_selector; not required for basic route-wiring answers.",
+    recommendation: "Optional after plan_selector; not required for basic structural answers.",
   },
   "chat.intent_classifier_rules_path": {
     whenEnable: "Point to your paraphrase rules file (default: config/intent_classifier_rules.yaml).",
@@ -188,15 +188,16 @@ export const EXTENSION_SETTING_USAGE = {
   },
   "contextmint.chat.canonicalOverviewGrepMaxSnippets": {
     whenEnable:
-      "Architecture or “how does this repo work?” prompts need more entry-point file snippets.",
+      "Architecture or “how does this repo work?” prompts need more entry-point file snippets from client grep.",
     whenDisable:
-      "Overview answers already cite main.py, api.py, and the extension — reduce grep competition.",
-    pros: ["Boosts entry-point anchors for high-level architecture questions"],
+      "Overview answers already cite the right entry files — reduce client grep competition with server expand.",
+    pros: ["More local snippets for high-level architecture questions"],
     cons: ["More grep slots on a query type sensitive to noise"],
-    recommendation: "Leave default unless entry paths are missing from overview answers.",
+    recommendation: "Leave default unless entry files are missing from overview answers.",
   },
   "contextmint.chat.canonicalOverviewGrepHeadLines": {
-    whenEnable: "Entry files lack keyword overlap — need more head lines from main.py, api.py, etc.",
+    whenEnable:
+      "Entry files lack keyword overlap — need more head lines from application entry or bootstrap files.",
     whenDisable: "Grep snippets are too large for tight token budgets.",
     pros: ["Helps overview when keywords miss file headers"],
     cons: ["Larger snippets per grep hit"],
@@ -238,7 +239,40 @@ export const SERVER_ROLLOUT_SCENARIOS = [
   {
     name: "Production (recommended default)",
     flags: {
-      api_surface: true,
+      api_surface: false,
+      route_registry: true,
+      plan_selector: true,
+      knowledge_lookup: true,
+      plan_executor: false,
+      intent_classifier: false,
+    },
+  },
+  {
+    name: "Staging — graph reconstruct",
+    flags: {
+      api_surface: false,
+      route_registry: true,
+      plan_selector: true,
+      knowledge_lookup: true,
+      plan_executor: true,
+      intent_classifier: false,
+    },
+  },
+  {
+    name: "Staging — paraphrase polish",
+    flags: {
+      api_surface: false,
+      route_registry: true,
+      plan_selector: true,
+      knowledge_lookup: true,
+      plan_executor: false,
+      intent_classifier: "optional",
+    },
+  },
+  {
+    name: "Emergency rollback — search only",
+    flags: {
+      api_surface: false,
       route_registry: true,
       plan_selector: false,
       knowledge_lookup: false,
@@ -247,29 +281,7 @@ export const SERVER_ROLLOUT_SCENARIOS = [
     },
   },
   {
-    name: "Staging — try plan selector",
-    flags: {
-      api_surface: true,
-      route_registry: true,
-      plan_selector: true,
-      knowledge_lookup: true,
-      plan_executor: false,
-      intent_classifier: false,
-    },
-  },
-  {
-    name: "Staging — full advanced stack",
-    flags: {
-      api_surface: true,
-      route_registry: true,
-      plan_selector: true,
-      knowledge_lookup: true,
-      plan_executor: true,
-      intent_classifier: "optional",
-    },
-  },
-  {
-    name: "Emergency rollback",
+    name: "Legacy bridge (debug only)",
     flags: {
       api_surface: true,
       route_registry: true,
@@ -282,29 +294,31 @@ export const SERVER_ROLLOUT_SCENARIOS = [
 ];
 
 export const SERVER_DEPENDENCY_NOTES = [
-  "api_surface_enabled works on its own — this is the default production path for route-wiring questions.",
-  "plan_selector_enabled expects a healthy route registry; keep route_registry_enabled on.",
+  "Structural questions use index-time knowledge objects first (route registry), then search + expand (windows, grep, graph neighbours) — not repo-specific path injection.",
+  "plan_selector_enabled is the query router master switch; keep route_registry_enabled on for RouteObject lookup.",
   "knowledge_object_lookup_enabled requires plan_selector_enabled and registry hits.",
-  "plan_executor_enabled is for graph reconstruct answers; enable after selector and registry prove value.",
-  "intent_classifier_enabled only expands plan selector candidates; enable after plan_selector.",
+  "plan_executor_enabled is for optional graph reconstruct when lookup misses — off by default in production.",
+  "retrieval.inference_enabled (server defaults) gates LLM evidence selection — last resort only, off by default.",
+  "api_surface_enabled is a legacy rollback bridge — not the primary production path.",
 ];
 
 export const EXTENSION_RETRIEVAL_GUIDE = {
   id: "extension-retrieval",
   title: "Retrieval & context assembly (extension)",
   summary:
-    "These VS Code settings control what the extension adds before the API assembles context. They complement — but do not replace — server-side structural flags below. High-level architecture answers are mostly shaped on the server; local grep can still add noise if left wide open after indexing finishes.",
-  serverLinkAnchor: "#settings-server-structural-query-planning",
+    "These VS Code settings control what the extension adds before the API assembles evidence. They complement — but do not replace — server-side evidence assembly below. The server routes structural questions to index-time knowledge when available, then hybrid search, window expansion, workspace grep, and dependency-graph neighbours. Local client grep can add noise if left wide open after indexing finishes.",
+  serverLinkAnchor: "#settings-server-evidence-assembly",
   tips: [
     "For “how does this repo work?” questions, keep client grep reasonable and let indexing finish first.",
-    "For “how is this route registered?” questions, server structural flags matter more than extension grep.",
+    "For “how is this route registered?” questions, server knowledge lookup matters more than extension grep.",
     "If answers cite the wrong files, lower clientGrepMaxSnippets or enable clientGrepIndexingOnly.",
+    "Context Lens shows shipped provenance — what you preview is what the model receives.",
   ],
 };
 
 export const SERVER_VERIFY_TIPS = [
-  "Ask how an API route is wired — the answer should trace handler → router file → application entry.",
-  "After enabling plan selector, retry the same question and confirm sources match your codebase.",
-  "If quality drops, disable the newest flag you turned on and re-index the workspace.",
+  "Ask how an API route is wired — the answer should trace handler → router → application entry from registry facts or expanded excerpts.",
+  "Retry the same question after re-indexing if route facts look stale.",
+  "If quality drops, disable the newest flag you turned on (or roll back to search-only) and re-index the workspace.",
   "Use Engine → observability or your metrics endpoint to watch structural query volume after changes.",
 ];

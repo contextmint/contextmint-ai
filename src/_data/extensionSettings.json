@@ -100,7 +100,7 @@
           "operator": false,
           "type": "number",
           "usage": {
-            "whenEnable": "Entry files lack keyword overlap — need more head lines from main.py, api.py, etc.",
+            "whenEnable": "Entry files lack keyword overlap — need more head lines from application entry or bootstrap files.",
             "whenDisable": "Grep snippets are too large for tight token budgets.",
             "pros": [
               "Helps overview when keywords miss file headers"
@@ -119,15 +119,15 @@
           "operator": false,
           "type": "number",
           "usage": {
-            "whenEnable": "Architecture or “how does this repo work?” prompts need more entry-point file snippets.",
-            "whenDisable": "Overview answers already cite main.py, api.py, and the extension — reduce grep competition.",
+            "whenEnable": "Architecture or “how does this repo work?” prompts need more entry-point file snippets from client grep.",
+            "whenDisable": "Overview answers already cite the right entry files — reduce client grep competition with server expand.",
             "pros": [
-              "Boosts entry-point anchors for high-level architecture questions"
+              "More local snippets for high-level architecture questions"
             ],
             "cons": [
               "More grep slots on a query type sensitive to noise"
             ],
-            "recommendation": "Leave default unless entry paths are missing from overview answers."
+            "recommendation": "Leave default unless entry files are missing from overview answers."
           }
         },
         {
@@ -1269,12 +1269,13 @@
   "retrievalGuide": {
     "id": "extension-retrieval",
     "title": "Retrieval & context assembly (extension)",
-    "summary": "These VS Code settings control what the extension adds before the API assembles context. They complement — but do not replace — server-side structural flags below. High-level architecture answers are mostly shaped on the server; local grep can still add noise if left wide open after indexing finishes.",
-    "serverLinkAnchor": "#settings-server-structural-query-planning",
+    "summary": "These VS Code settings control what the extension adds before the API assembles evidence. They complement — but do not replace — server-side evidence assembly below. The server routes structural questions to index-time knowledge when available, then hybrid search, window expansion, workspace grep, and dependency-graph neighbours. Local client grep can add noise if left wide open after indexing finishes.",
+    "serverLinkAnchor": "#settings-server-evidence-assembly",
     "tips": [
       "For “how does this repo work?” questions, keep client grep reasonable and let indexing finish first.",
-      "For “how is this route registered?” questions, server structural flags matter more than extension grep.",
-      "If answers cite the wrong files, lower clientGrepMaxSnippets or enable clientGrepIndexingOnly."
+      "For “how is this route registered?” questions, server knowledge lookup matters more than extension grep.",
+      "If answers cite the wrong files, lower clientGrepMaxSnippets or enable clientGrepIndexingOnly.",
+      "Context Lens shows shipped provenance — what you preview is what the model receives."
     ]
   }
 }

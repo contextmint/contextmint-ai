@@ -42,8 +42,8 @@ pageCss: product.css
 <p class="settings-toc muted">
   Jump to:
   <a href="#usage-extension-retrieval">Extension retrieval guide</a> ·
-  <a href="#server-yaml">Server structural flags</a> ·
-  <a href="#usage-server-structural">Server usage &amp; rollout</a>
+  <a href="#server-yaml">Server evidence assembly</a> ·
+  <a href="#usage-server-structural">Rollout &amp; verification</a>
 </p>
 
 {% if extensionSettings.retrievalGuide %}
@@ -52,7 +52,7 @@ pageCss: product.css
   <p class="muted">{{ extensionSettings.retrievalGuide.summary }}</p>
   <p class="muted">
     Related server keys:
-    <a href="{{ extensionSettings.retrievalGuide.serverLinkAnchor }}">Structural query planning (server)</a>.
+    <a href="{{ extensionSettings.retrievalGuide.serverLinkAnchor }}">Evidence assembly (server)</a>.
   </p>
   {% if extensionSettings.retrievalGuide.tips %}
   <p class="settings-verify-label">Tips</p>
@@ -132,9 +132,9 @@ pageCss: product.css
 
 {% if serverChatSettings %}
 <section class="settings-section" id="settings-structural-plans">
-  <h2>Structural plan: <code>{{ serverChatSettings.planDefinition.planId }}</code></h2>
+  <h2>Optional graph plan: <code>{{ serverChatSettings.planDefinition.planId }}</code></h2>
   <p class="muted">
-    <code>api_registration_chain</code> is a <strong>plan definition</strong> (not a VS Code setting).
+    <code>api_registration_chain</code> is an <strong>optional reconstruct plan</strong> (not a VS Code setting).
     Declared in <span class="mono">{{ serverChatSettings.planDefinition.path }}</span>
     · intent <span class="mono">{{ serverChatSettings.planDefinition.intent }}</span>
     · paraphrase rules <span class="mono">{{ serverChatSettings.planDefinition.rulesPath }}</span>.
@@ -158,7 +158,7 @@ pageCss: product.css
       <thead>
         <tr>
           <th scope="col">Scenario</th>
-          <th scope="col">api_surface</th>
+          <th scope="col">legacy api_surface</th>
           <th scope="col">route_registry</th>
           <th scope="col">plan_selector</th>
           <th scope="col">knowledge_lookup</th>

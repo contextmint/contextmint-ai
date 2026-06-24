@@ -112,6 +112,11 @@ pageCss: product.css
           report only, human-gated fixes
         </li>
         <li>
+          <strong>Workspace-agnostic evidence assembly</strong> — index-time route knowledge when
+          available, then hybrid search + expand (file windows, grep, dependency graph) on any
+          indexed repo
+        </li>
+        <li>
           <strong>Symbol-aware retrieval</strong> — citations name file, symbol, and line range — not
           anonymous text chunks
         </li>
@@ -237,8 +242,9 @@ pageCss: product.css
       </div>
       <h3 id="operational-intelligence" style="margin: 28px 0 12px; font-size: 1rem;">Operational intelligence (within v2.0)</h3>
       <p class="muted">
-        v1.0 retrieves <strong>named engineering artifacts</strong> with hybrid search and human gates.
-        v2.0 adds scoring <strong>belief</strong>, not similarity alone — and reconciles conflicting
+        v1.0 assembles <strong>named engineering artifacts</strong> with index-time knowledge objects
+        (routes today), hybrid search + expand, and human gates. v2.0 adds scoring
+        <strong>belief</strong> across more object kinds — and reconciles conflicting
         signals into one auditable answer.
       </p>
       <ul class="check-list">
@@ -270,7 +276,8 @@ pageCss: product.css
       </ul>
       <p class="muted" style="margin-top: 16px; margin-bottom: 0;">
         We do not claim trust-weighted retrieval or cross-system reconciliation until product gates
-        pass. v1.0 already ships store-first governance lookup and symbol-aware citations.
+        pass. v1.0 already ships index-time route knowledge, store-first governance lookup, and
+        symbol-aware citations.
         <a href="/docs/glossary.html#operational-intelligence" style="color: var(--color-action);">Glossary →</a>
       </p>
     </article>
