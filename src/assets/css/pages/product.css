@@ -497,6 +497,161 @@ kbd {
   line-height: 1.55;
 }
 
+.settings-callout--warn {
+  border-color: rgba(234, 179, 8, 0.45);
+  background: rgba(234, 179, 8, 0.08);
+}
+
+/* Tab cards (server vs VS Code) */
+.settings-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 20px 0 16px;
+}
+
+@media (max-width: 640px) {
+  .settings-tabs {
+    grid-template-columns: 1fr;
+  }
+}
+
+.settings-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 16px 18px;
+  border-radius: var(--radius-md, 8px);
+  border: 2px solid var(--border-default);
+  background: var(--surface-default);
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.settings-tab:hover {
+  border-color: var(--accent-primary, #10b981);
+}
+
+.settings-tab--active {
+  border-color: var(--accent-primary, #10b981);
+  background: var(--surface-raised, rgba(16, 185, 129, 0.06));
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+.settings-tab__label {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.settings-tab__count {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent-primary, #10b981);
+}
+
+.settings-tab__hint {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.settings-tab-panel {
+  margin-top: 8px;
+}
+
+.settings-tab-panel[hidden] {
+  display: none !important;
+}
+
+.settings-filter-input--tab {
+  max-width: 100%;
+}
+
+/* Collapsible groups (default closed — no [open] in markup) */
+.settings-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.settings-group {
+  border: 1px solid var(--border-subtle, var(--border-default));
+  border-radius: var(--radius-md, 8px);
+  background: var(--surface-default);
+  overflow: hidden;
+}
+
+.settings-group__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  font-weight: 600;
+  list-style: none;
+  user-select: none;
+}
+
+.settings-group__summary::-webkit-details-marker {
+  display: none;
+}
+
+.settings-group__summary::before {
+  content: "▸";
+  flex-shrink: 0;
+  margin-right: 4px;
+  color: var(--text-secondary);
+  transition: transform 0.15s ease;
+}
+
+.settings-group[open] > .settings-group__summary::before {
+  transform: rotate(90deg);
+}
+
+.settings-group__title {
+  flex: 1;
+  font-size: 0.95rem;
+}
+
+.settings-group__meta {
+  flex-shrink: 0;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.settings-group__body {
+  padding: 0 16px 16px;
+  border-top: 1px solid var(--border-subtle, var(--border-default));
+}
+
+.settings-group__body > .muted:first-child {
+  margin-top: 12px;
+}
+
+.settings-footer {
+  margin-top: 2rem;
+}
+
+.settings-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  align-items: flex-end;
+  margin: 16px 0 8px;
+}
+
+.settings-toolbar .settings-filter-label {
+  margin-bottom: 6px;
+}
+
 .settings-meta {
   font-size: 0.85rem;
   margin-bottom: 16px;
@@ -522,7 +677,7 @@ kbd {
 }
 
 .settings-section {
-  margin-top: 2.5rem;
+  margin-top: 0;
 }
 
 .settings-table-wrap {
@@ -965,5 +1120,41 @@ kbd {
   font-size: 0.92rem;
   line-height: 1.55;
   color: var(--text-secondary);
+}
+
+/* Knowledge & governance doc (docs/knowledge-and-governance.html) */
+.doc-callout {
+  margin: 20px 0;
+  padding: 14px 16px;
+  border-radius: var(--radius-md, 8px);
+  border: 1px solid var(--border-default);
+  background: var(--surface-raised, rgba(16, 185, 129, 0.06));
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.doc-callout p:last-child {
+  margin-bottom: 0;
+}
+
+.doc-figure {
+  margin: 1.5rem 0;
+}
+
+.doc-figure img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md, 8px);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-canvas);
+}
+
+.doc-figure figcaption {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
 }
 

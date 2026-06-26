@@ -1,0 +1,270 @@
+---
+layout: doc.html
+title: Knowledge Layer & Governance | ContextMint Docs
+description: How the Engine Knowledge tab supports governance — structural registries, activity audit, worked examples, data persistence, and screenshot checklist for operators.
+pageCss: product.css
+---
+
+<h1>Knowledge layer &amp; governance</h1>
+<p class="doc-lead">
+  Governance in ContextMint answers <strong>“Is this codebase healthy?”</strong> (Quality map, DRY findings,
+  patch gates). The Engine <strong>Knowledge</strong> tab answers <strong>“What did indexing discover, and what
+  did the system do?”</strong> — structural facts plus a redacted activity audit. Together they give operators
+  and leads a verifiable trail without opening JSON sidecars or VS Code.
+</p>
+
+<div class="doc-callout doc-callout--info">
+  <p><strong>Where to open it:</strong> ContextMint Engine → left nav → <strong>Knowledge</strong>
+  (<code>http://localhost:1420</code> in browser dev, or the desktop window after <code>npm run tauri dev</code>).
+  Requires <code>contextmint serve</code> on loopback.</p>
+</div>
+
+<h2>Two surfaces — do not confuse them</h2>
+<table class="muted" style="width:100%; border-collapse: collapse; font-size: 0.9rem;">
+  <thead>
+    <tr style="text-align:left; border-bottom: 1px solid var(--border-default);">
+      <th style="padding:8px 0;">Question</th>
+      <th style="padding:8px 0;">Engine tab</th>
+      <th style="padding:8px 0;">Typical user</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom: 1px solid var(--border-subtle);">
+      <td style="padding:10px 0;">Are we duplicated / violating config policy / carrying god-files?</td>
+      <td style="padding:10px 0;"><strong>Quality</strong> (+ VS Code governance drawer)</td>
+      <td style="padding:10px 0;">Tech lead, architect</td>
+    </tr>
+    <tr style="border-bottom: 1px solid var(--border-subtle);">
+      <td style="padding:10px 0;">What routes, services, and docs did we index? Who imports whom?</td>
+      <td style="padding:10px 0;"><strong>Knowledge → Structure</strong></td>
+      <td style="padding:10px 0;">Platform eng, SRE, security reviewer</td>
+    </tr>
+    <tr>
+      <td style="padding:10px 0;">Did chat use governance fast path? What was latency? Which workspace?</td>
+      <td style="padding:10px 0;"><strong>Knowledge → Activity</strong></td>
+      <td style="padding:10px 0;">Compliance, support, operator</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="muted">
+  Deep dive on patch gates and quality scans:
+  <a href="/docs/patches-governance.html">Patches &amp; governance</a>.
+  Engine tray overview:
+  <a href="/docs/engine-operator.html">Engine operator guide</a>.
+</p>
+
+<h2>Knowledge → Structure</h2>
+<p>
+  After indexing, ContextMint writes <strong>Knowledge Layer</strong> sidecars under
+  <code>&lt;workspace&gt;/.contextmint/registries/</code> — routes, services, documents, sections, and (when
+  extractors populate them) policies. The Structure segment is a searchable browser over those objects, not a
+  live search over source files.
+</p>
+
+<h3>Kind tabs</h3>
+<ul>
+  <li><strong>Routes</strong> — HTTP method + path, handler file, registration hub (<code>app/api.py</code>), mount in <code>main.py</code></li>
+  <li><strong>Services</strong> — service symbols, definition file, consumer importers</li>
+  <li><strong>Documents</strong> — PDF/Markdown sections indexed as document objects</li>
+  <li><strong>Sections</strong> — wiki/HTML sections (when connector extractors run)</li>
+  <li><strong>Policies</strong> — governance/CI policy rules (index-time; grows as extractors ship)</li>
+</ul>
+
+<p>Each row shows an <strong>Agreement</strong> score (0–1) from index-time signals — similar in spirit to
+  governance <strong>trust</strong> metadata in chat, but for structural extraction confidence.</p>
+
+<h3>Graph preview (right pane)</h3>
+<ul>
+  <li><strong>Route</strong> — vertical chain: mount → registration → handler → route</li>
+  <li><strong>Service</strong> — definition card + consumer list (not one long misleading chain)</li>
+  <li><strong>Document / file focus</strong> — focus file + imports / imported-by neighbourhood</li>
+</ul>
+
+<figure class="doc-figure">
+  <img src="/assets/img/screenshots/engine-knowledge-routes.png" alt="Engine Knowledge tab — Routes structure list and registration graph" width="1280" loading="lazy" />
+  <figcaption>Routes: select a row to see mount → <code>app/api.py</code> → handler wiring.</figcaption>
+</figure>
+
+<h2>Knowledge → Activity</h2>
+<p>
+  The Activity segment tails the server <strong>append-only audit JSONL</strong>. Events include chat streams,
+  governance fast-path decisions, indexing milestones, ACL changes, and action confirmations — with
+  <strong>no raw query text</strong> (privacy by design).
+</p>
+
+<ul>
+  <li>Filter by workspace, event <code>type</code> (e.g. <code>governance_fast_path</code>), and text search on metadata</li>
+  <li><strong>Since</strong> dropdown: 15 min, 1 h, 6 h, or <strong>24 hours</strong> — this is a <em>view</em> filter, not deletion</li>
+  <li><strong>Export JSON</strong> — download redacted events for support or compliance review</li>
+</ul>
+
+<figure class="doc-figure">
+  <img src="/assets/img/screenshots/engine-knowledge-activity.png" alt="Engine Knowledge tab — Activity audit stream with governance_fast_path events" width="1280" loading="lazy" />
+  <figcaption>Activity: prove a governed answer used the findings-store path (filter <code>governance_fast_path</code>).</figcaption>
+</figure>
+
+<h2>Is data only kept for 24 hours?</h2>
+<p><strong>No.</strong> Persistence and the UI time window are different things.</p>
+
+<table class="muted" style="width:100%; border-collapse: collapse; font-size: 0.9rem;">
+  <thead>
+    <tr style="text-align:left; border-bottom: 1px solid var(--border-default);">
+      <th style="padding:8px 0;">Data</th>
+      <th style="padding:8px 0;">Persisted?</th>
+      <th style="padding:8px 0;">Location</th>
+      <th style="padding:8px 0;">UI limit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom: 1px solid var(--border-subtle);">
+      <td style="padding:10px 0;"><strong>Structure</strong> (routes, services, docs…)</td>
+      <td style="padding:10px 0;">Yes — until next reindex</td>
+      <td style="padding:10px 0;"><code>&lt;workspace&gt;/.contextmint/registries/*.json</code></td>
+      <td style="padding:10px 0;">None (paginated list; not time-based)</td>
+    </tr>
+    <tr style="border-bottom: 1px solid var(--border-subtle);">
+      <td style="padding:10px 0;"><strong>Activity audit</strong></td>
+      <td style="padding:10px 0;">Yes — append-only JSONL</td>
+      <td style="padding:10px 0;"><code>~/.contextmint/audit/&lt;workspace_id&gt;.jsonl</code> (override: <code>AUDIT_DIR</code>)</td>
+      <td style="padding:10px 0;">Default view: last <strong>1 hour</strong>; max dropdown: <strong>24 hours</strong>; up to 2 000 events per request</td>
+    </tr>
+    <tr>
+      <td style="padding:10px 0;"><strong>Quality findings</strong></td>
+      <td style="padding:10px 0;">Yes — scan store</td>
+      <td style="padding:10px 0;">Workspace quality map (see Quality tab)</td>
+      <td style="padding:10px 0;">Not on Knowledge tab</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  Audit files <strong>rotate</strong> when a single file exceeds ~50 MB (renamed with a timestamp suffix); older
+  lines remain on disk. ContextMint does not currently auto-delete audit JSONL by age — the 24 h cap is only what
+  the Engine UI loads by default for responsiveness. For older history, read files under
+  <code>~/.contextmint/audit/</code> directly or use <strong>Export JSON</strong> within the widest window.
+</p>
+
+<p class="muted">
+  Operator tunables: <code>engine.audit_tail_default_since_minutes</code>,
+  <code>engine.audit_tail_max_since_minutes</code> (1440 = 24 h) in server defaults — see
+  <a href="/docs/settings.html">Settings reference</a>.
+</p>
+
+<h2>Worked examples — governance + Knowledge together</h2>
+
+<h3>Example 1 — Verify a governed DRY answer (C4 UAT)</h3>
+<ol>
+  <li>In VS Code, ask in <strong>Repo</strong> lane:
+    <em>“Is any logic repeated unnecessarily in this codebase?”</em></li>
+  <li>Pass criteria: toast <strong>Answer from quality map</strong>; reasoning shows findings-store path.</li>
+  <li>In Engine → <strong>Knowledge → Activity</strong>, set Since to <strong>24 hours</strong>, filter type
+    <code>governance_fast_path</code>.</li>
+  <li>Confirm a new row: workspace id, latency, optional <code>governance_path</code> / findings metadata in
+    exported JSON (no query text).</li>
+</ol>
+<p class="muted">
+  Quality tab shows <em>what</em> was found; Activity shows <em>that the fast path ran</em> — together they
+  support audit questions from security or PMO.
+</p>
+
+<h3>Example 2 — Cross-check a config-policy finding</h3>
+<ol>
+  <li>Engine → <strong>Quality</strong> — note a <strong>config policy</strong> finding on
+    <code>app/services/foo.py</code> (hardcoded timeout).</li>
+  <li>Engine → <strong>Knowledge → Structure → Services</strong> — search <code>foo</code>.</li>
+  <li>Select the service row; graph pane lists <strong>Consumers</strong> — files that import the service.</li>
+  <li>Decide blast radius before refactor: more consumers → higher governance risk for assisted apply.</li>
+</ol>
+
+<figure class="doc-figure">
+  <img src="/assets/img/screenshots/engine-knowledge-services.png" alt="Engine Knowledge tab — Services list with consumer graph" width="1280" loading="lazy" />
+  <figcaption>Services: consumer list supports governance triage after a Quality finding.</figcaption>
+</figure>
+
+<h3>Example 3 — Trust a structural chat answer (B3)</h3>
+<ol>
+  <li>VS Code <strong>Repo</strong> lane: <em>“What route handles POST /api/v1/chat/stream?”</em></li>
+  <li>Answer should cite <code>app/routers/chat.py</code> and registration in <code>app/api.py</code>.</li>
+  <li>Engine → <strong>Knowledge → Routes</strong> — search <code>chat/stream</code>.</li>
+  <li>Agreement score and graph chain should match the answer. Low agreement or empty registry → reindex or
+    investigate extractor gaps before trusting production routing questions.</li>
+</ol>
+
+<h3>Example 4 — Document governance (handbook / ADR)</h3>
+<ol>
+  <li>Engine → <strong>Knowledge → Documents</strong> — search <code>ADR</code> or policy keyword.</li>
+  <li>Select a section row; graph shows file neighbourhood for where that doc lives in the repo.</li>
+  <li>Use when reconciling <em>written policy</em> (docs) vs <em>code policy findings</em> (Quality tab) —
+    Policies kind will converge the same index-time model over time.</li>
+</ol>
+
+<figure class="doc-figure">
+  <img src="/assets/img/screenshots/engine-knowledge-documents.png" alt="Engine Knowledge tab — Documents list with file focus graph" width="1280" loading="lazy" />
+  <figcaption>Documents: long labels are ellipsized in the table; full text in tooltip / graph pane.</figcaption>
+</figure>
+
+<h2>Screenshot checklist (for docs &amp; carousel)</h2>
+<p>Capture at <strong>1280px</strong> wide (dark theme). Save under <code>contextmint-ai/src/assets/img/screenshots/</code> then <code>npm run build</code>.</p>
+
+<table class="muted" style="width:100%; border-collapse: collapse; font-size: 0.9rem;">
+  <thead>
+    <tr style="text-align:left; border-bottom: 1px solid var(--border-default);">
+      <th style="padding:8px 0;">Filename</th>
+      <th style="padding:8px 0;">What to capture</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom: 1px solid var(--border-subtle);">
+      <td style="padding:10px 0;"><code>engine-knowledge-structure.png</code></td>
+      <td style="padding:10px 0;">Structure segment — workspace picker, kind tabs with counts, table + graph split</td>
+    </tr>
+    <tr style="border-bottom: 1px solid var(--border-subtle);">
+      <td style="padding:10px 0;"><code>engine-knowledge-routes.png</code></td>
+      <td style="padding:10px 0;">Routes tab — one API route selected; mount → api.py → handler graph visible</td>
+    </tr>
+    <tr style="border-bottom: 1px solid var(--border-subtle);">
+      <td style="padding:10px 0;"><code>engine-knowledge-services.png</code></td>
+      <td style="padding:10px 0;">Services tab — definition + Consumers list (after Quality scan optional)</td>
+    </tr>
+    <tr style="border-bottom: 1px solid var(--border-subtle);">
+      <td style="padding:10px 0;"><code>engine-knowledge-documents.png</code></td>
+      <td style="padding:10px 0;">Documents tab — ADR or handbook row; file focus graph</td>
+    </tr>
+    <tr style="border-bottom: 1px solid var(--border-subtle);">
+      <td style="padding:10px 0;"><code>engine-knowledge-activity.png</code></td>
+      <td style="padding:10px 0;">Activity segment — Since = 24 hours; filter <code>governance_fast_path</code>; ≥1 event visible</td>
+    </tr>
+    <tr>
+      <td style="padding:10px 0;"><code>engine-knowledge-export.png</code></td>
+      <td style="padding:10px 0;">Activity — Export JSON button + browser download or toast (optional)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Before screenshots:</strong></p>
+<ul>
+  <li>Index your repo in VS Code; run at least one governed chat (C4 prompt) so Activity has events</li>
+  <li>Run a Quality scan so you can reference a real finding in Example 2 walkthrough</li>
+  <li>Use <code>npm run dev</code> in <code>engine/desktop</code> + <code>contextmint serve</code></li>
+</ul>
+
+<h2>Pairing with VS Code governance UI</h2>
+<ul>
+  <li><strong>Governance drawer</strong> (Context Lens) — live findings during chat; Knowledge does not duplicate this</li>
+  <li><strong>Trust chip</strong> (<code>Governance · HIGH</code>) — answer confidence; Activity audit proves path taken</li>
+  <li><strong>Reasoning timeline</strong> — developer-facing; operators use Engine for aggregate proof</li>
+</ul>
+
+<h2>Enterprise / compliance notes</h2>
+<ul>
+  <li>Audit JSONL omits raw prompts and query text — only hashes and metadata</li>
+  <li>Export + support bundle (About tab) for incident response</li>
+  <li>ACL grant/revoke events appear in Activity when enterprise auth is enabled</li>
+  <li>See <a href="/trust.html">Trust &amp; Security</a> and <a href="/docs/byok-enterprise.html">BYOK &amp; enterprise</a></li>
+</ul>
+
+<p class="muted">
+  Problems: <a href="/support/troubleshooting.html#engine">Troubleshooting → Engine</a>.
+  Developer authority: <code>documentation/ENGINE-D-023-KNOWLEDGE-AUDIT-DASHBOARD.md</code> in the product repo.
+</p>

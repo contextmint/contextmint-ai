@@ -1,0 +1,1048 @@
+---
+layout: doc.html
+title: Context budget calculator | ContextMint Docs
+description: Interactive calculator for server chat context budgets — hardware tier, max_context_tokens, and scaled YAML variables.
+pageCss: product.css
+---
+
+<h1>Context budget calculator</h1>
+<p class="doc-lead">
+  Pick a <strong>hardware tier</strong> (T0–T9) for preview and a target
+  <code>chat.max_context_tokens</code> (500–200,000). You choose the value in YAML; defaults ship at install.
+  <strong>Generation length</strong> uses <code>chat.max_gen_tokens</code> (operator ceiling for Ollama
+  <code>num_predict</code>) — Engine desktop <strong>Apply</strong> co-writes both keys for your tier.
+  Impact warnings are advisory only.
+</p>
+
+<div class="settings-callout">
+  <strong>Where to apply:</strong>
+  <code>config/contextmint.defaults.yaml</code> on the API host, or overlay
+  <code>~/.contextmint/server.defaults.yaml</code>.
+  Live values: <code>GET /api/v1/config/context-budget?max_context_tokens=…</code>.
+  Tier in this page models runtime ChatCaps from <code>detector.py</code> — not a config validator.
+</div>
+
+<p class="muted settings-meta">
+  Profile generated <span id="budget-profile-date">{{ contextBudgetProfile.generatedAt | default: "—" }}</span> from
+  <span class="mono">{{ contextBudgetProfile.source | default: "config/contextmint.defaults.yaml" }}</span>
+  · baseline <span id="budget-baseline-label">{{ contextBudgetProfile.profile.baseline_tokens | default: 10000 }}</span> tokens
+</p>
+
+<section class="settings-section" id="budget-calculator">
+  <h2>Inputs</h2>
+
+  <div class="budget-calc-form">
+    <div class="budget-calc-field">
+      <label class="settings-filter-label" for="budget-tier">Hardware tier</label>
+      <select id="budget-tier" class="budget-calc-select"></select>
+      <p class="muted budget-calc-hint" id="budget-tier-host"></p>
+    </div>
+
+    <div class="budget-calc-field">
+      <div id="budget-warnings" class="budget-calc-impact" aria-live="polite" hidden></div>
+      <label class="settings-filter-label" for="budget-max-tokens-input">
+        max_context_tokens
+      </label>
+      <div class="budget-calc-token-row">
+        <input
+          type="number"
+          id="budget-max-tokens-input"
+          class="budget-calc-number"
+          min="500"
+          max="200000"
+          step="1"
+          value="{{ contextBudgetProfile.profile.max_context_tokens | default: 10000 }}"
+        />
+        <input
+          type="range"
+          id="budget-max-tokens"
+          min="500"
+          max="200000"
+          step="500"
+          value="{{ contextBudgetProfile.profile.max_context_tokens | default: 10000 }}"
+          aria-label="max_context_tokens slider (convenience only)"
+        />
+      </div>
+      <p class="muted budget-calc-hint">
+        Valid range 500–200,000 tokens (server schema max). Presets are shortcuts; type any value in range.
+      </p>
+      <div class="budget-calc-presets" id="budget-presets"></div>
+    </div>
+
+    <div class="budget-calc-field">
+      <label class="settings-filter-label" for="budget-intent">Intent (effective RAG preview)</label>
+      <select id="budget-intent" class="budget-calc-select">
+        <option value="default">Default (no floor)</option>
+        <option value="conceptual">Conceptual / code_pattern</option>
+        <option value="overview">Canonical overview</option>
+      </select>
+    </div>
+  </div>
+
+  <h2 class="budget-calc-section-title">
+    Scaling matrix
+    <span id="budget-matrix-cap-label" class="mono budget-calc-cap-label"></span>
+  </h2>
+  <p class="muted">
+    Derived <code>chat.*</code> fields for your selected <code>max_context_tokens</code> when
+    <code>context_budget.auto_scale</code> is true (ratios from shipped defaults; baseline
+    {{ contextBudgetProfile.profile.baseline_tokens | default: 10000 }}).
+  </p>
+  <div class="settings-table-wrap">
+    <table class="settings-table settings-table--budget-calc" id="budget-scaling-matrix">
+      <thead id="budget-scaling-matrix-head">
+        <tr>
+          <th scope="col">Server variable</th>
+          <th scope="col">Calculated value</th>
+          <th scope="col">Formula</th>
+        </tr>
+      </thead>
+      <tbody id="budget-scaling-matrix-body"></tbody>
+    </table>
+  </div>
+
+  <h3 class="settings-usage-subhead">Tier envelope (ChatCaps)</h3>
+  <p class="muted">Startup probe maps RAM/VRAM → tier → these ceilings. Values from <code>detector.py</code>.</p>
+  <div class="settings-table-wrap">
+    <table class="settings-table settings-table--compact" id="budget-tier-envelope">
+      <tbody id="budget-tier-envelope-body"></tbody>
+    </table>
+  </div>
+
+  <h3 class="settings-usage-subhead">Effective RAG budget (selected tier)</h3>
+  <p class="muted">
+    Runtime order: config cap → hardware clamp → intent floor (raised up to config cap).
+    Health-policy overrides are not modeled here.
+  </p>
+  <div class="settings-table-wrap">
+    <table class="settings-table settings-table--compact" id="budget-effective-table">
+      <tbody id="budget-effective-body"></tbody>
+    </table>
+  </div>
+
+  <h3 class="settings-usage-subhead">Tier comparison matrix</h3>
+  <p class="muted">Effective RAG chunk budget per tier for the same <code>max_context_tokens</code>.</p>
+  <div class="settings-table-wrap budget-calc-matrix-wrap">
+    <table class="settings-table settings-table--matrix" id="budget-tier-matrix">
+      <thead id="budget-tier-matrix-head"></thead>
+      <tbody id="budget-tier-matrix-body"></tbody>
+    </table>
+  </div>
+
+  <h3 class="settings-usage-subhead">Ratio profile (edit in YAML)</h3>
+  <div class="settings-table-wrap">
+    <table class="settings-table settings-table--compact">
+      <thead>
+        <tr>
+          <th scope="col">Ratio key</th>
+          <th scope="col">Fraction of max_context_tokens</th>
+        </tr>
+      </thead>
+      <tbody id="budget-ratios-body"></tbody>
+    </table>
+  </div>
+
+  <h3 class="settings-usage-subhead">Example overlay</h3>
+  <pre class="mono budget-calc-snippet" id="budget-yaml-snippet"></pre>
+</section>
+
+<script id="context-budget-profile-data" type="application/json">
+{{ contextBudgetProfile | json }}
+</script>
+<script>
+(function () {
+  var dataEl = document.getElementById("context-budget-profile-data");
+  if (!dataEl) return;
+  var data = JSON.parse(dataEl.textContent || "{}");
+  var profile = data.profile || {};
+  var ratios = profile.ratios || {};
+  var baseline = profile.baseline_tokens || 10000;
+  var hardwareTiers = data.hardwareTiers || [];
+  var bounds = data.maxContextTokensBounds || { min: 500, max: 200000, step: 500 };
+  var installDefault =
+    profile.max_context_tokens || baseline || 10000;
+
+  /** Docs-only prefill throughput (tok/s) — mirrors detector.py comments. */
+  var CPU_PREFILL_TOK_PER_SEC = { T0: 30, T1: 45, T2: 70 };
+  var CPU_GEN_TOK_PER_SEC = { T0: 120, T1: 150, T2: 200 };
+  var INSTRUCTIONS_TOKENS = 270;
+  var HISTORY_CAP_TOKENS = 2000;
+  var QUERY_TYPICAL_TOKENS = 100;
+  var KV_GB_PER_1K_NUM_CTX = 0.37;
+
+  var TOKEN_ROWS = [
+    ["canonical_pack_budget_tokens", "canonical_pack_budget", 400, 8000],
+    ["canonical_overview_pack_max_tokens", "canonical_overview_pack_max", 400, 16000],
+    ["canonical_overview_anchor_slot_tokens", "canonical_overview_anchor_slot", 50, 4000],
+    ["canonical_overview_pack_seed_tokens_per_file", "canonical_overview_pack_seed_per_file", 50, 2000],
+    ["canonical_overview_pack_seed_topup_max_tokens", "canonical_overview_pack_seed_topup_max", 0, 24000],
+    ["canonical_overview_pack_seed_tokens_per_file_max", "canonical_overview_pack_seed_per_file_max", 100, 8000],
+    ["canonical_overview_retrieval_budget_tokens", "canonical_overview_retrieval", 150, 8000],
+    ["conceptual_context_floor_tokens", "conceptual_context_floor", 150, 16000],
+    ["work_lane_pack_token_budget", "work_lane_pack", 500, 24000],
+  ];
+
+  var COUNT_ROWS = [
+    ["canonical_overview_anchor_max_slots", "anchor_max_slots_at_baseline", 4, 32],
+    ["canonical_overview_pack_seed_max_files", "pack_seed_max_files_at_baseline", 3, 24],
+    ["canonical_overview_grep_max_snippets", "grep_max_snippets_at_baseline", 0, 12],
+  ];
+
+  var MATRIX_CEILING_ROWS = [
+    ["pack_slot_max_tokens", "Pack slot max tokens"],
+    ["pack_seed_slot_max_tokens", "Pack seed slot max tokens"],
+    ["retrieval_slots_max_tokens", "Retrieval slots max tokens"],
+    ["theoretical_overview_ship_max_tokens", "Overview ship max (theoretical)"],
+    ["canonical_overview_chunk_floor_tokens", "Overview chunk floor"],
+  ];
+
+  function formatCapLabel(cap) {
+    if (cap >= 1000 && cap % 1000 === 0) return cap / 1000 + "k";
+    return cap.toLocaleString();
+  }
+
+  function renderScalingMatrix(currentMax) {
+    var capLabel = document.getElementById("budget-matrix-cap-label");
+    if (capLabel) {
+      capLabel.textContent = "@ " + formatCapLabel(currentMax) + " (" + currentMax.toLocaleString() + ")";
+    }
+
+    var body = document.getElementById("budget-scaling-matrix-body");
+    if (!body) return;
+
+    var result = compute(currentMax);
+    var scaled = result.scaled;
+    var ceiling = result.ceiling;
+
+    body.innerHTML = "";
+
+    TOKEN_ROWS.concat(COUNT_ROWS).forEach(function (row) {
+      var field = row[0];
+      var tr = document.createElement("tr");
+      tr.innerHTML =
+        "<td class=\"settings-table__key\"><code>chat." + field + "</code></td>" +
+        "<td class=\"settings-table__default budget-calc-value mono\">" +
+        scaled[field].toLocaleString() +
+        "</td>" +
+        "<td class=\"settings-table__desc budget-calc-formula muted\">" +
+        formulaForRow(row) +
+        "</td>";
+      body.appendChild(tr);
+    });
+
+    var divider = document.createElement("tr");
+    divider.className = "budget-calc-matrix-divider";
+    divider.innerHTML =
+      "<td colspan=\"3\"><em>Overview ceiling (derived)</em></td>";
+    body.appendChild(divider);
+
+    MATRIX_CEILING_ROWS.forEach(function (row) {
+      var tr = document.createElement("tr");
+      tr.innerHTML =
+        "<td class=\"settings-table__key\">" + row[1] + "</td>" +
+        "<td class=\"settings-table__default budget-calc-value mono\">" +
+        ceiling[row[0]].toLocaleString() +
+        "</td>" +
+        "<td class=\"settings-table__desc budget-calc-formula muted\">derived from scaled slots</td>";
+      body.appendChild(tr);
+    });
+  }
+
+  function clamp(n, lo, hi) {
+    return Math.max(lo, Math.min(hi, Math.round(n)));
+  }
+
+  function clampTokens(n) {
+    var lo = bounds.min || 500;
+    var hi = bounds.max || 200000;
+    if (!Number.isFinite(n)) return lo;
+    return clamp(n, lo, hi);
+  }
+
+  function ensureSliderMax(slider, value) {
+    if (!slider) return;
+    var hi = bounds.max || 200000;
+    slider.max = String(hi);
+    if (Number(slider.value) > hi) {
+      slider.value = String(hi);
+    }
+  }
+
+  function scaleToken(maxTokens, ratio, lo, hi) {
+    return clamp(maxTokens * ratio, lo, hi);
+  }
+
+  function scaleCount(baseCount, maxTokens, lo, hi) {
+    if (!baseline) return baseCount;
+    return clamp((baseCount * maxTokens) / baseline, lo, hi);
+  }
+
+  function compute(maxTokens) {
+    var scaled = { max_context_tokens: maxTokens };
+    TOKEN_ROWS.forEach(function (row) {
+      scaled[row[0]] = scaleToken(maxTokens, ratios[row[1]] || 0, row[2], row[3]);
+    });
+    COUNT_ROWS.forEach(function (row) {
+      var base = profile[row[1]] || 0;
+      scaled[row[0]] = scaleCount(base, maxTokens, row[2], row[3]);
+    });
+    var pack = Math.min(
+      scaled.canonical_pack_budget_tokens,
+      scaled.canonical_overview_pack_max_tokens,
+    );
+    var seed =
+      scaled.canonical_overview_pack_seed_max_files *
+      scaled.canonical_overview_pack_seed_tokens_per_file;
+    var retrieval =
+      scaled.canonical_overview_anchor_max_slots *
+      scaled.canonical_overview_anchor_slot_tokens;
+    var ceiling = {
+      pack_slot_max_tokens: pack,
+      pack_seed_slot_max_tokens: seed,
+      retrieval_slots_max_tokens: retrieval,
+      theoretical_overview_ship_max_tokens: pack + seed + retrieval,
+      canonical_overview_chunk_floor_tokens:
+        scaled.canonical_overview_pack_max_tokens +
+        scaled.canonical_overview_anchor_slot_tokens *
+          scaled.canonical_overview_anchor_max_slots,
+    };
+    return { scaled: scaled, ceiling: ceiling };
+  }
+
+  function effectiveRag(maxTokens, hwContextTokens, scaled, ceiling, intent) {
+    var afterHw = Math.min(maxTokens, hwContextTokens);
+    if (intent === "conceptual") {
+      return Math.min(
+        Math.max(afterHw, scaled.conceptual_context_floor_tokens),
+        maxTokens,
+      );
+    }
+    if (intent === "overview") {
+      return Math.min(
+        Math.max(afterHw, ceiling.canonical_overview_chunk_floor_tokens),
+        maxTokens,
+      );
+    }
+    return afterHw;
+  }
+
+  function formulaForRow(row) {
+    var field = row[0];
+    if (field.indexOf("_max_slots") !== -1 || field.indexOf("_max_files") !== -1 || field.indexOf("_snippets") !== -1) {
+      return "baseline_count × max / " + baseline + " (clamped)";
+    }
+    return "max × ratio " + (ratios[row[1]] || 0) + " (clamped)";
+  }
+
+  function tierById(id) {
+    for (var i = 0; i < hardwareTiers.length; i++) {
+      if (hardwareTiers[i].id === id) return hardwareTiers[i];
+    }
+    return hardwareTiers[0] || null;
+  }
+
+  function isCpuTier(tier) {
+    if (!tier) return false;
+    return tier.id === "T0" || tier.id === "T1" || tier.id === "T2";
+  }
+
+  function roundUp512(n) {
+    return Math.ceil(n / 512) * 512;
+  }
+
+  function estimateNumCtx(inputTokens, numPredict, ceiling) {
+    var needed = (inputTokens + numPredict) * 1.2;
+    var rounded = roundUp512(needed);
+    return clamp(rounded, 2048, ceiling > 0 ? ceiling : 32768);
+  }
+
+  function estimatePrefillSeconds(tier, ragTokens) {
+    var rate = CPU_PREFILL_TOK_PER_SEC[tier.id];
+    if (!rate) return null;
+    var input =
+      ragTokens + INSTRUCTIONS_TOKENS + HISTORY_CAP_TOKENS + QUERY_TYPICAL_TOKENS;
+    return input / rate;
+  }
+
+  function estimateGenSeconds(tier) {
+    var rate = CPU_GEN_TOK_PER_SEC[tier.id];
+    if (!rate) return null;
+    return tier.max_gen_tokens / rate;
+  }
+
+  /** @returns {Array<{severity: string, title: string, body: string}>} */
+  function collectWarnings(maxTokens, tier, intent, scaled, ceiling) {
+    if (!tier) return [];
+    var warnings = [];
+    var effective = effectiveRag(maxTokens, tier.context_tokens, scaled, ceiling, intent);
+    var defaultRag = effectiveRag(maxTokens, tier.context_tokens, scaled, ceiling, "default");
+    var conceptualRag = effectiveRag(
+      maxTokens,
+      tier.context_tokens,
+      scaled,
+      ceiling,
+      "conceptual",
+    );
+    var overviewRag = effectiveRag(
+      maxTokens,
+      tier.context_tokens,
+      scaled,
+      ceiling,
+      "overview",
+    );
+    var unusedConfig = maxTokens - defaultRag;
+
+    if (maxTokens > tier.context_tokens && defaultRag === tier.context_tokens) {
+      warnings.push({
+        severity: "warn",
+        title: "Config cap exceeds tier RAG ceiling (default intents)",
+        body:
+          "On default intents, effective RAG stays at " +
+          tier.context_tokens.toLocaleString() +
+          " tokens (ChatCaps on " +
+          tier.id +
+          "). The extra " +
+          unusedConfig.toLocaleString() +
+          " tokens in your YAML cap are not injected into chat for those queries. " +
+          "Only scaled pack/seed/slot knobs and intent floors change.",
+      });
+    }
+
+    if (conceptualRag > tier.context_tokens || overviewRag > tier.context_tokens) {
+      warnings.push({
+        severity: "warn",
+        title: "Intent floors can exceed the tier RAG cap",
+        body:
+          "Conceptual floor → " +
+          conceptualRag.toLocaleString() +
+          " tokens; overview floor → " +
+          overviewRag.toLocaleString() +
+          " tokens — both above ChatCaps " +
+          tier.context_tokens.toLocaleString() +
+          " on " +
+          tier.id +
+          ". Overview and explanation queries will prefill more context than the tier's latency target assumes.",
+      });
+    }
+
+    if (
+      ceiling.theoretical_overview_ship_max_tokens > effective * 1.5 &&
+      ceiling.theoretical_overview_ship_max_tokens > 2000
+    ) {
+      warnings.push({
+        severity: "warn",
+        title: "Overview slot ceiling outruns effective RAG",
+        body:
+          "Theoretical overview ship max is " +
+          ceiling.theoretical_overview_ship_max_tokens.toLocaleString() +
+          " tokens (" +
+          scaled.canonical_overview_anchor_max_slots +
+          " retrieval slots × " +
+          scaled.canonical_overview_anchor_slot_tokens.toLocaleString() +
+          " tok/slot, plus pack/seed). Effective RAG for your intent is " +
+          effective.toLocaleString() +
+          " tokens — runtime Top-K and chunk budgeting trim what actually ships.",
+      });
+    }
+
+    if (maxTokens >= 16000) {
+      warnings.push({
+        severity: "warn",
+        title: "High master cap scales all YAML knobs",
+        body:
+          "At " +
+          maxTokens.toLocaleString() +
+          " tokens, work-lane pack budget → " +
+          scaled.work_lane_pack_token_budget.toLocaleString() +
+          ", overview pack max → " +
+          scaled.canonical_overview_pack_max_tokens.toLocaleString() +
+          ", anchor slots → " +
+          scaled.canonical_overview_anchor_max_slots +
+          ". Expect heavier pack hydration, larger evidence fusion graphs, and more RAM at assemble time — even when chat RAG is tier-clamped.",
+      });
+    }
+
+    if (maxTokens > baseline * 1.25) {
+      warnings.push({
+        severity: "info",
+        title: "Above ratio calibration baseline (" + baseline.toLocaleString() + ")",
+        body:
+          "Ratios in contextmint.defaults.yaml were tuned at baseline_tokens=" +
+          baseline.toLocaleString() +
+          ". Higher caps linearly scale slot counts and per-slot token budgets until field clamps hit (e.g. work_lane_pack max 24k).",
+      });
+    }
+
+    if (isCpuTier(tier)) {
+      var prefill = estimatePrefillSeconds(tier, effective);
+      var gen = estimateGenSeconds(tier);
+      if (prefill !== null && gen !== null) {
+        var total = prefill + gen;
+        var latencyTarget = tier.id === "T0" ? 10 : tier.id === "T1" ? 12 : 16;
+        if (total > latencyTarget) {
+          warnings.push({
+            severity: total > latencyTarget * 1.35 ? "critical" : "warn",
+            title: "CPU prefill + generation may exceed tier latency target",
+            body:
+              "Rough estimate on " +
+              tier.id +
+              ": ~" +
+              Math.round(prefill) +
+              "s prefill (" +
+              effective.toLocaleString() +
+              " RAG + ~" +
+              (INSTRUCTIONS_TOKENS + HISTORY_CAP_TOKENS + QUERY_TYPICAL_TOKENS) +
+              " history/instructions/query at " +
+              CPU_PREFILL_TOK_PER_SEC[tier.id] +
+              " tok/s) + ~" +
+              gen.toFixed(1) +
+              "s generation (" +
+              tier.max_gen_tokens +
+              " max_gen_tokens) ≈ " +
+              total.toFixed(1) +
+              "s total. Tier design target ≈ " +
+              latencyTarget +
+              "s. Health policy may reduce context under load.",
+          });
+        }
+      }
+
+      if (tier.num_ctx_ceiling > 0) {
+        var inputEst =
+          effective + INSTRUCTIONS_TOKENS + HISTORY_CAP_TOKENS + QUERY_TYPICAL_TOKENS;
+        var numCtx = estimateNumCtx(inputEst, tier.max_gen_tokens, tier.num_ctx_ceiling);
+        var kvGb = (numCtx / 1000) * KV_GB_PER_1K_NUM_CTX;
+        if (kvGb >= 2.5) {
+          warnings.push({
+            severity: kvGb >= 3.5 ? "critical" : "warn",
+            title: "KV cache RAM estimate (CPU / Ollama)",
+            body:
+              "Full RAG + saturated history → input ≈ " +
+              inputEst.toLocaleString() +
+              " tokens; dynamic num_ctx ≈ " +
+              numCtx.toLocaleString() +
+              " (ceiling " +
+              tier.num_ctx_ceiling.toLocaleString() +
+              ") → ~" +
+              kvGb.toFixed(1) +
+              " GB KV for a 3B-class model (~0.37 GB per 1k num_ctx), plus ~2 GB weights and OS headroom. Risk of swap or policy DOWNGRADE_AND_REDUCE on tight RAM.",
+          });
+        }
+      }
+    } else if (maxTokens > tier.context_tokens) {
+      warnings.push({
+        severity: "info",
+        title: "GPU tier: YAML scales; ChatCaps RAG cap is fixed",
+        body:
+          "GPU tiers (T3+) keep ChatCaps.context_tokens at " +
+          tier.context_tokens.toLocaleString() +
+          ". Raising max_context_tokens mainly grows overview pack/seed slots and work-lane pack budget — not the hybrid RAG chunk cap. Cloud routing bypasses local ChatCaps entirely.",
+      });
+    }
+
+    if (warnings.length === 0) {
+      warnings.push({
+        severity: "ok",
+        title: "No advisory flags for this combination",
+        body:
+          "For " +
+          tier.id +
+          " at " +
+          maxTokens.toLocaleString() +
+          " tokens, effective RAG is " +
+          effective.toLocaleString() +
+          ". You can still raise or lower the cap freely; the matrix updates scaled YAML variables either way.",
+      });
+    }
+
+    return warnings;
+  }
+
+  function summarizeImpact(warnings) {
+    var rank = { critical: 4, warn: 3, info: 2, ok: 1 };
+    var severity = "ok";
+    var parts = [];
+    warnings.forEach(function (w) {
+      if (rank[w.severity] > rank[severity]) {
+        severity = w.severity;
+      }
+      if (w.severity !== "ok" || warnings.length === 1) {
+        parts.push(w.body);
+      }
+    });
+    if (!parts.length) {
+      parts.push(
+        warnings[0] ? warnings[0].body : "Adjust max_context_tokens to preview scaled YAML variables.",
+      );
+    }
+    return { severity: severity, text: parts.join(" ") };
+  }
+
+  function renderWarnings(maxTokens, tier, intent, scaled, ceiling) {
+    var container = document.getElementById("budget-warnings");
+    if (!container) return;
+    var summary = summarizeImpact(
+      collectWarnings(maxTokens, tier, intent, scaled, ceiling),
+    );
+    container.hidden = false;
+    container.className = "budget-calc-impact budget-calc-impact--" + summary.severity;
+    container.textContent = summary.text;
+  }
+
+  function renderTierEnvelope(tier) {
+    var body = document.getElementById("budget-tier-envelope-body");
+    if (!body || !tier) return;
+    var rows = [
+      ["Hardware tier", tier.id],
+      ["Typical host", tier.typical_host],
+      ["RAG cap (context_tokens)", tier.context_tokens.toLocaleString()],
+      ["Max generation (max_gen_tokens)", tier.max_gen_tokens.toLocaleString()],
+      [
+        "num_ctx ceiling",
+        tier.num_ctx_ceiling === 0 ? "0 (Ollama default)" : tier.num_ctx_ceiling.toLocaleString(),
+      ],
+      ["Selection max tokens", tier.selection_max_tokens.toLocaleString()],
+      ["Note", tier.note],
+    ];
+    body.innerHTML = "";
+    rows.forEach(function (r) {
+      var tr = document.createElement("tr");
+      tr.innerHTML =
+        "<td>" + r[0] + "</td><td class=\"mono\">" + r[1] + "</td>";
+      body.appendChild(tr);
+    });
+    var host = document.getElementById("budget-tier-host");
+    if (host) host.textContent = tier.typical_host + " — " + tier.note;
+  }
+
+  function renderEffective(maxTokens, tier, intent, scaled, ceiling) {
+    var body = document.getElementById("budget-effective-body");
+    if (!body || !tier) return;
+    var afterHw = Math.min(maxTokens, tier.context_tokens);
+    var final = effectiveRag(maxTokens, tier.context_tokens, scaled, ceiling, intent);
+    var floorLabel =
+      intent === "conceptual"
+        ? "conceptual_context_floor_tokens"
+        : intent === "overview"
+          ? "canonical_overview_chunk_floor_tokens"
+          : "—";
+    var floorVal =
+      intent === "conceptual"
+        ? scaled.conceptual_context_floor_tokens
+        : intent === "overview"
+          ? ceiling.canonical_overview_chunk_floor_tokens
+          : "—";
+    var rows = [
+      ["chat.max_context_tokens (config cap)", maxTokens.toLocaleString()],
+      ["ChatCaps.context_tokens (tier RAG cap)", tier.context_tokens.toLocaleString()],
+      ["After hardware clamp", afterHw.toLocaleString()],
+      ["Intent floor field", floorLabel],
+      ["Intent floor value", typeof floorVal === "number" ? floorVal.toLocaleString() : floorVal],
+      ["Effective RAG chunk budget", final.toLocaleString()],
+    ];
+    body.innerHTML = "";
+    rows.forEach(function (r, idx) {
+      var tr = document.createElement("tr");
+      var valClass = idx === rows.length - 1 ? " budget-calc-highlight" : "";
+      tr.innerHTML =
+        "<td>" + r[0] + "</td><td class=\"mono" + valClass + "\">" + r[1] + "</td>";
+      body.appendChild(tr);
+    });
+  }
+
+  function renderTierMatrix(maxTokens, intent) {
+    var head = document.getElementById("budget-tier-matrix-head");
+    var body = document.getElementById("budget-tier-matrix-body");
+    if (!head || !body || !hardwareTiers.length) return;
+    var result = compute(maxTokens);
+    var scaled = result.scaled;
+    var ceiling = result.ceiling;
+
+    head.innerHTML =
+      "<tr><th scope=\"col\">Metric</th>" +
+      hardwareTiers
+        .map(function (t) {
+          return "<th scope=\"col\" class=\"mono\">" + t.id + "</th>";
+        })
+        .join("") +
+      "</tr>";
+
+    var matrixRows = [
+      {
+        label: "ChatCaps RAG cap",
+        fn: function (t) {
+          return t.context_tokens;
+        },
+      },
+      {
+        label: "Effective RAG (default)",
+        fn: function (t) {
+          return effectiveRag(maxTokens, t.context_tokens, scaled, ceiling, "default");
+        },
+      },
+      {
+        label: "Effective RAG (conceptual)",
+        fn: function (t) {
+          return effectiveRag(maxTokens, t.context_tokens, scaled, ceiling, "conceptual");
+        },
+      },
+      {
+        label: "Effective RAG (overview)",
+        fn: function (t) {
+          return effectiveRag(maxTokens, t.context_tokens, scaled, ceiling, "overview");
+        },
+      },
+    ];
+
+    body.innerHTML = "";
+    matrixRows.forEach(function (row) {
+      var tr = document.createElement("tr");
+      var cells =
+        "<td>" + row.label + "</td>" +
+        hardwareTiers
+          .map(function (t) {
+            var v = row.fn(t);
+            var highlight =
+              intent === "default" && row.label.indexOf("(default)") !== -1
+                ? " budget-calc-matrix-active"
+                : intent === "conceptual" && row.label.indexOf("(conceptual)") !== -1
+                  ? " budget-calc-matrix-active"
+                  : intent === "overview" && row.label.indexOf("(overview)") !== -1
+                    ? " budget-calc-matrix-active"
+                    : "";
+            return "<td class=\"mono" + highlight + "\">" + v.toLocaleString() + "</td>";
+          })
+          .join("");
+      tr.innerHTML = cells;
+      body.appendChild(tr);
+    });
+  }
+
+  function renderRatios() {
+    var tbody = document.getElementById("budget-ratios-body");
+    if (!tbody) return;
+    tbody.innerHTML = "";
+    Object.keys(ratios).forEach(function (key) {
+      var tr = document.createElement("tr");
+      tr.innerHTML =
+        "<td class=\"mono\">context_budget.ratios." + key + "</td>" +
+        "<td class=\"mono\">" + ratios[key] + "</td>";
+      tbody.appendChild(tr);
+    });
+  }
+
+  function render(maxTokens, tierId, intent) {
+    var tier = tierById(tierId);
+    var result = compute(maxTokens);
+    var scaled = result.scaled;
+    var ceiling = result.ceiling;
+    var snippet = document.getElementById("budget-yaml-snippet");
+    if (!snippet) return;
+
+    renderTierEnvelope(tier);
+    renderWarnings(maxTokens, tier, intent, scaled, ceiling);
+    renderScalingMatrix(maxTokens);
+    renderEffective(maxTokens, tier, intent, scaled, ceiling);
+    renderTierMatrix(maxTokens, intent);
+
+    snippet.textContent =
+      "chat:\n" +
+      "  max_context_tokens: " + maxTokens + "\n" +
+      "  max_gen_tokens: " + (tier ? tier.max_gen_tokens : profile.max_gen_tokens || 4096) + "\n" +
+      "  context_budget:\n" +
+      "    auto_scale: true\n" +
+      "    baseline_tokens: " + baseline + "\n" +
+      "    # Ratios unchanged — server applies scaled values at load.\n" +
+      "# Probe selects " + (tier ? tier.id : "T?") + " at startup.\n" +
+      "# RAG ships max_context_tokens when saved in overlay; generation uses max_gen_tokens.\n";
+  }
+
+  function syncTokenInputs(value) {
+    var v = clampTokens(value);
+    var input = document.getElementById("budget-max-tokens-input");
+    var slider = document.getElementById("budget-max-tokens");
+    ensureSliderMax(slider, v);
+    if (input) input.value = String(v);
+    if (slider) slider.value = String(Math.min(v, Number(slider.max)));
+    return v;
+  }
+
+  function currentState() {
+    var tierEl = document.getElementById("budget-tier");
+    var intentEl = document.getElementById("budget-intent");
+    var input = document.getElementById("budget-max-tokens-input");
+    return {
+      maxTokens: clampTokens(Number(input ? input.value : bounds.min)),
+      tierId: tierEl ? tierEl.value : "T0",
+      intent: intentEl ? intentEl.value : "default",
+    };
+  }
+
+  function rerender() {
+    var s = currentState();
+    render(s.maxTokens, s.tierId, s.intent);
+  }
+
+  var tierSelect = document.getElementById("budget-tier");
+  var slider = document.getElementById("budget-max-tokens");
+  var numberInput = document.getElementById("budget-max-tokens-input");
+  var intentSelect = document.getElementById("budget-intent");
+  var presetsEl = document.getElementById("budget-presets");
+
+  if (tierSelect) {
+    hardwareTiers.forEach(function (t) {
+      var opt = document.createElement("option");
+      opt.value = t.id;
+      opt.textContent = t.id + " — " + t.typical_host;
+      tierSelect.appendChild(opt);
+    });
+    tierSelect.addEventListener("change", rerender);
+  }
+
+  if (intentSelect) {
+    intentSelect.addEventListener("change", rerender);
+  }
+
+  if (slider && numberInput) {
+    var step = bounds.step || 500;
+    var hi = bounds.max || 200000;
+    slider.min = String(bounds.min || 500);
+    slider.max = String(hi);
+    slider.step = String(step);
+    numberInput.min = String(bounds.min || 500);
+    numberInput.max = String(hi);
+    numberInput.step = "1";
+
+    slider.addEventListener("input", function () {
+      syncTokenInputs(Number(slider.value));
+      rerender();
+    });
+    numberInput.addEventListener("input", function () {
+      var v = clampTokens(Number(numberInput.value));
+      ensureSliderMax(slider, v);
+      numberInput.value = String(v);
+      rerender();
+    });
+    numberInput.addEventListener("change", function () {
+      syncTokenInputs(Number(numberInput.value));
+      rerender();
+    });
+  }
+
+  if (presetsEl) {
+    [4000, 6000, 8000, 10000, 12000, 16000, 20000, 32000, 50000, 100000, 200000].forEach(function (cap) {
+      if (cap > (bounds.max || 200000)) return;
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "budget-calc-preset";
+      btn.textContent = cap >= 1000 ? cap / 1000 + "k" : String(cap);
+      btn.addEventListener("click", function () {
+        syncTokenInputs(cap);
+        rerender();
+      });
+      presetsEl.appendChild(btn);
+    });
+  }
+
+  syncTokenInputs(Number(numberInput ? numberInput.value : profile.max_context_tokens || 10000));
+  rerender();
+  renderRatios();
+})();
+</script>
+
+<style>
+  .budget-calc-form {
+    display: grid;
+    gap: 1.25rem;
+    margin-bottom: 1.75rem;
+    max-width: 42rem;
+  }
+
+  .budget-calc-field {
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .budget-calc-select {
+    max-width: 100%;
+    padding: 0.45rem 0.6rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-default);
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    font: inherit;
+  }
+
+  .budget-calc-hint {
+    margin: 0;
+    font-size: 0.85rem;
+  }
+
+  .budget-calc-token-row {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  .budget-calc-number {
+    width: 100%;
+    padding: 0.45rem 0.6rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-default);
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 1rem;
+  }
+
+  .budget-calc-presets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.35rem;
+  }
+
+  .budget-calc-preset {
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-default);
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    cursor: pointer;
+    font: inherit;
+  }
+
+  .budget-calc-preset:hover {
+    border-color: var(--color-action);
+  }
+
+  .budget-calc-snippet {
+    padding: 1rem;
+    overflow-x: auto;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    color: var(--text-primary);
+  }
+
+  .budget-calc-highlight {
+    font-weight: 700;
+    color: var(--color-action);
+  }
+
+  .budget-calc-section-title {
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+  }
+
+  .budget-calc-cap-label {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--color-action);
+    margin-left: 0.35rem;
+  }
+
+  .budget-calc-matrix-divider td {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    padding-top: 0.75rem;
+    background: var(--bg-canvas);
+    font-style: italic;
+  }
+
+  .budget-calc-matrix-wrap {
+    overflow-x: auto;
+  }
+
+  .settings-table--matrix th,
+  .settings-table--matrix td {
+    text-align: right;
+    white-space: nowrap;
+    font-size: 0.82rem;
+  }
+
+  .settings-table--matrix th:first-child,
+  .settings-table--matrix td:first-child {
+    text-align: left;
+    min-width: 11rem;
+  }
+
+  .budget-calc-matrix-active {
+    font-weight: 700;
+    background: color-mix(in srgb, var(--color-action) 14%, var(--bg-surface));
+  }
+
+  .settings-table--budget-calc {
+    table-layout: fixed;
+  }
+
+  .settings-table--budget-calc th:nth-child(1),
+  .settings-table--budget-calc td.settings-table__key {
+    width: 38%;
+  }
+
+  .settings-table--budget-calc th:nth-child(2),
+  .settings-table--budget-calc td.settings-table__default {
+    width: 16%;
+  }
+
+  .settings-table--budget-calc th:nth-child(3),
+  .settings-table--budget-calc td.settings-table__desc {
+    width: 46%;
+  }
+
+  .settings-table--budget-calc td {
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
+
+  .settings-table--budget-calc .settings-table__key code {
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+
+  .settings-table--budget-calc .budget-calc-value {
+    font-size: 0.82rem;
+    white-space: nowrap;
+  }
+
+  .settings-table--budget-calc   .budget-calc-formula {
+    font-size: 0.75rem;
+    line-height: 1.45;
+  }
+
+  .budget-calc-impact {
+    margin-bottom: 0.65rem;
+    padding: 0.65rem 0.85rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-default);
+    background: var(--bg-surface);
+    font-size: 0.86rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+  }
+
+  .budget-calc-impact--ok {
+    border-left: 3px solid var(--color-trust);
+  }
+
+  .budget-calc-impact--info {
+    border-left: 3px solid var(--color-action);
+  }
+
+  .budget-calc-impact--warn {
+    border-left: 3px solid var(--color-warning);
+    color: var(--text-primary);
+  }
+
+  .budget-calc-impact--critical {
+    border-left: 3px solid var(--color-danger);
+    color: var(--text-primary);
+  }
+</style>

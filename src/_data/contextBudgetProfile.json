@@ -1,0 +1,416 @@
+{
+  "generatedAt": "2026-06-26",
+  "source": "config/contextmint.defaults.yaml",
+  "overlayPath": "~/.contextmint/server.defaults.yaml",
+  "profile": {
+    "auto_scale": true,
+    "baseline_tokens": 10000,
+    "ratios": {
+      "canonical_pack_budget": 0.12,
+      "canonical_overview_pack_max": 0.25,
+      "canonical_overview_anchor_slot": 0.05,
+      "canonical_overview_pack_seed_per_file": 0.04,
+      "canonical_overview_pack_seed_topup_max": 0.4,
+      "canonical_overview_pack_seed_per_file_max": 0.08,
+      "canonical_overview_retrieval": 0.06,
+      "conceptual_context_floor": 0.4,
+      "work_lane_pack": 0.4
+    },
+    "anchor_max_slots_at_baseline": 15,
+    "pack_seed_max_files_at_baseline": 6,
+    "grep_max_snippets_at_baseline": 2,
+    "max_context_tokens": 10000,
+    "max_gen_tokens": 4096
+  },
+  "presets": [
+    {
+      "max_context_tokens": 4000,
+      "scaled": {
+        "max_context_tokens": 4000,
+        "canonical_pack_budget_tokens": 480,
+        "canonical_overview_pack_max_tokens": 1000,
+        "canonical_overview_anchor_slot_tokens": 200,
+        "canonical_overview_pack_seed_tokens_per_file": 160,
+        "canonical_overview_pack_seed_topup_max_tokens": 1600,
+        "canonical_overview_pack_seed_tokens_per_file_max": 320,
+        "canonical_overview_retrieval_budget_tokens": 240,
+        "conceptual_context_floor_tokens": 1600,
+        "work_lane_pack_token_budget": 1600,
+        "canonical_overview_anchor_max_slots": 6,
+        "canonical_overview_pack_seed_max_files": 3,
+        "canonical_overview_grep_max_snippets": 1
+      },
+      "overview_ceiling": {
+        "pack_slot_max_tokens": 480,
+        "pack_seed_slot_max_tokens": 480,
+        "retrieval_slots_max_tokens": 1200,
+        "theoretical_overview_ship_max_tokens": 2160,
+        "canonical_overview_chunk_floor_tokens": 2200
+      }
+    },
+    {
+      "max_context_tokens": 6000,
+      "scaled": {
+        "max_context_tokens": 6000,
+        "canonical_pack_budget_tokens": 720,
+        "canonical_overview_pack_max_tokens": 1500,
+        "canonical_overview_anchor_slot_tokens": 300,
+        "canonical_overview_pack_seed_tokens_per_file": 240,
+        "canonical_overview_pack_seed_topup_max_tokens": 2400,
+        "canonical_overview_pack_seed_tokens_per_file_max": 480,
+        "canonical_overview_retrieval_budget_tokens": 360,
+        "conceptual_context_floor_tokens": 2400,
+        "work_lane_pack_token_budget": 2400,
+        "canonical_overview_anchor_max_slots": 9,
+        "canonical_overview_pack_seed_max_files": 4,
+        "canonical_overview_grep_max_snippets": 1
+      },
+      "overview_ceiling": {
+        "pack_slot_max_tokens": 720,
+        "pack_seed_slot_max_tokens": 960,
+        "retrieval_slots_max_tokens": 2700,
+        "theoretical_overview_ship_max_tokens": 4380,
+        "canonical_overview_chunk_floor_tokens": 4200
+      }
+    },
+    {
+      "max_context_tokens": 8000,
+      "scaled": {
+        "max_context_tokens": 8000,
+        "canonical_pack_budget_tokens": 960,
+        "canonical_overview_pack_max_tokens": 2000,
+        "canonical_overview_anchor_slot_tokens": 400,
+        "canonical_overview_pack_seed_tokens_per_file": 320,
+        "canonical_overview_pack_seed_topup_max_tokens": 3200,
+        "canonical_overview_pack_seed_tokens_per_file_max": 640,
+        "canonical_overview_retrieval_budget_tokens": 480,
+        "conceptual_context_floor_tokens": 3200,
+        "work_lane_pack_token_budget": 3200,
+        "canonical_overview_anchor_max_slots": 12,
+        "canonical_overview_pack_seed_max_files": 5,
+        "canonical_overview_grep_max_snippets": 2
+      },
+      "overview_ceiling": {
+        "pack_slot_max_tokens": 960,
+        "pack_seed_slot_max_tokens": 1600,
+        "retrieval_slots_max_tokens": 4800,
+        "theoretical_overview_ship_max_tokens": 7360,
+        "canonical_overview_chunk_floor_tokens": 6800
+      }
+    },
+    {
+      "max_context_tokens": 10000,
+      "scaled": {
+        "max_context_tokens": 10000,
+        "canonical_pack_budget_tokens": 1200,
+        "canonical_overview_pack_max_tokens": 2500,
+        "canonical_overview_anchor_slot_tokens": 500,
+        "canonical_overview_pack_seed_tokens_per_file": 400,
+        "canonical_overview_pack_seed_topup_max_tokens": 4000,
+        "canonical_overview_pack_seed_tokens_per_file_max": 800,
+        "canonical_overview_retrieval_budget_tokens": 600,
+        "conceptual_context_floor_tokens": 4000,
+        "work_lane_pack_token_budget": 4000,
+        "canonical_overview_anchor_max_slots": 15,
+        "canonical_overview_pack_seed_max_files": 6,
+        "canonical_overview_grep_max_snippets": 2
+      },
+      "overview_ceiling": {
+        "pack_slot_max_tokens": 1200,
+        "pack_seed_slot_max_tokens": 2400,
+        "retrieval_slots_max_tokens": 7500,
+        "theoretical_overview_ship_max_tokens": 11100,
+        "canonical_overview_chunk_floor_tokens": 10000
+      }
+    },
+    {
+      "max_context_tokens": 12000,
+      "scaled": {
+        "max_context_tokens": 12000,
+        "canonical_pack_budget_tokens": 1440,
+        "canonical_overview_pack_max_tokens": 3000,
+        "canonical_overview_anchor_slot_tokens": 600,
+        "canonical_overview_pack_seed_tokens_per_file": 480,
+        "canonical_overview_pack_seed_topup_max_tokens": 4800,
+        "canonical_overview_pack_seed_tokens_per_file_max": 960,
+        "canonical_overview_retrieval_budget_tokens": 720,
+        "conceptual_context_floor_tokens": 4800,
+        "work_lane_pack_token_budget": 4800,
+        "canonical_overview_anchor_max_slots": 18,
+        "canonical_overview_pack_seed_max_files": 7,
+        "canonical_overview_grep_max_snippets": 2
+      },
+      "overview_ceiling": {
+        "pack_slot_max_tokens": 1440,
+        "pack_seed_slot_max_tokens": 3360,
+        "retrieval_slots_max_tokens": 10800,
+        "theoretical_overview_ship_max_tokens": 15600,
+        "canonical_overview_chunk_floor_tokens": 13800
+      }
+    },
+    {
+      "max_context_tokens": 16000,
+      "scaled": {
+        "max_context_tokens": 16000,
+        "canonical_pack_budget_tokens": 1920,
+        "canonical_overview_pack_max_tokens": 4000,
+        "canonical_overview_anchor_slot_tokens": 800,
+        "canonical_overview_pack_seed_tokens_per_file": 640,
+        "canonical_overview_pack_seed_topup_max_tokens": 6400,
+        "canonical_overview_pack_seed_tokens_per_file_max": 1280,
+        "canonical_overview_retrieval_budget_tokens": 960,
+        "conceptual_context_floor_tokens": 6400,
+        "work_lane_pack_token_budget": 6400,
+        "canonical_overview_anchor_max_slots": 24,
+        "canonical_overview_pack_seed_max_files": 10,
+        "canonical_overview_grep_max_snippets": 3
+      },
+      "overview_ceiling": {
+        "pack_slot_max_tokens": 1920,
+        "pack_seed_slot_max_tokens": 6400,
+        "retrieval_slots_max_tokens": 19200,
+        "theoretical_overview_ship_max_tokens": 27520,
+        "canonical_overview_chunk_floor_tokens": 23200
+      }
+    },
+    {
+      "max_context_tokens": 20000,
+      "scaled": {
+        "max_context_tokens": 20000,
+        "canonical_pack_budget_tokens": 2400,
+        "canonical_overview_pack_max_tokens": 5000,
+        "canonical_overview_anchor_slot_tokens": 1000,
+        "canonical_overview_pack_seed_tokens_per_file": 800,
+        "canonical_overview_pack_seed_topup_max_tokens": 8000,
+        "canonical_overview_pack_seed_tokens_per_file_max": 1600,
+        "canonical_overview_retrieval_budget_tokens": 1200,
+        "conceptual_context_floor_tokens": 8000,
+        "work_lane_pack_token_budget": 8000,
+        "canonical_overview_anchor_max_slots": 30,
+        "canonical_overview_pack_seed_max_files": 12,
+        "canonical_overview_grep_max_snippets": 4
+      },
+      "overview_ceiling": {
+        "pack_slot_max_tokens": 2400,
+        "pack_seed_slot_max_tokens": 9600,
+        "retrieval_slots_max_tokens": 30000,
+        "theoretical_overview_ship_max_tokens": 42000,
+        "canonical_overview_chunk_floor_tokens": 35000
+      }
+    },
+    {
+      "max_context_tokens": 24000,
+      "scaled": {
+        "max_context_tokens": 24000,
+        "canonical_pack_budget_tokens": 2880,
+        "canonical_overview_pack_max_tokens": 6000,
+        "canonical_overview_anchor_slot_tokens": 1200,
+        "canonical_overview_pack_seed_tokens_per_file": 960,
+        "canonical_overview_pack_seed_topup_max_tokens": 9600,
+        "canonical_overview_pack_seed_tokens_per_file_max": 1920,
+        "canonical_overview_retrieval_budget_tokens": 1440,
+        "conceptual_context_floor_tokens": 9600,
+        "work_lane_pack_token_budget": 9600,
+        "canonical_overview_anchor_max_slots": 32,
+        "canonical_overview_pack_seed_max_files": 14,
+        "canonical_overview_grep_max_snippets": 5
+      },
+      "overview_ceiling": {
+        "pack_slot_max_tokens": 2880,
+        "pack_seed_slot_max_tokens": 13440,
+        "retrieval_slots_max_tokens": 38400,
+        "theoretical_overview_ship_max_tokens": 54720,
+        "canonical_overview_chunk_floor_tokens": 44400
+      }
+    },
+    {
+      "max_context_tokens": 32000,
+      "scaled": {
+        "max_context_tokens": 32000,
+        "canonical_pack_budget_tokens": 3840,
+        "canonical_overview_pack_max_tokens": 8000,
+        "canonical_overview_anchor_slot_tokens": 1600,
+        "canonical_overview_pack_seed_tokens_per_file": 1280,
+        "canonical_overview_pack_seed_topup_max_tokens": 12800,
+        "canonical_overview_pack_seed_tokens_per_file_max": 2560,
+        "canonical_overview_retrieval_budget_tokens": 1920,
+        "conceptual_context_floor_tokens": 12800,
+        "work_lane_pack_token_budget": 12800,
+        "canonical_overview_anchor_max_slots": 32,
+        "canonical_overview_pack_seed_max_files": 19,
+        "canonical_overview_grep_max_snippets": 6
+      },
+      "overview_ceiling": {
+        "pack_slot_max_tokens": 3840,
+        "pack_seed_slot_max_tokens": 24320,
+        "retrieval_slots_max_tokens": 51200,
+        "theoretical_overview_ship_max_tokens": 79360,
+        "canonical_overview_chunk_floor_tokens": 59200
+      }
+    },
+    {
+      "max_context_tokens": 50000,
+      "scaled": {
+        "max_context_tokens": 50000,
+        "canonical_pack_budget_tokens": 6000,
+        "canonical_overview_pack_max_tokens": 12500,
+        "canonical_overview_anchor_slot_tokens": 2500,
+        "canonical_overview_pack_seed_tokens_per_file": 2000,
+        "canonical_overview_pack_seed_topup_max_tokens": 20000,
+        "canonical_overview_pack_seed_tokens_per_file_max": 4000,
+        "canonical_overview_retrieval_budget_tokens": 3000,
+        "conceptual_context_floor_tokens": 16000,
+        "work_lane_pack_token_budget": 20000,
+        "canonical_overview_anchor_max_slots": 32,
+        "canonical_overview_pack_seed_max_files": 24,
+        "canonical_overview_grep_max_snippets": 10
+      },
+      "overview_ceiling": {
+        "pack_slot_max_tokens": 6000,
+        "pack_seed_slot_max_tokens": 48000,
+        "retrieval_slots_max_tokens": 80000,
+        "theoretical_overview_ship_max_tokens": 134000,
+        "canonical_overview_chunk_floor_tokens": 92500
+      }
+    },
+    {
+      "max_context_tokens": 100000,
+      "scaled": {
+        "max_context_tokens": 100000,
+        "canonical_pack_budget_tokens": 8000,
+        "canonical_overview_pack_max_tokens": 16000,
+        "canonical_overview_anchor_slot_tokens": 4000,
+        "canonical_overview_pack_seed_tokens_per_file": 2000,
+        "canonical_overview_pack_seed_topup_max_tokens": 24000,
+        "canonical_overview_pack_seed_tokens_per_file_max": 8000,
+        "canonical_overview_retrieval_budget_tokens": 6000,
+        "conceptual_context_floor_tokens": 16000,
+        "work_lane_pack_token_budget": 24000,
+        "canonical_overview_anchor_max_slots": 32,
+        "canonical_overview_pack_seed_max_files": 24,
+        "canonical_overview_grep_max_snippets": 12
+      },
+      "overview_ceiling": {
+        "pack_slot_max_tokens": 8000,
+        "pack_seed_slot_max_tokens": 48000,
+        "retrieval_slots_max_tokens": 128000,
+        "theoretical_overview_ship_max_tokens": 184000,
+        "canonical_overview_chunk_floor_tokens": 144000
+      }
+    },
+    {
+      "max_context_tokens": 200000,
+      "scaled": {
+        "max_context_tokens": 200000,
+        "canonical_pack_budget_tokens": 8000,
+        "canonical_overview_pack_max_tokens": 16000,
+        "canonical_overview_anchor_slot_tokens": 4000,
+        "canonical_overview_pack_seed_tokens_per_file": 2000,
+        "canonical_overview_pack_seed_topup_max_tokens": 24000,
+        "canonical_overview_pack_seed_tokens_per_file_max": 8000,
+        "canonical_overview_retrieval_budget_tokens": 8000,
+        "conceptual_context_floor_tokens": 16000,
+        "work_lane_pack_token_budget": 24000,
+        "canonical_overview_anchor_max_slots": 32,
+        "canonical_overview_pack_seed_max_files": 24,
+        "canonical_overview_grep_max_snippets": 12
+      },
+      "overview_ceiling": {
+        "pack_slot_max_tokens": 8000,
+        "pack_seed_slot_max_tokens": 48000,
+        "retrieval_slots_max_tokens": 128000,
+        "theoretical_overview_ship_max_tokens": 184000,
+        "canonical_overview_chunk_floor_tokens": 144000
+      }
+    }
+  ],
+  "hardwareTiers": [
+    {
+      "id": "T0",
+      "typical_host": "< 32 GB RAM, CPU / iGPU",
+      "context_tokens": 4000,
+      "max_gen_tokens": 2048,
+      "num_ctx_ceiling": 10240,
+      "selection_max_tokens": 100,
+      "note": "T0 <32GB CPU/iGPU: RAG cap 4000 (install default)"
+    },
+    {
+      "id": "T1",
+      "typical_host": "32–64 GB RAM, CPU",
+      "context_tokens": 10667,
+      "max_gen_tokens": 4096,
+      "num_ctx_ceiling": 6144,
+      "selection_max_tokens": 300,
+      "note": "T1 32-64GB CPU (proportional)"
+    },
+    {
+      "id": "T2",
+      "typical_host": "64 GB+ RAM, CPU",
+      "context_tokens": 21333,
+      "max_gen_tokens": 4096,
+      "num_ctx_ceiling": 8192,
+      "selection_max_tokens": 600,
+      "note": "T2 64GB+ CPU (proportional)"
+    },
+    {
+      "id": "T3",
+      "typical_host": "4 GB VRAM GPU",
+      "context_tokens": 106667,
+      "max_gen_tokens": 8192,
+      "num_ctx_ceiling": 0,
+      "selection_max_tokens": 1024,
+      "note": "T3 4GB GPU — num_ctx 0 = Ollama model default"
+    },
+    {
+      "id": "T4",
+      "typical_host": "6 GB VRAM GPU",
+      "context_tokens": 106667,
+      "max_gen_tokens": 8192,
+      "num_ctx_ceiling": 0,
+      "selection_max_tokens": 1024,
+      "note": "T4 6GB GPU"
+    },
+    {
+      "id": "T5",
+      "typical_host": "8 GB VRAM GPU",
+      "context_tokens": 106667,
+      "max_gen_tokens": 8192,
+      "num_ctx_ceiling": 0,
+      "selection_max_tokens": 1024,
+      "note": "T5 8GB GPU"
+    },
+    {
+      "id": "T7",
+      "typical_host": "12 GB VRAM GPU",
+      "context_tokens": 106667,
+      "max_gen_tokens": 8192,
+      "num_ctx_ceiling": 0,
+      "selection_max_tokens": 1024,
+      "note": "T7 12GB GPU"
+    },
+    {
+      "id": "T8",
+      "typical_host": "16 GB VRAM GPU",
+      "context_tokens": 106667,
+      "max_gen_tokens": 8192,
+      "num_ctx_ceiling": 0,
+      "selection_max_tokens": 1024,
+      "note": "T8 16GB GPU"
+    },
+    {
+      "id": "T9",
+      "typical_host": "24 GB+ VRAM GPU",
+      "context_tokens": 106667,
+      "max_gen_tokens": 8192,
+      "num_ctx_ceiling": 0,
+      "selection_max_tokens": 1024,
+      "note": "T9 24GB+ GPU"
+    }
+  ],
+  "maxContextTokensBounds": {
+    "min": 500,
+    "max": 200000,
+    "step": 500
+  },
+  "api_endpoint": "/api/v1/config/context-budget"
+}

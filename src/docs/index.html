@@ -31,7 +31,7 @@ pageCss: product.css
   </a>
   <a class="doc-hub-card" href="/docs/engine-operator.html">
     <h3>Engine operator guide</h3>
-    <p>Tray app tabs: Overview, Server, Ollama, Models, Indexing, Quality, Logs, Settings.</p>
+    <p>Tray app tabs: Overview, Server, Ollama, Models, Indexing, Quality, Knowledge, Logs, Settings.</p>
   </a>
   <a class="doc-hub-card" href="/docs/indexing-readiness.html">
     <h3>Indexing &amp; readiness</h3>
@@ -41,9 +41,17 @@ pageCss: product.css
     <h3>Patches &amp; governance</h3>
     <p>Assisted actions, patch preview (gate 2), quality map, DRY findings, audit trail.</p>
   </a>
+  <a class="doc-hub-card" href="/docs/knowledge-and-governance.html">
+    <h3>Knowledge &amp; governance</h3>
+    <p>Engine Knowledge tab — structural registries, activity audit, persistence, worked examples.</p>
+  </a>
   <a class="doc-hub-card" href="/docs/settings.html">
     <h3>Settings reference</h3>
-    <p>All {{ extensionSettings.totalCount | default: "130+" }} VS Code <code>contextmint.*</code> keys with defaults — operator, chat, governance, and Engine-managed.</p>
+    <p>VS Code <code>contextmint.*</code> ({{ extensionSettings.totalCount | default: "130+" }} keys) and API server defaults ({% if serverChatSettings %}{{ serverChatSettings.totalCount }}{% else %}533+{% endif %} keys) with usage guides.</p>
+  </a>
+  <a class="doc-hub-card" href="/docs/context-budget-calculator.html">
+    <h3>Context budget calculator</h3>
+    <p>Scale server <code>max_context_tokens</code> and see overview pack, seed, and retrieval slot knobs update proportionally.</p>
   </a>
   <a class="doc-hub-card" href="/docs/byok-enterprise.html">
     <h3>BYOK &amp; enterprise</h3>
@@ -64,7 +72,7 @@ pageCss: product.css
   <li><a href="/docs/installation.html">Installation</a> → <a href="/docs/engine-operator.html">Engine guide</a></li>
   <li><a href="/docs/indexing-readiness.html">Indexing &amp; readiness</a> → <a href="/docs/chat-and-lanes.html">Chat &amp; lanes</a></li>
   <li><a href="/docs/image-evidence-argus.html">Image evidence &amp; ARGUS</a> → <a href="/docs/context-lens-packs.html">Context Lens &amp; packs</a></li>
-  <li><a href="/docs/patches-governance.html">Patches &amp; governance</a></li>
+  <li><a href="/docs/patches-governance.html">Patches &amp; governance</a> → <a href="/docs/knowledge-and-governance.html">Knowledge &amp; governance</a></li>
 </ol>
 
 <p class="muted">

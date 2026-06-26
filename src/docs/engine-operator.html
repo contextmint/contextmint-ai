@@ -1,7 +1,7 @@
 ---
 layout: doc.html
 title: Engine Operator Guide | ContextMint Docs
-description: Operate ContextMint Engine — Overview, Server, Ollama, Models, Indexing, Quality, Logs, Settings, and support bundle.
+description: Operate ContextMint Engine — Overview, Server, Ollama, Models, Indexing, Quality, Knowledge, Logs, Settings, and support bundle.
 pageCss: product.css
 ---
 
@@ -63,6 +63,18 @@ pageCss: product.css
   <li>Scan progress for long-running repos</li>
 </ul>
 
+<h2>Knowledge tab</h2>
+<p>
+  Browse index-time <strong>Knowledge Layer</strong> registries and tail redacted <strong>activity audit</strong>
+  events — the operator complement to VS Code governance. See
+  <a href="/docs/knowledge-and-governance.html">Knowledge &amp; governance</a> for worked examples, persistence
+  (Structure is not time-limited; Activity UI defaults to a 1–24 h window), and screenshot checklist.
+</p>
+<ul>
+  <li><strong>Structure</strong> — routes, services, documents, sections, policies; searchable table + graph preview</li>
+  <li><strong>Activity</strong> — audit JSONL tail (<code>governance_fast_path</code>, chat streams, actions); export JSON</li>
+</ul>
+
 <h2>Logs tab</h2>
 <ul>
   <li>Tail server logs with time window filter</li>
@@ -75,6 +87,14 @@ pageCss: product.css
   <li>Server URL override, Ollama URL</li>
   <li>Operator tunables mirrored from server defaults where exposed</li>
 </ul>
+
+<h2>Context budget</h2>
+<p>
+  Open <strong>Context budget</strong> in the Engine nav to set <code>max_context_tokens</code> (RAG ship cap)
+  and co-apply <code>max_gen_tokens</code> (answer length / Ollama <code>num_predict</code>) for your hardware tier.
+  Values are saved to <code>~/.contextmint/server.defaults.yaml</code>; <strong>restart server</strong> after Apply.
+  Interactive scaling math: <a href="/docs/context-budget-calculator.html">Context budget calculator</a>.
+</p>
 
 <h2>About &amp; support bundle</h2>
 <p>

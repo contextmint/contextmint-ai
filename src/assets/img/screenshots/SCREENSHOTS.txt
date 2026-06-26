@@ -16,6 +16,18 @@ Engine operator console (homepage carousel — column 1):
 
   engine-quality.png    Quality tab
 
+  engine-knowledge-structure.png  Knowledge tab — Structure (overview)
+
+  engine-knowledge-routes.png     Knowledge — Routes + registration graph
+
+  engine-knowledge-services.png   Knowledge — Services + consumers
+
+  engine-knowledge-documents.png  Knowledge — Documents + file focus
+
+  engine-knowledge-activity.png Knowledge — Activity audit (governance_fast_path)
+
+  engine-knowledge-export.png   Knowledge — Activity export (optional)
+
   engine-logs.png       Logs tab
 
   engine-settings.png   Settings tab

@@ -51,7 +51,8 @@ pageCss: product.css
 
 <h2>Audit &amp; telemetry</h2>
 <ul>
-  <li>Server writes audit JSONL per workspace (chat streams, actions, indexing events)</li>
+  <li>Server writes audit JSONL per workspace (chat streams, actions, indexing events) under <code>~/.contextmint/audit/</code> — <strong>persisted on disk</strong>; Engine Knowledge → Activity only <em>displays</em> a configurable time window (default 1 h, max 24 h in UI)</li>
+  <li>Engine <strong>Knowledge</strong> tab — verify structural registries and export activity audit for governance reviews — <a href="/docs/knowledge-and-governance.html">Knowledge &amp; governance guide</a></li>
   <li>Optional <code>POST /api/v1/telemetry/action</code> for sampled client mirrors</li>
   <li>Lane metrics on <code>GET /api/observability/metrics</code> for operators</li>
 </ul>

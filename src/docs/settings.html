@@ -1,255 +1,334 @@
 ---
 layout: doc.html
 title: Settings Reference | ContextMint Docs
-description: Complete ContextMint VS Code extension settings — generated from package.json with defaults, grouped by topic. Engine-managed keys marked.
+description: Complete ContextMint settings — VS Code extension (contextmint.*) and API server (contextmint.defaults.yaml), with defaults, usage guides, and rollout notes.
 pageCss: product.css
 ---
 
-<h1>VS Code extension settings</h1>
+<h1>Settings reference</h1>
 <p class="doc-lead">
-  All <code>contextmint.*</code> keys for the {{ site.extensionName }} extension. Open
-  <strong>VS Code → Settings</strong> and search <code>contextmint</code>, or edit
-  <code>settings.json</code> directly. Server-side tunables (token caps, indexing, ARGUS backend)
-  live on the API host — see <a href="/docs/engine-operator.html">Engine operator guide</a>.
+  Choose a surface below. Server keys live in <code>contextmint.defaults.yaml</code> (overlay at
+  <code>~/.contextmint/server.defaults.yaml</code>) — edit in <strong>Engine → Server config</strong> and restart the API.
+  VS Code keys are <code>contextmint.*</code> in Settings or <code>settings.json</code>.
 </p>
+
+<div class="settings-tabs" role="tablist" aria-label="Settings surface">
+  <button
+    type="button"
+    class="settings-tab settings-tab--active"
+    role="tab"
+    id="settings-tab-server"
+    aria-selected="true"
+    aria-controls="settings-panel-server"
+    data-settings-tab="server"
+  >
+    <span class="settings-tab__label">Server settings</span>
+    <span class="settings-tab__count">{% if serverChatSettings %}{{ serverChatSettings.totalCount }}{% else %}—{% endif %} keys</span>
+    <span class="settings-tab__hint">EOP, retrieval, indexing, ARGUS…</span>
+  </button>
+  <button
+    type="button"
+    class="settings-tab"
+    role="tab"
+    id="settings-tab-vscode"
+    aria-selected="false"
+    aria-controls="settings-panel-vscode"
+    data-settings-tab="vscode"
+  >
+    <span class="settings-tab__label">VS Code settings</span>
+    <span class="settings-tab__count">{{ extensionSettings.totalCount }} keys</span>
+    <span class="settings-tab__hint">Chat, lanes, Context Lens, packs…</span>
+  </button>
+</div>
 
 <div class="settings-callout">
   <strong>Engine mode (default):</strong> use
   {% for key in extensionSettings.operatorKeys %}
     <code>{{ key }}</code>{% unless forloop.last %},{% endunless %}
   {% endfor %}
-  in VS Code. Manage server, Ollama, and models in <strong>ContextMint Engine → Settings</strong>.
+  in VS Code. API server tunables in <strong>Engine → Server config</strong> · desktop prefs in <strong>Engine → Settings</strong>.
 </div>
 
-<p class="muted settings-meta">
-  {{ extensionSettings.totalCount }} settings · generated {{ extensionSettings.generatedAt }} from
-  <span class="mono">{{ extensionSettings.source }}</span>.
-  Regenerate after extension releases: <span class="mono">npm run gen:settings</span> in
-  <span class="mono">contextmint-ai/</span>.
-</p>
+<!-- ── Server tab panel ─────────────────────────────────────────────────── -->
 
-<p>
-  <label class="settings-filter-label" for="settings-filter">Filter</label>
-  <input
-    type="search"
-    id="settings-filter"
-    class="settings-filter-input"
-    placeholder="Search by setting name or description…"
-    autocomplete="off"
-  />
-</p>
-
-<p class="settings-toc muted">
-  Jump to:
-  <a href="#usage-extension-retrieval">Extension retrieval guide</a> ·
-  <a href="#server-yaml">Server evidence assembly</a> ·
-  <a href="#usage-server-structural">Rollout &amp; verification</a>
-</p>
-
-{% if extensionSettings.retrievalGuide %}
-<section class="settings-section settings-usage-section" id="usage-extension-retrieval">
-  <h2>{{ extensionSettings.retrievalGuide.title }}</h2>
-  <p class="muted">{{ extensionSettings.retrievalGuide.summary }}</p>
-  <p class="muted">
-    Related server keys:
-    <a href="{{ extensionSettings.retrievalGuide.serverLinkAnchor }}">Evidence assembly (server)</a>.
-  </p>
-  {% if extensionSettings.retrievalGuide.tips %}
-  <p class="settings-verify-label">Tips</p>
-  <ul class="settings-verify-list">
-    {% for tip in extensionSettings.retrievalGuide.tips %}
-    <li>{{ tip }}</li>
-    {% endfor %}
-  </ul>
-  {% endif %}
-</section>
-{% endif %}
-
-{% for section in extensionSettings.sections %}
-<section class="settings-section" id="settings-{{ section.id }}">
-  <h2>{{ section.title }}</h2>
-  <p class="muted">{{ section.description }}</p>
-  <div class="settings-table-wrap">
-    <table class="settings-table">
-      <thead>
-        <tr>
-          <th scope="col">Setting</th>
-          <th scope="col">Default</th>
-          <th scope="col">Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for row in section.settings %}
-        <tr
-          class="settings-row{% if row.usage %} settings-setting-card__head{% endif %}{% if row.deprecated %} settings-row--deprecated{% endif %}{% if row.operator %} settings-row--operator{% endif %}"
-          data-setting="{{ row.id | downcase }}"
-        >
-          <td class="settings-table__key">
-            {% if row.usage %}<span class="settings-card-label">Setting</span>{% endif %}
-            <code>{{ row.id }}</code>
-            {% if row.operator %}<span class="settings-badge settings-badge--operator">operator</span>{% endif %}
-            {% if row.deprecated %}<span class="settings-badge settings-badge--deprecated">engine-managed</span>{% endif %}
-          </td>
-          <td class="settings-table__default mono">
-            {% if row.usage %}<span class="settings-card-label settings-card-label--inline">Default</span>{% endif %}
-            {{ row.default }}
-          </td>
-          <td class="settings-table__desc">
-            {% if row.usage %}<span class="settings-card-label settings-card-label--inline">Description</span>{% endif %}
-            {{ row.description }}
-          </td>
-        </tr>
-        {% if row.usage %}
-        <tr class="settings-row settings-setting-card__usage" data-setting="{{ row.id | downcase }}">
-          <td colspan="3" class="settings-usage-cell">
-            <span class="settings-card-label settings-card-label--usage">Usage guide</span>
-            {% include "settings-usage-block.html", usage: row.usage, settingId: row.id %}
-          </td>
-        </tr>
-        {% endif %}
-        {% endfor %}
-      </tbody>
-    </table>
+<div
+  id="settings-panel-server"
+  class="settings-tab-panel settings-tab-panel--active"
+  role="tabpanel"
+  aria-labelledby="settings-tab-server"
+  data-settings-panel="server"
+>
+  <div class="settings-toolbar">
+    <label class="settings-filter-label" for="settings-filter-server">Search server settings</label>
+    <input
+      type="search"
+      id="settings-filter-server"
+      class="settings-filter-input settings-filter-input--tab"
+      placeholder="Filter by key or description…"
+      autocomplete="off"
+      data-settings-filter="server"
+    />
   </div>
-</section>
-{% endfor %}
 
-<h2 id="engine-settings">ContextMint Engine settings</h2>
-<p>
-  Paths, ports, autostart, and model picks for the desktop operator app are <strong>not</strong>
-  duplicated here. Use <strong>Engine → Settings</strong> or
-  <code>~/.contextmint/engine/settings.yaml</code> on the machine running Engine.
-  See <a href="/docs/engine-operator.html">Engine operator guide</a>.
-</p>
-
-<h2 id="server-yaml">API server defaults (operators)</h2>
-<p>
-  Backend tunables (<code>chat.max_turns</code>, indexing concurrency, ARGUS, sandbox flags) ship in
-  <code>contextmint.defaults.yaml</code> on the API host with optional overlay at
-  <code>~/.contextmint/server.defaults.yaml</code>. See
-  <a href="/docs/engine-operator.html">Engine operator guide</a> for where to apply server overlays.
-</p>
-
-{% if serverChatSettings %}
-<section class="settings-section" id="settings-structural-plans">
-  <h2>Optional graph plan: <code>{{ serverChatSettings.planDefinition.planId }}</code></h2>
-  <p class="muted">
-    <code>api_registration_chain</code> is an <strong>optional reconstruct plan</strong> (not a VS Code setting).
-    Declared in <span class="mono">{{ serverChatSettings.planDefinition.path }}</span>
-    · intent <span class="mono">{{ serverChatSettings.planDefinition.intent }}</span>
-    · paraphrase rules <span class="mono">{{ serverChatSettings.planDefinition.rulesPath }}</span>.
-    {{ serverChatSettings.planDefinition.description }}
-  </p>
   <p class="muted settings-meta">
-    Server chat keys below · generated {{ serverChatSettings.generatedAt }} from
-    <span class="mono">{{ serverChatSettings.source }}</span>
-    · overlay <span class="mono">{{ serverChatSettings.overlayPath }}</span>.
+    {% if serverChatSettings %}
+      Generated {{ serverChatSettings.generatedAt }} from <span class="mono">{{ serverChatSettings.source }}</span>
+      · overlay <span class="mono">{{ serverChatSettings.overlayPath }}</span>.
+      <a href="/docs/context-budget-calculator.html">Context budget calculator</a> ·
+      <a href="/docs/engine-operator.html">Engine operator guide</a>.
+    {% else %}
+      Server catalog not loaded — run <span class="mono">npm run gen:settings</span> in <span class="mono">contextmint-ai/</span>.
+    {% endif %}
   </p>
-</section>
 
-{% if serverChatSettings.usageGuide %}
-<section class="settings-section settings-usage-section" id="usage-server-structural">
-  <h2>{{ serverChatSettings.usageGuide.title }}</h2>
-  <p class="muted">{{ serverChatSettings.usageGuide.summary }}</p>
+  {% if serverChatSettings %}
+  <div class="settings-groups" data-settings-groups="server">
+    <details class="settings-group" id="settings-server-structural-plans">
+      <summary class="settings-group__summary">
+        <span class="settings-group__title">Optional graph plan: {{ serverChatSettings.planDefinition.planId }}</span>
+        <span class="settings-group__meta">reference</span>
+      </summary>
+      <div class="settings-group__body">
+        <p class="muted">
+          Declared in <span class="mono">{{ serverChatSettings.planDefinition.path }}</span>
+          · intent <span class="mono">{{ serverChatSettings.planDefinition.intent }}</span>.
+          {{ serverChatSettings.planDefinition.description }}
+        </p>
+      </div>
+    </details>
 
-  <h3 class="settings-usage-subhead">Rollout scenarios</h3>
-  <div class="settings-table-wrap">
-    <table class="settings-table settings-table--compact">
-      <thead>
-        <tr>
-          <th scope="col">Scenario</th>
-          <th scope="col">legacy api_surface</th>
-          <th scope="col">route_registry</th>
-          <th scope="col">plan_selector</th>
-          <th scope="col">knowledge_lookup</th>
-          <th scope="col">plan_executor</th>
-          <th scope="col">intent_classifier</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for scenario in serverChatSettings.usageGuide.rolloutScenarios %}
-        <tr>
-          <td>{{ scenario.name }}</td>
-          <td class="mono">{% if scenario.flags.api_surface %}✓{% else %}—{% endif %}</td>
-          <td class="mono">{% if scenario.flags.route_registry %}✓{% else %}—{% endif %}</td>
-          <td class="mono">{% if scenario.flags.plan_selector %}✓{% else %}—{% endif %}</td>
-          <td class="mono">{% if scenario.flags.knowledge_lookup %}✓{% else %}—{% endif %}</td>
-          <td class="mono">{% if scenario.flags.plan_executor %}✓{% else %}—{% endif %}</td>
-          <td class="mono">
-            {% if scenario.flags.intent_classifier == "optional" %}optional{% elsif scenario.flags.intent_classifier %}✓{% else %}—{% endif %}
-          </td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+    {% if serverChatSettings.usageGuide %}
+    <details class="settings-group settings-group--usage" id="usage-server-structural">
+      <summary class="settings-group__summary">
+        <span class="settings-group__title">{{ serverChatSettings.usageGuide.title }}</span>
+        <span class="settings-group__meta">rollout guide</span>
+      </summary>
+      <div class="settings-group__body settings-usage-section">
+        <p class="muted">{{ serverChatSettings.usageGuide.summary }}</p>
+
+        <h4 class="settings-usage-subhead">Rollout scenarios</h4>
+        <div class="settings-table-wrap">
+          <table class="settings-table settings-table--compact">
+            <thead>
+              <tr>
+                <th scope="col">Scenario</th>
+                <th scope="col">api_surface</th>
+                <th scope="col">route_registry</th>
+                <th scope="col">symbol_registry</th>
+                <th scope="col">plan_selector</th>
+                <th scope="col">knowledge_lookup</th>
+                <th scope="col">EOP</th>
+                <th scope="col">EOP receipt</th>
+                <th scope="col">plan_executor</th>
+                <th scope="col">intent_classifier</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for scenario in serverChatSettings.usageGuide.rolloutScenarios %}
+              <tr class="settings-row" data-setting="{{ scenario.name | downcase }}">
+                <td>{{ scenario.name }}</td>
+                <td class="mono">{% if scenario.flags.api_surface %}✓{% else %}—{% endif %}</td>
+                <td class="mono">{% if scenario.flags.route_registry %}✓{% else %}—{% endif %}</td>
+                <td class="mono">{% if scenario.flags.symbol_registry %}✓{% else %}—{% endif %}</td>
+                <td class="mono">{% if scenario.flags.plan_selector %}✓{% else %}—{% endif %}</td>
+                <td class="mono">{% if scenario.flags.knowledge_lookup %}✓{% else %}—{% endif %}</td>
+                <td class="mono">{% if scenario.flags.eop %}✓{% else %}—{% endif %}</td>
+                <td class="mono">{% if scenario.flags.eop_receipt %}✓{% else %}—{% endif %}</td>
+                <td class="mono">{% if scenario.flags.plan_executor %}✓{% else %}—{% endif %}</td>
+                <td class="mono">
+                  {% if scenario.flags.intent_classifier == "optional" %}optional{% elsif scenario.flags.intent_classifier %}✓{% else %}—{% endif %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        <h4 class="settings-usage-subhead">Dependencies</h4>
+        <ul class="settings-verify-list">
+          {% for note in serverChatSettings.usageGuide.dependencyNotes %}
+          <li>{{ note }}</li>
+          {% endfor %}
+        </ul>
+
+        <h4 class="settings-usage-subhead">How to check</h4>
+        <ul class="settings-verify-list">
+          {% for tip in serverChatSettings.usageGuide.verifyTips %}
+          <li>{{ tip }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </details>
+    {% endif %}
+
+    {% for section in serverChatSettings.sections %}
+    <details class="settings-group" id="settings-server-{{ section.id }}">
+      <summary class="settings-group__summary">
+        <span class="settings-group__title">{{ section.title }}</span>
+        <span class="settings-group__meta">{{ section.settings.size }} keys</span>
+      </summary>
+      <div class="settings-group__body">
+        <p class="muted">{{ section.description }}</p>
+        <div class="settings-table-wrap">
+          <table class="settings-table">
+            <thead>
+              <tr>
+                <th scope="col">Key</th>
+                <th scope="col">Default</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in section.settings %}
+              <tr
+                class="settings-row{% if row.usage %} settings-setting-card__head{% endif %}{% if row.operator %} settings-row--operator{% endif %}"
+                data-setting="{{ row.id | downcase }}"
+              >
+                <td class="settings-table__key">
+                  {% if row.usage %}<span class="settings-card-label">Setting</span>{% endif %}
+                  <code>{{ row.id }}</code>
+                  {% if row.operator %}<span class="settings-badge settings-badge--operator">operator</span>{% endif %}
+                </td>
+                <td class="settings-table__default mono">
+                  {% if row.usage %}<span class="settings-card-label settings-card-label--inline">Default</span>{% endif %}
+                  {{ row.default }}
+                </td>
+                <td class="settings-table__desc">
+                  {% if row.usage %}<span class="settings-card-label settings-card-label--inline">Description</span>{% endif %}
+                  {{ row.description }}
+                </td>
+              </tr>
+              {% if row.usage %}
+              <tr class="settings-row settings-setting-card__usage" data-setting="{{ row.id | downcase }}">
+                <td colspan="3" class="settings-usage-cell">
+                  <span class="settings-card-label settings-card-label--usage">Usage guide</span>
+                  {% include "settings-usage-block.html", usage: row.usage, settingId: row.id %}
+                </td>
+              </tr>
+              {% endif %}
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="settings-callout settings-callout--warn" role="note">
+    <strong>Server settings missing from this build.</strong> Run
+    <code>npm run gen:settings</code> in <code>contextmint-ai/</code> and commit
+    <code>src/_data/serverChatSettings.json</code> before deploying.
+  </p>
+  {% endif %}
+</div>
+
+<!-- ── VS Code tab panel ──────────────────────────────────────────────── -->
+
+<div
+  id="settings-panel-vscode"
+  class="settings-tab-panel"
+  role="tabpanel"
+  aria-labelledby="settings-tab-vscode"
+  data-settings-panel="vscode"
+  hidden
+>
+  <div class="settings-toolbar">
+    <label class="settings-filter-label" for="settings-filter-vscode">Search VS Code settings</label>
+    <input
+      type="search"
+      id="settings-filter-vscode"
+      class="settings-filter-input settings-filter-input--tab"
+      placeholder="Filter by setting name or description…"
+      autocomplete="off"
+      data-settings-filter="vscode"
+    />
   </div>
 
-  <h3 class="settings-usage-subhead">Dependencies</h3>
-  <ul class="settings-verify-list">
-    {% for note in serverChatSettings.usageGuide.dependencyNotes %}
-    <li>{{ note }}</li>
-    {% endfor %}
-  </ul>
+  <p class="muted settings-meta">
+    Generated {{ extensionSettings.generatedAt }} from <span class="mono">{{ extensionSettings.source }}</span>.
+    Engine desktop prefs (<code>~/.contextmint/engine/settings.yaml</code>) are in
+    <a href="/docs/engine-operator.html">Engine operator guide</a> — not listed here.
+  </p>
 
-  <h3 class="settings-usage-subhead">How to check</h3>
-  <ul class="settings-verify-list">
-    {% for tip in serverChatSettings.usageGuide.verifyTips %}
-    <li>{{ tip }}</li>
-    {% endfor %}
-  </ul>
-</section>
-{% endif %}
-
-{% for section in serverChatSettings.sections %}
-<section class="settings-section" id="settings-server-{{ section.id }}">
-  <h2>{{ section.title }}</h2>
-  <p class="muted">{{ section.description }}</p>
-  <div class="settings-table-wrap">
-    <table class="settings-table">
-      <thead>
-        <tr>
-          <th scope="col">Key</th>
-          <th scope="col">Default</th>
-          <th scope="col">Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for row in section.settings %}
-        <tr
-          class="settings-row{% if row.usage %} settings-setting-card__head{% endif %}{% if row.operator %} settings-row--operator{% endif %}"
-          data-setting="{{ row.id | downcase }}"
-        >
-          <td class="settings-table__key">
-            {% if row.usage %}<span class="settings-card-label">Setting</span>{% endif %}
-            <code>{{ row.id }}</code>
-            {% if row.operator %}<span class="settings-badge settings-badge--operator">operator</span>{% endif %}
-          </td>
-          <td class="settings-table__default mono">
-            {% if row.usage %}<span class="settings-card-label settings-card-label--inline">Default</span>{% endif %}
-            {{ row.default }}
-          </td>
-          <td class="settings-table__desc">
-            {% if row.usage %}<span class="settings-card-label settings-card-label--inline">Description</span>{% endif %}
-            {{ row.description }}
-          </td>
-        </tr>
-        {% if row.usage %}
-        <tr class="settings-row settings-setting-card__usage" data-setting="{{ row.id | downcase }}">
-          <td colspan="3" class="settings-usage-cell">
-            <span class="settings-card-label settings-card-label--usage">Usage guide</span>
-            {% include "settings-usage-block.html", usage: row.usage, settingId: row.id %}
-          </td>
-        </tr>
+  <div class="settings-groups" data-settings-groups="vscode">
+    {% if extensionSettings.retrievalGuide %}
+    <details class="settings-group settings-group--usage" id="usage-extension-retrieval">
+      <summary class="settings-group__summary">
+        <span class="settings-group__title">{{ extensionSettings.retrievalGuide.title }}</span>
+        <span class="settings-group__meta">guide</span>
+      </summary>
+      <div class="settings-group__body settings-usage-section">
+        <p class="muted">{{ extensionSettings.retrievalGuide.summary }}</p>
+        {% if extensionSettings.retrievalGuide.tips %}
+        <p class="settings-verify-label">Tips</p>
+        <ul class="settings-verify-list">
+          {% for tip in extensionSettings.retrievalGuide.tips %}
+          <li>{{ tip }}</li>
+          {% endfor %}
+        </ul>
         {% endif %}
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
-</section>
-{% endfor %}
-{% endif %}
+      </div>
+    </details>
+    {% endif %}
 
-<p class="muted">
+    {% for section in extensionSettings.sections %}
+    <details class="settings-group" id="settings-{{ section.id }}">
+      <summary class="settings-group__summary">
+        <span class="settings-group__title">{{ section.title }}</span>
+        <span class="settings-group__meta">{{ section.settings.size }} keys</span>
+      </summary>
+      <div class="settings-group__body">
+        <p class="muted">{{ section.description }}</p>
+        <div class="settings-table-wrap">
+          <table class="settings-table">
+            <thead>
+              <tr>
+                <th scope="col">Setting</th>
+                <th scope="col">Default</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in section.settings %}
+              <tr
+                class="settings-row{% if row.usage %} settings-setting-card__head{% endif %}{% if row.deprecated %} settings-row--deprecated{% endif %}{% if row.operator %} settings-row--operator{% endif %}"
+                data-setting="{{ row.id | downcase }}"
+              >
+                <td class="settings-table__key">
+                  {% if row.usage %}<span class="settings-card-label">Setting</span>{% endif %}
+                  <code>{{ row.id }}</code>
+                  {% if row.operator %}<span class="settings-badge settings-badge--operator">operator</span>{% endif %}
+                  {% if row.deprecated %}<span class="settings-badge settings-badge--deprecated">engine-managed</span>{% endif %}
+                </td>
+                <td class="settings-table__default mono">
+                  {% if row.usage %}<span class="settings-card-label settings-card-label--inline">Default</span>{% endif %}
+                  {{ row.default }}
+                </td>
+                <td class="settings-table__desc">
+                  {% if row.usage %}<span class="settings-card-label settings-card-label--inline">Description</span>{% endif %}
+                  {{ row.description }}
+                </td>
+              </tr>
+              {% if row.usage %}
+              <tr class="settings-row settings-setting-card__usage" data-setting="{{ row.id | downcase }}">
+                <td colspan="3" class="settings-usage-cell">
+                  <span class="settings-card-label settings-card-label--usage">Usage guide</span>
+                  {% include "settings-usage-block.html", usage: row.usage, settingId: row.id %}
+                </td>
+              </tr>
+              {% endif %}
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+    {% endfor %}
+  </div>
+</div>
+
+<p class="muted settings-footer">
   Problems: <a href="/support/troubleshooting.html#extension">Troubleshooting → Extension</a> ·
   <a href="/docs/byok-enterprise.html">BYOK &amp; enterprise</a> ·
   <a href="/docs/glossary.html">Glossary</a>
@@ -257,22 +336,71 @@ pageCss: product.css
 
 <script>
 (function () {
-  var input = document.getElementById("settings-filter");
-  if (!input) return;
-  input.addEventListener("input", function () {
-    var q = (input.value || "").trim().toLowerCase();
-    document.querySelectorAll(".settings-row").forEach(function (row) {
-      var hay = (row.getAttribute("data-setting") || "") + " " + (row.textContent || "");
-      row.style.display = !q || hay.toLowerCase().indexOf(q) !== -1 ? "" : "none";
+  var tabs = document.querySelectorAll("[data-settings-tab]");
+  var panels = document.querySelectorAll("[data-settings-panel]");
+  var filters = document.querySelectorAll("[data-settings-filter]");
+
+  function activateTab(tabId) {
+    tabs.forEach(function (tab) {
+      var active = tab.getAttribute("data-settings-tab") === tabId;
+      tab.classList.toggle("settings-tab--active", active);
+      tab.setAttribute("aria-selected", active ? "true" : "false");
     });
-    document.querySelectorAll(".settings-section").forEach(function (section) {
-      var visible = section.querySelectorAll('.settings-row:not([style*="display: none"])').length;
-      if (!q) {
-        section.style.display = "";
-        return;
+    panels.forEach(function (panel) {
+      var active = panel.getAttribute("data-settings-panel") === tabId;
+      panel.classList.toggle("settings-tab-panel--active", active);
+      if (active) {
+        panel.removeAttribute("hidden");
+      } else {
+        panel.setAttribute("hidden", "hidden");
       }
-      section.style.display = visible > 0 ? "" : "none";
+    });
+  }
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      activateTab(tab.getAttribute("data-settings-tab") || "server");
     });
   });
+
+  function filterPanel(panelKey, query) {
+    var groups = document.querySelector('[data-settings-groups="' + panelKey + '"]');
+    if (!groups) return;
+
+    var q = (query || "").trim().toLowerCase();
+
+    groups.querySelectorAll(".settings-group").forEach(function (group) {
+      var visible = 0;
+      group.querySelectorAll(".settings-row").forEach(function (row) {
+        var hay = (row.getAttribute("data-setting") || "") + " " + (row.textContent || "");
+        var show = !q || hay.toLowerCase().indexOf(q) !== -1;
+        row.style.display = show ? "" : "none";
+        if (show) visible += 1;
+      });
+
+      if (!q) {
+        group.open = false;
+        group.style.display = "";
+        return;
+      }
+
+      group.style.display = visible > 0 ? "" : "none";
+      group.open = visible > 0;
+    });
+  }
+
+  filters.forEach(function (input) {
+    input.addEventListener("input", function () {
+      var panelKey = input.getAttribute("data-settings-filter") || "server";
+      filterPanel(panelKey, input.value);
+    });
+  });
+
+  var hash = window.location.hash || "";
+  if (hash.indexOf("settings-server") !== -1 || hash === "#server") {
+    activateTab("server");
+  } else if (hash.indexOf("settings-") !== -1 || hash.indexOf("usage-extension") !== -1 || hash === "#vscode") {
+    activateTab("vscode");
+  }
 })();
 </script>

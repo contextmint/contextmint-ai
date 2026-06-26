@@ -8,6 +8,7 @@ import { fileURLToPath } from "url";
 import {
   EXTENSION_RETRIEVAL_GUIDE,
   EXTENSION_SETTING_USAGE,
+  buildDefaultExtensionUsage,
 } from "./settings-usage-guides.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -301,14 +302,18 @@ function build() {
     const meta = props[id];
     const sectionId = categorize(id);
     const bucket = buckets[sectionId] ?? buckets.connectivity;
+    const description = publicDescription(id, (meta.description || "").trim());
+    const type = meta.type || "unknown";
+    const usage =
+      EXTENSION_SETTING_USAGE[id] ?? buildDefaultExtensionUsage(id, description, type);
     bucket.push({
       id,
-      description: publicDescription(id, (meta.description || "").trim()),
+      description,
       default: formatDefault(meta.default),
       deprecated: isDeprecated(id) || Boolean(meta.deprecationMessage),
       operator: isOperator(id),
-      type: meta.type || "unknown",
-      ...(EXTENSION_SETTING_USAGE[id] ? { usage: EXTENSION_SETTING_USAGE[id] } : {}),
+      type,
+      usage,
     });
   }
 
