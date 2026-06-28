@@ -377,6 +377,77 @@ export const SERVER_SETTING_USAGE = {
     recommendation:
       "Leave shipped defaults; customize only when receipts show wrong discovery mix for an obligation type.",
   },
+  "retrieval.trace_enabled": {
+    whenEnable:
+      "Manual UAT, debugging insufficient evidence, or validating expand-ladder behaviour on repo-lane turns.",
+    whenDisable:
+      "Production when you do not read decision traces — saves minimal in-memory collector overhead.",
+    pros: [
+      "Ordered audit of plan selector, anchor verify, ShipLaw, expand ladder, and response gates",
+      "Pairs with Context Receipt JSON for postmortems",
+    ],
+    cons: [
+      "Slightly larger session_data during the turn when enabled",
+      "Does not export files until trace_export_enabled is also true",
+    ],
+    recommendation:
+      "Leave enabled for local manual testing; disable on shared servers unless actively debugging.",
+  },
+  "retrieval.trace_export_enabled": {
+    whenEnable:
+      "Manual UAT — write retrieval-trace-{workspace}-{request}-{timestamp}.json under trace_export_dir.",
+    whenDisable:
+      "Default production — trace stays in memory/receipt only unless debug endpoints are used.",
+    pros: [
+      "Inspectable JSON artifact alongside context-receipt-*.json",
+      "Export path is operator-tunable via trace_export_dir",
+    ],
+    cons: [
+      "Disk writes every repo-lane turn when enabled — watch folder size on long sessions",
+      "May include query text unless trace_include_query is false",
+    ],
+    recommendation:
+      "Enable only during structured manual UAT; pair with trace_export_dir on a writable folder.",
+  },
+  "retrieval.trace_export_dir": {
+    whenEnable:
+      "Set to a writable folder for retrieval-trace-*.json (default documentation/evidence). Relative to server cwd or absolute.",
+    whenDisable: "N/A — path string, not a boolean.",
+    pros: [
+      "Operators choose export location without code changes",
+      "Works with relative paths from the API server working directory",
+    ],
+    cons: [
+      "Invalid or unwritable paths fail export silently in receipt — verify folder exists",
+      "Server restart required after overlay change",
+    ],
+    recommendation:
+      "Use documentation/evidence for local monorepo UAT; point to a team log folder on shared hosts.",
+  },
+  "retrieval.trace_include_query": {
+    whenEnable: "Local manual tests where full prompt text helps reproduce routing decisions.",
+    whenDisable:
+      "Shared logs, support bundles, or compliance-sensitive environments — query text is redacted in export.",
+    pros: ["Easier reproduction of routing bugs", "Matches receipt query when both exported"],
+    cons: ["May leak sensitive prompt text into trace files"],
+    recommendation: "true on developer laptops; false before attaching traces to tickets.",
+  },
+  "retrieval.trace_max_field_chars": {
+    whenEnable: "N/A — numeric cap (100–8000) on trace string fields.",
+    whenDisable: "N/A",
+    pros: ["Prevents huge excerpt bodies in trace JSON", "Bounds memory for in-memory collector"],
+    cons: ["Very low values truncate useful debug context"],
+    recommendation: "Default 500 is balanced; raise briefly when debugging excerpt selection.",
+  },
+  "retrieval.trace_include_pipeline_inputs": {
+    whenEnable:
+      "Deep pipeline debugging — records stage parameters in pipeline trace rows.",
+    whenDisable:
+      "Minimal trace size when you only need high-level phase decisions.",
+    pros: ["See BM25/vector/grep stage inputs in the audit trail"],
+    cons: ["Larger trace payloads per turn"],
+    recommendation: "Leave enabled for manual UAT; disable if trace files are too large.",
+  },
 };
 
 /** @type {Record<string, SettingUsage>} */
@@ -565,6 +636,8 @@ export const SERVER_DEPENDENCY_NOTES = [
   "retrieval.discovery_policy is read per primary obligation type (overview, definition, registration, semantic).",
   "plan_executor_enabled is for optional graph reconstruct when lookup misses — off by default in production.",
   "retrieval.inference_enabled (server defaults) gates LLM evidence selection — last resort only, off by default.",
+  "retrieval.trace_enabled collects decision trace per repo-lane turn; trace_export_enabled writes JSON to retrieval.trace_export_dir (operator-tunable, not hardcoded).",
+  "Set retrieval.trace_include_query false before sharing trace exports; cap fields with retrieval.trace_max_field_chars.",
   "api_surface_enabled is a legacy rollback bridge — not the primary production path.",
   "runtime.ollama_ensure_model_loaded preloads cold models before chat; runtime.ollama_keep_model_loaded prevents eviction on sovereign servers.",
   "server.ollama_warmup_read_timeout_sec caps preload wait — separate from server.ollama_chat_read_timeout_sec stream read.",

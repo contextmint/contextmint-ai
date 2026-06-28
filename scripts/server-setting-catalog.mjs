@@ -49,6 +49,16 @@ export const SERVER_SECTIONS = [
       /^chat\.(canonical_|evidence_fusion|evidence_shipped)/.test(id),
   },
   {
+    id: "evidence-narration",
+    title: "Evidence narration & clarification",
+    description:
+      "Citation-bound LLM narration on sanitized excerpts, clarification recovery when evidence is insufficient, and final insufficient-evidence stop after max turns. Server restart required.",
+    match: (id) =>
+      /^chat\.(narration_|clarification_|insufficient_evidence_|fact_template_only)/.test(
+        id,
+      ),
+  },
+  {
     id: "api-surface",
     title: "API surface (legacy bridge)",
     description:
@@ -85,7 +95,7 @@ export const SERVER_SECTIONS = [
     id: "retrieval",
     title: "Retrieval, expand & infer",
     description:
-      "Hybrid search top-k, window expansion, parallel grep, graph fetch, R6 escalation gates, and optional LLM inference (last resort, off by default).",
+      "Hybrid search top-k, window expansion, parallel grep, graph fetch, ShipLaw expand ladder, R6 escalation gates, optional LLM inference (last resort, off by default), retrieval decision tracing for manual UAT, and optional live pipeline_progress SSE (off by default until extension ships).",
     match: (id) => id.startsWith("retrieval.") && id !== "retrieval.discovery_policy",
   },
   {
@@ -249,6 +259,62 @@ export const SERVER_SETTING_DESCRIPTIONS = {
     "Workspace grep from query terms — config-driven synonyms, not repo-specific paths.",
   "retrieval.graph_fetch_enabled":
     "Follow dependency graph edges and read neighbour files with windows.",
+  "retrieval.trace_enabled":
+    "Collect an in-memory retrieval decision trace on each repo-lane structural turn — plan selection, anchor verify, ShipLaw, expand ladder, and response gates. Used for manual UAT debugging; minimal overhead when export is off.",
+  "retrieval.trace_export_enabled":
+    "Write retrieval-trace-*.json to the operator-configured export folder at end of turn. Enable during manual UAT or receipt postmortems — off by default in production.",
+  "retrieval.trace_export_dir":
+    "Folder for retrieval-trace-*.json during manual UAT (default documentation/evidence). Relative to server cwd or absolute. Not hardcoded in product code — always read from this setting.",
+  "retrieval.trace_include_query":
+    "Include full query text in exported trace JSON. Keep true for local manual tests; set false before sharing logs externally.",
+  "retrieval.trace_max_field_chars":
+    "Cap string fields in trace inputs/outputs (100–8000). Prevents large excerpt dumps or secrets from bloating trace files.",
+  "retrieval.trace_include_pipeline_inputs":
+    "Record stage parameters in pipeline trace rows when trace collection is enabled.",
+  "retrieval.trace_include_evidence_detail":
+    "Record shipped and collected evidence excerpts in trace export — disable to shrink trace JSON size.",
+  "retrieval.trace_include_llm_io":
+    "Record raw LLM prompt messages and response text in trace export — disable before sharing logs externally.",
+  "retrieval.trace_llm_io_max_chars":
+    "Max chars per raw LLM prompt/response field in trace export (500–64000).",
+  "retrieval.trace_evidence_preview_chars":
+    "Max chars per excerpt preview in collected-evidence trace rows (80–4000).",
+  "retrieval.expand_ladder_enabled":
+    "ShipLaw-gated expand ladder L1–L5 — escalates grep, search, windows, graph, and optional infer until sufficient or exhausted.",
+  "retrieval.excerpt_select_infer_enabled":
+    "Enable L5 excerpt-select infer stage in expand ladder — last resort only; off by default until certified.",
+  "retrieval.live_progress_enabled":
+    "Emit pipeline_progress SSE events during chat retrieval so the extension can show a live timeline. Off by default until extension ships.",
+  "retrieval.live_progress_granularity":
+    "Live progress detail level: summary (user-meaningful phases only), stage (each pipeline stage), or verbose (includes meta).",
+  "retrieval.live_progress_max_events_per_turn":
+    "Cap pipeline_progress SSE events per chat turn (5–200) to prevent flood on verbose mode.",
+  "retrieval.live_progress_include_paths":
+    "Include repo-relative file paths in live progress detail lines when server emits pipeline_progress.",
+  "retrieval.live_progress_min_interval_ms":
+    "Minimum milliseconds between duplicate live progress phase updates (0–5000). Throttles noisy step_id repeats.",
+  "chat.narration_enabled":
+    "Citation-bound LLM narration on sanitized shipped excerpts when meaning intent is detected and evidence is sufficient.",
+  "chat.narration_max_excerpts":
+    "Maximum numbered excerpts passed to the narration LLM call.",
+  "chat.narration_max_tokens":
+    "Max output tokens for citation-bound narration LLM call.",
+  "chat.narration_timeout_ms":
+    "Wall-clock timeout (ms) for narration LLM call.",
+  "chat.narration_require_citations":
+    "Reject narration results that omit valid citation ids from the excerpt pack.",
+  "chat.fact_template_only_when_no_meaning_intent":
+    "When true, skip narration LLM and use fact templates only when the query has no meaning intent.",
+  "chat.clarification_enabled":
+    "Ask the user for symbol, route, or file hints when evidence is insufficient — before final insufficient stop.",
+  "chat.clarification_max_turns":
+    "Maximum clarification rounds before insufficient_evidence_final_message (default 2).",
+  "chat.clarification_merge_entity_terms":
+    "Merge entity tokens from clarification replies into session obligation hints for the next retrieval pass.",
+  "chat.insufficient_evidence_enabled":
+    "Emit honest insufficient-evidence response after clarification turns are exhausted.",
+  "chat.insufficient_evidence_partial_facts_allowed":
+    "Allow partial fact templates when meaning was requested — default false to avoid misleading role text.",
   "chat.service_registry_enabled":
     "Index-time service registry for Type B service questions.",
   "chat.section_registry_enabled":
@@ -318,6 +384,34 @@ export const SERVER_OPERATOR_KEYS = new Set([
   "retrieval.window_expand_enabled",
   "retrieval.parallel_grep_enabled",
   "retrieval.graph_fetch_enabled",
+  "retrieval.trace_enabled",
+  "retrieval.trace_export_enabled",
+  "retrieval.trace_export_dir",
+  "retrieval.trace_include_query",
+  "retrieval.trace_max_field_chars",
+  "retrieval.trace_include_pipeline_inputs",
+  "retrieval.trace_include_evidence_detail",
+  "retrieval.trace_include_llm_io",
+  "retrieval.trace_llm_io_max_chars",
+  "retrieval.trace_evidence_preview_chars",
+  "retrieval.expand_ladder_enabled",
+  "retrieval.excerpt_select_infer_enabled",
+  "retrieval.live_progress_enabled",
+  "retrieval.live_progress_granularity",
+  "retrieval.live_progress_max_events_per_turn",
+  "retrieval.live_progress_include_paths",
+  "retrieval.live_progress_min_interval_ms",
+  "chat.narration_enabled",
+  "chat.narration_max_excerpts",
+  "chat.narration_max_tokens",
+  "chat.narration_timeout_ms",
+  "chat.narration_require_citations",
+  "chat.fact_template_only_when_no_meaning_intent",
+  "chat.clarification_enabled",
+  "chat.clarification_max_turns",
+  "chat.clarification_merge_entity_terms",
+  "chat.insufficient_evidence_enabled",
+  "chat.insufficient_evidence_partial_facts_allowed",
   "evidence_planes.enabled",
   "sandbox.enabled",
   "quality.enabled",
