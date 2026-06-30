@@ -41,6 +41,7 @@
   initAnnouncement();
   initProductShots();
   initNavbar();
+  initFaqDeepLink();
 
   function initProductShots() {
     document.querySelectorAll(".product-shot__img").forEach(function (img) {
@@ -96,5 +97,30 @@
         toggle.focus();
       }
     });
+  }
+
+  function initFaqDeepLink() {
+    var list = document.querySelector(".faq-list");
+    if (!list) {
+      return;
+    }
+
+    function openFromHash() {
+      var id = window.location.hash.replace(/^#/, "");
+      if (!id) {
+        return;
+      }
+      var el = document.getElementById(id);
+      if (!el || el.tagName !== "DETAILS") {
+        return;
+      }
+      el.open = true;
+      window.requestAnimationFrame(function () {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+
+    openFromHash();
+    window.addEventListener("hashchange", openFromHash);
   }
 })();

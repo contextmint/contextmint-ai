@@ -724,6 +724,39 @@ body.announcement-dismissed .navbar {
 
 /* --- Legal prose --- */
 
+.faq-list .faq-item {
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding: 0 16px;
+  background: var(--bg-surface);
+}
+
+.faq-list .faq-item[open] {
+  border-color: var(--border-default);
+}
+
+.faq-list .faq-item:target {
+  border-color: var(--color-action);
+  box-shadow: 0 0 0 1px var(--color-action);
+}
+
+.faq-list .faq-item summary {
+  cursor: pointer;
+  font-weight: 600;
+  padding: 14px 0;
+  list-style: none;
+}
+
+.faq-list .faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-list .faq-item__body {
+  padding-bottom: 16px;
+  color: var(--text-secondary);
+}
+
 .legal h2 {
   font-size: 1.25rem;
   margin: 32px 0 12px;

@@ -28,6 +28,7 @@
 
   <link rel="stylesheet" href="/assets/css/main.css" />
   <link rel="stylesheet" href="/assets/css/components.css" />
+  <link rel="stylesheet" href="/assets/css/site-guide.css" />
   {% if pageCss %}
   <link rel="stylesheet" href="/assets/css/pages/{{ pageCss }}" />
   {% endif %}
@@ -36,7 +37,7 @@
   {% include "site-announcement.html" %}
   {% include "nav.html" %}
 
-  <main id="main-content">
+  <main id="main-content" data-pagefind-body>
     {{ content }}
   </main>
 
@@ -46,5 +47,8 @@
   {% if pageJs %}
   <script src="/assets/js/{{ pageJs }}" defer></script>
   {% endif %}
+
+  {% include "site-guide.html" %}
+  <script type="module" src="/assets/js/site-guide.mjs"></script>
 </body>
 </html>

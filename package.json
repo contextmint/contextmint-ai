@@ -5,12 +5,16 @@
   "description": "ContextMint marketing site (Eleventy → GitHub Pages)",
   "scripts": {
     "gen:settings": "node scripts/gen-extension-settings-doc.mjs && node scripts/gen-server-chat-settings-doc.mjs && node scripts/gen-context-budget-profile.mjs && node scripts/gen-server-settings-catalog-sync.mjs",
-    "build": "npm run gen:settings && eleventy",
-    "dev": "npm run gen:settings && eleventy --serve",
+    "gen:site-guide": "node scripts/gen-site-guide.mjs",
+    "index:pagefind": "npx pagefind --site _site",
+    "test:site-guide": "node scripts/test-site-guide-matcher.mjs && node scripts/test-site-guide-copy.mjs",
+    "build": "npm run gen:settings && npm run gen:site-guide && eleventy",
+    "dev": "npm run gen:settings && npm run gen:site-guide && eleventy --serve",
     "clean": "node -e \"require('fs').rmSync('_site',{recursive:true,force:true})\""
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
+    "pagefind": "^1.5.2",
     "yaml": "^2.9.0"
   }
 }

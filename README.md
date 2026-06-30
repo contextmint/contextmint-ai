@@ -30,7 +30,16 @@ npm run build
 # 4. Optional: regenerate settings catalogs (if package sources are present)
 npm run gen:settings
 
-# 5. Optional: clean build output
+# 5. Regenerate site guide JSON from faq.html
+npm run gen:site-guide
+
+# 6. Run site guide matcher + copy review tests
+npm run test:site-guide
+
+# 7. Rebuild Pagefind index after manual _site changes (also runs on build)
+npm run index:pagefind
+
+# 8. Optional: clean build output
 npm run clean
 ```
 
@@ -71,7 +80,8 @@ The [Settings reference](/docs/settings.html) page uses generated data in `src/_
 | [documentation/README.md](./documentation/README.md) | Index of all site docs |
 | [documentation/WEBSITE-GO-LIVE.md](./documentation/WEBSITE-GO-LIVE.md) | Go-live guide (DNS, GitHub Pages, messaging) |
 | [documentation/GO-LIVE-CHECKLIST.md](./documentation/GO-LIVE-CHECKLIST.md) | Short deploy checklist |
-| [documentation/SITE-GUIDE-CHAT-PLAN.md](./documentation/SITE-GUIDE-CHAT-PLAN.md) | Site guide widget (planned) |
+| [documentation/SITE-GUIDE-CHAT-PLAN.md](./documentation/SITE-GUIDE-CHAT-PLAN.md) | Site guide widget (implemented) |
+| [documentation/SITE-GUIDE-SETTINGS-QUESTIONS.md](./documentation/SITE-GUIDE-SETTINGS-QUESTIONS.md) | Settings question catalog (site guide) |
 
 ## Adding a page
 

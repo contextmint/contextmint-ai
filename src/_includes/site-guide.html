@@ -1,0 +1,98 @@
+<div id="site-guide-root" class="site-guide" data-state="closed" data-pagefind-ignore>
+  <button
+    type="button"
+    id="site-guide-launcher"
+    class="site-guide__launcher"
+    aria-expanded="false"
+    aria-controls="site-guide-panel"
+    aria-label="Open site help chat"
+  >
+    <svg
+      class="site-guide__launcher-icon"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path
+        d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-5.5L11 20v-3H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"
+        stroke="currentColor"
+        stroke-width="1.75"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M8 9.5h8M8 12.5h5.5"
+        stroke="currentColor"
+        stroke-width="1.75"
+        stroke-linecap="round"
+      />
+    </svg>
+  </button>
+
+  <div
+    id="site-guide-panel"
+    class="site-guide__panel"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="site-guide-title"
+    hidden
+  >
+    <header class="site-guide__header">
+      <div>
+        <h2 id="site-guide-title" class="site-guide__title">Site guide</h2>
+        <p class="site-guide__subtitle">Find answers on contextmint.ai</p>
+      </div>
+      <div class="site-guide__header-actions">
+        <button
+          type="button"
+          id="site-guide-clear"
+          class="site-guide__clear"
+          aria-label="Clear chat history"
+          hidden
+        >
+          Clear
+        </button>
+        <button
+          type="button"
+          id="site-guide-close"
+          class="site-guide__close"
+          aria-label="Close site guide"
+        >
+          ×
+        </button>
+      </div>
+    </header>
+
+    <div class="site-guide__main">
+      <div class="site-guide__thread-wrap">
+        <div
+          id="site-guide-thread"
+          class="site-guide__thread"
+          aria-live="polite"
+        ></div>
+      </div>
+
+      <div class="site-guide__compose">
+        <label class="sr-only" for="site-guide-input">Your question</label>
+        <textarea
+          id="site-guide-input"
+          class="site-guide__input"
+          rows="2"
+          placeholder="e.g. Does my code leave my machine?"
+        ></textarea>
+        <button
+          type="button"
+          id="site-guide-send"
+          class="btn btn-primary site-guide__send"
+          disabled
+        >
+          Send
+        </button>
+        <p class="site-guide__disclosure">
+          Answers come from this website's FAQ and docs — not from your codebase.
+          For product chat, use the ContextMint VS Code extension.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
