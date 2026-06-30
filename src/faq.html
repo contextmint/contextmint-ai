@@ -116,7 +116,61 @@ pageCss: product.css
         <p>
           Context Lens is the pre-send preview: retrieved chunks, relevance scores, routing choice,
           and optional governance notes — so you approve evidence <em>before</em> the model runs.
-          It is gate 1 in the human-in-the-loop workflow.
+          It is gate 1 in the human-in-the-loop workflow. See
+          <a href="/docs/context-lens-packs.html">Context Lens &amp; packs</a>.
+        </p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>What are Ask, Plan, and Agent modes?</summary>
+      <div class="faq-item__body">
+        <p>
+          In chat compose, <strong>Ask</strong> scopes the model to answer your question,
+          <strong>Plan</strong> asks for a structured plan before changes, and <strong>Agent</strong>
+          allows broader multi-step assistance — still with Context Lens (gate 1) and patch preview
+          (gate 2) before repo writes. Pair modes with <strong>Repo / Work / Hybrid</strong> lanes for
+          where evidence comes from. See <a href="/docs/chat-and-lanes.html">Chat, modes &amp; lanes</a>
+          and <a href="/features.html">Features (v1.0)</a>.
+        </p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>What is patch preview (gate 2)?</summary>
+      <div class="faq-item__body">
+        <p>
+          Assisted actions propose unified diffs; <strong>patch preview</strong> is gate 2 — you review
+          and confirm before anything applies to your repo. Quality-map clone signals can block apply on
+          high-severity findings when configured. No silent writes. See
+          <a href="/docs/patches-governance.html">Patches &amp; governance</a>.
+        </p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>What is the quality map?</summary>
+      <div class="faq-item__body">
+        <p>
+          The <strong>quality map</strong> is stored governance findings from your repo at index time —
+          clone pairs, near-duplicates, and structure signals. Chat can answer from this
+          <strong>Findings Store</strong> (lookup) instead of rediscovering issues at question time.
+          Inform-only by default; optional gates can block assisted apply. Run scans from the extension
+          or Engine → Quality. See
+          <a href="/docs/knowledge-and-governance.html">Knowledge &amp; governance</a>.
+        </p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>What are context packs?</summary>
+      <div class="faq-item__body">
+        <p>
+          <strong>Context packs</strong> are per-repo knowledge bundles (<span class="mono">manifest.yaml</span>
+          plus markdown). Activate with <span class="mono">@pack:name</span> in chat; the pack panel lists,
+          builds, and auto-syncs when sources change. Packs feed Work and Hybrid lanes and appear in
+          Context Lens before send. See
+          <a href="/docs/context-lens-packs.html">Context Lens &amp; packs</a>.
         </p>
       </div>
     </details>
@@ -229,48 +283,19 @@ pageCss: product.css
     </details>
 
     <details class="faq-item">
-      <summary>What ships in v1.0 vs v2.0 vs Track B?</summary>
+      <summary>What ships in v1.0 vs later roadmap?</summary>
       <div class="faq-item__body">
         <p>
-          <strong>v1.0 (today — GA August 2026):</strong> local Engine + extension — Context Lens,
-          federated governance lookup (Findings Store), chat modes, image evidence, ARGUS visual audit,
-          packs, quality map, assisted patch preview, and symbol-aware citations.
-          <a href="/features.html">Full v1.0 list</a>.
+          <strong>v1.0 (pilot now — GA August 2026):</strong> local Engine + extension — Context Lens,
+          Ask/Plan/Agent modes, Repo/Work/Hybrid lanes, Findings Store quality map, image evidence,
+          ARGUS visual audit, context packs, assisted patch preview, glass-box routing, and symbol-aware
+          citations. <a href="/features.html">Full v1.0 list</a>.
         </p>
         <p style="margin-top: 12px;">
-          <strong>v2.0 (target Q1 2027):</strong> Engineering Intelligence Platform — one Knowledge Fabric
-          with institutional memory, CHRONOS forensics, ORACLE prefetch, operational intelligence
-          retrieval, and knowledge reconciliation.
-          <a href="/roadmap.html#v2">v2.0 roadmap</a>.
-        </p>
-        <p style="margin-top: 12px;">
-          <strong>Track B (target end 2027):</strong> enterprise org knowledge —
-          <strong>Jira, Confluence, SharePoint, Git</strong>, and other knowledge bases with ACL-aware
-          ingest, plus SSO/RBAC, multi-tenant isolation, tamper-evident audit, and SOC 2 evidence packaging.
-          <a href="/roadmap.html#track-b">Track B roadmap</a>.
-        </p>
-        <p style="margin-top: 12px;">
-          <strong>Beyond:</strong> PR verification, blast radius, decision graph, and drift scorecards
-          — the <a href="/product/">Verification Engine</a> vision on
-          <a href="/roadmap.html#verification-engine">longer horizon</a>.
-        </p>
-      </div>
-    </details>
-
-    <details class="faq-item">
-      <summary>What ships in v1.0 vs the Verification Engine roadmap?</summary>
-      <div class="faq-item__body">
-        <p>
-          <strong>v1.0 (today):</strong> local Engine + extension — Context Lens, chat modes, image evidence,
-          ARGUS visual audit, packs, quality map, assisted patch preview, glass-box routing, and Engine
-          operator tabs. See the full list on <a href="/features.html">Features (v1.0)</a>.
-        </p>
-        <p style="margin-top: 12px;">
-          <strong>Roadmap:</strong> see
-          <a href="/roadmap.html#v2">v2.0 Engineering Intelligence</a>,
-          <a href="/roadmap.html#track-b">Track B enterprise</a>, and
-          <a href="/roadmap.html#verification-engine">Verification Engine</a> —
-          operational intelligence, PR gates, blast radius, and enterprise CLI build on the v1 foundation.
+          <strong>Later:</strong> v2.0 Engineering Intelligence Platform (Q1 2027), Track B enterprise
+          knowledge and compliance (end 2027), and the long-term
+          <a href="/product/">Verification Engine</a> direction (PR gates, blast radius, drift) —
+          <a href="/roadmap.html">full roadmap</a>.
         </p>
       </div>
     </details>
@@ -279,11 +304,19 @@ pageCss: product.css
       <summary>How do I get early access or join as a design partner?</summary>
       <div class="faq-item__body">
         <p>
-          Submit the form on <a href="/design-partners.html">Design Partners</a> or
-          <a href="/request-demo.html">Book a Demo</a>. Design partners run a
-          <strong>30-day evaluation pilot</strong> (10–30 developers, one repo, feedback at week 2
-          and 4, written summary at the end — extendable to 90 days). Early access waitlist is for
-          individuals and small teams. See <a href="/pricing.html">Early Access</a>.
+          <strong>Design partner and live demo intake are paused until end of July 2026</strong> while we
+          finish v1.0 pilot readiness. Forms on
+          <a href="/design-partners.html">Design Partners</a> and
+          <a href="/request-demo.html">Book a Demo</a> are visible for reference only — submissions are
+          disabled until intake opens.
+        </p>
+        <p style="margin-top: 12px;">
+          <strong>Available now:</strong> local-first install via
+          <a href="/getting-started.html">Getting started</a>, program details on
+          <a href="/pricing.html">Early Access</a>, and questions via
+          <a href="/support.html">Support</a> or
+          <a href="{{ site.issuesUrl }}">GitHub issues</a>. When intake opens, design partners run a
+          <strong>30-day evaluation pilot</strong> (10–30 developers, one repo — extendable to 90 days).
         </p>
       </div>
     </details>
@@ -292,17 +325,15 @@ pageCss: product.css
       <summary>Where do I report bugs or get help?</summary>
       <div class="faq-item__body">
         <p>
-          {% if site.emailVisible %}
-          Email <a href="mailto:{{ site.contactEmail }}">{{ site.contactEmail }}</a> or visit
-          <a href="/support.html">Support</a>. GitHub issues for the open release channel:
-          {% else %}
-          Visit <a href="/support.html">Support</a> and open a GitHub issue for the release channel:
-          {% endif %}
+          Visit <a href="/support.html">Support</a> and open an issue on the release channel:
           <a href="{{ site.issuesUrl }}">{{ site.issuesUrl }}</a>.
+          {% if site.emailVisible %}
+          You can also email <a href="mailto:{{ site.contactEmail }}">{{ site.contactEmail }}</a>.
+          {% endif %}
         </p>
       </div>
     </details>
   </div>
 </section>
 
-{% include "cta-band.html", ctaTitle: "Still have questions?", ctaText: "We respond within one business day on design partner and demo requests." %}
+{% include "cta-band.html", ctaTitle: "Still have questions?", ctaText: "Use Getting started for install, Support or GitHub issues for help. Design partner intake opens by end of July 2026." %}

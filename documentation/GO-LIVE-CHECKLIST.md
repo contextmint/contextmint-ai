@@ -2,6 +2,8 @@
 
 Use this when replacing the placeholder at [contextmint.ai](https://contextmint.ai).
 
+**Full guide:** [WEBSITE-GO-LIVE.md](./WEBSITE-GO-LIVE.md)
+
 ## Before deploy
 
 1. Edit `src/_data/site.json`:
@@ -13,7 +15,6 @@ Use this when replacing the placeholder at [contextmint.ai](https://contextmint.
 
 2. Local verify:
    ```bash
-   cd contextmint-ai
    npm install
    npm run build
    npm run dev
@@ -35,6 +36,6 @@ Use this when replacing the placeholder at [contextmint.ai](https://contextmint.
 ## After live
 
 - [ ] Test form on production URL
-- [ ] Add URL to Hub71 application
+- [ ] Add URL to partner applications as needed
 - [ ] Add URL to LinkedIn profile (Featured link)
 - [ ] Google Search Console — submit sitemap (optional)
