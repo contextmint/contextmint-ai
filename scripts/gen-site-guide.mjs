@@ -33,7 +33,6 @@ function stripHtml(html) {
 function stripLiquid(html) {
   return html
     .replace(/\{%[\s\S]*?%\}/g, " ")
-    .replace(/\{\{[\s\S]*?\}\}/g, " ")
     .replace(/\s+/g, " ")
     .trim();
 }
@@ -69,6 +68,26 @@ const AMBIGUOUS_AUTO_KEYWORDS = new Set([
   "server",
   "shared",
   "contextmint",
+  "context",
+  "engine",
+  "blocked",
+  "offline",
+  "indexing",
+  "preview",
+  "gate",
+  "extension",
+  "settings",
+  "configure",
+  "deploy",
+  "screenshot",
+  "image",
+  "hybrid",
+  "agent",
+  "patch",
+  "packs",
+  "ollama",
+  "quality",
+  "planning",
 ]);
 
 function injectFaqAnchorIds(html) {
@@ -107,13 +126,20 @@ function parseFaqs(html, site) {
 
     const question = stripHtml(qMatch[1]);
     const bodyHtml = bodyMatch ? bodyMatch[1] : "";
-    const cleanedBody = applyLiquidVars(stripLiquid(bodyHtml), site);
+    const cleanedBody = stripLiquid(applyLiquidVars(bodyHtml, site));
     let answer = extractAnswerParagraphs(cleanedBody, site);
 
     const id = slugify(question);
-    const overrides = FAQ_KEYWORD_OVERRIDES[id] || [];
+    const overrideEntry = FAQ_KEYWORD_OVERRIDES[id] || {};
+    const overrides = Array.isArray(overrideEntry)
+      ? overrideEntry
+      : overrideEntry.keywords || [];
+    if (!Array.isArray(overrideEntry) && overrideEntry.direct_answer) {
+      answer = overrideEntry.direct_answer;
+    }
     const autoKeywords = question
       .toLowerCase()
+      .replace(/[?.,]/g, "")
       .split(/\s+/)
       .filter((w) => w.length > 4 && !AMBIGUOUS_AUTO_KEYWORDS.has(w));
 

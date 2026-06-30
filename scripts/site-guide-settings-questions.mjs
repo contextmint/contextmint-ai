@@ -52,6 +52,53 @@ function kw(question, extra = []) {
 /** @type {SettingsCategory[]} */
 export const SETTINGS_QUESTION_CATALOG = [
   {
+    category: "Enterprise & On-Prem (overview)",
+    questions: [
+      {
+        id: "configure-on-prem-extension-server",
+        title: "On-prem extension + server setup",
+        question:
+          "How do I configure VS Code extension and server settings when the API is deployed on-prem?",
+        keywords: kw(
+          "How do I configure VS Code extension and server settings when the API is deployed on-prem?",
+          [
+            "extension and server settings",
+            "extension & server settings",
+            "api deployed on-prem",
+            "deployed on-prem",
+            "on-prem settings",
+            "on prem settings",
+            "enterprise server settings",
+            "remote server settings",
+            "team server settings",
+            "contextmint.serverurl",
+            "contextmint.enterprisemode",
+            "enterprise mode settings",
+            "oidc settings",
+          ]
+        ),
+        direct_answer:
+          "For a shared on-prem API server, configuration is split between the platform team and each developer.\n\n" +
+          "Platform team (API host): Deploy the API stack (Docker Compose or Helm). On the server, edit Engine → Server config, ~/.contextmint/server.defaults.yaml, or host .env — enable auth (auth.enabled, auth.mode oidc), configure OIDC issuer/audience, and keep JWT secrets in .env only. Set allow_cloud_dispatch only if policy allows BYOK cloud. Restart the API after server-side changes.\n\n" +
+          "Each developer (VS Code): Set contextmint.serverUrl to your team HTTPS base URL. Set contextmint.enterpriseMode to true and contextmint.oidcProviderId for your IdP, then sign in when prompted. In enterprise mode the extension is a thin client — operator keys (serverUrl, enterpriseMode, oidcProviderId) live in VS Code Settings or settings.json; server tunables stay on the API host.\n\n" +
+          "Path alignment is required: the server must read the same workspace paths being indexed (VS Code Remote SSH, a mounted monorepo, or a clone on the API host). A laptop-only clone cannot index through a remote serverUrl unless paths match.\n\n" +
+          "Use the enterprise deployment guide for rollout checklists and key-by-key steps. The settings reference catalogs all extension (contextmint.*) and server (YAML) keys.",
+        primary_label: "Enterprise on-prem setup",
+        primary_url: "/docs/byok-enterprise.html#enterprise",
+        related_links: [
+          SETTINGS_LINKS.settings,
+          SETTINGS_LINKS.engine,
+          SETTINGS_LINKS.trust,
+          {
+            label: "FAQ — shared server on-prem",
+            url: "/faq.html#can-we-run-a-shared-contextmint-server-on-prem",
+          },
+          SETTINGS_LINKS.troubleshooting,
+        ],
+      },
+    ],
+  },
+  {
     category: "Server & Backend Configuration",
     questions: [
       {
@@ -226,8 +273,8 @@ export const SETTINGS_QUESTION_CATALOG = [
           [
             "install extension",
             "verify extension",
+            "install and verify",
             "vscode extension install",
-            "vs code extension",
           ]
         ),
         direct_answer:
@@ -504,8 +551,7 @@ export const SETTINGS_QUESTION_CATALOG = [
             "custom prompts",
             "system prompt",
             "context instructions",
-            "context pack",
-            "@pack",
+            "configure context pack",
             "manifest.yaml",
           ]
         ),
@@ -590,10 +636,10 @@ export const SETTINGS_QUESTION_CATALOG = [
           "What settings should I check if VS Code says the ContextMint server is unreachable?",
           [
             "server unreachable",
-            "server offline",
             "cannot connect",
             "connection error",
             "unreachable",
+            "server unreachable settings",
           ]
         ),
         direct_answer:
@@ -641,7 +687,12 @@ export const SETTINGS_QUESTION_CATALOG = [
           "Where do I configure human approval before the model runs?",
         keywords: kw(
           "Where do I configure human approval before the model runs?",
-          ["context lens", "human approval", "gate", "preview before send"]
+          [
+            "configure human approval",
+            "human approval before model",
+            "preview before send settings",
+            "context lens settings",
+          ]
         ),
         direct_answer:
           "Context Lens is gate 1 — preview evidence before inference. Patch preview is gate 2 before repo writes. Extension keys under Context Lens and governance sections control preview behavior; server keys govern retrieval assembly.\n\n" +
@@ -676,57 +727,6 @@ export const SETTINGS_QUESTION_CATALOG = [
         primary_label: "Chat & lanes",
         primary_url: "/docs/chat-and-lanes.html",
         related_links: [SETTINGS_LINKS.settings, SETTINGS_LINKS.lanes],
-      },
-    ],
-  },
-  {
-    category: "Enterprise & On-Prem (overview)",
-    questions: [
-      {
-        id: "configure-on-prem-extension-server",
-        title: "On-prem extension + server setup",
-        question:
-          "How do I configure VS Code extension and server settings when the API is deployed on-prem?",
-        keywords: [
-          "extension & server settings",
-          "extension and server settings",
-          "configure extension",
-          "configure vscode",
-          "configure vs code",
-          "vscode extension settings",
-          "vs code extension settings",
-          "api deployed on-prem",
-          "deployed on-prem",
-          "on-prem settings",
-          "on prem settings",
-          "enterprise server settings",
-          "settings when api",
-          "configure settings when",
-          "remote server settings",
-          "team server settings",
-          "contextmint.serverurl",
-          "contextmint.enterprisemode",
-          "enterprise mode settings",
-          "oidc settings",
-        ],
-        direct_answer:
-          "For a shared on-prem API server, configuration is split between the platform team and each developer.\n\n" +
-          "Platform team (API host): Deploy the API stack (Docker Compose or Helm). On the server, edit Engine → Server config, ~/.contextmint/server.defaults.yaml, or host .env — enable auth (auth.enabled, auth.mode oidc), configure OIDC issuer/audience, and keep JWT secrets in .env only. Set allow_cloud_dispatch only if policy allows BYOK cloud. Restart the API after server-side changes.\n\n" +
-          "Each developer (VS Code): Set contextmint.serverUrl to your team HTTPS base URL. Set contextmint.enterpriseMode to true and contextmint.oidcProviderId for your IdP, then sign in when prompted. In enterprise mode the extension is a thin client — operator keys (serverUrl, enterpriseMode, oidcProviderId) live in VS Code Settings or settings.json; server tunables stay on the API host.\n\n" +
-          "Path alignment is required: the server must read the same workspace paths being indexed (VS Code Remote SSH, a mounted monorepo, or a clone on the API host). A laptop-only clone cannot index through a remote serverUrl unless paths match.\n\n" +
-          "Use the enterprise deployment guide for rollout checklists and key-by-key steps. The settings reference catalogs all extension (contextmint.*) and server (YAML) keys.",
-        primary_label: "Enterprise on-prem setup",
-        primary_url: "/docs/byok-enterprise.html#enterprise",
-        related_links: [
-          SETTINGS_LINKS.settings,
-          SETTINGS_LINKS.engine,
-          SETTINGS_LINKS.trust,
-          {
-            label: "FAQ — shared server on-prem",
-            url: "/faq.html#can-we-run-a-shared-contextmint-server-on-prem",
-          },
-          SETTINGS_LINKS.troubleshooting,
-        ],
       },
     ],
   },

@@ -53,7 +53,7 @@ if (
   function feedbackStorageKey(query, res) {
     const parts = [
       res.tier || "unknown",
-      res.matched_faq_id || "",
+      res.matched_faq_id || res.matched_settings_id || "",
       query.toLowerCase().trim(),
     ];
     return FEEDBACK_PREFIX + parts.join("|");

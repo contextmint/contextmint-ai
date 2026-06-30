@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-06-30T12:58:34.921Z",
+  "generated_at": "2026-06-30T21:14:38.277Z",
   "predefined_faqs": [
     {
       "id": "what-do-i-need-to-install",
@@ -10,10 +10,13 @@
         "setup",
         "download",
         "prerequisites",
-        "install?"
+        "what is contextmint",
+        "how to install contextmint",
+        "install contextmint",
+        "how do i install"
       ],
       "question": "What do I need to install?",
-      "direct_answer": "Two components: ContextMint Engine (desktop app) and the VS Code extension. Engine runs the Python server and Ollama; the extension is the chat and governance UI. See getting started and features (v1.0) .",
+      "direct_answer": "Two components: ContextMint Engine (desktop app) and the ContextMint VS Code extension. Engine runs the Python server and Ollama; the extension is the chat and governance UI. See getting started and features (v1.0) .",
       "source_url": "/faq.html#what-do-i-need-to-install",
       "source_label": "What do I need to install?"
     },
@@ -29,7 +32,7 @@
         "residency",
         "source",
         "leave",
-        "machine?"
+        "machine"
       ],
       "question": "Does my source code leave my machine?",
       "direct_answer": "On the default local-first path, indexing, embeddings, retrieval, and inference run on your infrastructure via Ollama — source is not required to leave your device. If you opt in to BYOK cloud routing, only redacted assembled context is sent to a provider you choose; API keys stay in VS Code secrets and never pass through Engine. See Trust & Security .",
@@ -43,11 +46,10 @@
         "tray",
         "localhost",
         "difference between engine",
-        "engine",
-        "extension?"
+        "engine and extension"
       ],
       "question": "What is the difference between Engine and the extension?",
-      "direct_answer": "Engine owns process lifecycle: server, Ollama, indexing operations, logs, and settings. connects to localhost:8000 , shows chat, Context Lens, quality map, and assisted actions — it does not spawn the server in packaged mode.",
+      "direct_answer": "Engine owns process lifecycle: server, Ollama, indexing operations, logs, and settings. ContextMint connects to localhost:8000 , shows chat, Context Lens, quality map, and assisted actions — it does not spawn the server in packaged mode.",
       "source_url": "/faq.html#what-is-the-difference-between-engine-and-the-extension",
       "source_label": "What is the difference between Engine and the ext…"
     },
@@ -56,12 +58,11 @@
       "keywords": [
         "server offline",
         "start all",
-        "engine",
         "chat blocked",
-        "blocked",
+        "chat blocked server",
         "showing",
         "“server",
-        "offline”?"
+        "offline”"
       ],
       "question": "Why is chat blocked or showing “server offline”?",
       "direct_answer": "Local-first (default): open ContextMint Engine from the tray and use Start all . The extension probes health on loopback; if Engine is stopped, chat is gated until the backend is healthy again.\n\nShared on-prem server: confirm ContextMint.serverUrl points at your team API host, HTTPS/TLS is valid, and enterpriseMode + OIDC are configured if auth is enabled on the server. The extension does not install or start Engine in remote mode.",
@@ -75,8 +76,8 @@
         "hybrid",
         "planning",
         "non-code",
-        "questions",
-        "chat?"
+        "planning questions",
+        "questions"
       ],
       "question": "Can I ask non-code or planning questions in chat?",
       "direct_answer": "Yes — use the compose Context selector. Repo (default) answers only from your indexed codebase. Work is for planning, comms, and concepts using session packs and attachments without a repo file search. Hybrid combines repo evidence with reasoned recommendations. ContextMint is not a generic ChatGPT replacement; lanes keep repo answers trustworthy.",
@@ -86,11 +87,12 @@
     {
       "id": "why-is-chat-blocked-while-indexing",
       "keywords": [
-        "indexing",
-        "blocked",
-        "readiness",
+        "indexing blocked",
+        "blocked while indexing",
+        "chat blocked indexing",
+        "readiness banner",
         "while",
-        "“indexing”?"
+        "“indexing”"
       ],
       "question": "Why is chat blocked while “indexing”?",
       "direct_answer": "Chat is not blocked during background indexing — answers use whatever is indexed so far and improve as files finish. The readiness card may show an indexing banner; you can still send messages. If chat is fully blocked, check for server offline or index error state in Engine → Health.",
@@ -102,7 +104,7 @@
       "keywords": [
         "ollama",
         "local model",
-        "ollama?"
+        "need ollama"
       ],
       "question": "Do I need Ollama?",
       "direct_answer": "Yes for local model inference. Engine’s first-run wizard detects Ollama and links to install if missing. If Ollama is offline, repo search may still work but AI generation runs in a degraded limited mode.",
@@ -114,10 +116,9 @@
       "keywords": [
         "context lens",
         "preview",
-        "gate",
+        "gate 1",
         "before inference",
-        "context",
-        "lens?"
+        "what is context lens"
       ],
       "question": "What is Context Lens?",
       "direct_answer": "Context Lens is the pre-send preview: retrieved chunks, relevance scores, routing choice, and optional governance notes — so you approve evidence before the model runs. It is gate 1 in the human-in-the-loop workflow. See Context Lens & packs .",
@@ -133,9 +134,7 @@
         "ask mode",
         "plan mode",
         "agent mode",
-        "plan,",
-        "agent",
-        "modes?"
+        "modes"
       ],
       "question": "What are Ask, Plan, and Agent modes?",
       "direct_answer": "In chat compose, Ask scopes the model to answer your question, Plan asks for a structured plan before changes, and Agent allows broader multi-step assistance — still with Context Lens (gate 1) and patch preview (gate 2) before repo writes. Pair modes with Repo / Work / Hybrid lanes for where evidence comes from. See Chat, modes & lanes and Features (v1.0) .",
@@ -150,8 +149,6 @@
         "apply",
         "diff",
         "silent write",
-        "patch",
-        "preview",
         "(gate"
       ],
       "question": "What is patch preview (gate 2)?",
@@ -166,8 +163,7 @@
         "findings store",
         "clone",
         "duplicate",
-        "governance",
-        "quality"
+        "governance"
       ],
       "question": "What is the quality map?",
       "direct_answer": "The quality map is stored governance findings from your repo at index time — clone pairs, near-duplicates, and structure signals. Chat can answer from this Findings Store (lookup) instead of rediscovering issues at question time. Inform-only by default; optional gates can block assisted apply. Run scans from the extension or Engine → Quality. See Knowledge & governance .",
@@ -180,9 +176,7 @@
         "context pack",
         "@pack",
         "manifest",
-        "packs",
-        "context",
-        "packs?"
+        "context packs"
       ],
       "question": "What are context packs?",
       "direct_answer": "Context packs are per-repo knowledge bundles ( manifest.yaml plus markdown). Activate with @pack:name in chat; the pack panel lists, builds, and auto-syncs when sources change. Packs feed Work and Hybrid lanes and appear in Context Lens before send. See Context Lens & packs .",
@@ -196,8 +190,9 @@
         "cursor",
         "decision-control",
         "autocomplete",
+        "different from copilot",
         "different",
-        "assistants?"
+        "assistants"
       ],
       "question": "How is ContextMint different from autocomplete assistants?",
       "direct_answer": "ContextMint is a decision-control plane , not a speed-first autocomplete tool. It governs what evidence the model sees and what changes can apply, with audit-friendly telemetry. Human gates before inference and before apply matter more than raw generation throughput for regulated engineering workflows.",
@@ -208,15 +203,16 @@
       "id": "can-we-run-a-shared-contextmint-server-on-prem",
       "keywords": [
         "on-prem",
+        "on prem",
         "shared server",
-        "enterprise",
+        "enterprise server",
         "helm",
         "run on server",
         "run server",
         "how do i run",
         "run a server",
         "deploy server",
-        "on-prem?"
+        "shared contextmint server"
       ],
       "question": "Can we run a shared ContextMint server on-prem?",
       "direct_answer": "Yes — for enterprise pilots with platform engineering support. Deploy the API server stack (Docker Compose or Helm) on your infrastructure. Developers set ContextMint.serverUrl to that host and enable enterpriseMode for OIDC Bearer auth. The server must be able to read the workspace path being indexed — typically via VS Code Remote SSH , a mounted monorepo , or a dev VM where code and API run on the same host.\n\nThis is not the Engine desktop app (tray console is local-only). A laptop with a local-only clone cannot index through a remote server URL unless paths align. See Trust & Security → Deployment models .",
@@ -227,11 +223,11 @@
       "id": "what-is-the-difference-between-engine-and-a-team-api-server",
       "keywords": [
         "team server",
+        "team api server",
         "kubernetes",
         "docker",
         "api server",
-        "engine",
-        "server?"
+        "engine vs team"
       ],
       "question": "What is the difference between Engine and a team API server?",
       "direct_answer": "ContextMint Engine is the per-machine operator console: tray app, first-run wizard, Ollama lifecycle, logs, and settings. It runs the API on loopback for individual developers — this is the v1.0 default.\n\nA team API server is the same Python backend packaged for Docker/Kubernetes on customer infrastructure — shared Ollama, Chroma index, Redis rate limiting, and SSO. The extension becomes a thin client pointed at serverUrl . Ops owns deploy, mounts, and auth — not the Engine installer.",
@@ -246,8 +242,9 @@
         "anthropic",
         "api key",
         "cloud api",
+        "own cloud api keys",
         "cloud",
-        "(byok)?"
+        "(byok)"
       ],
       "question": "Can I use my own cloud API keys (BYOK)?",
       "direct_answer": "Yes — optional and off by default . Enable cloud routing in extension settings, store provider keys in VS Code secrets (OS keychain), and the extension streams directly to approved providers such as OpenAI, Anthropic, or Groq. Keys never pass through the Python engine. Assembled context is redacted before any cloud dispatch. The default path remains local Ollama on your infrastructure. See Trust & Security .",
@@ -258,12 +255,12 @@
       "id": "can-i-paste-screenshots-in-chat",
       "keywords": [
         "screenshot",
-        "image",
-        "vision",
+        "paste screenshot",
         "paste image",
+        "vision",
+        "png in chat",
         "paste",
-        "screenshots",
-        "chat?"
+        "screenshots"
       ],
       "question": "Can I paste screenshots in chat?",
       "direct_answer": "Yes. Paste, drag-drop, or pick PNG , JPEG , or WebP images in the compose bar and ask questions about what you see. ContextMint previews images in Context Lens and routes through a local Ollama vision model by default — no cloud API key required. Optional BYOK cloud vision is available when you explicitly select a vision model.\n\nSee Image evidence & ARGUS .",
@@ -275,8 +272,7 @@
       "keywords": [
         "argus",
         "visual audit",
-        "wcag",
-        "argus?"
+        "wcag"
       ],
       "question": "What is ARGUS?",
       "direct_answer": "ARGUS is ContextMint’s structured visual audit on UI screenshots. From Context Lens, click Run visual audit to get severity-tagged findings (including WCAG references). ARGUS is report only — it never auto-fixes your repo. You can hand off to patch preview if you choose to act on a finding.\n\nSandbox audits (Playwright capture in preview worktree) are available when git sandbox is enabled.",
@@ -288,12 +284,12 @@
       "keywords": [
         "pilot",
         "30 day",
-        "design partner",
+        "design partner pilot",
         "30-day",
+        "30 day pilot",
         "“30-day”",
         "design",
-        "partner",
-        "mean?"
+        "partner"
       ],
       "question": "What does the “30-day” design partner pilot mean?",
       "direct_answer": "It is a one-month evaluation , not a product subscription that expires. After onboarding, 10–30 developers on one team or repo use ContextMint in daily work for 30 calendar days . You give short async feedback at week 2 and week 4 ; we provide weekly check-ins and a written pilot summary for your security and platform stakeholders. Successful pilots can extend to 90 days . See Design Partners for the full breakdown.",
@@ -309,9 +305,9 @@
         "verification engine",
         "features",
         "v1.0",
+        "what ships",
         "ships",
-        "later",
-        "roadmap?"
+        "later"
       ],
       "question": "What ships in v1.0 vs later roadmap?",
       "direct_answer": "v1.0 (pilot now — GA August 2026): local Engine + extension — Context Lens, Ask/Plan/Agent modes, Repo/Work/Hybrid lanes, Findings Store quality map, image evidence, ARGUS visual audit, context packs, assisted patch preview, glass-box routing, and symbol-aware citations. Full v1.0 list .\n\nLater: v2.0 Engineering Intelligence Platform (Q1 2027), Track B enterprise knowledge and compliance (end 2027), and the long-term Verification Engine direction (PR gates, blast radius, drift) — full roadmap .",
@@ -332,10 +328,11 @@
         "price",
         "early access",
         "design partner",
+        "join as design partner",
         "early",
         "access",
         "design",
-        "partner?"
+        "partner"
       ],
       "question": "How do I get early access or join as a design partner?",
       "direct_answer": "Design partner and live demo intake are paused until end of July 2026 while we finish v1.0 pilot readiness. Forms on Design Partners and Book a Demo are visible for reference only — submissions are disabled until intake opens.\n\nAvailable now: local-first install via Getting started , program details on Early Access , and questions via Support or GitHub issues . When intake opens, design partners run a 30-day evaluation pilot (10–30 developers, one repo — extendable to 90 days).",
@@ -351,11 +348,10 @@
         "report bugs",
         "get help",
         "where",
-        "report",
-        "help?"
+        "report"
       ],
       "question": "Where do I report bugs or get help?",
-      "direct_answer": "Visit Support and open an issue on the release channel: . You can also email .",
+      "direct_answer": "Visit Support and open an issue on the release channel: https://github.com/contextmint/contextmint/issues . You can also email hello@contextmint.ai .",
       "source_url": "/faq.html#where-do-i-report-bugs-or-get-help",
       "source_label": "Where do I report bugs or get help?"
     }
@@ -367,7 +363,9 @@
       "keywords": [
         "getting started",
         "first steps",
-        "deploy"
+        "deploy",
+        "what is contextmint",
+        "how to install contextmint"
       ],
       "page_summary": "ContextMint runs local-first: download ContextMint Engine (desktop), install the VS Code extension, and set up Ollama for on-machine inference. This page walks through prerequisites and first-run setup."
     },
@@ -461,7 +459,11 @@
         "settings reference",
         "settings catalog",
         "configuration reference",
-        "all contextmint keys"
+        "all contextmint keys",
+        "server settings",
+        "extension settings",
+        "configure settings",
+        "contextmint settings"
       ],
       "page_summary": "Searchable catalogs for VS Code extension keys (contextmint.*) and API server keys (contextmint.defaults.yaml / ~/.contextmint/server.defaults.yaml). Two tabs: Server settings (EOP, retrieval, indexing, ARGUS, auth) and VS Code settings (chat, lanes, Context Lens, packs). For how-to and rollout, pair with BYOK & enterprise or Engine operator guides."
     },
@@ -544,6 +546,52 @@
     }
   ],
   "settings_context": [
+    {
+      "id": "configure-on-prem-extension-server",
+      "title": "On-prem extension + server setup",
+      "question": "How do I configure VS Code extension and server settings when the API is deployed on-prem?",
+      "keywords": [
+        "how do i configure vs code extension and server settings when the api is deployed on-prem",
+        "extension and server settings",
+        "extension & server settings",
+        "api deployed on-prem",
+        "deployed on-prem",
+        "on-prem settings",
+        "on prem settings",
+        "enterprise server settings",
+        "remote server settings",
+        "team server settings",
+        "contextmint.serverurl",
+        "contextmint.enterprisemode",
+        "enterprise mode settings",
+        "oidc settings"
+      ],
+      "direct_answer": "For a shared on-prem API server, configuration is split between the platform team and each developer.\n\nPlatform team (API host): Deploy the API stack (Docker Compose or Helm). On the server, edit Engine → Server config, ~/.contextmint/server.defaults.yaml, or host .env — enable auth (auth.enabled, auth.mode oidc), configure OIDC issuer/audience, and keep JWT secrets in .env only. Set allow_cloud_dispatch only if policy allows BYOK cloud. Restart the API after server-side changes.\n\nEach developer (VS Code): Set contextmint.serverUrl to your team HTTPS base URL. Set contextmint.enterpriseMode to true and contextmint.oidcProviderId for your IdP, then sign in when prompted. In enterprise mode the extension is a thin client — operator keys (serverUrl, enterpriseMode, oidcProviderId) live in VS Code Settings or settings.json; server tunables stay on the API host.\n\nPath alignment is required: the server must read the same workspace paths being indexed (VS Code Remote SSH, a mounted monorepo, or a clone on the API host). A laptop-only clone cannot index through a remote serverUrl unless paths match.\n\nUse the enterprise deployment guide for rollout checklists and key-by-key steps. The settings reference catalogs all extension (contextmint.*) and server (YAML) keys.",
+      "primary_label": "Enterprise on-prem setup",
+      "primary_url": "/docs/byok-enterprise.html#enterprise",
+      "related_links": [
+        {
+          "label": "Settings reference",
+          "url": "/docs/settings.html"
+        },
+        {
+          "label": "Engine operator guide",
+          "url": "/docs/engine-operator.html"
+        },
+        {
+          "label": "Trust & Security",
+          "url": "/trust.html"
+        },
+        {
+          "label": "FAQ — shared server on-prem",
+          "url": "/faq.html#can-we-run-a-shared-contextmint-server-on-prem"
+        },
+        {
+          "label": "Troubleshooting",
+          "url": "/support/troubleshooting.html"
+        }
+      ]
+    },
     {
       "id": "settings-server-port",
       "title": "Port settings",
@@ -756,8 +804,8 @@
         "how do i install and verify the contextmint vs code extension",
         "install extension",
         "verify extension",
-        "vscode extension install",
-        "vs code extension"
+        "install and verify",
+        "vscode extension install"
       ],
       "direct_answer": "Install ContextMint Engine (desktop) and the ContextMint VS Code extension from your release channel. Run Engine → Start all, confirm http://localhost:8000/api/health returns OK, then open the ContextMint chat view in VS Code.\n\nThe readiness card should show server connected and indexing progress. If not, see Installation & setup and Troubleshooting → Server offline.",
       "primary_label": "Installation & setup",
@@ -1059,8 +1107,7 @@
         "custom prompts",
         "system prompt",
         "context instructions",
-        "context pack",
-        "@pack",
+        "configure context pack",
         "manifest.yaml"
       ],
       "direct_answer": "Use context packs: manifest.yaml plus markdown under .contextmint/packs/ in the repo. Activate with @pack:name in chat compose; packs appear in Context Lens before send.\n\nContextMint is evidence-first — packs add curated repo knowledge, not unconstrained hidden system prompts. Conventions and pack panel sync are extension features documented under Context Lens & packs.",
@@ -1156,10 +1203,10 @@
       "keywords": [
         "what settings should i check if vs code says the contextmint server is unreachable",
         "server unreachable",
-        "server offline",
         "cannot connect",
         "connection error",
-        "unreachable"
+        "unreachable",
+        "server unreachable settings"
       ],
       "direct_answer": "Check contextmint.serverUrl matches a running API (Engine → Start all for local, or team HTTPS URL for enterprise). Increase contextmint.serverTimeoutMs on slow networks. Enterprise: verify contextmint.enterpriseMode, OIDC sign-in, and TLS.\n\nConfirm firewall allows loopback or corporate HTTPS to the team host. FAQ covers server offline vs indexing banners.",
       "primary_label": "Troubleshooting",
@@ -1207,10 +1254,10 @@
       "question": "Where do I configure human approval before the model runs?",
       "keywords": [
         "where do i configure human approval before the model runs",
-        "context lens",
-        "human approval",
-        "gate",
-        "preview before send"
+        "configure human approval",
+        "human approval before model",
+        "preview before send settings",
+        "context lens settings"
       ],
       "direct_answer": "Context Lens is gate 1 — preview evidence before inference. Patch preview is gate 2 before repo writes. Extension keys under Context Lens and governance sections control preview behavior; server keys govern retrieval assembly.\n\nSee Context Lens & packs and Patches & governance docs.",
       "primary_label": "Context Lens & packs",
@@ -1245,58 +1292,6 @@
         {
           "label": "Chat & lanes",
           "url": "/docs/chat-and-lanes.html"
-        }
-      ]
-    },
-    {
-      "id": "configure-on-prem-extension-server",
-      "title": "On-prem extension + server setup",
-      "question": "How do I configure VS Code extension and server settings when the API is deployed on-prem?",
-      "keywords": [
-        "extension & server settings",
-        "extension and server settings",
-        "configure extension",
-        "configure vscode",
-        "configure vs code",
-        "vscode extension settings",
-        "vs code extension settings",
-        "api deployed on-prem",
-        "deployed on-prem",
-        "on-prem settings",
-        "on prem settings",
-        "enterprise server settings",
-        "settings when api",
-        "configure settings when",
-        "remote server settings",
-        "team server settings",
-        "contextmint.serverurl",
-        "contextmint.enterprisemode",
-        "enterprise mode settings",
-        "oidc settings"
-      ],
-      "direct_answer": "For a shared on-prem API server, configuration is split between the platform team and each developer.\n\nPlatform team (API host): Deploy the API stack (Docker Compose or Helm). On the server, edit Engine → Server config, ~/.contextmint/server.defaults.yaml, or host .env — enable auth (auth.enabled, auth.mode oidc), configure OIDC issuer/audience, and keep JWT secrets in .env only. Set allow_cloud_dispatch only if policy allows BYOK cloud. Restart the API after server-side changes.\n\nEach developer (VS Code): Set contextmint.serverUrl to your team HTTPS base URL. Set contextmint.enterpriseMode to true and contextmint.oidcProviderId for your IdP, then sign in when prompted. In enterprise mode the extension is a thin client — operator keys (serverUrl, enterpriseMode, oidcProviderId) live in VS Code Settings or settings.json; server tunables stay on the API host.\n\nPath alignment is required: the server must read the same workspace paths being indexed (VS Code Remote SSH, a mounted monorepo, or a clone on the API host). A laptop-only clone cannot index through a remote serverUrl unless paths match.\n\nUse the enterprise deployment guide for rollout checklists and key-by-key steps. The settings reference catalogs all extension (contextmint.*) and server (YAML) keys.",
-      "primary_label": "Enterprise on-prem setup",
-      "primary_url": "/docs/byok-enterprise.html#enterprise",
-      "related_links": [
-        {
-          "label": "Settings reference",
-          "url": "/docs/settings.html"
-        },
-        {
-          "label": "Engine operator guide",
-          "url": "/docs/engine-operator.html"
-        },
-        {
-          "label": "Trust & Security",
-          "url": "/trust.html"
-        },
-        {
-          "label": "FAQ — shared server on-prem",
-          "url": "/faq.html#can-we-run-a-shared-contextmint-server-on-prem"
-        },
-        {
-          "label": "Troubleshooting",
-          "url": "/support/troubleshooting.html"
         }
       ]
     }

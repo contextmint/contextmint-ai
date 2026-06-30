@@ -4,7 +4,11 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { matchSiteGuide } from "../src/assets/js/site-guide-matcher.mjs";
+import {
+  matchSiteGuide,
+  keywordMatches,
+  scoreKeywordHits,
+} from "../src/assets/js/site-guide-matcher.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA_PATH = path.join(__dirname, "../src/_data/site-guide.json");
@@ -56,11 +60,12 @@ function runTests() {
     assert(!/\£|\$15|free for \d/i.test(res.answer), "must not invent seat pricing");
   });
 
-  test("context lens → faq or page_context", () => {
+  test("context lens → faq (not settings gate doc)", () => {
     const res = matchSiteGuide("context lens", siteGuide);
+    assert(res.tier === "faq", `expected faq, got ${res.tier}`);
     assert(
-      res.tier === "faq" || res.tier === "page_context",
-      `expected faq or page_context, got ${res.tier}`
+      res.matched_faq_id === "what-is-context-lens",
+      `expected context lens faq, got ${res.matched_faq_id}`
     );
   });
 
@@ -129,7 +134,7 @@ function runTests() {
 
   test("on-prem extension & server settings → detailed settings context + links", () => {
     const res = matchSiteGuide(
-      "How do I configure vsCode Extension & Server settings when api is deployed on-prem",
+      "How do I configure VS Code extension and server settings when the API is deployed on-prem?",
       siteGuide
     );
     assert(res.tier === "page_context", `expected page_context, got ${res.tier}`);
@@ -185,6 +190,112 @@ function runTests() {
       (siteGuide.settings_context || []).length >= 29,
       `expected ≥29 settings questions, got ${(siteGuide.settings_context || []).length}`
     );
+  });
+
+  test("keywordMatches: context does not match contextmint", () => {
+    assert(!keywordMatches("what is contextmint", "context"));
+    assert(keywordMatches("what is context lens", "context lens"));
+  });
+
+  test("what is contextmint → install FAQ or getting started (not context lens)", () => {
+    const res = matchSiteGuide("what is contextmint", siteGuide);
+    assert(
+      res.matched_faq_id === "what-do-i-need-to-install" ||
+        (res.tier === "page_context" &&
+          res.sources.some((s) => s.url.includes("getting-started"))),
+      `expected install/getting-started, got ${res.matched_faq_id || res.tier}`
+    );
+    assert(
+      res.matched_faq_id !== "what-is-context-lens",
+      "must not confuse product with Context Lens feature"
+    );
+  });
+
+  test("how to install contextmint → install FAQ", () => {
+    const res = matchSiteGuide("how to install contextmint", siteGuide);
+    assert(
+      res.matched_faq_id === "what-do-i-need-to-install" ||
+        res.matched_settings_id === "settings-ext-install-verify",
+      `expected install answer, got ${res.matched_faq_id || res.matched_settings_id}`
+    );
+  });
+
+  test("FAQ questions match their own FAQ entry (not settings)", () => {
+    const mustBeFaq = [
+      "Why is chat blocked or showing “server offline”?",
+      "Why is chat blocked while “indexing”?",
+      "What is Context Lens?",
+      "What is patch preview (gate 2)?",
+      "What are context packs?",
+      "Can we run a shared ContextMint server on-prem?",
+      "What is the difference between Engine and a team API server?",
+      "Can I paste screenshots in chat?",
+      "How do I get early access or join as a design partner?",
+    ];
+    for (const q of mustBeFaq) {
+      const res = matchSiteGuide(q, siteGuide);
+      assert(
+        res.tier === "faq",
+        `"${q}" should match FAQ tier, got ${res.tier} (${res.matched_settings_id || res.matched_faq_id})`
+      );
+    }
+  });
+
+  test("settings questions match their own settings entry", () => {
+    for (const q of siteGuide.settings_context || []) {
+      const res = matchSiteGuide(q.question, siteGuide);
+      assert(
+        res.matched_settings_id === q.id,
+        `"${q.question}" should match ${q.id}, got ${res.matched_settings_id || res.matched_faq_id || res.tier}`
+      );
+    }
+  });
+
+  test("server offline FAQ beats connection-errors settings for offline question", () => {
+    const res = matchSiteGuide("server offline", siteGuide);
+    assert(
+      res.matched_faq_id === "why-is-chat-blocked-or-showing-server-offline" ||
+        res.matched_settings_id === "settings-usage-connection-errors",
+      `unexpected match: ${res.matched_faq_id || res.matched_settings_id}`
+    );
+  });
+
+  test("page context returns single best page (not concatenated dump)", () => {
+    const res = matchSiteGuide("settings reference catalog", siteGuide);
+    if (res.tier === "page_context" && !res.matched_settings_id) {
+      assert(
+        !res.answer.startsWith("From our docs:"),
+        "page tier should not use vague multi-page dump prefix"
+      );
+      assert(res.sources.length === 1, "should return one primary page link");
+    }
+  });
+
+  test("engine vs extension FAQ preserves extension name in answer", () => {
+    const faq = (siteGuide.predefined_faqs || []).find(
+      (f) => f.id === "what-is-the-difference-between-engine-and-the-extension"
+    );
+    assert(faq, "engine vs extension FAQ missing");
+    assert(
+      faq.direct_answer.includes("ContextMint"),
+      "FAQ answer should include extension product name"
+    );
+  });
+
+  test("exact question scores higher than partial keyword overlap", () => {
+    const faqScore = scoreKeywordHits(
+      "What is Context Lens?",
+      siteGuide.predefined_faqs.find((f) => f.id === "what-is-context-lens").keywords,
+      "What is Context Lens?"
+    );
+    const settingsScore = scoreKeywordHits(
+      "What is Context Lens?",
+      siteGuide.settings_context.find(
+        (s) => s.id === "settings-usage-context-lens-gates"
+      ).keywords,
+      "Where do I configure human approval before the model runs?"
+    );
+    assert(faqScore > settingsScore, "FAQ exact match should beat settings partial");
   });
 
   console.log(`\n${passed} passed`);

@@ -1,5 +1,5 @@
 /**
- * Pure site guide matching — topics list, Tier 1 FAQ, Tier 2 page context, fallback.
+ * Pure site guide matching — topics list, FAQ + settings (scored), page context, fallback.
  */
 
 const TOPICS_LIST_PATTERNS = [
@@ -15,6 +15,12 @@ const TOPICS_LIST_PATTERNS = [
   /what\s+can\s+i\s+ask/,
   /list\s+everything/,
 ];
+
+/** Exact catalog question match — beats partial keyword hits. */
+const EXACT_QUESTION_SCORE = 100000;
+
+/** Minimum score for a page keyword hit (at least one keyword matched). */
+const MIN_PAGE_SCORE = 1000;
 
 /**
  * @param {object} siteGuide
@@ -81,23 +87,141 @@ function dedupeSources(sources) {
   return out;
 }
 
-function matchSettingsContext(msg, siteGuide) {
-  for (const block of siteGuide.settings_context || []) {
-    const keywords = block.keywords || [];
-    if (keywords.some((kw) => kw && msg.includes(kw.toLowerCase()))) {
-      const sources = dedupeSources([
-        { label: block.primary_label, url: block.primary_url },
-        ...(block.related_links || []),
-      ]);
-      return {
-        tier: "page_context",
-        answer: block.direct_answer,
-        matched_settings_id: block.id,
-        sources,
-      };
+export function normalizeQuestion(text) {
+  return String(text)
+    .toLowerCase()
+    .replace(/[?.,"""''`]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function escapeRegex(s) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+/**
+ * Match keywords without false positives (e.g. "context" inside "contextmint").
+ * Multi-word and long phrases use substring match; short single tokens use word boundaries.
+ */
+export function keywordMatches(msg, keyword) {
+  const kw = (keyword || "").toLowerCase().trim();
+  if (!kw) return false;
+  if (kw.includes(" ") || kw.length >= 12) {
+    return msg.includes(kw);
+  }
+  return new RegExp(`\\b${escapeRegex(kw)}\\b`, "i").test(msg);
+}
+
+/**
+ * @param {string} msg
+ * @param {string[]} keywords
+ * @param {string} [question]
+ */
+export function scoreKeywordHits(msg, keywords, question) {
+  const normMsg = normalizeQuestion(msg);
+  if (question && normMsg === normalizeQuestion(question)) {
+    return EXACT_QUESTION_SCORE;
+  }
+  const hits = (keywords || []).filter((kw) => keywordMatches(msg, kw));
+  if (hits.length === 0) return 0;
+  return hits.length * 1000 + hits.reduce((sum, kw) => sum + kw.length, 0);
+}
+
+/**
+ * @param {string} msg
+ * @param {object[]} entries
+ * @returns {{ entry: object, score: number } | null}
+ */
+function bestScoredEntry(msg, entries) {
+  let best = null;
+  let bestScore = 0;
+
+  for (const entry of entries) {
+    const score = scoreKeywordHits(msg, entry.keywords, entry.question);
+    if (score <= bestScore) continue;
+    bestScore = score;
+    best = { entry, score };
+  }
+
+  return best;
+}
+
+function buildFaqResponse(faq) {
+  return {
+    tier: "faq",
+    answer: faq.direct_answer,
+    matched_faq_id: faq.id,
+    sources: [
+      {
+        label: faq.source_label || "Read more",
+        url: faq.source_url,
+      },
+    ],
+  };
+}
+
+function buildSettingsResponse(block) {
+  return {
+    tier: "page_context",
+    answer: block.direct_answer,
+    matched_settings_id: block.id,
+    sources: dedupeSources([
+      { label: block.primary_label, url: block.primary_url },
+      ...(block.related_links || []),
+    ]),
+  };
+}
+
+function matchCatalog(msg, siteGuide) {
+  const faqHit = bestScoredEntry(msg, siteGuide.predefined_faqs || []);
+  const settingsHit = bestScoredEntry(msg, siteGuide.settings_context || []);
+
+  let winner = null;
+  if (faqHit && faqHit.score > 0) {
+    winner = { ...faqHit, kind: "faq" };
+  }
+  if (settingsHit && settingsHit.score > 0) {
+    if (!winner || settingsHit.score > winner.score) {
+      winner = { ...settingsHit, kind: "settings" };
+    } else if (settingsHit.score === winner.score && winner.kind === "settings") {
+      /* keep settings */
+    } else if (settingsHit.score === winner.score && faqHit) {
+      /* tie — prefer FAQ narrative over settings how-to */
+      winner = { ...faqHit, kind: "faq" };
     }
   }
-  return null;
+
+  if (!winner || winner.score === 0) return null;
+
+  if (winner.kind === "faq") {
+    return buildFaqResponse(winner.entry);
+  }
+  return buildSettingsResponse(winner.entry);
+}
+
+function matchPageContext(msg, siteGuide) {
+  let best = null;
+  let bestScore = 0;
+
+  for (const page of siteGuide.page_keywords || []) {
+    const score = scoreKeywordHits(msg, page.keywords);
+    if (score <= bestScore) continue;
+    bestScore = score;
+    best = page;
+  }
+
+  if (!best || bestScore < MIN_PAGE_SCORE) return null;
+
+  return {
+    tier: "page_context",
+    answer: best.page_summary,
+    sources: [
+      {
+        label: best.page_title || best.page_url,
+        url: best.page_url,
+      },
+    ],
+  };
 }
 
 /**
@@ -122,49 +246,14 @@ export function matchSiteGuide(userMessage, siteGuide) {
     };
   }
 
-  const settingsMatch = matchSettingsContext(msg, siteGuide);
-  if (settingsMatch) {
-    return settingsMatch;
+  const catalogMatch = matchCatalog(msg, siteGuide);
+  if (catalogMatch) {
+    return catalogMatch;
   }
 
-  for (const faq of siteGuide.predefined_faqs || []) {
-    const keywords = faq.keywords || [];
-    if (keywords.some((kw) => kw && msg.includes(kw.toLowerCase()))) {
-      return {
-        tier: "faq",
-        answer: faq.direct_answer,
-        matched_faq_id: faq.id,
-        sources: [
-          {
-            label: faq.source_label || "Read more",
-            url: faq.source_url,
-          },
-        ],
-      };
-    }
-  }
-
-  const matchedPages = [];
-  const seen = new Set();
-  for (const page of siteGuide.page_keywords || []) {
-    const keywords = page.keywords || [];
-    const hit = keywords.some((kw) => kw && msg.includes(kw.toLowerCase()));
-    if (hit && page.page_url && !seen.has(page.page_url)) {
-      seen.add(page.page_url);
-      matchedPages.push(page);
-    }
-  }
-
-  if (matchedPages.length > 0) {
-    const summaries = matchedPages.map((p) => p.page_summary).filter(Boolean);
-    return {
-      tier: "page_context",
-      answer: "From our docs:\n\n" + summaries.join("\n\n"),
-      sources: matchedPages.map((p) => ({
-        label: p.page_title || p.page_url,
-        url: p.page_url,
-      })),
-    };
+  const pageMatch = matchPageContext(msg, siteGuide);
+  if (pageMatch) {
+    return pageMatch;
   }
 
   return fallbackResponse(siteGuide);

@@ -40,6 +40,18 @@ function runCopyReview() {
     );
   }
 
+  for (const block of siteGuide.settings_context || []) {
+    violations.push(
+      ...findForbiddenClaims(
+        block.direct_answer,
+        `Settings answer: ${block.id}`
+      )
+    );
+    violations.push(
+      ...findForbiddenClaims(block.question, `Settings question: ${block.id}`)
+    );
+  }
+
   violations.push(
     ...findForbiddenClaims(
       siteGuide.fallback?.message || "",

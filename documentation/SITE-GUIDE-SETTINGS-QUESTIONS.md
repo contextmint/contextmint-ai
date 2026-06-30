@@ -8,6 +8,20 @@ Run `npm run gen:site-guide` after editing the catalog.
 
 ---
 
+## Enterprise & On-Prem (overview)
+
+### On-prem extension + server setup
+
+**Question:** How do I configure VS Code extension and server settings when the API is deployed on-prem?
+
+**Matcher id:** `configure-on-prem-extension-server`
+
+**Primary link:** [Enterprise on-prem setup](/docs/byok-enterprise.html#enterprise)
+
+**Also see:** [Settings reference](/docs/settings.html) · [Engine operator guide](/docs/engine-operator.html) · [Trust & Security](/trust.html) · [FAQ — shared server on-prem](/faq.html#can-we-run-a-shared-contextmint-server-on-prem) · [Troubleshooting](/support/troubleshooting.html)
+
+---
+
 ## Server & Backend Configuration
 
 ### Port settings
@@ -349,20 +363,6 @@ Run `npm run gen:site-guide` after editing the catalog.
 **Primary link:** [Chat & lanes](/docs/chat-and-lanes.html)
 
 **Also see:** [Settings reference](/docs/settings.html) · [Chat & lanes](/docs/chat-and-lanes.html)
-
----
-
-## Enterprise & On-Prem (overview)
-
-### On-prem extension + server setup
-
-**Question:** How do I configure VS Code extension and server settings when the API is deployed on-prem?
-
-**Matcher id:** `configure-on-prem-extension-server`
-
-**Primary link:** [Enterprise on-prem setup](/docs/byok-enterprise.html#enterprise)
-
-**Also see:** [Settings reference](/docs/settings.html) · [Engine operator guide](/docs/engine-operator.html) · [Trust & Security](/trust.html) · [FAQ — shared server on-prem](/faq.html#can-we-run-a-shared-contextmint-server-on-prem) · [Troubleshooting](/support/troubleshooting.html)
 
 ---
 

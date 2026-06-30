@@ -3,7 +3,13 @@ export const PAGE_KEYWORDS = [
   {
     page_url: "/getting-started.html",
     page_title: "Getting started",
-    keywords: ["getting started", "first steps", "deploy"],
+    keywords: [
+      "getting started",
+      "first steps",
+      "deploy",
+      "what is contextmint",
+      "how to install contextmint",
+    ],
     page_summary:
       "ContextMint runs local-first: download ContextMint Engine (desktop), install the VS Code extension, and set up Ollama for on-machine inference. This page walks through prerequisites and first-run setup.",
   },
@@ -80,6 +86,10 @@ export const PAGE_KEYWORDS = [
       "settings catalog",
       "configuration reference",
       "all contextmint keys",
+      "server settings",
+      "extension settings",
+      "configure settings",
+      "contextmint settings",
     ],
     page_summary:
       "Searchable catalogs for VS Code extension keys (contextmint.*) and API server keys (contextmint.defaults.yaml / ~/.contextmint/server.defaults.yaml). Two tabs: Server settings (EOP, retrieval, indexing, ARGUS, auth) and VS Code settings (chat, lanes, Context Lens, packs). For how-to and rollout, pair with BYOK & enterprise or Engine operator guides.",
