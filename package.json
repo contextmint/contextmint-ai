@@ -4,7 +4,7 @@
   "private": true,
   "description": "ContextMint marketing site (Eleventy → GitHub Pages)",
   "scripts": {
-    "gen:settings": "node scripts/gen-extension-settings-doc.mjs && node scripts/gen-server-chat-settings-doc.mjs && node scripts/gen-context-budget-profile.mjs && node ../scripts/gen_server_settings_catalog.mjs",
+    "gen:settings": "node scripts/gen-extension-settings-doc.mjs && node scripts/gen-server-chat-settings-doc.mjs && node scripts/gen-context-budget-profile.mjs && node scripts/gen-server-settings-catalog-sync.mjs",
     "build": "npm run gen:settings && eleventy",
     "dev": "npm run gen:settings && eleventy --serve",
     "clean": "node -e \"require('fs').rmSync('_site',{recursive:true,force:true})\""
