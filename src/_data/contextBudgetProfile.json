@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-26",
+  "generatedAt": "2026-06-30",
   "source": "config/contextmint.defaults.yaml",
   "overlayPath": "~/.contextmint/server.defaults.yaml",
   "profile": {

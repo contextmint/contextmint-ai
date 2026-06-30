@@ -54,7 +54,7 @@ export const SERVER_SECTIONS = [
     description:
       "Citation-bound LLM narration on sanitized excerpts, clarification recovery when evidence is insufficient, and final insufficient-evidence stop after max turns. Server restart required.",
     match: (id) =>
-      /^chat\.(narration_|clarification_|insufficient_evidence_|fact_template_only)/.test(
+      /^chat\.(narration_|clarification_|insufficient_evidence_|fact_template_only|meaning_pack|inference_requires_llm)/.test(
         id,
       ),
   },
@@ -71,7 +71,7 @@ export const SERVER_SECTIONS = [
     description:
       "Query router, index-time registries, knowledge object lookup, optional plan executor, and intent classifier. Production path before hybrid search + expand.",
     match: (id) =>
-      /^chat\.(route_registry|service_registry|section_registry|document_registry|plan_selector|plan_executor|knowledge_object|structural_probe|intent_classifier|structured_answer|ko_max)/.test(
+      /^chat\.(route_registry|service_registry|section_registry|document_registry|module_consumer_registry|plan_selector|plan_executor|knowledge_object|structural_probe|intent_classifier|structured_answer|ko_max)/.test(
         id,
       ),
   },
@@ -303,6 +303,30 @@ export const SERVER_SETTING_DESCRIPTIONS = {
     "Wall-clock timeout (ms) for narration LLM call.",
   "chat.narration_require_citations":
     "Reject narration results that omit valid citation ids from the excerpt pack.",
+  "chat.inference_requires_llm":
+    "When true, sufficient repo-lane turns must invoke an LLM for inference (citation narration or overview chat stream) — fact templates alone are not answers.",
+  "chat.structured_answer_without_llm":
+    "Legacy SKL-H-004 toggle. When inference_requires_llm is true (default), SUMMARY uses citation narration — this flag does not skip the answer LLM.",
+  "chat.meaning_pack_expand_enabled":
+    "When meaning intent is detected, require usage-context excerpts (grep/graph/search) beyond the definition anchor before narration.",
+  "chat.meaning_pack_min_usage_excerpts":
+    "Minimum non-anchor usage-tier excerpts required before meaning pack is sufficient.",
+  "chat.meaning_pack_min_distinct_files":
+    "Minimum distinct files with entity-bearing usage excerpts (when entity requirement enabled) for meaning pack sufficiency.",
+  "chat.meaning_pack_require_entity_in_usage_excerpt":
+    "Meaning-pack usage excerpts must mention the obligation entity in excerpt text.",
+  "chat.meaning_pack_require_usage_call_pattern":
+    "Meaning-pack usage excerpts must show call/import/instantiation of the entity (not type-hint-only mentions).",
+  "chat.narration_insufficient_expand_max_passes":
+    "After narration returns insufficient_evidence, run meaning expand ladder and re-narrate up to this many times.",
+  "chat.module_consumer_registry_enabled":
+    "Enable Module Consumer Registry lookup path (SKL-H-009 Type B reverse dependencies).",
+  "retrieval.execution_plane_trace_enabled":
+    "Write execution-trace-*.txt with per-step received/emitted/flags/branches for repo-lane UAT postmortems (off by default).",
+  "retrieval.execution_plane_trace_max_field_chars":
+    "Max characters per field in execution plane trace .txt export (200–16000).",
+  "chat.clarification_prompt_templates.narration_llm_timeout":
+    "User-facing message when verified excerpts were ready but the narration LLM timed out.",
   "chat.fact_template_only_when_no_meaning_intent":
     "When true, skip narration LLM and use fact templates only when the query has no meaning intent.",
   "chat.clarification_enabled":
@@ -394,6 +418,8 @@ export const SERVER_OPERATOR_KEYS = new Set([
   "retrieval.trace_include_llm_io",
   "retrieval.trace_llm_io_max_chars",
   "retrieval.trace_evidence_preview_chars",
+  "retrieval.execution_plane_trace_enabled",
+  "retrieval.execution_plane_trace_max_field_chars",
   "retrieval.expand_ladder_enabled",
   "retrieval.excerpt_select_infer_enabled",
   "retrieval.live_progress_enabled",
@@ -406,6 +432,15 @@ export const SERVER_OPERATOR_KEYS = new Set([
   "chat.narration_max_tokens",
   "chat.narration_timeout_ms",
   "chat.narration_require_citations",
+  "chat.inference_requires_llm",
+  "chat.structured_answer_without_llm",
+  "chat.meaning_pack_expand_enabled",
+  "chat.meaning_pack_min_usage_excerpts",
+  "chat.meaning_pack_min_distinct_files",
+  "chat.meaning_pack_require_entity_in_usage_excerpt",
+  "chat.meaning_pack_require_usage_call_pattern",
+  "chat.narration_insufficient_expand_max_passes",
+  "chat.module_consumer_registry_enabled",
   "chat.fact_template_only_when_no_meaning_intent",
   "chat.clarification_enabled",
   "chat.clarification_max_turns",

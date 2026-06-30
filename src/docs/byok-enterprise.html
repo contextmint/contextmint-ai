@@ -7,61 +7,525 @@ pageCss: product.css
 
 <h1>BYOK &amp; enterprise deployment</h1>
 <p class="doc-lead">
-  Default ContextMint is <strong>local-first</strong>: code and indexes stay on your machine. Teams that
-  need shared infrastructure or approved cloud models enable optional paths below — all off by default.
+  ContextMint is <strong>local-first</strong> by default. Two optional paths are documented below —
+  they are <strong>independent</strong>: you can enable BYOK cloud on a laptop with local Engine,
+  deploy a shared enterprise server without cloud egress, or combine both. Each section lists every
+  relevant key, what it does, and step-by-step instructions to change it.
+  Full catalogs: <a href="/docs/settings.html">Settings reference</a>.
 </p>
 
-<h2>Local-first (default)</h2>
-<ul>
-  <li>Engine + Ollama on loopback</li>
-  <li>API keys not required</li>
-  <li>No egress of source code for indexing or local inference</li>
-</ul>
+<nav class="muted" aria-label="On this page" style="margin-bottom: 1.5rem;">
+  <strong>On this page:</strong>
+  <a href="#byok">1 — BYOK cloud routing</a> ·
+  <a href="#enterprise">2 — Shared enterprise API server</a>
+</nav>
 
-<h2>BYOK cloud routing</h2>
-<p>When platform policy allows external inference:</p>
+<div class="settings-callout">
+  <strong>Two surfaces:</strong>
+  <strong>VS Code</strong> keys are <code>contextmint.*</code> in Settings or <code>settings.json</code>
+  on each developer machine — most apply on the next chat send without restarting the API.
+  <strong>Server</strong> keys live in <code>config/contextmint.defaults.yaml</code> on the API host,
+  overridden via <code>~/.contextmint/server.defaults.yaml</code> or host <code>.env</code> — restart
+  the API after changes (<strong>Engine → Server</strong> tab, or container rollout).
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<h2 id="byok">1 — BYOK cloud routing</h2>
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+
+<p>
+  <strong>Bring your own key (BYOK)</strong> lets developers route chat generation to an external LLM
+  provider (OpenAI, Anthropic, Groq) using API keys stored in VS Code — not on the server. Retrieval,
+  indexing, and evidence assembly still run on your ContextMint API host; only the <em>final generation
+  step</em> may egress redacted context to the provider you chose.
+</p>
+
+<p class="muted">
+  BYOK does <strong>not</strong> require a shared enterprise server. It works with the default
+  <code>http://127.0.0.1:8000</code> local Engine setup.
+</p>
+
+<h3>BYOK rollout checklist</h3>
 <ol>
-  <li>Enable <code>contextmint.trust.cloudEnabled</code></li>
-  <li>Run command <strong>ContextMint: Configure Cloud API Key</strong></li>
-  <li>Keys stored in VS Code <strong>SecretStorage</strong> — never in Engine config or server logs</li>
-  <li>Select <strong>Cloud</strong> or <strong>Auto</strong> in compose model picker</li>
+  <li><strong>Platform / operator</strong> — enable server <code>allow_cloud_dispatch</code> on the API host (if you control it).</li>
+  <li><strong>Each developer</strong> — set <code>contextmint.cloudEnabled</code> to <code>true</code>.</li>
+  <li><strong>Each developer</strong> — run <strong>ContextMint: Configure Cloud API Key</strong> and store a provider key.</li>
+  <li><strong>Each developer</strong> — pick <strong>Cloud</strong> or <strong>Auto</strong> in the compose model picker and send a test message.</li>
+  <li><strong>Verify</strong> — routing badge shows <strong>cloud</strong>; inspector lists cloud tier. If it stays local, see
+    <a href="/support/troubleshooting.html#cloud">Troubleshooting → Cloud</a>.</li>
 </ol>
-<p>
-  Only <strong>redacted assembled context</strong> is sent to the provider you choose. Routing badge and
-  inspector show cloud tier when used.
+
+<h3>VS Code settings (each developer)</h3>
+<p class="muted">Edit via <kbd>Ctrl+,</kbd> (search <code>contextmint</code>) or your user/workspace <code>settings.json</code>.</p>
+
+<div class="settings-groups">
+
+<details class="settings-group" id="byok-vscode-cloud-enabled" open>
+  <summary class="settings-group__summary">
+    <span class="settings-group__title"><code>contextmint.cloudEnabled</code></span>
+    <span class="settings-group__meta">boolean · default <code>false</code></span>
+  </summary>
+  <div class="settings-group__body">
+    <p><strong>What it does.</strong> Master opt-in for cloud LLM routing from the extension. When
+      <code>true</code>, the extension may set <code>prefer_cloud</code> on chat requests if a provider
+      key exists and the model picker allows cloud. When <code>false</code>, all generation stays on
+      local Ollama regardless of keys.</p>
+    <p><strong>When to enable.</strong> Your security team has approved external inference for chat
+      generation and you have a provider API key.</p>
+    <p><strong>When to disable.</strong> Sovereign / air-gapped workflows, trial installs, or any
+      environment where source-derived context must not leave your network.</p>
+    <p><strong>How to change.</strong></p>
+    <ol>
+      <li>Open VS Code → <strong>Settings</strong> → search <code>cloud enabled</code>.</li>
+      <li>Check <strong>ContextMint: Enable Cloud LLM Provider Routing</strong>, or add to <code>settings.json</code>:
+        <pre style="margin:0.5rem 0;"><code>"contextmint.cloudEnabled": true</code></pre>
+      </li>
+      <li>Send a new chat message — no server restart required.</li>
+    </ol>
+  </div>
+</details>
+
+<details class="settings-group" id="byok-vscode-cloud-api-key">
+  <summary class="settings-group__summary">
+    <span class="settings-group__title">Command: <strong>ContextMint: Configure Cloud API Key</strong></span>
+    <span class="settings-group__meta">VS Code command · not a settings.json key</span>
+  </summary>
+  <div class="settings-group__body">
+    <p><strong>What it does.</strong> Stores provider API keys in VS Code <strong>SecretStorage</strong>
+      (encrypted OS keychain). Supported providers: OpenAI, Anthropic, Groq. Keys are read by the
+      extension at send time — they are never written to Engine config, server YAML, or server logs.</p>
+    <p><strong>When to run.</strong> After enabling <code>contextmint.cloudEnabled</code> and before
+      selecting Cloud / Auto in the model picker.</p>
+    <p><strong>How to change.</strong></p>
+    <ol>
+      <li><kbd>Ctrl+Shift+P</kbd> → <strong>ContextMint: Configure Cloud API Key (Preview)</strong>.</li>
+      <li>Choose provider → paste key → confirm.</li>
+      <li>To rotate or remove a key, run the command again and overwrite or clear the prompt.</li>
+    </ol>
+    <p class="muted"><strong>Verify:</strong> Compose model picker shows Cloud tier options; a test send
+      with Cloud selected should not prompt for a missing key.</p>
+  </div>
+</details>
+
+<details class="settings-group" id="byok-vscode-model-picker">
+  <summary class="settings-group__summary">
+    <span class="settings-group__title">Compose model picker — <strong>Local</strong> / <strong>Auto</strong> / <strong>Cloud</strong></span>
+    <span class="settings-group__meta">UI · per-message · not a settings.json key</span>
+  </summary>
+  <div class="settings-group__body">
+    <p><strong>What it does.</strong> Controls routing <em>for this send only</em> (choice is remembered
+      in the workspace until you change it). BYOK must already be on
+      (<code>contextmint.cloudEnabled</code> + at least one stored key + server
+      <code>allow_cloud_dispatch</code>) before cloud handoff can occur.</p>
+    <table class="muted" style="width:100%; border-collapse: collapse; font-size: 0.9rem; margin: 0.75rem 0;">
+      <thead>
+        <tr style="text-align:left; border-bottom: 1px solid var(--border-default);">
+          <th style="padding:8px 12px 8px 0;">Picker</th>
+          <th style="padding:8px 0;">This message</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom: 1px solid var(--border-subtle);">
+          <td style="padding:10px 12px 10px 0;"><strong>Local</strong></td>
+          <td style="padding:10px 0;">Always runs on <strong>local Ollama</strong> — even if BYOK is enabled and keys exist. Use when this answer must not egress.</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border-subtle);">
+          <td style="padding:10px 12px 10px 0;"><strong>Auto</strong></td>
+          <td style="padding:10px 0;">Server picks tier from query intent (symbol lookup → local; explanation → mid cloud; generation → premium cloud). Cloud handoff only when BYOK gates pass <em>and</em> intent maps to a cloud tier.</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px 10px 0;"><strong>Cloud</strong></td>
+          <td style="padding:10px 0;">Primary use: <strong>image messages</strong> — opts into cloud vision when you also pick a cloud vision-capable model. For <strong>text</strong>, use <strong>Auto</strong> to let intent select a cloud tier; <strong>Local</strong> to guarantee Ollama.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p><strong>How to change.</strong> Chat compose bar → model dropdown → pick <strong>Local</strong>,
+      <strong>Auto</strong>, or <strong>Cloud</strong> → send. Routing badge on the answer shows
+      <strong>local</strong> or cloud tier used.</p>
+    <p class="muted">If cloud fails (rate limit, outage, missing key), the extension can fall back to local
+      Ollama for that message. See
+      <a href="/support/troubleshooting.html#cloud">Troubleshooting → Cloud</a>.</p>
+  </div>
+</details>
+
+<details class="settings-group" id="byok-vscode-multiple-keys">
+  <summary class="settings-group__summary">
+    <span class="settings-group__title">Multiple provider keys (OpenAI + Anthropic + Groq)</span>
+    <span class="settings-group__meta">VS Code SecretStorage · one key per provider</span>
+  </summary>
+  <div class="settings-group__body">
+    <p><strong>What it does.</strong> You can store <strong>up to three keys</strong> — one each for
+      <code>openai</code>, <code>anthropic</code>, and <code>groq</code>. They live in separate
+      SecretStorage slots (<code>contextmint.apiKey.openai</code>, etc.). Keys are never merged or sent
+      to the Python server.</p>
+    <p><strong>Which key is used.</strong> You do <em>not</em> pick the provider per message in Settings.
+      The server routing decision names a model (e.g. <code>claude-3-5-sonnet</code> → Anthropic,
+      <code>groq/llama3-70b</code> → Groq, <code>gpt-4o</code> → OpenAI); the extension maps that model
+      to the matching stored key at <code>cloud_dispatch</code> time. If the routed provider has no key,
+      VS Code prompts once via <strong>Configure Cloud API Key</strong> flow.</p>
+    <p><strong>How to add or rotate keys.</strong></p>
+    <ol>
+      <li><kbd>Ctrl+Shift+P</kbd> → <strong>ContextMint: Configure Cloud API Key (Preview)</strong>.</li>
+      <li>Quick-pick <strong>openai</strong>, <strong>anthropic</strong>, or <strong>groq</strong>.</li>
+      <li>Paste the key → repeat for each provider you need.</li>
+      <li>Run again with a new value to rotate; clearing is done through the same prompt (cancel = no change).</li>
+    </ol>
+    <p class="muted"><strong>Tip:</strong> Store only providers your org approves. With <strong>Auto</strong>
+      picker, a “explain this architecture” question may route to Anthropic (mid tier) while a codegen
+      task may route to premium tier — each uses its own key if configured.</p>
+  </div>
+</details>
+
+<details class="settings-group" id="byok-vscode-cloud-thinking">
+  <summary class="settings-group__summary">
+    <span class="settings-group__title"><code>contextmint.chat.cloudThinkingEnabled</code></span>
+    <span class="settings-group__meta">boolean · default <code>true</code></span>
+  </summary>
+  <div class="settings-group__body">
+    <p><strong>What it does.</strong> When using your own Anthropic or OpenAI reasoning models, requests
+      and streams model-level “thinking” / extended reasoning from the provider.</p>
+    <p><strong>When to disable.</strong> Latency-sensitive workflows or providers that do not support
+      thinking streams.</p>
+    <p><strong>How to change.</strong> Settings → search <code>cloud thinking</code>, or:
+      <pre style="margin:0.5rem 0;"><code>"contextmint.chat.cloudThinkingEnabled": false</code></pre>
+    </p>
+    <p class="muted">Related budgets: <code>contextmint.chat.cloudThinkingBudgetTokens</code> (default
+      <code>10000</code>) and <code>contextmint.chat.cloudThinkingBudgetMinTokens</code> (default
+      <code>1024</code>) — adjust in Settings if Claude extended thinking is clipped.</p>
+  </div>
+</details>
+
+</div>
+
+<h3>Server settings (API host operator)</h3>
+<p class="muted">
+  Required on the machine running the ContextMint API — local Engine (<code>127.0.0.1:8000</code>) or
+  shared team host. Edit in <strong>Engine → Server config</strong>, overlay file, or <code>.env</code>;
+  then <strong>restart the API</strong>.
 </p>
 
-<h2>Cloud vision (optional multimodal)</h2>
+<div class="settings-groups">
+
+<details class="settings-group" id="byok-server-allow-cloud-dispatch" open>
+  <summary class="settings-group__summary">
+    <span class="settings-group__title"><code>allow_cloud_dispatch</code></span>
+    <span class="settings-group__meta">server · boolean · default <code>false</code></span>
+  </summary>
+  <div class="settings-group__body">
+    <p><strong>What it does.</strong> Server-side gate for <code>cloud_dispatch</code> SSE events. When
+      <code>false</code>, the API ignores <code>prefer_cloud</code> from the extension and always runs
+      local Ollama — even if the developer enabled <code>cloudEnabled</code> and configured keys.</p>
+    <p><strong>When to enable.</strong> Platform policy allows cloud handoff and you operate a paid or
+      approved install (not trial / sovereign default).</p>
+    <p><strong>How to change.</strong></p>
+    <ol>
+      <li><strong>Option A — overlay YAML</strong> — add to <code>~/.contextmint/server.defaults.yaml</code> on the API host:
+        <pre style="margin:0.5rem 0;"><code>allow_cloud_dispatch: true</code></pre>
+      </li>
+      <li><strong>Option B — environment</strong> — in the server <code>.env</code> or container spec:
+        <pre style="margin:0.5rem 0;"><code>ALLOW_CLOUD_DISPATCH=true</code></pre>
+      </li>
+      <li>Restart the API (Engine → <strong>Server</strong> → restart, or redeploy container).</li>
+      <li>Re-test: extension with <code>cloudEnabled</code> + key → Cloud model → badge should show cloud tier.</li>
+    </ol>
+  </div>
+</details>
+
+<details class="settings-group" id="byok-server-image-cloud-opt-in">
+  <summary class="settings-group__summary">
+    <span class="settings-group__title"><code>chat.image_cloud_opt_in_only</code></span>
+    <span class="settings-group__meta">server · boolean · default <code>true</code></span>
+  </summary>
+  <div class="settings-group__body">
+    <p><strong>What it does.</strong> When <code>true</code>, image attachments are not silently sent to
+      cloud vision — the user must explicitly select a cloud vision model in compose. Preserves sovereign
+      default for screenshots and UI captures.</p>
+    <p><strong>How to change.</strong> In server overlay under the <code>chat:</code> section:
+      <pre style="margin:0.5rem 0;"><code>chat:
+  image_cloud_opt_in_only: true</code></pre>
+      Or env: <code>CHAT__IMAGE_CLOUD_OPT_IN_ONLY=true</code>. Restart API.</p>
+  </div>
+</details>
+
+<details class="settings-group" id="byok-server-image-prefer-cloud">
+  <summary class="settings-group__summary">
+    <span class="settings-group__title"><code>chat.image_prefer_cloud_when_both</code></span>
+    <span class="settings-group__meta">server · boolean · default <code>false</code></span>
+  </summary>
+  <div class="settings-group__body">
+    <p><strong>What it does.</strong> When both local and cloud vision are available and the user opted
+      into cloud, controls whether cloud is preferred over local Ollama vision. Default
+      <code>false</code> keeps local vision primary.</p>
+    <p><strong>When to enable.</strong> Org standard is cloud-only vision and local Ollama vision is a
+      fallback only.</p>
+    <p><strong>How to change.</strong> Server overlay:
+      <pre style="margin:0.5rem 0;"><code>chat:
+  image_prefer_cloud_when_both: false</code></pre>
+      Restart API. Details: <a href="/docs/image-evidence-argus.html">Image evidence &amp; ARGUS</a>.</p>
+  </div>
+</details>
+
+</div>
+
+<div class="settings-callout settings-callout--warn">
+  <strong>Data flow reminder:</strong> BYOK sends <em>redacted assembled context</em> to your chosen
+  provider from the developer machine. API keys never touch the server. Routing badge and inspector
+  record the cloud tier for audit.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<h2 id="enterprise">2 — Shared enterprise API server</h2>
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+
 <p>
-  When cloud routing is enabled, you may <strong>explicitly</strong> select a cloud vision-capable model for
-  messages with image attachments. Images are <em>not</em> automatically sent to the cloud when you attach
-  them — local Ollama vision remains the default even if API keys are configured.
-</p>
-<ul>
-  <li>Multimodal parts are assembled in the extension; keys stay in VS Code SecretStorage</li>
-  <li>Supported providers include OpenAI- and Anthropic-compatible vision APIs when configured</li>
-  <li>ARGUS visual audit defaults to <strong>local</strong> vision — independent of cloud chat keys</li>
-</ul>
-<p>
-  Details: <a href="/docs/image-evidence-argus.html">Image evidence &amp; ARGUS</a>.
+  <strong>Enterprise server mode</strong> points developers at a <em>shared</em> ContextMint API stack
+  (Docker / Helm on your infrastructure) instead of each laptop running Engine. Developers configure
+  VS Code to call the team URL and authenticate with OIDC. This is separate from BYOK — you can run
+  enterprise local-only (no cloud egress) or add BYOK later via section 1.
 </p>
 
-<h2>Shared on-prem API server (pilot)</h2>
-<p>Platform team deploys Docker/Helm stack; developers configure:</p>
-<ul>
-  <li><code>contextmint.server.serverUrl</code> — HTTPS internal hostname</li>
-  <li><code>contextmint.trust.enterpriseMode</code> — true when auth required</li>
-  <li>OIDC provider ID and JWT validation on server</li>
-</ul>
+<div class="settings-callout settings-callout--warn">
+  <strong>Path alignment required.</strong> The server indexes filesystem paths it can read. A laptop with
+  a clone at <code>C:\dev\repo</code> cannot use a remote <code>serverUrl</code> unless the server sees
+  the same path (Remote SSH, shared mount, or repo cloned on the server). See
+  <a href="/trust.html#deployment">Trust → Deployment models</a>.
+</div>
+
+<h3>Enterprise rollout checklist</h3>
+<ol>
+  <li><strong>Platform team</strong> — deploy API + Ollama + Chroma (+ Redis if used) on internal infrastructure.</li>
+  <li><strong>Platform team</strong> — enable <code>auth.enabled</code>, set <code>auth.mode</code> to <code>oidc</code>, configure issuer/audience, set <code>AUTH__JWT_SECRET</code> in host <code>.env</code>.</li>
+  <li><strong>Platform team</strong> — align repo paths (clone on server, NFS mount, or Remote SSH).</li>
+  <li><strong>Each developer</strong> — set <code>contextmint.serverUrl</code> to the team HTTPS base URL.</li>
+  <li><strong>Each developer</strong> — set <code>contextmint.enterpriseMode</code> to <code>true</code> and <code>contextmint.oidcProviderId</code> to your IdP.</li>
+  <li><strong>Each developer</strong> — sign in via VS Code authentication when prompted; confirm status bar shows connected to team server.</li>
+</ol>
+
+<h3>Server settings (platform team)</h3>
+<p class="muted">
+  On the API host: <strong>Engine → Server config</strong>, <code>~/.contextmint/server.defaults.yaml</code>,
+  or <code>.env</code>. Secrets go in <code>.env</code> only — never commit to YAML in git.
+</p>
+
+<div class="settings-groups">
+
+<details class="settings-group" id="ent-server-auth-enabled" open>
+  <summary class="settings-group__summary">
+    <span class="settings-group__title"><code>auth.enabled</code></span>
+    <span class="settings-group__meta">server · boolean · default <code>false</code></span>
+  </summary>
+  <div class="settings-group__body">
+    <p><strong>What it does.</strong> Requires a valid Bearer JWT on protected <code>/api/v1/*</code>
+      routes. Off for local-first single-user installs; on for shared team servers.</p>
+    <p><strong>How to change.</strong></p>
+    <ol>
+      <li>Server overlay:
+        <pre style="margin:0.5rem 0;"><code>auth:
+  enabled: true</code></pre>
+      </li>
+      <li>Or env: <code>AUTH__ENABLED=true</code></li>
+      <li>Set JWT secret (below) before enabling in production.</li>
+      <li>Restart API.</li>
+    </ol>
+  </div>
+</details>
+
+<details class="settings-group" id="ent-server-auth-mode">
+  <summary class="settings-group__summary">
+    <span class="settings-group__title"><code>auth.mode</code></span>
+    <span class="settings-group__meta">server · string · default <code>local</code></span>
+  </summary>
+  <div class="settings-group__body">
+    <p><strong>What it does.</strong> <code>local</code> = no auth validation. <code>oidc</code> = validate
+      JWT issuer, audience, and signature on incoming requests from the extension.</p>
+    <p><strong>How to change.</strong> Server overlay:
+      <pre style="margin:0.5rem 0;"><code>auth:
+  mode: oidc</code></pre>
+      Or env: <code>AUTH__MODE=oidc</code>. Restart API.</p>
+  </div>
+</details>
+
+<details class="settings-group" id="ent-server-auth-oidc">
+  <summary class="settings-group__summary">
+    <span class="settings-group__title"><code>auth.oidc_issuer</code> and <code>auth.oidc_audience</code></span>
+    <span class="settings-group__meta">server · strings · optional</span>
+  </summary>
+  <div class="settings-group__body">
+    <p><strong>What they do.</strong> When set, the API rejects tokens whose <code>iss</code> or
+      <code>aud</code> claims do not match — tying extension Bearer tokens to your IdP
+      (Microsoft Entra ID, Okta, Keycloak, etc.).</p>
+    <p><strong>How to change.</strong> Server overlay (example for Entra ID):
+      <pre style="margin:0.5rem 0;"><code>auth:
+  oidc_issuer: "https://login.microsoftonline.com/{tenant-id}/v2.0"
+  oidc_audience: "{application-client-id}"</code></pre>
+      Or env: <code>AUTH__OIDC_ISSUER=...</code> and <code>AUTH__OIDC_AUDIENCE=...</code>. Restart API.</p>
+    <p class="muted">Obtain issuer and audience from your IdP app registration. Must match tokens VS Code
+      forwards when <code>enterpriseMode</code> is enabled.</p>
+  </div>
+</details>
+
+<details class="settings-group" id="ent-server-auth-jwt-secret">
+  <summary class="settings-group__summary">
+    <span class="settings-group__title"><code>AUTH__JWT_SECRET</code> (environment)</span>
+    <span class="settings-group__meta">server · secret · not in YAML</span>
+  </summary>
+  <div class="settings-group__body">
+    <p><strong>What it does.</strong> HMAC secret for HS256 JWT validation (<code>auth.jwt_algorithm</code>).
+      Required when <code>auth.enabled</code> is true. Maps to <code>auth.jwt_secret</code> in server config.</p>
+    <p><strong>How to change.</strong></p>
+    <ol>
+      <li>Generate a strong random string (32+ bytes).</li>
+      <li>Add to API host <code>.env</code> (or container secret store):
+        <pre style="margin:0.5rem 0;"><code>AUTH__JWT_SECRET=your-long-random-secret-here</code></pre>
+      </li>
+      <li>Never commit to git or paste into <code>server.defaults.yaml</code>.</li>
+      <li>Restart API after rotation; developers re-authenticate in VS Code.</li>
+    </ol>
+  </div>
+</details>
+
+<details class="settings-group" id="ent-server-auth-acl">
+  <summary class="settings-group__summary">
+    <span class="settings-group__title"><code>auth.require_workspace_acl</code> and <code>auth.sso_default_role</code></span>
+    <span class="settings-group__meta">server · boolean + string</span>
+  </summary>
+  <div class="settings-group__body">
+    <p><strong>What they do.</strong> <code>require_workspace_acl</code> enforces per-workspace roles
+      (<code>viewer</code>, <code>dev</code>, <code>admin</code>) on query routes.
+      <code>sso_default_role</code> (default <code>viewer</code>) is granted on first SSO login when no
+      explicit role exists.</p>
+    <p><strong>How to change.</strong> Server overlay:
+      <pre style="margin:0.5rem 0;"><code>auth:
+  require_workspace_acl: true
+  sso_default_role: viewer</code></pre>
+      Restart API. Manage workspace roles via your ACL tooling / admin API.</p>
+  </div>
+</details>
+
+<details class="settings-group" id="ent-server-workspace-roots">
+  <summary class="settings-group__summary">
+    <span class="settings-group__title"><code>allowed_workspace_roots</code></span>
+    <span class="settings-group__meta">server · list · default empty (allow any)</span>
+  </summary>
+  <div class="settings-group__body">
+    <p><strong>What it does.</strong> When non-empty, rejects workspace registration for paths outside
+      listed directories — useful to sandbox indexing to approved mount points.</p>
+    <p><strong>How to change.</strong> Server overlay:
+      <pre style="margin:0.5rem 0;"><code>allowed_workspace_roots:
+  - /data/repos
+  - /mnt/shared-engineering</code></pre>
+      Or env: <code>ALLOWED_WORKSPACE_ROOTS=/data/repos,/mnt/shared-engineering</code>. Restart API.</p>
+  </div>
+</details>
+
+</div>
+
+<h3>VS Code settings (each developer)</h3>
+<p class="muted">Per-machine — Settings UI or <code>settings.json</code>. No server restart.</p>
+
+<div class="settings-groups">
+
+<details class="settings-group" id="ent-vscode-server-url" open>
+  <summary class="settings-group__summary">
+    <span class="settings-group__title"><code>contextmint.serverUrl</code></span>
+    <span class="settings-group__meta">string · default <code>http://127.0.0.1:8000</code></span>
+  </summary>
+  <div class="settings-group__body">
+    <p><strong>What it does.</strong> Base URL for all ContextMint API calls (health, indexing, chat).
+      Local-first default is loopback; enterprise mode points at your team host.</p>
+    <p><strong>How to change.</strong></p>
+    <ol>
+      <li>Settings → search <code>server url</code>, or:
+        <pre style="margin:0.5rem 0;"><code>"contextmint.serverUrl": "https://contextmint.corp.example"</code></pre>
+      </li>
+      <li>Use HTTPS internal hostname; include port only if not 443.</li>
+      <li>Reload window or wait for next health poll — status bar should show team server connected.</li>
+    </ol>
+    <p class="muted"><strong>Local-first:</strong> leave default <code>http://127.0.0.1:8000</code> when
+      using Engine on the same machine.</p>
+  </div>
+</details>
+
+<details class="settings-group" id="ent-vscode-enterprise-mode">
+  <summary class="settings-group__summary">
+    <span class="settings-group__title"><code>contextmint.enterpriseMode</code></span>
+    <span class="settings-group__meta">boolean · default <code>false</code></span>
+  </summary>
+  <div class="settings-group__body">
+    <p><strong>What it does.</strong> Switches the extension to enterprise connectivity: VS Code OIDC
+      sign-in forwards a Bearer token on every API request. If the team server is unreachable, falls back
+      to <code>contextmint.localFallbackUrl</code> (if configured).</p>
+    <p><strong>When to enable.</strong> <code>contextmint.serverUrl</code> points at a shared server with
+      <code>auth.enabled: true</code>.</p>
+    <p><strong>When to disable.</strong> Local-first Engine on loopback, lab VLAN without SSO, or
+      Hub71-style “extension-only” laptops hitting a team GPU host without JWT.</p>
+    <p><strong>How to change.</strong>
+      <pre style="margin:0.5rem 0;"><code>"contextmint.enterpriseMode": true</code></pre>
+      VS Code prompts for sign-in via <code>oidcProviderId</code> on next API call.</p>
+  </div>
+</details>
+
+<details class="settings-group" id="ent-vscode-oidc-provider">
+  <summary class="settings-group__summary">
+    <span class="settings-group__title"><code>contextmint.oidcProviderId</code></span>
+    <span class="settings-group__meta">string · default empty</span>
+  </summary>
+  <div class="settings-group__body">
+    <p><strong>What it does.</strong> Tells VS Code which built-in authentication provider to use for SSO
+      when <code>enterpriseMode</code> is on — e.g. <code>microsoft</code>, <code>github</code>, or a
+      custom provider ID from your VS Code auth extension.</p>
+    <p><strong>How to change.</strong>
+      <pre style="margin:0.5rem 0;"><code>"contextmint.oidcProviderId": "microsoft"</code></pre>
+      Only applies when <code>enterpriseMode</code> is <code>true</code>. Sign out and sign in again after
+      changing provider.</p>
+  </div>
+</details>
+
+<details class="settings-group" id="ent-vscode-local-fallback">
+  <summary class="settings-group__summary">
+    <span class="settings-group__title"><code>contextmint.localFallbackUrl</code></span>
+    <span class="settings-group__meta">string · default <code>http://127.0.0.1:8000</code></span>
+  </summary>
+  <div class="settings-group__body">
+    <p><strong>What it does.</strong> When <code>enterpriseMode</code> is enabled and the team
+      <code>serverUrl</code> is down, the extension retries against this loopback Engine URL so developers
+      can keep working offline.</p>
+    <p><strong>When to set.</strong> Developers also run local Engine as a break-glass fallback.</p>
+    <p><strong>How to change.</strong>
+      <pre style="margin:0.5rem 0;"><code>"contextmint.localFallbackUrl": "http://127.0.0.1:8000"</code></pre>
+      Ignored when <code>enterpriseMode</code> is <code>false</code>.</p>
+  </div>
+</details>
+
+<details class="settings-group" id="ent-vscode-local-jwt">
+  <summary class="settings-group__summary">
+    <span class="settings-group__title"><code>contextmint.localJwtSecret</code></span>
+    <span class="settings-group__meta">string · default empty</span>
+  </summary>
+  <div class="settings-group__body">
+    <p><strong>What it does.</strong> Optional HS256 secret for auto-signed localhost JWTs when testing
+      auth against a local Engine. When empty, the extension reads <code>AUTH__JWT_SECRET</code> from the
+      workspace <code>.env</code> file.</p>
+    <p><strong>When to use.</strong> Local dev only — matching a local API with <code>auth.enabled</code>
+      without full OIDC. Prefer OIDC + <code>enterpriseMode</code> for real team servers.</p>
+    <p><strong>How to change.</strong> Settings → search <code>local jwt</code>, or set in
+      <code>settings.json</code>. Do not commit secrets to workspace git.</p>
+  </div>
+</details>
+
+</div>
+
+<h3>Combining enterprise server + BYOK</h3>
 <p>
-  Extension does <strong>not</strong> install Engine. Workspace paths on the server must match what developers
-  open in VS Code (Remote SSH workspace folders or consistent mount paths).
+  These paths stack: point <code>contextmint.serverUrl</code> at the team host <em>and</em> enable BYOK
+  keys on the laptop for cloud generation. The platform team must enable <code>allow_cloud_dispatch</code>
+  on the <strong>shared</strong> API host; each developer still sets <code>contextmint.cloudEnabled</code>
+  and configures keys locally. Enterprise auth and BYOK egress are independent controls.
 </p>
 
 <h2>Security review artifacts</h2>
 <p>
   Design partners receive architecture summaries, data-flow diagrams, and questionnaire support.
-  <a href="/design-partners.html">apply as a design partner</a>.
   {% if site.emailVisible %}
   Contact <a href="mailto:{{ site.contactEmail }}">{{ site.contactEmail }}</a> or
   {% endif %}
@@ -69,6 +533,7 @@ pageCss: product.css
 </p>
 
 <p class="muted">
-  Full trust model: <a href="/trust.html">Trust &amp; Security</a>.
+  Full trust model: <a href="/trust.html">Trust &amp; Security</a> ·
+  All keys: <a href="/docs/settings.html">Settings reference</a> ·
   Problems: <a href="/support/troubleshooting.html#cloud">Troubleshooting → Cloud &amp; enterprise</a>.
 </p>

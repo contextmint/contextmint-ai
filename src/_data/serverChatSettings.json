@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-28",
+  "generatedAt": "2026-06-30",
   "source": "config/contextmint.defaults.yaml",
   "overlayPath": "~/.contextmint/server.defaults.yaml",
-  "totalCount": 603,
+  "totalCount": 630,
   "planDefinition": {
     "planId": "api_registration_chain",
     "intent": "structural_lookup",
@@ -1866,7 +1866,7 @@
         },
         {
           "id": "chat.canonical_overview_defer_search_when_pack_seed_sufficient",
-          "default": "true",
+          "default": "false",
           "description": "Canonical Overview Defer Search When Pack Seed Sufficient — server tunable from contextmint.defaults.yaml.",
           "operator": false,
           "type": "boolean",
@@ -1965,8 +1965,28 @@
           }
         },
         {
+          "id": "chat.canonical_overview_grep_all_file_types",
+          "default": "true",
+          "description": "Canonical Overview Grep All File Types — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Canonical Overview Grep All File Types — server tunable from contextmint.defaults.yaml.",
+            "whenDisable": "When false — disables or falls back for canonical overview grep all file types.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
           "id": "chat.canonical_overview_grep_allow_code_when_pack_active",
-          "default": "false",
+          "default": "true",
           "description": "Canonical Overview Grep Allow Code When Pack Active — server tunable from contextmint.defaults.yaml.",
           "operator": false,
           "type": "boolean",
@@ -2006,7 +2026,7 @@
         },
         {
           "id": "chat.canonical_overview_grep_max_snippets",
-          "default": "2",
+          "default": "8",
           "description": "Canonical Overview Grep Max Snippets — server tunable from contextmint.defaults.yaml.",
           "operator": false,
           "type": "number",
@@ -2026,7 +2046,7 @@
         },
         {
           "id": "chat.canonical_overview_grep_skip_when_pack_active",
-          "default": "true",
+          "default": "false",
           "description": "Canonical Overview Grep Skip When Pack Active — server tunable from contextmint.defaults.yaml.",
           "operator": false,
           "type": "boolean",
@@ -2066,7 +2086,7 @@
         },
         {
           "id": "chat.canonical_overview_max_search_slots_after_pack_seed",
-          "default": "0",
+          "default": "6",
           "description": "Canonical Overview Max Search Slots After Pack Seed — server tunable from contextmint.defaults.yaml.",
           "operator": false,
           "type": "number",
@@ -2513,6 +2533,573 @@
           "usage": {
             "whenEnable": "When true — Evidence Shipped Provenance Enabled — server tunable from contextmint.defaults.yaml.",
             "whenDisable": "When false — disables or falls back for evidence shipped provenance enabled.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        }
+      ]
+    },
+    {
+      "id": "evidence-narration",
+      "title": "Evidence narration & clarification",
+      "description": "Citation-bound LLM narration on sanitized excerpts, clarification recovery when evidence is insufficient, and final insufficient-evidence stop after max turns. Server restart required.",
+      "settings": [
+        {
+          "id": "chat.clarification_enabled",
+          "default": "true",
+          "description": "Ask the user for symbol, route, or file hints when evidence is insufficient — before final insufficient stop.",
+          "operator": true,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Ask the user for symbol, route, or file hints when evidence is insufficient — before final insufficient stop.",
+            "whenDisable": "When false — disables or falls back for clarification enabled.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.clarification_max_turns",
+          "default": "2",
+          "description": "Maximum clarification rounds before insufficient_evidence_final_message (default 2).",
+          "operator": true,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune clarification max turns when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.clarification_merge_entity_terms",
+          "default": "true",
+          "description": "Merge entity tokens from clarification replies into session obligation hints for the next retrieval pass.",
+          "operator": true,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Merge entity tokens from clarification replies into session obligation hints for the next retrieval pass.",
+            "whenDisable": "When false — disables or falls back for clarification merge entity terms.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.clarification_message",
+          "default": "I need a bit more detail to answer from verified code in this workspace.",
+          "description": "Clarification Message — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Tune clarification message when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.clarification_prompt_templates.ambiguous_entity",
+          "default": "Several matches were possible — please provide the exact symbol or route path.",
+          "description": "Ambiguous Entity — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Tune ambiguous entity when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.clarification_prompt_templates.anchor_stale",
+          "default": "The indexed pointer may be stale — please provide the symbol name or file where it is defined.",
+          "description": "Anchor Stale — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Tune anchor stale when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.clarification_prompt_templates.meaning_blocked_insufficient_pack",
+          "default": "I cannot explain behavior without enough verified code — please specify what to look at.",
+          "description": "Meaning Blocked Insufficient Pack — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Tune meaning blocked insufficient pack when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.clarification_prompt_templates.narration_llm_timeout",
+          "default": "Verified code excerpts were ready but the local narration model did not respond in time. Please try again or narrow the question.",
+          "description": "User-facing message when verified excerpts were ready but the narration LLM timed out.",
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Tune narration llm timeout when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.clarification_prompt_templates.narration_validator_failed",
+          "default": "I need more specific code context — please provide the symbol or file path.",
+          "description": "Narration Validator Failed — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Tune narration validator failed when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.clarification_prompt_templates.no_candidates",
+          "default": "I could not find matching code excerpts — please specify the symbol, route, or module name.",
+          "description": "No Candidates — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Tune no candidates when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.clarification_prompt_templates.no_workspace",
+          "default": "I need a clearer target in this workspace — please provide a symbol name, route path, or file path.",
+          "description": "No Workspace — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Tune no workspace when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.clarification_prompt_templates.ship_law_exhausted",
+          "default": "I found hints but not enough verified code — please narrow down the symbol, route, or file.",
+          "description": "Ship Law Exhausted — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Tune ship law exhausted when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.fact_template_only_when_no_meaning_intent",
+          "default": "true",
+          "description": "When true, skip narration LLM and use fact templates only when the query has no meaning intent.",
+          "operator": true,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — When true, skip narration LLM and use fact templates only when the query has no meaning intent.",
+            "whenDisable": "When false — disables or falls back for fact template only when no meaning intent.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.inference_requires_llm",
+          "default": "true",
+          "description": "When true, sufficient repo-lane turns must invoke an LLM for inference (citation narration or overview chat stream) — fact templates alone are not answers.",
+          "operator": true,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — When true, sufficient repo-lane turns must invoke an LLM for inference (citation narration or overview chat stream) — fact templates alone are not answers.",
+            "whenDisable": "When false — disables or falls back for inference requires llm.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.insufficient_evidence_enabled",
+          "default": "true",
+          "description": "Emit honest insufficient-evidence response after clarification turns are exhausted.",
+          "operator": true,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Emit honest insufficient-evidence response after clarification turns are exhausted.",
+            "whenDisable": "When false — disables or falls back for insufficient evidence enabled.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.insufficient_evidence_final_message",
+          "default": "I could not gather enough verified code excerpts after several tries. Please rephrase with a specific symbol, route, or file path.",
+          "description": "Insufficient Evidence Final Message — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Tune insufficient evidence final message when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.insufficient_evidence_partial_facts_allowed",
+          "default": "false",
+          "description": "Allow partial fact templates when meaning was requested — default false to avoid misleading role text.",
+          "operator": true,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Allow partial fact templates when meaning was requested — default false to avoid misleading role text.",
+            "whenDisable": "When false — disables or falls back for insufficient evidence partial facts allowed.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.meaning_pack_expand_enabled",
+          "default": "true",
+          "description": "When meaning intent is detected, require usage-context excerpts (grep/graph/search) beyond the definition anchor before narration.",
+          "operator": true,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — When meaning intent is detected, require usage-context excerpts (grep/graph/search) beyond the definition anchor before narration.",
+            "whenDisable": "When false — disables or falls back for meaning pack expand enabled.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.meaning_pack_min_distinct_files",
+          "default": "2",
+          "description": "Minimum distinct files with entity-bearing usage excerpts (when entity requirement enabled) for meaning pack sufficiency.",
+          "operator": true,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune meaning pack min distinct files when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.meaning_pack_min_usage_excerpts",
+          "default": "1",
+          "description": "Minimum non-anchor usage-tier excerpts required before meaning pack is sufficient.",
+          "operator": true,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune meaning pack min usage excerpts when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.meaning_pack_require_entity_in_usage_excerpt",
+          "default": "true",
+          "description": "Meaning-pack usage excerpts must mention the obligation entity in excerpt text.",
+          "operator": true,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Meaning-pack usage excerpts must mention the obligation entity in excerpt text.",
+            "whenDisable": "When false — disables or falls back for meaning pack require entity in usage excerpt.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.meaning_pack_require_usage_call_pattern",
+          "default": "true",
+          "description": "Meaning-pack usage excerpts must show call/import/instantiation of the entity (not type-hint-only mentions).",
+          "operator": true,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Meaning-pack usage excerpts must show call/import/instantiation of the entity (not type-hint-only mentions).",
+            "whenDisable": "When false — disables or falls back for meaning pack require usage call pattern.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.narration_enabled",
+          "default": "true",
+          "description": "Citation-bound LLM narration on sanitized shipped excerpts when meaning intent is detected and evidence is sufficient.",
+          "operator": true,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Citation-bound LLM narration on sanitized shipped excerpts when meaning intent is detected and evidence is sufficient.",
+            "whenDisable": "When false — disables or falls back for narration enabled.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.narration_insufficient_expand_max_passes",
+          "default": "1",
+          "description": "After narration returns insufficient_evidence, run meaning expand ladder and re-narrate up to this many times.",
+          "operator": true,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune narration insufficient expand max passes when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.narration_max_excerpts",
+          "default": "8",
+          "description": "Maximum numbered excerpts passed to the narration LLM call.",
+          "operator": true,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune narration max excerpts when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.narration_max_tokens",
+          "default": "1024",
+          "description": "Max output tokens for citation-bound narration LLM call.",
+          "operator": true,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune narration max tokens when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.narration_require_citations",
+          "default": "true",
+          "description": "Reject narration results that omit valid citation ids from the excerpt pack.",
+          "operator": true,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Reject narration results that omit valid citation ids from the excerpt pack.",
+            "whenDisable": "When false — disables or falls back for narration require citations.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.narration_timeout_ms",
+          "default": "300000",
+          "description": "Wall-clock timeout (ms) for narration LLM call.",
+          "operator": true,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune narration timeout ms when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
               "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
@@ -3120,6 +3707,26 @@
           }
         },
         {
+          "id": "chat.module_consumer_registry_enabled",
+          "default": "true",
+          "description": "Enable Module Consumer Registry lookup path (SKL-H-009 Type B reverse dependencies).",
+          "operator": true,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Enable Module Consumer Registry lookup path (SKL-H-009 Type B reverse dependencies).",
+            "whenDisable": "When false — disables or falls back for module consumer registry enabled.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
           "id": "chat.plan_executor_enabled",
           "default": "false",
           "description": "Optional declarative YAML plans for graph reconstruct when registry lookup misses. Off by default.",
@@ -3442,11 +4049,11 @@
         {
           "id": "chat.structured_answer_without_llm",
           "default": "true",
-          "description": "Structured Answer Without Llm — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
+          "description": "Legacy SKL-H-004 toggle. When inference_requires_llm is true (default), SUMMARY uses citation narration — this flag does not skip the answer LLM.",
+          "operator": true,
           "type": "boolean",
           "usage": {
-            "whenEnable": "When true — Structured Answer Without Llm — server tunable from contextmint.defaults.yaml.",
+            "whenEnable": "When true — Legacy SKL-H-004 toggle. When inference_requires_llm is true (default), SUMMARY uses citation narration — this flag does not skip the answer LLM.",
             "whenDisable": "When false — disables or falls back for structured answer without llm.",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
@@ -5740,7 +6347,7 @@
     {
       "id": "retrieval",
       "title": "Retrieval, expand & infer",
-      "description": "Hybrid search top-k, window expansion, parallel grep, graph fetch, R6 escalation gates, optional LLM inference (last resort, off by default), and retrieval decision tracing for manual UAT (trace export to operator-configured folder).",
+      "description": "Hybrid search top-k, window expansion, parallel grep, graph fetch, ShipLaw expand ladder, R6 escalation gates, optional LLM inference (last resort, off by default), retrieval decision tracing for manual UAT, and optional live pipeline_progress SSE (off by default until extension ships).",
       "settings": [
         {
           "id": "retrieval.discovery_policy.definition.allow_planes",
@@ -5945,12 +6552,52 @@
         {
           "id": "retrieval.excerpt_select_infer_enabled",
           "default": "false",
-          "description": "Excerpt Select Infer Enabled — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
+          "description": "Enable L5 excerpt-select infer stage in expand ladder — last resort only; off by default until certified.",
+          "operator": true,
           "type": "boolean",
           "usage": {
-            "whenEnable": "When true — Excerpt Select Infer Enabled — server tunable from contextmint.defaults.yaml.",
+            "whenEnable": "When true — Enable L5 excerpt-select infer stage in expand ladder — last resort only; off by default until certified.",
             "whenDisable": "When false — disables or falls back for excerpt select infer enabled.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "retrieval.execution_plane_trace_enabled",
+          "default": "false",
+          "description": "Write execution-trace-*.txt with per-step received/emitted/flags/branches for repo-lane UAT postmortems (off by default).",
+          "operator": true,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Write execution-trace-*.txt with per-step received/emitted/flags/branches for repo-lane UAT postmortems (off by default).",
+            "whenDisable": "When false — disables or falls back for execution plane trace enabled.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "retrieval.execution_plane_trace_max_field_chars",
+          "default": "2000",
+          "description": "Max characters per field in execution plane trace .txt export (200–16000).",
+          "operator": true,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune execution plane trace max field chars when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
               "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
@@ -5965,11 +6612,11 @@
         {
           "id": "retrieval.expand_ladder_enabled",
           "default": "true",
-          "description": "Expand Ladder Enabled — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
+          "description": "ShipLaw-gated expand ladder L1–L5 — escalates grep, search, windows, graph, and optional infer until sufficient or exhausted.",
+          "operator": true,
           "type": "boolean",
           "usage": {
-            "whenEnable": "When true — Expand Ladder Enabled — server tunable from contextmint.defaults.yaml.",
+            "whenEnable": "When true — ShipLaw-gated expand ladder L1–L5 — escalates grep, search, windows, graph, and optional infer until sufficient or exhausted.",
             "whenDisable": "When false — disables or falls back for expand ladder enabled.",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
@@ -6483,6 +7130,106 @@
           }
         },
         {
+          "id": "retrieval.live_progress_enabled",
+          "default": "false",
+          "description": "Emit pipeline_progress SSE events during chat retrieval so the extension can show a live timeline. Off by default until extension ships.",
+          "operator": true,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Emit pipeline_progress SSE events during chat retrieval so the extension can show a live timeline. Off by default until extension ships.",
+            "whenDisable": "When false — disables or falls back for live progress enabled.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "retrieval.live_progress_granularity",
+          "default": "summary",
+          "description": "Live progress detail level: summary (user-meaningful phases only), stage (each pipeline stage), or verbose (includes meta).",
+          "operator": true,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Tune live progress granularity when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "retrieval.live_progress_include_paths",
+          "default": "true",
+          "description": "Include repo-relative file paths in live progress detail lines when server emits pipeline_progress.",
+          "operator": true,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Include repo-relative file paths in live progress detail lines when server emits pipeline_progress.",
+            "whenDisable": "When false — disables or falls back for live progress include paths.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "retrieval.live_progress_max_events_per_turn",
+          "default": "40",
+          "description": "Cap pipeline_progress SSE events per chat turn (5–200) to prevent flood on verbose mode.",
+          "operator": true,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune live progress max events per turn when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "retrieval.live_progress_min_interval_ms",
+          "default": "100",
+          "description": "Minimum milliseconds between duplicate live progress phase updates (0–5000). Throttles noisy step_id repeats.",
+          "operator": true,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune live progress min interval ms when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
           "id": "retrieval.min_shipped_excerpts",
           "default": "2",
           "description": "Min Shipped Excerpts — server tunable from contextmint.defaults.yaml.",
@@ -6703,6 +7450,26 @@
           }
         },
         {
+          "id": "retrieval.trace_evidence_preview_chars",
+          "default": "400",
+          "description": "Max chars per excerpt preview in collected-evidence trace rows (80–4000).",
+          "operator": true,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune trace evidence preview chars when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
           "id": "retrieval.trace_export_dir",
           "default": "documentation/evidence",
           "description": "Folder for retrieval-trace-*.json during manual UAT (default documentation/evidence). Relative to server cwd or absolute. Not hardcoded in product code — always read from this setting.",
@@ -6743,6 +7510,46 @@
           }
         },
         {
+          "id": "retrieval.trace_include_evidence_detail",
+          "default": "true",
+          "description": "Record shipped and collected evidence excerpts in trace export — disable to shrink trace JSON size.",
+          "operator": true,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Record shipped and collected evidence excerpts in trace export — disable to shrink trace JSON size.",
+            "whenDisable": "When false — disables or falls back for trace include evidence detail.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "retrieval.trace_include_llm_io",
+          "default": "true",
+          "description": "Record raw LLM prompt messages and response text in trace export — disable before sharing logs externally.",
+          "operator": true,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Record raw LLM prompt messages and response text in trace export — disable before sharing logs externally.",
+            "whenDisable": "When false — disables or falls back for trace include llm io.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
           "id": "retrieval.trace_include_pipeline_inputs",
           "default": "true",
           "description": "Record stage parameters in pipeline trace rows when trace collection is enabled.",
@@ -6777,6 +7584,26 @@
               "May leak sensitive prompt text into trace files"
             ],
             "recommendation": "true on developer laptops; false before attaching traces to tickets."
+          }
+        },
+        {
+          "id": "retrieval.trace_llm_io_max_chars",
+          "default": "8000",
+          "description": "Max chars per raw LLM prompt/response field in trace export (500–64000).",
+          "operator": true,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune trace llm io max chars when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
           }
         },
         {
@@ -7674,6 +8501,146 @@
           "type": "number",
           "usage": {
             "whenEnable": "Tune ollama embed num ctx when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "embedding.prep_models.bge-m3.document_prefix",
+          "default": "\"\"",
+          "description": "Document Prefix — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Tune document prefix when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "embedding.prep_models.bge-m3.query_prefix",
+          "default": "Represent this sentence for searching relevant passages: ",
+          "description": "Query Prefix — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Tune query prefix when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "embedding.prep_models.default.document_prefix",
+          "default": "\"\"",
+          "description": "Document Prefix — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Tune document prefix when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "embedding.prep_models.default.query_prefix",
+          "default": "\"\"",
+          "description": "Query Prefix — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Tune query prefix when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "embedding.prep_models.nomic-embed-text.document_prefix",
+          "default": "search_document: ",
+          "description": "Document Prefix — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Tune document prefix when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "embedding.prep_models.nomic-embed-text.query_prefix",
+          "default": "search_query: ",
+          "description": "Query Prefix — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Tune query prefix when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "embedding.prep_version",
+          "default": "v2_prefixes",
+          "description": "Prep Version — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Tune prep version when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
             "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
@@ -11824,426 +12791,6 @@
       "title": "Other server defaults",
       "description": "Additional keys from contextmint.defaults.yaml not yet grouped — file an issue if a section is missing.",
       "settings": [
-        {
-          "id": "chat.clarification_enabled",
-          "default": "true",
-          "description": "Clarification Enabled — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
-          "type": "boolean",
-          "usage": {
-            "whenEnable": "When true — Clarification Enabled — server tunable from contextmint.defaults.yaml.",
-            "whenDisable": "When false — disables or falls back for clarification enabled.",
-            "pros": [
-              "Documented in config/contextmint.defaults.yaml on the API host",
-              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
-            ],
-            "cons": [
-              "Server restart required after overlay changes",
-              "Not exposed in Engine desktop or VS Code Settings for most keys"
-            ],
-            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
-          }
-        },
-        {
-          "id": "chat.clarification_max_turns",
-          "default": "2",
-          "description": "Clarification Max Turns — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
-          "type": "number",
-          "usage": {
-            "whenEnable": "Tune clarification max turns when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
-            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
-            "pros": [
-              "Documented in config/contextmint.defaults.yaml on the API host",
-              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
-            ],
-            "cons": [
-              "Server restart required after overlay changes",
-              "Not exposed in Engine desktop or VS Code Settings for most keys"
-            ],
-            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
-          }
-        },
-        {
-          "id": "chat.clarification_merge_entity_terms",
-          "default": "true",
-          "description": "Clarification Merge Entity Terms — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
-          "type": "boolean",
-          "usage": {
-            "whenEnable": "When true — Clarification Merge Entity Terms — server tunable from contextmint.defaults.yaml.",
-            "whenDisable": "When false — disables or falls back for clarification merge entity terms.",
-            "pros": [
-              "Documented in config/contextmint.defaults.yaml on the API host",
-              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
-            ],
-            "cons": [
-              "Server restart required after overlay changes",
-              "Not exposed in Engine desktop or VS Code Settings for most keys"
-            ],
-            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
-          }
-        },
-        {
-          "id": "chat.clarification_message",
-          "default": "I need a bit more detail to answer from verified code in this workspace.",
-          "description": "Clarification Message — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
-          "type": "string",
-          "usage": {
-            "whenEnable": "Tune clarification message when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
-            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
-            "pros": [
-              "Documented in config/contextmint.defaults.yaml on the API host",
-              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
-            ],
-            "cons": [
-              "Server restart required after overlay changes",
-              "Not exposed in Engine desktop or VS Code Settings for most keys"
-            ],
-            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
-          }
-        },
-        {
-          "id": "chat.clarification_prompt_templates.ambiguous_entity",
-          "default": "Several matches were possible — please provide the exact symbol or route path.",
-          "description": "Ambiguous Entity — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
-          "type": "string",
-          "usage": {
-            "whenEnable": "Tune ambiguous entity when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
-            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
-            "pros": [
-              "Documented in config/contextmint.defaults.yaml on the API host",
-              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
-            ],
-            "cons": [
-              "Server restart required after overlay changes",
-              "Not exposed in Engine desktop or VS Code Settings for most keys"
-            ],
-            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
-          }
-        },
-        {
-          "id": "chat.clarification_prompt_templates.anchor_stale",
-          "default": "The indexed pointer may be stale — please provide the symbol name or file where it is defined.",
-          "description": "Anchor Stale — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
-          "type": "string",
-          "usage": {
-            "whenEnable": "Tune anchor stale when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
-            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
-            "pros": [
-              "Documented in config/contextmint.defaults.yaml on the API host",
-              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
-            ],
-            "cons": [
-              "Server restart required after overlay changes",
-              "Not exposed in Engine desktop or VS Code Settings for most keys"
-            ],
-            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
-          }
-        },
-        {
-          "id": "chat.clarification_prompt_templates.meaning_blocked_insufficient_pack",
-          "default": "I cannot explain behavior without enough verified code — please specify what to look at.",
-          "description": "Meaning Blocked Insufficient Pack — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
-          "type": "string",
-          "usage": {
-            "whenEnable": "Tune meaning blocked insufficient pack when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
-            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
-            "pros": [
-              "Documented in config/contextmint.defaults.yaml on the API host",
-              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
-            ],
-            "cons": [
-              "Server restart required after overlay changes",
-              "Not exposed in Engine desktop or VS Code Settings for most keys"
-            ],
-            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
-          }
-        },
-        {
-          "id": "chat.clarification_prompt_templates.narration_validator_failed",
-          "default": "I need more specific code context — please provide the symbol or file path.",
-          "description": "Narration Validator Failed — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
-          "type": "string",
-          "usage": {
-            "whenEnable": "Tune narration validator failed when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
-            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
-            "pros": [
-              "Documented in config/contextmint.defaults.yaml on the API host",
-              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
-            ],
-            "cons": [
-              "Server restart required after overlay changes",
-              "Not exposed in Engine desktop or VS Code Settings for most keys"
-            ],
-            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
-          }
-        },
-        {
-          "id": "chat.clarification_prompt_templates.no_candidates",
-          "default": "I could not find matching code excerpts — please specify the symbol, route, or module name.",
-          "description": "No Candidates — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
-          "type": "string",
-          "usage": {
-            "whenEnable": "Tune no candidates when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
-            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
-            "pros": [
-              "Documented in config/contextmint.defaults.yaml on the API host",
-              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
-            ],
-            "cons": [
-              "Server restart required after overlay changes",
-              "Not exposed in Engine desktop or VS Code Settings for most keys"
-            ],
-            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
-          }
-        },
-        {
-          "id": "chat.clarification_prompt_templates.no_workspace",
-          "default": "I need a clearer target in this workspace — please provide a symbol name, route path, or file path.",
-          "description": "No Workspace — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
-          "type": "string",
-          "usage": {
-            "whenEnable": "Tune no workspace when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
-            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
-            "pros": [
-              "Documented in config/contextmint.defaults.yaml on the API host",
-              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
-            ],
-            "cons": [
-              "Server restart required after overlay changes",
-              "Not exposed in Engine desktop or VS Code Settings for most keys"
-            ],
-            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
-          }
-        },
-        {
-          "id": "chat.clarification_prompt_templates.ship_law_exhausted",
-          "default": "I found hints but not enough verified code — please narrow down the symbol, route, or file.",
-          "description": "Ship Law Exhausted — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
-          "type": "string",
-          "usage": {
-            "whenEnable": "Tune ship law exhausted when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
-            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
-            "pros": [
-              "Documented in config/contextmint.defaults.yaml on the API host",
-              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
-            ],
-            "cons": [
-              "Server restart required after overlay changes",
-              "Not exposed in Engine desktop or VS Code Settings for most keys"
-            ],
-            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
-          }
-        },
-        {
-          "id": "chat.fact_template_only_when_no_meaning_intent",
-          "default": "true",
-          "description": "Fact Template Only When No Meaning Intent — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
-          "type": "boolean",
-          "usage": {
-            "whenEnable": "When true — Fact Template Only When No Meaning Intent — server tunable from contextmint.defaults.yaml.",
-            "whenDisable": "When false — disables or falls back for fact template only when no meaning intent.",
-            "pros": [
-              "Documented in config/contextmint.defaults.yaml on the API host",
-              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
-            ],
-            "cons": [
-              "Server restart required after overlay changes",
-              "Not exposed in Engine desktop or VS Code Settings for most keys"
-            ],
-            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
-          }
-        },
-        {
-          "id": "chat.insufficient_evidence_enabled",
-          "default": "true",
-          "description": "Insufficient Evidence Enabled — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
-          "type": "boolean",
-          "usage": {
-            "whenEnable": "When true — Insufficient Evidence Enabled — server tunable from contextmint.defaults.yaml.",
-            "whenDisable": "When false — disables or falls back for insufficient evidence enabled.",
-            "pros": [
-              "Documented in config/contextmint.defaults.yaml on the API host",
-              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
-            ],
-            "cons": [
-              "Server restart required after overlay changes",
-              "Not exposed in Engine desktop or VS Code Settings for most keys"
-            ],
-            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
-          }
-        },
-        {
-          "id": "chat.insufficient_evidence_final_message",
-          "default": "I could not gather enough verified code excerpts after several tries. Please rephrase with a specific symbol, route, or file path.",
-          "description": "Insufficient Evidence Final Message — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
-          "type": "string",
-          "usage": {
-            "whenEnable": "Tune insufficient evidence final message when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
-            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
-            "pros": [
-              "Documented in config/contextmint.defaults.yaml on the API host",
-              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
-            ],
-            "cons": [
-              "Server restart required after overlay changes",
-              "Not exposed in Engine desktop or VS Code Settings for most keys"
-            ],
-            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
-          }
-        },
-        {
-          "id": "chat.insufficient_evidence_partial_facts_allowed",
-          "default": "false",
-          "description": "Insufficient Evidence Partial Facts Allowed — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
-          "type": "boolean",
-          "usage": {
-            "whenEnable": "When true — Insufficient Evidence Partial Facts Allowed — server tunable from contextmint.defaults.yaml.",
-            "whenDisable": "When false — disables or falls back for insufficient evidence partial facts allowed.",
-            "pros": [
-              "Documented in config/contextmint.defaults.yaml on the API host",
-              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
-            ],
-            "cons": [
-              "Server restart required after overlay changes",
-              "Not exposed in Engine desktop or VS Code Settings for most keys"
-            ],
-            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
-          }
-        },
-        {
-          "id": "chat.module_consumer_registry_enabled",
-          "default": "true",
-          "description": "Module Consumer Registry Enabled — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
-          "type": "boolean",
-          "usage": {
-            "whenEnable": "When true — Module Consumer Registry Enabled — server tunable from contextmint.defaults.yaml.",
-            "whenDisable": "When false — disables or falls back for module consumer registry enabled.",
-            "pros": [
-              "Documented in config/contextmint.defaults.yaml on the API host",
-              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
-            ],
-            "cons": [
-              "Server restart required after overlay changes",
-              "Not exposed in Engine desktop or VS Code Settings for most keys"
-            ],
-            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
-          }
-        },
-        {
-          "id": "chat.narration_enabled",
-          "default": "true",
-          "description": "Narration Enabled — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
-          "type": "boolean",
-          "usage": {
-            "whenEnable": "When true — Narration Enabled — server tunable from contextmint.defaults.yaml.",
-            "whenDisable": "When false — disables or falls back for narration enabled.",
-            "pros": [
-              "Documented in config/contextmint.defaults.yaml on the API host",
-              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
-            ],
-            "cons": [
-              "Server restart required after overlay changes",
-              "Not exposed in Engine desktop or VS Code Settings for most keys"
-            ],
-            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
-          }
-        },
-        {
-          "id": "chat.narration_max_excerpts",
-          "default": "8",
-          "description": "Narration Max Excerpts — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
-          "type": "number",
-          "usage": {
-            "whenEnable": "Tune narration max excerpts when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
-            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
-            "pros": [
-              "Documented in config/contextmint.defaults.yaml on the API host",
-              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
-            ],
-            "cons": [
-              "Server restart required after overlay changes",
-              "Not exposed in Engine desktop or VS Code Settings for most keys"
-            ],
-            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
-          }
-        },
-        {
-          "id": "chat.narration_max_tokens",
-          "default": "1024",
-          "description": "Narration Max Tokens — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
-          "type": "number",
-          "usage": {
-            "whenEnable": "Tune narration max tokens when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
-            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
-            "pros": [
-              "Documented in config/contextmint.defaults.yaml on the API host",
-              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
-            ],
-            "cons": [
-              "Server restart required after overlay changes",
-              "Not exposed in Engine desktop or VS Code Settings for most keys"
-            ],
-            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
-          }
-        },
-        {
-          "id": "chat.narration_require_citations",
-          "default": "true",
-          "description": "Narration Require Citations — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
-          "type": "boolean",
-          "usage": {
-            "whenEnable": "When true — Narration Require Citations — server tunable from contextmint.defaults.yaml.",
-            "whenDisable": "When false — disables or falls back for narration require citations.",
-            "pros": [
-              "Documented in config/contextmint.defaults.yaml on the API host",
-              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
-            ],
-            "cons": [
-              "Server restart required after overlay changes",
-              "Not exposed in Engine desktop or VS Code Settings for most keys"
-            ],
-            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
-          }
-        },
-        {
-          "id": "chat.narration_timeout_ms",
-          "default": "15000",
-          "description": "Narration Timeout Ms — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
-          "type": "number",
-          "usage": {
-            "whenEnable": "Tune narration timeout ms when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
-            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
-            "pros": [
-              "Documented in config/contextmint.defaults.yaml on the API host",
-              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
-            ],
-            "cons": [
-              "Server restart required after overlay changes",
-              "Not exposed in Engine desktop or VS Code Settings for most keys"
-            ],
-            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
-          }
-        },
         {
           "id": "chat.sse_keepalive_interval_sec",
           "default": "25",
