@@ -2265,7 +2265,7 @@
         {
           "id": "contextmint.models.knownChatModels",
           "description": "Quick-pick aliases for chat models, including RAM warning tiers.",
-          "default": "[5 presets] llama3.1, qwen2.5-coder:1.5b, qwen2.5-coder:3b, qwen2.5-coder:7b…",
+          "default": "[5 presets] llama3.1, qwen2.5-coder:1.5b, qwen2.5-coder:3b-instruct, qwen2.5-coder:7b…",
           "deprecated": true,
           "operator": false,
           "type": "array",

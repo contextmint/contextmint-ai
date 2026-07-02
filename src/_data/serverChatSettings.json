@@ -7051,7 +7051,7 @@
         },
         {
           "id": "retrieval.inference_model",
-          "default": "qwen2.5-coder:3b",
+          "default": "qwen2.5-coder:3b-instruct",
           "description": "Inference Model — server tunable from contextmint.defaults.yaml.",
           "operator": false,
           "type": "string",
