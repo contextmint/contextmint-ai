@@ -349,7 +349,7 @@ export const SETTINGS_QUESTION_CATALOG = [
         ),
         direct_answer:
           "Indexing starts when a workspace is registered with Engine — there is no single “auto-index off” extension toggle. Chat remains usable while indexing progresses; answers improve as files finish.\n\n" +
-          "You can reduce background load: pause inline completion during indexing (contextmint.inline.pauseWhileIndexing), exclude heavy paths via server indexing settings, and avoid full reindex triggers during bulk file operations. See Indexing & readiness.",
+          "You can reduce background load: on contested shared Ollama hosts set server inline.pause_mode to shared_runtime (operator overlay / Engine Server config); the extension bool contextmint.inline.pauseWhileIndexing only tightens to on_embed_busy and cannot weaken the server mode. Also exclude heavy paths via server indexing settings, and avoid full reindex triggers during bulk file operations. See Indexing & readiness.",
         primary_label: "Indexing & readiness",
         primary_url: "/docs/indexing-readiness.html",
         related_links: [SETTINGS_LINKS.engine, SETTINGS_LINKS.settings],

@@ -448,6 +448,54 @@ export const SERVER_SETTING_USAGE = {
     cons: ["Larger trace payloads per turn"],
     recommendation: "Leave enabled for manual UAT; disable if trace files are too large.",
   },
+  "retrieval.live_progress_enabled": {
+    whenEnable:
+      "Dogfood or demos where operators want a live retrieval timeline in VS Code before the first answer token.",
+    whenDisable:
+      "Production hosts until RT-VIEW dogfood passes — identical chat behaviour with no pipeline_progress SSE.",
+    pros: [
+      "Shows retrieval phases in the extension timeline while the user waits",
+      "Fans out to the same decision-trace step ids when trace export is on",
+    ],
+    cons: [
+      "Extra SSE events per turn (bounded by live_progress_max_events_per_turn)",
+      "Paths appear in the timeline when live_progress_include_paths is true",
+    ],
+    recommendation:
+      "Keep false until dogfood; then enable with granularity=summary for demos.",
+  },
+  "retrieval.live_progress_granularity": {
+    whenEnable: "N/A — string enum: summary | stage | verbose.",
+    whenDisable: "N/A",
+    pros: ["summary is demos-friendly; stage/verbose help operator debugging"],
+    cons: ["verbose can hit the per-turn event cap quickly"],
+    recommendation: "summary for dogfood and RJ demos; stage only when debugging a slow phase.",
+  },
+  "inline.pause_mode": {
+    whenEnable:
+      "Set shared_runtime on contested single-host Ollama installs so ghost-text yields while embed/reindex is busy. Use on_embed_busy only for blunt legacy pause on any busy session.",
+    whenDisable:
+      "off (shipped default) — inline never pauses for indexing; prefer this when chat and embed use split Ollama hosts.",
+    pros: [
+      "One server SSOT for pause policy (Mode A/B via host identity)",
+      "Clients can only tighten, not weaken, this mode",
+    ],
+    cons: [
+      "shared_runtime still needs a restart after overlay change",
+      "Does not replace full VRAM contention probes (out of scope)",
+    ],
+    recommendation:
+      "Leave off for split-host and most laptops; shared_runtime for shared-runtime team servers under load.",
+  },
+  "inline.pause_while_indexing": {
+    whenEnable:
+      "Legacy only — true alone maps to on_embed_busy. Prefer setting inline.pause_mode explicitly.",
+    whenDisable:
+      "false (default) — does not lower a stricter pause_mode already set on the server.",
+    pros: ["Compat with older overlays and extension tighten bool"],
+    cons: ["Easy to misread next to pause_mode — deprecate in favour of the enum"],
+    recommendation: "Do not set in new overlays; use inline.pause_mode instead.",
+  },
 };
 
 /** @type {Record<string, SettingUsage>} */
@@ -536,6 +584,22 @@ export const EXTENSION_SETTING_USAGE = {
     pros: ["Preview matches sources before the LLM runs", "Teaches the Context Lens workflow"],
     cons: ["Extra step before send"],
     recommendation: "Keep enabled for new workspaces; lower firstNSends after sign-off.",
+  },
+  "contextmint.inline.pauseWhileIndexing": {
+    whenEnable:
+      "Tighten this IDE to on_embed_busy while embed/index is busy — cannot weaken a stricter server inline.pause_mode.",
+    whenDisable:
+      "false (default) — follow the server pause_mode only (usually off or shared_runtime).",
+    pros: [
+      "Per-developer tighten without changing the team server default",
+      "Matches legacy “pause while indexing” intent when the server stays off",
+    ],
+    cons: [
+      "Blunter than shared_runtime — pauses even on split Ollama hosts",
+      "Server pause_mode remains the operator SSOT for team policy",
+    ],
+    recommendation:
+      "Leave false; ask operators to set server inline.pause_mode=shared_runtime on contested shared hosts.",
   },
 };
 
@@ -638,6 +702,9 @@ export const SERVER_DEPENDENCY_NOTES = [
   "retrieval.inference_enabled (server defaults) gates LLM evidence selection — last resort only, off by default.",
   "retrieval.trace_enabled collects decision trace per repo-lane turn; trace_export_enabled writes JSON to retrieval.trace_export_dir (operator-tunable, not hardcoded).",
   "Set retrieval.trace_include_query false before sharing trace exports; cap fields with retrieval.trace_max_field_chars.",
+  "retrieval.live_progress_enabled emits pipeline_progress SSE for the VS Code live timeline — off until dogfood; no separate extension toggle required.",
+  "inline.pause_mode is the pause SSOT (off | shared_runtime | on_embed_busy); inline.pause_while_indexing is a deprecated bool mirror.",
+  "Extension contextmint.inline.pauseWhileIndexing can only tighten to on_embed_busy — it cannot weaken a stricter server pause_mode.",
   "api_surface_enabled is a legacy rollback bridge — not the primary production path.",
   "runtime.ollama_ensure_model_loaded preloads cold models before chat; runtime.ollama_keep_model_loaded prevents eviction on sovereign servers.",
   "server.ollama_warmup_read_timeout_sec caps preload wait — separate from server.ollama_chat_read_timeout_sec stream read.",
@@ -662,6 +729,8 @@ export const SERVER_VERIFY_TIPS = [
   "Ask how an API route is wired — the answer should trace handler → router → application entry from registry facts or expanded excerpts.",
   "B2 cold: ask where a PascalCase symbol is defined with no file open — answer should cite the definition site; receipt should show selection_path R1 and source=registry.",
   "B1 overview: receipt should show pack_seed coverage and obligations_requested including overview when EOP is on.",
+  "With retrieval.live_progress_enabled=true, a slow retrieval turn should show pipeline phases in the VS Code timeline before the first answer token.",
+  "On a shared Ollama host, set inline.pause_mode=shared_runtime and confirm ghost-text pauses only while embed/reindex is busy — not on every idle status poll.",
   "Retry the same question after re-indexing if route or symbol facts look stale.",
   "If quality drops, disable the newest flag you turned on (or roll back to EOP off / search-only) and re-index the workspace.",
   "Confirm effective flags after restart — a stale ~/.contextmint/server.defaults.yaml overlay can override repo defaults.",

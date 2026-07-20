@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-06-30",
+  "generatedAt": "2026-07-20",
   "source": "extensions/contextmint-vscode/package.json",
-  "totalCount": 131,
+  "totalCount": 146,
   "operatorKeys": [
     "contextmint.serverUrl",
     "contextmint.engine.dashboardUrl",
@@ -114,6 +114,111 @@
           "type": "string",
           "usage": {
             "whenEnable": "Adjust localFallbackUrl in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.review.contractsDir",
+          "description": "Workspace-relative directory of flow-contract JSON/YAML files for CR-4.",
+          "default": ".contextmint/contracts",
+          "deprecated": false,
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Adjust review.contractsDir in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.review.diffContextLines",
+          "description": "Context lines requested from Git for branch review diffs.",
+          "default": "3",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust review.diffContextLines in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.review.fixPreviewLlmTimeoutMs",
+          "description": "Max wait in ms for Generate Fix LLM preview when the deterministic shell=True path does not apply. CPU Ollama with large context often needs several minutes.",
+          "default": "300000",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust review.fixPreviewLlmTimeoutMs in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.review.gitMaxBufferBytes",
+          "description": "Maximum bytes captured from the local Git diff for branch review.",
+          "default": "10485760",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust review.gitMaxBufferBytes in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.review.gitTimeoutMs",
+          "description": "Timeout for the local argument-vector Git diff used by branch review.",
+          "default": "30000",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust review.gitTimeoutMs in VS Code Settings when the default does not match your workflow.",
             "whenDisable": "N/A — value setting (not a boolean toggle).",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
@@ -482,6 +587,27 @@
           }
         },
         {
+          "id": "contextmint.chat.defaultLocalVisionModel",
+          "description": "Default local Ollama vision model for screenshot chat when Engine active vision is unavailable. Server runtime value: chat.default_local_vision_model.",
+          "default": "qwen2.5vl:3b",
+          "deprecated": false,
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Adjust chat.defaultLocalVisionModel in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
           "id": "contextmint.chat.governanceTrustChipEnabled",
           "description": "Show HIGH/MEDIUM/LOW trust chip under store-backed quality answers.",
           "default": "true",
@@ -533,6 +659,27 @@
           "usage": {
             "whenEnable": "When true — Enable paste, drop, and file-picker image attachments in chat compose.",
             "whenDisable": "When false — enable paste, drop, and file-picker image attachments in chat compose.",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.chat.imageEvidenceGateEnabled",
+          "description": "U-071a: when images are attached, open Image Evidence Gate before chat streams (Send | Run visual audit | Cancel). Independent of lensPreviewFirstNSends.",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — U-071a: when images are attached, open Image Evidence Gate before chat streams (Send | Run visual audit | Cancel). Independent of lensPreviewFirstNSends.",
+            "whenDisable": "When false — U-071a: when images are attached, open Image Evidence Gate before chat streams (Send | Run visual audit | Cancel). Independent of lensPreviewFirstNSends.",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
               "Applies on next chat send or webview reload — no server restart for most keys"
@@ -1333,8 +1480,8 @@
         },
         {
           "id": "contextmint.governance.previewExcludeKinds",
-          "description": "Finding kinds hidden from Context Lens pre-send preview (repo-wide duplication noise). Full list remains in Quality map drawer.",
-          "default": "[\"clone\",\"near_duplicate\"]",
+          "description": "Finding kinds hidden from Context Lens pre-send preview. Empty by default so DRY/clone notes align with the Quality map drawer (D3). Full list always remains in the drawer.",
+          "default": "[]",
           "deprecated": false,
           "operator": false,
           "type": "array",
@@ -1374,6 +1521,27 @@
           }
         },
         {
+          "id": "contextmint.governance.qualityScanKickoffTimeoutMs",
+          "description": "Max wait in ms for POST /workspace/quality/scan to accept (202). Separate from health serverTimeoutMs and from the full scan poll budget.",
+          "default": "60000",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust governance.qualityScanKickoffTimeoutMs in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
           "id": "contextmint.governance.qualityScanPollIntervalMs",
           "description": "Poll interval in ms for GET /workspace/quality/status while a scan runs.",
           "default": "2000",
@@ -1396,8 +1564,8 @@
         },
         {
           "id": "contextmint.governance.qualityScanTimeoutMs",
-          "description": "Max wait in ms while polling a background quality scan (readiness card / command palette).",
-          "default": "300000",
+          "description": "Max wait in ms while polling a background quality scan (readiness card / command palette). Default 15 min — increase for very large repos.",
+          "default": "900000",
           "deprecated": false,
           "operator": false,
           "type": "number",
@@ -1516,13 +1684,34 @@
         {
           "id": "contextmint.argus.auditTimeoutMs",
           "description": "Timeout for visual audit requests (vision model + browser capture).",
-          "default": "30000",
+          "default": "300000",
           "deprecated": false,
           "operator": false,
           "type": "number",
           "usage": {
             "whenEnable": "Adjust argus.auditTimeoutMs in VS Code Settings when the default does not match your workflow.",
             "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.argus.showAuditInImageGate",
+          "description": "U-071a: show Run visual audit in Image Evidence Gate when screenshots are attached.",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — U-071a: show Run visual audit in Image Evidence Gate when screenshots are attached.",
+            "whenDisable": "When false — U-071a: show Run visual audit in Image Evidence Gate when screenshots are attached.",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
               "Applies on next chat send or webview reload — no server restart for most keys"
@@ -1634,14 +1823,14 @@
         },
         {
           "id": "contextmint.inline.enabled",
-          "description": "Enable local FIM inline ghost-text completion (requires inline backend).",
-          "default": "false",
+          "description": "Enable local inline ghost-text completion — code FIM and prose/sentence (requires inline backend).",
+          "default": "true",
           "deprecated": false,
           "operator": false,
           "type": "boolean",
           "usage": {
-            "whenEnable": "When true — Enable local FIM inline ghost-text completion (requires inline backend).",
-            "whenDisable": "When false — enable local FIM inline ghost-text completion (requires inline backend).",
+            "whenEnable": "When true — Enable local inline ghost-text completion — code FIM and prose/sentence (requires inline backend).",
+            "whenDisable": "When false — enable local inline ghost-text completion — code FIM and prose/sentence (requires inline backend).",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
               "Applies on next chat send or webview reload — no server restart for most keys"
@@ -1655,7 +1844,7 @@
         },
         {
           "id": "contextmint.inline.languages",
-          "description": "Comma-separated language IDs eligible for inline completion.",
+          "description": "Comma-separated language IDs eligible for code FIM inline completion.",
           "default": "typescript,javascript,python,go,rust",
           "deprecated": false,
           "operator": false,
@@ -1717,6 +1906,27 @@
           }
         },
         {
+          "id": "contextmint.inline.mode",
+          "description": "Completion strategy: auto (from language), code (FIM), or prose (sentence continuation). Both modes required for GATE-G7.",
+          "default": "auto",
+          "deprecated": false,
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Adjust inline.mode in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
           "id": "contextmint.inline.multiline",
           "description": "Allow multi-line inline completions (opt-in).",
           "default": "false",
@@ -1739,14 +1949,56 @@
         },
         {
           "id": "contextmint.inline.pauseWhileIndexing",
-          "description": "Pause inline completion while the workspace index is running.",
-          "default": "true",
+          "description": "Tighten pause while embed/index is busy (maps to on_embed_busy). Cannot weaken a stricter server pause_mode.",
+          "default": "false",
           "deprecated": false,
           "operator": false,
           "type": "boolean",
           "usage": {
-            "whenEnable": "When true — Pause inline completion while the workspace index is running.",
-            "whenDisable": "When false — Pause inline completion while the workspace index is running.",
+            "whenEnable": "Tighten this IDE to on_embed_busy while embed/index is busy — cannot weaken a stricter server inline.pause_mode.",
+            "whenDisable": "false (default) — follow the server pause_mode only (usually off or shared_runtime).",
+            "pros": [
+              "Per-developer tighten without changing the team server default",
+              "Matches legacy “pause while indexing” intent when the server stays off"
+            ],
+            "cons": [
+              "Blunter than shared_runtime — pauses even on split Ollama hosts",
+              "Server pause_mode remains the operator SSOT for team policy"
+            ],
+            "recommendation": "Leave false; ask operators to set server inline.pause_mode=shared_runtime on contested shared hosts."
+          }
+        },
+        {
+          "id": "contextmint.inline.postAcceptCooldownMs",
+          "description": "After Tab-accept, suppress automatic inline requests for this many milliseconds (stops busy-spinner chaining).",
+          "default": "2500",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust inline.postAcceptCooldownMs in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.inline.proseLanguages",
+          "description": "Comma-separated language IDs eligible for prose/sentence continuation.",
+          "default": "markdown,plaintext,text,latex,restructuredtext",
+          "deprecated": false,
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Adjust inline.proseLanguages in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
               "Applies on next chat send or webview reload — no server restart for most keys"
@@ -1760,14 +2012,14 @@
         },
         {
           "id": "contextmint.inline.yieldToChat",
-          "description": "Skip inline requests while a chat stream is active.",
+          "description": "Additionally yield while chat is active. Can only tighten server policy.",
           "default": "true",
           "deprecated": false,
           "operator": false,
           "type": "boolean",
           "usage": {
-            "whenEnable": "When true — Skip inline requests while a chat stream is active.",
-            "whenDisable": "When false — Skip inline requests while a chat stream is active.",
+            "whenEnable": "When true — Additionally yield while chat is active. Can only tighten server policy.",
+            "whenDisable": "When false — Additionally yield while chat is active. Can only tighten server policy.",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
               "Applies on next chat send or webview reload — no server restart for most keys"
@@ -1816,6 +2068,48 @@
           "type": "number",
           "usage": {
             "whenEnable": "Adjust design.attachChipMaxWidthPx in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.design.contextLensDrawerMaxHeightPx",
+          "description": "Context Lens drawer absolute max height (px). Combined with vh cap via min().",
+          "default": "320",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust design.contextLensDrawerMaxHeightPx in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.design.contextLensDrawerMaxHeightVh",
+          "description": "Context Lens drawer max height as a viewport-height percentage. Chunk list scrolls inside; Send/Cancel stay pinned.",
+          "default": "42",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust design.contextLensDrawerMaxHeightVh in VS Code Settings when the default does not match your workflow.",
             "whenDisable": "N/A — value setting (not a boolean toggle).",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
@@ -2307,7 +2601,7 @@
         {
           "id": "contextmint.models.knownVisionModels",
           "description": "Curated local-first vision models plus optional cloud entries.",
-          "default": "[5 presets] moondream, llava, qwen2-vl, gpt-4o…",
+          "default": "[6 presets] qwen2.5vl:3b, moondream, llava, qwen2-vl…",
           "deprecated": true,
           "operator": false,
           "type": "array",
@@ -2475,7 +2769,7 @@
         {
           "id": "contextmint.server.ollamaEmbedModel",
           "description": "Ollama embedding model for repo index / search (mirrors backend ollama_model).",
-          "default": "nomic-embed-text",
+          "default": "bge-m3",
           "deprecated": true,
           "operator": false,
           "type": "string",
@@ -2650,7 +2944,7 @@
         {
           "id": "contextmint.server.binaryVersion",
           "description": "",
-          "default": "0.1.0",
+          "default": "1.0.0",
           "deprecated": true,
           "operator": false,
           "type": "string",
@@ -2712,7 +3006,7 @@
         },
         {
           "id": "contextmint.server.healthFailureThresholdDuringIndexing",
-          "description": "Consecutive failed health polls before marking the server offline while indexing is active.",
+          "description": "Consecutive hard-unreachable health polls before Offline while indexing. Soft timeouts never count when soft-timeout preserve is enabled.",
           "default": "3",
           "deprecated": true,
           "operator": false,
@@ -2762,6 +3056,27 @@
           "usage": {
             "whenEnable": "Adjust server.healthPollMaxAttempts in VS Code Settings when the default does not match your workflow.",
             "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.server.healthSoftTimeoutPreserveLiveness",
+          "description": "When true, health poll timeouts while the server was recently healthy (or indexing) do not mark Offline — chat stays available under index load.",
+          "default": "true",
+          "deprecated": true,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — When true, health poll timeouts while the server was recently healthy (or indexing) do not mark Offline — chat stays available under index load.",
+            "whenDisable": "When false — When true, health poll timeouts while the server was recently healthy (or indexing) do not mark Offline — chat stays available under index load.",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
               "Applies on next chat send or webview reload — no server restart for most keys"

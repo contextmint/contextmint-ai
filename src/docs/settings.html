@@ -388,10 +388,12 @@ pageCss: product.css
       <div class="settings-group__body settings-usage-section">
         <p class="muted">
           Optional real-time <span class="mono">pipeline_progress</span> SSE events during chat retrieval
-          so the VS Code extension can show what the server is doing while the user waits.
-          <strong>Off by default</strong> until extension timeline ships. Requires both server flag and
-          extension <span class="mono">contextmint.chat.livePipelineTimelineEnabled</span>.
-          See <span class="mono">documentation/REALTIME-SERVER-VIEW-EXTENSION-PLAN.md</span>.
+          so the VS Code extension live timeline can show what the server is doing while the user waits.
+          <strong>Off by default</strong> until RT-VIEW dogfood. Enable
+          <span class="mono">retrieval.live_progress_enabled</span> on the API host — the extension
+          renders events when the server emits them (no separate extension toggle).
+          See <span class="mono">documentation/REALTIME-SERVER-VIEW-EXTENSION-PLAN.md</span>
+          and <span class="mono">documentation/IC-PAUSE-UX-RT-VIEW-ARCHITECTURE-PLAN.md</span>.
         </p>
         <div class="settings-table-wrap">
           <table class="settings-table settings-table--compact">
@@ -409,7 +411,7 @@ pageCss: product.css
                 <td class="mono"><code>retrieval.live_progress_enabled</code></td>
                 <td class="mono">false</td>
                 <td>yes</td>
-                <td>Enable when extension live timeline is installed for dogfood UAT</td>
+                <td>Enable for RT-VIEW dogfood / demos (extension timeline already ships)</td>
                 <td>yes</td>
               </tr>
               <tr class="settings-row" data-setting="retrieval.live_progress_granularity">

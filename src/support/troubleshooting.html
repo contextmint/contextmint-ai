@@ -362,7 +362,7 @@ pageCss: product.css
     <summary>High CPU during indexing + chat</summary>
     <div class="faq-item__body">
       <p><strong>Cause:</strong> Embed batch + chat inference competing on same machine.</p>
-      <p><strong>Fix:</strong> Let initial index complete. Use smaller chat model. Pause inline completion. Schedule large reindex off-hours.</p>
+      <p><strong>Fix:</strong> Let initial index complete. Use a smaller chat model. On contested shared Ollama hosts set server <span class="mono">inline.pause_mode</span> to <span class="mono">shared_runtime</span> (extension <span class="mono">contextmint.inline.pauseWhileIndexing</span> only tightens further). Schedule large reindex off-hours.</p>
     </div>
   </details>
 

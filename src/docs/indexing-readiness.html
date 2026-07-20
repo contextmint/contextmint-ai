@@ -93,6 +93,23 @@ pageCss: product.css
   <strong>Indexing</strong> while Engine overview still looks idle — use Indexing drill-down for truth.
 </p>
 
+<h2>Inline completion while indexing</h2>
+<p>
+  Ghost-text (inline) is <strong>off by default</strong>. When enabled, pause policy is server
+  <span class="mono">inline.pause_mode</span>:
+</p>
+<ul>
+  <li><span class="mono">off</span> — never pause for embed/reindex (shipped default)</li>
+  <li><span class="mono">shared_runtime</span> — pause only when chat and embed share one Ollama host</li>
+  <li><span class="mono">on_embed_busy</span> — pause whenever any session embed/reindex is busy</li>
+</ul>
+<p>
+  VS Code <span class="mono">contextmint.inline.pauseWhileIndexing</span> can only
+  <em>tighten</em> to <span class="mono">on_embed_busy</span>; it cannot weaken a stricter server mode.
+  Prefer <span class="mono">shared_runtime</span> on contested team servers — see
+  <a href="/docs/settings.html#settings-server-inline">Settings → Inline completion (server)</a>.
+</p>
+
 <p class="muted">
   Problems: <a href="/support/troubleshooting.html#indexing">Troubleshooting → Indexing</a>.
 </p>

@@ -98,6 +98,8 @@ const DESCRIPTION_OVERRIDES = {
     "Interval (ms) between system-state polls when the repo is idle.",
   "contextmint.server.systemStateIndexPollIntervalMs":
     "Interval (ms) between system-state polls while indexing.",
+  "contextmint.inline.pauseWhileIndexing":
+    "Tighten pause while embed/index is busy (maps to on_embed_busy). Cannot weaken a stricter server pause_mode.",
   "contextmint.design.accentColor":
     "Brand accent color for status dots, links, and success states.",
   "contextmint.design.maxContextLensFiles":

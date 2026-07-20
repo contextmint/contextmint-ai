@@ -95,7 +95,7 @@ export const SERVER_SECTIONS = [
     id: "retrieval",
     title: "Retrieval, expand & infer",
     description:
-      "Hybrid search top-k, window expansion, parallel grep, graph fetch, ShipLaw expand ladder, R6 escalation gates, optional LLM inference (last resort, off by default), retrieval decision tracing for manual UAT, and optional live pipeline_progress SSE (off by default until extension ships).",
+      "Hybrid search top-k, window expansion, parallel grep, graph fetch, ShipLaw expand ladder, R6 escalation gates, optional LLM inference (last resort, off by default), retrieval decision tracing for manual UAT, and optional live pipeline_progress SSE (off by default until RT-VIEW dogfood).",
     match: (id) => id.startsWith("retrieval.") && id !== "retrieval.discovery_policy",
   },
   {
@@ -178,7 +178,8 @@ export const SERVER_SECTIONS = [
   {
     id: "inline",
     title: "Inline completion (server)",
-    description: "Ghost-text completion endpoint — off by default.",
+    description:
+      "Ghost-text completion endpoint — off by default. Pause policy (pause_mode) controls whether completions yield while embed/reindex is busy.",
     match: (id) => id.startsWith("inline."),
   },
   {
@@ -284,7 +285,7 @@ export const SERVER_SETTING_DESCRIPTIONS = {
   "retrieval.excerpt_select_infer_enabled":
     "Enable L5 excerpt-select infer stage in expand ladder — last resort only; off by default until certified.",
   "retrieval.live_progress_enabled":
-    "Emit pipeline_progress SSE events during chat retrieval so the extension can show a live timeline. Off by default until extension ships.",
+    "Emit pipeline_progress SSE events during chat retrieval so the VS Code extension live timeline can show retrieval phases. Off by default until RT-VIEW dogfood; extension renders events when the server emits them.",
   "retrieval.live_progress_granularity":
     "Live progress detail level: summary (user-meaningful phases only), stage (each pipeline stage), or verbose (includes meta).",
   "retrieval.live_progress_max_events_per_turn":
@@ -293,6 +294,10 @@ export const SERVER_SETTING_DESCRIPTIONS = {
     "Include repo-relative file paths in live progress detail lines when server emits pipeline_progress.",
   "retrieval.live_progress_min_interval_ms":
     "Minimum milliseconds between duplicate live progress phase updates (0–5000). Throttles noisy step_id repeats.",
+  "inline.pause_mode":
+    "Pause Mode for inline completion while embed/reindex is busy: off (never), shared_runtime (pause only when chat and embed share one Ollama host), on_embed_busy (always pause when busy). Default off.",
+  "inline.pause_while_indexing":
+    "DEPRECATED mirror of pause_mode — prefer inline.pause_mode. True alone maps to on_embed_busy; pause_mode wins when both are set. Default false.",
   "chat.narration_enabled":
     "Citation-bound LLM narration on sanitized shipped excerpts when meaning intent is detected and evidence is sufficient.",
   "chat.narration_max_excerpts":
