@@ -180,9 +180,25 @@ body.announcement-dismissed .navbar {
 }
 
 .navbar__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-weight: 600;
   font-size: 1.05rem;
   white-space: nowrap;
+}
+
+.navbar__mark,
+.site-footer__mark {
+  display: block;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+}
+
+.navbar__wordmark,
+.site-footer__wordmark {
+  line-height: 1;
 }
 
 .navbar__links {
@@ -286,6 +302,9 @@ body.announcement-dismissed .navbar {
 }
 
 .site-footer__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-weight: 600;
   font-size: 1.05rem;
 }

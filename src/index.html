@@ -1,7 +1,7 @@
 ---
 layout: base.html
 title: ContextMint | AI Writes Code. We Decide What Can Ship.
-description: ContextMint verifies AI-generated changes before production — ownership, dependencies, architecture intent, and policy with traceable evidence.
+description: ContextMint is a local-first AI decision-control plane — evidence before inference, human approval before repo changes. v1.0 ships end of August 2026.
 pageCss: home.css
 pageJs: product-carousel.js
 ---
@@ -9,30 +9,38 @@ pageJs: product-carousel.js
 <!-- HERO -->
 <header class="hero">
   <div class="container">
+    <img
+      class="hero__mark"
+      src="/assets/img/logos/mark-glow.png"
+      width="96"
+      height="96"
+      alt=""
+      decoding="async"
+    />
     <h1>AI writes code.<br />ContextMint decides what ships.</h1>
     <p class="sub">
-      Verify AI-generated changes before production. ContextMint evaluates every pull request
-      against ownership, dependencies, architecture intent, and policy — with evidence your
-      reviewers and auditors can trust.
+      A <strong>local-first AI decision-control plane</strong> for software teams — not generic chat.
+      Review retrieved evidence before the model answers. Approve patches before anything applies.
+      Code stays on your infrastructure by default.
     </p>
 
     <div class="cta">
-      <a class="btn btn-primary" href="/request-demo.html">Book a Demo</a>
-      <a class="btn btn-secondary" href="/product/">See the Verification Engine</a>
+      <a class="btn btn-primary" href="/getting-started.html">Getting started</a>
+      <a class="btn btn-secondary" href="/features.html">What ships in v1.0</a>
     </div>
 
     <div class="pill">DECISION-CONTROL PLANE · LOCAL-FIRST · HUMAN OVERSIGHT</div>
   </div>
 </header>
 
-<!-- IN PILOT (v1.0 August 2026) -->
+<!-- IN PILOT (v1.0 end of August 2026) -->
 <section class="section section--surface" id="pilot-now">
   <div class="container container-narrow">
     <h2 class="section-title">In pilot now</h2>
     <p class="muted">
-      <strong>v1.0 ships August 2026.</strong> Design partners already run ContextMint as a
-      <strong>local-first AI decision-control plane</strong> for software teams — not generic chat.
-      Evidence before inference. Human approval before code changes.
+      <strong>v1.0 ships end of August 2026.</strong> We are finishing internal pilot readiness;
+      design partner intake opens by end of July 2026. Evidence before inference. Human approval
+      before code changes.
     </p>
     <div class="grid grid-2" style="margin-top: 24px;">
       <div class="card">
@@ -50,7 +58,7 @@ pageJs: product-carousel.js
       <div class="card">
         <strong style="color: var(--color-warning);">Quality map</strong>
         <p class="mono" style="margin-top: 8px; font-size: 0.85rem;">
-          Stored governance findings (duplicates, structure signals) with audit-friendly apply gates.
+          Stored governance findings (duplicates, structure signals) with human apply gates.
         </p>
       </div>
       <div class="card">
@@ -61,9 +69,9 @@ pageJs: product-carousel.js
       </div>
     </div>
     <p class="text-center muted" style="margin-top: 24px; font-size: 0.9rem;">
-      <strong>Default:</strong> local Engine + Ollama per developer (GA-ready).
+      <strong>Default:</strong> local Engine + Ollama per developer.
       <a href="/features.html" style="color: var(--color-action);">What ships in v1.0 →</a>
-      Shared on-prem API server available for enterprise pilots —
+      Shared on-prem API server path for regulated pilots —
       <a href="/trust.html" style="color: var(--color-action);">deployment models</a>.
       Optional BYOK cloud routing is off by default.
       <strong>Roadmap:</strong>
@@ -79,20 +87,20 @@ pageJs: product-carousel.js
 
 {% include "product-screenshots.html" %}
 
-<!-- Outcomes -->
+<!-- Outcomes (v1.0) -->
 <section class="section" style="padding-top: 0;">
-  <div class="container outcomes" aria-label="Verification outcomes">
+  <div class="container outcomes" aria-label="v1.0 outcomes">
     <div class="outcome">
-      <strong>Every PR</strong>
-      <span>Ownership, impact, and policy checked</span>
+      <strong>Gate 1</strong>
+      <span>Context Lens — evidence before inference</span>
     </div>
     <div class="outcome">
-      <strong>&lt; 10 sec</strong>
-      <span>Blast radius before human review</span>
+      <strong>Gate 2</strong>
+      <span>Patch preview — humans approve applies</span>
     </div>
     <div class="outcome">
-      <strong>Escalate</strong>
-      <span>Not block — humans decide with evidence</span>
+      <strong>Local-first</strong>
+      <span>Index and chat on your infrastructure</span>
     </div>
   </div>
 </section>
@@ -101,7 +109,8 @@ pageJs: product-carousel.js
 <section class="section">
   <h2 class="section-title">The Problem Isn&rsquo;t Code Generation. It&rsquo;s Trust.</h2>
   <p class="muted">
-    AI creates pull requests faster than organizations can verify them. That is a board-level risk — not a tooling gap.
+    AI creates changes faster than organizations can review them with evidence. That is a
+    board-level risk — not a tooling gap.
   </p>
 
   <div class="grid grid-3 container container-narrow">
@@ -124,7 +133,7 @@ pageJs: product-carousel.js
 <section class="section section--surface">
   <div class="container container-narrow">
     <h2 class="section-title">The Bottleneck Moved</h2>
-    <p class="muted">Code generation is no longer the constraint. Verification is.</p>
+    <p class="muted">Code generation is no longer the constraint. Evidence and human oversight are.</p>
 
     <div class="macro-grid">
       <div class="card">
@@ -134,97 +143,107 @@ pageJs: product-carousel.js
       </div>
       <div class="card macro-card--accent">
         <div class="mono macro-card__label macro-card__label--accent">After AI</div>
-        <p class="macro-card__body">AI generates code faster than organizations can verify it.</p>
+        <p class="macro-card__body">AI generates code faster than organizations can verify with evidence.</p>
         <div class="mono">
           <strong style="color: var(--text-secondary);">Bottleneck:</strong>
-          <span style="color: var(--color-warning);"> Verification &amp; Governance</span>
+          <span style="color: var(--color-warning);"> Evidence &amp; Governance</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- VERIFICATION ENGINE -->
-<section class="section" id="verification-engine">
+<!-- v1.0 WORKFLOW (shipped surface) -->
+<section class="section" id="decision-control">
   <div class="container container-narrow">
-    <h2 class="section-title">The Verification Engine</h2>
+    <h2 class="section-title">What v1.0 delivers</h2>
     <p class="muted">
-      One capability: verify AI-generated changes before production. Every check returns a
-      recommendation and traceable evidence — escalate for review, never silent auto-merge.
+      Evidence-based generative chat, store-first governance lookup from the quality map, and
+      grounded recommendations with human approval — on your machine or a guided sovereign server path.
     </p>
 
     <figure class="decision">
       <div class="decision-header">
-        PR Verification &nbsp;|&nbsp; Scenario: AI modifies Checkout Service
+        Decision-control plane &nbsp;|&nbsp; Scenario: assisted change in VS Code
       </div>
       <div class="decision-body">
         <div>
-          <div class="query">Checks run before your reviewers</div>
-          <div class="stack ok">&#10003; Ownership resolved via CODEOWNERS + team mapping</div>
-          <div class="stack ok">&#10003; Blast radius computed (17 downstream services)</div>
-          <div class="stack ok">&#10003; Architecture intent validated against ADRs</div>
-          <div class="stack danger">&#9888; Policy conflict detected (PCI boundary violation)</div>
-          <div class="stack ok">&#10003; Drift check against accepted baselines</div>
+          <div class="query">Checks before the model answers or applies</div>
+          <div class="stack ok">&#10003; Context Lens — retrieved chunks, scores, routing</div>
+          <div class="stack ok">&#10003; Quality map — stored findings (duplicates, structure)</div>
+          <div class="stack ok">&#10003; Citations — answers grounded in indexed excerpts</div>
+          <div class="stack danger">&#9888; High-severity apply — blocked until human review</div>
+          <div class="stack ok">&#10003; Patch preview — unified diff before anything writes</div>
         </div>
         <div>
           <div class="mono">Recommendation</div>
-          <div class="badge risk" style="margin-top: 8px;">ESCALATE FOR HUMAN REVIEW</div>
+          <div class="badge risk" style="margin-top: 8px;">HUMAN APPROVAL REQUIRED</div>
           <div style="margin-top: 24px" class="mono">Traceable Evidence</div>
           <div class="evidence-block">
-            &#10003; <span>CODEOWNERS</span> (Line 42)<br />
-            &#10003; <span>ADR-12.md</span> (Event Sourcing)<br />
-            &#10003; <span>Dependency Graph</span> (17 services)<br />
-            &#10003; <span>PCI-Policy.yaml</span> (Rule 4.1)
+            &#10003; <span>Context Lens</span> chunks<br />
+            &#10003; <span>Findings Store</span> finding IDs<br />
+            &#10003; <span>Patch preview</span> unified diff<br />
+            &#10003; <span>Routing badge</span> local model path
           </div>
         </div>
       </div>
       <figcaption class="sr-only">
-        Verification engine example: ownership, blast radius, architecture, policy, and drift
-        checks with escalate-for-review recommendation and cited evidence.
+        v1.0 decision-control example: Context Lens, quality map, citations, apply gate, and patch preview
+        with human approval and cited evidence.
       </figcaption>
     </figure>
+    <p class="muted" style="margin-top: 16px; font-size: 0.9rem;">
+      <span class="roadmap-status roadmap-status--planned">Roadmap</span>
+      PR verification gates, blast-radius SKU, and CI packaging are the
+      <a href="/product/" style="color: var(--color-action);">Verification Engine</a> direction —
+      after v1.0, not in the August GA package.
+    </p>
   </div>
 </section>
 
-<!-- POWERED BY -->
+<!-- POWERED BY (roadmap) -->
 <section class="section section--surface">
   <div class="container">
-    <h2 class="section-title">How we deliver that promise</h2>
-    <p class="muted">The Verification Engine is powered by deterministic graph capabilities — not LLM guesses.</p>
+    <h2 class="section-title">Where the product is headed</h2>
+    <p class="muted">
+      After v1.0, the Verification Engine direction adds deterministic graph checks for PR-time
+      verification. Capabilities below are labeled roadmap — not the August GA package.
+    </p>
     {% include "powered-by.html" %}
     <p class="text-center" style="margin-top: 24px;">
-      <a href="/product/" class="btn btn-secondary">Explore the Verification Engine</a>
+      <a href="/product/" class="btn btn-secondary">Verification Engine vision</a>
+      <a href="/features.html" class="btn btn-primary" style="margin-left: 8px;">v1.0 features</a>
     </p>
   </div>
 </section>
 
 <!-- WHY NOT CI -->
 <section class="section">
-  <h2 class="section-title">Why CI Tools Don&rsquo;t Solve This</h2>
-  <p class="muted">Linting and tests catch syntax. They don&rsquo;t verify organizational reality.</p>
+  <h2 class="section-title">Why CI Tools Don&rsquo;t Solve This Alone</h2>
+  <p class="muted">Linting and tests catch syntax. They don&rsquo;t give developers evidence gates in the IDE.</p>
 
   <div class="grid grid-3 container container-narrow">
     <div class="card">
       <strong>GitHub / GitLab</strong>
       <div class="mono" style="margin-top: 8px;">Code &amp; PRs</div>
-      <div class="mono danger" style="margin-top: 4px;">No architecture intent or policy graph</div>
+      <div class="mono danger" style="margin-top: 4px;">No pre-inference evidence review in the IDE</div>
     </div>
     <div class="card">
       <strong>SonarQube / SAST</strong>
       <div class="mono" style="margin-top: 8px;">Syntax &amp; CVEs</div>
-      <div class="mono danger" style="margin-top: 4px;">No ownership or blast radius</div>
+      <div class="mono danger" style="margin-top: 4px;">No human apply gate for assisted edits</div>
     </div>
     <div class="card">
       <strong>Jira / Confluence</strong>
       <div class="mono" style="margin-top: 8px;">Plans &amp; docs</div>
-      <div class="mono danger" style="margin-top: 4px;">Disconnected from what ships</div>
+      <div class="mono danger" style="margin-top: 4px;">Disconnected from indexed workspace evidence</div>
     </div>
   </div>
 
   <div class="card container container-narrow card--highlight" style="margin-top: 16px; text-align: center;">
-    <strong class="ok">ContextMint</strong>
+    <strong class="ok">ContextMint v1.0</strong>
     <div class="mono" style="margin-top: 8px; color: var(--text-primary);">
-      One verification layer across ownership, impact, intent, policy, and drift
+      Decision-control in the IDE — Lens, quality map, patch preview, local-first
     </div>
   </div>
 </section>
@@ -232,13 +251,13 @@ pageJs: product-carousel.js
 <!-- FINAL CTA -->
 <section class="section">
   <div class="container text-center container-tight">
-    <h2 class="section-title">Govern AI velocity without slowing delivery</h2>
+    <h2 class="section-title">Govern AI velocity without silent applies</h2>
     <p class="muted">
       The question is no longer whether AI writes your code.<br />
-      It is whether you can trust what ships.
+      It is whether humans see evidence before it ships.
     </p>
     <div class="cta" style="justify-content: center;">
-      <a class="btn btn-primary btn-lg" href="/request-demo.html">Discuss Your AI Governance Challenges</a>
+      <a class="btn btn-primary btn-lg" href="/request-demo.html">Book a Demo</a>
       <a class="btn btn-secondary btn-lg" href="/trust.html">Trust &amp; Security</a>
     </div>
   </div>

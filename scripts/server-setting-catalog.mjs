@@ -298,6 +298,16 @@ export const SERVER_SETTING_DESCRIPTIONS = {
     "Pause Mode for inline completion while embed/reindex is busy: off (never), shared_runtime (pause only when chat and embed share one Ollama host), on_embed_busy (always pause when busy). Default off.",
   "inline.pause_while_indexing":
     "DEPRECATED mirror of pause_mode — prefer inline.pause_mode. True alone maps to on_embed_busy; pause_mode wins when both are set. Default false.",
+  "inline.enabled":
+    "Enable the ghost-text /api/v1/complete endpoint — off by default until product default-on.",
+  "server.ollama_url":
+    "Chat Ollama base URL (Mode A shared host, or Mode B chat host). Example: http://192.168.1.248:11434.",
+  "server.ollama_embed_url":
+    "Optional distinct embed Ollama URL for Mode B. Empty or same host as ollama_url = Mode A (shared). Example: http://192.168.1.140:11435.",
+  "engine.ollama_url":
+    "Engine status/supervisor Ollama URL — keep aligned with server.ollama_url (chat host).",
+  "resource_scheduler.embed_slots":
+    "Concurrent embed slots. On Mode B (split hosts) prefer ≥2 so chat and embed can run in parallel.",
   "chat.narration_enabled":
     "Citation-bound LLM narration on sanitized shipped excerpts when meaning intent is detected and evidence is sufficient.",
   "chat.narration_max_excerpts":
@@ -459,10 +469,25 @@ export const SERVER_OPERATOR_KEYS = new Set([
   "argus.enabled",
   "auth.enabled",
   "server.debug_mode",
+  "server.ollama_url",
+  "server.ollama_embed_url",
   "server.ollama_warmup_read_timeout_sec",
   "runtime.ollama_ensure_model_loaded",
   "runtime.ollama_keep_model_loaded",
+  "inline.enabled",
+  "inline.pause_mode",
+  "inline.pause_while_indexing",
+  "resource_scheduler.embed_slots",
 ]);
+
+/**
+ * Optional enum choices for Server Config dropdowns (desktop).
+ * @type {Record<string, string[]>}
+ */
+export const SERVER_SETTING_CHOICES = {
+  "inline.pause_mode": ["off", "shared_runtime", "on_embed_busy"],
+  "retrieval.live_progress_granularity": ["summary", "stage", "verbose"],
+};
 
 /**
  * @param {string} settingId

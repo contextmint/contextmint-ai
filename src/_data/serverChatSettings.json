@@ -359,8 +359,8 @@
         {
           "id": "server.ollama_embed_url",
           "default": "\"\"",
-          "description": "Ollama Embed Url — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
+          "description": "Optional distinct embed Ollama URL for Mode B. Empty or same host as ollama_url = Mode A (shared). Example: http://192.168.1.140:11435.",
+          "operator": true,
           "type": "string",
           "usage": {
             "whenEnable": "Tune ollama embed url when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
@@ -499,8 +499,8 @@
         {
           "id": "server.ollama_url",
           "default": "http://localhost:11434",
-          "description": "Ollama Url — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
+          "description": "Chat Ollama base URL (Mode A shared host, or Mode B chat host). Example: http://192.168.1.248:11434.",
+          "operator": true,
           "type": "string",
           "usage": {
             "whenEnable": "Tune ollama url when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
@@ -13657,11 +13657,11 @@
         {
           "id": "inline.enabled",
           "default": "false",
-          "description": "Enabled — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
+          "description": "Enable the ghost-text /api/v1/complete endpoint — off by default until product default-on.",
+          "operator": true,
           "type": "boolean",
           "usage": {
-            "whenEnable": "When true — Enabled — server tunable from contextmint.defaults.yaml.",
+            "whenEnable": "When true — Enable the ghost-text /api/v1/complete endpoint — off by default until product default-on.",
             "whenDisable": "When false — disables or falls back for enabled.",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
@@ -13838,7 +13838,7 @@
           "id": "inline.pause_mode",
           "default": "off",
           "description": "Pause Mode for inline completion while embed/reindex is busy: off (never), shared_runtime (pause only when chat and embed share one Ollama host), on_embed_busy (always pause when busy). Default off.",
-          "operator": false,
+          "operator": true,
           "type": "string",
           "usage": {
             "whenEnable": "Set shared_runtime on contested single-host Ollama installs so ghost-text yields while embed/reindex is busy. Use on_embed_busy only for blunt legacy pause on any busy session.",
@@ -13858,7 +13858,7 @@
           "id": "inline.pause_while_indexing",
           "default": "false",
           "description": "DEPRECATED mirror of pause_mode — prefer inline.pause_mode. True alone maps to on_embed_busy; pause_mode wins when both are set. Default false.",
-          "operator": false,
+          "operator": true,
           "type": "boolean",
           "usage": {
             "whenEnable": "Legacy only — true alone maps to on_embed_busy. Prefer setting inline.pause_mode explicitly.",
@@ -15356,7 +15356,7 @@
         {
           "id": "engine.ollama_url",
           "default": "http://localhost:11434",
-          "description": "Ollama Url — server tunable from contextmint.defaults.yaml.",
+          "description": "Engine status/supervisor Ollama URL — keep aligned with server.ollama_url (chat host).",
           "operator": false,
           "type": "string",
           "usage": {
@@ -17150,8 +17150,8 @@
         {
           "id": "resource_scheduler.embed_slots",
           "default": "1",
-          "description": "Embed Slots — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
+          "description": "Concurrent embed slots. On Mode B (split hosts) prefer ≥2 so chat and embed can run in parallel.",
+          "operator": true,
           "type": "number",
           "usage": {
             "whenEnable": "Tune embed slots when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",

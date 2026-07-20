@@ -7,12 +7,12 @@ pageCss: product.css
 
 <header class="page-hero">
   <div class="container">
-    <div class="pill">IN PILOT · V1.0 AUGUST 2026</div>
-    <h1>What design partners run today</h1>
+    <div class="pill">IN PILOT · V1.0 END OF AUGUST 2026</div>
+    <h1>What ships in v1.0</h1>
     <p class="lead">
-      ContextMint v1.0 ships August 2026. Until then, design partners run a
+      ContextMint v1.0 ships <strong>end of August 2026</strong>. The pilot delivers a
       <strong>local-first decision-control plane</strong> — not generic chat.
-      This page lists capabilities available in the Engine desktop app and VS Code extension pilot today.
+      This page lists capabilities in the Engine desktop app and VS Code extension.
       PR verification, blast-radius product SKUs, and the standalone CLI remain on the
       <a href="/roadmap.html#verification-engine" style="color: var(--color-action);">roadmap</a>
       (see also the <a href="/product/" style="color: var(--color-action);">Verification Engine vision</a>).
@@ -202,12 +202,15 @@ pageCss: product.css
     <h2 class="section-title">Optional &amp; preview (off by default)</h2>
     <p class="muted">
       Available in settings for teams that opt in — not required for the sovereign local-first path.
+      Several of these are part of the regulated-pilot demo bar for v1.0; product defaults stay off
+      until explicit default-on decisions.
     </p>
     <ul class="check-list" style="margin-top: 16px;">
       <li><strong>BYOK cloud routing</strong> — OpenAI, Anthropic, Groq; keys in VS Code secrets; optional cloud vision when you select a vision model (<a href="/trust.html">trust center</a>)</li>
       <li><strong>Git sandbox worktrees</strong> — isolated test/apply in a worktree (server + extension flags)</li>
       <li><strong>Inline ghost-text completion</strong> — local FIM when inline backend is enabled</li>
-      <li><strong>Shared on-prem API server</strong> — enterprise pilot with Docker/Helm (<a href="/trust.html#deployment">deployment models</a>)</li>
+      <li><strong>In-IDE code review</strong> — file / branch / feature / flow review with human gates (flagged until default-on)</li>
+      <li><strong>Shared on-prem API server</strong> — regulated pilot with Docker/Helm + OIDC (<a href="/trust.html#deployment">deployment models</a>)</li>
     </ul>
   </div>
 </section>
@@ -234,4 +237,4 @@ pageCss: product.css
   </div>
 </section>
 
-{% include "cta-band.html", ctaTitle: "Want a guided walkthrough?", ctaText: "Design partners run a 30-day evaluation pilot (extendable to 90) with direct engineering support and a written summary for stakeholders." %}
+{% include "cta-band.html", ctaTitle: "Want a guided walkthrough?", ctaText: "Apply as a design partner for a 30-day evaluation pilot (extendable to 90) with direct engineering support and a written summary for stakeholders. Intake opens by end of July 2026." %}

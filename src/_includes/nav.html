@@ -1,6 +1,9 @@
 <nav class="navbar" aria-label="Main navigation">
   <div class="container navbar__inner">
-    <a class="navbar__logo" href="/">{{ site.name }}</a>
+    <a class="navbar__logo" href="/" aria-label="{{ site.name }} home">
+      <img class="navbar__mark" src="/assets/img/logos/mark.svg" width="28" height="28" alt="" />
+      <span class="navbar__wordmark">{{ site.name }}</span>
+    </a>
 
     <button
       class="navbar__toggle"

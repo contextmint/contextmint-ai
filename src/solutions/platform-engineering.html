@@ -1,7 +1,7 @@
 ---
 layout: base.html
 title: Platform Engineering | ContextMint
-description: Platform engineering solutions — CI/CD graph, context packs, MCP, shared on-prem server pilots, and PR verification.
+description: Platform engineering with ContextMint — context packs, local Engine, shared-server pilots. PR gates and MCP on the roadmap.
 pageCss: product.css
 ---
 
@@ -9,10 +9,12 @@ pageCss: product.css
   <div class="container">
     <nav class="breadcrumb"><a href="/solutions/">Solutions</a> / Platform Engineering</nav>
     <div class="pill">PLATFORM · DEVOPS</div>
-    <h1>External memory for your internal developer platform</h1>
+    <h1>Decision-control in every developer IDE</h1>
     <p class="lead">
-      <strong>Today:</strong> context packs and local-first Engine in every developer IDE.
-      <strong>Roadmap:</strong> CI/CD deployment graph, MCP agent tools, and PR verification on the Engineering Reality Graph.
+      <strong>v1.0 (end of August 2026):</strong> context packs and local-first Engine in the IDE,
+      with human gates before inference and apply.
+      <strong>Roadmap:</strong> CI/CD deployment graph, MCP agent tools, and PR verification on the
+      Verification Engine.
     </p>
   </div>
 </header>
@@ -25,12 +27,12 @@ pageCss: product.css
       <ul class="check-list">
         <li>Deployment nodes linked to services</li>
         <li>Impact queries span runtime and code</li>
-        <li>GATE-V31A for graph correctness</li>
+        <li>Graph correctness gates before product claims</li>
       </ul>
     </div>
     <div>
-      <h2>Context packs</h2>
-      <p>Per-repo <span class="mono">manifest.yaml</span> + markdown knowledge injected into chat and agents. Auto-sync on index bump.</p>
+      <h2>Context packs <span class="roadmap-status roadmap-status--available">v1.0</span></h2>
+      <p>Per-repo <span class="mono">manifest.yaml</span> + markdown knowledge injected into chat. Auto-sync on index bump.</p>
       <ul class="check-list">
         <li>@pack:name in VS Code chat</li>
         <li>Pack builder API for platform teams</li>
@@ -45,7 +47,7 @@ pageCss: product.css
     <h2 class="section-title">Deploy in your IDP</h2>
     <p class="muted">
       <strong>Default:</strong> developers run ContextMint Engine locally — sovereign, no shared server.
-      <strong>Enterprise pilots</strong> can deploy a shared on-prem API server (Docker / Helm) for teams
+      <strong>Regulated pilots</strong> can deploy a shared on-prem API server (Docker / Helm) for teams
       that index a mounted monorepo or use VS Code Remote SSH. The extension connects via
       <code>serverUrl</code> + OIDC — platform ops owns mounts, auth, and path alignment.
       <a href="/trust.html" style="color: var(--color-action);">Deployment models →</a>
@@ -55,12 +57,14 @@ pageCss: product.css
 
 <section class="section">
   <div class="container container-tight text-center">
-    <h2 class="section-title">PR gate for AI-generated code</h2>
+    <h2 class="section-title">PR gate for AI-generated code <span class="roadmap-status roadmap-status--planned">Roadmap</span></h2>
     <p class="muted">
-      Plug ContextMint into your review flow. Every PR gets ownership, blast radius, ADR, and
-      policy checks before human reviewers — with evidence attached.
+      After v1.0, the Verification Engine direction targets ownership, blast radius, ADR, and
+      policy checks on pull requests — with evidence attached. That is <strong>not</strong> in the
+      August GA package. Today: Context Lens, quality map, and patch preview in the IDE.
     </p>
-    <a class="btn btn-secondary" href="/#decision-engine">See example evaluation</a>
+    <a class="btn btn-secondary" href="/product/">Verification Engine vision</a>
+    <a class="btn btn-primary" href="/features.html" style="margin-left: 8px;">v1.0 features</a>
   </div>
 </section>
 

@@ -1,7 +1,7 @@
 ---
 layout: base.html
 title: Security & Compliance | ContextMint
-description: Security and compliance for ContextMint — audit trails, RBAC, policy enforcement, SOC 2 readiness, and enterprise deployment.
+description: Security posture for ContextMint — local-first default, human apply gates, optional OIDC shared-server path. SOC 2 certification is roadmap.
 pageCss: product.css
 ---
 
@@ -9,10 +9,11 @@ pageCss: product.css
   <div class="container">
     <nav class="breadcrumb"><a href="/solutions/">Solutions</a> / Security &amp; Compliance</nav>
     <div class="pill">ENTERPRISE · AUDIT</div>
-    <h1>Prove what your agents and engineers did</h1>
+    <h1>Defend AI-assisted development with evidence</h1>
     <p class="lead">
-      Audit trails, RBAC, policy graphs, and evidence collectors — built for security teams
-      who review AI-assisted development under SOC 2 and regulatory scrutiny.
+      Local-first by default, human Gates 1 &amp; 2 in the IDE, optional sovereign shared-server path
+      with OIDC — built for security reviews of assisted development. We do <strong>not</strong>
+      claim SOC 2 certification today.
     </p>
   </div>
 </header>
@@ -21,27 +22,26 @@ pageCss: product.css
   <div class="container container-narrow">
     <div class="grid grid-2">
       <div class="card">
-        <h3 style="margin: 0 0 8px;">Tiered verification</h3>
+        <h3 style="margin: 0 0 8px;">Human gates (v1.0)</h3>
         <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
-          Every fabric edge carries <span class="mono">edge_class</span> and
-          <span class="mono">verification_status</span>. Structural facts vs inferred vs external —
-          with human correction and proposal queues.
+          Context Lens before inference. Patch preview and apply gates before repo writes.
+          No silent auto-apply on the assisted path.
         </p>
       </div>
       <div class="card">
-        <h3 style="margin: 0 0 8px;">Agent accountability</h3>
+        <h3 style="margin: 0 0 8px;">Agent accountability <span class="roadmap-status roadmap-status--planned">Roadmap</span></h3>
         <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
-          MCP tool calls logged. Policy engine blocks PCI boundary violations. No silent
-          auto-apply on production paths.
+          Planned MCP tool logging and policy engine for agent assistants. v1.0 accountability is
+          IDE gates + operator audit trails — not MCP production controls.
         </p>
       </div>
     </div>
     <ul class="check-list" style="margin-top: 32px;">
-      <li>Local-first default — Engine + extension per developer (GA-ready)</li>
+      <li>Local-first default — Engine + extension per developer (v1.0)</li>
       <li>Shared on-prem API server — Docker / Helm pilot with platform ops</li>
-      <li>SSO (OIDC) and role-based access control per workspace</li>
-      <li>Audit log export for compliance reviews</li>
-      <li>SOC 2 evidence collectors (<a href="/roadmap.html#verification-engine" style="color: var(--color-action);">Enterprise roadmap</a>)</li>
+      <li>SSO (OIDC) and role-based access on the shared-server path</li>
+      <li>Operator audit / support-bundle export for pilot reviews</li>
+      <li>SOC 2 evidence collectors (<a href="/roadmap.html#track-b" style="color: var(--color-action);">Track B roadmap</a>)</li>
       <li>Path alignment required for shared server (Remote SSH or mounted monorepo)</li>
       <li>Optional BYOK hybrid routing with egress redaction (off by default)</li>
     </ul>
@@ -64,10 +64,10 @@ pageCss: product.css
 <section class="section">
   <div class="container container-tight text-center">
     <p class="muted">
-      Need a security questionnaire completed? We provide architecture diagrams, data flow
-      documentation, and live policy engine demos for your review process.
+      Need a security questionnaire completed? We provide architecture diagrams, data-flow
+      documentation, and a walkthrough of Gates 1 &amp; 2 for your review process.
     </p>
     <a class="btn btn-primary" href="/trust.html">Trust center</a>
-    <a class="btn btn-secondary" href="/request-demo.html" style="margin-left: 12px;">Security briefing</a>
+    <a class="btn btn-secondary" href="/request-demo.html" style="margin-left: 12px;">Book a Demo</a>
   </div>
 </section>

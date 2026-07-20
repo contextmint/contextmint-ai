@@ -1,6 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
   <rect width="1200" height="630" fill="#0a0e14"/>
-  <rect x="0" y="0" width="1200" height="630" fill="url(#bg)"/>
   <defs>
     <radialGradient id="bg" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(240 120) rotate(0) scale(520 420)">
       <stop stop-color="#10b981" stop-opacity="0.12"/>
@@ -10,9 +9,38 @@
       <stop stop-color="#3b82f6" stop-opacity="0.14"/>
       <stop offset="1" stop-color="#0a0e14" stop-opacity="0"/>
     </radialGradient>
+    <linearGradient id="cm-leaf" x1="18" y1="12" x2="48" y2="52" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#7dffa8"/>
+      <stop offset="55%" stop-color="#2dd4a8"/>
+      <stop offset="100%" stop-color="#0f766e"/>
+    </linearGradient>
   </defs>
-  <rect x="0" y="0" width="1200" height="630" fill="url(#bg2)"/>
-  <text x="100" y="220" fill="#10b981" font-family="ui-monospace, monospace" font-size="22" letter-spacing="4">CONTEXTMINT</text>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#bg2)"/>
+  <g transform="translate(100 148)">
+    <rect width="72" height="72" rx="16" fill="#0b1c2e"/>
+    <g transform="translate(36 37.5) rotate(-38) translate(-32 -33) scale(1.05)">
+      <path
+        fill="url(#cm-leaf)"
+        d="M32 10c11 7 18 18 18 31 0 4-1.2 7.2-3.2 9.2-2.4 2.4-5.8 2.6-8.8.8L32 46.5l-6 4.5c-3 1.8-6.4 1.6-8.8-.8C15.2 48.2 14 45 14 41 14 28 21 17 32 10z"
+      />
+      <path
+        fill="none"
+        stroke="#063042"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M32 18v24M32 28l-7-4M32 34l-8 1M32 40l-6 4M32 26l7-2M32 33l8 0.5M32 39l7 3"
+      />
+      <circle cx="25" cy="24" r="1.5" fill="#e8fff4"/>
+      <circle cx="24" cy="35" r="1.5" fill="#e8fff4"/>
+      <circle cx="26" cy="44" r="1.5" fill="#e8fff4"/>
+      <circle cx="39" cy="24" r="1.5" fill="#e8fff4"/>
+      <circle cx="40" cy="33.5" r="1.5" fill="#e8fff4"/>
+      <circle cx="39" cy="42" r="1.5" fill="#e8fff4"/>
+    </g>
+  </g>
+  <text x="192" y="196" fill="#10b981" font-family="ui-monospace, monospace" font-size="22" letter-spacing="4">CONTEXTMINT</text>
   <text x="100" y="310" fill="#e8edf4" font-family="system-ui, sans-serif" font-size="52" font-weight="700">AI writes code.</text>
   <text x="100" y="380" fill="#e8edf4" font-family="system-ui, sans-serif" font-size="52" font-weight="700">We decide what ships.</text>
   <text x="100" y="460" fill="#9aa8bc" font-family="system-ui, sans-serif" font-size="28">Evidence-based AI decisions with human oversight</text>

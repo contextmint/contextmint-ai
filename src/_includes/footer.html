@@ -1,10 +1,13 @@
 <footer class="site-footer">
   <div class="container site-footer__inner">
     <div class="site-footer__brand">
-      <a class="site-footer__logo" href="/">{{ site.name }}</a>
+      <a class="site-footer__logo" href="/" aria-label="{{ site.name }} home">
+        <img class="site-footer__mark" src="/assets/img/logos/mark.svg" width="28" height="28" alt="" />
+        <span class="site-footer__wordmark">{{ site.name }}</span>
+      </a>
       <p class="site-footer__tagline">{{ site.tagline }}</p>
       <p class="site-footer__extension">
-        Verify AI-generated changes before production
+        Local-first decision-control — evidence before inference
       </p>
     </div>
 

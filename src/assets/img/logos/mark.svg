@@ -1,15 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="ContextMint">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-hidden="true">
   <defs>
-    <linearGradient id="cm-leaf" x1="18" y1="12" x2="48" y2="52" gradientUnits="userSpaceOnUse">
+    <linearGradient id="cm-mark-leaf" x1="18" y1="12" x2="48" y2="52" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#7dffa8"/>
       <stop offset="55%" stop-color="#2dd4a8"/>
       <stop offset="100%" stop-color="#0f766e"/>
     </linearGradient>
   </defs>
-  <rect width="64" height="64" rx="14" fill="#0b1c2e"/>
   <g transform="translate(32 33) rotate(-38) translate(-32 -33)">
     <path
-      fill="url(#cm-leaf)"
+      fill="url(#cm-mark-leaf)"
       d="M32 10c11 7 18 18 18 31 0 4-1.2 7.2-3.2 9.2-2.4 2.4-5.8 2.6-8.8.8L32 46.5l-6 4.5c-3 1.8-6.4 1.6-8.8-.8C15.2 48.2 14 45 14 41 14 28 21 17 32 10z"
     />
     <path

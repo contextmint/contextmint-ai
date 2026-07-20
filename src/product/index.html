@@ -1,34 +1,34 @@
 ---
 layout: base.html
 title: Product | ContextMint Verification Engine
-description: ContextMint Verification Engine — verify AI-generated changes before production, powered by Repository DNA, blast radius, decision graph, and drift detection.
+description: ContextMint Verification Engine — product direction after v1.0 for PR-time verification. v1.0 ships end of August 2026 as the decision-control plane foundation.
 pageCss: product.css
 ---
 
 <header class="page-hero">
   <div class="container">
-    <div class="pill">PRODUCT</div>
+    <div class="pill">PRODUCT DIRECTION</div>
     <h1>The Verification Engine</h1>
     <p class="lead">
-      <strong>Product direction (after v1.0):</strong> verify AI-generated changes before production.
-      Every recommendation backed by deterministic graph evidence — ownership, <strong>blast radius</strong>,
-      architecture intent, drift, and policy. Not a separate SKU; built on the v1.0 foundation you can run today.
+      <strong>Product direction (after v1.0):</strong> PR-time verification of AI-generated changes
+      with deterministic graph evidence — ownership, blast radius, architecture intent, drift, and policy.
+      Built on the v1.0 decision-control plane (Engine + VS Code). Not a separate SKU today.
     </p>
     <p class="muted" style="margin-top: 16px; font-size: 0.95rem;">
-      <span class="roadmap-status roadmap-status--available">v1.0 ships now</span>
-      <a href="/features.html" style="color: var(--color-action); margin-left: 8px;">See what is available today →</a>
+      <span class="roadmap-status roadmap-status--pilot">v1.0 · end of August 2026</span>
+      <a href="/features.html" style="color: var(--color-action); margin-left: 8px;">See what ships in v1.0 →</a>
     </p>
     <div class="cta" style="margin-top: 24px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-      <a class="btn btn-primary" href="/request-demo.html">Book a Demo</a>
-      <a class="btn btn-secondary" href="/#verification-engine">See PR verification</a>
+      <a class="btn btn-primary" href="/features.html">v1.0 features</a>
+      <a class="btn btn-secondary" href="/roadmap.html#verification-engine">Roadmap timing</a>
     </div>
   </div>
 </header>
 
 <section class="section">
   <div class="container container-narrow">
-    <h2 class="section-title">What you buy (target outcome)</h2>
-    <p class="muted">One outcome when the Verification Engine is fully delivered — not five separate products today.</p>
+    <h2 class="section-title">Target outcome (roadmap)</h2>
+    <p class="muted">One outcome when the Verification Engine is fully delivered — not five separate products in the August GA package.</p>
     <div class="card card--highlight" style="text-align: center; padding: 32px;">
       <p style="margin: 0 0 8px; font-size: 1.25rem; font-weight: 600; color: var(--text-primary);">
         Verify every change before it ships
@@ -37,28 +37,33 @@ pageCss: product.css
         Policy checks &middot; ownership resolution &middot; blast radius &middot; architecture validation
         &middot; drift detection &middot; agent governance &middot; audit trail
       </p>
+      <p class="mono" style="margin: 16px 0 0; font-size: 0.8rem; color: var(--text-tertiary);">
+        Directional — gated after v1.0 · see roadmap
+      </p>
     </div>
   </div>
 </section>
 
 <section class="section section--surface">
   <div class="container">
-    <h2 class="section-title">Powered by</h2>
-    <p class="muted">These capabilities exist to deliver the verification promise — not as standalone SKUs.</p>
+    <h2 class="section-title">Powered by (planned)</h2>
+    <p class="muted">These capabilities exist to deliver the verification promise — labeled roadmap, not August GA.</p>
     {% include "powered-by.html" %}
   </div>
 </section>
 
 <section class="section">
   <div class="container container-narrow">
-    <h2 class="section-title">Under the hood</h2>
+    <h2 class="section-title">Under the hood (vision)</h2>
     <p class="muted" style="margin-bottom: 24px;">
-      The Engineering Reality Graph reconstructs ownership, dependencies, architecture intent,
+      The Engineering Reality Graph direction reconstructs ownership, dependencies, architecture intent,
       deployment context, and policy into one queryable source of truth. Deterministic first;
-      AI narrates with fabric citations — never overrides graph truth without human confirmation.
+      AI narrates with citations — never overrides graph truth without human confirmation.
+      <strong>v1.0</strong> ships indexed workspace evidence, Findings Store lookup, and IDE gates —
+      not the full graph product below.
     </p>
     <div class="diagram-box">
-      <div class="node">Engineering Reality Graph</div>
+      <div class="node">Engineering Reality Graph <span class="roadmap-status roadmap-status--planned">Roadmap</span></div>
       <div class="edge">├── ownership graph</div>
       <div class="edge">├── dependency / blast radius graph</div>
       <div class="edge">├── architecture intent (ADRs, decisions)</div>
@@ -71,7 +76,7 @@ pageCss: product.css
 <section class="section section--surface">
   <div class="container container-narrow split">
     <div>
-      <h2>Deterministic verification</h2>
+      <h2>Deterministic verification <span class="roadmap-status roadmap-status--planned">Roadmap</span></h2>
       <ul class="check-list">
         <li>Blast radius — graph traversal only</li>
         <li>Drift — graph vs contract/convention</li>
@@ -80,17 +85,16 @@ pageCss: product.css
       </ul>
     </div>
     <div>
-      <h2>AI-assisted, not AI-decided</h2>
+      <h2>What ships first (v1.0)</h2>
       <ul class="check-list">
-        <li>Chat cites graph evidence on repo facts (roadmap: fabric citations)</li>
-        <li>Agents use MCP read tools under RBAC (roadmap)</li>
-        <li>Proposals queue — no silent writes</li>
-        <li>Humans confirm material changes — Gate 1 &amp; 2 in v1.0 today</li>
+        <li>ContextMint Engine + VS Code extension</li>
+        <li>Context Lens + patch preview</li>
+        <li>Quality map / Findings Store</li>
+        <li>Local-first (+ optional shared-server pilot path)</li>
       </ul>
+      <a class="btn btn-primary" href="/features.html" style="margin-top: 16px;">Features in v1.0</a>
     </div>
   </div>
 </section>
-
-{% include "jargon-verification.html" %}
 
 {% include "cta-band.html" %}

@@ -7,10 +7,11 @@ description: ContextMint security posture — local-first default, optional BYOK
 <header class="page-hero">
   <div class="container">
     <div class="pill">TRUST CENTER</div>
-    <h1>Governance, auditability, and deployment you can defend</h1>
+    <h1>Local-first trust you can defend in a pilot</h1>
     <p class="lead">
-      Enterprise AI buyers need proof before APIs. Local-first architecture, deterministic verification,
-      RBAC for agents, and audit trails — the trust layer behind the Verification Engine.
+      Enterprise buyers need proof before APIs. Local-first architecture, human Gates 1 &amp; 2,
+      optional shared-server OIDC, and operator audit trails — the trust layer behind v1.0.
+      Blast-radius SKU and SOC 2 certification remain on the roadmap.
     </p>
   </div>
 </header>
@@ -26,10 +27,11 @@ description: ContextMint security posture — local-first default, optional BYOK
         </p>
       </div>
       <div class="card">
-        <h3 style="margin: 0 0 12px;">Deterministic verification</h3>
+        <h3 style="margin: 0 0 12px;">Human verification gates</h3>
         <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-          Blast radius, drift, and scorecard metrics are graph-computed — not LLM guesses.
-          AI assists narration; graph evidence is authoritative.
+          Context Lens before inference. Patch preview and apply gates before repo writes.
+          AI narrates; humans approve material changes. Graph-computed blast radius and drift SKUs
+          are <strong>roadmap</strong> — not the August GA package.
         </p>
       </div>
       <div class="card">
@@ -42,8 +44,10 @@ description: ContextMint security posture — local-first default, optional BYOK
       <div class="card">
         <h3 style="margin: 0 0 12px;">Audit trail</h3>
         <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-          Actions, fabric proposals, and acceptance stats logged for compliance review.
-          Export-ready for SOC 2 and internal security audits.
+          Operator actions and support-bundle exports for pilot and security reviews.
+          SOC 2 Type II certification and dedicated evidence collectors are on the
+          <a href="/roadmap.html#track-b" style="color: var(--color-action);">Track B roadmap</a> —
+          not claimed as achieved.
         </p>
       </div>
       <div class="card">
@@ -62,8 +66,8 @@ description: ContextMint security posture — local-first default, optional BYOK
   <div class="container container-narrow">
     <h2 class="section-title">Deployment models</h2>
     <p class="muted">
-      ContextMint supports two architectures. The <strong>default and GA-ready path</strong> is
-      local-first. Shared on-prem server mode is available for <strong>guided enterprise pilots</strong>
+      ContextMint supports two architectures. The <strong>default v1.0 path</strong> is
+      local-first. Shared on-prem server mode is available for <strong>guided regulated pilots</strong>
       with platform engineering support.
     </p>
     <div class="grid grid-2" style="margin-top: 24px;">
@@ -75,7 +79,7 @@ description: ContextMint security posture — local-first default, optional BYOK
           embeddings, and inference stay on the workstation — the path v1.0 is built for.
         </p>
         <p class="mono" style="margin: 0; font-size: 0.8rem; color: var(--text-tertiary);">
-          Ready now · sovereign · no shared server required
+          Ready for pilot · sovereign · no shared server required
         </p>
       </div>
       <div class="card">
@@ -115,7 +119,7 @@ description: ContextMint security posture — local-first default, optional BYOK
         <code>C:\dev\repo</code>) at a remote corporate server URL does <strong>not</strong> work
         out of the box — the server cannot read paths that exist only on the developer machine.
         Platform teams must align repo location, mounts, or Remote SSH before indexing. We help
-        design partners validate this during the 30-day evaluation pilot (see
+        We help teams validate this during the design partner evaluation pilot (see
         <a href="/design-partners.html" style="color: var(--color-action);">Design Partners</a>).
       </p>
     </div>
@@ -126,20 +130,18 @@ description: ContextMint security posture — local-first default, optional BYOK
   <div class="container container-narrow">
     <h2 class="section-title">Enterprise controls</h2>
     <ul class="check-list">
-      <li>SSO via OIDC (Microsoft Entra ID, Okta, Keycloak, and other compliant IdPs)</li>
-      <li>Role-based access — <span class="mono">viewer</span>, <span class="mono">dev</span>, <span class="mono">admin</span> per workspace</li>
-      <li>Self-hosted API server — Docker Compose or Helm on customer infrastructure</li>
-      <li>Air-gapped Helm chart for regulated environments (pilot packaging with runbooks)</li>
+      <li>SSO via OIDC on the shared-server pilot path (Microsoft Entra ID, Okta, Keycloak, and other compliant IdPs)</li>
+      <li>Role-based access — <span class="mono">viewer</span>, <span class="mono">dev</span>, <span class="mono">admin</span> per workspace (shared-server path)</li>
+      <li>Self-hosted API server — Docker Compose or Helm for regulated pilots</li>
       <li>Optional BYOK cloud routing with egress redaction (off by default)</li>
-      <li>Audit log export and rate limiting (Redis-backed on team server)</li>
-      <li>Tenant isolation with <span class="mono">tenant_id</span> / <span class="mono">owner_id</span> on graph entities</li>
-      <li>Evidence ledger with <span class="mono">verification_status</span> per fabric edge</li>
+      <li>Operator audit / support-bundle export; Redis-backed rate limiting on team server</li>
+      <li>Air-gapped Helm, tenant isolation, and fabric evidence ledger — <em>roadmap / packaging</em></li>
     </ul>
     <p class="muted" style="margin-top: 24px; margin-bottom: 0;">
       SOC 2 Type II and formal compliance packaging are on the
-      <a href="/roadmap.html#verification-engine" style="color: var(--color-action);">Enterprise roadmap</a>.
-      Shared-server
-      auth hardening and turnkey path alignment are active design-partner workstreams.
+      <a href="/roadmap.html#track-b" style="color: var(--color-action);">Track B roadmap</a>.
+      Shared-server auth hardening and path alignment are part of the regulated pilot path —
+      design partner intake opens by end of July 2026.
     </p>
   </div>
 </section>
