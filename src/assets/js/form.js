@@ -54,6 +54,7 @@
         "Role: " + fieldValue("role"),
         "Challenge: " + fieldValue("challenge"),
         "Team size: " + fieldValue("team-size"),
+        "Roadmap interest: " + fieldValue("roadmap-interest"),
         "",
         fieldValue("message"),
       ].join("\n")

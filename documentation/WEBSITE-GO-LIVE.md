@@ -32,14 +32,14 @@ Product code (backend + VS Code extension) is maintained separately — not requ
 {
   "founderName": "Your Actual Name",
   "founderTitle": "Founder & CEO",
-  "contactEmail": "hello@contextmint.ai",
+  "contactEmail": "anis@contextmint.ai",
   "formspreeFormId": "your_formspree_id"
 }
 ```
 
 1. **Formspree:** [formspree.io](https://formspree.io) → create form → copy ID from `https://formspree.io/f/XXXXXXXX`  
 2. Leave `formspreeFormId` empty to use **mailto fallback** until Formspree is set up.  
-3. Ensure `hello@contextmint.ai` receives mail.
+3. Ensure `anis@contextmint.ai` receives mail.
 
 ---
 

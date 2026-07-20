@@ -186,7 +186,7 @@ export const FAQ_KEYWORD_OVERRIDES = {
       "waitlist",
       "apply",
       "intake paused",
-      "july 2026",
+      "september 2026",
       "pricing",
       "cost",
       "how much",

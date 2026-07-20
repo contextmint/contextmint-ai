@@ -26,7 +26,7 @@ You are building a **floating help widget** on the static marketing site [contex
 | 5 | Open PR; request **§11** copy review from site owner before merge |
 | 6 | **Do not** implement **§14** (Tier 3 / GPT) in v1 |
 
-**Contact for copy/security questions:** `hello@contextmint.ai` (see `src/_data/site.json`).
+**Contact for copy/security questions:** `anis@contextmint.ai` (see `src/_data/site.json`).
 
 ---
 
@@ -969,7 +969,7 @@ Tier 3 ONLY: optional rephrase of Tier 2 context via Cloudflare Worker
 
 | Change | FAQ summary |
 |--------|-------------|
-| **P0** | Early access — intake **paused until end of July 2026**; forms reference-only; Getting started + GitHub issues available now |
+| **P0** | Early access — intake **paused until start of September 2026**; forms reference-only; Getting started + GitHub issues available now |
 | **P1 added** | Ask, Plan, and Agent modes |
 | **P1 added** | Patch preview (gate 2) |
 | **P1 added** | Quality map / Findings Store |
@@ -1009,7 +1009,7 @@ Map FAQ `id` (from slugified `<summary>`) to **extra keywords**. Auto-keywords f
 | What is ARGUS? | `what-is-argus` | argus, visual audit, wcag |
 | What does the “30-day” design partner pilot mean? | `what-does-the-30-day-design-partner-pilot-mean` | pilot, 30 day, design partner |
 | What ships in v1.0 vs later roadmap? | `what-ships-in-v1-0-vs-later-roadmap` | roadmap, v2, track b, verification engine, features |
-| How do I get early access or join as a design partner? | `how-do-i-get-early-access-or-join-as-a-design-partner` | demo, waitlist, apply, intake paused, july 2026 |
+| How do I get early access or join as a design partner? | `how-do-i-get-early-access-or-join-as-a-design-partner` | demo, waitlist, apply, intake paused, september 2026 |
 | Where do I report bugs or get help? | `where-do-i-report-bugs-or-get-help` | support, bug, github issues |
 
 Implement overrides in `scripts/site-guide-faq-keywords.mjs`.

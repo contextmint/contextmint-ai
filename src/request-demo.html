@@ -1,7 +1,7 @@
 ---
 layout: base.html
 title: Book a Demo | ContextMint
-description: ContextMint live demos open by end of July 2026. Getting started and GitHub issues are available now.
+description: Book a ContextMint live demo. Discuss AI governance challenges with the team. Getting started and GitHub issues are also available.
 pageCss: product.css
 ---
 
@@ -10,8 +10,8 @@ pageCss: product.css
     <div class="pill">DEMO</div>
     <h1>Discuss your AI governance challenges</h1>
     <p class="lead">
-      Buyers care about outcomes — not architecture reviews. Live demo bookings reopen
-      <strong>by end of July 2026</strong> while we finish v1.0 pilot readiness. Until then, see
+      Buyers care about outcomes — not architecture reviews. Tell us about your stack and constraints;
+      we will schedule a focused walkthrough. Prefer to try first? See
       <a href="/getting-started.html" style="color: var(--color-action);">getting started</a>
       for local-first install or
       <a href="{{ site.issuesUrl }}" style="color: var(--color-action);">GitHub issues</a>
@@ -22,105 +22,84 @@ pageCss: product.css
 
 <section class="section">
   <div class="container container-narrow">
-    <div class="notice-banner notice-banner--planned" role="status">
-      <span class="roadmap-status roadmap-status--planned">Opens end of July 2026</span>
-      <p style="margin: 10px 0 0;">
-        <strong>Demo form paused.</strong>
-        We are not scheduling live walkthroughs yet. The form below is visible for reference only —
-        submissions are disabled until <strong>end of July 2026</strong>.
-        Until then, use
-        <a href="/getting-started.html" style="color: var(--color-action);">Getting started</a>
-        or
-        <a href="{{ site.issuesUrl }}" style="color: var(--color-action);">GitHub issues</a>.
-      </p>
-    </div>
-
-    <div class="demo-form-shell demo-form-shell--paused">
-      <div class="demo-form-pause-overlay" role="presentation">
-        <p class="demo-form-pause-overlay__title">Not accepting demo requests yet</p>
-        <p class="demo-form-pause-overlay__body">
-          Available <strong>by end of July 2026</strong>.
+    <form
+      id="demo-form"
+      class="form card"
+      novalidate
+      data-formspree-id="{{ site.formspreeFormId }}"
+      data-contact-email="{{ site.contactEmail }}"
+      data-email-visible="{% if site.emailVisible %}true{% else %}false{% endif %}"
+      data-issues-url="{{ site.issuesUrl }}"
+    >
+      <div class="form-fields">
+        <div class="form-group">
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="name" required autocomplete="name" />
+        </div>
+        <div class="form-group">
+          <label for="email">Work email</label>
+          <input type="email" id="email" name="email" required autocomplete="email" />
+        </div>
+        <div class="form-group">
+          <label for="company">Company</label>
+          <input type="text" id="company" name="company" required autocomplete="organization" />
+        </div>
+        <div class="form-group">
+          <label for="role">Role</label>
+          <select id="role" name="role" required>
+            <option value="">Select…</option>
+            <option value="cto">CTO / VP Engineering</option>
+            <option value="platform">Platform / DevOps</option>
+            <option value="security">Security / Compliance</option>
+            <option value="staff">Staff Engineer / Architect</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="challenge">Primary governance challenge</label>
+          <select id="challenge" name="challenge" required>
+            <option value="">Select…</option>
+            <option value="ai-prs">AI-generated PR review &amp; verification</option>
+            <option value="agents">MCP / agent tool governance</option>
+            <option value="compliance">Audit trail &amp; compliance evidence</option>
+            <option value="velocity">Review bottleneck at AI velocity</option>
+            <option value="design-partner">Design partner / early access</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="team-size">Engineering team size</label>
+          <select id="team-size" name="team-size" required>
+            <option value="">Select…</option>
+            <option value="1-10">1–10</option>
+            <option value="11-50">11–50</option>
+            <option value="51-200">51–200</option>
+            <option value="200+">200+</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Anything else we should know?</label>
+          <textarea id="message" name="message" placeholder="Optional context for the conversation…"></textarea>
+        </div>
+        <p class="form-inline-error" hidden></p>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">
+          Request a demo
+        </button>
+        <p class="mono text-center" style="margin-top: 16px; font-size: 0.75rem; color: var(--text-tertiary);">
+          Submissions go to {{ site.contactEmail }}. We aim to reply within one business day.
         </p>
-        <a class="btn btn-primary" href="/getting-started.html">Getting started</a>
       </div>
-
-      <form
-        id="demo-form"
-        class="form card"
-        novalidate
-        inert
-        data-formspree-id="{{ site.formspreeFormId }}"
-        data-contact-email="{{ site.contactEmail }}"
-        data-email-visible="{% if site.emailVisible %}true{% else %}false{% endif %}"
-        data-issues-url="{{ site.issuesUrl }}"
-      >
-        <div class="form-fields">
-          <div class="form-group">
-            <label for="name">Full name</label>
-            <input type="text" id="name" name="name" disabled autocomplete="name" tabindex="-1" />
-          </div>
-          <div class="form-group">
-            <label for="email">Work email</label>
-            <input type="email" id="email" name="email" disabled autocomplete="email" tabindex="-1" />
-          </div>
-          <div class="form-group">
-            <label for="company">Company</label>
-            <input type="text" id="company" name="company" disabled autocomplete="organization" tabindex="-1" />
-          </div>
-          <div class="form-group">
-            <label for="role">Role</label>
-            <select id="role" name="role" disabled tabindex="-1">
-              <option value="">Select…</option>
-              <option value="cto">CTO / VP Engineering</option>
-              <option value="platform">Platform / DevOps</option>
-              <option value="security">Security / Compliance</option>
-              <option value="staff">Staff Engineer / Architect</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="challenge">Primary governance challenge</label>
-            <select id="challenge" name="challenge" disabled tabindex="-1">
-              <option value="">Select…</option>
-              <option value="ai-prs">AI-generated PR review &amp; verification</option>
-              <option value="agents">MCP / agent tool governance</option>
-              <option value="compliance">Audit trail &amp; compliance evidence</option>
-              <option value="velocity">Review bottleneck at AI velocity</option>
-              <option value="design-partner">Design partner / early access</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="team-size">Engineering team size</label>
-            <select id="team-size" name="team-size" disabled tabindex="-1">
-              <option value="">Select…</option>
-              <option value="1-10">1–10</option>
-              <option value="11-50">11–50</option>
-              <option value="51-200">51–200</option>
-              <option value="200+">200+</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="message">Anything else we should know?</label>
-            <textarea id="message" name="message" disabled placeholder="Optional context for the conversation…" tabindex="-1"></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary" style="width: 100%;" disabled tabindex="-1">
-            Submit (opens end of July 2026)
-          </button>
-          <p class="mono text-center" style="margin-top: 16px; font-size: 0.75rem; color: var(--text-tertiary);">
-            Form paused — demo bookings reopen by end of July 2026.
-          </p>
-        </div>
-        <div class="form-success">
-          <strong>Thank you — we will be in touch.</strong>
-          <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">
-            A member of our team will reach out to discuss your governance challenges.
-          </p>
-        </div>
-      </form>
-    </div>
+      <div class="form-success">
+        <strong>Thank you — we will be in touch.</strong>
+        <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">
+          A member of our team will reach out to discuss your governance challenges.
+        </p>
+      </div>
+    </form>
 
     <p class="muted text-center" style="margin-top: 24px; font-size: 0.9rem;">
-      Questions now?
+      Prefer design partner details?
+      <a href="/design-partners.html" style="color: var(--color-action);">Design Partners</a>
+      ·
       <a href="/getting-started.html" style="color: var(--color-action);">Getting started</a>
       ·
       <a href="{{ site.issuesUrl }}" style="color: var(--color-action);">GitHub issues</a>
