@@ -5,10 +5,18 @@
 | `favicon.svg` | Browser tab icon (dark tile + leaf) |
 | `favicon-32.png` / `favicon-192.png` | PNG favicon fallbacks from `mark-dark.png` |
 | `apple-touch-icon.png` | iOS / PWA touch icon |
-| `mark.svg` | Transparent leaf for nav / footer lockups |
-| `mark-dark.png` | Approved dark app icon (source) |
+| `mark.svg` | Transparent leaf for nav / footer / Engine chrome |
+| `mark-dark.png` | Approved dark app icon (source for Tauri + Marketplace) |
 | `mark-light.png` | Approved light app icon |
 | `mark-glow.png` | Marketing / hero accent |
 | `logo-lockup.png` | Full leaf + ContextMint lockup (light backgrounds) |
+
+## Product sync
+
+Regenerate VS Code media icons + Engine brand copies + Tauri icon set:
+
+```bash
+python scripts/sync_brand_icons.py
+```
 
 Twin overlapping-leaf concept is intentionally not shipped.
