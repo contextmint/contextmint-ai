@@ -83,15 +83,17 @@ description: ContextMint security posture — local-first default, optional BYOK
         </p>
       </div>
       <div class="card">
-        <h3 style="margin: 0 0 8px;">Shared on-prem API server (pilot)</h3>
+        <h3 style="margin: 0 0 8px;">Sovereign on-prem API (pilot)</h3>
         <p style="margin: 0 0 12px; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-          A customer-hosted <strong>API server stack</strong> (Docker Compose or Helm) runs on your
-          infrastructure with Ollama, Chroma, and Redis. Developers point the extension at
-          <code>ContextMint.serverUrl</code> and authenticate with OIDC. This is <em>not</em> the
-          Engine desktop app — team deploy uses the server container, not the tray operator console.
+          A customer-hosted <strong>API server stack</strong> (Docker Compose) with
+          <strong>OpenAI-compatible inference</strong> (typically <strong>vLLM</strong>), Chroma,
+          Redis, and OIDC. Developers point the extension at
+          <code>ContextMint.serverUrl</code> — this is <em>not</em> the Engine desktop tray, and
+          it is <em>not</em> “enterprise = Ollama on a shared box” as the only story.
         </p>
         <p class="mono" style="margin: 0; font-size: 0.8rem; color: var(--text-tertiary);">
-          Design-partner / pilot · ops setup required
+          Design-partner / pilot · ops setup required ·
+          <a href="/docs/sovereign-server.html" style="color: var(--color-link);">Sovereign server guide</a>
         </p>
       </div>
     </div>
@@ -100,7 +102,7 @@ description: ContextMint security posture — local-first default, optional BYOK
 
 <section class="section">
   <div class="container container-narrow">
-    <h2 class="section-title">Shared server — what works today</h2>
+    <h2 class="section-title">Sovereign server — what works today</h2>
     <p class="muted">
       The server indexes <strong>filesystem paths it can read</strong>. The extension registers the
       open workspace path with the server. These patterns work for on-prem pilots:
@@ -152,6 +154,7 @@ description: ContextMint security posture — local-first default, optional BYOK
       Need a security questionnaire or architecture review for local-first vs shared-server deployment?
     </p>
     <a class="btn btn-primary" href="/request-demo.html">Request security briefing</a>
+    <a class="btn btn-secondary" href="/docs/sovereign-server.html" style="margin-left: 12px;">Sovereign server guide</a>
     <a class="btn btn-secondary" href="/getting-started.html" style="margin-left: 12px;">Getting started</a>
     <p class="muted" style="margin-top: 20px; margin-bottom: 0;">
       Website accessibility:

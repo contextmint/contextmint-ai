@@ -12,7 +12,9 @@ pageCss: product.css
     <p class="lead">
       ContextMint ships as a VS Code extension plus a backend. The <strong>default path</strong> is
       local-first: Engine on your machine manages the server and Ollama; the extension connects over
-      loopback. Enterprise teams can run a <strong>shared on-prem API server</strong> instead — see
+      loopback. Enterprise teams can run a <strong>sovereign on-prem API</strong> (OpenAI-compat / vLLM + OIDC)
+      instead — see
+      <a href="/docs/sovereign-server.html" style="color: var(--color-link);">sovereign server</a> ·
       <a href="/trust.html" style="color: var(--color-link);">deployment models</a>.
       If anything fails during install, open
       <a href="/docs/installation.html#installation-support" style="color: var(--color-link);">installation support</a> first.
@@ -32,11 +34,12 @@ pageCss: product.css
         </p>
       </div>
       <div class="card">
-        <strong style="color: var(--color-link);">Shared on-prem server (enterprise pilot)</strong>
+        <strong style="color: var(--color-link);">Sovereign on-prem API (enterprise pilot)</strong>
         <p class="muted" style="margin: 8px 0 0; font-size: 0.9rem;">
-          Platform team deploys Docker/Helm API stack. Extension sets
+          Platform team deploys API + OpenAI-compat inference (vLLM). Extension sets
           <code>ContextMint.serverUrl</code> + <code>enterpriseMode</code>. Requires path alignment
-          (Remote SSH or mounted repo). <a href="/trust.html">Full guide →</a>
+          (Remote SSH or mounted repo).
+          <a href="/docs/sovereign-server.html">Sovereign guide →</a>
         </p>
       </div>
     </div>
@@ -147,21 +150,25 @@ pageCss: product.css
 
 <section class="section">
   <div class="container container-narrow">
-    <h2 class="section-title">Enterprise — shared on-prem server (pilot)</h2>
+    <h2 class="section-title">Enterprise — sovereign on-prem API (pilot)</h2>
     <p class="muted">
       For regulated teams sharing one GPU host or monorepo index. Not a substitute for Engine on
-      every laptop — this is a <strong>platform-operated API server</strong> with guided setup.
+      every laptop — this is a <strong>platform-operated API server</strong> with
+      <strong>OpenAI-compatible inference</strong> (typically vLLM). Do not equate “enterprise” with
+      “Ollama tray on a shared box only.”
     </p>
     <ol class="steps-list" style="margin-top: 16px;">
-      <li>Platform team deploys the API stack (Docker Compose or Helm) on customer infrastructure with Ollama, Chroma, and Redis.</li>
+      <li>Platform team deploys the API stack (Docker Compose) with Chroma, Redis, and an OpenAI-compatible inference URL (vLLM overlay common).</li>
       <li>Mount or clone the repository on the server host so indexing paths match what developers open in VS Code (Remote SSH is the common pattern).</li>
       <li>Enable server auth (<code>AUTH__ENABLED</code>), configure OIDC issuer/audience, and domain allowlists.</li>
       <li>Each developer: install the extension only, set <code>ContextMint.serverUrl</code> to the team HTTPS endpoint, enable <code>ContextMint.enterpriseMode</code>, and set <code>ContextMint.oidcProviderId</code> (e.g. <code>microsoft</code>).</li>
       <li>Optional: configure <code>ContextMint.localFallbackUrl</code> if chat should fall back to a local engine when the team server is unreachable.</li>
     </ol>
     <p class="muted" style="margin-top: 16px; margin-bottom: 0;">
-      Contact us for a design-partner pilot — we provide architecture review, path strategy, and
-      security questionnaire support. Details:
+      Full platform guide:
+      <a href="/docs/sovereign-server.html" style="color: var(--color-link);">Sovereign server deployment</a>.
+      Contact us for a design-partner pilot — architecture review, path strategy, and
+      security questionnaire support:
       <a href="/trust.html" style="color: var(--color-link);">Trust center</a> ·
       <a href="/design-partners.html" style="color: var(--color-link);">Design partners</a>.
     </p>

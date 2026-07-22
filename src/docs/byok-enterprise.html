@@ -293,7 +293,7 @@ pageCss: product.css
 
 <h3>Enterprise rollout checklist</h3>
 <ol>
-  <li><strong>Platform team</strong> — deploy API + Ollama + Chroma (+ Redis if used) on internal infrastructure.</li>
+  <li><strong>Platform team</strong> — deploy API + OpenAI-compatible inference (vLLM common) + Chroma (+ Redis if used) on internal infrastructure. See <a href="/docs/sovereign-server.html">Sovereign server deployment</a>.</li>
   <li><strong>Platform team</strong> — enable <code>auth.enabled</code>, set <code>auth.mode</code> to <code>oidc</code>, configure issuer/audience, set <code>AUTH__JWT_SECRET</code> in host <code>.env</code>.</li>
   <li><strong>Platform team</strong> — align repo paths (clone on server, NFS mount, or Remote SSH).</li>
   <li><strong>Each developer</strong> — set <code>contextmint.serverUrl</code> to the team HTTPS base URL.</li>

@@ -55,9 +55,11 @@ pageCss: product.css
   files you are editing. You do not configure this manually in normal use.
 </p>
 
-<h2>Shared on-prem server (enterprise pilot)</h2>
+<h2>Sovereign on-prem server (enterprise pilot)</h2>
 <p>
-  Platform teams may deploy the API stack on an internal host. Developers point the extension at that URL:
+  Platform teams may deploy the API stack on an internal host with
+  <strong>OpenAI-compatible inference</strong> (typically vLLM) — not only “shared Ollama.”
+  Developers point the extension at that URL:
 </p>
 <ul>
   <li><code>ContextMint.serverUrl</code> — team API base (HTTPS)</li>
@@ -66,7 +68,9 @@ pageCss: product.css
 </ul>
 <p>
   The extension does <strong>not</strong> start Engine in this mode. Repo paths must align (Remote SSH or
-  mounted volumes). Full detail: <a href="/docs/byok-enterprise.html">BYOK &amp; enterprise</a> and
+  mounted volumes). Full detail:
+  <a href="/docs/sovereign-server.html">Sovereign server deployment</a>,
+  <a href="/docs/byok-enterprise.html">BYOK &amp; enterprise</a>, and
   <a href="/trust.html">Trust &amp; Security</a>.
 </p>
 
