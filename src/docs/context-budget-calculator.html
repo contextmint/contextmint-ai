@@ -144,6 +144,21 @@ pageCss: product.css
 
   <h3 class="settings-usage-subhead">Example overlay</h3>
   <pre class="mono budget-calc-snippet" id="budget-yaml-snippet"></pre>
+
+  <section class="settings-section budget-engine-live" id="budget-engine-live" hidden aria-labelledby="budget-engine-live-title">
+    <h2 id="budget-engine-live-title">Live apply (Engine)</h2>
+    <p class="muted">
+      Connected to <code id="budget-engine-base-label"></code>. Writes
+      <code>~/.contextmint/server.defaults.yaml</code> via loopback API — server restart required.
+    </p>
+    <div id="budget-engine-status" class="budget-calc-impact budget-calc-impact--info" role="status" hidden></div>
+    <div class="budget-calc-presets budget-engine-live-actions">
+      <button type="button" id="budget-engine-preview" class="budget-calc-preset">Preview impact</button>
+      <button type="button" id="budget-engine-apply" class="budget-calc-preset">Apply to server</button>
+      <button type="button" id="budget-engine-restart" class="budget-calc-preset">Restart server</button>
+    </div>
+    <pre class="mono budget-calc-snippet" id="budget-engine-preview-out" hidden></pre>
+  </section>
 </section>
 
 <script id="context-budget-profile-data" type="application/json">
@@ -847,6 +862,162 @@ pageCss: product.css
   syncTokenInputs(Number(numberInput ? numberInput.value : profile.max_context_tokens || 10000));
   rerender();
   renderRatios();
+
+  function parseLoopbackEngineBase() {
+    var params = new URLSearchParams(window.location.search);
+    var raw = (params.get("engine") || "").trim();
+    if (!raw) return null;
+    var href = raw.indexOf("://") === -1 ? "http://" + raw : raw;
+    try {
+      var u = new URL(href);
+      var h = u.hostname.replace(/^\[|\]$/g, "").toLowerCase();
+      if (h !== "localhost" && h !== "127.0.0.1" && h !== "::1") return null;
+      return u.origin;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function setEngineStatus(text, severity) {
+    var el = document.getElementById("budget-engine-status");
+    if (!el) return;
+    el.hidden = !text;
+    el.textContent = text || "";
+    el.className = "budget-calc-impact budget-calc-impact--" + (severity || "info");
+  }
+
+  async function engineFetch(path, init) {
+    var base = parseLoopbackEngineBase();
+    if (!base) throw new Error("engine loopback URL missing");
+    var resp = await fetch(base + path, init);
+    var bodyText = await resp.text();
+    var data = null;
+    try {
+      data = bodyText ? JSON.parse(bodyText) : null;
+    } catch (e) {
+      data = null;
+    }
+    if (!resp.ok) {
+      var detail = data && data.detail ? data.detail : bodyText || "HTTP " + resp.status;
+      throw new Error(typeof detail === "string" ? detail : JSON.stringify(detail));
+    }
+    return data;
+  }
+
+  function initEngineLiveApply(engineBase) {
+    var panel = document.getElementById("budget-engine-live");
+    var label = document.getElementById("budget-engine-base-label");
+    if (!panel || !label) return;
+    panel.hidden = false;
+    label.textContent = engineBase;
+
+    engineFetch("/api/engine/context-budget")
+      .then(function (data) {
+        var running = data && data.running_rag_budget;
+        if (running) {
+          setEngineStatus(
+            "Running ship cap " +
+              running.effective_rag_cap.toLocaleString() +
+              " (bound by " +
+              running.bound_by +
+              "). Pending overlay changes require restart.",
+            "info",
+          );
+        }
+      })
+      .catch(function (err) {
+        setEngineStatus("Cannot reach API at " + engineBase + ": " + err.message, "warn");
+      });
+
+    document.getElementById("budget-engine-preview")?.addEventListener("click", function () {
+      var max = currentState().maxTokens;
+      var out = document.getElementById("budget-engine-preview-out");
+      setEngineStatus("Previewing…", "info");
+      engineFetch("/api/engine/context-budget/preview", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ max_context_tokens: max }),
+      })
+        .then(function (preview) {
+          if (out) {
+            out.hidden = false;
+            out.textContent = JSON.stringify(preview, null, 2);
+          }
+          var warnings = (preview && preview.warnings) || [];
+          var coGen = preview && preview.co_applied_max_gen_tokens;
+          var msg = "Preview for max_context_tokens=" + max.toLocaleString();
+          if (coGen != null) msg += "; Apply co-writes max_gen_tokens=" + Number(coGen).toLocaleString();
+          if (warnings.length) msg += ". " + warnings.join(" ");
+          setEngineStatus(msg, warnings.length ? "warn" : "ok");
+        })
+        .catch(function (err) {
+          if (out) out.hidden = true;
+          setEngineStatus("Preview failed: " + err.message, "warn");
+        });
+    });
+
+    document.getElementById("budget-engine-apply")?.addEventListener("click", function () {
+      var max = currentState().maxTokens;
+      var coMsg = "";
+      engineFetch("/api/engine/context-budget/preview", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ max_context_tokens: max }),
+      })
+        .then(function (preview) {
+          if (preview && preview.co_applied_max_gen_tokens != null) {
+            coMsg =
+              "\nAlso saves max_gen_tokens=" +
+              Number(preview.co_applied_max_gen_tokens).toLocaleString() +
+              ".";
+          }
+          if (
+            !window.confirm(
+              "Apply max_context_tokens=" +
+                max.toLocaleString() +
+                " to server overlay?" +
+                coMsg +
+                "\n\nServer restart is required before the new budget takes effect.",
+            )
+          ) {
+            return null;
+          }
+          return engineFetch("/api/engine/context-budget", {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ max_context_tokens: max }),
+          });
+        })
+        .then(function (result) {
+          if (!result) return;
+          setEngineStatus(
+            "Saved to " +
+              (result.overlay_path || "~/.contextmint/server.defaults.yaml") +
+              ". Restart server to apply.",
+            "ok",
+          );
+        })
+        .catch(function (err) {
+          setEngineStatus("Apply failed: " + err.message, "warn");
+        });
+    });
+
+    document.getElementById("budget-engine-restart")?.addEventListener("click", function () {
+      setEngineStatus("Requesting server restart…", "info");
+      engineFetch("/api/engine/server/restart", { method: "POST" })
+        .then(function () {
+          setEngineStatus("Server restart requested — check Engine Logs for progress.", "ok");
+        })
+        .catch(function (err) {
+          setEngineStatus("Restart failed: " + err.message, "warn");
+        });
+    });
+  }
+
+  var engineBase = parseLoopbackEngineBase();
+  if (engineBase) {
+    initEngineLiveApply(engineBase);
+  }
 })();
 </script>
 
@@ -1044,5 +1215,15 @@ pageCss: product.css
   .budget-calc-impact--critical {
     border-left: 3px solid var(--color-danger);
     color: var(--text-primary);
+  }
+
+  .budget-engine-live {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .budget-engine-live-actions {
+    margin-top: 0.75rem;
   }
 </style>
