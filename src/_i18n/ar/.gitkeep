@@ -1,0 +1,4 @@
+# Arabic locale folder.
+# Presence activates /ar/… URLs and the language selector.
+# Add common.json + per-page packs (copy from ../en/) to serve Arabic.
+# Until those packs exist, /ar/… pages use full English (all-or-nothing fallback).

@@ -1,0 +1,17 @@
+{
+  "default": "en",
+  "locales": [
+    {
+      "code": "en",
+      "label": "English",
+      "nativeLabel": "English",
+      "dir": "ltr"
+    },
+    {
+      "code": "ar",
+      "label": "Arabic",
+      "nativeLabel": "العربية",
+      "dir": "rtl"
+    }
+  ]
+}

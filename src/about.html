@@ -6,11 +6,12 @@ description: ContextMint is a local-first AI decision-control plane — mission,
 
 <header class="page-hero">
   <div class="container">
-    <div class="pill">OUR MISSION</div>
-    <h1>Evidence before AI ships</h1>
+    <div class="pill">{{ i18nPageStrings.hero.pill }}</div>
+    <h1>{{ i18nPageStrings.hero.title }}</h1>
     <p class="lead">
-      ContextMint is a <strong>local-first AI decision-control plane</strong> for software teams —
-      so engineers see evidence before inference and approve changes before they apply.
+      {{ i18nPageStrings.hero.leadBefore }}
+      <strong>{{ i18nPageStrings.hero.leadStrong }}</strong>
+      {{ i18nPageStrings.hero.leadAfter }}
     </p>
   </div>
 </header>
@@ -18,24 +19,20 @@ description: ContextMint is a local-first AI decision-control plane — mission,
 <section class="section">
   <div class="container container-narrow split">
     <div>
-      <h2>The problem we solve</h2>
+      <h2>{{ i18nPageStrings.problem.title }}</h2>
+      <p>{{ i18nPageStrings.problem.p1 }}</p>
       <p>
-        AI can produce changes faster than organizations can review them with evidence. Knowledge is
-        fragmented across git, CI, docs, and ticketing. Reviewers merge with incomplete context.
-      </p>
-      <p>
-        ContextMint indexes the workspace, surfaces stored governance findings, and puts
-        <strong>human gates</strong> in front of inference and repo writes — on your infrastructure
-        by default.
+        {{ i18nPageStrings.problem.p2Before }}
+        <strong>{{ i18nPageStrings.problem.p2Strong }}</strong>
+        {{ i18nPageStrings.problem.p2After }}
       </p>
     </div>
     <div>
-      <h2>How we are different</h2>
+      <h2>{{ i18nPageStrings.different.title }}</h2>
       <ul>
-        <li><strong>Evidence first</strong> — Context Lens and citations before the model answers</li>
-        <li><strong>Local-first</strong> — code stays on your machine; privacy by architecture</li>
-        <li><strong>Human apply gates</strong> — patch preview; no silent auto-apply</li>
-        <li><strong>Agent-native (roadmap)</strong> — planned MCP tools; v1.0 uses IDE Gates 1 &amp; 2</li>
+        {% for item in i18nPageStrings.different.items %}
+        <li><strong>{{ item.strong }}</strong> {{ item.text }}</li>
+        {% endfor %}
       </ul>
     </div>
   </div>
@@ -43,43 +40,35 @@ description: ContextMint is a local-first AI decision-control plane — mission,
 
 <section class="section section--surface">
   <div class="container container-narrow">
-    <h2 class="section-title">Principles</h2>
+    <h2 class="section-title">{{ i18nPageStrings.principles.title }}</h2>
     <div class="grid grid-3">
+      {% for card in i18nPageStrings.principles.cards %}
       <div class="card text-center">
-        <strong style="color: var(--color-trust);">Truth over speed</strong>
-        <p class="mono" style="margin-top: 8px;">Human gates before inference and before apply.</p>
+        <strong{% if forloop.index == 1 %} style="color: var(--color-trust);"{% elsif forloop.index == 2 %} style="color: var(--color-link);"{% else %} style="color: var(--color-warning);"{% endif %}>{{ card.title }}</strong>
+        <p class="mono" style="margin-top: 8px;">{{ card.text }}</p>
       </div>
-      <div class="card text-center">
-        <strong style="color: var(--color-link);">Evidence over guesses</strong>
-        <p class="mono" style="margin-top: 8px;">Indexed excerpts and stored findings beat ungrounded chat.</p>
-      </div>
-      <div class="card text-center">
-        <strong style="color: var(--color-warning);">Governance by design</strong>
-        <p class="mono" style="margin-top: 8px;">Quality map, apply gates, and operator audit trails in v1.0.</p>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </section>
 
 <section class="section section--surface">
   <div class="container container-tight text-center">
-    <h2 class="section-title">Founder</h2>
+    <h2 class="section-title">{{ i18nPageStrings.founder.title }}</h2>
     <p class="muted" style="max-width: 42rem; margin: 0 auto 16px;">
       <strong>{{ site.founderName }}</strong> — {{ site.founderTitle }}, ContextMint<br />
-      Building local-first, governable AI for software teams.
+      {{ i18nPageStrings.founder.blurb }}
     </p>
-    <a class="btn btn-secondary" href="/design-partners.html">Design partner programme</a>
+    <a class="btn btn-secondary" href="{{ '/design-partners.html' | locale_path: localePrefix }}">{{ i18nPageStrings.founder.cta }}</a>
   </div>
 </section>
 
 <section class="section">
   <div class="container container-tight text-center">
-    <h2 class="section-title">The ContextMint platform</h2>
+    <h2 class="section-title">{{ i18nPageStrings.platform.title }}</h2>
     <p class="muted">
-      <strong>v1.0</strong> (end of August 2026) delivers ContextMint Engine and the VS Code extension —
-      evidence chat, quality map, Context Lens, and human apply gates.
-      DNA reports, blast-radius SKU, and PR-time Verification Engine checks are
-      <a href="/product/" style="color: var(--color-link);">roadmap</a>.
+      {{ i18nPageStrings.platform.beforeLink }}
+      <a href="{{ '/product/' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ i18nPageStrings.platform.linkText }}</a>{{ i18nPageStrings.platform.afterLink }}
     </p>
   </div>
 </section>

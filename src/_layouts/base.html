@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="{{ htmlLang }}" dir="{{ htmlDir }}" data-theme="dark" data-locale="{{ locale }}" data-locale-prefix="{{ localePrefix }}" data-i18n-fallback="{% if i18nBundle.fallback %}true{% else %}false{% endif %}">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,6 +16,20 @@
   {% endif %}
   <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
   <meta property="og:image" content="{{ site.url }}/assets/img/og-images/home.svg" />
+  <meta property="og:locale" content="{{ htmlLang }}" />
+
+  {% assign unlocalizedPath = page.url %}
+  {% if localePrefix != blank %}
+  {% assign unlocalizedPath = page.url | replace: localePrefix, "" %}
+  {% endif %}
+  {% for loc in i18n.locales %}
+  {% if loc.code == i18n.default %}
+  <link rel="alternate" hreflang="{{ loc.code }}" href="{{ site.url }}{{ unlocalizedPath }}" />
+  {% else %}
+  <link rel="alternate" hreflang="{{ loc.code }}" href="{{ site.url }}/{{ loc.code }}{{ unlocalizedPath }}" />
+  {% endif %}
+  {% endfor %}
+  <link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ unlocalizedPath }}" />
 
   <link rel="icon" href="/assets/img/logos/favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="/assets/img/logos/favicon-32.png" type="image/png" sizes="32x32" />
@@ -37,7 +51,7 @@
   {% endif %}
 </head>
 <body{% if site.announcement.enabled %} class="has-announcement"{% endif %}>
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a class="skip-link" href="#main-content">{{ i18nCommon.skipToContent }}</a>
   {% include "site-announcement.html" %}
   {% include "nav.html" %}
 
@@ -58,7 +72,7 @@
     hidden
     data-enabled="true"
     data-min-selection-length="{{ site.selectToSpeak.minSelectionLength }}"
-    data-lang="{{ site.selectToSpeak.lang }}"
+    data-lang="{% if htmlLang == 'ar' %}ar-AE{% else %}{{ site.selectToSpeak.lang }}{% endif %}"
     data-offset-x="{{ site.selectToSpeak.offsetX }}"
     data-offset-y="{{ site.selectToSpeak.offsetY }}"
     data-z-index="{{ site.selectToSpeak.zIndex }}"

@@ -2,7 +2,7 @@
   "generatedAt": "2026-07-22",
   "source": "config/contextmint.defaults.yaml",
   "overlayPath": "~/.contextmint/server.defaults.yaml",
-  "totalCount": 905,
+  "totalCount": 906,
   "planDefinition": {
     "planId": "api_registration_chain",
     "intent": "structural_lookup",
@@ -554,6 +554,26 @@
               "Requires server restart after overlay apply"
             ],
             "recommendation": "Keep 120s unless logs show preload timeouts; pair with runtime.ollama_ensure_model_loaded=true."
+          }
+        },
+        {
+          "id": "server.openapi_docs_enabled",
+          "default": "true",
+          "description": "Openapi Docs Enabled — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Openapi Docs Enabled — server tunable from contextmint.defaults.yaml.",
+            "whenDisable": "When false — disables or falls back for openapi docs enabled.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
           }
         },
         {

@@ -1,18 +1,18 @@
-{% if site.announcement.enabled %}
+﻿{% if site.announcement.enabled %}
 <aside
   class="site-announcement"
   id="site-announcement"
   data-announcement-id="{{ site.announcement.id }}"
   role="region"
-  aria-label="Site announcement"
+  aria-label="{{ i18nCommon.announcement.ariaLabel }}"
 >
   <div class="container site-announcement__inner">
     <p class="site-announcement__text">
-      <span class="site-announcement__label">{{ site.announcement.label }}</span>
-      {{ site.announcement.text }}
+      <span class="site-announcement__label">{{ i18nCommon.announcement.label }}</span>
+      {{ i18nCommon.announcement.text }}
       {% if site.announcement.ctaHref %}
-      <a class="site-announcement__cta" href="{{ site.announcement.ctaHref }}">
-        {{ site.announcement.ctaText | default: "Learn more" }} →
+      <a class="site-announcement__cta" href="{{ site.announcement.ctaHref | locale_path: localePrefix }}">
+        {{ i18nCommon.announcement.ctaText | default: i18nCommon.announcement.learnMore }} →
       </a>
       {% endif %}
     </p>
@@ -20,7 +20,7 @@
     <button
       type="button"
       class="site-announcement__dismiss"
-      aria-label="Dismiss announcement"
+      aria-label="{{ i18nCommon.announcement.dismiss }}"
     >
       <span aria-hidden="true">×</span>
     </button>

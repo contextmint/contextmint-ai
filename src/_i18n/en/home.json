@@ -1,0 +1,21 @@
+{
+  "title": "ContextMint | AI Writes Code. We Decide What Can Ship.",
+  "description": "ContextMint is a local-first AI decision-control plane — evidence before inference, human approval before repo changes. v1.0 ships end of August 2026.",
+  "hero": {
+    "titleLine1": "AI writes code.",
+    "titleLine2": "ContextMint decides what ships.",
+    "subBefore": "A",
+    "subStrong": "local-first AI decision-control plane",
+    "subAfter": "for software teams — not generic chat. Review retrieved evidence before the model answers. Approve patches before anything applies. Code stays on your infrastructure by default.",
+    "ctaPrimary": "Getting started",
+    "ctaSecondary": "What ships in v1.0",
+    "pill": "DECISION-CONTROL PLANE · LOCAL-FIRST · HUMAN OVERSIGHT"
+  },
+  "finalCta": {
+    "title": "Govern AI velocity without silent applies",
+    "line1": "The question is no longer whether AI writes your code.",
+    "line2": "It is whether humans see evidence before it ships.",
+    "demo": "Book a Demo",
+    "trust": "Trust & Security"
+  }
+}

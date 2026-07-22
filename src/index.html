@@ -17,19 +17,18 @@ pageJs: product-carousel.js
       alt=""
       decoding="async"
     />
-    <h1>AI writes code.<br />ContextMint decides what ships.</h1>
+    <h1>{{ i18nPageStrings.hero.titleLine1 }}<br />{{ i18nPageStrings.hero.titleLine2 }}</h1>
     <p class="sub">
-      A <strong>local-first AI decision-control plane</strong> for software teams — not generic chat.
-      Review retrieved evidence before the model answers. Approve patches before anything applies.
-      Code stays on your infrastructure by default.
+      {% if i18nPageStrings.hero.subBefore != blank %}{{ i18nPageStrings.hero.subBefore }} {% endif %}<strong>{{ i18nPageStrings.hero.subStrong }}</strong>
+      {{ i18nPageStrings.hero.subAfter }}
     </p>
 
     <div class="cta">
-      <a class="btn btn-primary" href="/getting-started.html">Getting started</a>
-      <a class="btn btn-secondary" href="/features.html">What ships in v1.0</a>
+      <a class="btn btn-primary" href="{{ '/getting-started.html' | locale_path: localePrefix }}">{{ i18nPageStrings.hero.ctaPrimary }}</a>
+      <a class="btn btn-secondary" href="{{ '/features.html' | locale_path: localePrefix }}">{{ i18nPageStrings.hero.ctaSecondary }}</a>
     </div>
 
-    <div class="pill">DECISION-CONTROL PLANE · LOCAL-FIRST · HUMAN OVERSIGHT</div>
+    <div class="pill">{{ i18nPageStrings.hero.pill }}</div>
   </div>
 </header>
 
@@ -251,14 +250,14 @@ pageJs: product-carousel.js
 <!-- FINAL CTA -->
 <section class="section">
   <div class="container text-center container-tight">
-    <h2 class="section-title">Govern AI velocity without silent applies</h2>
+    <h2 class="section-title">{{ i18nPageStrings.finalCta.title }}</h2>
     <p class="muted">
-      The question is no longer whether AI writes your code.<br />
-      It is whether humans see evidence before it ships.
+      {{ i18nPageStrings.finalCta.line1 }}<br />
+      {{ i18nPageStrings.finalCta.line2 }}
     </p>
     <div class="cta" style="justify-content: center;">
-      <a class="btn btn-primary btn-lg" href="/request-demo.html">Book a Demo</a>
-      <a class="btn btn-secondary btn-lg" href="/trust.html">Trust &amp; Security</a>
+      <a class="btn btn-primary btn-lg" href="{{ '/request-demo.html' | locale_path: localePrefix }}">{{ i18nPageStrings.finalCta.demo }}</a>
+      <a class="btn btn-secondary btn-lg" href="{{ '/trust.html' | locale_path: localePrefix }}">{{ i18nPageStrings.finalCta.trust }}</a>
     </div>
   </div>
 </section>

@@ -1,0 +1,18 @@
+{% assign localeCount = i18n.locales | size %}
+{% if localeCount > 1 %}
+<div class="lang-switcher">
+  <label class="sr-only" for="lang-switcher-{{ locale }}-{{ i18nPageId }}">{{ i18nCommon.language.label }}</label>
+  <select
+    id="lang-switcher-{{ locale }}-{{ i18nPageId }}"
+    class="lang-switcher__select"
+    data-lang-switcher
+    data-current-locale="{{ locale }}"
+    data-default-locale="{{ i18n.default }}"
+    aria-label="{{ i18nCommon.language.ariaLabel }}"
+  >
+    {% for loc in i18n.locales %}
+    <option value="{{ loc.code }}"{% if loc.code == locale %} selected{% endif %}>{{ loc.nativeLabel }}</option>
+    {% endfor %}
+  </select>
+</div>
+{% endif %}

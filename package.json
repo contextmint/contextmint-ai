@@ -9,9 +9,10 @@
     "index:pagefind": "npx pagefind --site _site",
     "test:site-guide": "node scripts/test-site-guide-matcher.mjs && node scripts/test-site-guide-copy.mjs",
     "test:a11y": "node scripts/test-a11y.mjs",
-    "build": "npm run gen:settings && npm run gen:site-guide && eleventy",
+    "build": "npm run clean && npm run gen:settings && npm run gen:site-guide && eleventy",
     "dev": "npm run gen:settings && npm run gen:site-guide && eleventy --serve",
-    "clean": "node -e \"require('fs').rmSync('_site',{recursive:true,force:true})\""
+    "clean": "node -e \"require('fs').rmSync('_site',{recursive:true,force:true})\"",
+    "gen:i18n-en-pages": "node scripts/gen-i18n-en-page-packs.mjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",

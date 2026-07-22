@@ -42,6 +42,8 @@
   initProductShots();
   initNavbar();
   initFaqDeepLink();
+  initLocalePrefixLinks();
+  initLanguageSwitcher();
 
   function initProductShots() {
     document.querySelectorAll(".product-shot__img").forEach(function (img) {
@@ -78,7 +80,9 @@
     function setOpen(isOpen) {
       navbar.classList.toggle("is-open", isOpen);
       toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
-      toggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+      var openLabel = toggle.getAttribute("data-i18n-open-menu") || "Open menu";
+      var closeLabel = toggle.getAttribute("data-i18n-close-menu") || "Close menu";
+      toggle.setAttribute("aria-label", isOpen ? closeLabel : openLabel);
     }
 
     function closeMenu(restoreFocus) {
@@ -90,7 +94,7 @@
 
     function getMenuFocusable() {
       return Array.prototype.slice
-        .call(menu.querySelectorAll("a, button"))
+        .call(menu.querySelectorAll("a, button, select"))
         .filter(function (el) {
           return !el.hasAttribute("disabled");
         });
@@ -141,6 +145,69 @@
         event.preventDefault();
         first.focus();
       }
+    });
+  }
+
+  function initLocalePrefixLinks() {
+    var prefix = document.documentElement.getAttribute("data-locale-prefix") || "";
+    if (!prefix) {
+      return;
+    }
+
+    document.querySelectorAll('a[href^="/"]').forEach(function (anchor) {
+      var href = anchor.getAttribute("href");
+      if (!href || href.startsWith("//")) {
+        return;
+      }
+      if (href === prefix || href === prefix + "/" || href.startsWith(prefix + "/")) {
+        return;
+      }
+      if (
+        href.startsWith("/assets/") ||
+        href.startsWith("/pagefind/") ||
+        href === "/404.html" ||
+        href.startsWith("/404.html")
+      ) {
+        return;
+      }
+      anchor.setAttribute("href", prefix + href);
+    });
+  }
+
+  function initLanguageSwitcher() {
+    var switchers = document.querySelectorAll("[data-lang-switcher]");
+    if (!switchers.length) {
+      return;
+    }
+
+    var defaultLocale = switchers[0].getAttribute("data-default-locale") || "en";
+
+    function pathForLocale(nextLocale) {
+      var current = window.location.pathname || "/";
+      var activePrefix = document.documentElement.getAttribute("data-locale-prefix") || "";
+      var unlocalized = current;
+      if (activePrefix && (current === activePrefix || current.indexOf(activePrefix + "/") === 0)) {
+        unlocalized = current.slice(activePrefix.length) || "/";
+      }
+      if (nextLocale === defaultLocale) {
+        return unlocalized;
+      }
+      if (unlocalized === "/") {
+        return "/" + nextLocale + "/";
+      }
+      return "/" + nextLocale + unlocalized;
+    }
+
+    switchers.forEach(function (select) {
+      select.addEventListener("change", function () {
+        var next = select.value;
+        try {
+          localStorage.setItem("contextmint-site-locale", next);
+        } catch (err) {
+          /* ignore */
+        }
+        window.location.assign(pathForLocale(next));
+      });
     });
   }
 

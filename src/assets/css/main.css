@@ -8,6 +8,7 @@
 
 :root,
 [data-theme="dark"] {
+  color-scheme: dark;
   --bg-canvas: #0a0e14;
   --bg-surface: #111820;
   --text-primary: #e8edf4;

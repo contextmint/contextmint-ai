@@ -1,6 +1,6 @@
-<nav class="navbar" aria-label="Main navigation">
+﻿<nav class="navbar" aria-label="{{ i18nCommon.nav.ariaLabel }}">
   <div class="container navbar__inner">
-    <a class="navbar__logo" href="/" aria-label="{{ site.name }} home">
+    <a class="navbar__logo" href="{{ '/' | locale_path: localePrefix }}" aria-label="{{ i18nCommon.nav.homeAria | i18n_token: '{{siteName}}', site.name }}">
       <img class="navbar__mark" src="/assets/img/logos/mark.svg" width="28" height="28" alt="" />
       <span class="navbar__wordmark">{{ site.name }}</span>
     </a>
@@ -10,7 +10,9 @@
       type="button"
       aria-expanded="false"
       aria-controls="navbar-menu"
-      aria-label="Open menu"
+      aria-label="{{ i18nCommon.nav.openMenu }}"
+      data-i18n-open-menu="{{ i18nCommon.nav.openMenu }}"
+      data-i18n-close-menu="{{ i18nCommon.nav.closeMenu }}"
     >
       <span class="navbar__toggle-bar"></span>
       <span class="navbar__toggle-bar"></span>
@@ -18,15 +20,16 @@
     </button>
 
     <div class="navbar__links" id="navbar-menu">
-      <a href="/product/">Product</a>
-      <a href="/docs/">Docs</a>
-      <a href="/support.html">Support</a>
-      <a href="/roadmap.html">Roadmap</a>
-      <a href="/solutions/">Use Cases</a>
-      <a href="/design-partners.html">Design Partners</a>
-      <a href="/trust.html">Trust</a>
-      <a href="/developers/">Developers</a>
-      <a class="btn btn-primary btn-sm" href="/request-demo.html">Demo</a>
+      <a href="{{ '/product/' | locale_path: localePrefix }}">{{ i18nCommon.nav.product }}</a>
+      <a href="{{ '/docs/' | locale_path: localePrefix }}">{{ i18nCommon.nav.docs }}</a>
+      <a href="{{ '/support.html' | locale_path: localePrefix }}">{{ i18nCommon.nav.support }}</a>
+      <a href="{{ '/roadmap.html' | locale_path: localePrefix }}">{{ i18nCommon.nav.roadmap }}</a>
+      <a href="{{ '/solutions/' | locale_path: localePrefix }}">{{ i18nCommon.nav.useCases }}</a>
+      <a href="{{ '/design-partners.html' | locale_path: localePrefix }}">{{ i18nCommon.nav.designPartners }}</a>
+      <a href="{{ '/trust.html' | locale_path: localePrefix }}">{{ i18nCommon.nav.trust }}</a>
+      <a href="{{ '/developers/' | locale_path: localePrefix }}">{{ i18nCommon.nav.developers }}</a>
+      <a class="btn btn-primary btn-sm" href="{{ '/request-demo.html' | locale_path: localePrefix }}">{{ i18nCommon.nav.demo }}</a>
+      {% include "language-selector.html" %}
     </div>
   </div>
 </nav>

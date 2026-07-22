@@ -1,7 +1,7 @@
 {
   "generatedAt": "2026-07-22",
   "source": "extensions/contextmint-vscode/package.json",
-  "totalCount": 147,
+  "totalCount": 149,
   "operatorKeys": [
     "contextmint.serverUrl",
     "contextmint.engine.dashboardUrl",
@@ -1845,7 +1845,7 @@
         {
           "id": "contextmint.inline.enabled",
           "description": "Enable local inline ghost-text completion — code FIM and prose/sentence (requires inline backend).",
-          "default": "false",
+          "default": "true",
           "deprecated": false,
           "operator": false,
           "type": "boolean",
@@ -2102,6 +2102,27 @@
           }
         },
         {
+          "id": "contextmint.design.chatDockScrollPaddingPx",
+          "description": "Scroll padding under the message list so focus is not obscured by the compose dock (WCAG 2.4.11).",
+          "default": "120",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust design.chatDockScrollPaddingPx in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
           "id": "contextmint.design.contextLensDrawerMaxHeightPx",
           "description": "Context Lens drawer absolute max height (px). Combined with vh cap via min().",
           "default": "320",
@@ -2173,6 +2194,27 @@
           "type": "number",
           "usage": {
             "whenEnable": "Adjust design.maxContextLensFiles in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.design.minHitTargetPx",
+          "description": "Minimum CSS hit-target size for interactive controls (WCAG 2.5.8).",
+          "default": "24",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust design.minHitTargetPx in VS Code Settings when the default does not match your workflow.",
             "whenDisable": "N/A — value setting (not a boolean toggle).",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",

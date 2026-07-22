@@ -1,0 +1,67 @@
+{
+  "title": "About | ContextMint",
+  "description": "ContextMint is a local-first AI decision-control plane — mission, vision, and principles.",
+  "hero": {
+    "pill": "OUR MISSION",
+    "title": "Evidence before AI ships",
+    "leadBefore": "ContextMint is a",
+    "leadStrong": "local-first AI decision-control plane",
+    "leadAfter": "for software teams — so engineers see evidence before inference and approve changes before they apply."
+  },
+  "problem": {
+    "title": "The problem we solve",
+    "p1": "AI can produce changes faster than organizations can review them with evidence. Knowledge is fragmented across git, CI, docs, and ticketing. Reviewers merge with incomplete context.",
+    "p2Before": "ContextMint indexes the workspace, surfaces stored governance findings, and puts",
+    "p2Strong": "human gates",
+    "p2After": "in front of inference and repo writes — on your infrastructure by default."
+  },
+  "different": {
+    "title": "How we are different",
+    "items": [
+      {
+        "strong": "Evidence first",
+        "text": "— Context Lens and citations before the model answers"
+      },
+      {
+        "strong": "Local-first",
+        "text": "— code stays on your machine; privacy by architecture"
+      },
+      {
+        "strong": "Human apply gates",
+        "text": "— patch preview; no silent auto-apply"
+      },
+      {
+        "strong": "Agent-native (roadmap)",
+        "text": "— planned MCP tools; v1.0 uses IDE Gates 1 & 2"
+      }
+    ]
+  },
+  "principles": {
+    "title": "Principles",
+    "cards": [
+      {
+        "title": "Truth over speed",
+        "text": "Human gates before inference and before apply."
+      },
+      {
+        "title": "Evidence over guesses",
+        "text": "Indexed excerpts and stored findings beat ungrounded chat."
+      },
+      {
+        "title": "Governance by design",
+        "text": "Quality map, apply gates, and operator audit trails in v1.0."
+      }
+    ]
+  },
+  "founder": {
+    "title": "Founder",
+    "blurb": "Building local-first, governable AI for software teams.",
+    "cta": "Design partner programme"
+  },
+  "platform": {
+    "title": "The ContextMint platform",
+    "beforeLink": "v1.0 (end of August 2026) delivers ContextMint Engine and the VS Code extension — evidence chat, quality map, Context Lens, and human apply gates. DNA reports, blast-radius SKU, and PR-time Verification Engine checks are",
+    "linkText": "roadmap",
+    "afterLink": "."
+  }
+}

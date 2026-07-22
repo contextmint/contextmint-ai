@@ -1,79 +1,79 @@
-<footer class="site-footer">
+﻿<footer class="site-footer">
   <div class="container site-footer__inner">
     <div class="site-footer__brand">
-      <a class="site-footer__logo" href="/" aria-label="{{ site.name }} home">
+      <a class="site-footer__logo" href="{{ '/' | locale_path: localePrefix }}" aria-label="{{ i18nCommon.footer.homeAria | i18n_token: '{{siteName}}', site.name }}">
         <img class="site-footer__mark" src="/assets/img/logos/mark.svg" width="28" height="28" alt="" />
         <span class="site-footer__wordmark">{{ site.name }}</span>
       </a>
       <p class="site-footer__tagline">{{ site.tagline }}</p>
       <p class="site-footer__extension">
-        Local-first decision-control — evidence before inference
+        {{ i18nCommon.footer.extensionLine }}
       </p>
     </div>
 
     <div class="site-footer__cols">
       <div class="site-footer__col">
-        <h3 class="site-footer__heading">Documentation</h3>
-        <a href="/docs/">User docs</a>
-        <a href="/docs/installation.html">Installation</a>
-        <a href="/docs/chat-and-lanes.html">Chat &amp; lanes</a>
-        <a href="/docs/engine-operator.html">Engine guide</a>
-        <a href="/docs/glossary.html">Glossary</a>
+        <h3 class="site-footer__heading">{{ i18nCommon.footer.documentation }}</h3>
+        <a href="{{ '/docs/' | locale_path: localePrefix }}">{{ i18nCommon.footer.userDocs }}</a>
+        <a href="{{ '/docs/installation.html' | locale_path: localePrefix }}">{{ i18nCommon.footer.installation }}</a>
+        <a href="{{ '/docs/chat-and-lanes.html' | locale_path: localePrefix }}">{{ i18nCommon.footer.chatAndLanes }}</a>
+        <a href="{{ '/docs/engine-operator.html' | locale_path: localePrefix }}">{{ i18nCommon.footer.engineGuide }}</a>
+        <a href="{{ '/docs/glossary.html' | locale_path: localePrefix }}">{{ i18nCommon.footer.glossary }}</a>
       </div>
 
       <div class="site-footer__col">
-        <h3 class="site-footer__heading">Support</h3>
-        <a href="/support.html">Support home</a>
-        <a href="/support/troubleshooting.html">Troubleshooting</a>
-        <a href="/getting-started.html">Getting started</a>
-        <a href="/faq.html">FAQ</a>
-        <a href="{{ site.issuesUrl }}">GitHub issues</a>
+        <h3 class="site-footer__heading">{{ i18nCommon.footer.support }}</h3>
+        <a href="{{ '/support.html' | locale_path: localePrefix }}">{{ i18nCommon.footer.supportHome }}</a>
+        <a href="{{ '/support/troubleshooting.html' | locale_path: localePrefix }}">{{ i18nCommon.footer.troubleshooting }}</a>
+        <a href="{{ '/getting-started.html' | locale_path: localePrefix }}">{{ i18nCommon.footer.gettingStarted }}</a>
+        <a href="{{ '/faq.html' | locale_path: localePrefix }}">{{ i18nCommon.footer.faq }}</a>
+        <a href="{{ site.issuesUrl }}">{{ i18nCommon.footer.githubIssues }}</a>
         {% if site.emailVisible %}
         <a href="mailto:{{ site.contactEmail }}">{{ site.contactEmail }}</a>
         {% endif %}
       </div>
 
       <div class="site-footer__col">
-        <h3 class="site-footer__heading">Product</h3>
-        <a href="/product/">Verification Engine</a>
-        <a href="/roadmap.html">Roadmap</a>
-        <a href="/product/repository-dna.html">Repository DNA</a>
-        <a href="/product/blast-radius.html">Blast Radius</a>
-        <a href="/product/decision-graph.html">Decision Graph</a>
-        <a href="/product/drift-detection.html">Drift Detection</a>
+        <h3 class="site-footer__heading">{{ i18nCommon.footer.product }}</h3>
+        <a href="{{ '/product/' | locale_path: localePrefix }}">{{ i18nCommon.footer.verificationEngine }}</a>
+        <a href="{{ '/roadmap.html' | locale_path: localePrefix }}">{{ i18nCommon.footer.roadmap }}</a>
+        <a href="{{ '/product/repository-dna.html' | locale_path: localePrefix }}">{{ i18nCommon.footer.repositoryDna }}</a>
+        <a href="{{ '/product/blast-radius.html' | locale_path: localePrefix }}">{{ i18nCommon.footer.blastRadius }}</a>
+        <a href="{{ '/product/decision-graph.html' | locale_path: localePrefix }}">{{ i18nCommon.footer.decisionGraph }}</a>
+        <a href="{{ '/product/drift-detection.html' | locale_path: localePrefix }}">{{ i18nCommon.footer.driftDetection }}</a>
       </div>
 
       <div class="site-footer__col">
-        <h3 class="site-footer__heading">Use Cases</h3>
-        <a href="/solutions/">Overview</a>
-        <a href="/solutions/cto-vp-engineering.html">CTO &amp; VP Engineering</a>
-        <a href="/solutions/platform-engineering.html">Platform Engineering</a>
-        <a href="/solutions/security-compliance.html">Security &amp; Compliance</a>
+        <h3 class="site-footer__heading">{{ i18nCommon.footer.useCases }}</h3>
+        <a href="{{ '/solutions/' | locale_path: localePrefix }}">{{ i18nCommon.footer.overview }}</a>
+        <a href="{{ '/solutions/cto-vp-engineering.html' | locale_path: localePrefix }}">{{ i18nCommon.footer.ctoVpEngineering }}</a>
+        <a href="{{ '/solutions/platform-engineering.html' | locale_path: localePrefix }}">{{ i18nCommon.footer.platformEngineering }}</a>
+        <a href="{{ '/solutions/security-compliance.html' | locale_path: localePrefix }}">{{ i18nCommon.footer.securityCompliance }}</a>
       </div>
 
       <div class="site-footer__col">
-        <h3 class="site-footer__heading">Trust</h3>
-        <a href="/trust.html">Trust &amp; Security</a>
-        <a href="/product/agent-governance.html">Agent Governance</a>
-        <a href="/pricing.html">Early Access</a>
-        <a href="/request-demo.html">Book a Demo</a>
+        <h3 class="site-footer__heading">{{ i18nCommon.footer.trust }}</h3>
+        <a href="{{ '/trust.html' | locale_path: localePrefix }}">{{ i18nCommon.footer.trustSecurity }}</a>
+        <a href="{{ '/product/agent-governance.html' | locale_path: localePrefix }}">{{ i18nCommon.footer.agentGovernance }}</a>
+        <a href="{{ '/pricing.html' | locale_path: localePrefix }}">{{ i18nCommon.footer.earlyAccess }}</a>
+        <a href="{{ '/request-demo.html' | locale_path: localePrefix }}">{{ i18nCommon.footer.bookDemo }}</a>
       </div>
 
       <div class="site-footer__col">
-        <h3 class="site-footer__heading">Developers</h3>
-        <a href="/developers/">Dev Center</a>
-        <a href="/developers/mcp-server.html">MCP Server</a>
-        <a href="/developers/cli.html">CLI</a>
-        <a href="/developers/api-reference.html">API Reference</a>
+        <h3 class="site-footer__heading">{{ i18nCommon.footer.developers }}</h3>
+        <a href="{{ '/developers/' | locale_path: localePrefix }}">{{ i18nCommon.footer.devCenter }}</a>
+        <a href="{{ '/developers/mcp-server.html' | locale_path: localePrefix }}">{{ i18nCommon.footer.mcpServer }}</a>
+        <a href="{{ '/developers/cli.html' | locale_path: localePrefix }}">{{ i18nCommon.footer.cli }}</a>
+        <a href="{{ '/developers/api-reference.html' | locale_path: localePrefix }}">{{ i18nCommon.footer.apiReference }}</a>
       </div>
 
       <div class="site-footer__col">
-        <h3 class="site-footer__heading">Company</h3>
-        <a href="/about.html">About</a>
-        <a href="/design-partners.html">Design Partners</a>
-        <a href="/accessibility.html">Accessibility</a>
-        <a href="/privacy.html">Privacy</a>
-        <a href="/terms.html">Terms</a>
+        <h3 class="site-footer__heading">{{ i18nCommon.footer.company }}</h3>
+        <a href="{{ '/about.html' | locale_path: localePrefix }}">{{ i18nCommon.footer.about }}</a>
+        <a href="{{ '/design-partners.html' | locale_path: localePrefix }}">{{ i18nCommon.footer.designPartners }}</a>
+        <a href="{{ '/accessibility.html' | locale_path: localePrefix }}">{{ i18nCommon.footer.accessibility }}</a>
+        <a href="{{ '/privacy.html' | locale_path: localePrefix }}">{{ i18nCommon.footer.privacy }}</a>
+        <a href="{{ '/terms.html' | locale_path: localePrefix }}">{{ i18nCommon.footer.terms }}</a>
       </div>
     </div>
   </div>
