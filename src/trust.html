@@ -4,96 +4,75 @@ title: Trust & Security | ContextMint
 description: ContextMint security posture — local-first default, optional BYOK, shared on-prem server pilots, RBAC, and audit trails.
 ---
 
+{% assign t = i18nPageStrings %}
+
 <header class="page-hero">
   <div class="container">
-    <div class="pill">TRUST CENTER</div>
-    <h1>Local-first trust you can defend in a pilot</h1>
-    <p class="lead">
-      Enterprise buyers need proof before APIs. Local-first architecture, human Gates 1 &amp; 2,
-      optional shared-server OIDC, and operator audit trails — the trust layer behind v1.0.
-      Blast-radius SKU and SOC 2 certification remain on the roadmap.
-    </p>
+    <div class="pill">{{ t.hero.pill }}</div>
+    <h1>{{ t.hero.title }}</h1>
+    <p class="lead">{{ t.hero.lead }}</p>
   </div>
 </header>
 
 <section class="section">
   <div class="container container-narrow">
     <div class="grid grid-2">
+      {% for card in t.pillars %}
       <div class="card">
-        <h3 style="margin: 0 0 12px;">Local-first architecture</h3>
+        <h3 style="margin: 0 0 12px;">{{ card.title }}</h3>
         <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-          Code indexing, embeddings, and retrieval run on your infrastructure. Ollama processes
-          locally — source never required to leave your device on the Developer tier.
+          {% if card.linkHref %}
+            {{ card.textBefore }}
+            <a href="{{ card.linkHref | locale_path: localePrefix }}" style="color: var(--color-link);">{{ card.linkText }}</a>
+            {{ card.textAfter }}
+          {% elsif card.textStrong %}
+            {{ card.textBefore }}
+            <strong>{{ card.textStrong }}</strong>
+            {{ card.textAfter }}
+          {% else %}
+            {{ card.text }}
+          {% endif %}
         </p>
       </div>
-      <div class="card">
-        <h3 style="margin: 0 0 12px;">Human verification gates</h3>
-        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-          Context Lens before inference. Patch preview and apply gates before repo writes.
-          AI narrates; humans approve material changes. Graph-computed blast radius and drift SKUs
-          are <strong>roadmap</strong> — not the August GA package.
-        </p>
-      </div>
-      <div class="card">
-        <h3 style="margin: 0 0 12px;">RBAC &amp; agent governance</h3>
-        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-          Role-based access for humans; <strong>planned</strong> scoped read tools for MCP agents on the Verification Engine roadmap.
-          v1.0 enforces human Gates 1 &amp; 2 in the IDE — no silent writes.
-        </p>
-      </div>
-      <div class="card">
-        <h3 style="margin: 0 0 12px;">Audit trail</h3>
-        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-          Operator actions and support-bundle exports for pilot and security reviews.
-          SOC 2 Type II certification and dedicated evidence collectors are on the
-          <a href="/roadmap.html#track-b" style="color: var(--color-link);">Track B roadmap</a> —
-          not claimed as achieved.
-        </p>
-      </div>
-      <div class="card">
-        <h3 style="margin: 0 0 12px;">Optional cloud (BYOK)</h3>
-        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-          Cloud LLM routing is opt-in and disabled by default. Provider API keys live in VS Code
-          secrets on the developer machine — never in server config. Assembled context is redacted
-          before any approved cloud dispatch. Local Ollama remains the default for sovereign workflows.
-        </p>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </section>
 
 <section class="section section--surface" id="deployment">
   <div class="container container-narrow">
-    <h2 class="section-title">Deployment models</h2>
+    <h2 class="section-title">{{ t.deployment.title }}</h2>
     <p class="muted">
-      ContextMint supports two architectures. The <strong>default v1.0 path</strong> is
-      local-first. Shared on-prem server mode is available for <strong>guided regulated pilots</strong>
-      with platform engineering support.
+      {{ t.deployment.introBefore }}
+      <strong>{{ t.deployment.introStrong }}</strong>
+      {{ t.deployment.introMid }}
+      <strong>{{ t.deployment.introStrong2 }}</strong>
+      {{ t.deployment.introAfter }}
     </p>
     <div class="grid grid-2" style="margin-top: 24px;">
       <div class="card">
-        <h3 style="margin: 0 0 8px;">Local-first (default)</h3>
+        <h3 style="margin: 0 0 8px;">{{ t.deployment.local.title }}</h3>
         <p style="margin: 0 0 12px; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-          <strong>ContextMint Engine</strong> on each developer machine runs the API server and
-          Ollama. The VS Code extension connects to <code>localhost:8000</code>. Indexing,
-          embeddings, and inference stay on the workstation — the path v1.0 is built for.
+          <strong>{{ t.deployment.local.textStrong }}</strong>
+          {{ t.deployment.local.textAfter }}
         </p>
         <p class="mono" style="margin: 0; font-size: 0.8rem; color: var(--text-tertiary);">
-          Ready for pilot · sovereign · no shared server required
+          {{ t.deployment.local.footnote }}
         </p>
       </div>
       <div class="card">
-        <h3 style="margin: 0 0 8px;">Sovereign on-prem API (pilot)</h3>
+        <h3 style="margin: 0 0 8px;">{{ t.deployment.sovereign.title }}</h3>
         <p style="margin: 0 0 12px; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-          A customer-hosted <strong>API server stack</strong> (Docker Compose) with
-          <strong>OpenAI-compatible inference</strong> (typically <strong>vLLM</strong>), Chroma,
-          Redis, and OIDC. Developers point the extension at
-          <code>ContextMint.serverUrl</code> — this is <em>not</em> the Engine desktop tray, and
-          it is <em>not</em> “enterprise = Ollama on a shared box” as the only story.
+          {{ t.deployment.sovereign.textBefore }}
+          <strong>{{ t.deployment.sovereign.textStrong }}</strong>
+          {{ t.deployment.sovereign.textMid }}
+          <strong>{{ t.deployment.sovereign.textStrong2 }}</strong>
+          {{ t.deployment.sovereign.textMid2 }}
+          <strong>{{ t.deployment.sovereign.textStrong3 }}</strong>{{ t.deployment.sovereign.textAfter }}
         </p>
         <p class="mono" style="margin: 0; font-size: 0.8rem; color: var(--text-tertiary);">
-          Design-partner / pilot · ops setup required ·
-          <a href="/docs/sovereign-server.html" style="color: var(--color-link);">Sovereign server guide</a>
+          {{ t.deployment.sovereign.footnoteBefore }}
+          <a href="{{ '/docs/sovereign-server.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.deployment.sovereign.guideLink }}</a>
         </p>
       </div>
     </div>
@@ -102,27 +81,25 @@ description: ContextMint security posture — local-first default, optional BYOK
 
 <section class="section">
   <div class="container container-narrow">
-    <h2 class="section-title">Sovereign server — what works today</h2>
+    <h2 class="section-title">{{ t.worksToday.title }}</h2>
     <p class="muted">
-      The server indexes <strong>filesystem paths it can read</strong>. The extension registers the
-      open workspace path with the server. These patterns work for on-prem pilots:
+      {{ t.worksToday.introBefore }}
+      <strong>{{ t.worksToday.introStrong }}</strong>{{ t.worksToday.introAfter }}
     </p>
     <ul class="check-list" style="margin-top: 16px;">
-      <li><strong>VS Code Remote SSH</strong> — workspace path is on the same host as the API server</li>
-      <li><strong>Shared monorepo on a mounted volume</strong> — server indexes the mount; developers use matching paths</li>
-      <li><strong>Dev VM or build agent</strong> — code and ContextMint API co-located on one machine</li>
-      <li><strong>OIDC / SSO</strong> — extension <code>enterpriseMode</code> forwards Bearer tokens; server validates JWT issuer and audience</li>
-      <li><strong>HTTPS ingress</strong> — nginx + TLS in front of the API (Docker / Helm templates provided)</li>
+      {% for item in t.worksToday.items %}
+      <li><strong>{{ item.strong }}</strong> {{ item.text }}</li>
+      {% endfor %}
     </ul>
     <div class="card" style="margin-top: 24px; border-color: var(--color-warning);">
-      <strong style="color: var(--color-warning);">Important limitation</strong>
+      <strong style="color: var(--color-warning);">{{ t.worksToday.limitTitle }}</strong>
       <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-        Pointing a laptop with a <em>local-only</em> clone (e.g.
-        <code>C:\dev\repo</code>) at a remote corporate server URL does <strong>not</strong> work
-        out of the box — the server cannot read paths that exist only on the developer machine.
-        Platform teams must align repo location, mounts, or Remote SSH before indexing. We help
-        We help teams validate this during the design partner evaluation pilot (see
-        <a href="/design-partners.html" style="color: var(--color-link);">Design Partners</a>).
+        {{ t.worksToday.limitBefore }}
+        <em>{{ t.worksToday.limitEm }}</em>
+        {{ t.worksToday.limitMid }}
+        <strong>{{ t.worksToday.limitStrong }}</strong>
+        {{ t.worksToday.limitAfter }}
+        <a href="{{ '/design-partners.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.worksToday.partnersLink }}</a>{{ t.worksToday.limitEnd }}
       </p>
     </div>
   </div>
@@ -130,35 +107,28 @@ description: ContextMint security posture — local-first default, optional BYOK
 
 <section class="section section--surface">
   <div class="container container-narrow">
-    <h2 class="section-title">Enterprise controls</h2>
+    <h2 class="section-title">{{ t.controls.title }}</h2>
     <ul class="check-list">
-      <li>SSO via OIDC on the shared-server pilot path (Microsoft Entra ID, Okta, Keycloak, and other compliant IdPs)</li>
-      <li>Role-based access — <span class="mono">viewer</span>, <span class="mono">dev</span>, <span class="mono">admin</span> per workspace (shared-server path)</li>
-      <li>Self-hosted API server — Docker Compose or Helm for regulated pilots</li>
-      <li>Optional BYOK cloud routing with egress redaction (off by default)</li>
-      <li>Operator audit / support-bundle export; Redis-backed rate limiting on team server</li>
-      <li>Air-gapped Helm, tenant isolation, and fabric evidence ledger — <em>roadmap / packaging</em></li>
+      {% for item in t.controls.items %}
+      <li>{{ item }}</li>
+      {% endfor %}
     </ul>
     <p class="muted" style="margin-top: 24px; margin-bottom: 0;">
-      SOC 2 Type II and formal compliance packaging are on the
-      <a href="/roadmap.html#track-b" style="color: var(--color-link);">Track B roadmap</a>.
-      Shared-server auth hardening and path alignment are part of the regulated pilot path —
-      design partner intake opens by start of September 2026.
+      {{ t.controls.footerBefore }}
+      <a href="{{ '/roadmap.html#track-b' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.controls.footerLink }}</a>{{ t.controls.footerAfter }}
     </p>
   </div>
 </section>
 
 <section class="section">
   <div class="container container-tight text-center">
-    <p class="muted">
-      Need a security questionnaire or architecture review for local-first vs shared-server deployment?
-    </p>
-    <a class="btn btn-primary" href="/request-demo.html">Request security briefing</a>
-    <a class="btn btn-secondary" href="/docs/sovereign-server.html" style="margin-left: 12px;">Sovereign server guide</a>
-    <a class="btn btn-secondary" href="/getting-started.html" style="margin-left: 12px;">Getting started</a>
+    <p class="muted">{{ t.cta.prompt }}</p>
+    <a class="btn btn-primary" href="{{ '/request-demo.html' | locale_path: localePrefix }}">{{ t.cta.demo }}</a>
+    <a class="btn btn-secondary" href="{{ '/docs/sovereign-server.html' | locale_path: localePrefix }}" style="margin-left: 12px;">{{ t.cta.sovereign }}</a>
+    <a class="btn btn-secondary" href="{{ '/getting-started.html' | locale_path: localePrefix }}" style="margin-left: 12px;">{{ t.cta.gettingStarted }}</a>
     <p class="muted" style="margin-top: 20px; margin-bottom: 0;">
-      Website accessibility:
-      <a href="/accessibility.html" style="color: var(--color-link);">WCAG 2.2 AA statement</a>
+      {{ t.cta.a11yBefore }}
+      <a href="{{ '/accessibility.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.cta.a11yLink }}</a>
     </p>
   </div>
 </section>

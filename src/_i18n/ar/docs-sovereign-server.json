@@ -1,0 +1,128 @@
+{
+  "title": "نشر الخادم السيادي | توثيق ContextMint",
+  "description": "انشر ContextMint كواجهة API مشتركة داخل الموقع مع استدلال متوافق مع OpenAI (vLLM) وOIDC ومسارات متوافقة — وليس تطبيق Engine على سطح المكتب.",
+  "h1": "نشر الخادم السيادي",
+  "lead": {
+    "before": "للتجارب المنظمة، تدير فرق المنصة",
+    "strong1": "خادم API مستضاف لدى العميل",
+    "mid": "مع استدلال متوافق مع OpenAI (عادةً",
+    "strong2": "vLLM",
+    "mid2": ") وChroma وRedis وOIDC. هذا",
+    "em1": "ليس",
+    "mid3": "«Engine + Ollama على كل حاسوب»، وهو",
+    "em2": "ليس",
+    "after": "مستخدماً متعدد المستويات ثنائي المستوى (ذلك البرنامج بعد العرض). يثبّت المطوّرون إضافة VS Code فقط ويوجّهونها إلى نقطة HTTPS الخاصة بكم."
+  },
+  "stories": {
+    "title": "مساران للنشر (لا تخلط بينهما)",
+    "headers": ["المسار", "من يشغّل الاستدلال", "المكدس النموذجي", "متى يُستخدم"],
+    "rows": [
+      {
+        "path": "محلي أولاً (الافتراضي)",
+        "who": "جهاز كل مطوّر",
+        "stack": "صينية ContextMint Engine + Ollama",
+        "when": "تجارب فردية وعروض وحواسيب معزولة"
+      },
+      {
+        "path": "خادم سيادي (تجريبي)",
+        "who": "مضيف مشترك في مركز البيانات / المستأجر",
+        "stackBefore": "حاويات API +",
+        "stackStrong": "vLLM",
+        "stackAfter": "(أو متوافق OpenAI آخر) + OIDC",
+        "when": "شركاء البنوك/الحكومة الذين يحتاجون حدود تدقيق واحدةً"
+      }
+    ],
+    "trustBefore": "نظرة الثقة:",
+    "trustLink": "الثقة والأمان — نماذج النشر",
+    "opsNote": "قائمة تشغيل المشغّل والتحقق: مستودع المنتج",
+    "opsCode": "documentation/GATE-SS-MVP-RUNBOOK.md"
+  },
+  "platform": {
+    "title": "ما تنشره فرق المنصة",
+    "items": [
+      {
+        "strong": "خادم API",
+        "text": "— Docker Compose (deploy/docker-compose.server.yml) أو ما يعادله؛ الملف الشخصي deployment_profile=server"
+      },
+      {
+        "strong": "الاستدلال",
+        "text": "— نقطة متوافقة مع OpenAI (غالباً طبقة vLLM)؛ عيّن INFERENCE__OPENAI_COMPAT__BASE_URL"
+      },
+      {
+        "strong": "المتجهات",
+        "text": "— Chroma على تخزين مشترك لـ MVP؛ Qdrant خيار توسّع لاحق"
+      },
+      {
+        "strong": "المصادقة",
+        "text": "— AUTH__ENABLED=true، مُصدِر/جمهور OIDC، سر JWT قوي، ACL لمساحات العمل حسب الحاجة"
+      },
+      {
+        "strong": "محاذاة المسارات",
+        "text": "— يجب أن تطابق ALLOWED_WORKSPACE_ROOTS نقاط التركيب أو مسارات Remote SSH التي يقرأها الخادم"
+      }
+    ],
+    "envBefore": "قالب البيئة:",
+    "envCode": "deploy/profiles/server-sovereign.env.example",
+    "pathBefore": "دليل محاذاة المسارات: مستودع المنتج",
+    "pathCode": "documentation/SOVEREIGN-PATH-ALIGNMENT.md"
+  },
+  "developers": {
+    "title": "ما يفعله المطوّرون",
+    "step1Before": "ثبّت إضافة",
+    "step1After": "فقط (لا تشترط Engine على كل حاسوب).",
+    "steps": [
+      "عيّن ContextMint.serverUrl إلى واجهة HTTPS للفريق.",
+      "فعّل ContextMint.enterpriseMode واضبط ContextMint.oidcProviderId.",
+      "افتح مساحة عمل يستطيع الخادم فهرستها (Remote SSH أو تركيب مطابق)."
+    ]
+  },
+  "health": {
+    "title": "الصحة والجاهزية",
+    "items": [
+      "GET /api/health — يعرض deployment_profile و inference_provider",
+      "GET /api/ready — يفشل مغلقاً عندما يتعذّر الوصول إلى مزوّد الاستدلال أو تفشل قائمة OIDC/المصادقة في ملف الخادم"
+    ]
+  },
+  "nongoals": {
+    "title": "ما خارج نطاق هذه الصفحة صراحةً",
+    "items": [
+      {
+        "strong": "ليس",
+        "text": "مستخدماً متعدد المستويات ثنائي المستوى (عمل محلي + رئيسي سيادي) — ذلك GATE-SS-MU بعد عرض منتصف سبتمبر"
+      },
+      {
+        "strong": "ليس",
+        "text": "منتج ملكية / CODEOWNERS كامل (Block RO) — قد تظهر مراجعة الفرع تسميات مالك تشويقية فقط"
+      },
+      {
+        "strong": "ليس",
+        "text": "صينية Engine كسطح تحكم للخادم — يستخدم المشغّلون compose والسجلات ونقاط الصحة"
+      }
+    ]
+  },
+  "related": {
+    "title": "ذات صلة",
+    "items": [
+      {
+        "href": "/docs/installation.html",
+        "link": "التثبيت والإعداد",
+        "text": "— محلي أولاً مقابل خادم سيادي"
+      },
+      {
+        "href": "/docs/byok-enterprise.html",
+        "link": "BYOK والمؤسسات",
+        "text": "— توجيه سحابي اختياري (معطّل افتراضياً)"
+      },
+      {
+        "href": "/getting-started.html",
+        "link": "البدء",
+        "text": "— مسار محلي في خمس دقائق وملاحظات المؤسسات"
+      },
+      {
+        "href": "/trust.html",
+        "link": "مركز الثقة",
+        "text": ""
+      }
+    ]
+  }
+}

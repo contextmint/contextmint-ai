@@ -1,0 +1,128 @@
+{
+  "title": "Sovereign Server Deployment | ContextMint Docs",
+  "description": "Deploy ContextMint as a shared on-prem API with OpenAI-compatible inference (vLLM), OIDC, and path-aligned workspaces — not the desktop Engine tray.",
+  "h1": "Sovereign server deployment",
+  "lead": {
+    "before": "For regulated pilots, platform teams run a",
+    "strong1": "customer-hosted API server",
+    "mid": "with OpenAI-compatible inference (typically",
+    "strong2": "vLLM",
+    "mid2": "), Chroma, Redis, and OIDC. This is",
+    "em1": "not",
+    "mid3": "“Engine + Ollama on every laptop,” and it is",
+    "em2": "not",
+    "after": "dual-plane multi-user (that programme is post-demo). Developers install the VS Code extension only and point it at your HTTPS endpoint."
+  },
+  "stories": {
+    "title": "Two deployment stories (do not conflate)",
+    "headers": ["Path", "Who runs inference", "Typical stack", "When to use"],
+    "rows": [
+      {
+        "path": "Local-first (default)",
+        "who": "Each developer machine",
+        "stack": "ContextMint Engine tray + Ollama",
+        "when": "Individual pilots, demos, air-gapped laptops"
+      },
+      {
+        "path": "Sovereign server (pilot)",
+        "who": "Shared host in your DC / tenant",
+        "stackBefore": "API containers +",
+        "stackStrong": "vLLM",
+        "stackAfter": "(or other OpenAI-compat) + OIDC",
+        "when": "Bank / gov design partners needing one audit boundary"
+      }
+    ],
+    "trustBefore": "Trust overview:",
+    "trustLink": "Trust & Security — deployment models",
+    "opsNote": "Operator dogfood and flip checklist: product repo",
+    "opsCode": "documentation/GATE-SS-MVP-RUNBOOK.md"
+  },
+  "platform": {
+    "title": "What platform teams deploy",
+    "items": [
+      {
+        "strong": "API server",
+        "text": "— Docker Compose (deploy/docker-compose.server.yml) or equivalent; profile deployment_profile=server"
+      },
+      {
+        "strong": "Inference",
+        "text": "— OpenAI-compatible endpoint (vLLM overlay common); set INFERENCE__OPENAI_COMPAT__BASE_URL"
+      },
+      {
+        "strong": "Vectors",
+        "text": "— Chroma on shared storage for MVP; Qdrant is a later scale option"
+      },
+      {
+        "strong": "Auth",
+        "text": "— AUTH__ENABLED=true, OIDC issuer/audience, strong JWT secret, workspace ACL as required"
+      },
+      {
+        "strong": "Path alignment",
+        "text": "— ALLOWED_WORKSPACE_ROOTS must match mounts or Remote SSH paths the server can read"
+      }
+    ],
+    "envBefore": "Env template:",
+    "envCode": "deploy/profiles/server-sovereign.env.example",
+    "pathBefore": "Path alignment guide: product repo",
+    "pathCode": "documentation/SOVEREIGN-PATH-ALIGNMENT.md"
+  },
+  "developers": {
+    "title": "What developers do",
+    "step1Before": "Install the",
+    "step1After": "extension only (do not require Engine on every laptop).",
+    "steps": [
+      "Set ContextMint.serverUrl to the team HTTPS API.",
+      "Enable ContextMint.enterpriseMode and configure ContextMint.oidcProviderId.",
+      "Open a workspace the server can index (Remote SSH or matching mount)."
+    ]
+  },
+  "health": {
+    "title": "Health & readiness",
+    "items": [
+      "GET /api/health — shows deployment_profile and inference_provider",
+      "GET /api/ready — fails closed when the inference provider is unreachable or the OIDC / auth checklist fails on server profile"
+    ]
+  },
+  "nongoals": {
+    "title": "Explicit non-goals (this page)",
+    "items": [
+      {
+        "strong": "Not",
+        "text": "dual-plane multi-user (local WIP + sovereign main) — that is GATE-SS-MU after the mid-Sept demo"
+      },
+      {
+        "strong": "Not",
+        "text": "full ownership / CODEOWNERS product (Block RO) — branch review may show thin owner teaser labels only"
+      },
+      {
+        "strong": "Not",
+        "text": "Engine tray as the server control plane — operators use compose, logs, and health endpoints"
+      }
+    ]
+  },
+  "related": {
+    "title": "Related",
+    "items": [
+      {
+        "href": "/docs/installation.html",
+        "link": "Installation & setup",
+        "text": "— local-first vs sovereign server"
+      },
+      {
+        "href": "/docs/byok-enterprise.html",
+        "link": "BYOK & enterprise",
+        "text": "— optional cloud routing (off by default)"
+      },
+      {
+        "href": "/getting-started.html",
+        "link": "Getting started",
+        "text": "— five-minute local path + enterprise notes"
+      },
+      {
+        "href": "/trust.html",
+        "link": "Trust center",
+        "text": ""
+      }
+    ]
+  }
+}

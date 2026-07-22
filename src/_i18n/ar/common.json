@@ -15,6 +15,28 @@
     "developers": "المطورون",
     "demo": "عرض توضيحي"
   },
+  "docsNav": {
+    "ariaLabel": "تنقل التوثيق",
+    "title": "توثيق المستخدم",
+    "overview": "نظرة عامة",
+    "installation": "التثبيت والإعداد",
+    "chatAndLanes": "المحادثات والمسارات",
+    "imageEvidence": "أدلة الصور وARGUS",
+    "contextLens": "Context Lens والحزم",
+    "engineOperator": "دليل مشغّل المحرك",
+    "indexing": "الفهرسة والجاهزية",
+    "patches": "التصحيحات والحوكمة",
+    "knowledge": "المعرفة والحوكمة",
+    "settings": "مرجع الإعدادات",
+    "byok": "BYOK والمؤسسات",
+    "sovereignServer": "الخادم السيادي",
+    "glossary": "مسرد المصطلحات",
+    "related": "ذات صلة",
+    "quickStart": "بدء سريع (5 دقائق)",
+    "features": "الميزات (v1.0)",
+    "troubleshooting": "استكشاف الأخطاء",
+    "developers": "المطورون"
+  },
   "language": {
     "ariaLabel": "اللغة",
     "label": "اللغة"

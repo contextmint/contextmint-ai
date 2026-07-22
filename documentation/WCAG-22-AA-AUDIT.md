@@ -45,10 +45,12 @@
 
 ## Exit criteria
 
-1. `npm run test:a11y` — axe serious + critical = 0 on the URL set in `scripts/test-a11y.mjs`
+1. `npm run test:a11y` — axe serious + critical = 0 on the URL set in `scripts/test-a11y.mjs` (includes trust, getting-started, sovereign server, and `/ar/` samples for language-of-page)
 2. Manual keyboard checklist in [GO-LIVE-CHECKLIST.md](./GO-LIVE-CHECKLIST.md) complete
 3. [Accessibility statement](../src/accessibility.html) published and linked from the footer
 
 ## Remediation status (22 July 2026)
 
 P0–P4 implemented in-repo: contrast tokens, skip link, focus styles, widget targets/traps, form announcements, carousel ARIA cleanup, `npm run test:a11y` CI gate, and public `/accessibility.html`. Automated axe gate is green on the Phase 1 URL set. Manual keyboard/SR checklist remains for human sign-off before claiming production readiness.
+
+**i18n + a11y (22 Jul evening):** Trust, Getting started, and Sovereign server bodies read from `en`/`ar` page packs; docs sidebar uses `locale_path` + `common.docsNav`. Arabic `/ar/…` URLs set `lang=ar` when packs are present (WCAG 3.1.1).

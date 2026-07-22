@@ -1,4 +1,5 @@
 {
   "title": "User Documentation | ContextMint",
-  "description": "In-depth guides for ContextMint Engine, VS Code chat, context lanes, image evidence, ARGUS, Context Lens, indexing, and governance."
+  "description": "In-depth guides for ContextMint Engine, VS Code chat, context lanes, image evidence, ARGUS, Context Lens, indexing, and governance.",
+  "sovereignCard": "Platform deploy with OpenAI-compatible inference (vLLM), OIDC, and path-aligned workspaces."
 }

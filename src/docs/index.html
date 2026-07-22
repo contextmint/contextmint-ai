@@ -57,9 +57,9 @@ pageCss: product.css
     <h3>BYOK &amp; enterprise</h3>
     <p>Cloud API keys, redaction, shared on-prem server, OIDC, remote SSH path alignment.</p>
   </a>
-  <a class="doc-hub-card" href="/docs/sovereign-server.html">
-    <h3>Sovereign server</h3>
-    <p>Platform deploy with OpenAI-compatible inference (vLLM), OIDC, and path-aligned workspaces.</p>
+  <a class="doc-hub-card" href="{{ '/docs/sovereign-server.html' | locale_path: localePrefix }}">
+    <h3>{{ i18nCommon.docsNav.sovereignServer }}</h3>
+    <p>{% if i18nPageStrings.sovereignCard %}{{ i18nPageStrings.sovereignCard }}{% else %}Platform deploy with OpenAI-compatible inference (vLLM), OIDC, and path-aligned workspaces.{% endif %}</p>
   </a>
   <a class="doc-hub-card" href="/docs/glossary.html">
     <h3>Glossary</h3>

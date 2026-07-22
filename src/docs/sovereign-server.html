@@ -5,84 +5,91 @@ description: Deploy ContextMint as a shared on-prem API with OpenAI-compatible i
 pageCss: product.css
 ---
 
-<h1>Sovereign server deployment</h1>
+{% assign t = i18nPageStrings %}
+
+<h1>{{ t.h1 }}</h1>
 <p class="doc-lead">
-  For regulated pilots, platform teams run a <strong>customer-hosted API server</strong> with
-  OpenAI-compatible inference (typically <strong>vLLM</strong>), Chroma, Redis, and OIDC.
-  This is <em>not</em> “Engine + Ollama on every laptop,” and it is <em>not</em> dual-plane
-  multi-user (that programme is post-demo). Developers install the VS Code extension only and
-  point it at your HTTPS endpoint.
+  {{ t.lead.before }}
+  <strong>{{ t.lead.strong1 }}</strong>
+  {{ t.lead.mid }}
+  <strong>{{ t.lead.strong2 }}</strong>{{ t.lead.mid2 }}
+  <em>{{ t.lead.em1 }}</em>
+  {{ t.lead.mid3 }}
+  <em>{{ t.lead.em2 }}</em>
+  {{ t.lead.after }}
 </p>
 
-<h2>Two deployment stories (do not conflate)</h2>
+<h2>{{ t.stories.title }}</h2>
 <table>
   <thead>
     <tr>
-      <th>Path</th>
-      <th>Who runs inference</th>
-      <th>Typical stack</th>
-      <th>When to use</th>
+      {% for h in t.stories.headers %}
+      <th>{{ h }}</th>
+      {% endfor %}
     </tr>
   </thead>
   <tbody>
+    {% for row in t.stories.rows %}
     <tr>
-      <td><strong>Local-first (default)</strong></td>
-      <td>Each developer machine</td>
-      <td>ContextMint Engine tray + Ollama</td>
-      <td>Individual pilots, demos, air-gapped laptops</td>
+      <td><strong>{{ row.path }}</strong></td>
+      <td>{{ row.who }}</td>
+      <td>{% if row.stackStrong %}{{ row.stackBefore }} <strong>{{ row.stackStrong }}</strong> {{ row.stackAfter }}{% else %}{{ row.stack }}{% endif %}</td>
+      <td>{{ row.when }}</td>
     </tr>
-    <tr>
-      <td><strong>Sovereign server (pilot)</strong></td>
-      <td>Shared host in your DC / tenant</td>
-      <td>API containers + <strong>vLLM</strong> (or other OpenAI-compat) + OIDC</td>
-      <td>Bank / gov design partners needing one audit boundary</td>
-    </tr>
+    {% endfor %}
   </tbody>
 </table>
 <p>
-  Trust overview: <a href="/trust.html#deployment">Trust &amp; Security — deployment models</a>.
-  Operator dogfood and flip checklist:
-  product repo <code>documentation/GATE-SS-MVP-RUNBOOK.md</code>.
+  {{ t.stories.trustBefore }}
+  <a href="{{ '/trust.html#deployment' | locale_path: localePrefix }}">{{ t.stories.trustLink }}</a>.
+  {{ t.stories.opsNote }}
+  <code>{{ t.stories.opsCode }}</code>.
 </p>
 
-<h2>What platform teams deploy</h2>
+<h2>{{ t.platform.title }}</h2>
 <ul>
-  <li><strong>API server</strong> — Docker Compose (<code>deploy/docker-compose.server.yml</code>) or equivalent; profile <code>deployment_profile=server</code></li>
-  <li><strong>Inference</strong> — OpenAI-compatible endpoint (vLLM overlay common); set <code>INFERENCE__OPENAI_COMPAT__BASE_URL</code></li>
-  <li><strong>Vectors</strong> — Chroma on shared storage for MVP; Qdrant is a later scale option</li>
-  <li><strong>Auth</strong> — <code>AUTH__ENABLED=true</code>, OIDC issuer/audience, strong JWT secret, workspace ACL as required</li>
-  <li><strong>Path alignment</strong> — <code>ALLOWED_WORKSPACE_ROOTS</code> must match mounts or Remote SSH paths the server can read</li>
+  {% for item in t.platform.items %}
+  <li><strong>{{ item.strong }}</strong> {{ item.text }}</li>
+  {% endfor %}
 </ul>
 <p>
-  Env template: <code>deploy/profiles/server-sovereign.env.example</code>.
-  Path alignment guide: product repo <code>documentation/SOVEREIGN-PATH-ALIGNMENT.md</code>.
+  {{ t.platform.envBefore }}
+  <code>{{ t.platform.envCode }}</code>.
+  {{ t.platform.pathBefore }}
+  <code>{{ t.platform.pathCode }}</code>.
 </p>
 
-<h2>What developers do</h2>
+<h2>{{ t.developers.title }}</h2>
 <ol>
-  <li>Install the <strong>{{ site.extensionName }}</strong> extension only (do <strong>not</strong> require Engine on every laptop).</li>
-  <li>Set <code>ContextMint.serverUrl</code> to the team HTTPS API.</li>
-  <li>Enable <code>ContextMint.enterpriseMode</code> and configure <code>ContextMint.oidcProviderId</code>.</li>
-  <li>Open a workspace the server can index (Remote SSH or matching mount).</li>
+  <li>
+    {{ t.developers.step1Before }}
+    <strong>{{ site.extensionName }}</strong>
+    {{ t.developers.step1After }}
+  </li>
+  {% for step in t.developers.steps %}
+  <li>{{ step }}</li>
+  {% endfor %}
 </ol>
 
-<h2>Health &amp; readiness</h2>
+<h2>{{ t.health.title }}</h2>
 <ul>
-  <li><code>GET /api/health</code> — shows <code>deployment_profile</code> and <code>inference_provider</code></li>
-  <li><code>GET /api/ready</code> — fails closed when the inference provider is unreachable or the OIDC / auth checklist fails on server profile</li>
+  {% for item in t.health.items %}
+  <li>{{ item }}</li>
+  {% endfor %}
 </ul>
 
-<h2>Explicit non-goals (this page)</h2>
+<h2>{{ t.nongoals.title }}</h2>
 <ul>
-  <li><strong>Not</strong> dual-plane multi-user (local WIP + sovereign main) — that is GATE-SS-MU after the mid-Sept demo</li>
-  <li><strong>Not</strong> full ownership / CODEOWNERS product (Block RO) — branch review may show thin owner <em>teaser</em> labels only</li>
-  <li><strong>Not</strong> Engine tray as the server control plane — operators use compose, logs, and health endpoints</li>
+  {% for item in t.nongoals.items %}
+  <li><strong>{{ item.strong }}</strong> {{ item.text }}</li>
+  {% endfor %}
 </ul>
 
-<h2>Related</h2>
+<h2>{{ t.related.title }}</h2>
 <ul>
-  <li><a href="/docs/installation.html">Installation &amp; setup</a> — local-first vs sovereign server</li>
-  <li><a href="/docs/byok-enterprise.html">BYOK &amp; enterprise</a> — optional cloud routing (off by default)</li>
-  <li><a href="/getting-started.html">Getting started</a> — five-minute local path + enterprise notes</li>
-  <li><a href="/trust.html">Trust center</a></li>
+  {% for item in t.related.items %}
+  <li>
+    <a href="{{ item.href | locale_path: localePrefix }}">{{ item.link }}</a>{% if item.text != blank %} {{ item.text }}{% endif %}
+  </li>
+  {% endfor %}
 </ul>

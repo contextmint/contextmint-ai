@@ -21,7 +21,11 @@ const PAGES = [
   "/design-partners.html",
   "/faq.html",
   "/docs/",
+  "/docs/sovereign-server.html",
+  "/getting-started.html",
   "/trust.html",
+  "/ar/trust.html",
+  "/ar/docs/sovereign-server.html",
   "/accessibility.html",
 ];
 

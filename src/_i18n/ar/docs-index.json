@@ -1,4 +1,5 @@
 {
-  "title": "User Documentation | ContextMint",
-  "description": "In-depth guides for ContextMint Engine, VS Code chat, context lanes, image evidence, ARGUS, Context Lens, indexing, and governance."
+  "title": "توثيق المستخدم | ContextMint",
+  "description": "أدلة مفصّلة لمحرك ContextMint ومحادثات VS Code ومسارات السياق وأدلة الصور وARGUS وContext Lens والفهرسة والحوكمة.",
+  "sovereignCard": "نشر المنصة مع استدلال متوافق مع OpenAI (vLLM) وOIDC ومساحات عمل بمحاذاة المسارات."
 }

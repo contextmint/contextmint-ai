@@ -5,41 +5,40 @@ description: Install ContextMint Engine and the VS Code extension — local-firs
 pageCss: product.css
 ---
 
+{% assign t = i18nPageStrings %}
+
 <header class="page-hero">
   <div class="container">
-    <div class="pill">GETTING STARTED</div>
-    <h1>Install Engine + extension</h1>
+    <div class="pill">{{ t.hero.pill }}</div>
+    <h1>{{ t.hero.title }}</h1>
     <p class="lead">
-      ContextMint ships as a VS Code extension plus a backend. The <strong>default path</strong> is
-      local-first: Engine on your machine manages the server and Ollama; the extension connects over
-      loopback. Enterprise teams can run a <strong>sovereign on-prem API</strong> (OpenAI-compat / vLLM + OIDC)
-      instead — see
-      <a href="/docs/sovereign-server.html" style="color: var(--color-link);">sovereign server</a> ·
-      <a href="/trust.html" style="color: var(--color-link);">deployment models</a>.
-      If anything fails during install, open
-      <a href="/docs/installation.html#installation-support" style="color: var(--color-link);">installation support</a> first.
+      {{ t.hero.leadBefore }}
+      <strong>{{ t.hero.leadStrong }}</strong>
+      {{ t.hero.leadMid }}
+      <strong>{{ t.hero.leadStrong2 }}</strong>
+      {{ t.hero.leadMid2 }}
+      <a href="{{ '/docs/sovereign-server.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.hero.sovereignLink }}</a>
+      {{ t.hero.leadMid3 }}
+      <a href="{{ '/trust.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.hero.trustLink }}</a>{{ t.hero.leadMid4 }}
+      <a href="{{ '/docs/installation.html#installation-support' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.hero.installLink }}</a>
+      {{ t.hero.leadAfter }}
     </p>
   </div>
 </header>
 
 <section class="section">
   <div class="container container-narrow">
-    <h2 class="section-title">Choose your deployment</h2>
+    <h2 class="section-title">{{ t.choose.title }}</h2>
     <div class="grid grid-2">
       <div class="card">
-        <strong style="color: var(--color-trust);">Local-first (start here)</strong>
-        <p class="muted" style="margin: 8px 0 0; font-size: 0.9rem;">
-          Engine + extension on the same machine. Sovereign local-first path, no shared server. Follow
-          Steps 1–3 below.
-        </p>
+        <strong style="color: var(--color-trust);">{{ t.choose.localTitle }}</strong>
+        <p class="muted" style="margin: 8px 0 0; font-size: 0.9rem;">{{ t.choose.localText }}</p>
       </div>
       <div class="card">
-        <strong style="color: var(--color-link);">Sovereign on-prem API (enterprise pilot)</strong>
+        <strong style="color: var(--color-link);">{{ t.choose.sovereignTitle }}</strong>
         <p class="muted" style="margin: 8px 0 0; font-size: 0.9rem;">
-          Platform team deploys API + OpenAI-compat inference (vLLM). Extension sets
-          <code>ContextMint.serverUrl</code> + <code>enterpriseMode</code>. Requires path alignment
-          (Remote SSH or mounted repo).
-          <a href="/docs/sovereign-server.html">Sovereign guide →</a>
+          {{ t.choose.sovereignText }}
+          <a href="{{ '/docs/sovereign-server.html' | locale_path: localePrefix }}">{{ t.choose.sovereignLink }}</a>
         </p>
       </div>
     </div>
@@ -48,129 +47,120 @@ pageCss: product.css
 
 <section class="section section--surface">
   <div class="container container-narrow">
-    <h2 class="section-title">Local-first — what you need</h2>
+    <h2 class="section-title">{{ t.need.title }}</h2>
     <ul class="check-list">
-      <li>Windows 10+, macOS 12+, or Linux x64</li>
-      <li>VS Code 1.85 or later</li>
-      <li><a href="https://ollama.com" style="color: var(--color-link);">Ollama</a> installed (Engine can guide first-run setup)</li>
-      <li>A code workspace you want to index</li>
+      {% for item in t.need.items %}
+      <li>
+        {% if item.link %}
+        <a href="{{ item.href }}" style="color: var(--color-link);">{{ item.link }}</a>{{ item.after }}
+        {% else %}
+        {{ item.text }}
+        {% endif %}
+      </li>
+      {% endfor %}
     </ul>
   </div>
 </section>
 
 <section class="section section--surface">
   <div class="container container-narrow">
-    <h2 class="section-title">Step 1 — ContextMint Engine</h2>
+    <h2 class="section-title">{{ t.step1.title }}</h2>
     <p class="muted">
-      Engine installs like Ollama or Docker Desktop: a menubar/tray app with a utilitarian
-      operator window when you open it. Pick <strong>System</strong>, <strong>Light</strong>, or
-      <strong>Dark</strong> from the header or Settings. Download the installer from
-      <a href="{{ site.releasesUrl }}" style="color: var(--color-link);">GitHub Releases</a>.
+      {{ t.step1.p1Before }}
+      <strong>{{ t.step1.p1Strong1 }}</strong>{{ t.step1.p1Mid1 }}
+      <strong>{{ t.step1.p1Strong2 }}</strong>{{ t.step1.p1Mid2 }}
+      <strong>{{ t.step1.p1Strong3 }}</strong>
+      {{ t.step1.p1After }}
+      <a href="{{ site.releasesUrl }}" style="color: var(--color-link);">{{ t.step1.releasesLink }}</a>.
     </p>
     <div class="card" style="margin-top: 16px;">
       <table class="mono" style="width: 100%; font-size: 0.85rem; border-collapse: collapse;">
         <tbody>
+          {% for row in t.step1.platforms %}
           <tr>
-            <td style="padding: 8px 0; color: var(--text-secondary);">Windows x64</td>
-            <td style="padding: 8px 0;"><code>contextmint-engine-win-x64.msi</code></td>
+            <td style="padding: 8px 0; color: var(--text-secondary);">{{ row.os }}</td>
+            <td style="padding: 8px 0;"><code>{{ row.file }}</code></td>
           </tr>
-          <tr>
-            <td style="padding: 8px 0; color: var(--text-secondary);">macOS</td>
-            <td style="padding: 8px 0;"><code>contextmint-engine-macos-universal.dmg</code></td>
-          </tr>
-          <tr>
-            <td style="padding: 8px 0; color: var(--text-secondary);">Linux x64</td>
-            <td style="padding: 8px 0;"><code>contextmint-engine-linux-x64.AppImage</code></td>
-          </tr>
+          {% endfor %}
         </tbody>
       </table>
     </div>
     <p class="muted" style="margin-top: 16px; margin-bottom: 0;">
-      First launch runs a short wizard: Ollama detect, start services, and a link to install the
-      extension. <strong>Start at login</strong> is on by default — change it in Engine → Settings.
+      {{ t.step1.p2Before }}
+      <strong>{{ t.step1.p2Strong }}</strong>
+      {{ t.step1.p2After }}
     </p>
   </div>
 </section>
 
 <section class="section">
   <div class="container container-narrow">
-    <h2 class="section-title">Step 2 — {{ site.extensionName }} extension</h2>
+    <h2 class="section-title">{{ t.step2.titleBefore }} {{ site.extensionName }} {{ t.step2.titleAfter }}</h2>
     <p class="muted">
-      Install from the VS Code Marketplace, or sideload the <code>.vsix</code> from the same
-      <a href="{{ site.releasesUrl }}" style="color: var(--color-link);">GitHub Release</a>
-      as Engine.
+      {{ t.step2.p1Before }}
+      <a href="{{ site.releasesUrl }}" style="color: var(--color-link);">{{ t.step2.releasesLink }}</a>
+      {{ t.step2.p1After }}
     </p>
-    <p class="muted" style="margin-bottom: 0;">
-      Open any workspace folder. The extension connects to <code>localhost:8000</code> and
-      registers your repo for indexing automatically.
-    </p>
+    <p class="muted" style="margin-bottom: 0;">{{ t.step2.p2 }}</p>
   </div>
 </section>
 
 <section class="section section--surface">
   <div class="container container-narrow">
-    <h2 class="section-title">Step 3 — First chat</h2>
+    <h2 class="section-title">{{ t.step3.title }}</h2>
     <ol class="steps-list">
-      <li>Confirm Engine tray shows server healthy (green).</li>
-      <li>Open VS Code on your project folder.</li>
-      <li>Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>L</kbd> or open Chat from the activity bar.</li>
-      <li>Wait for readiness <strong>Ready</strong> (indexing may take a few minutes on large repos).</li>
-      <li>Optional: Engine → <strong>Models</strong> → pull a <strong>vision model</strong> (<code>moondream</code>) if you plan to paste UI screenshots.</li>
-      <li>Review Context Lens, then send your first question — or paste a screenshot and ask about it.</li>
+      {% for step in t.step3.steps %}
+      <li>{{ step }}</li>
+      {% endfor %}
     </ol>
-    <p class="muted" style="margin-top: 16px;">
-      In the compose <strong>⋯</strong> menu, set <strong>Context</strong> to <strong>Repo</strong> for
-      codebase questions (default), <strong>Work</strong> for planning or comms, or <strong>Hybrid</strong>
-      when you want repo evidence plus recommendations.
-    </p>
+    <p class="muted" style="margin-top: 16px;">{{ t.step3.composeNote }}</p>
     <p class="muted" style="margin-top: 8px; margin-bottom: 0;">
-      Status bar shows <strong>{{ site.extensionName }} | Ready</strong> when Engine and the backend
-      are healthy. Full v1.0 capability list:
-      <a href="/features.html" style="color: var(--color-link);">Features →</a>
-      · <a href="/docs/" style="color: var(--color-link);">User documentation →</a>
-      · <a href="/support/troubleshooting.html" style="color: var(--color-link);">Troubleshooting →</a>
+      {{ t.step3.statusBefore }}
+      <strong>{{ site.extensionName }} {{ t.step3.statusReady }}</strong>
+      {{ t.step3.statusAfter }}
+      <a href="{{ '/features.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.step3.featuresLink }}</a>
+      · <a href="{{ '/docs/' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.step3.docsLink }}</a>
+      · <a href="{{ '/support/troubleshooting.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.step3.troubleLink }}</a>
     </p>
   </div>
 </section>
 
 <section class="section section--surface">
   <div class="container container-narrow">
-    <h2 class="section-title">Optional — cloud routing (BYOK)</h2>
+    <h2 class="section-title">{{ t.byok.title }}</h2>
     <p class="muted" style="margin-bottom: 0;">
-      Not required for the default workflow. If your team approves hybrid inference, enable
-      <strong>cloud routing</strong> in extension settings and add provider API keys via
-      <strong>ContextMint: Configure Cloud API Key</strong>. Keys are stored in VS Code secrets
-      on your machine — never in Engine or server config. Assembled context is redacted before
-      any cloud dispatch. Local Ollama remains the default. Details:
-      <a href="/faq.html" style="color: var(--color-link);">FAQ</a> ·
-      <a href="/trust.html" style="color: var(--color-link);">Trust &amp; Security</a>.
+      {{ t.byok.textBefore }}
+      <strong>{{ t.byok.textStrong1 }}</strong>
+      {{ t.byok.textMid }}
+      <strong>{{ t.byok.textStrong2 }}</strong>{{ t.byok.textAfter }}
+      <a href="{{ '/faq.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.byok.faqLink }}</a>
+      ·
+      <a href="{{ '/trust.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.byok.trustLink }}</a>.
     </p>
   </div>
 </section>
 
 <section class="section">
   <div class="container container-narrow">
-    <h2 class="section-title">Enterprise — sovereign on-prem API (pilot)</h2>
+    <h2 class="section-title">{{ t.enterprise.title }}</h2>
     <p class="muted">
-      For regulated teams sharing one GPU host or monorepo index. Not a substitute for Engine on
-      every laptop — this is a <strong>platform-operated API server</strong> with
-      <strong>OpenAI-compatible inference</strong> (typically vLLM). Do not equate “enterprise” with
-      “Ollama tray on a shared box only.”
+      {{ t.enterprise.introBefore }}
+      <strong>{{ t.enterprise.introStrong1 }}</strong>
+      {{ t.enterprise.introMid }}
+      <strong>{{ t.enterprise.introStrong2 }}</strong>
+      {{ t.enterprise.introAfter }}
     </p>
     <ol class="steps-list" style="margin-top: 16px;">
-      <li>Platform team deploys the API stack (Docker Compose) with Chroma, Redis, and an OpenAI-compatible inference URL (vLLM overlay common).</li>
-      <li>Mount or clone the repository on the server host so indexing paths match what developers open in VS Code (Remote SSH is the common pattern).</li>
-      <li>Enable server auth (<code>AUTH__ENABLED</code>), configure OIDC issuer/audience, and domain allowlists.</li>
-      <li>Each developer: install the extension only, set <code>ContextMint.serverUrl</code> to the team HTTPS endpoint, enable <code>ContextMint.enterpriseMode</code>, and set <code>ContextMint.oidcProviderId</code> (e.g. <code>microsoft</code>).</li>
-      <li>Optional: configure <code>ContextMint.localFallbackUrl</code> if chat should fall back to a local engine when the team server is unreachable.</li>
+      {% for step in t.enterprise.steps %}
+      <li>{{ step }}</li>
+      {% endfor %}
     </ol>
     <p class="muted" style="margin-top: 16px; margin-bottom: 0;">
-      Full platform guide:
-      <a href="/docs/sovereign-server.html" style="color: var(--color-link);">Sovereign server deployment</a>.
-      Contact us for a design-partner pilot — architecture review, path strategy, and
-      security questionnaire support:
-      <a href="/trust.html" style="color: var(--color-link);">Trust center</a> ·
-      <a href="/design-partners.html" style="color: var(--color-link);">Design partners</a>.
+      {{ t.enterprise.footerBefore }}
+      <a href="{{ '/docs/sovereign-server.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.enterprise.sovereignLink }}</a>{{ t.enterprise.footerMid }}
+      <a href="{{ '/trust.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.enterprise.trustLink }}</a>
+      ·
+      <a href="{{ '/design-partners.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.enterprise.partnersLink }}</a>.
     </p>
   </div>
 </section>
@@ -178,30 +168,32 @@ pageCss: product.css
 <section class="section">
   <div class="container container-narrow split">
     <div>
-      <h2>Operate from the tray</h2>
-      <p class="muted">Engine is not a daily dashboard — it is recovery and lifecycle control.</p>
+      <h2>{{ t.operate.title }}</h2>
+      <p class="muted">{{ t.operate.lead }}</p>
       <ul>
-        <li><strong>Tray</strong> — green / amber / red at a glance; Start all / Stop all</li>
-        <li><strong>Overview</strong> — readiness issues when something needs attention</li>
-        <li><strong>Server · Ollama · Indexing</strong> — drill down only when debugging</li>
-        <li><strong>Logs / About</strong> — diagnostics and support bundle export</li>
+        {% for item in t.operate.items %}
+        <li><strong>{{ item.strong }}</strong> {{ item.text }}</li>
+        {% endfor %}
       </ul>
     </div>
     <div>
-      <h2>Stuck?</h2>
-      <p class="muted">Common fixes before you open a GitHub issue.</p>
+      <h2>{{ t.stuck.title }}</h2>
+      <p class="muted">{{ t.stuck.lead }}</p>
       <ul>
-        <li>Server offline → open Engine and <strong>Start all</strong></li>
-        <li>Chat blocked → usually <strong>offline</strong> or <strong>starting</strong> — not indexing</li>
-        <li>Ollama offline → <strong>Limited</strong> mode; search may work, generation degraded</li>
+        {% for item in t.stuck.items %}
+        <li>
+          {{ item.before }}
+          <strong>{{ item.strong }}</strong>{% if item.mid %} {{ item.mid }} {% endif %}{% if item.strong2 %}<strong>{{ item.strong2 }}</strong>{% endif %}{% if item.after %} {{ item.after }}{% endif %}
+        </li>
+        {% endfor %}
       </ul>
       <p style="margin-top: 16px;">
-        <a class="btn btn-secondary" href="/support/troubleshooting.html">Troubleshooting</a>
-        <a class="btn btn-secondary" href="/docs/" style="margin-left: 8px;">User docs</a>
-        <a class="btn btn-secondary" href="/faq.html" style="margin-left: 8px;">FAQ</a>
+        <a class="btn btn-secondary" href="{{ '/support/troubleshooting.html' | locale_path: localePrefix }}">{{ t.stuck.trouble }}</a>
+        <a class="btn btn-secondary" href="{{ '/docs/' | locale_path: localePrefix }}" style="margin-left: 8px;">{{ t.stuck.docs }}</a>
+        <a class="btn btn-secondary" href="{{ '/faq.html' | locale_path: localePrefix }}" style="margin-left: 8px;">{{ t.stuck.faq }}</a>
       </p>
     </div>
   </div>
 </section>
 
-{% include "cta-band.html", ctaTitle: "Need a guided pilot?", ctaText: "Apply as a design partner for a 30-day evaluation pilot (extendable to 90) with direct engineering support and a written summary for stakeholders. Intake opens by start of September 2026." %}
+{% include "cta-band.html", ctaTitle: t.cta.title, ctaText: t.cta.text %}

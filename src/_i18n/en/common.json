@@ -15,6 +15,28 @@
     "developers": "Developers",
     "demo": "Demo"
   },
+  "docsNav": {
+    "ariaLabel": "Documentation navigation",
+    "title": "User documentation",
+    "overview": "Overview",
+    "installation": "Installation & setup",
+    "chatAndLanes": "Chat, modes & lanes",
+    "imageEvidence": "Image evidence & ARGUS",
+    "contextLens": "Context Lens & packs",
+    "engineOperator": "Engine operator guide",
+    "indexing": "Indexing & readiness",
+    "patches": "Patches & governance",
+    "knowledge": "Knowledge & governance",
+    "settings": "Settings reference",
+    "byok": "BYOK & enterprise",
+    "sovereignServer": "Sovereign server",
+    "glossary": "Glossary",
+    "related": "Related",
+    "quickStart": "Quick start (5 min)",
+    "features": "Features (v1.0)",
+    "troubleshooting": "Troubleshooting",
+    "developers": "Developers"
+  },
   "language": {
     "ariaLabel": "Language",
     "label": "Language"

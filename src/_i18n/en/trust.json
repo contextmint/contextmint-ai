@@ -1,4 +1,123 @@
 {
   "title": "Trust & Security | ContextMint",
-  "description": "ContextMint security posture — local-first default, optional BYOK, shared on-prem server pilots, RBAC, and audit trails."
+  "description": "ContextMint security posture — local-first default, optional BYOK, shared on-prem server pilots, RBAC, and audit trails.",
+  "hero": {
+    "pill": "TRUST CENTER",
+    "title": "Local-first trust you can defend in a pilot",
+    "lead": "Enterprise buyers need proof before APIs. Local-first architecture, human Gates 1 & 2, optional shared-server OIDC, and operator audit trails — the trust layer behind v1.0. Blast-radius SKU and SOC 2 certification remain on the roadmap."
+  },
+  "pillars": [
+    {
+      "title": "Local-first architecture",
+      "text": "Code indexing, embeddings, and retrieval run on your infrastructure. Ollama processes locally — source never required to leave your device on the Developer tier."
+    },
+    {
+      "title": "Human verification gates",
+      "textBefore": "Context Lens before inference. Patch preview and apply gates before repo writes. AI narrates; humans approve material changes. Graph-computed blast radius and drift SKUs are",
+      "textStrong": "roadmap",
+      "textAfter": "— not the August GA package."
+    },
+    {
+      "title": "RBAC & agent governance",
+      "textBefore": "Role-based access for humans;",
+      "textStrong": "planned",
+      "textAfter": "scoped read tools for MCP agents on the Verification Engine roadmap. v1.0 enforces human Gates 1 & 2 in the IDE — no silent writes."
+    },
+    {
+      "title": "Audit trail",
+      "textBefore": "Operator actions and support-bundle exports for pilot and security reviews. SOC 2 Type II certification and dedicated evidence collectors are on the",
+      "linkText": "Track B roadmap",
+      "linkHref": "/roadmap.html#track-b",
+      "textAfter": "— not claimed as achieved."
+    },
+    {
+      "title": "Optional cloud (BYOK)",
+      "text": "Cloud LLM routing is opt-in and disabled by default. Provider API keys live in VS Code secrets on the developer machine — never in server config. Assembled context is redacted before any approved cloud dispatch. Local Ollama remains the default for sovereign workflows."
+    }
+  ],
+  "deployment": {
+    "title": "Deployment models",
+    "introBefore": "ContextMint supports two architectures. The",
+    "introStrong": "default v1.0 path",
+    "introMid": "is local-first. Shared on-prem server mode is available for",
+    "introStrong2": "guided regulated pilots",
+    "introAfter": "with platform engineering support.",
+    "local": {
+      "title": "Local-first (default)",
+      "textBefore": "",
+      "textStrong": "ContextMint Engine",
+      "textAfter": "on each developer machine runs the API server and Ollama. The VS Code extension connects to localhost:8000. Indexing, embeddings, and inference stay on the workstation — the path v1.0 is built for.",
+      "footnote": "Ready for pilot · sovereign · no shared server required"
+    },
+    "sovereign": {
+      "title": "Sovereign on-prem API (pilot)",
+      "textBefore": "A customer-hosted",
+      "textStrong": "API server stack",
+      "textMid": "(Docker Compose) with",
+      "textStrong2": "OpenAI-compatible inference",
+      "textMid2": "(typically",
+      "textStrong3": "vLLM",
+      "textAfter": "), Chroma, Redis, and OIDC. Developers point the extension at ContextMint.serverUrl — this is not the Engine desktop tray, and it is not “enterprise = Ollama on a shared box” as the only story.",
+      "footnoteBefore": "Design-partner / pilot · ops setup required ·",
+      "guideLink": "Sovereign server guide"
+    }
+  },
+  "worksToday": {
+    "title": "Sovereign server — what works today",
+    "introBefore": "The server indexes",
+    "introStrong": "filesystem paths it can read",
+    "introAfter": ". The extension registers the open workspace path with the server. These patterns work for on-prem pilots:",
+    "items": [
+      {
+        "strong": "VS Code Remote SSH",
+        "text": "— workspace path is on the same host as the API server"
+      },
+      {
+        "strong": "Shared monorepo on a mounted volume",
+        "text": "— server indexes the mount; developers use matching paths"
+      },
+      {
+        "strong": "Dev VM or build agent",
+        "text": "— code and ContextMint API co-located on one machine"
+      },
+      {
+        "strong": "OIDC / SSO",
+        "text": "— extension enterpriseMode forwards Bearer tokens; server validates JWT issuer and audience"
+      },
+      {
+        "strong": "HTTPS ingress",
+        "text": "— nginx + TLS in front of the API (Docker / Helm templates provided)"
+      }
+    ],
+    "limitTitle": "Important limitation",
+    "limitBefore": "Pointing a laptop with a",
+    "limitEm": "local-only",
+    "limitMid": "clone (e.g. C:\\dev\\repo) at a remote corporate server URL does",
+    "limitStrong": "not",
+    "limitAfter": "work out of the box — the server cannot read paths that exist only on the developer machine. Platform teams must align repo location, mounts, or Remote SSH before indexing. We help teams validate this during the design partner evaluation pilot (see",
+    "partnersLink": "Design Partners",
+    "limitEnd": ")."
+  },
+  "controls": {
+    "title": "Enterprise controls",
+    "items": [
+      "SSO via OIDC on the shared-server pilot path (Microsoft Entra ID, Okta, Keycloak, and other compliant IdPs)",
+      "Role-based access — viewer, dev, admin per workspace (shared-server path)",
+      "Self-hosted API server — Docker Compose or Helm for regulated pilots",
+      "Optional BYOK cloud routing with egress redaction (off by default)",
+      "Operator audit / support-bundle export; Redis-backed rate limiting on team server",
+      "Air-gapped Helm, tenant isolation, and fabric evidence ledger — roadmap / packaging"
+    ],
+    "footerBefore": "SOC 2 Type II and formal compliance packaging are on the",
+    "footerLink": "Track B roadmap",
+    "footerAfter": ". Shared-server auth hardening and path alignment are part of the regulated pilot path — design partner intake opens by start of September 2026."
+  },
+  "cta": {
+    "prompt": "Need a security questionnaire or architecture review for local-first vs shared-server deployment?",
+    "demo": "Request security briefing",
+    "sovereign": "Sovereign server guide",
+    "gettingStarted": "Getting started",
+    "a11yBefore": "Website accessibility:",
+    "a11yLink": "WCAG 2.2 AA statement"
+  }
 }

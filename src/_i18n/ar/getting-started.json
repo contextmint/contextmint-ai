@@ -1,4 +1,141 @@
 {
-  "title": "Getting Started | ContextMint",
-  "description": "Install ContextMint Engine and the VS Code extension — local-first default, plus enterprise shared-server pilot notes."
+  "title": "البدء | ContextMint",
+  "description": "ثبّت ContextMint Engine وامتداد VS Code — محلي أولاً افتراضياً، مع ملاحظات تجربة الخادم المشترك المؤسسي.",
+  "hero": {
+    "pill": "البدء",
+    "title": "ثبّت Engine والامتداد",
+    "leadBefore": "يُشحن ContextMint كامتداد VS Code مع خلفية. ",
+    "leadStrong": "المسار الافتراضي",
+    "leadMid": "محلي أولاً: Engine على جهازك يدير الخادم وOllama؛ يتصل الامتداد عبر loopback. يمكن للفرق المؤسسية تشغيل",
+    "leadStrong2": "API سيادي داخل البنية المحلية",
+    "leadMid2": "(متوافق مع OpenAI / vLLM + OIDC) بدلاً من ذلك — انظر",
+    "sovereignLink": "الخادم السيادي",
+    "leadMid3": "·",
+    "trustLink": "نماذج النشر",
+    "leadMid4": ". إذا فشل أي شيء أثناء التثبيت، افتح",
+    "installLink": "دعم التثبيت",
+    "leadAfter": "أولاً."
+  },
+  "choose": {
+    "title": "اختر نموذج النشر",
+    "localTitle": "محلي أولاً (ابدأ هنا)",
+    "localText": "Engine والامتداد على نفس الجهاز. مسار محلي أولاً سيادي، بدون خادم مشترك. اتبع الخطوات 1–3 أدناه.",
+    "sovereignTitle": "API سيادي داخل البنية المحلية (تجربة مؤسسية)",
+    "sovereignText": "فريق المنصات ينشر API + استدلال متوافق مع OpenAI (vLLM). يضبط الامتداد ContextMint.serverUrl + enterpriseMode. يتطلب مواءمة المسارات (Remote SSH أو مستودع mount).",
+    "sovereignLink": "الدليل السيادي ←"
+  },
+  "need": {
+    "title": "محلي أولاً — ما تحتاجه",
+    "items": [
+      { "text": "Windows 10+ أو macOS 12+ أو Linux x64" },
+      { "text": "VS Code 1.85 أو أحدث" },
+      {
+        "link": "Ollama",
+        "href": "https://ollama.com",
+        "after": " مثبّت (يمكن لـ Engine إرشاد إعداد التشغيل الأول)"
+      },
+      { "text": "مساحة عمل كود تريد فهرستها" }
+    ]
+  },
+  "step1": {
+    "title": "الخطوة 1 — ContextMint Engine",
+    "p1Before": "يُثبَّت Engine مثل Ollama أو Docker Desktop: تطبيق شريط قائمة/سطح مكتب مع نافذة مشغّل عملية عند فتحه. اختر",
+    "p1Strong1": "System",
+    "p1Mid1": " أو ",
+    "p1Strong2": "Light",
+    "p1Mid2": " أو ",
+    "p1Strong3": "Dark",
+    "p1After": "من الرأس أو الإعدادات. حمّل المثبّت من",
+    "releasesLink": "GitHub Releases",
+    "platforms": [
+      { "os": "Windows x64", "file": "contextmint-engine-win-x64.msi" },
+      { "os": "macOS", "file": "contextmint-engine-macos-universal.dmg" },
+      { "os": "Linux x64", "file": "contextmint-engine-linux-x64.AppImage" }
+    ],
+    "p2Before": "التشغيل الأول يشغّل معالجاً قصيراً: اكتشاف Ollama، وتشغيل الخدمات، ورابط لتثبيت الامتداد.",
+    "p2Strong": "Start at login",
+    "p2After": "مفعّل افتراضياً — غيّره في Engine → Settings."
+  },
+  "step2": {
+    "titleBefore": "الخطوة 2 —",
+    "titleAfter": "امتداد",
+    "p1Before": "ثبّت من VS Code Marketplace، أو حمّل .vsix من نفس",
+    "releasesLink": "GitHub Release",
+    "p1After": "الخاص بـ Engine.",
+    "p2": "افتح أي مجلد مساحة عمل. يتصل الامتداد بـ localhost:8000 ويسجّل مستودعك للفهرسة تلقائياً."
+  },
+  "step3": {
+    "title": "الخطوة 3 — أول محادثة",
+    "steps": [
+      "تأكّد أن سطح Engine يظهر الخادم سليماً (أخضر).",
+      "افتح VS Code على مجلد مشروعك.",
+      "اضغط Ctrl+Shift+Alt+L أو افتح Chat من شريط النشاط.",
+      "انتظر حتى تصبح الجاهزية Ready (قد تستغرق الفهرسة دقائقاً على المستودعات الكبيرة).",
+      "اختياري: Engine → Models → اسحب نموذج رؤية (moondream) إذا كنت تخطط للصق لقطات واجهة.",
+      "راجع Context Lens، ثم أرسل سؤالك الأول — أو الصق لقطة شاشة واسأل عنها."
+    ],
+    "composeNote": "في قائمة compose ⋯، اضبط Context على Repo لأسئلة الكود (افتراضي)، أو Work للتخطيط أو المراسلات، أو Hybrid عندما تريد أدلة المستودع مع التوصيات.",
+    "statusBefore": "شريط الحالة يظهر",
+    "statusReady": "| Ready",
+    "statusAfter": "عندما يكون Engine والخلفية سليمين. قائمة قدرات الإصدار 1.0 الكاملة:",
+    "featuresLink": "الميزات ←",
+    "docsLink": "وثائق المستخدم ←",
+    "troubleLink": "استكشاف الأخطاء ←"
+  },
+  "byok": {
+    "title": "اختياري — توجيه سحابي (BYOK)",
+    "textBefore": "غير مطلوب لسير العمل الافتراضي. إذا وافق فريقك على استدلال هجين، فعّل",
+    "textStrong1": "cloud routing",
+    "textMid": "في إعدادات الامتداد وأضف مفاتيح API للمزود عبر",
+    "textStrong2": "ContextMint: Configure Cloud API Key",
+    "textAfter": ". تُخزَّن المفاتيح في أسرار VS Code على جهازك — وليس في Engine أو إعدادات الخادم. يُنقَّى السياق المجمّع قبل أي إرسال سحابي. يبقى Ollama المحلي الافتراضي. التفاصيل:",
+    "faqLink": "الأسئلة الشائعة",
+    "trustLink": "الثقة والأمان"
+  },
+  "enterprise": {
+    "title": "المؤسسات — API سيادي داخل البنية المحلية (تجربة)",
+    "introBefore": "للفرق المنظمة التي تشارك مضيف GPU واحد أو فهرس monorepo. ليس بديلاً عن Engine على كل حاسوب محمول — هذا",
+    "introStrong1": "خادم API تديره المنصة",
+    "introMid": "مع",
+    "introStrong2": "استدلال متوافق مع OpenAI",
+    "introAfter": "(عادةً vLLM). لا تخلط بين «المؤسسات» و«Ollama tray على صندوق مشترك فقط».",
+    "steps": [
+      "ينشر فريق المنصات مكدّس API (Docker Compose) مع Chroma وRedis وURL استدلال متوافق مع OpenAI (overlay vLLM شائع).",
+      "اربط أو استنسخ المستودع على مضيف الخادم بحيث تتطابق مسارات الفهرسة مع ما يفتحه المطوّرون في VS Code (Remote SSH هو النمط الشائع).",
+      "فعّل مصادقة الخادم (AUTH__ENABLED)، واضبط مُصدِر/جمهور OIDC، وقوائم السماح للنطاقات.",
+      "كل مطوّر: يثبّت الامتداد فقط، ويضبط ContextMint.serverUrl على نقطة HTTPS للفريق، ويفعّل ContextMint.enterpriseMode، ويضبط ContextMint.oidcProviderId (مثل microsoft).",
+      "اختياري: اضبط ContextMint.localFallbackUrl إذا كان Chat يجب أن يعود إلى engine محلي عندما يكون خادم الفريق غير متاح."
+    ],
+    "footerBefore": "الدليل الكامل للمنصة:",
+    "sovereignLink": "نشر الخادم السيادي",
+    "footerMid": ". تواصل معنا لتجربة شريك تصميم — مراجعة بنية، واستراتيجية مسارات، ودعم استبيان أمان:",
+    "trustLink": "مركز الثقة",
+    "partnersLink": "شركاء التصميم"
+  },
+  "operate": {
+    "title": "التشغيل من السطح",
+    "lead": "Engine ليس لوحة تحكم يومية — بل تحكم في الاسترداد ودورة الحياة.",
+    "items": [
+      { "strong": "Tray", "text": "— أخضر / كهرماني / أحمر بنظرة واحدة؛ Start all / Stop all" },
+      { "strong": "Overview", "text": "— مشكلات الجاهزية عندما يحتاج شيء انتباهاً" },
+      { "strong": "Server · Ollama · Indexing", "text": "— تعمّق فقط عند التصحيح" },
+      { "strong": "Logs / About", "text": "— تشخيص وتصدير حزمة الدعم" }
+    ]
+  },
+  "stuck": {
+    "title": "عالق؟",
+    "lead": "إصلاحات شائعة قبل فتح issue على GitHub.",
+    "items": [
+      { "before": "الخادم غير متصل → افتح Engine و", "strong": "Start all" },
+      { "before": "Chat محظور → عادةً", "strong": "offline", "mid": "أو", "strong2": "starting", "after": "— وليس الفهرسة" },
+      { "before": "Ollama غير متصل → وضع", "strong": "Limited", "after": "؛ قد يعمل البحث، والتوليد متدهور" }
+    ],
+    "trouble": "استكشاف الأخطاء",
+    "docs": "وثائق المستخدم",
+    "faq": "الأسئلة الشائعة"
+  },
+  "cta": {
+    "title": "تحتاج تجربة موجهة؟",
+    "text": "قدّم طلباً كشريك تصميم لتجربة تقييم 30 يوماً (قابلة للتمديد إلى 90) مع دعم هندسي مباشر وملخص مكتوب لأصحاب المصلحة. يفتح التسجيل مع بداية سبتمبر 2026."
+  }
 }
