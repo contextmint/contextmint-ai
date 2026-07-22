@@ -37,10 +37,11 @@
   {% endif %}
 </head>
 <body{% if site.announcement.enabled %} class="has-announcement"{% endif %}>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   {% include "site-announcement.html" %}
   {% include "nav.html" %}
 
-  <main id="main-content" data-pagefind-body>
+  <main id="main-content" data-pagefind-body tabindex="-1">
     {{ content }}
   </main>
 
@@ -49,6 +50,20 @@
   <script src="/assets/js/main.js" defer></script>
   {% if pageJs %}
   <script src="/assets/js/{{ pageJs }}" defer></script>
+  {% endif %}
+
+  {% if site.selectToSpeak.enabled %}
+  <div
+    id="select-to-speak-config"
+    hidden
+    data-enabled="true"
+    data-min-selection-length="{{ site.selectToSpeak.minSelectionLength }}"
+    data-lang="{{ site.selectToSpeak.lang }}"
+    data-offset-x="{{ site.selectToSpeak.offsetX }}"
+    data-offset-y="{{ site.selectToSpeak.offsetY }}"
+    data-z-index="{{ site.selectToSpeak.zIndex }}"
+  ></div>
+  <script src="/assets/js/select-to-speak.js" defer></script>
   {% endif %}
 
   {% include "site-guide.html" %}

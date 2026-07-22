@@ -384,8 +384,8 @@ kbd {
 }
 
 .doc-sidebar__link--active {
-  color: var(--color-action);
-  background: rgba(59, 130, 246, 0.1);
+  color: var(--color-link);
+  background: rgba(147, 197, 253, 0.12);
   font-weight: 500;
 }
 

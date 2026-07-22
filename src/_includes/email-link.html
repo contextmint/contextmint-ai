@@ -3,7 +3,7 @@
   Pass: address (required), class (optional inline style class)
 {% endcomment %}
 {% if site.emailVisible %}
-<a href="mailto:{{ address }}"{% if class %} class="{{ class }}"{% else %} style="color: var(--color-action);"{% endif %}>{{ address }}</a>
+<a href="mailto:{{ address }}"{% if class %} class="{{ class }}"{% else %} style="color: var(--color-link);"{% endif %}>{{ address }}</a>
 {% else %}
 <span class="muted">Contact email coming soon</span>
 {% endif %}

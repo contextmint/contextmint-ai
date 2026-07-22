@@ -80,8 +80,19 @@ The [Settings reference](/docs/settings.html) page uses generated data in `src/_
 | [documentation/README.md](./documentation/README.md) | Index of all site docs |
 | [documentation/WEBSITE-GO-LIVE.md](./documentation/WEBSITE-GO-LIVE.md) | Go-live guide (DNS, GitHub Pages, messaging) |
 | [documentation/GO-LIVE-CHECKLIST.md](./documentation/GO-LIVE-CHECKLIST.md) | Short deploy checklist |
+| [documentation/WCAG-22-AA-AUDIT.md](./documentation/WCAG-22-AA-AUDIT.md) | WCAG 2.2 AA audit + remediation map |
 | [documentation/SITE-GUIDE-CHAT-PLAN.md](./documentation/SITE-GUIDE-CHAT-PLAN.md) | Site guide widget (implemented) |
 | [documentation/SITE-GUIDE-SETTINGS-QUESTIONS.md](./documentation/SITE-GUIDE-SETTINGS-QUESTIONS.md) | Settings question catalog (site guide) |
+
+## Accessibility
+
+The marketing site targets **WCAG 2.2 Level AA** (first-party fixes + axe CI gate). Public statement: `/accessibility.html`.
+
+```bash
+npm run build
+npx playwright install chromium
+npm run test:a11y
+```
 
 ## Adding a page
 

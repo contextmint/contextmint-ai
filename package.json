@@ -8,13 +8,16 @@
     "gen:site-guide": "node scripts/gen-site-guide.mjs",
     "index:pagefind": "npx pagefind --site _site",
     "test:site-guide": "node scripts/test-site-guide-matcher.mjs && node scripts/test-site-guide-copy.mjs",
+    "test:a11y": "node scripts/test-a11y.mjs",
     "build": "npm run gen:settings && npm run gen:site-guide && eleventy",
     "dev": "npm run gen:settings && npm run gen:site-guide && eleventy --serve",
     "clean": "node -e \"require('fs').rmSync('_site',{recursive:true,force:true})\""
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
+    "@axe-core/playwright": "^4.10.2",
     "pagefind": "^1.5.2",
+    "playwright": "^1.54.1",
     "yaml": "^2.9.0"
   }
 }

@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-07-20",
+  "generatedAt": "2026-07-22",
   "source": "extensions/contextmint-vscode/package.json",
-  "totalCount": 146,
+  "totalCount": 147,
   "operatorKeys": [
     "contextmint.serverUrl",
     "contextmint.engine.dashboardUrl",
@@ -1049,6 +1049,27 @@
           }
         },
         {
+          "id": "contextmint.chat.selectionMaxChars",
+          "description": "Max characters of editor selection sent with chat (focus pointer). Longer highlights are truncated; attach the file for full-document context.",
+          "default": "4096",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust chat.selectionMaxChars in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
           "id": "contextmint.chat.trivialQueryFastPathEnabled",
           "description": "Skip client grep and retrieval UI for short greetings (hi, hello, etc.).",
           "default": "true",
@@ -1824,7 +1845,7 @@
         {
           "id": "contextmint.inline.enabled",
           "description": "Enable local inline ghost-text completion — code FIM and prose/sentence (requires inline backend).",
-          "default": "true",
+          "default": "false",
           "deprecated": false,
           "operator": false,
           "type": "boolean",

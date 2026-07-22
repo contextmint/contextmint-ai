@@ -33,7 +33,7 @@
 }
 
 .btn-primary:hover {
-  background: #2563eb;
+  background: var(--color-action-hover);
 }
 
 .btn-secondary {
@@ -114,8 +114,10 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
+  min-width: 24px;
+  min-height: 24px;
+  width: 32px;
+  height: 32px;
   padding: 0;
   border: 1px solid transparent;
   border-radius: 6px;
@@ -425,6 +427,33 @@ body.announcement-dismissed .navbar {
   line-height: 1.6;
 }
 
+/* Inline links in prose: contrast + not color-only (1.4.3 / 1.4.1 / link-in-text-block) */
+p a:not(.btn),
+li a:not(.btn),
+.lead a:not(.btn),
+.muted a:not(.btn),
+.legal a:not(.btn),
+.notice-banner a:not(.btn),
+.card p a:not(.btn),
+.doc-content a:not(.btn),
+.faq-item__body a:not(.btn) {
+  color: var(--color-link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+p a:not(.btn):hover,
+li a:not(.btn):hover,
+.lead a:not(.btn):hover,
+.muted a:not(.btn):hover,
+.legal a:not(.btn):hover,
+.notice-banner a:not(.btn):hover,
+.card p a:not(.btn):hover,
+.doc-content a:not(.btn):hover,
+.faq-item__body a:not(.btn):hover {
+  color: #bfdbfe;
+}
+
 .section--surface {
   background: var(--bg-surface);
   border-top: 1px solid var(--border-default);
@@ -650,8 +679,38 @@ body.announcement-dismissed .navbar {
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-  outline: none;
   border-color: var(--color-action);
+}
+
+.form-group input:focus-visible,
+.form-group select:focus-visible,
+.form-group textarea:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.form-group input[aria-invalid="true"],
+.form-group select[aria-invalid="true"],
+.form-group textarea[aria-invalid="true"] {
+  border-color: var(--color-danger);
+}
+
+.form-inline-error {
+  margin: 0 0 16px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  background: rgba(239, 68, 68, 0.1);
+  color: #fca5a5;
+  font-size: 0.9rem;
+}
+
+.form-inline-error[hidden] {
+  display: none !important;
+}
+
+.form-status[hidden] {
+  display: none !important;
 }
 
 .form-group textarea {
@@ -793,6 +852,65 @@ body.announcement-dismissed .navbar {
 
 .legal ul {
   padding-left: 20px;
+}
+
+/* --- Select-to-speak (Hub71-style floating speaker) --- */
+
+.select-to-speak {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--border-default);
+  border-radius: 999px;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease,
+    opacity 0.15s ease, transform 0.15s ease;
+}
+
+.select-to-speak[hidden] {
+  display: none !important;
+}
+
+.select-to-speak:hover,
+.select-to-speak:focus-visible {
+  background: var(--color-action);
+  border-color: var(--color-action);
+  color: #fff;
+  outline: none;
+}
+
+.select-to-speak__icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.select-to-speak__icon--stop {
+  display: none;
+}
+
+.select-to-speak.is-speaking .select-to-speak__icon--speaker {
+  display: none;
+}
+
+.select-to-speak.is-speaking .select-to-speak__icon--stop {
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .select-to-speak {
+    transition: none;
+  }
 }
 
 @media (max-width: 768px) {

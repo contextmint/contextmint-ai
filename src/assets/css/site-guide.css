@@ -112,8 +112,10 @@
 
 .site-guide__close {
   flex-shrink: 0;
-  width: 32px;
-  height: 32px;
+  min-width: 24px;
+  min-height: 24px;
+  width: 40px;
+  height: 40px;
   border: none;
   border-radius: 6px;
   background: transparent;

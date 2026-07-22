@@ -11,11 +11,25 @@
   var emailVisible = form.getAttribute("data-email-visible") === "true";
   var issuesUrl = form.getAttribute("data-issues-url") || "https://github.com/contextmint/contextmint/issues";
   var inlineError = form.querySelector(".form-inline-error");
+  var statusRegion = form.querySelector(".form-status");
+  var successPanel = form.querySelector(".form-success");
+
+  if (inlineError && !inlineError.id) {
+    inlineError.id = "demo-form-error";
+  }
 
   function showSuccess() {
-    form.classList.add("is-submitted");
-    form.setAttribute("aria-live", "polite");
+    clearFieldErrors();
     hideInlineError();
+    form.classList.add("is-submitted");
+    if (statusRegion) {
+      statusRegion.hidden = false;
+      statusRegion.textContent = "Thank you — we will be in touch.";
+    }
+    if (successPanel) {
+      successPanel.setAttribute("tabindex", "-1");
+      successPanel.focus();
+    }
   }
 
   function showInlineError(message) {
@@ -24,6 +38,10 @@
     }
     inlineError.textContent = message;
     inlineError.hidden = false;
+    if (statusRegion) {
+      statusRegion.hidden = false;
+      statusRegion.textContent = message;
+    }
   }
 
   function hideInlineError() {
@@ -31,6 +49,47 @@
       inlineError.hidden = true;
       inlineError.textContent = "";
     }
+    if (statusRegion && !form.classList.contains("is-submitted")) {
+      statusRegion.hidden = true;
+      statusRegion.textContent = "";
+    }
+  }
+
+  function clearFieldErrors() {
+    form.querySelectorAll("[aria-invalid='true']").forEach(function (field) {
+      field.removeAttribute("aria-invalid");
+      var describedBy = field.getAttribute("aria-describedby") || "";
+      if (inlineError && inlineError.id && describedBy) {
+        var next = describedBy
+          .split(/\s+/)
+          .filter(function (id) {
+            return id && id !== inlineError.id;
+          })
+          .join(" ");
+        if (next) {
+          field.setAttribute("aria-describedby", next);
+        } else {
+          field.removeAttribute("aria-describedby");
+        }
+      }
+    });
+  }
+
+  function markInvalid(field, message) {
+    if (!field) {
+      return;
+    }
+    field.setAttribute("aria-invalid", "true");
+    if (inlineError && inlineError.id) {
+      var existing = field.getAttribute("aria-describedby") || "";
+      var parts = existing.split(/\s+/).filter(Boolean);
+      if (parts.indexOf(inlineError.id) === -1) {
+        parts.push(inlineError.id);
+      }
+      field.setAttribute("aria-describedby", parts.join(" "));
+    }
+    showInlineError(message);
+    field.focus();
   }
 
   function fieldValue(name) {
@@ -65,13 +124,12 @@
 
   form.addEventListener("submit", function (event) {
     event.preventDefault();
+    clearFieldErrors();
     hideInlineError();
 
+    var emailField = form.querySelector('[name="email"]');
     if (!fieldValue("email")) {
-      var emailField = form.querySelector('[name="email"]');
-      if (emailField) {
-        emailField.focus();
-      }
+      markInvalid(emailField, "Enter a work email so we can reply.");
       return;
     }
 

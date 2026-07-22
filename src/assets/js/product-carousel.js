@@ -24,6 +24,7 @@
     var nextBtn = carousel.querySelector(".product-carousel__btn--next");
     var viewport = carousel.querySelector(".product-carousel__viewport");
     var chrome = carousel.querySelector(".product-carousel__chrome");
+    var liveRegion = carousel.querySelector(".product-carousel__live");
     var intervalSeconds = parseInt(carousel.getAttribute("data-carousel-interval") || "10", 10);
     var currentIndex = 0;
     var timerId = null;
@@ -33,13 +34,27 @@
     function showSlide(index) {
       currentIndex = (index + slides.length) % slides.length;
       slides.forEach(function (slide, i) {
-        slide.classList.toggle("is-active", i === currentIndex);
+        var active = i === currentIndex;
+        slide.classList.toggle("is-active", active);
+        if (active) {
+          slide.removeAttribute("aria-hidden");
+        } else {
+          slide.setAttribute("aria-hidden", "true");
+        }
       });
       dots.forEach(function (dot, i) {
         var active = i === currentIndex;
         dot.classList.toggle("is-active", active);
-        dot.setAttribute("aria-selected", active ? "true" : "false");
+        dot.setAttribute("aria-current", active ? "true" : "false");
       });
+      if (liveRegion) {
+        var label = slides[currentIndex]
+          ? slides[currentIndex].getAttribute("data-slide-label") || ""
+          : "";
+        liveRegion.textContent = label
+          ? "Slide " + (currentIndex + 1) + " of " + slides.length + ": " + label
+          : "Slide " + (currentIndex + 1) + " of " + slides.length;
+      }
     }
 
     function setChromeInteractive(active) {
@@ -207,6 +222,18 @@
     };
   }
 
+  function getFocusable(container) {
+    return Array.prototype.slice
+      .call(
+        container.querySelectorAll(
+          'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+        )
+      )
+      .filter(function (el) {
+        return !el.hasAttribute("disabled") && el.getAttribute("aria-hidden") !== "true";
+      });
+  }
+
   function initScreenshotLightbox() {
     var lightbox = document.getElementById("screenshot-lightbox");
     if (!lightbox) {
@@ -222,6 +249,31 @@
     var counterEl = lightbox.querySelector(".screenshot-lightbox__counter");
     var dotsEl = lightbox.querySelector(".screenshot-lightbox__dots");
     var lastFocused = null;
+    var inertRoots = [];
+
+    function setBackgroundInert(active) {
+      if (active) {
+        inertRoots = [];
+        Array.prototype.forEach.call(document.body.children, function (el) {
+          if (el === lightbox) {
+            return;
+          }
+          if (el.id === "select-to-speak-btn" || el.id === "select-to-speak-config") {
+            return;
+          }
+          inertRoots.push({
+            el: el,
+            wasInert: Boolean(el.inert),
+          });
+          el.inert = true;
+        });
+        return;
+      }
+      inertRoots.forEach(function (entry) {
+        entry.el.inert = entry.wasInert;
+      });
+      inertRoots = [];
+    }
 
     function renderDots(slides, activeIndex) {
       if (!dotsEl) {
@@ -232,9 +284,8 @@
         var dot = document.createElement("button");
         dot.type = "button";
         dot.className = "screenshot-lightbox__dot" + (index === activeIndex ? " is-active" : "");
-        dot.setAttribute("role", "tab");
         dot.setAttribute("aria-label", slide.label || "Slide " + (index + 1));
-        dot.setAttribute("aria-selected", index === activeIndex ? "true" : "false");
+        dot.setAttribute("aria-current", index === activeIndex ? "true" : "false");
         dot.addEventListener("click", function () {
           showLightboxSlide(index);
         });
@@ -272,6 +323,7 @@
       lightbox.hidden = true;
       lightbox.setAttribute("aria-hidden", "true");
       document.body.classList.remove("screenshot-lightbox-open");
+      setBackgroundInert(false);
       if (lightboxState.controller) {
         lightboxState.controller.resume();
       }
@@ -304,6 +356,7 @@
       lightbox.hidden = false;
       lightbox.setAttribute("aria-hidden", "false");
       document.body.classList.add("screenshot-lightbox-open");
+      setBackgroundInert(true);
       if (closeBtn) {
         closeBtn.focus();
       }
@@ -339,12 +392,34 @@
       if (event.key === "Escape") {
         event.preventDefault();
         closeLightbox();
-      } else if (event.key === "ArrowLeft") {
+        return;
+      }
+      if (event.key === "ArrowLeft") {
         event.preventDefault();
         showLightboxSlide(lightboxState.index - 1);
-      } else if (event.key === "ArrowRight") {
+        return;
+      }
+      if (event.key === "ArrowRight") {
         event.preventDefault();
         showLightboxSlide(lightboxState.index + 1);
+        return;
+      }
+      if (event.key !== "Tab") {
+        return;
+      }
+      var focusable = getFocusable(lightbox);
+      if (!focusable.length) {
+        event.preventDefault();
+        return;
+      }
+      var first = focusable[0];
+      var last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
       }
     });
   }

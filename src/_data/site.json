@@ -141,5 +141,13 @@
         "alt": "Context Lens expanded drawer with retrieved chunks and relevance scores"
       }
     ]
+  },
+  "selectToSpeak": {
+    "enabled": true,
+    "minSelectionLength": 8,
+    "lang": "en-GB",
+    "offsetX": 8,
+    "offsetY": -44,
+    "zIndex": 1200
   }
 }

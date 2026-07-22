@@ -75,26 +75,71 @@
       return;
     }
 
-    toggle.addEventListener("click", function () {
-      var isOpen = navbar.classList.toggle("is-open");
+    function setOpen(isOpen) {
+      navbar.classList.toggle("is-open", isOpen);
       toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
       toggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+    }
+
+    function closeMenu(restoreFocus) {
+      setOpen(false);
+      if (restoreFocus) {
+        toggle.focus();
+      }
+    }
+
+    function getMenuFocusable() {
+      return Array.prototype.slice
+        .call(menu.querySelectorAll("a, button"))
+        .filter(function (el) {
+          return !el.hasAttribute("disabled");
+        });
+    }
+
+    toggle.addEventListener("click", function () {
+      setOpen(!navbar.classList.contains("is-open"));
     });
 
     menu.querySelectorAll("a").forEach(function (link) {
       link.addEventListener("click", function () {
-        navbar.classList.remove("is-open");
-        toggle.setAttribute("aria-expanded", "false");
-        toggle.setAttribute("aria-label", "Open menu");
+        closeMenu(false);
       });
     });
 
+    document.addEventListener("click", function (event) {
+      if (!navbar.classList.contains("is-open")) {
+        return;
+      }
+      if (navbar.contains(event.target)) {
+        return;
+      }
+      closeMenu(false);
+    });
+
     document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape" && navbar.classList.contains("is-open")) {
-        navbar.classList.remove("is-open");
-        toggle.setAttribute("aria-expanded", "false");
-        toggle.setAttribute("aria-label", "Open menu");
-        toggle.focus();
+      if (!navbar.classList.contains("is-open")) {
+        return;
+      }
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeMenu(true);
+        return;
+      }
+      if (event.key !== "Tab") {
+        return;
+      }
+      var focusable = [toggle].concat(getMenuFocusable());
+      if (!focusable.length) {
+        return;
+      }
+      var first = focusable[0];
+      var last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
       }
     });
   }

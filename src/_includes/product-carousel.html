@@ -10,11 +10,13 @@
     aria-label="{{ ariaLabel }}"
     aria-roledescription="carousel"
   >
+    <p class="sr-only product-carousel__live" aria-live="polite" aria-atomic="true"></p>
     {% for slide in carousel.slides %}
     <div
       class="product-carousel__slide{% if forloop.first %} is-active{% endif %}"
       data-slide-label="{{ slide.label }}"
       data-slide-index="{{ forloop.index0 }}"
+      {% unless forloop.first %}aria-hidden="true"{% endunless %}
     >
       <img
         class="product-shot__img{% if forloop.first %} is-loaded{% endif %}"
@@ -46,14 +48,13 @@
       >
         <span aria-hidden="true">&#8249;</span>
       </button>
-      <div class="product-carousel__dots" role="tablist" aria-label="Slides">
+      <div class="product-carousel__dots" role="group" aria-label="Slides">
         {% for slide in carousel.slides %}
         <button
           type="button"
           class="product-carousel__dot{% if forloop.first %} is-active{% endif %}"
-          role="tab"
           aria-label="{{ slide.label }}"
-          aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+          aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
           data-slide-index="{{ forloop.index0 }}"
           tabindex="-1"
         ></button>

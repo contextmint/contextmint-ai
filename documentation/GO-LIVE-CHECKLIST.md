@@ -39,3 +39,20 @@ Use this when replacing the placeholder at [contextmint.ai](https://contextmint.
 - [ ] Add URL to partner applications as needed
 - [ ] Add URL to LinkedIn profile (Featured link)
 - [ ] Google Search Console — submit sitemap (optional)
+- [ ] Accessibility: `npm run test:a11y` green on `_site`
+- [ ] Accessibility manual keyboard pass (below)
+
+## Accessibility (WCAG 2.2 AA — manual)
+
+Target: marketing site designed to conform to WCAG 2.2 Level AA. See [WCAG-22-AA-AUDIT.md](./WCAG-22-AA-AUDIT.md) and [/accessibility.html](../src/accessibility.html).
+
+Keyboard / screen-reader smoke (after `npm run build` + `npm run dev`):
+
+- [ ] Skip link appears on Tab and lands on `#main-content`
+- [ ] Mobile menu: open, Tab within menu, Escape returns focus to toggle, outside click closes
+- [ ] Home carousel: focus viewport, arrows change slides, Enter opens lightbox
+- [ ] Lightbox: Tab cycles inside dialog, Escape closes and restores focus
+- [ ] Site guide: open/close, Escape, focus trapped in panel
+- [ ] Demo form: empty email submit announces error and focuses field; success focuses thank-you panel
+- [ ] Select-to-speak: select text, activate speaker, Escape stops
+- [ ] Sticky announcement does not permanently cover focused content when scrolling to anchors

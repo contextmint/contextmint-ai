@@ -13,9 +13,9 @@ pageJs: form.js
     <p class="lead">
       Buyers care about outcomes — not architecture reviews. Tell us about your stack and constraints;
       we will schedule a focused walkthrough. Prefer to try first? See
-      <a href="/getting-started.html" style="color: var(--color-action);">getting started</a>
+      <a href="/getting-started.html" style="color: var(--color-link);">getting started</a>
       for local-first install or
-      <a href="{{ site.issuesUrl }}" style="color: var(--color-action);">GitHub issues</a>
+      <a href="{{ site.issuesUrl }}" style="color: var(--color-link);">GitHub issues</a>
       for questions.
     </p>
   </div>
@@ -81,7 +81,8 @@ pageJs: form.js
           <label for="message">Anything else we should know?</label>
           <textarea id="message" name="message" placeholder="Optional context for the conversation…"></textarea>
         </div>
-        <p class="form-inline-error" hidden></p>
+        <p id="demo-form-error" class="form-inline-error" role="alert" hidden></p>
+        <div class="form-status sr-only" aria-live="polite" aria-atomic="true" hidden></div>
         <button type="submit" class="btn btn-primary" style="width: 100%;">
           Request a demo
         </button>
@@ -89,7 +90,7 @@ pageJs: form.js
           Submissions go to {{ site.contactEmail }}. We aim to reply within one business day.
         </p>
       </div>
-      <div class="form-success">
+      <div class="form-success" tabindex="-1">
         <strong>Thank you — we will be in touch.</strong>
         <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">
           A member of our team will reach out to discuss your governance challenges.
@@ -99,11 +100,11 @@ pageJs: form.js
 
     <p class="muted text-center" style="margin-top: 24px; font-size: 0.9rem;">
       Prefer design partner details?
-      <a href="/design-partners.html" style="color: var(--color-action);">Design Partners</a>
+      <a href="/design-partners.html" style="color: var(--color-link);">Design Partners</a>
       ·
-      <a href="/getting-started.html" style="color: var(--color-action);">Getting started</a>
+      <a href="/getting-started.html" style="color: var(--color-link);">Getting started</a>
       ·
-      <a href="{{ site.issuesUrl }}" style="color: var(--color-action);">GitHub issues</a>
+      <a href="{{ site.issuesUrl }}" style="color: var(--color-link);">GitHub issues</a>
     </p>
   </div>
 </section>
