@@ -5,111 +5,76 @@ description: How ContextMint indexes workspaces, progressive RAG during indexing
 pageCss: product.css
 ---
 
-<h1>Indexing &amp; readiness</h1>
-<p class="doc-lead">
-  Indexing builds vector and keyword indexes for hybrid search. Chat uses <strong>progressive retrieval</strong>
-  — you can ask questions before indexing finishes.
-</p>
+{% assign t = i18nPageStrings %}
 
-<h2>Readiness phases (extension UI)</h2>
+<h1>{{ t.h1 }}</h1>
+<p class="doc-lead">{{ t.lead }}</p>
+
+<h2>{{ t.phases.title }}</h2>
 <table class="muted" style="width:100%; border-collapse: collapse; font-size: 0.9rem;">
   <thead>
     <tr style="text-align:left; border-bottom: 1px solid var(--border-default);">
-      <th style="padding:8px 0;">Phase</th>
-      <th style="padding:8px 0;">Chat send</th>
-      <th style="padding:8px 0;">Meaning</th>
+      {% for h in t.phases.headers %}
+      <th style="padding:8px 0;">{{ h }}</th>
+      {% endfor %}
     </tr>
   </thead>
   <tbody>
-    <tr style="border-bottom: 1px solid var(--border-subtle);">
-      <td style="padding:10px 0;"><strong>Offline</strong></td>
-      <td style="padding:10px 0;">Blocked</td>
-      <td style="padding:10px 0;">Engine/server not reachable</td>
+    {% for row in t.phases.rows %}
+    <tr{% unless forloop.last %} style="border-bottom: 1px solid var(--border-subtle);"{% endunless %}>
+      <td style="padding:10px 0;"><strong>{{ row.phase }}</strong></td>
+      <td style="padding:10px 0;">{{ row.send }}</td>
+      <td style="padding:10px 0;">{{ row.meaning }}</td>
     </tr>
-    <tr style="border-bottom: 1px solid var(--border-subtle);">
-      <td style="padding:10px 0;"><strong>Starting</strong></td>
-      <td style="padding:10px 0;">Blocked</td>
-      <td style="padding:10px 0;">Health probe in flight or server bootstrapping</td>
-    </tr>
-    <tr style="border-bottom: 1px solid var(--border-subtle);">
-      <td style="padding:10px 0;"><strong>Error</strong></td>
-      <td style="padding:10px 0;">Blocked</td>
-      <td style="padding:10px 0;">Index or session failure — check Engine → Indexing</td>
-    </tr>
-    <tr style="border-bottom: 1px solid var(--border-subtle);">
-      <td style="padding:10px 0;"><strong>Indexing</strong></td>
-      <td style="padding:10px 0;">Allowed</td>
-      <td style="padding:10px 0;">Background walk in progress; partial index available</td>
-    </tr>
-    <tr style="border-bottom: 1px solid var(--border-subtle);">
-      <td style="padding:10px 0;"><strong>Limited</strong></td>
-      <td style="padding:10px 0;">Allowed</td>
-      <td style="padding:10px 0;">Search may work; Ollama offline — generation degraded</td>
-    </tr>
-    <tr>
-      <td style="padding:10px 0;"><strong>Ready</strong></td>
-      <td style="padding:10px 0;">Allowed</td>
-      <td style="padding:10px 0;">Index complete; watcher handles file deltas</td>
-    </tr>
+    {% endfor %}
   </tbody>
 </table>
 
-<h2>What indexing produces</h2>
+<h2>{{ t.produces.title }}</h2>
 <ul>
-  <li><strong>Vector store</strong> (ChromaDB) — embeddings per chunk</li>
-  <li><strong>BM25</strong> — keyword index per workspace</li>
-  <li><strong>Dependency graph</strong> — optional neighbour expansion in search</li>
-  <li><strong>File hash cache</strong> — skip unchanged files on reindex</li>
+  {% for item in t.produces.items %}
+  <li>{{ item }}</li>
+  {% endfor %}
 </ul>
 
-<h2>Priority files</h2>
-<p>These paths are indexed and boosted first:</p>
+<h2>{{ t.priority.title }}</h2>
+<p>{{ t.priority.intro }}</p>
 <ul>
-  <li>Open editor tabs (sent on workspace register)</li>
-  <li>Active file on editor change / save (<code>prioritize-file</code>)</li>
-  <li>Chat attachments and client grep hits (<code>hot-paths</code>)</li>
+  {% for item in t.priority.items %}
+  <li>{{ item }}</li>
+  {% endfor %}
 </ul>
 
-<h2>Progressive RAG during indexing</h2>
-<p>When you send chat while status is <strong>Indexing</strong>:</p>
+<h2>{{ t.progressive.title }}</h2>
+<p>{{ t.progressive.intro }}</p>
 <ol>
-  <li>Active editor file is read from disk immediately</li>
-  <li>Hybrid search runs over whatever chunks exist so far</li>
-  <li>Server-side grep fallback if index results are empty</li>
-  <li>Extension client grep may run before stream (Repo / Hybrid lanes)</li>
+  {% for item in t.progressive.items %}
+  <li>{{ item }}</li>
+  {% endfor %}
 </ol>
 
-<h2>Reindex triggers</h2>
+<h2>{{ t.triggers.title }}</h2>
 <ul>
-  <li>Manual reindex from Engine → Indexing</li>
-  <li>Embed model change (full reindex required)</li>
-  <li>Warm restart catch-up for missing files after server restart</li>
-  <li>File watcher events for saves and renames</li>
+  {% for item in t.triggers.items %}
+  <li>{{ item }}</li>
+  {% endfor %}
 </ul>
 
-<h2>Desktop vs extension polling</h2>
-<p>
-  Engine Indexing tab polls on a slower interval than the extension status bar. The extension may show
-  <strong>Indexing</strong> while Engine overview still looks idle — use Indexing drill-down for truth.
-</p>
+<h2>{{ t.polling.title }}</h2>
+<p>{{ t.polling.text }}</p>
 
-<h2>Inline completion while indexing</h2>
-<p>
-  Ghost-text (inline) is <strong>off by default</strong>. When enabled, pause policy is server
-  <span class="mono">inline.pause_mode</span>:
-</p>
+<h2>{{ t.inline.title }}</h2>
+<p>{{ t.inline.p1 }}</p>
 <ul>
-  <li><span class="mono">off</span> — never pause for embed/reindex (shipped default)</li>
-  <li><span class="mono">shared_runtime</span> — pause only when chat and embed share one Ollama host</li>
-  <li><span class="mono">on_embed_busy</span> — pause whenever any session embed/reindex is busy</li>
+  {% for item in t.inline.items %}
+  <li>{{ item }}</li>
+  {% endfor %}
 </ul>
 <p>
-  VS Code <span class="mono">contextmint.inline.pauseWhileIndexing</span> can only
-  <em>tighten</em> to <span class="mono">on_embed_busy</span>; it cannot weaken a stricter server mode.
-  Prefer <span class="mono">shared_runtime</span> on contested team servers — see
-  <a href="/docs/settings.html#settings-server-inline">Settings → Inline completion (server)</a>.
+  {{ t.inline.p2Before }} <em>{{ t.inline.p2Em }}</em> {{ t.inline.p2Mid }}
+  <a href="{{ t.inline.linkHref | locale_path: localePrefix }}">{{ t.inline.linkText }}</a>.
 </p>
 
 <p class="muted">
-  Problems: <a href="/support/troubleshooting.html#indexing">Troubleshooting → Indexing</a>.
+  {{ t.footer.before }} <a href="{{ t.footer.href | locale_path: localePrefix }}">{{ t.footer.text }}</a>.
 </p>

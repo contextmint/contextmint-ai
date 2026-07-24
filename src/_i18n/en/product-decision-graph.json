@@ -1,4 +1,51 @@
 {
   "title": "Decision Graph | ContextMint",
-  "description": "Institutional memory via decision graph — trace why conventions exist from ADRs, PRs, and issues to code with evidence."
+  "description": "Institutional memory via decision graph — trace why conventions exist from ADRs, PRs, and issues to code with evidence.",
+  "breadcrumbParent": "Product",
+  "breadcrumbCurrent": "Decision Graph",
+  "hero": {
+    "h1": "Decision Graph",
+    "leadStrong": "In plain terms:",
+    "leadBefore": "know",
+    "leadEm": "why",
+    "leadAfter": "the code works this way — ADRs, approved PRs, and issues linked to the files they affect, with verification status on every claim."
+  },
+  "banner": {
+    "badge": "Verification Engine",
+    "title": "Full decision graph on roadmap",
+    "message": "v1.0 captures conventions and quality findings. Institutional ADR ↔ code linkage at scale ships with the Verification Engine."
+  },
+  "diagram": {
+    "node": "ADR-12: Event sourcing for orders",
+    "edges": [
+      "implemented_by ─► checkout/order_events.py",
+      "referenced_in ─► PR #1847 (approved)",
+      "supersedes ─► ADR-08 (deprecated pattern)"
+    ],
+    "status": "verification_status: verified",
+    "evidence": "evidence_ledger: 3 sources"
+  },
+  "split": {
+    "pipeline": {
+      "title": "Extraction pipeline",
+      "items": [
+        "Parse ADRs and decisions.md deterministically",
+        "Link PR and issue references as evidence",
+        "LLM assist only for ambiguous extractions",
+        "Human correction via POST /fabric/correct"
+      ]
+    },
+    "outcomes": {
+      "title": "Outcomes",
+      "items": [
+        "Answer &ldquo;why does X work this way?&rdquo; in seconds",
+        "Onboard engineers without oral tradition",
+        "Agents cite fabric nodes in chat responses"
+      ]
+    }
+  },
+  "cta": {
+    "title": "Stop losing architectural context",
+    "text": "See decision traces linked to the files your team changes every day."
+  }
 }

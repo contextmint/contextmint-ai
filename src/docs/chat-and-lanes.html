@@ -5,140 +5,105 @@ description: Ask, Plan, and Agent modes; Repo, Work, and Hybrid context lanes; f
 pageCss: product.css
 ---
 
-<h1>Chat, modes &amp; context lanes</h1>
-<p class="doc-lead">
-  ContextMint chat is a governed copilot — not a generic web chat. You choose <strong>how much autonomy</strong>
-  the model has (mode) and <strong>what evidence</strong> it may use (context lane).
-</p>
+{% assign t = i18nPageStrings %}
 
-<h2>Opening chat</h2>
+<h1>{{ t.h1 }}</h1>
+<p class="doc-lead">{{ t.lead }}</p>
+
+<h2>{{ t.opening.title }}</h2>
 <ul>
-  <li>Activity bar → ContextMint chat view</li>
-  <li>Shortcut: <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>L</kbd> (Windows/Linux; macOS may differ per keymap)</li>
+  {% for item in t.opening.items %}
+  <li>{{ item }}</li>
+  {% endfor %}
 </ul>
 
-<h2>Modes: Ask, Plan, Agent</h2>
+<h2>{{ t.modes.title }}</h2>
 <table class="muted" style="width:100%; border-collapse: collapse; font-size: 0.9rem;">
   <thead>
     <tr style="text-align:left; border-bottom: 1px solid var(--border-default);">
-      <th style="padding:8px 0;">Mode</th>
-      <th style="padding:8px 0;">Behavior</th>
+      {% for h in t.modes.headers %}
+      <th style="padding:8px 0;">{{ h }}</th>
+      {% endfor %}
     </tr>
   </thead>
   <tbody>
-    <tr style="border-bottom: 1px solid var(--border-subtle);">
-      <td style="padding:10px 0;"><strong>Ask</strong></td>
-      <td style="padding:10px 0;">Q&amp;A and explanations; no autonomous file edits</td>
+    {% for row in t.modes.rows %}
+    <tr{% unless forloop.last %} style="border-bottom: 1px solid var(--border-subtle);"{% endunless %}>
+      <td style="padding:10px 0;"><strong>{{ row.mode }}</strong></td>
+      <td style="padding:10px 0;">{{ row.behavior }}</td>
     </tr>
-    <tr style="border-bottom: 1px solid var(--border-subtle);">
-      <td style="padding:10px 0;"><strong>Plan</strong></td>
-      <td style="padding:10px 0;">Structured plans and todos; still human-gated before apply</td>
-    </tr>
-    <tr>
-      <td style="padding:10px 0;"><strong>Agent</strong></td>
-      <td style="padding:10px 0;">Proposes patches and assisted actions; gate 2 preview before writes</td>
-    </tr>
+    {% endfor %}
   </tbody>
 </table>
 
-<h2>Context lanes: Repo, Work, Hybrid</h2>
-<p>
-  Open the compose <strong>⋯</strong> menu → <strong>Context</strong> to select a lane. The choice persists per workspace.
-</p>
+<h2>{{ t.lanes.title }}</h2>
+<p>{{ t.lanes.intro }}</p>
 
 <table class="muted" style="width:100%; border-collapse: collapse; font-size: 0.9rem;">
   <thead>
     <tr style="text-align:left; border-bottom: 1px solid var(--border-default);">
-      <th style="padding:8px 0;">Lane</th>
-      <th style="padding:8px 0;">Retrieval</th>
-      <th style="padding:8px 0;">Best for</th>
+      {% for h in t.lanes.headers %}
+      <th style="padding:8px 0;">{{ h }}</th>
+      {% endfor %}
     </tr>
   </thead>
   <tbody>
-    <tr style="border-bottom: 1px solid var(--border-subtle);">
-      <td style="padding:10px 0;"><strong>Repo</strong> (default)</td>
-      <td style="padding:10px 0;">Knowledge objects when available, then hybrid search (vector + BM25), window expansion, workspace grep, and dependency-graph neighbours</td>
-      <td style="padding:10px 0;">“What does our code do?” — answers only from assembled evidence</td>
+    {% for row in t.lanes.rows %}
+    <tr{% unless forloop.last %} style="border-bottom: 1px solid var(--border-subtle);"{% endunless %}>
+      <td style="padding:10px 0;"><strong>{{ row.lane }}</strong>{% if row.suffix %} {{ row.suffix }}{% endif %}</td>
+      <td style="padding:10px 0;">{{ row.retrieval }}</td>
+      <td style="padding:10px 0;">{{ row.bestFor }}</td>
     </tr>
-    <tr style="border-bottom: 1px solid var(--border-subtle);">
-      <td style="padding:10px 0;"><strong>Work</strong></td>
-      <td style="padding:10px 0;">Session packs + attachments + editor selection — no vector repo search</td>
-      <td style="padding:10px 0;">Planning, stakeholder comms, concepts — job-relevant but not file lookups</td>
-    </tr>
-    <tr>
-      <td style="padding:10px 0;"><strong>Hybrid</strong></td>
-      <td style="padding:10px 0;">Full evidence assembly (same as Repo) plus labeled recommendations</td>
-      <td style="padding:10px 0;">“Should we ship X?” — repo evidence plus labeled recommendations</td>
-    </tr>
+    {% endfor %}
   </tbody>
 </table>
 
-<h3>How evidence is assembled (Repo / Hybrid)</h3>
+<h3>{{ t.evidenceAssembly.title }}</h3>
 <p class="muted">
-  ContextMint works on <strong>any indexed workspace</strong> — not one repo layout. For structural
-  questions (for example route wiring), the server uses <strong>index-time knowledge objects</strong>
-  when the registry has a hit. For semantic questions, it runs hybrid search, then
-  <strong>expands</strong> around hits: file windows, workspace grep, and dependency-graph neighbours.
-  Optional LLM evidence selection is tier-gated and <strong>off by default</strong> — inference is
-  last resort, not the primary path. See
-  <a href="/docs/settings.html#settings-server-evidence-assembly">Settings → Evidence assembly</a>.
+  {{ t.evidenceAssembly.before }}
+  <a href="{{ t.evidenceAssembly.linkHref | locale_path: localePrefix }}">{{ t.evidenceAssembly.linkText }}</a>.
 </p>
 
-<h3>Provenance chips (answers)</h3>
-<p>After a response, you may see a small label such as:</p>
+<h3>{{ t.provenance.title }}</h3>
+<p>{{ t.provenance.intro }}</p>
 <ul>
-  <li><strong>From your codebase</strong> — Repo lane with retrieved chunks</li>
-  <li><strong>Work notes</strong> — Work lane (packs/attachments, not a repo search)</li>
-  <li><strong>Repo + recommendations</strong> — Hybrid lane</li>
-  <li><strong>No repo matches</strong> — Repo lane found little indexed context</li>
+  {% for item in t.provenance.items %}
+  <li>{{ item }}</li>
+  {% endfor %}
 </ul>
 
-<h3>Work-lane auto-suggest</h3>
-<p>
-  On <strong>Repo</strong> lane, if retrieval is weak for a planning-style question, ContextMint may show a banner:
-  “Little repo context matched — retry in Work lane?” Click <strong>Use Work lane</strong> to re-send the same
-  question without vector search.
-</p>
+<h3>{{ t.autoSuggest.title }}</h3>
+<p>{{ t.autoSuggest.text }}</p>
 
-<h2>Attachments &amp; context files</h2>
+<h2>{{ t.attachments.title }}</h2>
 <ul>
-  <li>Use the attach control to pin files as chips before sending</li>
-  <li>Attached paths get full-fidelity chunks in the assembler prompt</li>
-  <li>Open editor files are boosted in search and indexed with priority</li>
+  {% for item in t.attachments.items %}
+  <li>{{ item }}</li>
+  {% endfor %}
 </ul>
 
-<h2>Image evidence (screenshots)</h2>
-<p>
-  Paste, drag-drop, or pick <strong>PNG</strong>, <strong>JPEG</strong>, or <strong>WebP</strong> images in the
-  compose bar. Image chips appear beside file chips. Context Lens shows thumbnails and the
-  <strong>vision route</strong> (<code>local</code> by default) before you send.
-</p>
+<h2>{{ t.images.title }}</h2>
+<p>{{ t.images.p1 }}</p>
 <ul>
-  <li>Local Ollama vision is the default — no cloud API key required to attach images</li>
-  <li>Repo and Hybrid lanes combine images with retrieved code; Work lane combines images with packs</li>
-  <li>Use <strong>Run visual audit</strong> in Lens for ARGUS structured findings (separate from chat Q&amp;A)</li>
+  {% for item in t.images.items %}
+  <li>{{ item }}</li>
+  {% endfor %}
 </ul>
 <p>
-  Full guide: <a href="/docs/image-evidence-argus.html">Image evidence &amp; ARGUS</a>.
+  {{ t.images.guideBefore }} <a href="{{ t.images.guideHref | locale_path: localePrefix }}">{{ t.images.guideLinkText }}</a>.
 </p>
 
-<h2>Chat sessions</h2>
-<p>
-  Start a new session from the session list; history is stored per workspace up to configured limits.
-  Sessions are local to your machine (or your team server in enterprise mode).
-</p>
+<h2>{{ t.sessions.title }}</h2>
+<p>{{ t.sessions.text }}</p>
 
-<h2>Model routing</h2>
-<p>
-  Compose bar model selector: <strong>Auto</strong>, <strong>Local</strong> (Ollama), or <strong>Cloud</strong>
-  when BYOK is enabled. The routing badge on answers shows which tier ran.
-</p>
+<h2>{{ t.routing.title }}</h2>
+<p>{{ t.routing.text }}</p>
 
-<h2>When chat is blocked</h2>
-<p>Send is blocked only when readiness is <strong>offline</strong>, <strong>starting</strong>, or <strong>error</strong>.
-  <strong>Indexing</strong> does <em>not</em> block send — answers improve as more files finish indexing.</p>
+<h2>{{ t.blocked.title }}</h2>
+<p>{{ t.blocked.p1 }}
+  {{ t.blocked.p2 }}</p>
 
 <p class="muted">
-  Deep dive on retrieval: <a href="/docs/indexing-readiness.html">Indexing &amp; readiness</a>.
-  Problems: <a href="/support/troubleshooting.html#chat">Troubleshooting → Chat</a>.
+  {{ t.footer.before }} <a href="{{ t.footer.linkHref | locale_path: localePrefix }}">{{ t.footer.linkText }}</a>.
+  {{ t.footer.problemsBefore }} <a href="{{ t.footer.problemsHref | locale_path: localePrefix }}">{{ t.footer.problemsText }}</a>.
 </p>

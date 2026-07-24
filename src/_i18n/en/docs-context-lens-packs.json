@@ -1,4 +1,62 @@
 {
   "title": "Context Lens & Packs | ContextMint Docs",
-  "description": "Context Lens gate 1 preview, relevance scores, context packs, @pack activation, scan and learn, and stale pack handling."
+  "description": "Context Lens gate 1 preview, relevance scores, context packs, @pack activation, scan and learn, and stale pack handling.",
+  "h1": "Context Lens &amp; context packs",
+  "lead": "<strong>Context Lens</strong> is gate 1: preview retrieved evidence before the model runs. <strong>Context packs</strong> are curated markdown knowledge you activate per repo or session.",
+  "workflow": {
+    "title": "Context Lens workflow",
+    "items": [
+      "Type a question and send (or enable pre-send preview in settings).",
+      "Context Lens shows retrieved chunks, scores, routing choice, and governance notes.",
+      "Approve or adjust — exclude chunks you do not want in the prompt.",
+      "Answer streams after approval (or immediately if preview is off)."
+    ]
+  },
+  "regions": {
+    "title": "Lens UI regions",
+    "items": [
+      "<strong>Summary strip</strong> — chunk count, model route, vision route when images attached, lane label when applicable",
+      "<strong>Evidence drawer</strong> — per-file chunks with relevance scores; image thumbnail strip when screenshots attached",
+      "<strong>Governance drawer</strong> — quality-map findings (inform-only or gated per policy)",
+      "<strong>Actions</strong> — <strong>Send</strong> (chat) and <strong>Run visual audit</strong> (ARGUS) when image evidence is present"
+    ]
+  },
+  "scores": {
+    "title": "Scores and filtering",
+    "text": "Scores reflect hybrid retrieval (vector + BM25 + boosts for recent/attached files). Low scores do not always mean \u201cwrong\u201d — structural skeleton fallback may apply when line-level query filters miss."
+  },
+  "packs": {
+    "title": "Context packs",
+    "text": "Packs live under <code>.contextmint/packs/</code> in your repo (or session packs for Work lane). Each pack has a <code>manifest.yaml</code> and markdown sources."
+  },
+  "activate": {
+    "title": "Activate a pack in chat",
+    "text": "Type <code>@pack:pack-name</code> in the compose bar or select from the packs panel."
+  },
+  "scanLearn": {
+    "title": "Scan &amp; learn",
+    "text": "After indexing completes, use <strong>Scan &amp; learn</strong> in the packs panel to build or refresh packs from repo conventions. Auto-sync can debounce on file changes (configurable)."
+  },
+  "stale": {
+    "title": "Stale packs banner",
+    "text": "When source files change, you may see a stale-pack prompt — rebuild to keep pack content aligned with the codebase."
+  },
+  "workLane": {
+    "title": "Work lane and packs",
+    "text": "<strong>Work</strong> context lane relies heavily on session packs and attachments instead of vector search. Build session notes into packs for recurring planning workflows."
+  },
+  "trustGate": {
+    "title": "Trust gate",
+    "before": "When <code>trustGateEnabled</code> is on, sensitive sends may require an extra confirmation step before Context Lens or inference proceeds — including sends with attached screenshots. See",
+    "link1Href": "/docs/patches-governance.html",
+    "link1Text": "Patches &amp; governance",
+    "andWord": "and",
+    "link2Href": "/docs/image-evidence-argus.html",
+    "link2Text": "Image evidence &amp; ARGUS"
+  },
+  "footer": {
+    "before": "Problems:",
+    "href": "/support/troubleshooting.html#lens",
+    "text": "Troubleshooting → Context Lens &amp; packs"
+  }
 }

@@ -3,8 +3,8 @@
   contactEmail, legalEmail, privacyEmail remain in site.json for later re-enable.
 {% endcomment %}
 {% if site.emailVisible %}
-  Email <a href="mailto:{{ site.contactEmail }}">{{ site.contactEmail }}</a> or open
-  <a href="{{ site.issuesUrl }}">GitHub issue</a> for release builds.
+  {{ i18nCommon.supportEscalation.emailPrefix }} <a href="mailto:{{ site.contactEmail }}">{{ site.contactEmail }}</a> {{ i18nCommon.supportEscalation.orOpenText }}
+  <a href="{{ site.issuesUrl }}">{{ i18nCommon.supportEscalation.githubIssueLink }}</a> {{ i18nCommon.supportEscalation.releaseSuffix }}
 {% else %}
-  Open a <a href="{{ site.issuesUrl }}">GitHub issue</a> for release builds.
+  {{ i18nCommon.supportEscalation.openPrefix }} <a href="{{ site.issuesUrl }}">{{ i18nCommon.supportEscalation.githubIssueLink }}</a> {{ i18nCommon.supportEscalation.releaseSuffix }}
 {% endif %}

@@ -1,4 +1,73 @@
 {
   "title": "MCP Server | ContextMint",
-  "description": "ContextMint MCP server (roadmap) — planned tool contracts for blast radius, features, decisions, and agent governance."
+  "description": "ContextMint MCP server (roadmap) — planned tool contracts for blast radius, features, decisions, and agent governance.",
+  "breadcrumbParent": "Developers",
+  "breadcrumbCurrent": "MCP Server",
+  "hero": {
+    "pill": "MODEL CONTEXT PROTOCOL",
+    "h1": "MCP tools &amp; contracts",
+    "leadStrong": "Planned capability.",
+    "leadBefore": "Expose deterministic engineering facts to AI agents via the",
+    "linkText": "Model Context Protocol (MCP)",
+    "linkHref": "/docs/glossary.html#mcp",
+    "leadAfter": "— blast radius, features, and decisions as structured tools, not chat guesses."
+  },
+  "banner": {
+    "badge": "Roadmap",
+    "title": "MCP server not in v1.0",
+    "message": "Tool contracts below are the target design for the Verification Engine wave. You cannot connect to http://localhost:8000/mcp today. v1.0 ships Engine, chat, Context Lens, quality map, and image evidence instead."
+  },
+  "whatIs": {
+    "title": "What is MCP?",
+    "mcpStrong": "MCP",
+    "textBefore": "is an open protocol so AI clients (Cursor, Claude Desktop, internal agents) can call",
+    "toolsEm": "tools",
+    "textMid": "with typed inputs and JSON outputs — like REST for agents. ContextMint&apos;s MCP layer will expose",
+    "readOnlyStrong": "read-only",
+    "textAfter": "graph queries your security team can scope with RBAC. Writes still use human-gated patch preview."
+  },
+  "catalog": {
+    "title": "Planned tool catalog",
+    "tools": [
+      {
+        "name": "get_blast_radius",
+        "descStrong": "Blast radius",
+        "descAfter": "— list impacted services, files, and teams if a node changes or fails. Maps to",
+        "code": "/fabric/explain",
+        "descTail": "or a pre-computed dependency closure.",
+        "example": "What breaks if we remove Payments API?"
+      },
+      {
+        "name": "get_feature",
+        "descStrong": "Feature registry",
+        "descAfter": "lookup — entry points, owners, and related graph nodes for a named product feature."
+      },
+      {
+        "name": "get_decision",
+        "descStrong": "Decision graph",
+        "descAfter": "trace — ADRs and architecture intent with evidence ledger and verification status."
+      },
+      {
+        "name": "get_trace",
+        "descPlain": "CI/CD path — deployment → feature → failure linkage (enterprise, after external-memory graph work)."
+      }
+    ]
+  },
+  "contract": {
+    "title": "Response contract",
+    "before": "Every tool response will validate against",
+    "code": "AgentContextContract",
+    "mid": "— a fixed JSON schema so agents and CI gates can trust fields like",
+    "code2": "verification_status",
+    "after": "and evidence paths. See",
+    "link": "Agent governance"
+  },
+  "example": {
+    "title": "Example client config (when shipped)",
+    "note": "Illustrative only — endpoint and auth will match your deployment profile (local Engine or sovereign server).",
+    "timeline": "Timeline:",
+    "timelineLink": "Roadmap",
+    "verificationEngine": "Verification Engine",
+    "glossaryLink": "Glossary"
+  }
 }

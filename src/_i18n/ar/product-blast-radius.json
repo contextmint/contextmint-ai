@@ -1,4 +1,56 @@
 {
   "title": "Blast Radius | ContextMint",
-  "description": "Blast radius (roadmap) — know what else breaks when you change a file or service, using graph traversal not LLM guesses."
+  "description": "ميزة Blast Radius (ضمن خارطة الطريق) — تعرّف على التأثيرات المحتملة لتغيير ملف أو خدمة من خلال اجتياز الرسم البياني (Graph Traversal)، وليس اعتماداً على تخمينات نماذج اللغة الكبيرة (LLMs).",
+  "breadcrumbParent": "المنتج",
+  "breadcrumbCurrent": "Blast Radius",
+  "hero": {
+    "h1": "نطاق التأثير (Blast Radius)",
+    "leadStrong": "بعبارة بسيطة:",
+    "leadAfter": "إذا غيّرت أو أزلت شيئاً، ما الذي يتأثر أيضاً؟ إغلاق تبعيات محسوب مسبقاً عبر الخدمات والملفات والميزات — رياضيات رسم بياني، لا تخيّلات نموذج."
+  },
+  "banner": {
+    "badge": "Verification Engine",
+    "title": "نطاق التأثير على مستوى PR ضمن خارطة الطريق",
+    "message": "يتضمن v1.0 خريطة الجودة ونتائج الحوكمة داخل المحادثة. أما استعلامات التأثير في أقل من 10 ثوانٍ عبر رسم الخدمات الكامل فتُطرح مع Verification Engine."
+  },
+  "meaning": {
+    "title": "ماذا يعني نطاق التأثير",
+    "before": "مصطلح مستعار من الاستجابة للحوادث: يمثّل",
+    "strong": "نطاق التأثير",
+    "mid": "لأي تغيير كل ما يمكن أن يتعطل نتيجة له. يبني ContextMint هذا النطاق من الاستيرادات، وتبعيات الخدمات، وروابط الميزات في",
+    "linkText": "الرسم البياني الهندسي",
+    "linkHref": "/docs/glossary.html#engineering-reality-graph",
+    "midAfter": "— بحيث يرى المراجعون التأثير",
+    "em": "قبل",
+    "after": "فتح مقارنة (diff) بطول 2000 سطر."
+  },
+  "metrics": [
+    { "value": "&lt; 10 ثوانٍ", "label": "زمن الاستعلام المستهدف" },
+    { "value": "وقت الفهرسة", "label": "الإغلاق محسوب مسبقاً" },
+    { "value": "دليل", "label": "مسار التبعية موثّق" }
+  ],
+  "example": {
+    "query": "ماذا يتعطل إذا أُزيلت واجهة Payments API؟",
+    "node": "Payments API",
+    "edges": [
+      "Checkout Service (مباشر)",
+      "Billing Worker (مباشر)",
+      "Subscription Service (غير مباشر)",
+      "14 عقدة إضافية في الاتجاه السفلي…"
+    ],
+    "warning": "تم المساس بحدود ADR-12 الخاصة بالبنية القائمة على الأحداث"
+  },
+  "split": {
+    "prReview": {
+      "title": "مصمم لمراجعة PR",
+      "text": "يتوسّع كل ملف مُعدَّل ليشمل الميزات والفرق والخدمات المتأثرة قبل أن يفتح المراجعون المقارنة (diff)."
+    },
+    "mcpApi": {
+      "title": "MCP وواجهة API (مخطط له)",
+      "before": "إتاحة",
+      "mono": "get_blast_radius",
+      "mid": "للوكلاء عبر الرسم البياني الحتمي نفسه الذي يثق به البشر — راجع",
+      "linkText": "خادم MCP"
+    }
+  }
 }

@@ -1,4 +1,53 @@
 {
-  "title": "Platform Engineering | ContextMint",
-  "description": "Platform engineering with ContextMint — context packs, local Engine, shared-server pilots. PR gates and MCP on the roadmap."
+  "title": "هندسة المنصات | ContextMint",
+  "description": "هندسة المنصات مع ContextMint — حزم السياق (Context Packs)، وEngine محلي، وتجارب أولية على خادم مشترك. بوابات PR ودعم MCP ضمن خارطة الطريق.",
+  "breadcrumbParent": "حالات الاستخدام",
+  "breadcrumbCurrent": "هندسة المنصات",
+  "badges": {
+    "roadmap": "خارطة الطريق"
+  },
+  "hero": {
+    "pill": "المنصات · DevOps",
+    "title": "التحكم بالقرارات داخل كل بيئة تطوير للمطورين",
+    "leadStrong1": "الإصدار v1.0 (بنهاية أغسطس 2026):",
+    "leadMid": "حزم سياق وEngine محلي أولاً داخل بيئة التطوير IDE، مع بوابات بشرية قبل الاستدلال وقبل التطبيق.",
+    "leadStrong2": "خارطة الطريق:",
+    "leadAfter": "رسم بياني لنشر CI/CD، وأدوات MCP للوكلاء، والتحقق وقت الـ PR ضمن Verification Engine."
+  },
+  "cards": [
+    {
+      "title": "رسم CI/CD ونشر النظام",
+      "text": "تتبّع المسار من الكود ← الميزة ← النشر ← الحادثة. اربط بيانات وصفية لخطوط الأنابيب بالرسم البياني الهندسي.",
+      "items": [
+        "عُقد النشر مرتبطة بالخدمات",
+        "استعلامات التأثير تشمل بيئة التشغيل والكود معاً",
+        "بوابات صحة الرسم البياني قبل أي ادعاءات تخص المنتج"
+      ]
+    },
+    {
+      "title": "حزم السياق (Context Packs)",
+      "text": "ملف <span class=\"mono\">manifest.yaml</span> لكل مستودع بالإضافة إلى معرفة بصيغة Markdown تُحقن داخل المحادثة. مزامنة تلقائية عند تحديث الفهرس.",
+      "items": [
+        "استخدام @pack:name داخل محادثة VS Code",
+        "واجهة برمجية لبناء الحزم لفرق المنصات",
+        "إصدارات مرتبطة بجيل المستودع"
+      ]
+    }
+  ],
+  "deploy": {
+    "title": "انشر ضمن منصة المطورين الداخلية (IDP)",
+    "defaultStrong": "افتراضياً:",
+    "defaultText": "يشغّل المطورون ContextMint Engine محلياً — بشكل سيادي، دون خادم مشترك.",
+    "pilotStrong": "التجارب الخاضعة للرقابة",
+    "pilotText": "يمكنها نشر خادم API مشترك داخل المؤسسة (Docker / Helm) للفرق التي تفهرس مستودعاً موحداً مُحمَّلاً أو تستخدم VS Code Remote SSH. يتصل الامتداد عبر <code>serverUrl</code> مع OIDC — وتتولى عمليات المنصة إدارة نقاط التحميل والمصادقة ومواءمة المسارات.",
+    "linkText": "نماذج النشر ←"
+  },
+  "prGate": {
+    "title": "بوابة PR للكود المُنتَج بالذكاء الاصطناعي",
+    "textBefore": "بعد الإصدار v1.0، يستهدف توجه Verification Engine فحوصات الملكية، ونطاق التأثير، وسجلات القرارات (ADR)، والسياسات على طلبات الدمج (Pull Requests) — مع إرفاق الأدلة. وهذا",
+    "textStrong": "غير متاح",
+    "textAfter": "ضمن حزمة الإطلاق العام في أغسطس. أما اليوم فمتاح: Context Lens، وخريطة الجودة، ومعاينة التصحيحات داخل بيئة التطوير IDE.",
+    "cta1": "رؤية Verification Engine",
+    "cta2": "ميزات v1.0"
+  }
 }

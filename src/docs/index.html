@@ -5,82 +5,41 @@ description: In-depth guides for ContextMint Engine, VS Code chat, context lanes
 pageCss: product.css
 ---
 
-<h1>User documentation</h1>
+{% assign t = i18nPageStrings %}
+
+<h1>{{ t.h1 }}</h1>
 <p class="doc-lead">
-  Everything you need to install, operate, and get value from ContextMint — Engine on your machine,
-  the VS Code extension, and the human-in-the-loop workflow. Start with
-  <a href="/getting-started.html">getting started</a> if you are new; use these chapters for depth.
+  {{ t.lead.before }}
+  <a href="{{ '/getting-started.html' | locale_path: localePrefix }}">{{ t.lead.linkText }}</a>
+  {{ t.lead.after }}
 </p>
 
 <div class="doc-card-grid">
-  <a class="doc-hub-card" href="/docs/installation.html">
-    <h3>Installation &amp; setup</h3>
-    <p>Prerequisites, local-first path, verify steps — plus <strong>installation support</strong> (first-line fixes).</p>
+  {% for card in t.cards %}
+  <a class="doc-hub-card" href="{{ card.href | locale_path: localePrefix }}">
+    <h3>{% if card.sovereign %}{{ i18nCommon.docsNav.sovereignServer }}{% else %}{{ card.title }}{% endif %}</h3>
+    {% if card.part1 %}
+    <p>{{ card.part1 }} <code>contextmint.*</code> ({{ extensionSettings.totalCount | default: "130+" }} {{ card.keysWord }}) {{ card.part2 }} ({% if serverChatSettings %}{{ serverChatSettings.totalCount }}{% else %}533+{% endif %} {{ card.keysWord }}) {{ card.part3 }}</p>
+    {% else %}
+    <p>{{ card.text }}</p>
+    {% endif %}
   </a>
-  <a class="doc-hub-card" href="/docs/chat-and-lanes.html">
-    <h3>Chat, modes &amp; context lanes</h3>
-    <p>Ask / Plan / Agent, Repo / Work / Hybrid lanes, attachments, sessions, and auto-suggest.</p>
-  </a>
-  <a class="doc-hub-card" href="/docs/image-evidence-argus.html">
-    <h3>Image evidence &amp; ARGUS</h3>
-    <p>Paste screenshots, local Ollama vision, Context Lens preview, and structured visual audit.</p>
-  </a>
-  <a class="doc-hub-card" href="/docs/context-lens-packs.html">
-    <h3>Context Lens &amp; packs</h3>
-    <p>Gate 1 preview, relevance scores, @pack activation, scan &amp; learn, stale packs.</p>
-  </a>
-  <a class="doc-hub-card" href="/docs/engine-operator.html">
-    <h3>Engine operator guide</h3>
-    <p>Tray app tabs: Overview, Server, Ollama, Models, Indexing, Quality, Knowledge, Logs, Settings.</p>
-  </a>
-  <a class="doc-hub-card" href="/docs/indexing-readiness.html">
-    <h3>Indexing &amp; readiness</h3>
-    <p>Progressive RAG while indexing, readiness phases, priority files, hot paths.</p>
-  </a>
-  <a class="doc-hub-card" href="/docs/patches-governance.html">
-    <h3>Patches &amp; governance</h3>
-    <p>Assisted actions, patch preview (gate 2), quality map, DRY findings, audit trail.</p>
-  </a>
-  <a class="doc-hub-card" href="/docs/knowledge-and-governance.html">
-    <h3>Knowledge &amp; governance</h3>
-    <p>Engine Knowledge tab — structural registries, activity audit, persistence, worked examples.</p>
-  </a>
-  <a class="doc-hub-card" href="/docs/settings.html">
-    <h3>Settings reference</h3>
-    <p>VS Code <code>contextmint.*</code> ({{ extensionSettings.totalCount | default: "130+" }} keys) and API server defaults ({% if serverChatSettings %}{{ serverChatSettings.totalCount }}{% else %}533+{% endif %} keys) with usage guides.</p>
-  </a>
-  <a class="doc-hub-card" href="/docs/context-budget-calculator.html">
-    <h3>Context budget calculator</h3>
-    <p>Scale server <code>max_context_tokens</code> and see overview pack, seed, and retrieval slot knobs update proportionally.</p>
-  </a>
-  <a class="doc-hub-card" href="/docs/byok-enterprise.html">
-    <h3>BYOK &amp; enterprise</h3>
-    <p>Cloud API keys, redaction, shared on-prem server, OIDC, remote SSH path alignment.</p>
-  </a>
-  <a class="doc-hub-card" href="{{ '/docs/sovereign-server.html' | locale_path: localePrefix }}">
-    <h3>{{ i18nCommon.docsNav.sovereignServer }}</h3>
-    <p>{% if i18nPageStrings.sovereignCard %}{{ i18nPageStrings.sovereignCard }}{% else %}Platform deploy with OpenAI-compatible inference (vLLM), OIDC, and path-aligned workspaces.{% endif %}</p>
-  </a>
-  <a class="doc-hub-card" href="/docs/glossary.html">
-    <h3>Glossary</h3>
-    <p>v1.0 terms plus Verification Engine jargon: blast radius, MCP, drift, decision graph, and more.</p>
-  </a>
-  <a class="doc-hub-card" href="/support/troubleshooting.html">
-    <h3>Troubleshooting</h3>
-    <p>Symptom → cause → fix for every common problem across install, chat, and indexing.</p>
-  </a>
+  {% endfor %}
 </div>
 
-<h2>Recommended reading order</h2>
+<h2>{{ t.readingOrder.title }}</h2>
 <ol>
-  <li><a href="/docs/installation.html">Installation</a> → <a href="/docs/engine-operator.html">Engine guide</a></li>
-  <li><a href="/docs/indexing-readiness.html">Indexing &amp; readiness</a> → <a href="/docs/chat-and-lanes.html">Chat &amp; lanes</a></li>
-  <li><a href="/docs/image-evidence-argus.html">Image evidence &amp; ARGUS</a> → <a href="/docs/context-lens-packs.html">Context Lens &amp; packs</a></li>
-  <li><a href="/docs/patches-governance.html">Patches &amp; governance</a> → <a href="/docs/knowledge-and-governance.html">Knowledge &amp; governance</a></li>
+  {% for row in t.readingOrder.rows %}
+  <li>
+    {% for link in row %}
+    <a href="{{ link.href | locale_path: localePrefix }}">{{ link.text }}</a>{% unless forloop.last %} → {% endunless %}
+    {% endfor %}
+  </li>
+  {% endfor %}
 </ol>
 
 <p class="muted">
-  Developers: <a href="/developers/">Developer center</a> (API + <span class="mono">contextmint serve</span> today; MCP on roadmap).
-  Security and deployment: <a href="/trust.html">Trust &amp; Security</a>.
-  Jargon: <a href="/docs/glossary.html#verification-engine">Verification Engine terms</a>.
+  {{ t.footer.devBefore }} <a href="{{ '/developers/' | locale_path: localePrefix }}">{{ t.footer.devLinkText }}</a> {{ t.footer.devAfter }} <span class="mono">{{ t.footer.monoLabel }}</span> {{ t.footer.devAfter2 }}
+  {{ t.footer.securityBefore }} <a href="{{ '/trust.html' | locale_path: localePrefix }}">{{ t.footer.trustLinkText }}</a>.
+  {{ t.footer.jargonBefore }} <a href="{{ '/docs/glossary.html#verification-engine' | locale_path: localePrefix }}">{{ t.footer.jargonLinkText }}</a>.
 </p>

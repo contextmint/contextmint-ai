@@ -1,4 +1,190 @@
 {
   "title": "Knowledge Layer & Governance | ContextMint Docs",
-  "description": "How the Engine Knowledge tab supports governance — structural registries, activity audit, worked examples, data persistence, and screenshot checklist for operators."
+  "description": "How the Engine Knowledge tab supports governance — structural registries, activity audit, worked examples, data persistence, and screenshot checklist for operators.",
+  "h1": "Knowledge layer &amp; governance",
+  "lead": "Governance in ContextMint answers <strong>“Is this codebase healthy?”</strong> (Quality map, DRY findings, patch gates). The Engine <strong>Knowledge</strong> tab answers <strong>“What did indexing discover, and what did the system do?”</strong> — structural facts plus a redacted activity audit. Together they give operators and leads a verifiable trail without opening JSON sidecars or VS Code.",
+  "callout": {
+    "labelBefore": "<strong>Where to open it:</strong> ContextMint Engine → left nav →",
+    "labelStrong": "Knowledge",
+    "labelAfter": "(<code>http://localhost:1420</code> in browser dev, or the desktop window after <code>npm run tauri dev</code>). Requires <code>contextmint serve</code> on loopback."
+  },
+  "surfaces": {
+    "title": "Two surfaces — do not confuse them",
+    "table": {
+      "headers": ["Question", "Engine tab", "Typical user"],
+      "rows": [
+        { "question": "Are we duplicated / violating config policy / carrying god-files?", "tab": "Quality", "tabSuffix": "(+ VS Code governance drawer)", "user": "Tech lead, architect" },
+        { "question": "What routes, services, and docs did we index? Who imports whom?", "tab": "Knowledge → Structure", "tabSuffix": "", "user": "Platform eng, SRE, security reviewer" },
+        { "question": "Did chat use governance fast path? What was latency? Which workspace?", "tab": "Knowledge → Activity", "tabSuffix": "", "user": "Compliance, support, operator" }
+      ]
+    },
+    "footerBefore": "Deep dive on patch gates and quality scans:",
+    "footerLink1": "Patches &amp; governance",
+    "footerMid": "Engine tray overview:",
+    "footerLink2": "Engine operator guide"
+  },
+  "structure": {
+    "title": "Knowledge → Structure",
+    "intro": "After indexing, ContextMint writes <strong>Knowledge Layer</strong> sidecars under <code>&lt;workspace&gt;/.contextmint/registries/</code> — routes, services, documents, sections, and (when extractors populate them) policies. The Structure segment is a searchable browser over those objects, not a live search over source files.",
+    "kindTabs": {
+      "title": "Kind tabs",
+      "items": [
+        "<strong>Routes</strong> — HTTP method + path, handler file, registration hub (<code>app/api.py</code>), mount in <code>main.py</code>",
+        "<strong>Services</strong> — service symbols, definition file, consumer importers",
+        "<strong>Documents</strong> — PDF/Markdown sections indexed as document objects",
+        "<strong>Sections</strong> — wiki/HTML sections (when connector extractors run)",
+        "<strong>Policies</strong> — governance/CI policy rules (index-time; grows as extractors ship)"
+      ]
+    },
+    "agreementNote": "Each row shows an <strong>Agreement</strong> score (0–1) from index-time signals — similar in spirit to governance <strong>trust</strong> metadata in chat, but for structural extraction confidence.",
+    "graphPreview": {
+      "title": "Graph preview (right pane)",
+      "items": [
+        "<strong>Route</strong> — vertical chain: mount → registration → handler → route",
+        "<strong>Service</strong> — definition card + consumer list (not one long misleading chain)",
+        "<strong>Document / file focus</strong> — focus file + imports / imported-by neighbourhood"
+      ]
+    },
+    "figure": {
+      "alt": "Engine Knowledge tab — Routes structure list and registration graph",
+      "caption": "Routes: select a row to see mount → <code>app/api.py</code> → handler wiring."
+    }
+  },
+  "activity": {
+    "title": "Knowledge → Activity",
+    "intro": "The Activity segment tails the server <strong>append-only audit JSONL</strong>. Events include chat streams, governance fast-path decisions, indexing milestones, ACL changes, and action confirmations — with <strong>no raw query text</strong> (privacy by design).",
+    "items": [
+      "Filter by workspace, event <code>type</code> (e.g. <code>governance_fast_path</code>), and text search on metadata",
+      "<strong>Since</strong> dropdown: 15 min, 1 h, 6 h, or <strong>24 hours</strong> — this is a <em>view</em> filter, not deletion",
+      "<strong>Export JSON</strong> — download redacted events for support or compliance review"
+    ],
+    "figure": {
+      "alt": "Engine Knowledge tab — Activity audit stream with governance_fast_path events",
+      "caption": "Activity: prove a governed answer used the findings-store path (filter <code>governance_fast_path</code>)."
+    }
+  },
+  "persistence": {
+    "title": "Is data only kept for 24 hours?",
+    "answer": "<strong>No.</strong> Persistence and the UI time window are different things.",
+    "table": {
+      "headers": ["Data", "Persisted?", "Location", "UI limit"],
+      "rows": [
+        {
+          "data": "<strong>Structure</strong> (routes, services, docs…)",
+          "persisted": "Yes — until next reindex",
+          "location": "<code>&lt;workspace&gt;/.contextmint/registries/*.json</code>",
+          "limit": "None (paginated list; not time-based)"
+        },
+        {
+          "data": "<strong>Activity audit</strong>",
+          "persisted": "Yes — append-only JSONL",
+          "location": "<code>~/.contextmint/audit/&lt;workspace_id&gt;.jsonl</code> (override: <code>AUDIT_DIR</code>)",
+          "limit": "Default view: last <strong>1 hour</strong>; max dropdown: <strong>24 hours</strong>; up to 2 000 events per request"
+        },
+        {
+          "data": "<strong>Quality findings</strong>",
+          "persisted": "Yes — scan store",
+          "location": "Workspace quality map (see Quality tab)",
+          "limit": "Not on Knowledge tab"
+        }
+      ]
+    },
+    "rotationNote": "Audit files <strong>rotate</strong> when a single file exceeds ~50 MB (renamed with a timestamp suffix); older lines remain on disk. ContextMint does not currently auto-delete audit JSONL by age — the 24 h cap is only what the Engine UI loads by default for responsiveness. For older history, read files under <code>~/.contextmint/audit/</code> directly or use <strong>Export JSON</strong> within the widest window.",
+    "tunablesBefore": "Operator tunables: <code>engine.audit_tail_default_since_minutes</code>, <code>engine.audit_tail_max_since_minutes</code> (1440 = 24 h) in server defaults — see",
+    "tunablesLink": "Settings reference"
+  },
+  "workedExamples": {
+    "title": "Worked examples — governance + Knowledge together",
+    "example1": {
+      "title": "Example 1 — Verify a governed DRY answer (C4 UAT)",
+      "steps": [
+        "In VS Code, ask in <strong>Repo</strong> lane: <em>“Is any logic repeated unnecessarily in this codebase?”</em>",
+        "Pass criteria: toast <strong>Answer from quality map</strong>; reasoning shows findings-store path.",
+        "In Engine → <strong>Knowledge → Activity</strong>, set Since to <strong>24 hours</strong>, filter type <code>governance_fast_path</code>.",
+        "Confirm a new row: workspace id, latency, optional <code>governance_path</code> / findings metadata in exported JSON (no query text)."
+      ],
+      "note": "Quality tab shows <em>what</em> was found; Activity shows <em>that the fast path ran</em> — together they support audit questions from security or PMO."
+    },
+    "example2": {
+      "title": "Example 2 — Cross-check a config-policy finding",
+      "steps": [
+        "Engine → <strong>Quality</strong> — note a <strong>config policy</strong> finding on <code>app/services/foo.py</code> (hardcoded timeout).",
+        "Engine → <strong>Knowledge → Structure → Services</strong> — search <code>foo</code>.",
+        "Select the service row; graph pane lists <strong>Consumers</strong> — files that import the service.",
+        "Decide blast radius before refactor: more consumers → higher governance risk for assisted apply."
+      ],
+      "figure": {
+        "alt": "Engine Knowledge tab — Services list with consumer graph",
+        "caption": "Services: consumer list supports governance triage after a Quality finding."
+      }
+    },
+    "example3": {
+      "title": "Example 3 — Trust a structural chat answer (B3)",
+      "steps": [
+        "VS Code <strong>Repo</strong> lane: <em>“What route handles POST /api/v1/chat/stream?”</em>",
+        "Answer should cite <code>app/routers/chat.py</code> and registration in <code>app/api.py</code>.",
+        "Engine → <strong>Knowledge → Routes</strong> — search <code>chat/stream</code>.",
+        "Agreement score and graph chain should match the answer. Low agreement or empty registry → reindex or investigate extractor gaps before trusting production routing questions."
+      ]
+    },
+    "example4": {
+      "title": "Example 4 — Document governance (handbook / ADR)",
+      "steps": [
+        "Engine → <strong>Knowledge → Documents</strong> — search <code>ADR</code> or policy keyword.",
+        "Select a section row; graph shows file neighbourhood for where that doc lives in the repo.",
+        "Use when reconciling <em>written policy</em> (docs) vs <em>code policy findings</em> (Quality tab) — Policies kind will converge the same index-time model over time."
+      ],
+      "figure": {
+        "alt": "Engine Knowledge tab — Documents list with file focus graph",
+        "caption": "Documents: long labels are ellipsized in the table; full text in tooltip / graph pane."
+      }
+    }
+  },
+  "screenshotChecklist": {
+    "title": "Screenshot checklist (for docs &amp; carousel)",
+    "intro": "Capture at <strong>1280px</strong> wide (dark theme). Save under <code>contextmint-ai/src/assets/img/screenshots/</code> then <code>npm run build</code>.",
+    "table": {
+      "headers": ["Filename", "What to capture"],
+      "rows": [
+        { "filename": "engine-knowledge-structure.png", "capture": "Structure segment — workspace picker, kind tabs with counts, table + graph split" },
+        { "filename": "engine-knowledge-routes.png", "capture": "Routes tab — one API route selected; mount → api.py → handler graph visible" },
+        { "filename": "engine-knowledge-services.png", "capture": "Services tab — definition + Consumers list (after Quality scan optional)" },
+        { "filename": "engine-knowledge-documents.png", "capture": "Documents tab — ADR or handbook row; file focus graph" },
+        { "filename": "engine-knowledge-activity.png", "capture": "Activity segment — Since = 24 hours; filter <code>governance_fast_path</code>; ≥1 event visible" },
+        { "filename": "engine-knowledge-export.png", "capture": "Activity — Export JSON button + browser download or toast (optional)" }
+      ]
+    },
+    "beforeTitle": "Before screenshots:",
+    "beforeItems": [
+      "Index your repo in VS Code; run at least one governed chat (C4 prompt) so Activity has events",
+      "Run a Quality scan so you can reference a real finding in Example 2 walkthrough",
+      "Use <code>npm run dev</code> in <code>engine/desktop</code> + <code>contextmint serve</code>"
+    ]
+  },
+  "pairing": {
+    "title": "Pairing with VS Code governance UI",
+    "items": [
+      "<strong>Governance drawer</strong> (Context Lens) — live findings during chat; Knowledge does not duplicate this",
+      "<strong>Trust chip</strong> (<code>Governance · HIGH</code>) — answer confidence; Activity audit proves path taken",
+      "<strong>Reasoning timeline</strong> — developer-facing; operators use Engine for aggregate proof"
+    ]
+  },
+  "enterprise": {
+    "title": "Enterprise / compliance notes",
+    "items": [
+      "Audit JSONL omits raw prompts and query text — only hashes and metadata",
+      "Export + support bundle (About tab) for incident response",
+      "ACL grant/revoke events appear in Activity when enterprise auth is enabled"
+    ],
+    "seeAlsoBefore": "See",
+    "trustLink": "Trust &amp; Security",
+    "seeAlsoMid": "and",
+    "byokLink": "BYOK &amp; enterprise"
+  },
+  "footer": {
+    "problemsBefore": "Problems:",
+    "problemsLink": "Troubleshooting → Engine",
+    "authorityBefore": "Developer authority:",
+    "authorityCodeSuffix": "in the product repo."
+  }
 }

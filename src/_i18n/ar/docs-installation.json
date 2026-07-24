@@ -1,4 +1,181 @@
 {
-  "title": "Installation & Setup | ContextMint Docs",
-  "description": "Install ContextMint Engine and the VS Code extension — prerequisites, verify steps, and first-line installation support when issues arise."
+  "title": "التثبيت والإعداد | توثيق ContextMint",
+  "description": "تثبيت محرك ContextMint وإضافة Visual Studio Code — يشمل المتطلبات الأساسية، وخطوات التحقق من التثبيت، وإرشادات الدعم الأولية عند مواجهة المشكلات.",
+  "h1": "التثبيت والإعداد",
+  "lead": {
+    "part1": "يتكوّن ContextMint من عنصرين يتعامل معهما المستخدم: <strong>Engine</strong> (وحدة تحكم تشغيل على سطح المكتب + خادم Python) و<strong>إضافة VS Code</strong> (المحادثة، وContext Lens، وواجهة الحوكمة). المسار الافتراضي محلي أولاً على جهاز واحد.",
+    "stuckStrong": "تواجه مشكلة أثناء الإعداد؟",
+    "linkText": "انتقل إلى دعم التثبيت",
+    "after": "— خط المساعدة الأول قبل التواصل معنا."
+  },
+  "prereq": {
+    "title": "المتطلبات الأساسية",
+    "items": [
+      "Windows 10 فأحدث، أو macOS 12 فأحدث، أو Linux x64",
+      "VS Code الإصدار 1.85 أو أحدث",
+      "<strong>Ollama</strong> للاستدلال المحلي بالنماذج (يمكن لمعالج التشغيل الأول في Engine الربط للتثبيت)",
+      "مساحة تخزين كافية للتمثيلات المتجهية (دليل تقريبي: 1–3 جيجابايت لكل مستودع متوسط الحجم)",
+      "اتصال loopback على الشبكة إلى <code>localhost:8000</code> (منفذ API الافتراضي)"
+    ]
+  },
+  "localInstall": {
+    "title": "التثبيت المحلي أولاً (موصى به)",
+    "steps": [
+      "نزّل وثبّت <strong>ContextMint Engine</strong> من صفحة الإصدارات.",
+      "افتح Engine من شريط النظام ← شغّل <strong>Start all</strong> (الخادم + Ollama).",
+      { "ext": true, "before": "ثبّت إضافة", "after": "من ملف VSIX أو من المتجر." },
+      "افتح مجلد مشروعك في VS Code — تسجّل الإضافة مساحة العمل تلقائياً.",
+      "انتظر حتى تتجاوز الجاهزية حالتي <strong>Offline</strong> / <strong>Starting</strong>؛ قد تستمر الفهرسة في الخلفية."
+    ],
+    "quickBefore": "شرح سريع:",
+    "quickLinkText": "البدء (5 دقائق)",
+    "quickAfter": "يرتبط معالج التشغيل الأول في Engine أيضاً بهذه الصفحة عند حدوث فشل."
+  },
+  "firstRun": {
+    "title": "معالج التشغيل الأول (Engine)",
+    "intro": "عند التشغيل الأول، قد يطلب Engine:",
+    "items": [
+      "مسار Python / الخلفية (يُكتشف تلقائياً عادةً في الحزم المُجمّعة)",
+      "رابط Ollama ونماذج التضمين والمحادثة الافتراضية",
+      "ما إذا كان يجب تشغيل الخادم وOllama عند تسجيل الدخول (تشغيل تلقائي اختياري)"
+    ],
+    "note": "أكمل المعالج قبل توقّع وصول المحادثة إلى حالة <strong>Ready</strong> أو <strong>Limited</strong>. تتضمن كل خطوة في المعالج رابط <strong>مساعدة التثبيت</strong> إلى هذه الصفحة."
+  },
+  "workspace": {
+    "title": "تسجيل مساحة العمل",
+    "text": "يحصل كل مجلد مفتوح على <strong>معرّف مساحة عمل</strong> ثابت (12 حرفاً سداسي عشري). تستدعي الإضافة <code>POST /set-workspace</code> مع مسار المجلد ومسارات المحررات المفتوحة حتى تعطي الفهرسة أولوية للملفات التي تحرّرها. لا تحتاج لضبط هذا يدوياً في الاستخدام العادي."
+  },
+  "sovereign": {
+    "title": "خادم داخل البنية المحلية (تجربة مؤسسية)",
+    "p1": "قد تنشر فرق المنصة حزمة API على مضيف داخلي مع <strong>استدلال متوافق مع OpenAI</strong> (عادةً vLLM) — وليس فقط «Ollama مشتركة». يوجّه المطوّرون الإضافة إلى ذلك الرابط:",
+    "items": [
+      "<code>ContextMint.serverUrl</code> — عنوان API الأساسي للفريق (HTTPS)",
+      "<code>ContextMint.enterpriseMode</code> — فعّله عند اشتراط مصادقة الخادم",
+      "إعداد OIDC / JWT حسب مزوّد الهوية لديكم"
+    ],
+    "closingBefore": "لا تشغّل الإضافة Engine <strong>في هذا الوضع</strong>. يجب أن تتطابق مسارات المستودع (Remote SSH أو أحجام تركيب مطابقة). التفاصيل الكاملة:",
+    "link1": "نشر الخادم السيادي",
+    "link2": "BYOK والمؤسسات",
+    "link3": "الثقة والأمان",
+    "andWord": "و"
+  },
+  "verify": {
+    "title": "التحقق من التثبيت",
+    "items": [
+      "Engine ← نظرة عامة تُظهر الخادم <strong>Running</strong>",
+      { "ext": true, "prefix": "شريط حالة VS Code:", "label": "Ready", "note": "(أو Indexing / Limited)" },
+      "المتصفح: <code>http://localhost:8000/api/health</code> يُرجع OK (محلي أولاً)"
+    ]
+  },
+  "support": {
+    "title": "دعم التثبيت (الخط الأول)",
+    "intro": "استخدم هذا القسم عندما لا يطابق الإعداد المسار السلس أعلاه. اتّبع العرَض الذي يطابق ما تراه في Engine أو VS Code. فقط بعد هذه الخطوات صدّر حزمة دعم و",
+    "emailPrefix": "راسلنا عبر البريد",
+    "issuePrefix": "افتح",
+    "issueLinkText": "مشكلة على GitHub",
+    "decisionGuideTitle": "دليل القرار",
+    "decisionGuide": [
+      "<strong>صينية Engine غير ظاهرة؟</strong> ← تحقق من قائمة الصينية الفائضة؛ أعد تشغيل Engine من قائمة ابدأ.",
+      "<strong>فشل Start all؟</strong> ← تبويب السجلات + تعارض المنفذ 8000 ← أعد تشغيل الجهاز ← أعد تثبيت حزمة Engine.",
+      "<strong>الإضافة تُظهر Offline؟</strong> ← Engine غير قيد التشغيل أو <code>serverUrl</code> غير صحيح.",
+      "<strong>عالق على Starting في VS Code؟</strong> ← أعد تحميل النافذة؛ Engine ← الخادم ← أعد تشغيل الخادم.",
+      "<strong>Limited / Ollama غير متصل؟</strong> ← ثبّت Ollama؛ Engine ← Ollama ← Start؛ اسحب النماذج من تبويب Models.",
+      "<strong>أخطاء فهرسة؟</strong> ← Engine ← تفاصيل الفهرسة؛ أصلح الأذونات؛ أعد فهرسة مساحة العمل."
+    ],
+    "tryLabel": "جرّب:",
+    "faqGroups": [
+      {
+        "title": "المحرك والخادم",
+        "items": [
+          {
+            "summary": "«Start all» لا يفعل شيئاً أو يفشل فوراً",
+            "kind": "list",
+            "steps": [
+              "Engine ← <strong>السجلات (Logs)</strong> — ابحث عن تتبّع أخطاء Python أو «address already in use».",
+              "أوقف الكل ← أغلق Engine ← تأكد من عدم وجود عملية <code>contextmint</code> / python عالقة على المنفذ 8000.",
+              "Engine ← <strong>الإعدادات</strong> — تأكد أن مسار الخلفية يشير إلى الخادم المرفق (التثبيت المُجمّع).",
+              "أعد تثبيت أحدث إصدار من Engine إذا كان ملف الخادم مفقوداً."
+            ],
+            "closingBefore": "لا تزال عالقاً؟",
+            "closingHref": "/support/troubleshooting.html#engine",
+            "closingText": "استكشاف أخطاء Engine",
+            "closingAfter": "· صدّر حزمة الدعم من About."
+          },
+          {
+            "summary": "رابط الصحة لا يُحمَّل في المتصفح",
+            "kind": "text",
+            "text": "Engine ← نظرة عامة ← تأكد أن الخادم <strong>Running</strong>. استخدم الرابط الدقيق من الإعدادات (الافتراضي <code>http://127.0.0.1:8000</code>). عطّل أي VPN/وكيل يمنع loopback. في وضع الخادم المشترك، استخدم رابط HTTPS الخاص بفريقكم بدلاً منه."
+          }
+        ]
+      },
+      {
+        "title": "Ollama والنماذج",
+        "items": [
+          {
+            "summary": "Ollama غير مكتشف / وضع Limited في VS Code",
+            "kind": "list",
+            "steps": [
+              "ثبّت من <a href=\"https://ollama.com/download\" rel=\"noopener\">ollama.com/download</a>.",
+              "Engine ← <strong>Ollama</strong> ← Start أو Restart.",
+              "Engine ← <strong>Models</strong> ← اسحب نماذج التضمين والمحادثة الموصى بها.",
+              "شغّل Start all مرة أخرى؛ انتظر حتى تختفي تحذيرات Ollama من الجاهزية في النظرة العامة."
+            ]
+          },
+          {
+            "summary": "تم سحب النماذج لكن المحادثة لا تزال تُخطئ",
+            "kind": "text",
+            "text": "تأكد أن أسماء النماذج في Engine Models تطابق إعدادات الخادم الافتراضية. أعد تشغيل الخادم بعد تغيير نموذج التضمين (قد يتطلب إعادة فهرسة). اختبر برسالة قصيرة «hi» في وضع Ask."
+          }
+        ]
+      },
+      {
+        "title": "إضافة VS Code",
+        "items": [
+          {
+            "summary": "الإضافة مثبّتة لكن لا توجد أيقونة ContextMint",
+            "kind": "text",
+            "text": "فعّل الإضافة من لوحة Extensions. أعد تحميل النافذة. تحقق من Output ← ContextMint بحثاً عن أخطاء التفعيل. تأكد أن إصدار VS Code ≥ 1.85."
+          },
+          {
+            "summary": "المحادثة محظورة — «server offline» أو «starting»",
+            "kind": "list",
+            "steps": [
+              "Engine ← <strong>Start all</strong> (محلي أولاً).",
+              "الإعدادات ← يجب أن يطابق <code>ContextMint.serverUrl</code> إعداد Engine (عادةً <code>http://localhost:8000</code>).",
+              "أعد تحميل نافذة VS Code بعد أن يصبح الخادم سليماً."
+            ],
+            "note": "<strong>ملاحظة:</strong> لا تمنع <strong>الفهرسة</strong> المحادثة — فقط حالات offline/starting/error تمنعها."
+          },
+          {
+            "summary": "الخادم المؤسسي المشترك — أخطاء 401 أو مسارات",
+            "kind": "text",
+            "linkBefore": "فعّل <code>enterpriseMode</code>، وأعد مصادقة SSO، وحاذِ مسارات المستودع مع الخادم (Remote SSH). راجع",
+            "linkHref": "/docs/byok-enterprise.html",
+            "linkText": "BYOK والمؤسسات",
+            "linkAfter": "."
+          }
+        ]
+      },
+      {
+        "title": "الفهرسة أثناء التثبيت",
+        "items": [
+          {
+            "summary": "الفهرسة عالقة عند 0% أو تُظهر أخطاء",
+            "kind": "text",
+            "text": "Engine ← الفهرسة ← افتح تفاصيل مساحة العمل. تحقق من مساحة القرص وأذونات القراءة. استثنِ المجلدات الكبيرة عبر <code>.gitignore</code> / <code>.contextmintignore</code>. أعد الفهرسة يدوياً من بطاقة مساحة العمل في النظرة العامة."
+          }
+        ]
+      }
+    ],
+    "escalateTitle": "متى تُصعّد المشكلة",
+    "escalateStep1": "Engine ← <strong>About</strong> ← <strong>Download support bundle</strong> (أو تبويب Logs).",
+    "escalateStep2": "دوّن إصدار Engine ونظام التشغيل والخطوات التي جربتها بالفعل من هذه الصفحة.",
+    "escalateStep4": "شركاء التصميم: استخدموا قناة الهندسة المخصصة لكم.",
+    "footerBefore": "فهرس الأعراض الأوسع:",
+    "footerLinks": [
+      { "href": "/support/troubleshooting.html", "text": "استكشاف الأخطاء الكامل" },
+      { "href": "/docs/", "text": "كل توثيق المستخدم" },
+      { "href": "/support.html", "text": "مركز الدعم" }
+    ]
+  }
 }

@@ -1,4 +1,53 @@
 {
   "title": "Platform Engineering | ContextMint",
-  "description": "Platform engineering with ContextMint — context packs, local Engine, shared-server pilots. PR gates and MCP on the roadmap."
+  "description": "Platform engineering with ContextMint — context packs, local Engine, shared-server pilots. PR gates and MCP on the roadmap.",
+  "breadcrumbParent": "Solutions",
+  "breadcrumbCurrent": "Platform Engineering",
+  "badges": {
+    "roadmap": "Roadmap"
+  },
+  "hero": {
+    "pill": "PLATFORM · DEVOPS",
+    "title": "Decision-control in every developer IDE",
+    "leadStrong1": "v1.0 (end of August 2026):",
+    "leadMid": "context packs and local-first Engine in the IDE, with human gates before inference and apply.",
+    "leadStrong2": "Roadmap:",
+    "leadAfter": "CI/CD deployment graph, MCP agent tools, and PR verification on the Verification Engine."
+  },
+  "cards": [
+    {
+      "title": "CI/CD & deployment graph",
+      "text": "Trace code → feature → deployment → incident. Connect pipeline metadata to the engineering graph.",
+      "items": [
+        "Deployment nodes linked to services",
+        "Impact queries span runtime and code",
+        "Graph correctness gates before product claims"
+      ]
+    },
+    {
+      "title": "Context packs",
+      "text": "Per-repo <span class=\"mono\">manifest.yaml</span> + markdown knowledge injected into chat. Auto-sync on index bump.",
+      "items": [
+        "@pack:name in VS Code chat",
+        "Pack builder API for platform teams",
+        "Versioned with repo generation"
+      ]
+    }
+  ],
+  "deploy": {
+    "title": "Deploy in your IDP",
+    "defaultStrong": "Default:",
+    "defaultText": "developers run ContextMint Engine locally — sovereign, no shared server.",
+    "pilotStrong": "Regulated pilots",
+    "pilotText": "can deploy a shared on-prem API server (Docker / Helm) for teams that index a mounted monorepo or use VS Code Remote SSH. The extension connects via <code>serverUrl</code> + OIDC — platform ops owns mounts, auth, and path alignment.",
+    "linkText": "Deployment models →"
+  },
+  "prGate": {
+    "title": "PR gate for AI-generated code",
+    "textBefore": "After v1.0, the Verification Engine direction targets ownership, blast radius, ADR, and policy checks on pull requests — with evidence attached. That is",
+    "textStrong": "not",
+    "textAfter": "in the August GA package. Today: Context Lens, quality map, and patch preview in the IDE.",
+    "cta1": "Verification Engine vision",
+    "cta2": "v1.0 features"
+  }
 }

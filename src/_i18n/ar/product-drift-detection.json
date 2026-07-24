@@ -1,4 +1,38 @@
 {
   "title": "Drift Detection | ContextMint",
-  "description": "Architecture drift detection — separate bad drift from accepted evolution with governed baselines and actionable alerts."
+  "description": "ميزة Drift Detection — اكتشف الانحرافات المعمارية، وميّز بين الانحرافات غير المرغوبة والتطورات المعتمدة باستخدام خطوط أساس خاضعة للحوكمة وتنبيهات قابلة للتنفيذ.",
+  "breadcrumbParent": "المنتج",
+  "breadcrumbCurrent": "Drift Detection",
+  "hero": {
+    "h1": "اكتشاف الانحراف (Drift Detection)",
+    "leadStrong": "بعبارة بسيطة:",
+    "leadBefore": "اكتشف متى",
+    "leadEm": "ينحرف",
+    "leadMid": "الكود عن المعمارية المتفق عليها — وميّز بين",
+    "leadStrong2": "المخالفات غير المرغوبة",
+    "leadMid2": "و",
+    "leadStrong3": "التطورات المعتمدة",
+    "leadAfter": "التي قصدت السماح بها."
+  },
+  "banner": {
+    "badge": "Verification Engine",
+    "title": "بوابات الانحراف الآلية ضمن خارطة الطريق",
+    "message": "تُظهر خريطة الجودة في v1.0 إشارات البنية والتكرار اليوم. أما الانحراف بين الرسم البياني والعقد مع خطوط أساس معتمدة فيُطرح مع التحقق وقت PR."
+  },
+  "cards": [
+    {
+      "title": "انحراف غير مرغوب",
+      "text": "وصول مباشر جديد لقاعدة البيانات في طبقة API يخالف قاعدة الطبقات في ADR-12. لا يوجد خط أساس معتمد مسجّل."
+    },
+    {
+      "title": "تطوّر معتمد",
+      "text": "تغيير في النمط معتمد في طلب الدمج PR #2102 ومسجّل كزوج خط أساس معتمد. تم كتم التنبيه."
+    }
+  ],
+  "checklist": [
+    "مقارنة الرسم البياني مقابل العقد/المعيار — بشكل حتمي",
+    "أزواج خطوط أساس معتمدة للتغييرات المعمارية المقصودة",
+    "التكامل مع فحوصات PR وبطاقات الأداء الهندسية",
+    "حقلا edge_class وverification_status على حواف الرسم البياني"
+  ]
 }

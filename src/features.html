@@ -5,38 +5,37 @@ description: What ships in ContextMint v1.0 — Engine operator console, VS Code
 pageCss: product.css
 ---
 
+{% assign t = i18nPageStrings %}
+
 <header class="page-hero">
   <div class="container">
-    <div class="pill">IN PILOT · V1.0 END OF AUGUST 2026</div>
-    <h1>What ships in v1.0</h1>
+    <div class="pill">{{ t.hero.pill }}</div>
+    <h1>{{ t.hero.title }}</h1>
     <p class="lead">
-      ContextMint v1.0 ships <strong>end of August 2026</strong>. The pilot delivers a
-      <strong>local-first decision-control plane</strong> — not generic chat.
-      This page lists capabilities in the Engine desktop app and VS Code extension.
-      PR verification, blast-radius product SKUs, and the standalone CLI remain on the
-      <a href="/roadmap.html#verification-engine" style="color: var(--color-link);">roadmap</a>
-      (see also the <a href="/product/" style="color: var(--color-link);">Verification Engine vision</a>).
+      {{ t.hero.leadBefore }} <strong>{{ t.hero.leadStrong1 }}</strong>{{ t.hero.leadMid1 }}
+      <strong>{{ t.hero.leadStrong2 }}</strong>
+      {{ t.hero.leadMid2 }}
+      <a href="{{ '/roadmap.html#verification-engine' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.hero.roadmapLink }}</a>
+      {{ t.hero.leadMid3 }}
+      <a href="{{ '/product/' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.hero.verificationLink }}</a>{{ t.hero.leadAfter }}
     </p>
   </div>
 </header>
 
 <section class="section">
   <div class="container container-narrow">
-    <h2 class="section-title">Two components</h2>
+    <h2 class="section-title">{{ t.components.title }}</h2>
     <div class="grid grid-2">
       <div class="card">
-        <h3 style="margin: 0 0 8px;">ContextMint Engine</h3>
+        <h3 style="margin: 0 0 8px;">{{ t.components.engineTitle }}</h3>
         <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-          Tray-native operator console: server and Ollama lifecycle, models, multi-repo indexing
-          status, quality scans, logs, and support bundle export. System, Light, or Dark theme.
+          {{ t.components.engineText }}
         </p>
       </div>
       <div class="card">
-        <h3 style="margin: 0 0 8px;">{{ site.extensionName }} extension</h3>
+        <h3 style="margin: 0 0 8px;">{{ site.extensionName }} {{ t.components.extensionTitleAfter }}</h3>
         <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-          Where engineers work: repo-aware chat, screenshot vision, ARGUS visual audit, Context Lens,
-          context packs, quality findings, assisted patch preview, and session history — connected to
-          Engine on loopback by default.
+          {{ t.components.extensionText }}
         </p>
       </div>
     </div>
@@ -45,22 +44,18 @@ pageCss: product.css
 
 <section class="section section--surface">
   <div class="container container-narrow">
-    <h2 class="section-title">Human gates (evidence before action)</h2>
+    <h2 class="section-title">{{ t.gates.title }}</h2>
     <div class="grid grid-2" style="margin-top: 16px;">
       <div class="card">
-        <h3 style="margin: 0 0 8px;">Context Lens — gate 1</h3>
+        <h3 style="margin: 0 0 8px;">{{ t.gates.lensTitle }}</h3>
         <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-          Pre-send preview of retrieved chunks, relevance scores, routing choice, and governance
-          notes. Approve or exclude evidence <em>before</em> the model runs. Optional trust gate
-          can require explicit confirmation on early sends.
+          {{ t.gates.lensText }}
         </p>
       </div>
       <div class="card">
-        <h3 style="margin: 0 0 8px;">Patch preview — gate 2</h3>
+        <h3 style="margin: 0 0 8px;">{{ t.gates.patchTitle }}</h3>
         <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-          Assisted actions propose unified diffs; you review and confirm before anything applies.
-          Quality-map clone signals can block apply on high-severity findings when configured.
-          No silent writes to your repo.
+          {{ t.gates.patchText }}
         </p>
       </div>
     </div>
@@ -69,98 +64,80 @@ pageCss: product.css
 
 <section class="section">
   <div class="container container-narrow">
-    <h2 class="section-title">VS Code chat &amp; compose</h2>
+    <h2 class="section-title">{{ t.chat.title }}</h2>
     <ul class="check-list">
-      <li><strong>Ask / Plan / Agent</strong> modes — scope how much autonomy the model has per message</li>
-      <li><strong>Context lanes — Repo / Work / Hybrid</strong> — repo-grounded answers vs work planning/comms vs evidence + recommendations</li>
-      <li><strong>Attach context files</strong> — pin specific files as chips before you send</li>
-      <li><strong>Image evidence</strong> — paste, drop, or pick PNG/JPEG/WebP screenshots; local Ollama vision by default</li>
-      <li><strong>Chat sessions</strong> — new chat, session list, and stored history per workspace</li>
-      <li><strong>Model routing</strong> — Auto, Local (Ollama), or Cloud when BYOK is enabled</li>
-      <li><strong>Suggested prompts</strong> — repo-aware starters when readiness is empty</li>
-      <li><strong>Dual-layer answers</strong> — plain summary with optional “more technical detail” expand</li>
-      <li><strong>Readiness phases</strong> — status bar and card show offline, indexing, limited, or ready</li>
+      {% for item in t.chat.items %}
+      <li><strong>{{ item.strong }}</strong> {{ item.text }}</li>
+      {% endfor %}
     </ul>
     <p class="muted" style="margin-top: 16px; margin-bottom: 0;">
-      Open chat with <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>L</kbd> or the ContextMint
-      activity bar. See <a href="/getting-started.html" style="color: var(--color-link);">getting started</a>.
+      {{ t.chat.shortcutBefore }} <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>L</kbd> {{ t.chat.shortcutAfter }}
+      <a href="{{ '/getting-started.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.chat.gettingStartedLink }}</a>{{ t.chat.shortcutEnd }}
     </p>
   </div>
 </section>
 
 <section class="section section--surface">
   <div class="container container-narrow">
-    <h2 class="section-title">Glass box — see how the model was routed</h2>
+    <h2 class="section-title">{{ t.glassBox.title }}</h2>
     <p class="muted">
-      ContextMint is a decision-control plane, not a black-box autocomplete sidebar.
+      {{ t.glassBox.lead }}
     </p>
     <ul class="check-list" style="margin-top: 16px;">
-      <li><strong>Routing badge</strong> — which tier and model were selected (local vs cloud); vision route when images attached</li>
-      <li><strong>Shipped provenance</strong> — Context Lens preview matches what the model receives (no hidden budget drift)</li>
-      <li><strong>Provenance breakdown</strong> — registry facts, search hits, expanded windows, grep, and graph neighbours</li>
-      <li><strong>Reasoning timeline / trace log</strong> — step-by-step transparency panel for debugging</li>
-      <li><strong>Context Lens scores</strong> — relevance per excerpt before inference; thin-evidence signals when coverage is low</li>
+      {% for item in t.glassBox.items %}
+      <li><strong>{{ item.strong }}</strong> {{ item.text }}</li>
+      {% endfor %}
     </ul>
   </div>
 </section>
 
 <section class="section">
   <div class="container container-narrow">
-    <h2 class="section-title">Image evidence &amp; local vision</h2>
+    <h2 class="section-title">{{ t.images.title }}</h2>
     <p class="muted">
-      Paste UI screenshots and ask what you see — without sending code to a cloud API by default.
-      ContextMint normalizes images, previews them in Context Lens, and routes through a local
-      Ollama vision model when one is installed.
+      {{ t.images.lead }}
     </p>
     <ul class="check-list" style="margin-top: 16px;">
-      <li><strong>Paste / drop / file picker</strong> — up to 3 images per message (PNG, JPEG, WebP)</li>
-      <li><strong>Local-first routing</strong> — cloud keys do not force cloud vision on attach</li>
-      <li><strong>Context Lens preview</strong> — thumbnails, vision route label, trust gate support</li>
-      <li><strong>Pull vision model CTA</strong> — Engine → Models when no VLM is installed (<code>moondream</code>, <code>llava</code>, …)</li>
-      <li><strong>Lane-aware</strong> — image + RAG on Repo/Hybrid; image + packs on Work</li>
-      <li><strong>Optional BYOK cloud vision</strong> — explicit model choice only; off by default</li>
+      {% for item in t.images.items %}
+      <li><strong>{{ item.strong }}</strong> {{ item.text }}</li>
+      {% endfor %}
     </ul>
     <p class="muted" style="margin-top: 16px; margin-bottom: 0;">
-      Deep dive: <a href="/docs/image-evidence-argus.html" style="color: var(--color-link);">Image evidence &amp; ARGUS</a>.
+      {{ t.images.deepDiveBefore }} <a href="{{ '/docs/image-evidence-argus.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.images.deepDiveLink }}</a>.
     </p>
   </div>
 </section>
 
 <section class="section section--surface">
   <div class="container container-narrow">
-    <h2 class="section-title">ARGUS — visual audit</h2>
+    <h2 class="section-title">{{ t.argus.title }}</h2>
     <p class="muted">
-      Structured UI review on the same vision stack as chat — findings you can act on, never silent fixes.
+      {{ t.argus.lead }}
     </p>
     <ul class="check-list" style="margin-top: 16px;">
-      <li><strong>Run visual audit</strong> — from Context Lens or message actions on pasted screenshots</li>
-      <li><strong>WCAG-tagged findings</strong> — severity, category, description, optional rule reference</li>
-      <li><strong>Sandbox audit</strong> — Playwright capture in git preview worktree when sandbox is enabled</li>
-      <li><strong>Report only</strong> — handoff to patch preview (gate 2) if you choose to fix; no auto-apply</li>
-      <li><strong>Local VLM default</strong> — shares Ollama vision with chat; no API key required</li>
+      {% for item in t.argus.items %}
+      <li><strong>{{ item.strong }}</strong> {{ item.text }}</li>
+      {% endfor %}
     </ul>
   </div>
 </section>
 
 <section class="section">
   <div class="container container-narrow">
-    <h2 class="section-title">Context packs &amp; conventions</h2>
+    <h2 class="section-title">{{ t.packs.title }}</h2>
     <div class="grid grid-2" style="margin-top: 16px;">
       <div class="card">
-        <h3 style="margin: 0 0 8px;">Context packs</h3>
+        <h3 style="margin: 0 0 8px;">{{ t.packs.packsTitle }}</h3>
         <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-          Per-repo <span class="mono">manifest.yaml</span> plus markdown knowledge. Activate with
-          <span class="mono">@pack:name</span> in chat. Pack panel lists, builds, and auto-syncs when
-          source files change (debounced).
+          {{ t.packs.packsText }}
         </p>
       </div>
       <div class="card">
-        <h3 style="margin: 0 0 8px;">Conventions learner</h3>
+        <h3 style="margin: 0 0 8px;">{{ t.packs.conventionsTitle }}</h3>
         <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-          Conventions panel surfaces active rules, pending proposals, and audit history — human
-          approval before conventions enter the graph. Complements the quality map and DNA vision on
-          the <a href="/roadmap.html#verification-engine" style="color: var(--color-link);">roadmap</a>
-          (<a href="/product/repository-dna.html" style="color: var(--color-link);">Repository DNA</a>).
+          {{ t.packs.conventionsTextBefore }}
+          <a href="{{ '/roadmap.html#verification-engine' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.packs.roadmapLink }}</a>
+          {{ t.packs.conventionsTextMid }}<a href="{{ '/product/repository-dna.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.packs.dnaLink }}</a>{{ t.packs.conventionsTextAfter }}
         </p>
       </div>
     </div>
@@ -169,48 +146,44 @@ pageCss: product.css
 
 <section class="section section--surface">
   <div class="container container-narrow">
-    <h2 class="section-title">Engine operator console</h2>
+    <h2 class="section-title">{{ t.operator.title }}</h2>
     <p class="muted">
-      Engine is recovery and lifecycle control — not a daily dashboard. Tray-first; open the window
-      when you need to diagnose.
+      {{ t.operator.lead }}
     </p>
     <ul class="check-list" style="margin-top: 16px;">
-      <li><strong>Overview</strong> — readiness issues and Start all / Stop all</li>
-      <li><strong>Server · Ollama</strong> — process status and lifecycle actions</li>
-      <li><strong>Models</strong> — pull and apply embedding, chat, and <strong>vision</strong> models (first-run wizard guides setup)</li>
-      <li><strong>Indexing</strong> — multi-repo table with per-workspace status, chunks, and file-type stats</li>
-      <li><strong>Quality</strong> — run scans; findings feed the extension quality map</li>
-      <li><strong>Logs · About</strong> — diagnostics and redacted support bundle export</li>
-      <li><strong>Settings</strong> — paths, ports, start at login, theme (System / Light / Dark)</li>
+      {% for item in t.operator.items %}
+      <li><strong>{{ item.strong }}</strong> {{ item.text }}</li>
+      {% endfor %}
     </ul>
   </div>
 </section>
 
 <section class="section">
   <div class="container container-narrow">
-    <h2 class="section-title">Quality map</h2>
+    <h2 class="section-title">{{ t.quality.title }}</h2>
     <p class="muted" style="margin-bottom: 0;">
-      Stored governance findings from your repo — clone pairs, near-duplicates, and structure signals.
-      Inform-only by default; optional gates can block assisted apply on high-severity clones. Run scans
-      from the extension command palette or Engine → Quality.
+      {{ t.quality.text }}
     </p>
   </div>
 </section>
 
 <section class="section section--surface">
   <div class="container container-narrow">
-    <h2 class="section-title">Optional &amp; preview (off by default)</h2>
+    <h2 class="section-title">{{ t.optional.title }}</h2>
     <p class="muted">
-      Available in settings for teams that opt in — not required for the sovereign local-first path.
-      Several of these are part of the regulated-pilot demo bar for v1.0; product defaults stay off
-      until explicit default-on decisions.
+      {{ t.optional.lead }}
     </p>
     <ul class="check-list" style="margin-top: 16px;">
-      <li><strong>BYOK cloud routing</strong> — OpenAI, Anthropic, Groq; keys in VS Code secrets; optional cloud vision when you select a vision model (<a href="/trust.html">trust center</a>)</li>
-      <li><strong>Git sandbox worktrees</strong> — isolated test/apply in a worktree (server + extension flags)</li>
-      <li><strong>Inline ghost-text completion</strong> — local FIM when inline backend is enabled</li>
-      <li><strong>In-IDE code review</strong> — file / branch / feature / flow review with human gates (flagged until default-on)</li>
-      <li><strong>Shared on-prem API server</strong> — regulated pilot with Docker/Helm + OIDC (<a href="/trust.html#deployment">deployment models</a>)</li>
+      {% for item in t.optional.items %}
+      <li>
+        <strong>{{ item.strong }}</strong>
+        {% if item.linkText %}
+        {{ item.before }}<a href="{{ item.linkHref | locale_path: localePrefix }}" style="color: var(--color-link);">{{ item.linkText }}</a>{{ item.after }}
+        {% else %}
+        {{ item.text }}
+        {% endif %}
+      </li>
+      {% endfor %}
     </ul>
   </div>
 </section>
@@ -218,23 +191,22 @@ pageCss: product.css
 <section class="section">
   <div class="container container-narrow split">
     <div>
-      <h2>On the roadmap</h2>
+      <h2>{{ t.roadmapSection.title }}</h2>
       <p class="muted">
-        Three tiers: what ships in v1.0, what design partners co-build in 2026, and the
-        Verification Engine direction ahead — PR gates, blast radius, drift, and enterprise packaging.
+        {{ t.roadmapSection.text }}
       </p>
-      <a class="btn btn-secondary" href="/roadmap.html">View roadmap</a>
-      <a class="btn btn-secondary" href="/product/" style="margin-left: 8px;">Verification Engine vision</a>
+      <a class="btn btn-secondary" href="{{ '/roadmap.html' | locale_path: localePrefix }}">{{ t.roadmapSection.roadmapCta }}</a>
+      <a class="btn btn-secondary" href="{{ '/product/' | locale_path: localePrefix }}" style="margin-left: 8px;">{{ t.roadmapSection.verificationCta }}</a>
     </div>
     <div>
-      <h2>Install</h2>
+      <h2>{{ t.installSection.title }}</h2>
       <p class="muted">
-        Engine installer + VS Code extension. First chat in minutes on the local-first path.
+        {{ t.installSection.text }}
       </p>
-      <a class="btn btn-primary" href="/getting-started.html">Getting started</a>
-      <a class="btn btn-secondary" href="/faq.html" style="margin-left: 8px;">FAQ</a>
+      <a class="btn btn-primary" href="{{ '/getting-started.html' | locale_path: localePrefix }}">{{ t.installSection.gettingStartedCta }}</a>
+      <a class="btn btn-secondary" href="{{ '/faq.html' | locale_path: localePrefix }}" style="margin-left: 8px;">{{ t.installSection.faqCta }}</a>
     </div>
   </div>
 </section>
 
-{% include "cta-band.html", ctaTitle: "Want a guided walkthrough?", ctaText: "Apply as a design partner for a 30-day evaluation pilot (extendable to 90) with direct engineering support and a written summary for stakeholders. Intake opens by start of September 2026." %}
+{% include "cta-band.html", ctaTitle: t.cta.title, ctaText: t.cta.text %}

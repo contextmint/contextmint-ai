@@ -1,4 +1,78 @@
 {
   "title": "Indexing & Readiness | ContextMint Docs",
-  "description": "How ContextMint indexes workspaces, progressive RAG during indexing, readiness phases, and priority file handling."
+  "description": "How ContextMint indexes workspaces, progressive RAG during indexing, readiness phases, and priority file handling.",
+  "h1": "Indexing &amp; readiness",
+  "lead": "Indexing builds vector and keyword indexes for hybrid search. Chat uses <strong>progressive retrieval</strong> — you can ask questions before indexing finishes.",
+  "phases": {
+    "title": "Readiness phases (extension UI)",
+    "headers": ["Phase", "Chat send", "Meaning"],
+    "rows": [
+      { "phase": "Offline", "send": "Blocked", "meaning": "Engine/server not reachable" },
+      { "phase": "Starting", "send": "Blocked", "meaning": "Health probe in flight or server bootstrapping" },
+      { "phase": "Error", "send": "Blocked", "meaning": "Index or session failure — check Engine → Indexing" },
+      { "phase": "Indexing", "send": "Allowed", "meaning": "Background walk in progress; partial index available" },
+      { "phase": "Limited", "send": "Allowed", "meaning": "Search may work; Ollama offline — generation degraded" },
+      { "phase": "Ready", "send": "Allowed", "meaning": "Index complete; watcher handles file deltas" }
+    ]
+  },
+  "produces": {
+    "title": "What indexing produces",
+    "items": [
+      "<strong>Vector store</strong> (ChromaDB) — embeddings per chunk",
+      "<strong>BM25</strong> — keyword index per workspace",
+      "<strong>Dependency graph</strong> — optional neighbour expansion in search",
+      "<strong>File hash cache</strong> — skip unchanged files on reindex"
+    ]
+  },
+  "priority": {
+    "title": "Priority files",
+    "intro": "These paths are indexed and boosted first:",
+    "items": [
+      "Open editor tabs (sent on workspace register)",
+      "Active file on editor change / save (<code>prioritize-file</code>)",
+      "Chat attachments and client grep hits (<code>hot-paths</code>)"
+    ]
+  },
+  "progressive": {
+    "title": "Progressive RAG during indexing",
+    "intro": "When you send chat while status is <strong>Indexing</strong>:",
+    "items": [
+      "Active editor file is read from disk immediately",
+      "Hybrid search runs over whatever chunks exist so far",
+      "Server-side grep fallback if index results are empty",
+      "Extension client grep may run before stream (Repo / Hybrid lanes)"
+    ]
+  },
+  "triggers": {
+    "title": "Reindex triggers",
+    "items": [
+      "Manual reindex from Engine → Indexing",
+      "Embed model change (full reindex required)",
+      "Warm restart catch-up for missing files after server restart",
+      "File watcher events for saves and renames"
+    ]
+  },
+  "polling": {
+    "title": "Desktop vs extension polling",
+    "text": "Engine Indexing tab polls on a slower interval than the extension status bar. The extension may show <strong>Indexing</strong> while Engine overview still looks idle — use Indexing drill-down for truth."
+  },
+  "inline": {
+    "title": "Inline completion while indexing",
+    "p1": "Ghost-text (inline) is <strong>off by default</strong>. When enabled, pause policy is server <span class=\"mono\">inline.pause_mode</span>:",
+    "items": [
+      "<span class=\"mono\">off</span> — never pause for embed/reindex (shipped default)",
+      "<span class=\"mono\">shared_runtime</span> — pause only when chat and embed share one Ollama host",
+      "<span class=\"mono\">on_embed_busy</span> — pause whenever any session embed/reindex is busy"
+    ],
+    "p2Before": "VS Code <span class=\"mono\">contextmint.inline.pauseWhileIndexing</span> can only",
+    "p2Em": "tighten",
+    "p2Mid": "to <span class=\"mono\">on_embed_busy</span>; it cannot weaken a stricter server mode. Prefer <span class=\"mono\">shared_runtime</span> on contested team servers — see",
+    "linkHref": "/docs/settings.html#settings-server-inline",
+    "linkText": "Settings → Inline completion (server)"
+  },
+  "footer": {
+    "before": "Problems:",
+    "href": "/support/troubleshooting.html#indexing",
+    "text": "Troubleshooting → Indexing"
+  }
 }

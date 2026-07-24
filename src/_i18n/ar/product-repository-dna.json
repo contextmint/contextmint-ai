@@ -1,4 +1,51 @@
 {
   "title": "Repository DNA | ContextMint",
-  "description": "Repository DNA Report — understand any codebase in under five minutes with deterministic structure, ownership, and convention analysis."
+  "description": "ميزة Repository DNA Report — افهم أي مستودع شيفرة خلال أقل من خمس دقائق من خلال تحليل حتمي للبنية، والملكية، والأنماط والمعايير الهندسية.",
+  "breadcrumbParent": "المنتج",
+  "breadcrumbCurrent": "Repository DNA",
+  "hero": {
+    "h1": "تقرير Repository DNA",
+    "leadStrong": "بعبارة بسيطة:",
+    "leadBefore": "لقطة",
+    "leadEm": "صحية سريعة",
+    "leadAfter": "في صفحة واحدة لأي مستودع — البنية، ومن يملك ماذا، ونقاط التركيز الساخنة، والمعايير المتّبعة — بحيث يبدأ المراجعون العمل خلال دقائق لا أسابيع."
+  },
+  "banner": {
+    "badge": "Verification Engine",
+    "title": "تحويل تقرير DNA إلى منتج مكتمل ضمن خارطة الطريق",
+    "message": "تغطي بطاقة الجاهزية وخريطة الجودة في v1.0 إشارات متداخلة اليوم. أما تقرير DNA الرسمي وبوابة التبني من المستوى الأول فيُطرحان مع Verification Engine."
+  },
+  "metrics": [
+    { "value": "&lt; 5 دقائق", "label": "للوصول إلى نموذج ذهني مفيد" },
+    { "value": "نقرة واحدة", "label": "من لوحة VS Code" },
+    { "value": "0 سحابة", "label": "حتمي بالكامل على الفهرس المحلي" }
+  ],
+  "whatYouGet": {
+    "title": "ما الذي تحصل عليه",
+    "items": [
+      "خريطة طوبولوجيا الوحدات والحزم",
+      "ملف CODEOWNERS والملكية المستنتَجة",
+      "الملفات الساخنة وإشارات تكرار التغيير",
+      "المعايير المكتشفة ومقترحات وحدة التعلّم",
+      "خريطة Feature Lite (نقاط الدخول ← الميزات)"
+    ]
+  },
+  "diagram": {
+    "node": "تقرير Repository DNA",
+    "edges": [
+      "رسم البنية البياني",
+      "تحديد الملكية",
+      "بصمات المعايير",
+      "نقاط دخول الميزات",
+      "سرد اختياري بواسطة نموذج لغوي (اختياري)"
+    ]
+  },
+  "onboarding": {
+    "title": "الإعداد في اليوم الأول",
+    "text": "ينطلق المهندسون الجدد ووكلاء الذكاء الاصطناعي من الحقيقة نفسها. تقرير DNA هو المدخل إلى Engineering Reality Graph — قبل نطاق التأثير، وقبل مراجعة الدمج."
+  },
+  "cta": {
+    "title": "اطّلع على DNA لمستودعك",
+    "text": "سنقوم بفهرسة مستودع نموذجي مباشرةً ونستعرض التقرير معك."
+  }
 }

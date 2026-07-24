@@ -5,11 +5,11 @@ description: Complete ContextMint settings — VS Code extension (contextmint.*)
 pageCss: product.css
 ---
 
-<h1>Settings reference</h1>
+{% assign t = i18nPageStrings %}
+
+<h1>{{ t.h1 }}</h1>
 <p class="doc-lead">
-  Choose a surface below. Server keys live in <code>contextmint.defaults.yaml</code> (overlay at
-  <code>~/.contextmint/server.defaults.yaml</code>) — edit in <strong>Engine → Server config</strong> and restart the API.
-  VS Code keys are <code>contextmint.*</code> in Settings or <code>settings.json</code>.
+  {{ t.lead }}
 </p>
 
 <div class="settings-tabs" role="tablist" aria-label="Settings surface">
@@ -22,9 +22,9 @@ pageCss: product.css
     aria-controls="settings-panel-server"
     data-settings-tab="server"
   >
-    <span class="settings-tab__label">Server settings</span>
-    <span class="settings-tab__count">{% if serverChatSettings %}{{ serverChatSettings.totalCount }}{% else %}—{% endif %} keys</span>
-    <span class="settings-tab__hint">EOP, retrieval, indexing, ARGUS…</span>
+    <span class="settings-tab__label">{{ t.tabs.server.label }}</span>
+    <span class="settings-tab__count">{% if serverChatSettings %}{{ serverChatSettings.totalCount }}{% else %}—{% endif %} {{ t.tabs.server.keysSuffix }}</span>
+    <span class="settings-tab__hint">{{ t.tabs.server.hint }}</span>
   </button>
   <button
     type="button"
@@ -35,18 +35,18 @@ pageCss: product.css
     aria-controls="settings-panel-vscode"
     data-settings-tab="vscode"
   >
-    <span class="settings-tab__label">VS Code settings</span>
-    <span class="settings-tab__count">{{ extensionSettings.totalCount }} keys</span>
-    <span class="settings-tab__hint">Chat, lanes, Context Lens, packs…</span>
+    <span class="settings-tab__label">{{ t.tabs.vscode.label }}</span>
+    <span class="settings-tab__count">{{ extensionSettings.totalCount }} {{ t.tabs.vscode.keysSuffix }}</span>
+    <span class="settings-tab__hint">{{ t.tabs.vscode.hint }}</span>
   </button>
 </div>
 
 <div class="settings-callout">
-  <strong>Engine mode (default):</strong> use
+  {{ t.engineModeCallout.before }}
   {% for key in extensionSettings.operatorKeys %}
     <code>{{ key }}</code>{% unless forloop.last %},{% endunless %}
   {% endfor %}
-  in VS Code. API server tunables in <strong>Engine → Server config</strong> · desktop prefs in <strong>Engine → Settings</strong>.
+  {{ t.engineModeCallout.after }}
 </div>
 
 <!-- ── Server tab panel ─────────────────────────────────────────────────── -->
@@ -59,12 +59,12 @@ pageCss: product.css
   data-settings-panel="server"
 >
   <div class="settings-toolbar">
-    <label class="settings-filter-label" for="settings-filter-server">Search server settings</label>
+    <label class="settings-filter-label" for="settings-filter-server">{{ t.server.searchLabel }}</label>
     <input
       type="search"
       id="settings-filter-server"
       class="settings-filter-input settings-filter-input--tab"
-      placeholder="Filter by key or description…"
+      placeholder="{{ t.server.searchPlaceholder }}"
       autocomplete="off"
       data-settings-filter="server"
     />
@@ -72,12 +72,12 @@ pageCss: product.css
 
   <p class="muted settings-meta">
     {% if serverChatSettings %}
-      Generated {{ serverChatSettings.generatedAt }} from <span class="mono">{{ serverChatSettings.source }}</span>
-      · overlay <span class="mono">{{ serverChatSettings.overlayPath }}</span>.
-      <a href="/docs/context-budget-calculator.html">Context budget calculator</a> ·
-      <a href="/docs/engine-operator.html">Engine operator guide</a>.
+      {{ t.server.metaLoadedBefore }} {{ serverChatSettings.generatedAt }} {{ t.server.metaLoadedFrom }} <span class="mono">{{ serverChatSettings.source }}</span>
+      {{ t.server.metaLoadedOverlay }} <span class="mono">{{ serverChatSettings.overlayPath }}</span>.
+      <a href="{{ '/docs/context-budget-calculator.html' | locale_path: localePrefix }}">{{ t.server.metaLoadedLinks.calculatorLink }}</a> ·
+      <a href="{{ '/docs/engine-operator.html' | locale_path: localePrefix }}">{{ t.server.metaLoadedLinks.operatorLink }}</a>.
     {% else %}
-      Server catalog not loaded — run <span class="mono">npm run gen:settings</span> in <span class="mono">contextmint-ai/</span>.
+      {{ t.server.metaMissing }}
     {% endif %}
   </p>
 
@@ -85,13 +85,13 @@ pageCss: product.css
   <div class="settings-groups" data-settings-groups="server">
     <details class="settings-group" id="settings-server-structural-plans">
       <summary class="settings-group__summary">
-        <span class="settings-group__title">Optional graph plan: {{ serverChatSettings.planDefinition.planId }}</span>
-        <span class="settings-group__meta">reference</span>
+        <span class="settings-group__title">{{ t.server.planReferenceLabel }} {{ serverChatSettings.planDefinition.planId }}</span>
+        <span class="settings-group__meta">{{ t.server.planReferenceMeta }}</span>
       </summary>
       <div class="settings-group__body">
         <p class="muted">
-          Declared in <span class="mono">{{ serverChatSettings.planDefinition.path }}</span>
-          · intent <span class="mono">{{ serverChatSettings.planDefinition.intent }}</span>.
+          {{ t.server.planDeclaredIn }} <span class="mono">{{ serverChatSettings.planDefinition.path }}</span>
+          {{ t.server.planIntent }} <span class="mono">{{ serverChatSettings.planDefinition.intent }}</span>.
           {{ serverChatSettings.planDefinition.description }}
         </p>
       </div>
@@ -101,17 +101,17 @@ pageCss: product.css
     <details class="settings-group settings-group--usage" id="usage-server-structural">
       <summary class="settings-group__summary">
         <span class="settings-group__title">{{ serverChatSettings.usageGuide.title }}</span>
-        <span class="settings-group__meta">rollout guide</span>
+        <span class="settings-group__meta">{{ t.server.usageGuideMeta }}</span>
       </summary>
       <div class="settings-group__body settings-usage-section">
         <p class="muted">{{ serverChatSettings.usageGuide.summary }}</p>
 
-        <h4 class="settings-usage-subhead">Rollout scenarios</h4>
+        <h4 class="settings-usage-subhead">{{ t.server.usageGuideSubheads.rolloutScenarios }}</h4>
         <div class="settings-table-wrap">
           <table class="settings-table settings-table--compact">
             <thead>
               <tr>
-                <th scope="col">Scenario</th>
+                <th scope="col">{{ t.server.usageGuideSubheads.scenarioColumn }}</th>
                 <th scope="col">api_surface</th>
                 <th scope="col">route_registry</th>
                 <th scope="col">symbol_registry</th>
@@ -144,14 +144,14 @@ pageCss: product.css
           </table>
         </div>
 
-        <h4 class="settings-usage-subhead">Dependencies</h4>
+        <h4 class="settings-usage-subhead">{{ t.server.usageGuideSubheads.dependencies }}</h4>
         <ul class="settings-verify-list">
           {% for note in serverChatSettings.usageGuide.dependencyNotes %}
           <li>{{ note }}</li>
           {% endfor %}
         </ul>
 
-        <h4 class="settings-usage-subhead">How to check</h4>
+        <h4 class="settings-usage-subhead">{{ t.server.usageGuideSubheads.howToCheck }}</h4>
         <ul class="settings-verify-list">
           {% for tip in serverChatSettings.usageGuide.verifyTips %}
           <li>{{ tip }}</li>
@@ -163,291 +163,114 @@ pageCss: product.css
 
     <details class="settings-group settings-group--usage" id="usage-server-evidence-narration">
       <summary class="settings-group__summary">
-        <span class="settings-group__title">Evidence narration &amp; clarification</span>
-        <span class="settings-group__meta">11 operator keys</span>
+        <span class="settings-group__title">{{ t.server.usage.narration.title }}</span>
+        <span class="settings-group__meta">{{ t.server.usage.narration.meta }}</span>
       </summary>
       <div class="settings-group__body settings-usage-section">
         <p class="muted">
-          Controls citation-bound LLM narration on sanitized excerpts, clarification recovery when
-          evidence is insufficient, and the final honest stop after max clarification turns.
-          See master plan §6.1 in
-          <span class="mono">documentation/CONTEXTMINT-EVIDENCE-NARRATION-MASTER-PLAN.md</span>.
+          {{ t.server.usage.narration.intro }}
         </p>
         <div class="settings-table-wrap">
           <table class="settings-table settings-table--compact">
             <thead>
               <tr>
-                <th scope="col">Key</th>
-                <th scope="col">Default</th>
-                <th scope="col">Operator</th>
-                <th scope="col">When to change</th>
-                <th scope="col">Restart</th>
+                {% for h in t.server.usage.narration.tableHeaders %}
+                <th scope="col">{{ h }}</th>
+                {% endfor %}
               </tr>
             </thead>
             <tbody>
-              <tr class="settings-row" data-setting="chat.narration_enabled">
-                <td class="mono"><code>chat.narration_enabled</code></td>
-                <td class="mono">true</td>
-                <td>yes</td>
-                <td>Disable to force fact templates only on meaning-intent questions</td>
-                <td>yes</td>
+              {% for row in t.server.usage.narration.rows %}
+              <tr class="settings-row" data-setting="{{ row.key }}">
+                <td class="mono"><code>{{ row.key }}</code></td>
+                <td class="mono">{{ row.default }}</td>
+                <td>{{ row.operator }}</td>
+                <td>{{ row.whenToChange }}</td>
+                <td>{{ row.restart }}</td>
               </tr>
-              <tr class="settings-row" data-setting="chat.narration_max_excerpts">
-                <td class="mono"><code>chat.narration_max_excerpts</code></td>
-                <td class="mono">8</td>
-                <td>yes</td>
-                <td>Lower on T0/T1 tiers to reduce narration latency</td>
-                <td>yes</td>
-              </tr>
-              <tr class="settings-row" data-setting="chat.narration_max_tokens">
-                <td class="mono"><code>chat.narration_max_tokens</code></td>
-                <td class="mono">1024</td>
-                <td>yes</td>
-                <td>Raise briefly for long architecture answers on T2+</td>
-                <td>yes</td>
-              </tr>
-              <tr class="settings-row" data-setting="chat.narration_timeout_ms">
-                <td class="mono"><code>chat.narration_timeout_ms</code></td>
-                <td class="mono">15000</td>
-                <td>yes</td>
-                <td>Raise on CPU-only hosts when narration times out</td>
-                <td>yes</td>
-              </tr>
-              <tr class="settings-row" data-setting="chat.narration_require_citations">
-                <td class="mono"><code>chat.narration_require_citations</code></td>
-                <td class="mono">true</td>
-                <td>yes</td>
-                <td>Keep true in production — rejects uncited narration</td>
-                <td>yes</td>
-              </tr>
-              <tr class="settings-row" data-setting="chat.fact_template_only_when_no_meaning_intent">
-                <td class="mono"><code>chat.fact_template_only_when_no_meaning_intent</code></td>
-                <td class="mono">true</td>
-                <td>yes</td>
-                <td>When true, skip narration LLM when query has no role/behavior intent</td>
-                <td>yes</td>
-              </tr>
-              <tr class="settings-row" data-setting="chat.clarification_enabled">
-                <td class="mono"><code>chat.clarification_enabled</code></td>
-                <td class="mono">true</td>
-                <td>yes</td>
-                <td>Disable only when you want immediate insufficient stop with no follow-up ask</td>
-                <td>yes</td>
-              </tr>
-              <tr class="settings-row" data-setting="chat.clarification_max_turns">
-                <td class="mono"><code>chat.clarification_max_turns</code></td>
-                <td class="mono">2</td>
-                <td>yes</td>
-                <td>Raise for dogfood UAT; lower for stricter production UX</td>
-                <td>yes</td>
-              </tr>
-              <tr class="settings-row" data-setting="chat.clarification_merge_entity_terms">
-                <td class="mono"><code>chat.clarification_merge_entity_terms</code></td>
-                <td class="mono">true</td>
-                <td>yes</td>
-                <td>Keep true so user replies boost obligation entity grep</td>
-                <td>yes</td>
-              </tr>
-              <tr class="settings-row" data-setting="chat.insufficient_evidence_enabled">
-                <td class="mono"><code>chat.insufficient_evidence_enabled</code></td>
-                <td class="mono">true</td>
-                <td>yes</td>
-                <td>Disable only for internal harnesses that expect silent failure</td>
-                <td>yes</td>
-              </tr>
-              <tr class="settings-row" data-setting="chat.insufficient_evidence_partial_facts_allowed">
-                <td class="mono"><code>chat.insufficient_evidence_partial_facts_allowed</code></td>
-                <td class="mono">false</td>
-                <td>yes</td>
-                <td>Keep false when meaning intent is present — avoids misleading role text</td>
-                <td>yes</td>
-              </tr>
+              {% endfor %}
             </tbody>
           </table>
         </div>
         <p class="muted">
-          Edit in <strong>Engine → Server config</strong> under
-          <a href="#settings-server-evidence-narration">Evidence narration &amp; clarification</a>.
+          {{ t.server.usage.narration.footerBefore }}
+          <a href="#settings-server-evidence-narration">{{ t.server.usage.narration.footerLink }}</a>.
         </p>
       </div>
     </details>
 
     <details class="settings-group settings-group--usage" id="usage-server-retrieval-tracing">
       <summary class="settings-group__summary">
-        <span class="settings-group__title">Retrieval / tracing (manual UAT)</span>
-        <span class="settings-group__meta">10 operator keys</span>
+        <span class="settings-group__title">{{ t.server.usage.retrieval.title }}</span>
+        <span class="settings-group__meta">{{ t.server.usage.retrieval.meta }}</span>
       </summary>
       <div class="settings-group__body settings-usage-section">
         <p class="muted">
-          Decision audit for repo-lane structural turns — ordered steps with inputs, outputs, and reasons.
-          Export writes <span class="mono">retrieval-trace-*.json</span> under the operator-configured folder
-          (<span class="mono">retrieval.trace_export_dir</span>, default
-          <span class="mono">documentation/evidence</span>). Path is never hardcoded in product code.
-          Pair with <span class="mono">context-receipt-*.json</span> from the same folder.
-          See master plan §6.1b (Retrieval &amp; evidence decision trace) in
-          <span class="mono">documentation/CONTEXTMINT-EVIDENCE-NARRATION-MASTER-PLAN.md</span>.
+          {{ t.server.usage.retrieval.intro }}
         </p>
         <div class="settings-table-wrap">
           <table class="settings-table settings-table--compact">
             <thead>
               <tr>
-                <th scope="col">Key</th>
-                <th scope="col">Default</th>
-                <th scope="col">Operator</th>
-                <th scope="col">When to change</th>
-                <th scope="col">Restart</th>
+                {% for h in t.server.usage.retrieval.tableHeaders %}
+                <th scope="col">{{ h }}</th>
+                {% endfor %}
               </tr>
             </thead>
             <tbody>
-              <tr class="settings-row" data-setting="retrieval.trace_enabled">
-                <td class="mono"><code>retrieval.trace_enabled</code></td>
-                <td class="mono">true</td>
-                <td>yes</td>
-                <td>Disable on shared servers when not debugging routing</td>
-                <td>yes</td>
+              {% for row in t.server.usage.retrieval.rows %}
+              <tr class="settings-row" data-setting="{{ row.key }}">
+                <td class="mono"><code>{{ row.key }}</code></td>
+                <td class="mono">{{ row.default }}</td>
+                <td>{{ row.operator }}</td>
+                <td>{{ row.whenToChange }}</td>
+                <td>{{ row.restart }}</td>
               </tr>
-              <tr class="settings-row" data-setting="retrieval.trace_export_enabled">
-                <td class="mono"><code>retrieval.trace_export_enabled</code></td>
-                <td class="mono">false</td>
-                <td>yes</td>
-                <td>Enable during manual UAT to write trace JSON files</td>
-                <td>yes</td>
-              </tr>
-              <tr class="settings-row" data-setting="retrieval.trace_export_dir">
-                <td class="mono"><code>retrieval.trace_export_dir</code></td>
-                <td class="mono">documentation/evidence</td>
-                <td>yes</td>
-                <td>Point to a writable folder for retrieval-trace-*.json exports</td>
-                <td>yes</td>
-              </tr>
-              <tr class="settings-row" data-setting="retrieval.trace_include_query">
-                <td class="mono"><code>retrieval.trace_include_query</code></td>
-                <td class="mono">true</td>
-                <td>yes</td>
-                <td>Set false before sharing logs externally (redacts query text)</td>
-                <td>yes</td>
-              </tr>
-              <tr class="settings-row" data-setting="retrieval.trace_max_field_chars">
-                <td class="mono"><code>retrieval.trace_max_field_chars</code></td>
-                <td class="mono">500</td>
-                <td>yes</td>
-                <td>Raise briefly when debugging excerpt selection; bounds 100–8000</td>
-                <td>yes</td>
-              </tr>
-              <tr class="settings-row" data-setting="retrieval.trace_include_pipeline_inputs">
-                <td class="mono"><code>retrieval.trace_include_pipeline_inputs</code></td>
-                <td class="mono">true</td>
-                <td>yes</td>
-                <td>Disable to shrink trace size when only high-level phases matter</td>
-                <td>yes</td>
-              </tr>
-              <tr class="settings-row" data-setting="retrieval.trace_include_evidence_detail">
-                <td class="mono"><code>retrieval.trace_include_evidence_detail</code></td>
-                <td class="mono">true</td>
-                <td>yes</td>
-                <td>Disable when trace JSON is too large — keeps phase rows only</td>
-                <td>yes</td>
-              </tr>
-              <tr class="settings-row" data-setting="retrieval.trace_include_llm_io">
-                <td class="mono"><code>retrieval.trace_include_llm_io</code></td>
-                <td class="mono">true</td>
-                <td>yes</td>
-                <td>Set false before sharing logs — redacts raw LLM prompt/response</td>
-                <td>yes</td>
-              </tr>
-              <tr class="settings-row" data-setting="retrieval.trace_llm_io_max_chars">
-                <td class="mono"><code>retrieval.trace_llm_io_max_chars</code></td>
-                <td class="mono">8000</td>
-                <td>yes</td>
-                <td>Lower to cap LLM I/O in trace exports; bounds 500–64000</td>
-                <td>yes</td>
-              </tr>
-              <tr class="settings-row" data-setting="retrieval.trace_evidence_preview_chars">
-                <td class="mono"><code>retrieval.trace_evidence_preview_chars</code></td>
-                <td class="mono">400</td>
-                <td>yes</td>
-                <td>Lower to shrink excerpt previews in trace JSON; bounds 80–4000</td>
-                <td>yes</td>
-              </tr>
+              {% endfor %}
             </tbody>
           </table>
         </div>
         <p class="muted">
-          Edit in <strong>Engine → Server config</strong> under
-          <a href="#settings-server-retrieval">Retrieval, expand &amp; infer</a>, or in
-          <span class="mono">~/.contextmint/server.defaults.yaml</span>.
+          {{ t.server.usage.retrieval.footerBefore }}
+          <a href="#settings-server-retrieval">{{ t.server.usage.retrieval.footerLink }}</a>{{ t.server.usage.retrieval.footerAfter }}
         </p>
       </div>
     </details>
 
     <details class="settings-group settings-group--usage" id="usage-server-live-progress">
       <summary class="settings-group__summary">
-        <span class="settings-group__title">Live pipeline progress (SSE)</span>
-        <span class="settings-group__meta">5 operator keys</span>
+        <span class="settings-group__title">{{ t.server.usage.liveProgress.title }}</span>
+        <span class="settings-group__meta">{{ t.server.usage.liveProgress.meta }}</span>
       </summary>
       <div class="settings-group__body settings-usage-section">
         <p class="muted">
-          Optional real-time <span class="mono">pipeline_progress</span> SSE events during chat retrieval
-          so the VS Code extension live timeline can show what the server is doing while the user waits.
-          <strong>Off by default</strong> until RT-VIEW dogfood. Enable
-          <span class="mono">retrieval.live_progress_enabled</span> on the API host — the extension
-          renders events when the server emits them (no separate extension toggle).
-          See <span class="mono">documentation/REALTIME-SERVER-VIEW-EXTENSION-PLAN.md</span>
-          and <span class="mono">documentation/IC-PAUSE-UX-RT-VIEW-ARCHITECTURE-PLAN.md</span>.
+          {{ t.server.usage.liveProgress.intro }}
         </p>
         <div class="settings-table-wrap">
           <table class="settings-table settings-table--compact">
             <thead>
               <tr>
-                <th scope="col">Key</th>
-                <th scope="col">Default</th>
-                <th scope="col">Operator</th>
-                <th scope="col">When to change</th>
-                <th scope="col">Restart</th>
+                {% for h in t.server.usage.liveProgress.tableHeaders %}
+                <th scope="col">{{ h }}</th>
+                {% endfor %}
               </tr>
             </thead>
             <tbody>
-              <tr class="settings-row" data-setting="retrieval.live_progress_enabled">
-                <td class="mono"><code>retrieval.live_progress_enabled</code></td>
-                <td class="mono">false</td>
-                <td>yes</td>
-                <td>Enable for RT-VIEW dogfood / demos (extension timeline already ships)</td>
-                <td>yes</td>
+              {% for row in t.server.usage.liveProgress.rows %}
+              <tr class="settings-row" data-setting="{{ row.key }}">
+                <td class="mono"><code>{{ row.key }}</code></td>
+                <td class="mono">{{ row.default }}</td>
+                <td>{{ row.operator }}</td>
+                <td>{{ row.whenToChange }}</td>
+                <td>{{ row.restart }}</td>
               </tr>
-              <tr class="settings-row" data-setting="retrieval.live_progress_granularity">
-                <td class="mono"><code>retrieval.live_progress_granularity</code></td>
-                <td class="mono">summary</td>
-                <td>yes</td>
-                <td>Use <span class="mono">stage</span> or <span class="mono">verbose</span> for deeper debugging</td>
-                <td>yes</td>
-              </tr>
-              <tr class="settings-row" data-setting="retrieval.live_progress_max_events_per_turn">
-                <td class="mono"><code>retrieval.live_progress_max_events_per_turn</code></td>
-                <td class="mono">40</td>
-                <td>yes</td>
-                <td>Lower on noisy workspaces; raise only with verbose granularity</td>
-                <td>yes</td>
-              </tr>
-              <tr class="settings-row" data-setting="retrieval.live_progress_include_paths">
-                <td class="mono"><code>retrieval.live_progress_include_paths</code></td>
-                <td class="mono">true</td>
-                <td>yes</td>
-                <td>Set false in demos where file paths should not appear in the timeline</td>
-                <td>yes</td>
-              </tr>
-              <tr class="settings-row" data-setting="retrieval.live_progress_min_interval_ms">
-                <td class="mono"><code>retrieval.live_progress_min_interval_ms</code></td>
-                <td class="mono">100</td>
-                <td>yes</td>
-                <td>Raise to throttle rapid duplicate phase updates in verbose mode</td>
-                <td>yes</td>
-              </tr>
+              {% endfor %}
             </tbody>
           </table>
         </div>
         <p class="muted">
-          Edit in <strong>Engine → Server config</strong> under
-          <a href="#settings-server-retrieval">Retrieval, expand &amp; infer</a>.
+          {{ t.server.usage.liveProgress.footerBefore }}
+          <a href="#settings-server-retrieval">{{ t.server.usage.liveProgress.footerLink }}</a>.
         </p>
       </div>
     </details>
@@ -456,7 +279,7 @@ pageCss: product.css
     <details class="settings-group" id="settings-server-{{ section.id }}">
       <summary class="settings-group__summary">
         <span class="settings-group__title">{{ section.title }}</span>
-        <span class="settings-group__meta">{{ section.settings.size }} keys</span>
+        <span class="settings-group__meta">{{ section.settings.size }} {{ t.tabs.server.keysSuffix }}</span>
       </summary>
       <div class="settings-group__body">
         <p class="muted">{{ section.description }}</p>
@@ -464,9 +287,9 @@ pageCss: product.css
           <table class="settings-table">
             <thead>
               <tr>
-                <th scope="col">Key</th>
-                <th scope="col">Default</th>
-                <th scope="col">Description</th>
+                <th scope="col">{{ t.tableChrome.key }}</th>
+                <th scope="col">{{ t.tableChrome.default }}</th>
+                <th scope="col">{{ t.tableChrome.description }}</th>
               </tr>
             </thead>
             <tbody>
@@ -476,23 +299,23 @@ pageCss: product.css
                 data-setting="{{ row.id | downcase }}"
               >
                 <td class="settings-table__key">
-                  {% if row.usage %}<span class="settings-card-label">Setting</span>{% endif %}
+                  {% if row.usage %}<span class="settings-card-label">{{ t.tableChrome.settingLabel }}</span>{% endif %}
                   <code>{{ row.id }}</code>
-                  {% if row.operator %}<span class="settings-badge settings-badge--operator">operator</span>{% endif %}
+                  {% if row.operator %}<span class="settings-badge settings-badge--operator">{{ t.tableChrome.operatorBadge }}</span>{% endif %}
                 </td>
                 <td class="settings-table__default mono">
-                  {% if row.usage %}<span class="settings-card-label settings-card-label--inline">Default</span>{% endif %}
+                  {% if row.usage %}<span class="settings-card-label settings-card-label--inline">{{ t.tableChrome.default }}</span>{% endif %}
                   {{ row.default }}
                 </td>
                 <td class="settings-table__desc">
-                  {% if row.usage %}<span class="settings-card-label settings-card-label--inline">Description</span>{% endif %}
+                  {% if row.usage %}<span class="settings-card-label settings-card-label--inline">{{ t.tableChrome.description }}</span>{% endif %}
                   {{ row.description }}
                 </td>
               </tr>
               {% if row.usage %}
               <tr class="settings-row settings-setting-card__usage" data-setting="{{ row.id | downcase }}">
                 <td colspan="3" class="settings-usage-cell">
-                  <span class="settings-card-label settings-card-label--usage">Usage guide</span>
+                  <span class="settings-card-label settings-card-label--usage">{{ t.tableChrome.usageGuideLabel }}</span>
                   {% include "settings-usage-block.html", usage: row.usage, settingId: row.id %}
                 </td>
               </tr>
@@ -507,9 +330,7 @@ pageCss: product.css
   </div>
   {% else %}
   <p class="settings-callout settings-callout--warn" role="note">
-    <strong>Server settings missing from this build.</strong> Run
-    <code>npm run gen:settings</code> in <code>contextmint-ai/</code> and commit
-    <code>src/_data/serverChatSettings.json</code> before deploying.
+    {{ t.server.missingCatalogFull }}
   </p>
   {% endif %}
 </div>
@@ -525,21 +346,21 @@ pageCss: product.css
   hidden
 >
   <div class="settings-toolbar">
-    <label class="settings-filter-label" for="settings-filter-vscode">Search VS Code settings</label>
+    <label class="settings-filter-label" for="settings-filter-vscode">{{ t.vscode.searchLabel }}</label>
     <input
       type="search"
       id="settings-filter-vscode"
       class="settings-filter-input settings-filter-input--tab"
-      placeholder="Filter by setting name or description…"
+      placeholder="{{ t.vscode.searchPlaceholder }}"
       autocomplete="off"
       data-settings-filter="vscode"
     />
   </div>
 
   <p class="muted settings-meta">
-    Generated {{ extensionSettings.generatedAt }} from <span class="mono">{{ extensionSettings.source }}</span>.
-    Engine desktop prefs (<code>~/.contextmint/engine/settings.yaml</code>) are in
-    <a href="/docs/engine-operator.html">Engine operator guide</a> — not listed here.
+    {{ t.vscode.metaBefore }} {{ extensionSettings.generatedAt }} {{ t.vscode.metaFrom }} <span class="mono">{{ extensionSettings.source }}</span>.
+    {{ t.vscode.metaAfter }}
+    <a href="{{ '/docs/engine-operator.html' | locale_path: localePrefix }}">{{ t.vscode.metaLink }}</a> {{ t.vscode.metaSuffix }}
   </p>
 
   <div class="settings-groups" data-settings-groups="vscode">
@@ -547,12 +368,12 @@ pageCss: product.css
     <details class="settings-group settings-group--usage" id="usage-extension-retrieval">
       <summary class="settings-group__summary">
         <span class="settings-group__title">{{ extensionSettings.retrievalGuide.title }}</span>
-        <span class="settings-group__meta">guide</span>
+        <span class="settings-group__meta">{{ t.vscode.retrievalGuideMeta }}</span>
       </summary>
       <div class="settings-group__body settings-usage-section">
         <p class="muted">{{ extensionSettings.retrievalGuide.summary }}</p>
         {% if extensionSettings.retrievalGuide.tips %}
-        <p class="settings-verify-label">Tips</p>
+        <p class="settings-verify-label">{{ t.server.usageGuideTipsLabel }}</p>
         <ul class="settings-verify-list">
           {% for tip in extensionSettings.retrievalGuide.tips %}
           <li>{{ tip }}</li>
@@ -567,7 +388,7 @@ pageCss: product.css
     <details class="settings-group" id="settings-{{ section.id }}">
       <summary class="settings-group__summary">
         <span class="settings-group__title">{{ section.title }}</span>
-        <span class="settings-group__meta">{{ section.settings.size }} keys</span>
+        <span class="settings-group__meta">{{ section.settings.size }} {{ t.tabs.vscode.keysSuffix }}</span>
       </summary>
       <div class="settings-group__body">
         <p class="muted">{{ section.description }}</p>
@@ -575,9 +396,9 @@ pageCss: product.css
           <table class="settings-table">
             <thead>
               <tr>
-                <th scope="col">Setting</th>
-                <th scope="col">Default</th>
-                <th scope="col">Description</th>
+                <th scope="col">{{ t.tableChrome.settingLabel }}</th>
+                <th scope="col">{{ t.tableChrome.default }}</th>
+                <th scope="col">{{ t.tableChrome.description }}</th>
               </tr>
             </thead>
             <tbody>
@@ -587,24 +408,24 @@ pageCss: product.css
                 data-setting="{{ row.id | downcase }}"
               >
                 <td class="settings-table__key">
-                  {% if row.usage %}<span class="settings-card-label">Setting</span>{% endif %}
+                  {% if row.usage %}<span class="settings-card-label">{{ t.tableChrome.settingLabel }}</span>{% endif %}
                   <code>{{ row.id }}</code>
-                  {% if row.operator %}<span class="settings-badge settings-badge--operator">operator</span>{% endif %}
-                  {% if row.deprecated %}<span class="settings-badge settings-badge--deprecated">engine-managed</span>{% endif %}
+                  {% if row.operator %}<span class="settings-badge settings-badge--operator">{{ t.tableChrome.operatorBadge }}</span>{% endif %}
+                  {% if row.deprecated %}<span class="settings-badge settings-badge--deprecated">{{ t.tableChrome.deprecatedBadge }}</span>{% endif %}
                 </td>
                 <td class="settings-table__default mono">
-                  {% if row.usage %}<span class="settings-card-label settings-card-label--inline">Default</span>{% endif %}
+                  {% if row.usage %}<span class="settings-card-label settings-card-label--inline">{{ t.tableChrome.default }}</span>{% endif %}
                   {{ row.default }}
                 </td>
                 <td class="settings-table__desc">
-                  {% if row.usage %}<span class="settings-card-label settings-card-label--inline">Description</span>{% endif %}
+                  {% if row.usage %}<span class="settings-card-label settings-card-label--inline">{{ t.tableChrome.description }}</span>{% endif %}
                   {{ row.description }}
                 </td>
               </tr>
               {% if row.usage %}
               <tr class="settings-row settings-setting-card__usage" data-setting="{{ row.id | downcase }}">
                 <td colspan="3" class="settings-usage-cell">
-                  <span class="settings-card-label settings-card-label--usage">Usage guide</span>
+                  <span class="settings-card-label settings-card-label--usage">{{ t.tableChrome.usageGuideLabel }}</span>
                   {% include "settings-usage-block.html", usage: row.usage, settingId: row.id %}
                 </td>
               </tr>
@@ -620,9 +441,9 @@ pageCss: product.css
 </div>
 
 <p class="muted settings-footer">
-  Problems: <a href="/support/troubleshooting.html#extension">Troubleshooting → Extension</a> ·
-  <a href="/docs/byok-enterprise.html">BYOK &amp; enterprise</a> ·
-  <a href="/docs/glossary.html">Glossary</a>
+  {{ t.footer.problemsBefore }} <a href="{{ '/support/troubleshooting.html#extension' | locale_path: localePrefix }}">{{ t.footer.problemsLink }}</a> ·
+  <a href="{{ '/docs/byok-enterprise.html' | locale_path: localePrefix }}">{{ t.footer.byokLink }}</a> ·
+  <a href="{{ '/docs/glossary.html' | locale_path: localePrefix }}">{{ t.footer.glossaryLink }}</a>
 </p>
 
 <script>

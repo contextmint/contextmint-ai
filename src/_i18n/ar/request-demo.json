@@ -1,4 +1,55 @@
 {
-  "title": "Book a Demo | ContextMint",
-  "description": "Book a ContextMint live demo. Discuss AI governance challenges with the team. Getting started and GitHub issues are also available."
+  "title": "احجز عرضاً توضيحياً | ContextMint",
+  "description": "احجز عرضاً توضيحياً مباشراً لـ ContextMint، وناقش تحديات حوكمة الذكاء الاصطناعي مع فريقنا. كما يمكنك الوصول إلى دليل البدء ومشكلات GitHub.",
+  "hero": {
+    "pill": "عرض توضيحي",
+    "title": "ناقش تحديات حوكمة الذكاء الاصطناعي لديك",
+    "leadBefore": "يهتم المشترون بالنتائج — لا بمراجعات البنية المعمارية. أخبرنا عن مجموعتك التقنية وقيودك؛ وسنحدد جولة تعريفية مركّزة. تفضّل التجربة أولاً؟ راجع",
+    "gettingStartedLink": "دليل البدء",
+    "leadMid": "للتثبيت المحلي أولاً أو",
+    "issuesLink": "مشكلات GitHub",
+    "leadAfter": "لأي استفسارات."
+  },
+  "form": {
+    "nameLabel": "الاسم الكامل",
+    "emailLabel": "بريد العمل الإلكتروني",
+    "companyLabel": "الشركة",
+    "roleLabel": "الدور الوظيفي",
+    "selectPlaceholder": "اختر…",
+    "roleOptions": {
+      "cto": "مدير التقنية / نائب رئيس الهندسة",
+      "platform": "المنصات / DevOps",
+      "security": "الأمن / الامتثال",
+      "staff": "مهندس أول / معماري نظم",
+      "other": "أخرى"
+    },
+    "challengeLabel": "التحدي الرئيسي في الحوكمة",
+    "challengeOptions": {
+      "aiPrs": "مراجعة والتحقق من طلبات السحب المُنشأة بالذكاء الاصطناعي",
+      "agents": "حوكمة أدوات MCP / الوكلاء",
+      "compliance": "سجل التدقيق وأدلة الامتثال",
+      "velocity": "اختناق المراجعة عند سرعة الذكاء الاصطناعي",
+      "designPartner": "شريك تصميم / وصول مبكر"
+    },
+    "teamSizeLabel": "حجم فريق الهندسة",
+    "teamSizeOptions": {
+      "s1": "1–10",
+      "s2": "11–50",
+      "s3": "51–200",
+      "s4": "200+"
+    },
+    "messageLabel": "أي شيء آخر ينبغي أن نعرفه؟",
+    "messagePlaceholder": "سياق اختياري للمحادثة…",
+    "submit": "اطلب عرضاً توضيحياً",
+    "submissionsNoteBefore": "تُرسل الطلبات إلى",
+    "submissionsNoteAfter": ". نهدف إلى الرد خلال يوم عمل واحد.",
+    "successTitle": "شكراً لك — سنتواصل معك.",
+    "successText": "سيتواصل معك أحد أعضاء فريقنا لمناقشة تحديات الحوكمة لديك."
+  },
+  "footer": {
+    "preferBefore": "تفضّل تفاصيل شركاء التصميم؟",
+    "designPartnersLink": "شركاء التصميم",
+    "gettingStartedLink": "دليل البدء",
+    "issuesLink": "مشكلات GitHub"
+  }
 }

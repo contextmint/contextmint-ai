@@ -1,4 +1,149 @@
 {
   "title": "Image Evidence & ARGUS | ContextMint Docs",
-  "description": "Paste UI screenshots in chat with local Ollama vision, optional cloud multimodal, Context Lens preview, and ARGUS visual audit — report-only findings with human gates."
+  "description": "Paste UI screenshots in chat with local Ollama vision, optional cloud multimodal, Context Lens preview, and ARGUS visual audit — report-only findings with human gates.",
+  "h1": "Image evidence &amp; ARGUS",
+  "lead": "Paste or attach <strong>screenshots</strong> in chat — PNG, JPEG, or WebP — and ask questions about what you see. ContextMint routes vision through <strong>local Ollama</strong> by default (no API key required). Optional cloud multimodal is available when you opt in with BYOK. <strong>ARGUS</strong> runs a structured visual audit on the same image — WCAG-tagged findings, report only, never auto-fix.",
+  "why": {
+    "title": "Why image evidence",
+    "body": "Engineers paste UI mockups, error dialogs, and dashboard screenshots every day. ContextMint treats images as first-class evidence alongside retrieved code chunks — with the same human gates: Context Lens preview before inference, routing badge after, and no silent writes.",
+    "items": [
+      "<strong>Local-first</strong> — vision models run on your machine via Ollama when installed",
+      "<strong>No cloud key required</strong> — attaching an image does not force cloud routing",
+      "<strong>Lane-aware</strong> — Work and Hybrid lanes support image + packs; Repo lane combines image + RAG",
+      "<strong>Privacy-conscious</strong> — sensitivity notice on first attach; EXIF stripped; images never logged as base64"
+    ]
+  },
+  "attach": {
+    "title": "Attach images in chat",
+    "ways": {
+      "title": "Ways to add an image",
+      "items": [
+        "<strong>Paste</strong> — copy a screenshot and paste into the compose bar",
+        "<strong>Drag and drop</strong> — drop image files onto the compose area",
+        "<strong>File picker</strong> — use the attach control and choose an image file"
+      ]
+    },
+    "limits": {
+      "title": "Limits and formats",
+      "items": [
+        "Formats: <strong>PNG</strong>, <strong>JPEG</strong>, <strong>WebP</strong> (SVG and other types are rejected)",
+        "Up to <strong>3 images</strong> per message (configurable)",
+        "Max <strong>5&nbsp;MiB</strong> per image; large images are resized to a max dimension (default 2048&nbsp;px)",
+        "Image chips appear beside file attachment chips in the compose bar"
+      ]
+    },
+    "sensitivityNotice": "The first time you attach an image in a session, ContextMint may show a <strong>sensitivity notice</strong> — screenshots can contain credentials, PII, or internal URLs. Review Context Lens before sending when the trust gate is enabled."
+  },
+  "routing": {
+    "title": "Vision routing (local default)",
+    "intro": "When images are attached, ContextMint selects a <strong>vision-capable model</strong> — not a text-only coder model. The default path is <strong>local Ollama</strong> using models such as <code>moondream</code>, <code>llava</code>, or <code>qwen2-vl</code>.",
+    "table": {
+      "headers": ["Lens / badge label", "Meaning"],
+      "rows": [
+        { "label": "local", "meaning": "Local Ollama vision model will run — default and recommended for sovereign workflows" },
+        { "label": "cloud", "meaning": "You explicitly chose a cloud vision model and BYOK is enabled with a valid key" },
+        { "label": "needs_vlm", "meaning": "No vision model installed — pull one from Engine → Models (primary CTA); cloud is optional secondary" }
+      ]
+    },
+    "important": "<strong>Important:</strong> configuring a cloud API key does <em>not</em> automatically send images to the cloud. Images stay on the local vision path unless you explicitly select a cloud vision model. This preserves the sovereign default for regulated and air-gapped environments.",
+    "pull": {
+      "title": "Pull a vision model",
+      "body": "If no vision model is installed, Context Lens shows <strong>Pull a vision model</strong> — a deep link to Engine → <strong>Models</strong> where you can pull <code>moondream</code> (small, fast) or <code>llava</code>. Vision models are separate from your chat and embed models; both can coexist in Ollama."
+    }
+  },
+  "lensImages": {
+    "title": "Context Lens with images",
+    "intro": "When Context Lens preview is enabled, attached images appear in the evidence drawer alongside retrieved chunks:",
+    "items": [
+      "Thumbnail preview of each attached image",
+      "<strong>Vision route</strong> label (<code>local</code>, <code>cloud</code>, or <code>needs_vlm</code>)",
+      "Chunk count and RAG evidence (when Repo or Hybrid lane is active)",
+      "Actions: <strong>Send</strong> (multimodal chat) and <strong>Run visual audit</strong> (ARGUS)"
+    ],
+    "gateNoteBefore": "The trust gate can require explicit confirmation when images are present — same human-in-the-loop pattern as sensitive text sends. See",
+    "gateLink": "Context Lens &amp; packs"
+  },
+  "chatAnswers": {
+    "title": "Chat answers with images",
+    "body": "After you send, the assistant answers using the image plus any retrieved context. The routing badge on the answer shows <strong>local</strong> or <strong>cloud</strong> vision tier. Inspector / xAI meta includes <code>image_count</code> and <code>vision_route</code> for audit trails — not raw image bytes.",
+    "items": [
+      "<strong>Repo / Hybrid</strong> — image + hybrid search (vector + BM25 + grep) when indexed",
+      "<strong>Work</strong> — image + session packs and file attachments; no vector repo search",
+      "<strong>Plan / Agent + image</strong> — informational banner; images do not trigger autonomous file apply"
+    ],
+    "thinkingNote": "When images are present, extended “thinking” streams are disabled for compatible local models to avoid incompatible multimodal + think modes."
+  },
+  "argus": {
+    "title": "ARGUS — visual audit",
+    "intro": "<strong>ARGUS</strong> (Automated Review for GUI Usability &amp; Standards) is ContextMint’s structured visual audit layer. It uses the same local vision stack as chat but returns a <strong>findings report</strong> instead of a conversational answer.",
+    "paste": {
+      "title": "Paste audit (from chat)",
+      "steps": [
+        "Attach a UI screenshot in compose.",
+        "Open Context Lens (or use the message action after send).",
+        "Click <strong>Run visual audit</strong>.",
+        "Review findings inline: severity, category, description, optional WCAG rule reference, screenshot thumb."
+      ],
+      "note": "The audit reuses the same normalized image blob — no second upload. ARGUS defaults to <strong>local</strong> vision; it does not require cloud keys."
+    },
+    "sandbox": {
+      "title": "Sandbox audit (from preview worktree)",
+      "body": "When git sandbox preview is enabled, run command palette: <strong>ContextMint: Run visual audit on sandbox</strong>. ContextMint bootstraps dependencies in the isolated worktree, captures a Playwright screenshot of the running preview, and runs the same VLM audit schema.",
+      "items": [
+        "On dependency bootstrap failure, you get a structured <code>deps_unavailable</code> finding — never a blank-page audit",
+        "Reports are stored with a TTL (default 7 days) under the operator data directory"
+      ]
+    },
+    "findings": {
+      "title": "Findings format",
+      "intro": "Each finding includes:",
+      "items": [
+        "<strong>severity</strong> — e.g. critical, major, minor, info",
+        "<strong>category</strong> — accessibility, contrast, layout, copy, interaction, …",
+        "<strong>description</strong> — what the model observed",
+        "<strong>wcag_rule</strong> — optional WCAG reference when applicable",
+        "<strong>bbox</strong> — optional region hint on the screenshot"
+      ]
+    },
+    "safety": {
+      "title": "Safety — report only",
+      "bodyBefore": "ARGUS <strong>never auto-fixes</strong> your codebase. If you act on a finding, ContextMint can hand off to the assisted patch preview (gate 2) — you still review unified diffs before apply. See",
+      "linkText": "Patches &amp; governance"
+    }
+  },
+  "cloudVision": {
+    "title": "Optional cloud vision (BYOK)",
+    "body1": "Teams that approve external inference can enable cloud multimodal when <code>contextmint.cloudEnabled</code> is on and a provider key is configured. You must <strong>explicitly</strong> select a cloud vision-capable model; images are not silently dispatched to text-only cloud models.",
+    "body2Before": "Multimodal context is assembled and redacted in the extension; API keys stay in VS Code SecretStorage. Details:",
+    "body2Link": "BYOK &amp; enterprise"
+  },
+  "settingsRef": {
+    "title": "Settings reference",
+    "intro": "Key extension settings (search “ContextMint” in VS Code Settings):",
+    "items": [
+      "<code>contextmint.chat.imageAttachmentsEnabled</code> — enable paste / drop / picker",
+      "<code>contextmint.chat.imageMaxCountPerMessage</code> — max images per send",
+      "<code>contextmint.chat.imageMaxBytes</code> — per-file size cap",
+      "<code>contextmint.chat.imageSensitivityNotice</code> — first-attach notice text",
+      "<code>contextmint.argus.auditButtonLabel</code> — Lens action label (default “Run visual audit”)"
+    ],
+    "serverNoteBefore": "Server tunables (<code>chat.image_*</code>, <code>argus.*</code>) live in operator defaults on the API host. Full list:",
+    "serverLink": "Settings → Image evidence &amp; ARGUS"
+  },
+  "checklist": {
+    "title": "Operator checklist",
+    "items": [
+      "Engine → <strong>Start all</strong> — server and Ollama healthy",
+      "Engine → <strong>Models</strong> — pull one vision model (<code>moondream</code> recommended for laptops)",
+      "VS Code → paste a screenshot → confirm Lens shows <strong>local</strong> route",
+      "Optional → <strong>Run visual audit</strong> on a UI screenshot to validate ARGUS"
+    ]
+  },
+  "footer": {
+    "problemsBefore": "Problems:",
+    "problemsLink": "Troubleshooting → Image evidence &amp; ARGUS",
+    "conceptsBefore": "Concepts:",
+    "glossaryLink": "Glossary",
+    "chatLanesLink": "Chat &amp; lanes"
+  }
 }

@@ -1,5 +1,117 @@
 {
   "title": "User Documentation | ContextMint",
   "description": "In-depth guides for ContextMint Engine, VS Code chat, context lanes, image evidence, ARGUS, Context Lens, indexing, and governance.",
-  "sovereignCard": "Platform deploy with OpenAI-compatible inference (vLLM), OIDC, and path-aligned workspaces."
+  "h1": "User documentation",
+  "lead": {
+    "before": "Everything you need to install, operate, and get value from ContextMint — Engine on your machine, the VS Code extension, and the human-in-the-loop workflow. Start with",
+    "linkText": "getting started",
+    "after": "if you are new; use these chapters for depth."
+  },
+  "cards": [
+    {
+      "href": "/docs/installation.html",
+      "title": "Installation &amp; setup",
+      "text": "Prerequisites, local-first path, verify steps — plus <strong>installation support</strong> (first-line fixes)."
+    },
+    {
+      "href": "/docs/chat-and-lanes.html",
+      "title": "Chat, modes &amp; context lanes",
+      "text": "Ask / Plan / Agent, Repo / Work / Hybrid lanes, attachments, sessions, and auto-suggest."
+    },
+    {
+      "href": "/docs/image-evidence-argus.html",
+      "title": "Image evidence &amp; ARGUS",
+      "text": "Paste screenshots, local Ollama vision, Context Lens preview, and structured visual audit."
+    },
+    {
+      "href": "/docs/context-lens-packs.html",
+      "title": "Context Lens &amp; packs",
+      "text": "Gate 1 preview, relevance scores, @pack activation, scan &amp; learn, stale packs."
+    },
+    {
+      "href": "/docs/engine-operator.html",
+      "title": "Engine operator guide",
+      "text": "Tray app tabs: Overview, Server, Ollama, Models, Indexing, Quality, Knowledge, Logs, Settings."
+    },
+    {
+      "href": "/docs/indexing-readiness.html",
+      "title": "Indexing &amp; readiness",
+      "text": "Progressive RAG while indexing, readiness phases, priority files, hot paths."
+    },
+    {
+      "href": "/docs/patches-governance.html",
+      "title": "Patches &amp; governance",
+      "text": "Assisted actions, patch preview (gate 2), quality map, DRY findings, audit trail."
+    },
+    {
+      "href": "/docs/knowledge-and-governance.html",
+      "title": "Knowledge &amp; governance",
+      "text": "Engine Knowledge tab — structural registries, activity audit, persistence, worked examples."
+    },
+    {
+      "href": "/docs/settings.html",
+      "title": "Settings reference",
+      "part1": "VS Code",
+      "keysWord": "keys",
+      "part2": "and API server defaults",
+      "part3": "with usage guides."
+    },
+    {
+      "href": "/docs/context-budget-calculator.html",
+      "title": "Context budget calculator",
+      "text": "Scale server <code>max_context_tokens</code> and see overview pack, seed, and retrieval slot knobs update proportionally."
+    },
+    {
+      "href": "/docs/byok-enterprise.html",
+      "title": "BYOK &amp; enterprise",
+      "text": "Cloud API keys, redaction, shared on-prem server, OIDC, remote SSH path alignment."
+    },
+    {
+      "href": "/docs/sovereign-server.html",
+      "sovereign": true,
+      "text": "Platform deploy with OpenAI-compatible inference (vLLM), OIDC, and path-aligned workspaces."
+    },
+    {
+      "href": "/docs/glossary.html",
+      "title": "Glossary",
+      "text": "v1.0 terms plus Verification Engine jargon: blast radius, MCP, drift, decision graph, and more."
+    },
+    {
+      "href": "/support/troubleshooting.html",
+      "title": "Troubleshooting",
+      "text": "Symptom → cause → fix for every common problem across install, chat, and indexing."
+    }
+  ],
+  "readingOrder": {
+    "title": "Recommended reading order",
+    "rows": [
+      [
+        { "href": "/docs/installation.html", "text": "Installation" },
+        { "href": "/docs/engine-operator.html", "text": "Engine guide" }
+      ],
+      [
+        { "href": "/docs/indexing-readiness.html", "text": "Indexing &amp; readiness" },
+        { "href": "/docs/chat-and-lanes.html", "text": "Chat &amp; lanes" }
+      ],
+      [
+        { "href": "/docs/image-evidence-argus.html", "text": "Image evidence &amp; ARGUS" },
+        { "href": "/docs/context-lens-packs.html", "text": "Context Lens &amp; packs" }
+      ],
+      [
+        { "href": "/docs/patches-governance.html", "text": "Patches &amp; governance" },
+        { "href": "/docs/knowledge-and-governance.html", "text": "Knowledge &amp; governance" }
+      ]
+    ]
+  },
+  "footer": {
+    "devBefore": "Developers:",
+    "devLinkText": "Developer center",
+    "devAfter": "(API +",
+    "monoLabel": "contextmint serve",
+    "devAfter2": "today; MCP on roadmap).",
+    "securityBefore": "Security and deployment:",
+    "trustLinkText": "Trust &amp; Security",
+    "jargonBefore": "Jargon:",
+    "jargonLinkText": "Verification Engine terms"
+  }
 }

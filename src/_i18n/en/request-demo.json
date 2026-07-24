@@ -1,4 +1,55 @@
 {
   "title": "Book a Demo | ContextMint",
-  "description": "Book a ContextMint live demo. Discuss AI governance challenges with the team. Getting started and GitHub issues are also available."
+  "description": "Book a ContextMint live demo. Discuss AI governance challenges with the team. Getting started and GitHub issues are also available.",
+  "hero": {
+    "pill": "DEMO",
+    "title": "Discuss your AI governance challenges",
+    "leadBefore": "Buyers care about outcomes — not architecture reviews. Tell us about your stack and constraints; we will schedule a focused walkthrough. Prefer to try first? See",
+    "gettingStartedLink": "getting started",
+    "leadMid": "for local-first install or",
+    "issuesLink": "GitHub issues",
+    "leadAfter": "for questions."
+  },
+  "form": {
+    "nameLabel": "Full name",
+    "emailLabel": "Work email",
+    "companyLabel": "Company",
+    "roleLabel": "Role",
+    "selectPlaceholder": "Select…",
+    "roleOptions": {
+      "cto": "CTO / VP Engineering",
+      "platform": "Platform / DevOps",
+      "security": "Security / Compliance",
+      "staff": "Staff Engineer / Architect",
+      "other": "Other"
+    },
+    "challengeLabel": "Primary governance challenge",
+    "challengeOptions": {
+      "aiPrs": "AI-generated PR review & verification",
+      "agents": "MCP / agent tool governance",
+      "compliance": "Audit trail & compliance evidence",
+      "velocity": "Review bottleneck at AI velocity",
+      "designPartner": "Design partner / early access"
+    },
+    "teamSizeLabel": "Engineering team size",
+    "teamSizeOptions": {
+      "s1": "1–10",
+      "s2": "11–50",
+      "s3": "51–200",
+      "s4": "200+"
+    },
+    "messageLabel": "Anything else we should know?",
+    "messagePlaceholder": "Optional context for the conversation…",
+    "submit": "Request a demo",
+    "submissionsNoteBefore": "Submissions go to",
+    "submissionsNoteAfter": ". We aim to reply within one business day.",
+    "successTitle": "Thank you — we will be in touch.",
+    "successText": "A member of our team will reach out to discuss your governance challenges."
+  },
+  "footer": {
+    "preferBefore": "Prefer design partner details?",
+    "designPartnersLink": "Design Partners",
+    "gettingStartedLink": "Getting started",
+    "issuesLink": "GitHub issues"
+  }
 }

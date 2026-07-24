@@ -1,4 +1,29 @@
 {
   "title": "Use Cases | ContextMint",
-  "description": "ContextMint use cases — decision-control for engineering leaders, platform teams, and security."
+  "description": "ContextMint use cases — decision-control for engineering leaders, platform teams, and security.",
+  "hero": {
+    "pill": "USE CASES",
+    "title": "Who needs evidence before AI ships?",
+    "lead": "Different roles, same question: can we trust assisted changes with visible evidence? ContextMint answers in the IDE today — Verification Engine PR gates remain on the roadmap."
+  },
+  "cards": [
+    {
+      "href": "/solutions/cto-vp-engineering.html",
+      "title": "CTO & VP Engineering",
+      "text": "Govern AI-assisted work with human gates, quality-map findings, and a clear v1.0 vs roadmap story.",
+      "tag": "LEADERSHIP · PILOT"
+    },
+    {
+      "href": "/solutions/platform-engineering.html",
+      "title": "Platform Engineering",
+      "text": "Local Engine or shared on-prem path, context packs, and IDE gates. PR gates and MCP on the roadmap.",
+      "tag": "PACKS · DEPLOY"
+    },
+    {
+      "href": "/solutions/security-compliance.html",
+      "title": "Security & Compliance",
+      "text": "Local-first default, optional OIDC shared-server path, human apply gates, and honest certification roadmap.",
+      "tag": "LOCAL-FIRST · AUDIT"
+    }
+  ]
 }

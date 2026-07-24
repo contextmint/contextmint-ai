@@ -1,4 +1,38 @@
 {
   "title": "Drift Detection | ContextMint",
-  "description": "Architecture drift detection — separate bad drift from accepted evolution with governed baselines and actionable alerts."
+  "description": "Architecture drift detection — separate bad drift from accepted evolution with governed baselines and actionable alerts.",
+  "breadcrumbParent": "Product",
+  "breadcrumbCurrent": "Drift Detection",
+  "hero": {
+    "h1": "Drift Detection",
+    "leadStrong": "In plain terms:",
+    "leadBefore": "spot when code",
+    "leadEm": "drifts",
+    "leadMid": "away from agreed architecture — and tell",
+    "leadStrong2": "bad violations",
+    "leadMid2": "apart from",
+    "leadStrong3": "approved evolution",
+    "leadAfter": "you meant to allow."
+  },
+  "banner": {
+    "badge": "Verification Engine",
+    "title": "Automated drift gates on roadmap",
+    "message": "v1.0 quality map surfaces structure and duplicate signals today. Graph-vs-contract drift with accepted baselines ships with PR verification."
+  },
+  "cards": [
+    {
+      "title": "Bad drift",
+      "text": "New direct DB access in API layer violates ADR-12 layering rule. No accepted baseline on record."
+    },
+    {
+      "title": "Accepted evolution",
+      "text": "Pattern change approved in PR #2102 and recorded as accepted baseline pair. Alert suppressed."
+    }
+  ],
+  "checklist": [
+    "Graph vs contract/convention comparison — deterministic",
+    "Accepted baseline pairs for intentional architecture changes",
+    "Integration with PR checks and engineering scorecards",
+    "edge_class and verification_status on fabric edges"
+  ]
 }

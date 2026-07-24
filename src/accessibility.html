@@ -4,68 +4,56 @@ title: Accessibility | ContextMint
 description: ContextMint marketing site accessibility statement — WCAG 2.2 Level AA design target, scope, and contact.
 ---
 
+{% assign t = i18nPageStrings %}
+
 <header class="page-hero">
   <div class="container">
-    <h1>Accessibility</h1>
-    <p class="lead">Last updated: 22 July 2026</p>
+    <h1>{{ t.hero.title }}</h1>
+    <p class="lead">{{ t.hero.lead }}</p>
   </div>
 </header>
 
 <section class="section">
   <div class="container container-tight legal">
-    <h2>Commitment</h2>
+    <h2>{{ t.commitment.title }}</h2>
     <p>
-      ContextMint Ltd aims for the public marketing website at
+      {{ t.commitment.p1Before }}
       <a href="{{ site.url }}">{{ site.url }}</a>
-      to conform to the
-      <a href="https://www.w3.org/TR/WCAG22/">Web Content Accessibility Guidelines (WCAG) 2.2</a>
-      Level AA.
+      {{ t.commitment.p1After }}
+      <a href="https://www.w3.org/TR/WCAG22/">{{ t.commitment.wcagLink }}</a>
+      {{ t.commitment.p1End }}
     </p>
     <p>
-      This statement covers the marketing site only. It does not cover the ContextMint VS Code
-      extension, desktop Engine, or customer-hosted API deployments.
+      {{ t.commitment.p2 }}
     </p>
 
-    <h2>Measures we take</h2>
+    <h2>{{ t.measures.title }}</h2>
     <ul>
-      <li>Semantic HTML landmarks, labelled navigation, and skip-to-main-content</li>
-      <li>Keyboard support for menus, dialogs, carousels, and forms</li>
-      <li>Visible focus indicators and minimum target sizes for primary controls</li>
-      <li>Colour contrast targets for body text and primary calls to action</li>
-      <li>Optional select-to-speak for reading highlighted page text</li>
-      <li>Automated axe checks on key pages in continuous integration after site build</li>
+      {% for item in t.measures.items %}
+      <li>{{ item }}</li>
+      {% endfor %}
     </ul>
 
-    <h2>Conformance status</h2>
+    <h2>{{ t.conformance.title }}</h2>
     <p>
-      The site is <strong>designed to conform to WCAG 2.2 Level AA</strong>. This is not a claim of
-      third-party certification. Known limitations and remediation history are tracked in the site
-      repository accessibility audit notes.
+      {{ t.conformance.textBefore }} <strong>{{ t.conformance.textStrong }}</strong>{{ t.conformance.textAfter }}
     </p>
 
-    <h2>Known limitations</h2>
+    <h2>{{ t.limitations.title }}</h2>
     <ul>
+      {% for item in t.limitations.items %}
       <li>
-        Screenshot carousels rely on keyboard focus within the carousel region; autoplay pauses when
-        the region is focused or when reduced-motion preferences are set.
+        {{ item }}
       </li>
-      <li>
-        Select-to-speak uses the browser Web Speech API; voice quality and language coverage depend
-        on the visitor&rsquo;s operating system and browser.
-      </li>
-      <li>
-        Some dense documentation pages may still contain long tables or code samples that benefit
-        from further readability review.
-      </li>
+      {% endfor %}
     </ul>
 
-    <h2>Feedback</h2>
+    <h2>{{ t.feedback.title }}</h2>
     <p>
-      If you encounter an accessibility barrier on this website, contact us. Please include the page
-      URL and a short description of the issue.
+      {{ t.feedback.text }}
     </p>
     <p>
-      Email:
+      {{ t.feedback.emailLabel }}
       {% if site.emailVisible %}
       <a href="mailto:{{ site.contactEmail }}">{{ site.contactEmail }}</a>
       {% else %}
@@ -73,15 +61,15 @@ description: ContextMint marketing site accessibility statement — WCAG 2.2 Lev
       {% endif %}
     </p>
     <p>
-      You can also open a
-      <a href="{{ site.issuesUrl }}">GitHub issue</a>.
+      {{ t.feedback.githubBefore }}
+      <a href="{{ site.issuesUrl }}">{{ t.feedback.githubLink }}</a>.
     </p>
 
-    <h2>Related</h2>
+    <h2>{{ t.related.title }}</h2>
     <ul>
-      <li><a href="/trust.html">Trust &amp; Security</a></li>
-      <li><a href="/privacy.html">Privacy Policy</a></li>
-      <li><a href="/support.html">Support</a></li>
+      <li><a href="{{ '/trust.html' | locale_path: localePrefix }}">{{ t.related.trustLink }}</a></li>
+      <li><a href="{{ '/privacy.html' | locale_path: localePrefix }}">{{ t.related.privacyLink }}</a></li>
+      <li><a href="{{ '/support.html' | locale_path: localePrefix }}">{{ t.related.supportLink }}</a></li>
     </ul>
   </div>
 </section>

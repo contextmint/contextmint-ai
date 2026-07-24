@@ -4,14 +4,16 @@ title: Early Access | ContextMint
 description: Join ContextMint early access or design partner program — enterprise AI governance verification for engineering teams.
 ---
 
+{% assign t = i18nPageStrings %}
+
 <header class="page-hero">
   <div class="container">
-    <div class="pill">GET ACCESS</div>
-    <h1>Join early access</h1>
+    <div class="pill">{{ t.hero.pill }}</div>
+    <h1>{{ t.hero.title }}</h1>
     <p class="lead">
-      We are recruiting design partners for a 30-day evaluation pilot. Intake opens by start of
-      September 2026; <strong>v1.0 ships end of August 2026</strong>. We are not publishing seat pricing
-      until packaging is finalized with pilot buyers.
+      {{ t.hero.leadBefore }}
+      <strong>{{ t.hero.leadStrong }}</strong>
+      {{ t.hero.leadAfter }}
     </p>
   </div>
 </header>
@@ -19,63 +21,34 @@ description: Join ContextMint early access or design partner program — enterpr
 <section class="section">
   <div class="container">
     <div class="pricing-grid">
-      <div class="pricing-card">
-        <h3>Early Access</h3>
-        <p class="mono" style="color: var(--text-tertiary); font-size: 0.85rem;">Individual engineers &amp; small teams</p>
-        <div class="price" style="font-size: 1.5rem;">Waitlist</div>
-        <p class="price-note">Local-first · ContextMint extension · Engine</p>
+      {% for card in t.cards %}
+      <div class="pricing-card{% if forloop.index == 2 %} pricing-card--featured{% endif %}">
+        <h3>{{ card.name }}</h3>
+        <p class="mono" style="color: {% if forloop.index == 2 %}var(--color-link){% else %}var(--text-tertiary){% endif %}; font-size: 0.85rem;">{{ card.tagline }}</p>
+        <div class="price" style="font-size: 1.5rem;">{{ card.price }}</div>
+        <p class="price-note">{{ card.priceNote }}</p>
         <ul>
-          <li>Context Lens — preview before inference</li>
-          <li>Local hybrid search + chat</li>
-          <li>Quality map governance findings</li>
-          <li>Code stays on your device</li>
+          {% for item in card.features %}
+          <li>
+            {% if item.linkHref %}{{ item.before }}<a href="{{ item.linkHref | locale_path: localePrefix }}" style="color: inherit; text-decoration: underline;">{{ item.linkText }}</a>{{ item.after }}{% elsif item.em %}{{ item.before }}<em>{{ item.em }}</em>{{ item.after }}{% else %}{{ item.text }}{% endif %}
+          </li>
+          {% endfor %}
         </ul>
-        <a class="btn btn-secondary" href="/request-demo.html">Join Waitlist</a>
+        <a class="btn {% if forloop.index == 2 %}btn-primary{% else %}btn-secondary{% endif %}" href="{{ card.ctaHref | locale_path: localePrefix }}">{{ card.ctaText }}</a>
       </div>
-
-      <div class="pricing-card pricing-card--featured">
-        <h3>Design Partner</h3>
-        <p class="mono" style="color: var(--color-link); font-size: 0.85rem;">Platform &amp; security teams</p>
-        <div class="price" style="font-size: 1.5rem;">Apply</div>
-        <p class="price-note">Co-build structured pilots</p>
-        <ul>
-          <li>30-day evaluation pilot (extendable to 90)</li>
-          <li>Local Engine <em>or</em> shared on-prem server path review</li>
-          <li>Security questionnaire assistance</li>
-          <li>Direct product engineering access</li>
-          <li>Influence <a href="/roadmap.html" style="color: inherit; text-decoration: underline;">roadmap priorities</a></li>
-        </ul>
-        <a class="btn btn-primary" href="/design-partners.html">Design partner details</a>
-      </div>
-
-      <div class="pricing-card">
-        <h3>Enterprise</h3>
-        <p class="mono" style="color: var(--text-tertiary); font-size: 0.85rem;">SSO · shared server · audit · air-gap</p>
-        <div class="price" style="font-size: 1.5rem;">Contact Sales</div>
-        <p class="price-note">Annual agreement · pilot-led rollout</p>
-        <ul>
-          <li>Shared on-prem API server path (Docker / Helm) for regulated pilots</li>
-          <li>SSO (OIDC) &amp; workspace RBAC on the shared-server path</li>
-          <li>Optional BYOK cloud routing with egress redaction (off by default)</li>
-          <li>Security review &amp; questionnaire support</li>
-          <li>SOC 2 evidence packaging, air-gapped Helm, scorecards — <em>roadmap</em></li>
-        </ul>
-        <a class="btn btn-secondary" href="/request-demo.html">Contact Sales</a>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </section>
 
 <section class="section section--surface">
   <div class="container container-narrow text-center">
-    <h2 class="section-title">Why no public pricing?</h2>
+    <h2 class="section-title">{{ t.why.title }}</h2>
     <p class="muted" style="margin-bottom: 0;">
-      AI governance and verification for enterprise engineering is priced on deployment model
-      (local Engine per developer vs shared on-prem server), compliance requirements, and scale —
-      not per-seat commodity SaaS. We will validate value with design partners,
-      then publish tiers. <a href="/trust.html" style="color: var(--color-link);">Compare deployment models →</a>
+      {{ t.why.textBefore }}
+      <a href="{{ '/trust.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.why.linkText }}</a>
     </p>
   </div>
 </section>
 
-{% include "cta-band.html", ctaTitle: "Ready to explore fit?", ctaText: "Tell us about your AI governance challenges and team size — we will recommend the right path." %}
+{% include "cta-band.html", ctaTitle: t.cta.title, ctaText: t.cta.text %}

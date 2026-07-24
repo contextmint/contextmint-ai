@@ -1,10 +1,10 @@
 <section class="cta-band section--surface">
   <div class="container text-center container-tight">
-    <h2 class="section-title">{{ ctaTitle | default: "Discuss your AI governance challenges" }}</h2>
-    <p class="muted">{{ ctaText | default: "See the local-first decision-control plane — Context Lens, quality map, and human apply gates. v1.0 ships end of August 2026." }}</p>
+    <h2 class="section-title">{{ ctaTitle | default: i18nCommon.ctaBand.title }}</h2>
+    <p class="muted">{{ ctaText | default: i18nCommon.ctaBand.text }}</p>
     <div class="cta">
-      <a class="btn btn-primary btn-lg" href="/request-demo.html">Book a Demo</a>
-      <a class="btn btn-secondary btn-lg" href="/trust.html">Trust &amp; Security</a>
+      <a class="btn btn-primary btn-lg" href="{{ '/request-demo.html' | locale_path: localePrefix }}">{{ i18nCommon.ctaBand.demo }}</a>
+      <a class="btn btn-secondary btn-lg" href="{{ '/trust.html' | locale_path: localePrefix }}">{{ i18nCommon.ctaBand.trust }}</a>
     </div>
   </div>
 </section>

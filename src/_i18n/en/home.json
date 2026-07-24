@@ -17,5 +17,129 @@
     "line2": "It is whether humans see evidence before it ships.",
     "demo": "Book a Demo",
     "trust": "Trust & Security"
+  },
+  "pilotNow": {
+    "title": "In pilot now",
+    "introStrong": "v1.0 ships end of August 2026.",
+    "introRest": "We are finishing internal pilot readiness; design partner intake opens by start of September 2026. Evidence before inference. Human approval before code changes.",
+    "cards": [
+      {
+        "title": "ContextMint Engine",
+        "text": "Tray-native operator console — readiness, server, and Ollama status. System, Light, or Dark theme."
+      },
+      {
+        "title": "Context Lens",
+        "text": "Review what will be retrieved and which model runs — <em>before</em> the model answers."
+      },
+      {
+        "title": "Quality map",
+        "text": "Stored governance findings (duplicates, structure signals) with human apply gates."
+      },
+      {
+        "title": "Image evidence",
+        "text": "Paste UI screenshots — local Ollama vision and ARGUS visual audit with human gates."
+      }
+    ],
+    "footer": {
+      "defaultLabel": "Default:",
+      "defaultText": "local Engine + Ollama per developer.",
+      "whatShipsLink": "What ships in v1.0 →",
+      "sharedServerText": "Shared on-prem API server path for regulated pilots —",
+      "deploymentModelsLink": "deployment models",
+      "byokText": "Optional BYOK cloud routing is off by default.",
+      "roadmapLabel": "Roadmap:",
+      "v1Link": "v1.0",
+      "v1Suffix": "(pilot now) ·",
+      "v2Link": "v2.0",
+      "v2Suffix": "Engineering Intelligence ·",
+      "trackBLink": "Track B",
+      "trackBSuffix": "enterprise & compliance.",
+      "fullRoadmapLink": "Full roadmap →",
+      "verificationEngineLink": "Verification Engine vision →",
+      "gettingStartedLink": "Getting started →"
+    }
+  },
+  "outcomes": {
+    "ariaLabel": "v1.0 outcomes",
+    "items": [
+      { "label": "Gate 1", "text": "Context Lens — evidence before inference" },
+      { "label": "Gate 2", "text": "Patch preview — humans approve applies" },
+      { "label": "Local-first", "text": "Index and chat on your infrastructure" }
+    ]
+  },
+  "problem": {
+    "title": "The Problem Isn't Code Generation. It's Trust.",
+    "lead": "AI creates changes faster than organizations can review them with evidence. That is a board-level risk — not a tooling gap.",
+    "cards": [
+      { "title": "AI Creates", "text": "Changes faster than humans can reason about them" },
+      { "title": "Reality is Fragmented", "text": "Ownership, intent, and policy live in different tools" },
+      { "title": "Result", "text": "Risky merges and ungoverned agent output" }
+    ]
+  },
+  "whyNow": {
+    "title": "The Bottleneck Moved",
+    "lead": "Code generation is no longer the constraint. Evidence and human oversight are.",
+    "before": {
+      "label": "Before AI",
+      "body": "Humans generated code slower than organizations could review it.",
+      "bottleneckLabel": "Bottleneck:",
+      "bottleneckValue": "Code Generation"
+    },
+    "after": {
+      "label": "After AI",
+      "body": "AI generates code faster than organizations can verify with evidence.",
+      "bottleneckLabel": "Bottleneck:",
+      "bottleneckValue": "Evidence & Governance"
+    }
+  },
+  "decisionControl": {
+    "title": "What v1.0 delivers",
+    "lead": "Evidence-based generative chat, store-first governance lookup from the quality map, and grounded recommendations with human approval — on your machine or a guided sovereign server path.",
+    "figure": {
+      "header": "Decision-control plane | Scenario: assisted change in VS Code",
+      "queryLabel": "Checks before the model answers or applies",
+      "checks": [
+        { "status": "ok", "text": "Context Lens — retrieved chunks, scores, routing" },
+        { "status": "ok", "text": "Quality map — stored findings (duplicates, structure)" },
+        { "status": "ok", "text": "Citations — answers grounded in indexed excerpts" },
+        { "status": "danger", "text": "High-severity apply — blocked until human review" },
+        { "status": "ok", "text": "Patch preview — unified diff before anything writes" }
+      ],
+      "recommendationLabel": "Recommendation",
+      "badge": "HUMAN APPROVAL REQUIRED",
+      "evidenceLabel": "Traceable Evidence",
+      "evidenceItems": [
+        { "label": "Context Lens", "text": "chunks" },
+        { "label": "Findings Store", "text": "finding IDs" },
+        { "label": "Patch preview", "text": "unified diff" },
+        { "label": "Routing badge", "text": "local model path" }
+      ],
+      "caption": "v1.0 decision-control example: Context Lens, quality map, citations, apply gate, and patch preview with human approval and cited evidence."
+    },
+    "footer": {
+      "badge": "Roadmap",
+      "textBefore": "PR verification gates, blast-radius SKU, and CI packaging are the",
+      "linkText": "Verification Engine",
+      "textAfter": "direction — after v1.0, not in the August GA package."
+    }
+  },
+  "productHeaded": {
+    "title": "Where the product is headed",
+    "lead": "After v1.0, the Verification Engine direction adds deterministic graph checks for PR-time verification. Capabilities below are labeled roadmap — not the August GA package.",
+    "ctaSecondary": "Verification Engine vision",
+    "ctaPrimary": "v1.0 features"
+  },
+  "whyNotCi": {
+    "title": "Why CI Tools Don't Solve This Alone",
+    "lead": "Linting and tests catch syntax. They don't give developers evidence gates in the IDE.",
+    "cards": [
+      { "title": "GitHub / GitLab", "subtitle": "Code & PRs", "note": "No pre-inference evidence review in the IDE" },
+      { "title": "SonarQube / SAST", "subtitle": "Syntax & CVEs", "note": "No human apply gate for assisted edits" },
+      { "title": "Jira / Confluence", "subtitle": "Plans & docs", "note": "Disconnected from indexed workspace evidence" }
+    ],
+    "highlight": {
+      "title": "ContextMint v1.0",
+      "text": "Decision-control in the IDE — Lens, quality map, patch preview, local-first"
+    }
   }
 }

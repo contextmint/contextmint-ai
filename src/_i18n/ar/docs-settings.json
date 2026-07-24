@@ -1,4 +1,131 @@
 {
-  "title": "Settings Reference | ContextMint Docs",
-  "description": "Complete ContextMint settings — VS Code extension (contextmint.*) and API server (contextmint.defaults.yaml), with defaults, usage guides, and rollout notes."
+  "title": "الإعدادات المرجعية | توثيق ContextMint",
+  "description": "المرجع الكامل لإعدادات ContextMint — إعدادات إضافة Visual Studio Code (contextmint.*) وإعدادات خادم واجهة البرمجة (contextmint.defaults.yaml)، مع القيم الافتراضية، وأدلة الاستخدام، وملاحظات النشر التدريجي.",
+  "h1": "الإعدادات المرجعية",
+  "lead": "اختر واجهة أدناه. تعيش مفاتيح الخادم في <code>contextmint.defaults.yaml</code> (تجاوز في <code>~/.contextmint/server.defaults.yaml</code>) — عدّل في <strong>Engine ← إعداد الخادم</strong> وأعد تشغيل واجهة API. مفاتيح VS Code هي <code>contextmint.*</code> في الإعدادات أو <code>settings.json</code>.",
+  "tabs": {
+    "server": {
+      "label": "إعدادات الخادم",
+      "keysSuffix": "مفتاحاً",
+      "hint": "EOP، الاسترجاع، الفهرسة، ARGUS…"
+    },
+    "vscode": {
+      "label": "إعدادات VS Code",
+      "keysSuffix": "مفتاحاً",
+      "hint": "المحادثة، المسارات، Context Lens، الحزم…"
+    }
+  },
+  "engineModeCallout": {
+    "before": "<strong>وضع Engine (الافتراضي):</strong> استخدم",
+    "after": "في VS Code. قابليات ضبط خادم API في <strong>Engine ← إعداد الخادم</strong> · تفضيلات سطح المكتب في <strong>Engine ← الإعدادات</strong>."
+  },
+  "server": {
+    "searchLabel": "ابحث في إعدادات الخادم",
+    "searchPlaceholder": "رشّح حسب المفتاح أو الوصف…",
+    "metaLoadedBefore": "تم إنشاؤه",
+    "metaLoadedFrom": "من",
+    "metaLoadedOverlay": "· تجاوز",
+    "metaLoadedLinks": {
+      "calculatorLink": "حاسبة ميزانية السياق",
+      "operatorLink": "دليل مشغّل Engine"
+    },
+    "metaMissing": "كتالوج الخادم غير محمَّل — شغّل <span class=\"mono\">npm run gen:settings</span> في <span class=\"mono\">contextmint-ai/</span>.",
+    "missingCatalogFull": "<strong>إعدادات الخادم مفقودة من هذا الإصدار.</strong> شغّل <code>npm run gen:settings</code> في <code>contextmint-ai/</code> وأودع <code>src/_data/serverChatSettings.json</code> قبل النشر.",
+    "planReferenceLabel": "خطة رسم بياني اختيارية:",
+    "planReferenceMeta": "مرجع",
+    "planDeclaredIn": "معلَنة في",
+    "planIntent": "· النية",
+    "usageGuideMeta": "دليل نشر",
+    "usageGuideSubheads": {
+      "rolloutScenarios": "سيناريوهات النشر",
+      "scenarioColumn": "السيناريو",
+      "dependencies": "التبعيات",
+      "howToCheck": "كيفية التحقق"
+    },
+    "usageGuideTipsLabel": "نصائح",
+    "usage": {
+      "narration": {
+        "title": "سرد الأدلة والتوضيح",
+        "meta": "11 مفتاح مشغّل",
+        "intro": "يتحكم في سرد النموذج اللغوي المرتبط بالاستشهاد على مقتطفات منقَّحة، واسترداد التوضيح عندما تكون الأدلة غير كافية، والتوقف الصادق النهائي بعد الحد الأقصى لأدوار التوضيح. انظر الخطة الرئيسية §6.1 في <span class=\"mono\">documentation/CONTEXTMINT-EVIDENCE-NARRATION-MASTER-PLAN.md</span>.",
+        "tableHeaders": ["المفتاح", "الافتراضي", "المشغّل", "متى تغيّره", "إعادة التشغيل"],
+        "rows": [
+          { "key": "chat.narration_enabled", "default": "true", "operator": "نعم", "whenToChange": "عطّله لفرض قوالب الحقائق فقط على أسئلة نية المعنى", "restart": "نعم" },
+          { "key": "chat.narration_max_excerpts", "default": "8", "operator": "نعم", "whenToChange": "خفّضه في طبقات T0/T1 لتقليل زمن استجابة السرد", "restart": "نعم" },
+          { "key": "chat.narration_max_tokens", "default": "1024", "operator": "نعم", "whenToChange": "ارفعه مؤقتاً للإجابات المعمارية الطويلة في T2+", "restart": "نعم" },
+          { "key": "chat.narration_timeout_ms", "default": "15000", "operator": "نعم", "whenToChange": "ارفعه على مضيفات المعالج فقط عندما تنتهي مهلة السرد", "restart": "نعم" },
+          { "key": "chat.narration_require_citations", "default": "true", "operator": "نعم", "whenToChange": "أبقه صحيحاً في الإنتاج — يرفض السرد غير المستشهد", "restart": "نعم" },
+          { "key": "chat.fact_template_only_when_no_meaning_intent", "default": "true", "operator": "نعم", "whenToChange": "عند صحيح، تخطَّ نموذج السرد اللغوي عندما لا يكون للاستعلام نية دور/سلوك", "restart": "نعم" },
+          { "key": "chat.clarification_enabled", "default": "true", "operator": "نعم", "whenToChange": "عطّله فقط عندما تريد توقفاً فورياً غير كافٍ بدون سؤال متابعة", "restart": "نعم" },
+          { "key": "chat.clarification_max_turns", "default": "2", "operator": "نعم", "whenToChange": "ارفعه لاختبار القبول الداخلي؛ خفّضه لتجربة إنتاج أكثر صرامة", "restart": "نعم" },
+          { "key": "chat.clarification_merge_entity_terms", "default": "true", "operator": "نعم", "whenToChange": "أبقه صحيحاً حتى تعزّز ردود المستخدم بحث grep لكيان الالتزام", "restart": "نعم" },
+          { "key": "chat.insufficient_evidence_enabled", "default": "true", "operator": "نعم", "whenToChange": "عطّله فقط لأطر الاختبار الداخلية التي تتوقع فشلاً صامتاً", "restart": "نعم" },
+          { "key": "chat.insufficient_evidence_partial_facts_allowed", "default": "false", "operator": "نعم", "whenToChange": "أبقه خاطئاً عند وجود نية معنى — يتجنب نص دور مضلِّل", "restart": "نعم" }
+        ],
+        "footerBefore": "عدّل في <strong>Engine ← إعداد الخادم</strong> تحت",
+        "footerLink": "سرد الأدلة والتوضيح"
+      },
+      "retrieval": {
+        "title": "الاسترجاع / التتبّع (اختبار قبول يدوي)",
+        "meta": "10 مفاتيح مشغّل",
+        "intro": "تدقيق قرارات الأدوار البنيوية لمسار Repo — خطوات مرتَّبة مع المدخلات والمخرجات والأسباب. يكتب التصدير <span class=\"mono\">retrieval-trace-*.json</span> ضمن المجلد المهيَّأ من المشغّل (<span class=\"mono\">retrieval.trace_export_dir</span>، الافتراضي <span class=\"mono\">documentation/evidence</span>). لا يُثبَّت المسار أبداً في كود المنتج. يقترن مع <span class=\"mono\">context-receipt-*.json</span> من نفس المجلد. انظر الخطة الرئيسية §6.1b (أثر قرار الاسترجاع والأدلة) في <span class=\"mono\">documentation/CONTEXTMINT-EVIDENCE-NARRATION-MASTER-PLAN.md</span>.",
+        "tableHeaders": ["المفتاح", "الافتراضي", "المشغّل", "متى تغيّره", "إعادة التشغيل"],
+        "rows": [
+          { "key": "retrieval.trace_enabled", "default": "true", "operator": "نعم", "whenToChange": "عطّله على الخوادم المشتركة عندما لا يكون هناك تصحيح للتوجيه", "restart": "نعم" },
+          { "key": "retrieval.trace_export_enabled", "default": "false", "operator": "نعم", "whenToChange": "فعّله أثناء اختبار القبول اليدوي لكتابة ملفات JSON للأثر", "restart": "نعم" },
+          { "key": "retrieval.trace_export_dir", "default": "documentation/evidence", "operator": "نعم", "whenToChange": "أشر إلى مجلد قابل للكتابة لتصديرات retrieval-trace-*.json", "restart": "نعم" },
+          { "key": "retrieval.trace_include_query", "default": "true", "operator": "نعم", "whenToChange": "اضبطه خاطئاً قبل مشاركة السجلات خارجياً (ينقّح نص الاستعلام)", "restart": "نعم" },
+          { "key": "retrieval.trace_max_field_chars", "default": "500", "operator": "نعم", "whenToChange": "ارفعه مؤقتاً عند تصحيح اختيار المقتطفات؛ الحدود 100–8000", "restart": "نعم" },
+          { "key": "retrieval.trace_include_pipeline_inputs", "default": "true", "operator": "نعم", "whenToChange": "عطّله لتقليص حجم الأثر عندما تهم المراحل العليا فقط", "restart": "نعم" },
+          { "key": "retrieval.trace_include_evidence_detail", "default": "true", "operator": "نعم", "whenToChange": "عطّله عندما يكون JSON الأثر كبيراً جداً — يبقي صفوف المراحل فقط", "restart": "نعم" },
+          { "key": "retrieval.trace_include_llm_io", "default": "true", "operator": "نعم", "whenToChange": "اضبطه خاطئاً قبل مشاركة السجلات — ينقّح مطالبة/استجابة النموذج اللغوي الخام", "restart": "نعم" },
+          { "key": "retrieval.trace_llm_io_max_chars", "default": "8000", "operator": "نعم", "whenToChange": "خفّضه لتحديد سقف إدخال/إخراج النموذج اللغوي في تصديرات الأثر؛ الحدود 500–64000", "restart": "نعم" },
+          { "key": "retrieval.trace_evidence_preview_chars", "default": "400", "operator": "نعم", "whenToChange": "خفّضه لتقليص معاينات المقتطفات في JSON الأثر؛ الحدود 80–4000", "restart": "نعم" }
+        ],
+        "footerBefore": "عدّل في <strong>Engine ← إعداد الخادم</strong> تحت",
+        "footerLink": "الاسترجاع، التوسيع والاستدلال",
+        "footerAfter": "، أو في <span class=\"mono\">~/.contextmint/server.defaults.yaml</span>."
+      },
+      "liveProgress": {
+        "title": "تقدّم الأنابيب الحي (SSE)",
+        "meta": "5 مفاتيح مشغّل",
+        "intro": "أحداث SSE اختيارية في الوقت الفعلي لـ<span class=\"mono\">pipeline_progress</span> أثناء استرجاع المحادثة حتى يتمكن الجدول الزمني الحي لإضافة VS Code من إظهار ما يفعله الخادم أثناء انتظار المستخدم. <strong>معطَّل افتراضياً</strong> حتى اختبار القبول الداخلي لـRT-VIEW. فعّل <span class=\"mono\">retrieval.live_progress_enabled</span> على مضيف API — تعرض الإضافة الأحداث عند إصدار الخادم لها (بدون مفتاح تبديل منفصل في الإضافة). انظر <span class=\"mono\">documentation/REALTIME-SERVER-VIEW-EXTENSION-PLAN.md</span> و<span class=\"mono\">documentation/IC-PAUSE-UX-RT-VIEW-ARCHITECTURE-PLAN.md</span>.",
+        "tableHeaders": ["المفتاح", "الافتراضي", "المشغّل", "متى تغيّره", "إعادة التشغيل"],
+        "rows": [
+          { "key": "retrieval.live_progress_enabled", "default": "false", "operator": "نعم", "whenToChange": "فعّله لاختبار القبول الداخلي لـRT-VIEW / العروض (الجدول الزمني للإضافة مشحون بالفعل)", "restart": "نعم" },
+          { "key": "retrieval.live_progress_granularity", "default": "summary", "operator": "نعم", "whenToChange": "استخدم <span class=\"mono\">stage</span> أو <span class=\"mono\">verbose</span> لتصحيح أعمق", "restart": "نعم" },
+          { "key": "retrieval.live_progress_max_events_per_turn", "default": "40", "operator": "نعم", "whenToChange": "خفّضه في مساحات العمل الصاخبة؛ ارفعه فقط مع دقة verbose", "restart": "نعم" },
+          { "key": "retrieval.live_progress_include_paths", "default": "true", "operator": "نعم", "whenToChange": "اضبطه خاطئاً في العروض حيث يجب ألا تظهر مسارات الملفات في الجدول الزمني", "restart": "نعم" },
+          { "key": "retrieval.live_progress_min_interval_ms", "default": "100", "operator": "نعم", "whenToChange": "ارفعه لتقييد تحديثات المرحلة المتكررة السريعة في الوضع المطوَّل", "restart": "نعم" }
+        ],
+        "footerBefore": "عدّل في <strong>Engine ← إعداد الخادم</strong> تحت",
+        "footerLink": "الاسترجاع، التوسيع والاستدلال"
+      }
+    }
+  },
+  "tableChrome": {
+    "key": "المفتاح",
+    "default": "الافتراضي",
+    "description": "الوصف",
+    "settingLabel": "الإعداد",
+    "usageGuideLabel": "دليل الاستخدام",
+    "operatorBadge": "مشغّل",
+    "deprecatedBadge": "يديره Engine"
+  },
+  "vscode": {
+    "searchLabel": "ابحث في إعدادات VS Code",
+    "searchPlaceholder": "رشّح حسب اسم الإعداد أو الوصف…",
+    "metaBefore": "تم إنشاؤه",
+    "metaFrom": "من",
+    "metaAfter": "تفضيلات سطح مكتب Engine (<code>~/.contextmint/engine/settings.yaml</code>) موجودة في",
+    "metaLink": "دليل مشغّل Engine",
+    "metaSuffix": "— غير مدرَجة هنا.",
+    "retrievalGuideMeta": "دليل"
+  },
+  "footer": {
+    "problemsBefore": "المشكلات:",
+    "problemsLink": "استكشاف الأخطاء وإصلاحها ← الإضافة",
+    "byokLink": "BYOK والمؤسسات",
+    "glossaryLink": "المسرد"
+  }
 }

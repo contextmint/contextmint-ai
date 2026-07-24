@@ -5,15 +5,16 @@ description: Leadership view of ContextMint v1.0 — decision-control in the IDE
 pageCss: product.css
 ---
 
+{% assign t = i18nPageStrings %}
+
 <header class="page-hero">
   <div class="container">
-    <nav class="breadcrumb"><a href="/solutions/">Solutions</a> / CTO &amp; VP Engineering</nav>
-    <div class="pill">EXECUTIVE</div>
-    <h1>Govern AI velocity with evidence gates</h1>
+    <nav class="breadcrumb"><a href="{{ '/solutions/' | locale_path: localePrefix }}">{{ t.breadcrumbParent }}</a> / {{ t.breadcrumbCurrent }}</nav>
+    <div class="pill">{{ t.hero.pill }}</div>
+    <h1>{{ t.hero.title }}</h1>
     <p class="lead">
-      <strong>v1.0 (end of August 2026):</strong> local-first decision-control for engineering teams —
-      Context Lens, quality map, and human apply gates. Board scorecards and PR-time verification
-      are roadmap — we do not claim them as shipped.
+      <strong>{{ t.hero.leadStrong }}</strong>
+      {{ t.hero.leadAfter }}
     </p>
   </div>
 </header>
@@ -21,28 +22,21 @@ pageCss: product.css
 <section class="section">
   <div class="container container-narrow">
     <div class="grid grid-2">
+      {% for card in t.cards %}
       <div class="card">
-        <h3 style="margin: 0 0 8px;">What you can pilot now</h3>
+        <h3 style="margin: 0 0 8px;">{{ card.title }}</h3>
         <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
-          Evidence-based chat with citations, store-first governance lookup, patch preview, and
-          optional shared on-prem server with OIDC for regulated pilots.
+          {{ card.text }}
         </p>
       </div>
-      <div class="card">
-        <h3 style="margin: 0 0 8px;">What stays on the roadmap</h3>
-        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
-          Engineering scorecards for QBRs, DNA adoption dashboards, blast-radius SKU, and
-          firm-wide ownership reconciliation — after v1.0 gates pass.
-        </p>
-      </div>
+      {% endfor %}
     </div>
     <ul class="check-list" style="margin-top: 32px;">
-      <li>Human Gates 1 &amp; 2 in VS Code — evidence before inference and apply</li>
-      <li>Quality map findings with apply review (not autonomous fix)</li>
-      <li>Local-first default; sovereign shared-server path for regulated pilots</li>
-      <li>Clear separation of v1.0 vs Verification Engine roadmap in external copy</li>
+      {% for item in t.checklist %}
+      <li>{{ item }}</li>
+      {% endfor %}
     </ul>
   </div>
 </section>
 
-{% include "cta-band.html", ctaTitle: "Brief your leadership team", ctaText: "Walkthrough of the v1.0 decision-control plane and the honest roadmap for PR verification and scorecards." %}
+{% include "cta-band.html", ctaTitle: t.cta.title, ctaText: t.cta.text %}

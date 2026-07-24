@@ -1,4 +1,56 @@
 {
   "title": "Blast Radius | ContextMint",
-  "description": "Blast radius (roadmap) — know what else breaks when you change a file or service, using graph traversal not LLM guesses."
+  "description": "Blast radius (roadmap) — know what else breaks when you change a file or service, using graph traversal not LLM guesses.",
+  "breadcrumbParent": "Product",
+  "breadcrumbCurrent": "Blast Radius",
+  "hero": {
+    "h1": "Blast radius",
+    "leadStrong": "In plain terms:",
+    "leadAfter": "if you change or remove something, what else is affected? Pre-computed dependency closure across services, files, and features — graph math, not model imagination."
+  },
+  "banner": {
+    "badge": "Verification Engine",
+    "title": "PR-wide blast radius on roadmap",
+    "message": "v1.0 includes quality map and governance findings in chat. Sub-10-second impact queries across the full service graph ship with the Verification Engine."
+  },
+  "meaning": {
+    "title": "What blast radius means",
+    "before": "Borrowed from incident response: the",
+    "strong": "blast radius",
+    "mid": "of a change is everything that could break downstream. ContextMint builds this from imports, service dependencies, and feature links in your",
+    "linkText": "engineering graph",
+    "linkHref": "/docs/glossary.html#engineering-reality-graph",
+    "midAfter": "— so reviewers see impact",
+    "em": "before",
+    "after": "opening a 2,000-line diff."
+  },
+  "metrics": [
+    { "value": "&lt; 10 sec", "label": "Target query latency" },
+    { "value": "Index-time", "label": "Closure pre-computed" },
+    { "value": "Evidence", "label": "Dependency path cited" }
+  ],
+  "example": {
+    "query": "What breaks if Payments API is removed?",
+    "node": "Payments API",
+    "edges": [
+      "Checkout Service (direct)",
+      "Billing Worker (direct)",
+      "Subscription Service (transitive)",
+      "14 more downstream nodes…"
+    ],
+    "warning": "ADR-12 event-sourcing boundary touched"
+  },
+  "split": {
+    "prReview": {
+      "title": "Built for PR review",
+      "text": "Every changed file expands to affected features, teams, and services before reviewers open the diff."
+    },
+    "mcpApi": {
+      "title": "MCP & API (planned)",
+      "before": "Expose",
+      "mono": "get_blast_radius",
+      "mid": "to agents with the same deterministic graph humans trust — see",
+      "linkText": "MCP server"
+    }
+  }
 }

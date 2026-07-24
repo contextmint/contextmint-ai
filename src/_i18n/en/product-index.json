@@ -1,4 +1,63 @@
 {
   "title": "Product | ContextMint Verification Engine",
-  "description": "ContextMint Verification Engine — product direction after v1.0 for PR-time verification. v1.0 ships end of August 2026 as the decision-control plane foundation."
+  "description": "ContextMint Verification Engine — product direction after v1.0 for PR-time verification. v1.0 ships end of August 2026 as the decision-control plane foundation.",
+  "badges": {
+    "roadmap": "Roadmap",
+    "pilot": "v1.0 · end of August 2026"
+  },
+  "hero": {
+    "pill": "PRODUCT DIRECTION",
+    "h1": "The Verification Engine",
+    "leadStrong": "Product direction (after v1.0):",
+    "leadAfter": "PR-time verification of AI-generated changes with deterministic graph evidence — ownership, blast radius, architecture intent, drift, and policy. Built on the v1.0 decision-control plane (Engine + VS Code). Not a separate SKU today.",
+    "seeShipsLink": "See what ships in v1.0 →",
+    "cta1": "v1.0 features",
+    "cta2": "Roadmap timing"
+  },
+  "outcome": {
+    "title": "Target outcome (roadmap)",
+    "intro": "One outcome when the Verification Engine is fully delivered — not five separate products in the August GA package.",
+    "statement": "Verify every change before it ships",
+    "detail": "Policy checks &middot; ownership resolution &middot; blast radius &middot; architecture validation &middot; drift detection &middot; agent governance &middot; audit trail",
+    "caption": "Directional — gated after v1.0 · see roadmap"
+  },
+  "poweredBy": {
+    "title": "Powered by (planned)",
+    "text": "These capabilities exist to deliver the verification promise — labeled roadmap, not August GA."
+  },
+  "underHood": {
+    "title": "Under the hood (vision)",
+    "text": "The Engineering Reality Graph direction reconstructs ownership, dependencies, architecture intent, deployment context, and policy into one queryable source of truth. Deterministic first; AI narrates with citations — never overrides graph truth without human confirmation.",
+    "textStrong": "v1.0",
+    "textAfter": "ships indexed workspace evidence, Findings Store lookup, and IDE gates — not the full graph product below.",
+    "diagramNode": "Engineering Reality Graph",
+    "edges": [
+      "ownership graph",
+      "dependency / blast radius graph",
+      "architecture intent (ADRs, decisions)",
+      "policy graph (PCI, RBAC, custom rules)",
+      "drift baselines (accepted vs violation)"
+    ]
+  },
+  "split": {
+    "deterministic": {
+      "title": "Deterministic verification",
+      "items": [
+        "Blast radius — graph traversal only",
+        "Drift — graph vs contract/convention",
+        "DNA report — deterministic body",
+        "Scorecards — governed metric definitions"
+      ]
+    },
+    "shipsFirst": {
+      "title": "What ships first (v1.0)",
+      "items": [
+        "ContextMint Engine + VS Code extension",
+        "Context Lens + patch preview",
+        "Quality map / Findings Store",
+        "Local-first (+ optional shared-server pilot path)"
+      ],
+      "cta": "Features in v1.0"
+    }
+  }
 }

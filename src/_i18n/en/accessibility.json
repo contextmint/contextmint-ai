@@ -1,4 +1,54 @@
 {
   "title": "Accessibility | ContextMint",
-  "description": "ContextMint marketing site accessibility statement — WCAG 2.2 Level AA design target, scope, and contact."
+  "description": "ContextMint marketing site accessibility statement — WCAG 2.2 Level AA design target, scope, and contact.",
+  "hero": {
+    "title": "Accessibility",
+    "lead": "Last updated: 22 July 2026"
+  },
+  "commitment": {
+    "title": "Commitment",
+    "p1Before": "ContextMint Ltd aims for the public marketing website at",
+    "p1After": "to conform to the",
+    "wcagLink": "Web Content Accessibility Guidelines (WCAG) 2.2",
+    "p1End": "Level AA.",
+    "p2": "This statement covers the marketing site only. It does not cover the ContextMint VS Code extension, desktop Engine, or customer-hosted API deployments."
+  },
+  "measures": {
+    "title": "Measures we take",
+    "items": [
+      "Semantic HTML landmarks, labelled navigation, and skip-to-main-content",
+      "Keyboard support for menus, dialogs, carousels, and forms",
+      "Visible focus indicators and minimum target sizes for primary controls",
+      "Colour contrast targets for body text and primary calls to action",
+      "Optional select-to-speak for reading highlighted page text",
+      "Automated axe checks on key pages in continuous integration after site build"
+    ]
+  },
+  "conformance": {
+    "title": "Conformance status",
+    "textBefore": "The site is",
+    "textStrong": "designed to conform to WCAG 2.2 Level AA",
+    "textAfter": ". This is not a claim of third-party certification. Known limitations and remediation history are tracked in the site repository accessibility audit notes."
+  },
+  "limitations": {
+    "title": "Known limitations",
+    "items": [
+      "Screenshot carousels rely on keyboard focus within the carousel region; autoplay pauses when the region is focused or when reduced-motion preferences are set.",
+      "Select-to-speak uses the browser Web Speech API; voice quality and language coverage depend on the visitor\u2019s operating system and browser.",
+      "Some dense documentation pages may still contain long tables or code samples that benefit from further readability review."
+    ]
+  },
+  "feedback": {
+    "title": "Feedback",
+    "text": "If you encounter an accessibility barrier on this website, contact us. Please include the page URL and a short description of the issue.",
+    "emailLabel": "Email:",
+    "githubBefore": "You can also open a",
+    "githubLink": "GitHub issue"
+  },
+  "related": {
+    "title": "Related",
+    "trustLink": "Trust & Security",
+    "privacyLink": "Privacy Policy",
+    "supportLink": "Support"
+  }
 }

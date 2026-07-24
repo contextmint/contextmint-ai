@@ -4,13 +4,14 @@ title: Use Cases | ContextMint
 description: ContextMint use cases — decision-control for engineering leaders, platform teams, and security.
 ---
 
+{% assign t = i18nPageStrings %}
+
 <header class="page-hero">
   <div class="container">
-    <div class="pill">USE CASES</div>
-    <h1>Who needs evidence before AI ships?</h1>
+    <div class="pill">{{ t.hero.pill }}</div>
+    <h1>{{ t.hero.title }}</h1>
     <p class="lead">
-      Different roles, same question: can we trust assisted changes with visible evidence?
-      ContextMint answers in the IDE today — Verification Engine PR gates remain on the roadmap.
+      {{ t.hero.lead }}
     </p>
   </div>
 </header>
@@ -18,21 +19,13 @@ description: ContextMint use cases — decision-control for engineering leaders,
 <section class="section">
   <div class="container">
     <div class="grid grid-3">
-      <a class="feature-card" href="/solutions/cto-vp-engineering.html">
-        <h3>CTO &amp; VP Engineering</h3>
-        <p>Govern AI-assisted work with human gates, quality-map findings, and a clear v1.0 vs roadmap story.</p>
-        <span class="tag">LEADERSHIP · PILOT</span>
+      {% for card in t.cards %}
+      <a class="feature-card" href="{{ card.href | locale_path: localePrefix }}">
+        <h3>{{ card.title }}</h3>
+        <p>{{ card.text }}</p>
+        <span class="tag">{{ card.tag }}</span>
       </a>
-      <a class="feature-card" href="/solutions/platform-engineering.html">
-        <h3>Platform Engineering</h3>
-        <p>Local Engine or shared on-prem path, context packs, and IDE gates. PR gates and MCP on the roadmap.</p>
-        <span class="tag">PACKS · DEPLOY</span>
-      </a>
-      <a class="feature-card" href="/solutions/security-compliance.html">
-        <h3>Security &amp; Compliance</h3>
-        <p>Local-first default, optional OIDC shared-server path, human apply gates, and honest certification roadmap.</p>
-        <span class="tag">LOCAL-FIRST · AUDIT</span>
-      </a>
+      {% endfor %}
     </div>
   </div>
 </section>

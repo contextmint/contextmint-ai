@@ -1,4 +1,57 @@
 {
   "title": "Support | ContextMint",
-  "description": "Get help with ContextMint — troubleshooting, user documentation, FAQ, and contact."
+  "description": "Get help with ContextMint — troubleshooting, user documentation, FAQ, and contact.",
+  "hero": {
+    "pill": "SUPPORT",
+    "title": "We are here to help",
+    "leadBefore": "Start with",
+    "installLink": "installation support",
+    "leadMid": "during setup, then troubleshooting for other symptoms. After design partner intake opens (start of September 2026), pilot cohorts get direct engineering access."
+  },
+  "cards": {
+    "installTitle": "Installation help (first line)",
+    "installText": "Full install guide plus symptom → fix when Engine, Ollama, or the extension misbehaves during setup.",
+    "installTag": "START HERE IF STUCK",
+    "troubleTitle": "Troubleshooting",
+    "troubleText": "Install, Engine, Ollama, indexing, chat, lanes, image evidence, ARGUS, Context Lens, patches, cloud — symptom → fix.",
+    "troubleTag": "START HERE",
+    "docsTitle": "User documentation",
+    "docsText": "In-depth guides: installation, chat & lanes, image evidence & ARGUS, Engine operator, indexing, settings, glossary.",
+    "docsTag": "IN DEPTH",
+    "gettingStartedTitle": "Getting started",
+    "gettingStartedText": "Install Engine + extension in about five minutes — local-first path.",
+    "gettingStartedTag": "INSTALL · 5 MIN",
+    "faqTitle": "FAQ",
+    "faqText": "Short answers: deployment, privacy, Ollama, BYOK, Context Lens, access tiers.",
+    "faqTag": "QUICK ANSWERS",
+    "featuresTitle": "Features (v1.0)",
+    "featuresText": "Capability list: modes, lanes, image evidence, ARGUS, packs, quality map, glass-box routing.",
+    "featuresTag": "WHAT SHIPS",
+    "trustTitle": "Trust & deployment",
+    "trustText": "Local-first, shared on-prem server, BYOK, enterprise auth.",
+    "trustTag": "SECURITY · OPS",
+    "emailTitle": "Email support",
+    "emailTextAfter": "— we aim to reply within one business day.",
+    "emailTag": "ANIS@CONTEXTMINT.AI",
+    "issueTitle": "Report an issue",
+    "issueText": "GitHub issues for release builds — attach Engine support bundle when possible.",
+    "issueTag": "GITHUB"
+  },
+  "partner": {
+    "title": "Design partner support",
+    "textBefore": "Pilot teams receive a named channel to product engineering, help with security questionnaires, and a pilot summary for stakeholders. Apply via",
+    "designPartnersLink": "Design Partners",
+    "devTitle": "Developers",
+    "devTextBefore": "API and CLI (v1.0):",
+    "devCenterLink": "Developer center",
+    "devTextMid": ". MCP and graph tools:",
+    "roadmapLink": "roadmap",
+    "devTextMid2": ". REST overview:",
+    "apiRefLink": "API reference",
+    "devTextAfter": "."
+  },
+  "cta": {
+    "title": "Enterprise security review?",
+    "text": "We provide architecture summaries and deployment options for regulated teams."
+  }
 }

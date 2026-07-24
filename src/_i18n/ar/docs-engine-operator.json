@@ -1,4 +1,108 @@
 {
-  "title": "Engine Operator Guide | ContextMint Docs",
-  "description": "Operate ContextMint Engine — Overview, Server, Ollama, Models, Indexing, Quality, Knowledge, Logs, Settings, and support bundle."
+  "title": "دليل تشغيل Engine | توثيق ContextMint",
+  "description": "دليل تشغيل ContextMint Engine — نظرة عامة، والخادم، وOllama، والنماذج، والفهرسة، والجودة، والمعرفة، والسجلات، والإعدادات، وحزمة الدعم.",
+  "h1": "دليل تشغيل Engine",
+  "lead": "<strong>ContextMint Engine</strong> هو تطبيق شريط النظام على سطح المكتب الذي يدير خادم API الخاص بـ Python، وOllama، ومهام الفهرسة، وتشخيصات المشغّل. يستخدم المطوّرون VS Code للمحادثة اليومية؛ ويستخدم المشغّلون والقادة Engine للصحة والسعة.",
+  "lifecycle": {
+    "title": "شريط النظام ودورة التشغيل",
+    "items": [
+      "<strong>Start all</strong> — خادم API + Ollama (محلي أولاً)",
+      "<strong>Stop all</strong> — إيقاف تدريجي؛ تُظهر الإضافة حالة غير متصل",
+      "خيارات التشغيل التلقائي في الإعدادات (خدمة نظام التشغيل / تسجيل الدخول — حسب المنصة)"
+    ]
+  },
+  "overview": {
+    "title": "تبويب النظرة العامة",
+    "intro": "بطاقات سريعة:",
+    "items": [
+      "<strong>الجاهزية</strong> — الخادم، وOllama، وRedis (إن استُخدم)، وملاحظات طبقة البيانات",
+      "<strong>مساحات العمل</strong> — المستودعات المسجّلة، حالة الفهرسة، تفاصيل تؤدي إلى الفهرسة / الجودة",
+      "<strong>مسارات المحادثة (الجلسة)</strong> — أعداد تدفقات Repo / Work / Hybrid ومقاييس اقتراح مسار Work"
+    ]
+  },
+  "server": {
+    "title": "تبويب الخادم",
+    "items": [
+      "المنفذ وعنوان الربط (الافتراضي loopback)",
+      "إعادة تشغيل الخادم دون إغلاق Engine",
+      "رابط إلى <code>/api/health</code> لعرض بيانات الصحة الخام بصيغة JSON"
+    ]
+  },
+  "ollama": {
+    "title": "تبويب Ollama",
+    "items": [
+      "حالة التشغيل والرابط",
+      "إعادة تشغيل عملية Ollama",
+      "التشغيل الأول: رابط تثبيت إذا لم يُعثر على الملف التنفيذي"
+    ]
+  },
+  "models": {
+    "title": "تبويب النماذج",
+    "items": [
+      "النماذج المثبتة مقابل المتاحة للسحب",
+      "نموذج التضمين المستخدم للفهرسة (تغييره قد يتطلب إعادة فهرسة)",
+      "نموذج المحادثة الافتراضي للتوجيه المحلي",
+      "<strong>نماذج الرؤية</strong> — اسحب <code>moondream</code> أو <code>llava</code> أو <code>qwen2-vl</code> لأسئلة وأجوبة لقطات الشاشة وتدقيقات ARGUS"
+    ]
+  },
+  "indexing": {
+    "title": "تبويب الفهرسة",
+    "items": [
+      "تقدّم كل مساحة عمل، وعدد الملفات، والأخطاء",
+      "إعادة فهرسة يدوية / إجراءات تفعيل مساحة العمل",
+      "تفاصيل حالة الملفات على مستوى المستودعات الكبيرة"
+    ]
+  },
+  "quality": {
+    "title": "تبويب الجودة",
+    "items": [
+      "تشغيل فحوصات الجودة (التكرارات، الإشارات البنيوية)",
+      "تغذّي النتائج درج الحوكمة في VS Code",
+      "تقدّم الفحص للمستودعات طويلة التشغيل"
+    ]
+  },
+  "knowledge": {
+    "title": "تبويب المعرفة",
+    "before": "تصفّح سجلّات <strong>طبقة المعرفة</strong> وقت الفهرسة وتتبّع أحداث <strong>تدقيق النشاط</strong> المنقّحة — المكمّل التشغيلي لحوكمة VS Code. راجع",
+    "linkHref": "/docs/knowledge-and-governance.html",
+    "linkText": "المعرفة والحوكمة",
+    "after": "للاطلاع على أمثلة عملية، والاستمرارية (Structure غير محدودة زمنياً؛ تفترض واجهة Activity نافذة من 1 إلى 24 ساعة افتراضياً)، وقائمة تحقق لقطات الشاشة.",
+    "items": [
+      "<strong>Structure</strong> — المسارات، والخدمات، والمستندات، والأقسام، والسياسات؛ جدول قابل للبحث + معاينة رسم بياني",
+      "<strong>Activity</strong> — تتبّع سجل التدقيق JSONL (<code>governance_fast_path</code>، تدفقات المحادثة، الإجراءات)؛ تصدير JSON"
+    ]
+  },
+  "logs": {
+    "title": "تبويب السجلات",
+    "items": [
+      "تتبّع سجلات الخادم مع مرشّح النافذة الزمنية",
+      "استخدمه عند فشل المحادثة أو الفهرسة بشكل متقطع"
+    ]
+  },
+  "settings": {
+    "title": "تبويب الإعدادات",
+    "items": [
+      "مسار Python، ومسار حزمة الخلفية",
+      "تجاوز رابط الخادم، ورابط Ollama",
+      "إعدادات المشغّل المعكوسة من الإعدادات الافتراضية للخادم عند إتاحتها"
+    ]
+  },
+  "budget": {
+    "title": "ميزانية السياق",
+    "before": "افتح <strong>Context budget</strong> في تنقل Engine لضبط <code>max_context_tokens</code> (سقف شحن RAG) وتطبيق <code>max_gen_tokens</code> (طول الإجابة / <code>num_predict</code> في Ollama) معاً حسب فئة عتادك. تُحفظ القيم في <code>~/.contextmint/server.defaults.yaml</code>؛ <strong>أعد تشغيل الخادم</strong> بعد التطبيق.",
+    "linkBefore": "حساب التحجيم التفاعلي:",
+    "linkHref": "/docs/context-budget-calculator.html",
+    "linkText": "حاسبة ميزانية السياق"
+  },
+  "about": {
+    "title": "حول وحزمة الدعم",
+    "before": "صدّر <strong>حزمة دعم</strong> (الإصدارات، إعدادات منقّحة، السجلات الأخيرة) عند فتح",
+    "issuesLinkText": "مشكلات GitHub",
+    "emailBefore": "أو المراسلة عبر"
+  },
+  "footer": {
+    "before": "مشكلات:",
+    "href": "/support/troubleshooting.html#engine",
+    "text": "استكشاف الأخطاء ← المحرك والخادم"
+  }
 }

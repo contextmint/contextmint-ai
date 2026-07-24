@@ -1,4 +1,66 @@
 {
   "title": "Early Access | ContextMint",
-  "description": "Join ContextMint early access or design partner program — enterprise AI governance verification for engineering teams."
+  "description": "Join ContextMint early access or design partner program — enterprise AI governance verification for engineering teams.",
+  "hero": {
+    "pill": "GET ACCESS",
+    "title": "Join early access",
+    "leadBefore": "We are recruiting design partners for a 30-day evaluation pilot. Intake opens by start of September 2026;",
+    "leadStrong": "v1.0 ships end of August 2026",
+    "leadAfter": ". We are not publishing seat pricing until packaging is finalized with pilot buyers."
+  },
+  "cards": [
+    {
+      "name": "Early Access",
+      "tagline": "Individual engineers & small teams",
+      "price": "Waitlist",
+      "priceNote": "Local-first · ContextMint extension · Engine",
+      "features": [
+        { "text": "Context Lens — preview before inference" },
+        { "text": "Local hybrid search + chat" },
+        { "text": "Quality map governance findings" },
+        { "text": "Code stays on your device" }
+      ],
+      "ctaText": "Join Waitlist",
+      "ctaHref": "/request-demo.html"
+    },
+    {
+      "name": "Design Partner",
+      "tagline": "Platform & security teams",
+      "price": "Apply",
+      "priceNote": "Co-build structured pilots",
+      "features": [
+        { "text": "30-day evaluation pilot (extendable to 90)" },
+        { "before": "Local Engine ", "em": "or", "after": " shared on-prem server path review" },
+        { "text": "Security questionnaire assistance" },
+        { "text": "Direct product engineering access" },
+        { "before": "Influence ", "linkText": "roadmap priorities", "linkHref": "/roadmap.html", "after": "" }
+      ],
+      "ctaText": "Design partner details",
+      "ctaHref": "/design-partners.html"
+    },
+    {
+      "name": "Enterprise",
+      "tagline": "SSO · shared server · audit · air-gap",
+      "price": "Contact Sales",
+      "priceNote": "Annual agreement · pilot-led rollout",
+      "features": [
+        { "text": "Shared on-prem API server path (Docker / Helm) for regulated pilots" },
+        { "text": "SSO (OIDC) & workspace RBAC on the shared-server path" },
+        { "text": "Optional BYOK cloud routing with egress redaction (off by default)" },
+        { "text": "Security review & questionnaire support" },
+        { "before": "SOC 2 evidence packaging, air-gapped Helm, scorecards — ", "em": "roadmap", "after": "" }
+      ],
+      "ctaText": "Contact Sales",
+      "ctaHref": "/request-demo.html"
+    }
+  ],
+  "why": {
+    "title": "Why no public pricing?",
+    "textBefore": "AI governance and verification for enterprise engineering is priced on deployment model (local Engine per developer vs shared on-prem server), compliance requirements, and scale — not per-seat commodity SaaS. We will validate value with design partners, then publish tiers.",
+    "linkText": "Compare deployment models →"
+  },
+  "cta": {
+    "title": "Ready to explore fit?",
+    "text": "Tell us about your AI governance challenges and team size — we will recommend the right path."
+  }
 }

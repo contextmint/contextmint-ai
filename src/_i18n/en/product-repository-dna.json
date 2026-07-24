@@ -1,4 +1,51 @@
 {
   "title": "Repository DNA | ContextMint",
-  "description": "Repository DNA Report — understand any codebase in under five minutes with deterministic structure, ownership, and convention analysis."
+  "description": "Repository DNA Report — understand any codebase in under five minutes with deterministic structure, ownership, and convention analysis.",
+  "breadcrumbParent": "Product",
+  "breadcrumbCurrent": "Repository DNA",
+  "hero": {
+    "h1": "Repository DNA Report",
+    "leadStrong": "In plain terms:",
+    "leadBefore": "a one-page",
+    "leadEm": "health snapshot",
+    "leadAfter": "of any repo — structure, who owns what, hotspots, and conventions — so reviewers onboard in minutes, not weeks."
+  },
+  "banner": {
+    "badge": "Verification Engine",
+    "title": "DNA report productization on roadmap",
+    "message": "v1.0 readiness card and quality map cover overlapping signals today. The formal DNA report and Tier-1 adoption gate ship with the Verification Engine."
+  },
+  "metrics": [
+    { "value": "&lt; 5 min", "label": "To useful mental model" },
+    { "value": "1 click", "label": "From VS Code panel" },
+    { "value": "0 cloud", "label": "Deterministic on local index" }
+  ],
+  "whatYouGet": {
+    "title": "What you get",
+    "items": [
+      "Module and package topology map",
+      "CODEOWNERS and inferred ownership",
+      "Hot files and change-frequency signals",
+      "Detected conventions and learner proposals",
+      "Feature Lite mapping (entry points → features)"
+    ]
+  },
+  "diagram": {
+    "node": "Repository DNA Report",
+    "edges": [
+      "structure graph",
+      "ownership resolution",
+      "convention fingerprints",
+      "feature entry points",
+      "optional LLM narrative (opt-in)"
+    ]
+  },
+  "onboarding": {
+    "title": "First-day onboarding",
+    "text": "New engineers and AI agents start from the same truth. DNA is the front door to the Engineering Reality Graph — before blast radius, before merge review."
+  },
+  "cta": {
+    "title": "See DNA on your repository",
+    "text": "We will index a sample repo live and walk through the report."
+  }
 }

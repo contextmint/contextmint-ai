@@ -1,4 +1,48 @@
 {
   "title": "Developers | ContextMint",
-  "description": "ContextMint developer center — REST API and CLI for v1.0; MCP and graph tools on the roadmap."
+  "description": "ContextMint developer center — REST API and CLI for v1.0; MCP and graph tools on the roadmap.",
+  "hero": {
+    "pill": "DEVELOPERS",
+    "h1": "Build on engineering reality",
+    "leadStrong": "Today (v1.0):",
+    "leadBefore": "run the local API with",
+    "leadAfter": "and integrate via REST.",
+    "roadmapStrong": "Roadmap:",
+    "roadmapAfter": "MCP tools and a fuller CLI for blast radius, packs, and CI gates."
+  },
+  "cards": {
+    "api": {
+      "title": "API Reference",
+      "textBefore": "FastAPI backend — health, chat, search, packs, quality, and actions. OpenAPI at",
+      "textAfter": "when the server runs.",
+      "tag": "v1.0 · local server"
+    },
+    "cli": {
+      "title": "CLI",
+      "textBefore": "starts the API today. Index, health, and graph commands are planned for CI and platform automation.",
+      "tagLive": "serve available",
+      "tagRoadmap": "more commands roadmap"
+    },
+    "mcp": {
+      "title": "MCP Server",
+      "text": "Model Context Protocol tools for blast radius, features, and decisions — agent-native read contracts on the engineering graph.",
+      "tag": "roadmap · verification engine"
+    }
+  },
+  "quickstart": {
+    "title": "Quick start (v1.0)",
+    "comment1": "# Install extension + Engine — see getting started",
+    "comment2": "# Or from a dev checkout:",
+    "comment3": "# Verify health",
+    "fullSetup": "Full setup:",
+    "fullSetupLink": "Getting started",
+    "userDocs": "User docs:",
+    "userDocsLink": "Documentation",
+    "terminology": "Terminology:",
+    "terminologyLink": "Glossary"
+  },
+  "cta": {
+    "title": "Need integration support?",
+    "text": "Design partners get help wiring the local API and preview MCP contracts on the roadmap. Intake opens by start of September 2026."
+  }
 }

@@ -5,80 +5,54 @@ description: ContextMint REST API overview — v1.0 health, chat, search, packs,
 pageCss: product.css
 ---
 
+{% assign t = i18nPageStrings %}
+
 <header class="page-hero">
   <div class="container">
-    <nav class="breadcrumb"><a href="/developers/">Developers</a> / API Reference</nav>
-    <div class="pill">REST API</div>
-    <h1>API reference</h1>
+    <nav class="breadcrumb"><a href="{{ '/developers/' | locale_path: localePrefix }}">{{ t.breadcrumbParent }}</a> / {{ t.breadcrumbCurrent }}</nav>
+    <div class="pill">{{ t.hero.pill }}</div>
+    <h1>{{ t.hero.h1 }}</h1>
     <p class="lead">
-      FastAPI backend on loopback by default. OpenAPI schema at <span class="mono">/docs</span> when
-      <span class="mono">contextmint serve</span> or Engine is running.
+      {{ t.hero.leadBefore }} <span class="mono">/docs</span> {{ t.hero.leadMid }}
+      <span class="mono">contextmint serve</span> {{ t.hero.leadAfter }}
     </p>
   </div>
 </header>
 
 <section class="section">
   <div class="container container-narrow">
-    <h2 class="section-title">v1.0 — available today</h2>
-    <div class="card" style="margin-bottom: 12px;">
-      <code class="mono" style="color: var(--color-trust);">GET /api/health</code>
-      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">Server and dependency health check.</p>
+    <h2 class="section-title">{{ t.v1.title }}</h2>
+    {% for ep in t.v1.endpoints %}
+    <div class="card"{% unless forloop.last %} style="margin-bottom: 12px;"{% endunless %}>
+      <code class="mono" style="color: var(--color-trust);">{{ ep.method }} {{ ep.path }}</code>
+      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">{% if ep.descStrong %}<strong>{{ ep.descStrong }}</strong> {% endif %}{{ ep.desc }}{{ ep.descAfter }}</p>
     </div>
-    <div class="card" style="margin-bottom: 12px;">
-      <code class="mono" style="color: var(--color-trust);">GET /api/engine/status</code>
-      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">Engine session state — server, Ollama, readiness.</p>
-    </div>
-    <div class="card" style="margin-bottom: 12px;">
-      <code class="mono" style="color: var(--color-trust);">POST /api/v1/chat/stream</code>
-      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">Repo-aware chat with SSE; optional image attachments (multimodal).</p>
-    </div>
-    <div class="card" style="margin-bottom: 12px;">
-      <code class="mono" style="color: var(--color-trust);">POST /api/search</code>
-      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">Hybrid BM25 + vector retrieval with workspace scoping.</p>
-    </div>
-    <div class="card" style="margin-bottom: 12px;">
-      <code class="mono" style="color: var(--color-trust);">POST /api/argus/audit</code>
-      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;"><strong>ARGUS</strong> visual audit — structured UI findings (report only).</p>
-    </div>
-    <div class="card" style="margin-bottom: 12px;">
-      <code class="mono" style="color: var(--color-trust);">GET /api/packs/*</code>
-      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">Context pack builder, sync, and manifest APIs.</p>
-    </div>
-    <div class="card">
-      <code class="mono" style="color: var(--color-trust);">GET /api/quality/*</code>
-      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">Quality map scans, findings store, governance lens data.</p>
-    </div>
+    {% endfor %}
 
-    <h2 class="section-title" style="margin-top: 40px;">Verification Engine — roadmap</h2>
-    {% include "roadmap-planned-banner.html", badge: "Fabric APIs", title: "Graph verification endpoints planned", message: "These power blast radius, decision graph, and agent proposals — not required for v1.0 chat and quality map." %}
+    <h2 class="section-title" style="margin-top: 40px;">{{ t.roadmap.title }}</h2>
+    {% include "roadmap-planned-banner.html", badge: t.roadmap.banner.badge, title: t.roadmap.banner.title, message: t.roadmap.banner.message %}
 
-    <div class="card" style="margin-bottom: 12px;">
-      <code class="mono" style="color: var(--text-secondary);">GET /fabric/explain</code>
-      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;"><strong>Blast radius</strong> — impact paths with evidence (graph traversal, not LLM).</p>
+    {% for ep in t.roadmap.endpoints %}
+    <div class="card"{% unless forloop.last %} style="margin-bottom: 12px;"{% endunless %}>
+      <code class="mono" style="color: var(--text-secondary);">{{ ep.method }} {{ ep.path }}</code>
+      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">{% if ep.descStrong %}<strong>{{ ep.descStrong }}</strong> {% endif %}{{ ep.desc }}{{ ep.descAfter }}</p>
     </div>
-    <div class="card" style="margin-bottom: 12px;">
-      <code class="mono" style="color: var(--text-secondary);">POST /fabric/correct</code>
-      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">Human correction on graph edges — sets verification status.</p>
-    </div>
-    <div class="card">
-      <code class="mono" style="color: var(--text-secondary);">POST /fabric/propose</code>
-      <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">Queue proposed graph mutations for human review (agents).</p>
-    </div>
+    {% endfor %}
   </div>
 </section>
 
 <section class="section section--surface">
   <div class="container container-tight text-center">
-    <h2 class="section-title">Interactive docs</h2>
+    <h2 class="section-title">{{ t.interactive.title }}</h2>
     <p class="muted">
-      Start the server and open Swagger UI for the full v1.0 schema.
+      {{ t.interactive.text }}
     </p>
     <div class="code-block" style="text-align: left; max-width: 480px; margin: 0 auto;">
       contextmint serve<br />
-      <span class="cm"># → http://localhost:8000/docs</span>
+      <span class="cm">{{ t.interactive.comment }}</span>
     </div>
     <p class="muted" style="margin-top: 20px; margin-bottom: 0;">
-      Terms: <a href="/docs/glossary.html" style="color: var(--color-link);">Glossary</a>
+      {{ t.interactive.terms }} <a href="{{ '/docs/glossary.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.interactive.termsLink }}</a>
     </p>
   </div>
 </section>

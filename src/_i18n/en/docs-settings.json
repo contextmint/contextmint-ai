@@ -1,4 +1,131 @@
 {
   "title": "Settings Reference | ContextMint Docs",
-  "description": "Complete ContextMint settings — VS Code extension (contextmint.*) and API server (contextmint.defaults.yaml), with defaults, usage guides, and rollout notes."
+  "description": "Complete ContextMint settings — VS Code extension (contextmint.*) and API server (contextmint.defaults.yaml), with defaults, usage guides, and rollout notes.",
+  "h1": "Settings reference",
+  "lead": "Choose a surface below. Server keys live in <code>contextmint.defaults.yaml</code> (overlay at <code>~/.contextmint/server.defaults.yaml</code>) — edit in <strong>Engine → Server config</strong> and restart the API. VS Code keys are <code>contextmint.*</code> in Settings or <code>settings.json</code>.",
+  "tabs": {
+    "server": {
+      "label": "Server settings",
+      "keysSuffix": "keys",
+      "hint": "EOP, retrieval, indexing, ARGUS…"
+    },
+    "vscode": {
+      "label": "VS Code settings",
+      "keysSuffix": "keys",
+      "hint": "Chat, lanes, Context Lens, packs…"
+    }
+  },
+  "engineModeCallout": {
+    "before": "<strong>Engine mode (default):</strong> use",
+    "after": "in VS Code. API server tunables in <strong>Engine → Server config</strong> · desktop prefs in <strong>Engine → Settings</strong>."
+  },
+  "server": {
+    "searchLabel": "Search server settings",
+    "searchPlaceholder": "Filter by key or description…",
+    "metaLoadedBefore": "Generated",
+    "metaLoadedFrom": "from",
+    "metaLoadedOverlay": "· overlay",
+    "metaLoadedLinks": {
+      "calculatorLink": "Context budget calculator",
+      "operatorLink": "Engine operator guide"
+    },
+    "metaMissing": "Server catalog not loaded — run <span class=\"mono\">npm run gen:settings</span> in <span class=\"mono\">contextmint-ai/</span>.",
+    "missingCatalogFull": "<strong>Server settings missing from this build.</strong> Run <code>npm run gen:settings</code> in <code>contextmint-ai/</code> and commit <code>src/_data/serverChatSettings.json</code> before deploying.",
+    "planReferenceLabel": "Optional graph plan:",
+    "planReferenceMeta": "reference",
+    "planDeclaredIn": "Declared in",
+    "planIntent": "· intent",
+    "usageGuideMeta": "rollout guide",
+    "usageGuideSubheads": {
+      "rolloutScenarios": "Rollout scenarios",
+      "scenarioColumn": "Scenario",
+      "dependencies": "Dependencies",
+      "howToCheck": "How to check"
+    },
+    "usageGuideTipsLabel": "Tips",
+    "usage": {
+      "narration": {
+        "title": "Evidence narration &amp; clarification",
+        "meta": "11 operator keys",
+        "intro": "Controls citation-bound LLM narration on sanitized excerpts, clarification recovery when evidence is insufficient, and the final honest stop after max clarification turns. See master plan §6.1 in <span class=\"mono\">documentation/CONTEXTMINT-EVIDENCE-NARRATION-MASTER-PLAN.md</span>.",
+        "tableHeaders": ["Key", "Default", "Operator", "When to change", "Restart"],
+        "rows": [
+          { "key": "chat.narration_enabled", "default": "true", "operator": "yes", "whenToChange": "Disable to force fact templates only on meaning-intent questions", "restart": "yes" },
+          { "key": "chat.narration_max_excerpts", "default": "8", "operator": "yes", "whenToChange": "Lower on T0/T1 tiers to reduce narration latency", "restart": "yes" },
+          { "key": "chat.narration_max_tokens", "default": "1024", "operator": "yes", "whenToChange": "Raise briefly for long architecture answers on T2+", "restart": "yes" },
+          { "key": "chat.narration_timeout_ms", "default": "15000", "operator": "yes", "whenToChange": "Raise on CPU-only hosts when narration times out", "restart": "yes" },
+          { "key": "chat.narration_require_citations", "default": "true", "operator": "yes", "whenToChange": "Keep true in production — rejects uncited narration", "restart": "yes" },
+          { "key": "chat.fact_template_only_when_no_meaning_intent", "default": "true", "operator": "yes", "whenToChange": "When true, skip narration LLM when query has no role/behavior intent", "restart": "yes" },
+          { "key": "chat.clarification_enabled", "default": "true", "operator": "yes", "whenToChange": "Disable only when you want immediate insufficient stop with no follow-up ask", "restart": "yes" },
+          { "key": "chat.clarification_max_turns", "default": "2", "operator": "yes", "whenToChange": "Raise for dogfood UAT; lower for stricter production UX", "restart": "yes" },
+          { "key": "chat.clarification_merge_entity_terms", "default": "true", "operator": "yes", "whenToChange": "Keep true so user replies boost obligation entity grep", "restart": "yes" },
+          { "key": "chat.insufficient_evidence_enabled", "default": "true", "operator": "yes", "whenToChange": "Disable only for internal harnesses that expect silent failure", "restart": "yes" },
+          { "key": "chat.insufficient_evidence_partial_facts_allowed", "default": "false", "operator": "yes", "whenToChange": "Keep false when meaning intent is present — avoids misleading role text", "restart": "yes" }
+        ],
+        "footerBefore": "Edit in <strong>Engine → Server config</strong> under",
+        "footerLink": "Evidence narration &amp; clarification"
+      },
+      "retrieval": {
+        "title": "Retrieval / tracing (manual UAT)",
+        "meta": "10 operator keys",
+        "intro": "Decision audit for repo-lane structural turns — ordered steps with inputs, outputs, and reasons. Export writes <span class=\"mono\">retrieval-trace-*.json</span> under the operator-configured folder (<span class=\"mono\">retrieval.trace_export_dir</span>, default <span class=\"mono\">documentation/evidence</span>). Path is never hardcoded in product code. Pair with <span class=\"mono\">context-receipt-*.json</span> from the same folder. See master plan §6.1b (Retrieval &amp; evidence decision trace) in <span class=\"mono\">documentation/CONTEXTMINT-EVIDENCE-NARRATION-MASTER-PLAN.md</span>.",
+        "tableHeaders": ["Key", "Default", "Operator", "When to change", "Restart"],
+        "rows": [
+          { "key": "retrieval.trace_enabled", "default": "true", "operator": "yes", "whenToChange": "Disable on shared servers when not debugging routing", "restart": "yes" },
+          { "key": "retrieval.trace_export_enabled", "default": "false", "operator": "yes", "whenToChange": "Enable during manual UAT to write trace JSON files", "restart": "yes" },
+          { "key": "retrieval.trace_export_dir", "default": "documentation/evidence", "operator": "yes", "whenToChange": "Point to a writable folder for retrieval-trace-*.json exports", "restart": "yes" },
+          { "key": "retrieval.trace_include_query", "default": "true", "operator": "yes", "whenToChange": "Set false before sharing logs externally (redacts query text)", "restart": "yes" },
+          { "key": "retrieval.trace_max_field_chars", "default": "500", "operator": "yes", "whenToChange": "Raise briefly when debugging excerpt selection; bounds 100–8000", "restart": "yes" },
+          { "key": "retrieval.trace_include_pipeline_inputs", "default": "true", "operator": "yes", "whenToChange": "Disable to shrink trace size when only high-level phases matter", "restart": "yes" },
+          { "key": "retrieval.trace_include_evidence_detail", "default": "true", "operator": "yes", "whenToChange": "Disable when trace JSON is too large — keeps phase rows only", "restart": "yes" },
+          { "key": "retrieval.trace_include_llm_io", "default": "true", "operator": "yes", "whenToChange": "Set false before sharing logs — redacts raw LLM prompt/response", "restart": "yes" },
+          { "key": "retrieval.trace_llm_io_max_chars", "default": "8000", "operator": "yes", "whenToChange": "Lower to cap LLM I/O in trace exports; bounds 500–64000", "restart": "yes" },
+          { "key": "retrieval.trace_evidence_preview_chars", "default": "400", "operator": "yes", "whenToChange": "Lower to shrink excerpt previews in trace JSON; bounds 80–4000", "restart": "yes" }
+        ],
+        "footerBefore": "Edit in <strong>Engine → Server config</strong> under",
+        "footerLink": "Retrieval, expand &amp; infer",
+        "footerAfter": ", or in <span class=\"mono\">~/.contextmint/server.defaults.yaml</span>."
+      },
+      "liveProgress": {
+        "title": "Live pipeline progress (SSE)",
+        "meta": "5 operator keys",
+        "intro": "Optional real-time <span class=\"mono\">pipeline_progress</span> SSE events during chat retrieval so the VS Code extension live timeline can show what the server is doing while the user waits. <strong>Off by default</strong> until RT-VIEW dogfood. Enable <span class=\"mono\">retrieval.live_progress_enabled</span> on the API host — the extension renders events when the server emits them (no separate extension toggle). See <span class=\"mono\">documentation/REALTIME-SERVER-VIEW-EXTENSION-PLAN.md</span> and <span class=\"mono\">documentation/IC-PAUSE-UX-RT-VIEW-ARCHITECTURE-PLAN.md</span>.",
+        "tableHeaders": ["Key", "Default", "Operator", "When to change", "Restart"],
+        "rows": [
+          { "key": "retrieval.live_progress_enabled", "default": "false", "operator": "yes", "whenToChange": "Enable for RT-VIEW dogfood / demos (extension timeline already ships)", "restart": "yes" },
+          { "key": "retrieval.live_progress_granularity", "default": "summary", "operator": "yes", "whenToChange": "Use <span class=\"mono\">stage</span> or <span class=\"mono\">verbose</span> for deeper debugging", "restart": "yes" },
+          { "key": "retrieval.live_progress_max_events_per_turn", "default": "40", "operator": "yes", "whenToChange": "Lower on noisy workspaces; raise only with verbose granularity", "restart": "yes" },
+          { "key": "retrieval.live_progress_include_paths", "default": "true", "operator": "yes", "whenToChange": "Set false in demos where file paths should not appear in the timeline", "restart": "yes" },
+          { "key": "retrieval.live_progress_min_interval_ms", "default": "100", "operator": "yes", "whenToChange": "Raise to throttle rapid duplicate phase updates in verbose mode", "restart": "yes" }
+        ],
+        "footerBefore": "Edit in <strong>Engine → Server config</strong> under",
+        "footerLink": "Retrieval, expand &amp; infer"
+      }
+    }
+  },
+  "tableChrome": {
+    "key": "Key",
+    "default": "Default",
+    "description": "Description",
+    "settingLabel": "Setting",
+    "usageGuideLabel": "Usage guide",
+    "operatorBadge": "operator",
+    "deprecatedBadge": "engine-managed"
+  },
+  "vscode": {
+    "searchLabel": "Search VS Code settings",
+    "searchPlaceholder": "Filter by setting name or description…",
+    "metaBefore": "Generated",
+    "metaFrom": "from",
+    "metaAfter": "Engine desktop prefs (<code>~/.contextmint/engine/settings.yaml</code>) are in",
+    "metaLink": "Engine operator guide",
+    "metaSuffix": "— not listed here.",
+    "retrievalGuideMeta": "guide"
+  },
+  "footer": {
+    "problemsBefore": "Problems:",
+    "problemsLink": "Troubleshooting → Extension",
+    "byokLink": "BYOK &amp; enterprise",
+    "glossaryLink": "Glossary"
+  }
 }

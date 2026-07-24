@@ -4,71 +4,62 @@ title: Terms of Service | ContextMint
 description: ContextMint terms of service for website, extension, and platform usage.
 ---
 
+{% assign t = i18nPageStrings %}
+
 <header class="page-hero">
   <div class="container">
-    <h1>Terms of Service</h1>
-    <p class="lead">Last updated: June 2026</p>
+    <h1>{{ t.hero.title }}</h1>
+    <p class="lead">{{ t.hero.lead }}</p>
   </div>
 </header>
 
 <section class="section">
   <div class="container container-tight legal">
-    <h2>Agreement</h2>
+    <h2>{{ t.agreement.title }}</h2>
     <p>
-      By accessing contextmint.ai, installing ContextMint software, or using ContextMint services, you agree
-      to these Terms. If you use the service on behalf of an organization, you represent that you
-      have authority to bind that organization.
+      {{ t.agreement.text }}
     </p>
 
-    <h2>Service description</h2>
+    <h2>{{ t.service.title }}</h2>
     <p>
-      ContextMint provides engineering intelligence software including repository analysis, graph-based
-      verification, and IDE integration. The default deployment is local-first; optional BYOK cloud
-      routing and team sync features vary by subscription tier.
+      {{ t.service.text }}
     </p>
 
-    <h2>Acceptable use</h2>
+    <h2>{{ t.acceptableUse.title }}</h2>
     <ul>
-      <li>Use the service only for lawful purposes and in compliance with applicable regulations</li>
-      <li>Do not attempt to bypass security, RBAC, or rate limits</li>
-      <li>Do not reverse-engineer or resell the service without written agreement</li>
-      <li>You retain ownership of your code; we claim no intellectual property rights in your repositories</li>
+      {% for item in t.acceptableUse.items %}
+      <li>{{ item }}</li>
+      {% endfor %}
     </ul>
 
-    <h2>Subscriptions and billing</h2>
+    <h2>{{ t.billing.title }}</h2>
     <p>
-      Paid tiers are billed per the pricing page. Trials convert to paid unless cancelled before the
-      trial end date. Refunds are handled per your enterprise agreement or applicable consumer law.
+      {{ t.billing.text }}
     </p>
 
-    <h2>Disclaimer</h2>
+    <h2>{{ t.disclaimer.title }}</h2>
     <p>
-      ContextMint provides verification assistance and evidence — not a guarantee of correctness.
-      Final merge and deployment decisions remain your responsibility. The service is provided
-      &ldquo;as is&rdquo; to the extent permitted by law.
+      {{ t.disclaimer.text }}
     </p>
 
-    <h2>Limitation of liability</h2>
+    <h2>{{ t.liability.title }}</h2>
     <p>
-      To the maximum extent permitted by law, ContextMint shall not be liable for indirect,
-      incidental, or consequential damages arising from use of the service.
+      {{ t.liability.text }}
     </p>
 
-    <h2>Governing law</h2>
+    <h2>{{ t.governingLaw.title }}</h2>
     <p>
-      These Terms are governed by the laws of England and Wales. Disputes shall be subject to the
-      exclusive jurisdiction of the courts of England and Wales.
+      {{ t.governingLaw.text }}
     </p>
 
-    <h2>Contact</h2>
+    <h2>{{ t.contact.title }}</h2>
     {% if site.emailVisible %}
     <p>
       {% include "email-link.html", address: site.legalEmail %}
     </p>
     {% else %}
     <p class="muted">
-      Legal contact email will be published when our inbox is live.
-      For product support, open a <a href="{{ site.issuesUrl }}" style="color: var(--color-link);">GitHub issue</a>.
+      {{ t.contact.pendingBefore }} <a href="{{ site.issuesUrl }}" style="color: var(--color-link);">{{ t.contact.issuesLink }}</a>{{ t.contact.pendingAfter }}
     </p>
     {% endif %}
   </div>

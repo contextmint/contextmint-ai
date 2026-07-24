@@ -5,16 +5,18 @@ description: Platform engineering with ContextMint — context packs, local Engi
 pageCss: product.css
 ---
 
+{% assign t = i18nPageStrings %}
+
 <header class="page-hero">
   <div class="container">
-    <nav class="breadcrumb"><a href="/solutions/">Solutions</a> / Platform Engineering</nav>
-    <div class="pill">PLATFORM · DEVOPS</div>
-    <h1>Decision-control in every developer IDE</h1>
+    <nav class="breadcrumb"><a href="{{ '/solutions/' | locale_path: localePrefix }}">{{ t.breadcrumbParent }}</a> / {{ t.breadcrumbCurrent }}</nav>
+    <div class="pill">{{ t.hero.pill }}</div>
+    <h1>{{ t.hero.title }}</h1>
     <p class="lead">
-      <strong>v1.0 (end of August 2026):</strong> context packs and local-first Engine in the IDE,
-      with human gates before inference and apply.
-      <strong>Roadmap:</strong> CI/CD deployment graph, MCP agent tools, and PR verification on the
-      Verification Engine.
+      <strong>{{ t.hero.leadStrong1 }}</strong>
+      {{ t.hero.leadMid }}
+      <strong>{{ t.hero.leadStrong2 }}</strong>
+      {{ t.hero.leadAfter }}
     </p>
   </div>
 </header>
@@ -22,21 +24,21 @@ pageCss: product.css
 <section class="section">
   <div class="container container-narrow split">
     <div>
-      <h2>CI/CD &amp; deployment graph <span class="roadmap-status roadmap-status--planned">Roadmap</span></h2>
-      <p>Trace code → feature → deployment → incident. Connect pipeline metadata to the engineering graph.</p>
+      <h2>{{ t.cards[0].title }} <span class="roadmap-status roadmap-status--planned">{{ t.badges.roadmap }}</span></h2>
+      <p>{{ t.cards[0].text }}</p>
       <ul class="check-list">
-        <li>Deployment nodes linked to services</li>
-        <li>Impact queries span runtime and code</li>
-        <li>Graph correctness gates before product claims</li>
+        {% for item in t.cards[0].items %}
+        <li>{{ item }}</li>
+        {% endfor %}
       </ul>
     </div>
     <div>
-      <h2>Context packs <span class="roadmap-status roadmap-status--available">v1.0</span></h2>
-      <p>Per-repo <span class="mono">manifest.yaml</span> + markdown knowledge injected into chat. Auto-sync on index bump.</p>
+      <h2>{{ t.cards[1].title }} <span class="roadmap-status roadmap-status--available">v1.0</span></h2>
+      <p>{{ t.cards[1].text }}</p>
       <ul class="check-list">
-        <li>@pack:name in VS Code chat</li>
-        <li>Pack builder API for platform teams</li>
-        <li>Versioned with repo generation</li>
+        {% for item in t.cards[1].items %}
+        <li>{{ item }}</li>
+        {% endfor %}
       </ul>
     </div>
   </div>
@@ -44,27 +46,23 @@ pageCss: product.css
 
 <section class="section section--surface">
   <div class="container container-narrow">
-    <h2 class="section-title">Deploy in your IDP</h2>
+    <h2 class="section-title">{{ t.deploy.title }}</h2>
     <p class="muted">
-      <strong>Default:</strong> developers run ContextMint Engine locally — sovereign, no shared server.
-      <strong>Regulated pilots</strong> can deploy a shared on-prem API server (Docker / Helm) for teams
-      that index a mounted monorepo or use VS Code Remote SSH. The extension connects via
-      <code>serverUrl</code> + OIDC — platform ops owns mounts, auth, and path alignment.
-      <a href="/trust.html" style="color: var(--color-link);">Deployment models →</a>
+      <strong>{{ t.deploy.defaultStrong }}</strong> {{ t.deploy.defaultText }}
+      <strong>{{ t.deploy.pilotStrong }}</strong> {{ t.deploy.pilotText }}
+      <a href="{{ '/trust.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.deploy.linkText }}</a>
     </p>
   </div>
 </section>
 
 <section class="section">
   <div class="container container-tight text-center">
-    <h2 class="section-title">PR gate for AI-generated code <span class="roadmap-status roadmap-status--planned">Roadmap</span></h2>
+    <h2 class="section-title">{{ t.prGate.title }} <span class="roadmap-status roadmap-status--planned">{{ t.badges.roadmap }}</span></h2>
     <p class="muted">
-      After v1.0, the Verification Engine direction targets ownership, blast radius, ADR, and
-      policy checks on pull requests — with evidence attached. That is <strong>not</strong> in the
-      August GA package. Today: Context Lens, quality map, and patch preview in the IDE.
+      {{ t.prGate.textBefore }} <strong>{{ t.prGate.textStrong }}</strong> {{ t.prGate.textAfter }}
     </p>
-    <a class="btn btn-secondary" href="/product/">Verification Engine vision</a>
-    <a class="btn btn-primary" href="/features.html" style="margin-left: 8px;">v1.0 features</a>
+    <a class="btn btn-secondary" href="{{ '/product/' | locale_path: localePrefix }}">{{ t.prGate.cta1 }}</a>
+    <a class="btn btn-primary" href="{{ '/features.html' | locale_path: localePrefix }}" style="margin-left: 8px;">{{ t.prGate.cta2 }}</a>
   </div>
 </section>
 

@@ -1,4 +1,69 @@
 {
   "title": "Agent Governance | ContextMint",
-  "description": "Agent governance (roadmap) — MCP read tools, RBAC, policy engine, and no silent writes for AI coding agents."
+  "description": "Agent governance (roadmap) — MCP read tools, RBAC, policy engine, and no silent writes for AI coding agents.",
+  "breadcrumbParent": "Product",
+  "breadcrumbCurrent": "Agent Governance",
+  "hero": {
+    "h1": "Agent Governance",
+    "leadStrong": "Planned for the Verification Engine.",
+    "leadBefore": "Let AI agents read engineering facts through",
+    "linkText": "MCP tools",
+    "linkHref": "/developers/mcp-server.html",
+    "leadAfter": "under role-based access — while every write still requires human-reviewed patch preview (Gate 2)."
+  },
+  "banner": {
+    "badge": "Roadmap",
+    "title": "Agent MCP layer not in v1.0",
+    "message": "v1.0 already enforces human gates in the IDE: Context Lens (Gate 1) and patch preview (Gate 2). Agent-specific MCP and RBAC ship with the graph verification wave."
+  },
+  "whatIs": {
+    "title": "What is agent governance?",
+    "intro": "When coding agents act on your repo, governance answers:",
+    "q1": "what may they read?",
+    "q2": "what may they propose?",
+    "q3": "who must approve writes?",
+    "sep1": ",",
+    "sep2": ", and",
+    "modelBefore": "ContextMint&apos;s model: agents get",
+    "modelEm": "read tools",
+    "modelMid": "on the engineering graph; mutations queue as proposals — never silent",
+    "modelMono": "auto_applied",
+    "modelAfter": "on your main branch."
+  },
+  "mcpTools": {
+    "title": "Planned MCP tools (read)",
+    "comment": "# Target tool surface (read-only)",
+    "tools": [
+      { "name": "get_blast_radius", "args": "(target)", "desc": "impacted services + evidence paths" },
+      { "name": "get_feature", "args": "(name)", "desc": "feature registry entry" },
+      { "name": "get_decision", "args": "(id)", "desc": "decision / ADR graph trace" },
+      { "name": "get_trace", "args": "(deployment)", "desc": "CI/CD path (enterprise, later)" }
+    ],
+    "mcpStrong": "MCP",
+    "mcpAfter": "= Model Context Protocol — a standard for agents to call typed tools. See",
+    "glossaryLinkText": "Glossary → MCP",
+    "glossaryLinkHref": "/docs/glossary.html#mcp"
+  },
+  "split": {
+    "policy": {
+      "title": "Policy engine",
+      "items": [
+        { "text": "One policy module for agents, assisted actions, and scorecards" },
+        { "text": "Custom rules (ownership, PCI boundaries, blast thresholds)" },
+        { "before": "Responses validate against ", "mono": "AgentContextContract", "after": " JSON schema" }
+      ]
+    },
+    "safety": {
+      "title": "Safety defaults",
+      "items": [
+        "No auto-apply on main workspace until execution gates pass",
+        "Graph proposals queue for human approval",
+        "Audit trail for agent propose events"
+      ]
+    }
+  },
+  "cta": {
+    "title": "Govern agents before they govern your repo",
+    "text": "Walk through MCP contracts and RBAC on a design-partner roadmap session."
+  }
 }

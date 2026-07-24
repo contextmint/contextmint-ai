@@ -1,4 +1,47 @@
 {
   "title": "Terms of Service | ContextMint",
-  "description": "ContextMint terms of service for website, extension, and platform usage."
+  "description": "ContextMint terms of service for website, extension, and platform usage.",
+  "hero": {
+    "title": "Terms of Service",
+    "lead": "Last updated: June 2026"
+  },
+  "agreement": {
+    "title": "Agreement",
+    "text": "By accessing contextmint.ai, installing ContextMint software, or using ContextMint services, you agree to these Terms. If you use the service on behalf of an organization, you represent that you have authority to bind that organization."
+  },
+  "service": {
+    "title": "Service description",
+    "text": "ContextMint provides engineering intelligence software including repository analysis, graph-based verification, and IDE integration. The default deployment is local-first; optional BYOK cloud routing and team sync features vary by subscription tier."
+  },
+  "acceptableUse": {
+    "title": "Acceptable use",
+    "items": [
+      "Use the service only for lawful purposes and in compliance with applicable regulations",
+      "Do not attempt to bypass security, RBAC, or rate limits",
+      "Do not reverse-engineer or resell the service without written agreement",
+      "You retain ownership of your code; we claim no intellectual property rights in your repositories"
+    ]
+  },
+  "billing": {
+    "title": "Subscriptions and billing",
+    "text": "Paid tiers are billed per the pricing page. Trials convert to paid unless cancelled before the trial end date. Refunds are handled per your enterprise agreement or applicable consumer law."
+  },
+  "disclaimer": {
+    "title": "Disclaimer",
+    "text": "ContextMint provides verification assistance and evidence — not a guarantee of correctness. Final merge and deployment decisions remain your responsibility. The service is provided \u201cas is\u201d to the extent permitted by law."
+  },
+  "liability": {
+    "title": "Limitation of liability",
+    "text": "To the maximum extent permitted by law, ContextMint shall not be liable for indirect, incidental, or consequential damages arising from use of the service."
+  },
+  "governingLaw": {
+    "title": "Governing law",
+    "text": "These Terms are governed by the laws of England and Wales. Disputes shall be subject to the exclusive jurisdiction of the courts of England and Wales."
+  },
+  "contact": {
+    "title": "Contact",
+    "pendingBefore": "Legal contact email will be published when our inbox is live. For product support, open a",
+    "issuesLink": "GitHub issue",
+    "pendingAfter": "."
+  }
 }

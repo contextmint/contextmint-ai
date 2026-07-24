@@ -1,4 +1,51 @@
 {
   "title": "CLI | ContextMint",
-  "description": "ContextMint CLI — contextmint serve for v1.0; extended graph and CI commands on the roadmap."
+  "description": "ContextMint CLI — contextmint serve for v1.0; extended graph and CI commands on the roadmap.",
+  "breadcrumbParent": "Developers",
+  "breadcrumbCurrent": "CLI",
+  "hero": {
+    "pill": "COMMAND LINE",
+    "h1": "ContextMint CLI",
+    "availableStrong": "Available today:",
+    "availableAfter": "starts the FastAPI backend.",
+    "mostOperatorsBefore": "Most operators use",
+    "mostOperatorsStrong": "ContextMint Engine",
+    "mostOperatorsAfter": "(tray app) for lifecycle instead of raw CLI.",
+    "extendedBefore": "Extended automation commands are on the",
+    "roadmapLink": "roadmap",
+    "extendedAfter": "."
+  },
+  "shipped": {
+    "title": "Shipped in v1.0",
+    "comment1": "# Start API server (default port 8000)",
+    "comment2": "# Custom host / port / debug reload",
+    "items": [
+      { "before": "Registered console script in the Python package (", "mono": "pyproject.toml", "after": ")" },
+      { "text": "Engine supervisor wraps the same entry for managed installs" },
+      { "before": "Lifecycle (start/stop Ollama, updates) → ", "strong": "Engine desktop", "mid": " or ", "mono": "python -m engine.supervisor.main", "after": "" }
+    ]
+  },
+  "planned": {
+    "title": "Planned commands (roadmap)",
+    "banner": {
+      "badge": "Not shipped",
+      "title": "Examples below are target design",
+      "message": "Do not run these in v1.0 — they will ship with Enterprise CLI packaging and the Verification Engine."
+    },
+    "comment1": "# Planned — health probe for CI",
+    "comment2": "# Planned — trigger workspace reindex",
+    "comment3": "# Planned — blast radius JSON for gates",
+    "comment4": "# Planned — vector store migration (sovereign server)",
+    "comment5": "# Planned — build context pack from terminal",
+    "footBefore": "Blast radius",
+    "footMid": "= downstream impact map if a file or service changes — see",
+    "footLink1": "Blast radius",
+    "footOr": "or",
+    "footLink2": "Glossary",
+    "footAfter": "."
+  },
+  "cta": {
+    "title": "CLI early access",
+    "text": "Design partners will pilot Engine + serve first; request preview access when extended CLI ships. Design partner intake opens by start of September 2026."
+  }
 }

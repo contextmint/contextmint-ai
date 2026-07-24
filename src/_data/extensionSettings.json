@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-22",
+  "generatedAt": "2026-07-24",
   "source": "extensions/contextmint-vscode/package.json",
   "totalCount": 149,
   "operatorKeys": [
@@ -1844,14 +1844,14 @@
         },
         {
           "id": "contextmint.inline.enabled",
-          "description": "Enable local inline ghost-text completion — code FIM and prose/sentence (requires inline backend).",
-          "default": "true",
+          "description": "Enable local inline ghost-text completion — code FIM and prose/sentence (requires inline backend). Off until PO default-on after GATE-IC-RT / G7.",
+          "default": "false",
           "deprecated": false,
           "operator": false,
           "type": "boolean",
           "usage": {
-            "whenEnable": "When true — Enable local inline ghost-text completion — code FIM and prose/sentence (requires inline backend).",
-            "whenDisable": "When false — enable local inline ghost-text completion — code FIM and prose/sentence (requires inline backend).",
+            "whenEnable": "When true — Enable local inline ghost-text completion — code FIM and prose/sentence (requires inline backend). Off until PO default-on after GATE-IC-RT / G7.",
+            "whenDisable": "When false — enable local inline ghost-text completion — code FIM and prose/sentence (requires inline backend). Off until PO default-on after GATE-IC-RT / G7.",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
               "Applies on next chat send or webview reload — no server restart for most keys"

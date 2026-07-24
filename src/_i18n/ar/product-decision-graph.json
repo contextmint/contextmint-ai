@@ -1,4 +1,51 @@
 {
   "title": "Decision Graph | ContextMint",
-  "description": "Institutional memory via decision graph — trace why conventions exist from ADRs, PRs, and issues to code with evidence."
+  "description": "ميزة Decision Graph — ذاكرة مؤسسية قائمة على الأدلة، تُمكّنك من تتبّع أسباب اعتماد المعايير والقرارات، وربط سجلات قرارات الهندسة (ADRs)، وطلبات الدمج (PRs)، وقضايا التطوير (Issues) بالشيفرة المصدرية.",
+  "breadcrumbParent": "المنتج",
+  "breadcrumbCurrent": "Decision Graph",
+  "hero": {
+    "h1": "رسم القرارات البياني (Decision Graph)",
+    "leadStrong": "بعبارة بسيطة:",
+    "leadBefore": "اعرف",
+    "leadEm": "لماذا",
+    "leadAfter": "يعمل الكود بهذه الطريقة — سجلات قرارات (ADRs)، وطلبات دمج معتمدة، وقضايا مرتبطة بالملفات التي تؤثر فيها، مع حالة تحقق على كل ادّعاء."
+  },
+  "banner": {
+    "badge": "Verification Engine",
+    "title": "رسم القرارات البياني الكامل ضمن خارطة الطريق",
+    "message": "يلتقط v1.0 المعايير ونتائج الجودة. أما الربط المؤسسي بين سجلات القرارات (ADR) والكود على نطاق واسع فيُطرح مع Verification Engine."
+  },
+  "diagram": {
+    "node": "ADR-12: البنية القائمة على الأحداث للطلبات",
+    "edges": [
+      "implemented_by ─► checkout/order_events.py",
+      "referenced_in ─► PR #1847 (معتمد)",
+      "supersedes ─► ADR-08 (نمط متروك)"
+    ],
+    "status": "verification_status: verified",
+    "evidence": "evidence_ledger: 3 مصادر"
+  },
+  "split": {
+    "pipeline": {
+      "title": "خط استخراج الأدلة",
+      "items": [
+        "تحليل سجلات القرارات (ADR) وملف decisions.md بشكل حتمي",
+        "ربط مراجع طلبات الدمج والقضايا كأدلة",
+        "مساعدة النموذج اللغوي فقط في الاستخراجات الغامضة",
+        "تصحيح بشري عبر POST /fabric/correct"
+      ]
+    },
+    "outcomes": {
+      "title": "النتائج",
+      "items": [
+        "الإجابة على «لماذا يعمل X بهذه الطريقة؟» خلال ثوانٍ",
+        "إعداد المهندسين الجدد دون الاعتماد على النقل الشفهي",
+        "استشهاد الوكلاء بعُقد المعرفة في ردود المحادثة"
+      ]
+    }
+  },
+  "cta": {
+    "title": "توقف عن فقدان السياق المعماري",
+    "text": "اطّلع على مسارات القرارات المرتبطة بالملفات التي يغيّرها فريقك كل يوم."
+  }
 }

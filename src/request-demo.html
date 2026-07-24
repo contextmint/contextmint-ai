@@ -6,17 +6,18 @@ pageCss: product.css
 pageJs: form.js
 ---
 
+{% assign t = i18nPageStrings %}
+
 <header class="page-hero">
   <div class="container">
-    <div class="pill">DEMO</div>
-    <h1>Discuss your AI governance challenges</h1>
+    <div class="pill">{{ t.hero.pill }}</div>
+    <h1>{{ t.hero.title }}</h1>
     <p class="lead">
-      Buyers care about outcomes — not architecture reviews. Tell us about your stack and constraints;
-      we will schedule a focused walkthrough. Prefer to try first? See
-      <a href="/getting-started.html" style="color: var(--color-link);">getting started</a>
-      for local-first install or
-      <a href="{{ site.issuesUrl }}" style="color: var(--color-link);">GitHub issues</a>
-      for questions.
+      {{ t.hero.leadBefore }}
+      <a href="{{ '/getting-started.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.hero.gettingStartedLink }}</a>
+      {{ t.hero.leadMid }}
+      <a href="{{ site.issuesUrl }}" style="color: var(--color-link);">{{ t.hero.issuesLink }}</a>
+      {{ t.hero.leadAfter }}
     </p>
   </div>
 </header>
@@ -34,77 +35,77 @@ pageJs: form.js
     >
       <div class="form-fields">
         <div class="form-group">
-          <label for="name">Full name</label>
+          <label for="name">{{ t.form.nameLabel }}</label>
           <input type="text" id="name" name="name" required autocomplete="name" />
         </div>
         <div class="form-group">
-          <label for="email">Work email</label>
+          <label for="email">{{ t.form.emailLabel }}</label>
           <input type="email" id="email" name="email" required autocomplete="email" />
         </div>
         <div class="form-group">
-          <label for="company">Company</label>
+          <label for="company">{{ t.form.companyLabel }}</label>
           <input type="text" id="company" name="company" required autocomplete="organization" />
         </div>
         <div class="form-group">
-          <label for="role">Role</label>
+          <label for="role">{{ t.form.roleLabel }}</label>
           <select id="role" name="role" required>
-            <option value="">Select…</option>
-            <option value="cto">CTO / VP Engineering</option>
-            <option value="platform">Platform / DevOps</option>
-            <option value="security">Security / Compliance</option>
-            <option value="staff">Staff Engineer / Architect</option>
-            <option value="other">Other</option>
+            <option value="">{{ t.form.selectPlaceholder }}</option>
+            <option value="cto">{{ t.form.roleOptions.cto }}</option>
+            <option value="platform">{{ t.form.roleOptions.platform }}</option>
+            <option value="security">{{ t.form.roleOptions.security }}</option>
+            <option value="staff">{{ t.form.roleOptions.staff }}</option>
+            <option value="other">{{ t.form.roleOptions.other }}</option>
           </select>
         </div>
         <div class="form-group">
-          <label for="challenge">Primary governance challenge</label>
+          <label for="challenge">{{ t.form.challengeLabel }}</label>
           <select id="challenge" name="challenge" required>
-            <option value="">Select…</option>
-            <option value="ai-prs">AI-generated PR review &amp; verification</option>
-            <option value="agents">MCP / agent tool governance</option>
-            <option value="compliance">Audit trail &amp; compliance evidence</option>
-            <option value="velocity">Review bottleneck at AI velocity</option>
-            <option value="design-partner">Design partner / early access</option>
+            <option value="">{{ t.form.selectPlaceholder }}</option>
+            <option value="ai-prs">{{ t.form.challengeOptions.aiPrs }}</option>
+            <option value="agents">{{ t.form.challengeOptions.agents }}</option>
+            <option value="compliance">{{ t.form.challengeOptions.compliance }}</option>
+            <option value="velocity">{{ t.form.challengeOptions.velocity }}</option>
+            <option value="design-partner">{{ t.form.challengeOptions.designPartner }}</option>
           </select>
         </div>
         <div class="form-group">
-          <label for="team-size">Engineering team size</label>
+          <label for="team-size">{{ t.form.teamSizeLabel }}</label>
           <select id="team-size" name="team-size" required>
-            <option value="">Select…</option>
-            <option value="1-10">1–10</option>
-            <option value="11-50">11–50</option>
-            <option value="51-200">51–200</option>
-            <option value="200+">200+</option>
+            <option value="">{{ t.form.selectPlaceholder }}</option>
+            <option value="1-10">{{ t.form.teamSizeOptions.s1 }}</option>
+            <option value="11-50">{{ t.form.teamSizeOptions.s2 }}</option>
+            <option value="51-200">{{ t.form.teamSizeOptions.s3 }}</option>
+            <option value="200+">{{ t.form.teamSizeOptions.s4 }}</option>
           </select>
         </div>
         <div class="form-group">
-          <label for="message">Anything else we should know?</label>
-          <textarea id="message" name="message" placeholder="Optional context for the conversation…"></textarea>
+          <label for="message">{{ t.form.messageLabel }}</label>
+          <textarea id="message" name="message" placeholder="{{ t.form.messagePlaceholder }}"></textarea>
         </div>
         <p id="demo-form-error" class="form-inline-error" role="alert" hidden></p>
         <div class="form-status sr-only" aria-live="polite" aria-atomic="true" hidden></div>
         <button type="submit" class="btn btn-primary" style="width: 100%;">
-          Request a demo
+          {{ t.form.submit }}
         </button>
         <p class="mono text-center" style="margin-top: 16px; font-size: 0.75rem; color: var(--text-tertiary);">
-          Submissions go to {{ site.contactEmail }}. We aim to reply within one business day.
+          {{ t.form.submissionsNoteBefore }} {{ site.contactEmail }}{{ t.form.submissionsNoteAfter }}
         </p>
       </div>
       <div class="form-success" tabindex="-1">
-        <strong>Thank you — we will be in touch.</strong>
+        <strong>{{ t.form.successTitle }}</strong>
         <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">
-          A member of our team will reach out to discuss your governance challenges.
+          {{ t.form.successText }}
         </p>
       </div>
     </form>
 
     <p class="muted text-center" style="margin-top: 24px; font-size: 0.9rem;">
-      Prefer design partner details?
-      <a href="/design-partners.html" style="color: var(--color-link);">Design Partners</a>
+      {{ t.footer.preferBefore }}
+      <a href="{{ '/design-partners.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.footer.designPartnersLink }}</a>
       ·
-      <a href="/getting-started.html" style="color: var(--color-link);">Getting started</a>
+      <a href="{{ '/getting-started.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.footer.gettingStartedLink }}</a>
       ·
-      <a href="{{ site.issuesUrl }}" style="color: var(--color-link);">GitHub issues</a>
+      <a href="{{ site.issuesUrl }}" style="color: var(--color-link);">{{ t.footer.issuesLink }}</a>
     </p>
   </div>
 </section>

@@ -5,40 +5,40 @@ description: ContextMint Verification Engine — product direction after v1.0 fo
 pageCss: product.css
 ---
 
+{% assign t = i18nPageStrings %}
+
 <header class="page-hero">
   <div class="container">
-    <div class="pill">PRODUCT DIRECTION</div>
-    <h1>The Verification Engine</h1>
+    <div class="pill">{{ t.hero.pill }}</div>
+    <h1>{{ t.hero.h1 }}</h1>
     <p class="lead">
-      <strong>Product direction (after v1.0):</strong> PR-time verification of AI-generated changes
-      with deterministic graph evidence — ownership, blast radius, architecture intent, drift, and policy.
-      Built on the v1.0 decision-control plane (Engine + VS Code). Not a separate SKU today.
+      <strong>{{ t.hero.leadStrong }}</strong>
+      {{ t.hero.leadAfter }}
     </p>
     <p class="muted" style="margin-top: 16px; font-size: 0.95rem;">
-      <span class="roadmap-status roadmap-status--pilot">v1.0 · end of August 2026</span>
-      <a href="/features.html" style="color: var(--color-link); margin-left: 8px;">See what ships in v1.0 →</a>
+      <span class="roadmap-status roadmap-status--pilot">{{ t.badges.pilot }}</span>
+      <a href="{{ '/features.html' | locale_path: localePrefix }}" style="color: var(--color-link); margin-left: 8px;">{{ t.hero.seeShipsLink }}</a>
     </p>
     <div class="cta" style="margin-top: 24px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-      <a class="btn btn-primary" href="/features.html">v1.0 features</a>
-      <a class="btn btn-secondary" href="/roadmap.html#verification-engine">Roadmap timing</a>
+      <a class="btn btn-primary" href="{{ '/features.html' | locale_path: localePrefix }}">{{ t.hero.cta1 }}</a>
+      <a class="btn btn-secondary" href="{{ '/roadmap.html#verification-engine' | locale_path: localePrefix }}">{{ t.hero.cta2 }}</a>
     </div>
   </div>
 </header>
 
 <section class="section">
   <div class="container container-narrow">
-    <h2 class="section-title">Target outcome (roadmap)</h2>
-    <p class="muted">One outcome when the Verification Engine is fully delivered — not five separate products in the August GA package.</p>
+    <h2 class="section-title">{{ t.outcome.title }}</h2>
+    <p class="muted">{{ t.outcome.intro }}</p>
     <div class="card card--highlight" style="text-align: center; padding: 32px;">
       <p style="margin: 0 0 8px; font-size: 1.25rem; font-weight: 600; color: var(--text-primary);">
-        Verify every change before it ships
+        {{ t.outcome.statement }}
       </p>
       <p style="margin: 0; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">
-        Policy checks &middot; ownership resolution &middot; blast radius &middot; architecture validation
-        &middot; drift detection &middot; agent governance &middot; audit trail
+        {{ t.outcome.detail }}
       </p>
       <p class="mono" style="margin: 16px 0 0; font-size: 0.8rem; color: var(--text-tertiary);">
-        Directional — gated after v1.0 · see roadmap
+        {{ t.outcome.caption }}
       </p>
     </div>
   </div>
@@ -46,29 +46,25 @@ pageCss: product.css
 
 <section class="section section--surface">
   <div class="container">
-    <h2 class="section-title">Powered by (planned)</h2>
-    <p class="muted">These capabilities exist to deliver the verification promise — labeled roadmap, not August GA.</p>
+    <h2 class="section-title">{{ t.poweredBy.title }}</h2>
+    <p class="muted">{{ t.poweredBy.text }}</p>
     {% include "powered-by.html" %}
   </div>
 </section>
 
 <section class="section">
   <div class="container container-narrow">
-    <h2 class="section-title">Under the hood (vision)</h2>
+    <h2 class="section-title">{{ t.underHood.title }}</h2>
     <p class="muted" style="margin-bottom: 24px;">
-      The Engineering Reality Graph direction reconstructs ownership, dependencies, architecture intent,
-      deployment context, and policy into one queryable source of truth. Deterministic first;
-      AI narrates with citations — never overrides graph truth without human confirmation.
-      <strong>v1.0</strong> ships indexed workspace evidence, Findings Store lookup, and IDE gates —
-      not the full graph product below.
+      {{ t.underHood.text }}
+      <strong>{{ t.underHood.textStrong }}</strong>
+      {{ t.underHood.textAfter }}
     </p>
     <div class="diagram-box">
-      <div class="node">Engineering Reality Graph <span class="roadmap-status roadmap-status--planned">Roadmap</span></div>
-      <div class="edge">├── ownership graph</div>
-      <div class="edge">├── dependency / blast radius graph</div>
-      <div class="edge">├── architecture intent (ADRs, decisions)</div>
-      <div class="edge">├── policy graph (PCI, RBAC, custom rules)</div>
-      <div class="edge">└── drift baselines (accepted vs violation)</div>
+      <div class="node">{{ t.underHood.diagramNode }} <span class="roadmap-status roadmap-status--planned">{{ t.badges.roadmap }}</span></div>
+      {% for edge in t.underHood.edges %}
+      <div class="edge">{% if forloop.last %}└──{% else %}├──{% endif %} {{ edge }}</div>
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -76,23 +72,21 @@ pageCss: product.css
 <section class="section section--surface">
   <div class="container container-narrow split">
     <div>
-      <h2>Deterministic verification <span class="roadmap-status roadmap-status--planned">Roadmap</span></h2>
+      <h2>{{ t.split.deterministic.title }} <span class="roadmap-status roadmap-status--planned">{{ t.badges.roadmap }}</span></h2>
       <ul class="check-list">
-        <li>Blast radius — graph traversal only</li>
-        <li>Drift — graph vs contract/convention</li>
-        <li>DNA report — deterministic body</li>
-        <li>Scorecards — governed metric definitions</li>
+        {% for item in t.split.deterministic.items %}
+        <li>{{ item }}</li>
+        {% endfor %}
       </ul>
     </div>
     <div>
-      <h2>What ships first (v1.0)</h2>
+      <h2>{{ t.split.shipsFirst.title }}</h2>
       <ul class="check-list">
-        <li>ContextMint Engine + VS Code extension</li>
-        <li>Context Lens + patch preview</li>
-        <li>Quality map / Findings Store</li>
-        <li>Local-first (+ optional shared-server pilot path)</li>
+        {% for item in t.split.shipsFirst.items %}
+        <li>{{ item }}</li>
+        {% endfor %}
       </ul>
-      <a class="btn btn-primary" href="/features.html" style="margin-top: 16px;">Features in v1.0</a>
+      <a class="btn btn-primary" href="{{ '/features.html' | locale_path: localePrefix }}" style="margin-top: 16px;">{{ t.split.shipsFirst.cta }}</a>
     </div>
   </div>
 </section>

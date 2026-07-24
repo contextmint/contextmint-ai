@@ -1,4 +1,108 @@
 {
   "title": "Engine Operator Guide | ContextMint Docs",
-  "description": "Operate ContextMint Engine — Overview, Server, Ollama, Models, Indexing, Quality, Knowledge, Logs, Settings, and support bundle."
+  "description": "Operate ContextMint Engine — Overview, Server, Ollama, Models, Indexing, Quality, Knowledge, Logs, Settings, and support bundle.",
+  "h1": "Engine operator guide",
+  "lead": "<strong>ContextMint Engine</strong> is the desktop tray app that manages the Python API server, Ollama, indexing jobs, and operator diagnostics. Developers use VS Code for daily chat; operators and leads use Engine for health and capacity.",
+  "lifecycle": {
+    "title": "Tray &amp; lifecycle",
+    "items": [
+      "<strong>Start all</strong> — API server + Ollama (local-first)",
+      "<strong>Stop all</strong> — graceful shutdown; extension shows offline",
+      "Autostart options in Settings (OS service / login — platform-dependent)"
+    ]
+  },
+  "overview": {
+    "title": "Overview tab",
+    "intro": "At-a-glance cards:",
+    "items": [
+      "<strong>Readiness</strong> — server, Ollama, Redis (if used), data layer notes",
+      "<strong>Workspaces</strong> — registered repos, indexing state, drill-down to Indexing / Quality",
+      "<strong>Chat lanes (session)</strong> — Repo / Work / Hybrid stream counts and Work-lane suggest metrics"
+    ]
+  },
+  "server": {
+    "title": "Server tab",
+    "items": [
+      "Port and bind address (default loopback)",
+      "Restart server without quitting Engine",
+      "Link to <code>/api/health</code> for raw health JSON"
+    ]
+  },
+  "ollama": {
+    "title": "Ollama tab",
+    "items": [
+      "Runtime status and URL",
+      "Restart Ollama process",
+      "First-run: install link if binary not found"
+    ]
+  },
+  "models": {
+    "title": "Models tab",
+    "items": [
+      "Installed models vs available pulls",
+      "Embed model used for indexing (changing it may require reindex)",
+      "Default chat model for local routing",
+      "<strong>Vision models</strong> — pull <code>moondream</code>, <code>llava</code>, or <code>qwen2-vl</code> for screenshot Q&amp;A and ARGUS audits"
+    ]
+  },
+  "indexing": {
+    "title": "Indexing tab",
+    "items": [
+      "Per-workspace progress, file counts, errors",
+      "Manual reindex / activate workspace actions",
+      "Drill-down for file-level status on large repos"
+    ]
+  },
+  "quality": {
+    "title": "Quality tab",
+    "items": [
+      "Run quality scans (clones, structure signals)",
+      "Findings feed governance drawer in VS Code",
+      "Scan progress for long-running repos"
+    ]
+  },
+  "knowledge": {
+    "title": "Knowledge tab",
+    "before": "Browse index-time <strong>Knowledge Layer</strong> registries and tail redacted <strong>activity audit</strong> events — the operator complement to VS Code governance. See",
+    "linkHref": "/docs/knowledge-and-governance.html",
+    "linkText": "Knowledge &amp; governance",
+    "after": "for worked examples, persistence (Structure is not time-limited; Activity UI defaults to a 1–24 h window), and screenshot checklist.",
+    "items": [
+      "<strong>Structure</strong> — routes, services, documents, sections, policies; searchable table + graph preview",
+      "<strong>Activity</strong> — audit JSONL tail (<code>governance_fast_path</code>, chat streams, actions); export JSON"
+    ]
+  },
+  "logs": {
+    "title": "Logs tab",
+    "items": [
+      "Tail server logs with time window filter",
+      "Use when chat or indexing fails intermittently"
+    ]
+  },
+  "settings": {
+    "title": "Settings tab",
+    "items": [
+      "Python path, backend bundle path",
+      "Server URL override, Ollama URL",
+      "Operator tunables mirrored from server defaults where exposed"
+    ]
+  },
+  "budget": {
+    "title": "Context budget",
+    "before": "Open <strong>Context budget</strong> in the Engine nav to set <code>max_context_tokens</code> (RAG ship cap) and co-apply <code>max_gen_tokens</code> (answer length / Ollama <code>num_predict</code>) for your hardware tier. Values are saved to <code>~/.contextmint/server.defaults.yaml</code>; <strong>restart server</strong> after Apply.",
+    "linkBefore": "Interactive scaling math:",
+    "linkHref": "/docs/context-budget-calculator.html",
+    "linkText": "Context budget calculator"
+  },
+  "about": {
+    "title": "About &amp; support bundle",
+    "before": "Export a <strong>support bundle</strong> (versions, config redacted, recent logs) when filing",
+    "issuesLinkText": "GitHub issues",
+    "emailBefore": "or emailing"
+  },
+  "footer": {
+    "before": "Problems:",
+    "href": "/support/troubleshooting.html#engine",
+    "text": "Troubleshooting → Engine &amp; server"
+  }
 }

@@ -6,6 +6,8 @@ pageCss: home.css
 pageJs: product-carousel.js
 ---
 
+{% assign t = i18nPageStrings %}
+
 <!-- HERO -->
 <header class="hero">
   <div class="container">
@@ -17,69 +19,51 @@ pageJs: product-carousel.js
       alt=""
       decoding="async"
     />
-    <h1>{{ i18nPageStrings.hero.titleLine1 }}<br />{{ i18nPageStrings.hero.titleLine2 }}</h1>
+    <h1>{{ t.hero.titleLine1 }}<br />{{ t.hero.titleLine2 }}</h1>
     <p class="sub">
-      {% if i18nPageStrings.hero.subBefore != blank %}{{ i18nPageStrings.hero.subBefore }} {% endif %}<strong>{{ i18nPageStrings.hero.subStrong }}</strong>
-      {{ i18nPageStrings.hero.subAfter }}
+      {% if t.hero.subBefore != blank %}{{ t.hero.subBefore }} {% endif %}<strong>{{ t.hero.subStrong }}</strong>
+      {{ t.hero.subAfter }}
     </p>
 
     <div class="cta">
-      <a class="btn btn-primary" href="{{ '/getting-started.html' | locale_path: localePrefix }}">{{ i18nPageStrings.hero.ctaPrimary }}</a>
-      <a class="btn btn-secondary" href="{{ '/features.html' | locale_path: localePrefix }}">{{ i18nPageStrings.hero.ctaSecondary }}</a>
+      <a class="btn btn-primary" href="{{ '/getting-started.html' | locale_path: localePrefix }}">{{ t.hero.ctaPrimary }}</a>
+      <a class="btn btn-secondary" href="{{ '/features.html' | locale_path: localePrefix }}">{{ t.hero.ctaSecondary }}</a>
     </div>
 
-    <div class="pill">{{ i18nPageStrings.hero.pill }}</div>
+    <div class="pill">{{ t.hero.pill }}</div>
   </div>
 </header>
 
 <!-- IN PILOT (v1.0 end of August 2026) -->
 <section class="section section--surface" id="pilot-now">
   <div class="container container-narrow">
-    <h2 class="section-title">In pilot now</h2>
+    <h2 class="section-title">{{ t.pilotNow.title }}</h2>
     <p class="muted">
-      <strong>v1.0 ships end of August 2026.</strong> We are finishing internal pilot readiness;
-      design partner intake opens by start of September 2026. Evidence before inference. Human approval
-      before code changes.
+      <strong>{{ t.pilotNow.introStrong }}</strong> {{ t.pilotNow.introRest }}
     </p>
     <div class="grid grid-2" style="margin-top: 24px;">
+      {% for card in t.pilotNow.cards %}
       <div class="card">
-        <strong style="color: var(--color-trust);">ContextMint Engine</strong>
+        <strong{% if forloop.index == 1 %} style="color: var(--color-trust);"{% elsif forloop.index == 3 %} style="color: var(--color-warning);"{% else %} style="color: var(--color-link);"{% endif %}>{{ card.title }}</strong>
         <p class="mono" style="margin-top: 8px; font-size: 0.85rem;">
-          Tray-native operator console — readiness, server, and Ollama status. System, Light, or Dark theme.
+          {{ card.text }}
         </p>
       </div>
-      <div class="card">
-        <strong style="color: var(--color-link);">Context Lens</strong>
-        <p class="mono" style="margin-top: 8px; font-size: 0.85rem;">
-          Review what will be retrieved and which model runs — <em>before</em> the model answers.
-        </p>
-      </div>
-      <div class="card">
-        <strong style="color: var(--color-warning);">Quality map</strong>
-        <p class="mono" style="margin-top: 8px; font-size: 0.85rem;">
-          Stored governance findings (duplicates, structure signals) with human apply gates.
-        </p>
-      </div>
-      <div class="card">
-        <strong style="color: var(--color-link);">Image evidence</strong>
-        <p class="mono" style="margin-top: 8px; font-size: 0.85rem;">
-          Paste UI screenshots — local Ollama vision and ARGUS visual audit with human gates.
-        </p>
-      </div>
+      {% endfor %}
     </div>
     <p class="text-center muted" style="margin-top: 24px; font-size: 0.9rem;">
-      <strong>Default:</strong> local Engine + Ollama per developer.
-      <a href="/features.html" style="color: var(--color-link);">What ships in v1.0 →</a>
-      Shared on-prem API server path for regulated pilots —
-      <a href="/trust.html" style="color: var(--color-link);">deployment models</a>.
-      Optional BYOK cloud routing is off by default.
-      <strong>Roadmap:</strong>
-      <a href="/roadmap.html#v1" style="color: var(--color-link);">v1.0</a> (pilot now) ·
-      <a href="/roadmap.html#v2" style="color: var(--color-link);">v2.0</a> Engineering Intelligence ·
-      <a href="/roadmap.html#track-b" style="color: var(--color-link);">Track B</a> enterprise &amp; compliance.
-      <a href="/roadmap.html" style="color: var(--color-link);">Full roadmap →</a>
-      · <a href="/product/" style="color: var(--color-link);">Verification Engine vision →</a>
-      · <a href="/getting-started.html" style="color: var(--color-link);">Getting started →</a>
+      <strong>{{ t.pilotNow.footer.defaultLabel }}</strong> {{ t.pilotNow.footer.defaultText }}
+      <a href="{{ '/features.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.pilotNow.footer.whatShipsLink }}</a>
+      {{ t.pilotNow.footer.sharedServerText }}
+      <a href="{{ '/trust.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.pilotNow.footer.deploymentModelsLink }}</a>.
+      {{ t.pilotNow.footer.byokText }}
+      <strong>{{ t.pilotNow.footer.roadmapLabel }}</strong>
+      <a href="{{ '/roadmap.html#v1' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.pilotNow.footer.v1Link }}</a> {{ t.pilotNow.footer.v1Suffix }}
+      <a href="{{ '/roadmap.html#v2' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.pilotNow.footer.v2Link }}</a> {{ t.pilotNow.footer.v2Suffix }}
+      <a href="{{ '/roadmap.html#track-b' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.pilotNow.footer.trackBLink }}</a> {{ t.pilotNow.footer.trackBSuffix }}
+      <a href="{{ '/roadmap.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.pilotNow.footer.fullRoadmapLink }}</a>
+      · <a href="{{ '/product/' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.pilotNow.footer.verificationEngineLink }}</a>
+      · <a href="{{ '/getting-started.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.pilotNow.footer.gettingStartedLink }}</a>
     </p>
   </div>
 </section>
@@ -88,64 +72,51 @@ pageJs: product-carousel.js
 
 <!-- Outcomes (v1.0) -->
 <section class="section" style="padding-top: 0;">
-  <div class="container outcomes" aria-label="v1.0 outcomes">
+  <div class="container outcomes" aria-label="{{ t.outcomes.ariaLabel }}">
+    {% for item in t.outcomes.items %}
     <div class="outcome">
-      <strong>Gate 1</strong>
-      <span>Context Lens — evidence before inference</span>
+      <strong>{{ item.label }}</strong>
+      <span>{{ item.text }}</span>
     </div>
-    <div class="outcome">
-      <strong>Gate 2</strong>
-      <span>Patch preview — humans approve applies</span>
-    </div>
-    <div class="outcome">
-      <strong>Local-first</strong>
-      <span>Index and chat on your infrastructure</span>
-    </div>
+    {% endfor %}
   </div>
 </section>
 
 <!-- PROBLEM -->
 <section class="section">
-  <h2 class="section-title">The Problem Isn&rsquo;t Code Generation. It&rsquo;s Trust.</h2>
+  <h2 class="section-title">{{ t.problem.title }}</h2>
   <p class="muted">
-    AI creates changes faster than organizations can review them with evidence. That is a
-    board-level risk — not a tooling gap.
+    {{ t.problem.lead }}
   </p>
 
   <div class="grid grid-3 container container-narrow">
+    {% for card in t.problem.cards %}
     <div class="card text-center">
-      <strong style="color: var(--color-link);">AI Creates</strong>
-      <div class="mono" style="margin-top: 8px;">Changes faster than humans can reason about them</div>
+      <strong{% if forloop.index == 1 %} style="color: var(--color-link);"{% elsif forloop.index == 2 %} style="color: var(--color-warning);"{% else %} style="color: var(--color-danger);"{% endif %}>{{ card.title }}</strong>
+      <div class="mono" style="margin-top: 8px;">{{ card.text }}</div>
     </div>
-    <div class="card text-center">
-      <strong style="color: var(--color-warning);">Reality is Fragmented</strong>
-      <div class="mono" style="margin-top: 8px;">Ownership, intent, and policy live in different tools</div>
-    </div>
-    <div class="card text-center">
-      <strong style="color: var(--color-danger);">Result</strong>
-      <div class="mono" style="margin-top: 8px;">Risky merges and ungoverned agent output</div>
-    </div>
+    {% endfor %}
   </div>
 </section>
 
 <!-- WHY NOW -->
 <section class="section section--surface">
   <div class="container container-narrow">
-    <h2 class="section-title">The Bottleneck Moved</h2>
-    <p class="muted">Code generation is no longer the constraint. Evidence and human oversight are.</p>
+    <h2 class="section-title">{{ t.whyNow.title }}</h2>
+    <p class="muted">{{ t.whyNow.lead }}</p>
 
     <div class="macro-grid">
       <div class="card">
-        <div class="mono macro-card__label">Before AI</div>
-        <p class="macro-card__body">Humans generated code slower than organizations could review it.</p>
-        <div class="mono"><strong style="color: var(--text-secondary);">Bottleneck:</strong> Code Generation</div>
+        <div class="mono macro-card__label">{{ t.whyNow.before.label }}</div>
+        <p class="macro-card__body">{{ t.whyNow.before.body }}</p>
+        <div class="mono"><strong style="color: var(--text-secondary);">{{ t.whyNow.before.bottleneckLabel }}</strong> {{ t.whyNow.before.bottleneckValue }}</div>
       </div>
       <div class="card macro-card--accent">
-        <div class="mono macro-card__label macro-card__label--accent">After AI</div>
-        <p class="macro-card__body">AI generates code faster than organizations can verify with evidence.</p>
+        <div class="mono macro-card__label macro-card__label--accent">{{ t.whyNow.after.label }}</div>
+        <p class="macro-card__body">{{ t.whyNow.after.body }}</p>
         <div class="mono">
-          <strong style="color: var(--text-secondary);">Bottleneck:</strong>
-          <span style="color: var(--color-warning);"> Evidence &amp; Governance</span>
+          <strong style="color: var(--text-secondary);">{{ t.whyNow.after.bottleneckLabel }}</strong>
+          <span style="color: var(--color-warning);"> {{ t.whyNow.after.bottleneckValue }}</span>
         </div>
       </div>
     </div>
@@ -155,47 +126,42 @@ pageJs: product-carousel.js
 <!-- v1.0 WORKFLOW (shipped surface) -->
 <section class="section" id="decision-control">
   <div class="container container-narrow">
-    <h2 class="section-title">What v1.0 delivers</h2>
+    <h2 class="section-title">{{ t.decisionControl.title }}</h2>
     <p class="muted">
-      Evidence-based generative chat, store-first governance lookup from the quality map, and
-      grounded recommendations with human approval — on your machine or a guided sovereign server path.
+      {{ t.decisionControl.lead }}
     </p>
 
     <figure class="decision">
       <div class="decision-header">
-        Decision-control plane &nbsp;|&nbsp; Scenario: assisted change in VS Code
+        {{ t.decisionControl.figure.header }}
       </div>
       <div class="decision-body">
         <div>
-          <div class="query">Checks before the model answers or applies</div>
-          <div class="stack ok">&#10003; Context Lens — retrieved chunks, scores, routing</div>
-          <div class="stack ok">&#10003; Quality map — stored findings (duplicates, structure)</div>
-          <div class="stack ok">&#10003; Citations — answers grounded in indexed excerpts</div>
-          <div class="stack danger">&#9888; High-severity apply — blocked until human review</div>
-          <div class="stack ok">&#10003; Patch preview — unified diff before anything writes</div>
+          <div class="query">{{ t.decisionControl.figure.queryLabel }}</div>
+          {% for check in t.decisionControl.figure.checks %}
+          <div class="stack {{ check.status }}">{% if check.status == "danger" %}&#9888;{% else %}&#10003;{% endif %} {{ check.text }}</div>
+          {% endfor %}
         </div>
         <div>
-          <div class="mono">Recommendation</div>
-          <div class="badge risk" style="margin-top: 8px;">HUMAN APPROVAL REQUIRED</div>
-          <div style="margin-top: 24px" class="mono">Traceable Evidence</div>
+          <div class="mono">{{ t.decisionControl.figure.recommendationLabel }}</div>
+          <div class="badge risk" style="margin-top: 8px;">{{ t.decisionControl.figure.badge }}</div>
+          <div style="margin-top: 24px" class="mono">{{ t.decisionControl.figure.evidenceLabel }}</div>
           <div class="evidence-block">
-            &#10003; <span>Context Lens</span> chunks<br />
-            &#10003; <span>Findings Store</span> finding IDs<br />
-            &#10003; <span>Patch preview</span> unified diff<br />
-            &#10003; <span>Routing badge</span> local model path
+            {% for item in t.decisionControl.figure.evidenceItems %}
+            &#10003; <span>{{ item.label }}</span> {{ item.text }}{% unless forloop.last %}<br />{% endunless %}
+            {% endfor %}
           </div>
         </div>
       </div>
       <figcaption class="sr-only">
-        v1.0 decision-control example: Context Lens, quality map, citations, apply gate, and patch preview
-        with human approval and cited evidence.
+        {{ t.decisionControl.figure.caption }}
       </figcaption>
     </figure>
     <p class="muted" style="margin-top: 16px; font-size: 0.9rem;">
-      <span class="roadmap-status roadmap-status--planned">Roadmap</span>
-      PR verification gates, blast-radius SKU, and CI packaging are the
-      <a href="/product/" style="color: var(--color-link);">Verification Engine</a> direction —
-      after v1.0, not in the August GA package.
+      <span class="roadmap-status roadmap-status--planned">{{ t.decisionControl.footer.badge }}</span>
+      {{ t.decisionControl.footer.textBefore }}
+      <a href="{{ '/product/' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.decisionControl.footer.linkText }}</a>
+      {{ t.decisionControl.footer.textAfter }}
     </p>
   </div>
 </section>
@@ -203,46 +169,37 @@ pageJs: product-carousel.js
 <!-- POWERED BY (roadmap) -->
 <section class="section section--surface">
   <div class="container">
-    <h2 class="section-title">Where the product is headed</h2>
+    <h2 class="section-title">{{ t.productHeaded.title }}</h2>
     <p class="muted">
-      After v1.0, the Verification Engine direction adds deterministic graph checks for PR-time
-      verification. Capabilities below are labeled roadmap — not the August GA package.
+      {{ t.productHeaded.lead }}
     </p>
     {% include "powered-by.html" %}
     <p class="text-center" style="margin-top: 24px;">
-      <a href="/product/" class="btn btn-secondary">Verification Engine vision</a>
-      <a href="/features.html" class="btn btn-primary" style="margin-left: 8px;">v1.0 features</a>
+      <a href="{{ '/product/' | locale_path: localePrefix }}" class="btn btn-secondary">{{ t.productHeaded.ctaSecondary }}</a>
+      <a href="{{ '/features.html' | locale_path: localePrefix }}" class="btn btn-primary" style="margin-left: 8px;">{{ t.productHeaded.ctaPrimary }}</a>
     </p>
   </div>
 </section>
 
 <!-- WHY NOT CI -->
 <section class="section">
-  <h2 class="section-title">Why CI Tools Don&rsquo;t Solve This Alone</h2>
-  <p class="muted">Linting and tests catch syntax. They don&rsquo;t give developers evidence gates in the IDE.</p>
+  <h2 class="section-title">{{ t.whyNotCi.title }}</h2>
+  <p class="muted">{{ t.whyNotCi.lead }}</p>
 
   <div class="grid grid-3 container container-narrow">
+    {% for card in t.whyNotCi.cards %}
     <div class="card">
-      <strong>GitHub / GitLab</strong>
-      <div class="mono" style="margin-top: 8px;">Code &amp; PRs</div>
-      <div class="mono danger" style="margin-top: 4px;">No pre-inference evidence review in the IDE</div>
+      <strong>{{ card.title }}</strong>
+      <div class="mono" style="margin-top: 8px;">{{ card.subtitle }}</div>
+      <div class="mono danger" style="margin-top: 4px;">{{ card.note }}</div>
     </div>
-    <div class="card">
-      <strong>SonarQube / SAST</strong>
-      <div class="mono" style="margin-top: 8px;">Syntax &amp; CVEs</div>
-      <div class="mono danger" style="margin-top: 4px;">No human apply gate for assisted edits</div>
-    </div>
-    <div class="card">
-      <strong>Jira / Confluence</strong>
-      <div class="mono" style="margin-top: 8px;">Plans &amp; docs</div>
-      <div class="mono danger" style="margin-top: 4px;">Disconnected from indexed workspace evidence</div>
-    </div>
+    {% endfor %}
   </div>
 
   <div class="card container container-narrow card--highlight" style="margin-top: 16px; text-align: center;">
-    <strong class="ok">ContextMint v1.0</strong>
+    <strong class="ok">{{ t.whyNotCi.highlight.title }}</strong>
     <div class="mono" style="margin-top: 8px; color: var(--text-primary);">
-      Decision-control in the IDE — Lens, quality map, patch preview, local-first
+      {{ t.whyNotCi.highlight.text }}
     </div>
   </div>
 </section>
@@ -250,14 +207,14 @@ pageJs: product-carousel.js
 <!-- FINAL CTA -->
 <section class="section">
   <div class="container text-center container-tight">
-    <h2 class="section-title">{{ i18nPageStrings.finalCta.title }}</h2>
+    <h2 class="section-title">{{ t.finalCta.title }}</h2>
     <p class="muted">
-      {{ i18nPageStrings.finalCta.line1 }}<br />
-      {{ i18nPageStrings.finalCta.line2 }}
+      {{ t.finalCta.line1 }}<br />
+      {{ t.finalCta.line2 }}
     </p>
     <div class="cta" style="justify-content: center;">
-      <a class="btn btn-primary btn-lg" href="{{ '/request-demo.html' | locale_path: localePrefix }}">{{ i18nPageStrings.finalCta.demo }}</a>
-      <a class="btn btn-secondary btn-lg" href="{{ '/trust.html' | locale_path: localePrefix }}">{{ i18nPageStrings.finalCta.trust }}</a>
+      <a class="btn btn-primary btn-lg" href="{{ '/request-demo.html' | locale_path: localePrefix }}">{{ t.finalCta.demo }}</a>
+      <a class="btn btn-secondary btn-lg" href="{{ '/trust.html' | locale_path: localePrefix }}">{{ t.finalCta.trust }}</a>
     </div>
   </div>
 </section>

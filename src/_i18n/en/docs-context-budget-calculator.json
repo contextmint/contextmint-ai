@@ -1,4 +1,169 @@
 {
   "title": "Context budget calculator | ContextMint Docs",
-  "description": "Interactive calculator for server chat context budgets — hardware tier, max_context_tokens, and scaled YAML variables."
+  "description": "Interactive calculator for server chat context budgets — hardware tier, max_context_tokens, and scaled YAML variables.",
+  "h1": "Context budget calculator",
+  "lead": {
+    "pick": "Pick a",
+    "hwTier": "hardware tier",
+    "hwRange": "(T0–T9) for preview and a target",
+    "rangeNote": "(500–200,000). You choose the value in YAML; defaults ship at install.",
+    "genLength": "Generation length",
+    "usesNote": "uses",
+    "opCeiling": "(operator ceiling for Ollama",
+    "applyNote": ") — Engine desktop",
+    "apply": "Apply",
+    "coWrites": "co-writes both keys for your tier.",
+    "warningsNote": "Impact warnings are advisory only."
+  },
+  "callout": {
+    "whereStrong": "Where to apply:",
+    "onHost": "on the API host, or overlay",
+    "liveValues": "Live values:",
+    "tierModels": "Tier in this page models runtime ChatCaps from",
+    "notValidator": "— not a config validator."
+  },
+  "meta": {
+    "generated": "Profile generated",
+    "from": "from",
+    "baseline": "baseline",
+    "tokens": "tokens"
+  },
+  "inputs": {
+    "title": "Inputs",
+    "tierLabel": "Hardware tier",
+    "sliderAria": "max_context_tokens slider (convenience only)",
+    "tokenHint": "Valid range 500–200,000 tokens (server schema max). Presets are shortcuts; type any value in range.",
+    "intentLabel": "Intent (effective RAG preview)",
+    "intentDefault": "Default (no floor)",
+    "intentConceptual": "Conceptual / code_pattern",
+    "intentOverview": "Canonical overview"
+  },
+  "matrix": {
+    "title": "Scaling matrix",
+    "derivedBefore": "Derived",
+    "forSelected": "fields for your selected",
+    "whenWord": "when",
+    "autoScaleNote": "is true (ratios from shipped defaults; baseline",
+    "headers": ["Server variable", "Calculated value", "Formula"]
+  },
+  "tierEnvelope": {
+    "title": "Tier envelope (ChatCaps)",
+    "descBefore": "Startup probe maps RAM/VRAM → tier → these ceilings. Values from"
+  },
+  "effective": {
+    "title": "Effective RAG budget (selected tier)",
+    "desc": "Runtime order: config cap → hardware clamp → intent floor (raised up to config cap). Health-policy overrides are not modeled here."
+  },
+  "tierMatrix": {
+    "title": "Tier comparison matrix",
+    "descBefore": "Effective RAG chunk budget per tier for the same"
+  },
+  "ratios": {
+    "title": "Ratio profile (edit in YAML)",
+    "headers": ["Ratio key", "Fraction of max_context_tokens"]
+  },
+  "example": {
+    "title": "Example overlay"
+  },
+  "live": {
+    "title": "Live apply (Engine)",
+    "connectedTo": "Connected to",
+    "writesBefore": ". Writes",
+    "restartRequired": "via loopback API — server restart required.",
+    "previewBtn": "Preview impact",
+    "applyBtn": "Apply to server",
+    "restartBtn": "Restart server"
+  },
+  "js": {
+    "matrixDividerLabel": "Overview ceiling (derived)",
+    "derivedFromScaledSlots": "derived from scaled slots",
+    "formulaBaselineTemplate": "baseline_count × max / {baseline} (clamped)",
+    "formulaRatioTemplate": "max × ratio {ratio} (clamped)",
+    "matrixCeilingLabels": [
+      "Pack slot max tokens",
+      "Pack seed slot max tokens",
+      "Retrieval slots max tokens",
+      "Overview ship max (theoretical)",
+      "Overview chunk floor"
+    ],
+    "tierEnvelopeLabels": [
+      "Hardware tier",
+      "Typical host",
+      "RAG cap (context_tokens)",
+      "Max generation (max_gen_tokens)",
+      "num_ctx ceiling",
+      "Selection max tokens",
+      "Note"
+    ],
+    "numCtxOllamaDefault": "0 (Ollama default)",
+    "effectiveLabels": [
+      "chat.max_context_tokens (config cap)",
+      "ChatCaps.context_tokens (tier RAG cap)",
+      "After hardware clamp",
+      "Intent floor field",
+      "Intent floor value",
+      "Effective RAG chunk budget"
+    ],
+    "metricLabel": "Metric",
+    "tierMatrixLabels": [
+      "ChatCaps RAG cap",
+      "Effective RAG (default)",
+      "Effective RAG (conceptual)",
+      "Effective RAG (overview)"
+    ],
+    "warnings": {
+      "configCapExceeds": {
+        "title": "Config cap exceeds tier RAG ceiling (default intents)",
+        "body": "On default intents, effective RAG stays at {tierTokens} tokens (ChatCaps on {tierId}). The extra {unusedConfig} tokens in your YAML cap are not injected into chat for those queries. Only scaled pack/seed/slot knobs and intent floors change."
+      },
+      "intentFloorsExceed": {
+        "title": "Intent floors can exceed the tier RAG cap",
+        "body": "Conceptual floor → {conceptualRag} tokens; overview floor → {overviewRag} tokens — both above ChatCaps {tierTokens} on {tierId}. Overview and explanation queries will prefill more context than the tier's latency target assumes."
+      },
+      "overviewCeilingOutruns": {
+        "title": "Overview slot ceiling outruns effective RAG",
+        "body": "Theoretical overview ship max is {shipMax} tokens ({slots} retrieval slots × {slotTokens} tok/slot, plus pack/seed). Effective RAG for your intent is {effective} tokens — runtime Top-K and chunk budgeting trim what actually ships."
+      },
+      "highMasterCap": {
+        "title": "High master cap scales all YAML knobs",
+        "body": "At {maxTokens} tokens, work-lane pack budget → {workLane}, overview pack max → {overviewMax}, anchor slots → {anchorSlots}. Expect heavier pack hydration, larger evidence fusion graphs, and more RAM at assemble time — even when chat RAG is tier-clamped."
+      },
+      "aboveBaseline": {
+        "title": "Above ratio calibration baseline ({baseline})",
+        "body": "Ratios in contextmint.defaults.yaml were tuned at baseline_tokens={baseline}. Higher caps linearly scale slot counts and per-slot token budgets until field clamps hit (e.g. work_lane_pack max 24k)."
+      },
+      "cpuLatency": {
+        "title": "CPU prefill + generation may exceed tier latency target",
+        "body": "Rough estimate on {tierId}: ~{prefill}s prefill ({effective} RAG + ~{fixedTokens} history/instructions/query at {rate} tok/s) + ~{gen}s generation ({maxGen} max_gen_tokens) ≈ {total}s total. Tier design target ≈ {latencyTarget}s. Health policy may reduce context under load."
+      },
+      "kvCache": {
+        "title": "KV cache RAM estimate (CPU / Ollama)",
+        "body": "Full RAG + saturated history → input ≈ {inputEst} tokens; dynamic num_ctx ≈ {numCtx} (ceiling {ceiling}) → ~{kvGb} GB KV for a 3B-class model (~0.37 GB per 1k num_ctx), plus ~2 GB weights and OS headroom. Risk of swap or policy DOWNGRADE_AND_REDUCE on tight RAM."
+      },
+      "gpuFixedCap": {
+        "title": "GPU tier: YAML scales; ChatCaps RAG cap is fixed",
+        "body": "GPU tiers (T3+) keep ChatCaps.context_tokens at {tierTokens}. Raising max_context_tokens mainly grows overview pack/seed slots and work-lane pack budget — not the hybrid RAG chunk cap. Cloud routing bypasses local ChatCaps entirely."
+      },
+      "noFlags": {
+        "title": "No advisory flags for this combination",
+        "body": "For {tierId} at {maxTokens} tokens, effective RAG is {effective}. You can still raise or lower the cap freely; the matrix updates scaled YAML variables either way."
+      }
+    },
+    "fallbackImpact": "Adjust max_context_tokens to preview scaled YAML variables.",
+    "engine": {
+      "runningShipCap": "Running ship cap {cap} (bound by {boundBy}). Pending overlay changes require restart.",
+      "cannotReach": "Cannot reach API at {base}: {error}",
+      "previewing": "Previewing…",
+      "previewResult": "Preview for max_context_tokens={max}",
+      "coAppliesGen": "; Apply co-writes max_gen_tokens={coGen}",
+      "previewFailed": "Preview failed: {error}",
+      "confirmApply": "Apply max_context_tokens={max} to server overlay?{coMsg}\n\nServer restart is required before the new budget takes effect.",
+      "coAppliesSave": "\nAlso saves max_gen_tokens={coGen}.",
+      "savedTo": "Saved to {path}. Restart server to apply.",
+      "applyFailed": "Apply failed: {error}",
+      "restarting": "Requesting server restart…",
+      "restarted": "Server restart requested — check Engine Logs for progress.",
+      "restartFailed": "Restart failed: {error}"
+    }
+  }
 }

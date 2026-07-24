@@ -5,15 +5,16 @@ description: Security posture for ContextMint — local-first default, human app
 pageCss: product.css
 ---
 
+{% assign t = i18nPageStrings %}
+
 <header class="page-hero">
   <div class="container">
-    <nav class="breadcrumb"><a href="/solutions/">Solutions</a> / Security &amp; Compliance</nav>
-    <div class="pill">ENTERPRISE · AUDIT</div>
-    <h1>Defend AI-assisted development with evidence</h1>
+    <nav class="breadcrumb"><a href="{{ '/solutions/' | locale_path: localePrefix }}">{{ t.breadcrumbParent }}</a> / {{ t.breadcrumbCurrent }}</nav>
+    <div class="pill">{{ t.hero.pill }}</div>
+    <h1>{{ t.hero.title }}</h1>
     <p class="lead">
-      Local-first by default, human Gates 1 &amp; 2 in the IDE, optional sovereign shared-server path
-      with OIDC — built for security reviews of assisted development. We do <strong>not</strong>
-      claim SOC 2 certification today.
+      {{ t.hero.leadBefore }} <strong>{{ t.hero.leadStrong }}</strong>
+      {{ t.hero.leadAfter }}
     </p>
   </div>
 </header>
@@ -22,41 +23,36 @@ pageCss: product.css
   <div class="container container-narrow">
     <div class="grid grid-2">
       <div class="card">
-        <h3 style="margin: 0 0 8px;">Human gates (v1.0)</h3>
+        <h3 style="margin: 0 0 8px;">{{ t.cards[0].title }}</h3>
         <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
-          Context Lens before inference. Patch preview and apply gates before repo writes.
-          No silent auto-apply on the assisted path.
+          {{ t.cards[0].text }}
         </p>
       </div>
       <div class="card">
-        <h3 style="margin: 0 0 8px;">Agent accountability <span class="roadmap-status roadmap-status--planned">Roadmap</span></h3>
+        <h3 style="margin: 0 0 8px;">{{ t.cards[1].title }} <span class="roadmap-status roadmap-status--planned">{{ t.badges.roadmap }}</span></h3>
         <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
-          Planned MCP tool logging and policy engine for agent assistants. v1.0 accountability is
-          IDE gates + operator audit trails — not MCP production controls.
+          {{ t.cards[1].text }}
         </p>
       </div>
     </div>
     <ul class="check-list" style="margin-top: 32px;">
-      <li>Local-first default — Engine + extension per developer (v1.0)</li>
-      <li>Shared on-prem API server — Docker / Helm pilot with platform ops</li>
-      <li>SSO (OIDC) and role-based access on the shared-server path</li>
-      <li>Operator audit / support-bundle export for pilot reviews</li>
-      <li>SOC 2 evidence collectors (<a href="/roadmap.html#track-b" style="color: var(--color-link);">Track B roadmap</a>)</li>
-      <li>Path alignment required for shared server (Remote SSH or mounted monorepo)</li>
-      <li>Optional BYOK hybrid routing with egress redaction (off by default)</li>
+      {% for item in t.checklist %}
+      <li>
+        {% if item.linkHref %}{{ item.before }}<a href="{{ item.linkHref | locale_path: localePrefix }}" style="color: var(--color-link);">{{ item.linkText }}</a>{{ item.after }}{% else %}{{ item.text }}{% endif %}
+      </li>
+      {% endfor %}
     </ul>
   </div>
 </section>
 
 <section class="section section--surface">
   <div class="container container-narrow">
-    <h2 class="section-title">Deployment fit for security review</h2>
+    <h2 class="section-title">{{ t.deploymentFit.title }}</h2>
     <p class="muted" style="margin-bottom: 0;">
-      Most regulated pilots start <strong>local-first</strong> (sovereign Ollama on each workstation).
-      Teams that need a <strong>shared GPU host</strong> use the on-prem API server with VS Code
-      Remote SSH or a mounted monorepo — not laptop clones pointing at a remote URL without path
-      alignment. We document both models and the limitation in the
-      <a href="/trust.html" style="color: var(--color-link);">Trust center</a>.
+      {{ t.deploymentFit.before }} <strong>{{ t.deploymentFit.strong1 }}</strong>
+      {{ t.deploymentFit.mid1 }} <strong>{{ t.deploymentFit.strong2 }}</strong>
+      {{ t.deploymentFit.mid2 }}
+      <a href="{{ '/trust.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.deploymentFit.linkText }}</a>.
     </p>
   </div>
 </section>
@@ -64,10 +60,9 @@ pageCss: product.css
 <section class="section">
   <div class="container container-tight text-center">
     <p class="muted">
-      Need a security questionnaire completed? We provide architecture diagrams, data-flow
-      documentation, and a walkthrough of Gates 1 &amp; 2 for your review process.
+      {{ t.footer.text }}
     </p>
-    <a class="btn btn-primary" href="/trust.html">Trust center</a>
-    <a class="btn btn-secondary" href="/request-demo.html" style="margin-left: 12px;">Book a Demo</a>
+    <a class="btn btn-primary" href="{{ '/trust.html' | locale_path: localePrefix }}">{{ t.footer.cta1 }}</a>
+    <a class="btn btn-secondary" href="{{ '/request-demo.html' | locale_path: localePrefix }}" style="margin-left: 12px;">{{ t.footer.cta2 }}</a>
   </div>
 </section>

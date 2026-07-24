@@ -1,4 +1,181 @@
 {
   "title": "Installation & Setup | ContextMint Docs",
-  "description": "Install ContextMint Engine and the VS Code extension — prerequisites, verify steps, and first-line installation support when issues arise."
+  "description": "Install ContextMint Engine and the VS Code extension — prerequisites, verify steps, and first-line installation support when issues arise.",
+  "h1": "Installation &amp; setup",
+  "lead": {
+    "part1": "ContextMint has two user-facing components: <strong>Engine</strong> (desktop operator console + Python server) and the <strong>VS Code extension</strong> (chat, Context Lens, governance UI). The default path is local-first on one machine.",
+    "stuckStrong": "Stuck during setup?",
+    "linkText": "Jump to installation support",
+    "after": "— your first line of help before contacting us."
+  },
+  "prereq": {
+    "title": "Prerequisites",
+    "items": [
+      "Windows 10+, macOS 12+, or Linux x64",
+      "VS Code 1.85 or later",
+      "<strong>Ollama</strong> for local model inference (Engine first-run wizard can link to install)",
+      "Enough disk for embeddings (rough guide: 1–3 GB per medium-sized repo)",
+      "Network loopback to <code>localhost:8000</code> (default API port)"
+    ]
+  },
+  "localInstall": {
+    "title": "Local-first install (recommended)",
+    "steps": [
+      "Download and install <strong>ContextMint Engine</strong> from releases.",
+      "Open Engine from the system tray → run <strong>Start all</strong> (server + Ollama).",
+      { "ext": true, "before": "Install the", "after": "extension from the VSIX or marketplace." },
+      "Open your project folder in VS Code — the extension registers the workspace automatically.",
+      "Wait for readiness to move past <strong>Offline</strong> / <strong>Starting</strong>; indexing may continue in the background."
+    ],
+    "quickBefore": "Quick walkthrough:",
+    "quickLinkText": "Getting started (5 min)",
+    "quickAfter": "Engine's first-run wizard also links here when something fails."
+  },
+  "firstRun": {
+    "title": "First-run wizard (Engine)",
+    "intro": "On first launch, Engine may prompt for:",
+    "items": [
+      "Python / backend path (usually auto-detected in packaged builds)",
+      "Ollama URL and default embed + chat models",
+      "Whether to start server and Ollama on login (optional autostart)"
+    ],
+    "note": "Complete the wizard before expecting chat to reach <strong>Ready</strong> or <strong>Limited</strong>. Each wizard step includes an <strong>Installation help</strong> link to this page."
+  },
+  "workspace": {
+    "title": "Workspace registration",
+    "text": "Each opened folder gets a stable <strong>workspace ID</strong> (12-char hex). The extension calls <code>POST /set-workspace</code> with the folder path and open editor paths so indexing can prioritize files you are editing. You do not configure this manually in normal use."
+  },
+  "sovereign": {
+    "title": "Sovereign on-prem server (enterprise pilot)",
+    "p1": "Platform teams may deploy the API stack on an internal host with <strong>OpenAI-compatible inference</strong> (typically vLLM) — not only \u201cshared Ollama.\u201d Developers point the extension at that URL:",
+    "items": [
+      "<code>ContextMint.serverUrl</code> — team API base (HTTPS)",
+      "<code>ContextMint.enterpriseMode</code> — enable when server auth is required",
+      "OIDC / JWT configuration per your IdP"
+    ],
+    "closingBefore": "The extension does <strong>not</strong> start Engine in this mode. Repo paths must align (Remote SSH or mounted volumes). Full detail:",
+    "link1": "Sovereign server deployment",
+    "link2": "BYOK &amp; enterprise",
+    "link3": "Trust &amp; Security",
+    "andWord": "and"
+  },
+  "verify": {
+    "title": "Verify install",
+    "items": [
+      "Engine → Overview shows server <strong>Running</strong>",
+      { "ext": true, "prefix": "VS Code status bar:", "label": "Ready", "note": "(or Indexing / Limited)" },
+      "Browser: <code>http://localhost:8000/api/health</code> returns OK (local-first)"
+    ]
+  },
+  "support": {
+    "title": "Installation support (first line)",
+    "intro": "Use this section when setup does not match the happy path above. Work through the symptom that matches what you see in Engine or VS Code. Only after these steps should you export a support bundle and",
+    "emailPrefix": "email",
+    "issuePrefix": "open a",
+    "issueLinkText": "GitHub issue",
+    "decisionGuideTitle": "Decision guide",
+    "decisionGuide": [
+      "<strong>Engine tray missing?</strong> → Check tray overflow; relaunch Engine from Start menu.",
+      "<strong>Start all fails?</strong> → Logs tab + port 8000 conflict → restart machine → reinstall Engine bundle.",
+      "<strong>Extension shows Offline?</strong> → Engine not running or wrong <code>serverUrl</code>.",
+      "<strong>Stuck on Starting in VS Code?</strong> → Reload window; Engine → Server → restart server.",
+      "<strong>Limited / Ollama offline?</strong> → Install Ollama; Engine → Ollama → Start; pull models in Models tab.",
+      "<strong>Indexing errors?</strong> → Engine → Indexing drill-down; fix permissions; reindex workspace."
+    ],
+    "tryLabel": "Try:",
+    "faqGroups": [
+      {
+        "title": "Engine &amp; server",
+        "items": [
+          {
+            "summary": "\u201cStart all\u201d does nothing or fails immediately",
+            "kind": "list",
+            "steps": [
+              "Engine → <strong>Logs</strong> — look for Python traceback or \u201caddress already in use\u201d.",
+              "Stop all → quit Engine → ensure no stray <code>contextmint</code> / python process on port 8000.",
+              "Engine → <strong>Settings</strong> — confirm backend path points at the bundled server (packaged install).",
+              "Reinstall the latest Engine release if the server binary is missing."
+            ],
+            "closingBefore": "Still blocked?",
+            "closingHref": "/support/troubleshooting.html#engine",
+            "closingText": "Engine troubleshooting",
+            "closingAfter": "· export bundle from About."
+          },
+          {
+            "summary": "Health URL does not load in browser",
+            "kind": "text",
+            "text": "Engine → Overview → confirm server <strong>Running</strong>. Use the exact URL from Settings (default <code>http://127.0.0.1:8000</code>). Disable VPN/proxy blocking loopback. On shared-server mode, use your team HTTPS URL instead."
+          }
+        ]
+      },
+      {
+        "title": "Ollama &amp; models",
+        "items": [
+          {
+            "summary": "Ollama not detected / Limited mode in VS Code",
+            "kind": "list",
+            "steps": [
+              "Install from <a href=\"https://ollama.com/download\" rel=\"noopener\">ollama.com/download</a>.",
+              "Engine → <strong>Ollama</strong> → Start or Restart.",
+              "Engine → <strong>Models</strong> → pull recommended embed + chat models.",
+              "Start all again; wait for Overview readiness to clear Ollama warnings."
+            ]
+          },
+          {
+            "summary": "Models pulled but chat still errors",
+            "kind": "text",
+            "text": "Confirm model names in Engine Models match server defaults. Restart server after changing embed model (may require reindex). Test with a short \u201chi\u201d message in Ask mode."
+          }
+        ]
+      },
+      {
+        "title": "VS Code extension",
+        "items": [
+          {
+            "summary": "Extension installed but no ContextMint icon",
+            "kind": "text",
+            "text": "Enable extension in Extensions panel. Reload window. Check Output → ContextMint for activation errors. Confirm VS Code ≥ 1.85."
+          },
+          {
+            "summary": "Chat blocked — \u201cserver offline\u201d or \u201cstarting\u201d",
+            "kind": "list",
+            "steps": [
+              "Engine → <strong>Start all</strong> (local-first).",
+              "Settings → <code>ContextMint.serverUrl</code> must match Engine (usually <code>http://localhost:8000</code>).",
+              "Reload VS Code window after server is healthy."
+            ],
+            "note": "<strong>Note:</strong> <strong>Indexing</strong> does not block chat — only offline/starting/error do."
+          },
+          {
+            "summary": "Enterprise shared server — 401 or path errors",
+            "kind": "text",
+            "linkBefore": "Enable <code>enterpriseMode</code>, re-auth SSO, align repo paths with server (Remote SSH). See",
+            "linkHref": "/docs/byok-enterprise.html",
+            "linkText": "BYOK &amp; enterprise",
+            "linkAfter": "."
+          }
+        ]
+      },
+      {
+        "title": "Indexing during install",
+        "items": [
+          {
+            "summary": "Indexing stuck at 0% or shows errors",
+            "kind": "text",
+            "text": "Engine → Indexing → open workspace drill-down. Check disk space and read permissions. Exclude huge folders via <code>.gitignore</code> / <code>.contextmintignore</code>. Manual reindex from Overview workspace card."
+          }
+        ]
+      }
+    ],
+    "escalateTitle": "When to escalate",
+    "escalateStep1": "Engine → <strong>About</strong> → <strong>Download support bundle</strong> (or Logs tab).",
+    "escalateStep2": "Note Engine version, OS, and steps you already tried from this page.",
+    "escalateStep4": "Design partners: use your named engineering channel.",
+    "footerBefore": "Broader symptom index:",
+    "footerLinks": [
+      { "href": "/support/troubleshooting.html", "text": "Full troubleshooting" },
+      { "href": "/docs/", "text": "All user docs" },
+      { "href": "/support.html", "text": "Support home" }
+    ]
+  }
 }

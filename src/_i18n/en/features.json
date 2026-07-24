@@ -1,4 +1,140 @@
 {
   "title": "Features in v1.0 | ContextMint",
-  "description": "What ships in ContextMint v1.0 — Engine operator console, VS Code chat modes, image evidence, ARGUS visual audit, Context Lens, packs, quality map, and glass-box routing."
+  "description": "What ships in ContextMint v1.0 — Engine operator console, VS Code chat modes, image evidence, ARGUS visual audit, Context Lens, packs, quality map, and glass-box routing.",
+  "hero": {
+    "pill": "IN PILOT · V1.0 END OF AUGUST 2026",
+    "title": "What ships in v1.0",
+    "leadBefore": "ContextMint v1.0 ships",
+    "leadStrong1": "end of August 2026",
+    "leadMid1": ". The pilot delivers a",
+    "leadStrong2": "local-first decision-control plane",
+    "leadMid2": "— not generic chat. This page lists capabilities in the Engine desktop app and VS Code extension. PR verification, blast-radius product SKUs, and the standalone CLI remain on the",
+    "roadmapLink": "roadmap",
+    "leadMid3": "(see also the",
+    "verificationLink": "Verification Engine vision",
+    "leadAfter": ")."
+  },
+  "components": {
+    "title": "Two components",
+    "engineTitle": "ContextMint Engine",
+    "engineText": "Tray-native operator console: server and Ollama lifecycle, models, multi-repo indexing status, quality scans, logs, and support bundle export. System, Light, or Dark theme.",
+    "extensionTitleAfter": "extension",
+    "extensionText": "Where engineers work: repo-aware chat, screenshot vision, ARGUS visual audit, Context Lens, context packs, quality findings, assisted patch preview, and session history — connected to Engine on loopback by default."
+  },
+  "gates": {
+    "title": "Human gates (evidence before action)",
+    "lensTitle": "Context Lens — gate 1",
+    "lensText": "Pre-send preview of retrieved chunks, relevance scores, routing choice, and governance notes. Approve or exclude evidence before the model runs. Optional trust gate can require explicit confirmation on early sends.",
+    "patchTitle": "Patch preview — gate 2",
+    "patchText": "Assisted actions propose unified diffs; you review and confirm before anything applies. Quality-map clone signals can block apply on high-severity findings when configured. No silent writes to your repo."
+  },
+  "chat": {
+    "title": "VS Code chat & compose",
+    "items": [
+      { "strong": "Ask / Plan / Agent", "text": "modes — scope how much autonomy the model has per message" },
+      { "strong": "Context lanes — Repo / Work / Hybrid", "text": "— repo-grounded answers vs work planning/comms vs evidence + recommendations" },
+      { "strong": "Attach context files", "text": "— pin specific files as chips before you send" },
+      { "strong": "Image evidence", "text": "— paste, drop, or pick PNG/JPEG/WebP screenshots; local Ollama vision by default" },
+      { "strong": "Chat sessions", "text": "— new chat, session list, and stored history per workspace" },
+      { "strong": "Model routing", "text": "— Auto, Local (Ollama), or Cloud when BYOK is enabled" },
+      { "strong": "Suggested prompts", "text": "— repo-aware starters when readiness is empty" },
+      { "strong": "Dual-layer answers", "text": "— plain summary with optional \u201cmore technical detail\u201d expand" },
+      { "strong": "Readiness phases", "text": "— status bar and card show offline, indexing, limited, or ready" }
+    ],
+    "shortcutBefore": "Open chat with",
+    "shortcutAfter": "or the ContextMint activity bar. See",
+    "gettingStartedLink": "getting started",
+    "shortcutEnd": "."
+  },
+  "glassBox": {
+    "title": "Glass box — see how the model was routed",
+    "lead": "ContextMint is a decision-control plane, not a black-box autocomplete sidebar.",
+    "items": [
+      { "strong": "Routing badge", "text": "— which tier and model were selected (local vs cloud); vision route when images attached" },
+      { "strong": "Shipped provenance", "text": "— Context Lens preview matches what the model receives (no hidden budget drift)" },
+      { "strong": "Provenance breakdown", "text": "— registry facts, search hits, expanded windows, grep, and graph neighbours" },
+      { "strong": "Reasoning timeline / trace log", "text": "— step-by-step transparency panel for debugging" },
+      { "strong": "Context Lens scores", "text": "— relevance per excerpt before inference; thin-evidence signals when coverage is low" }
+    ]
+  },
+  "images": {
+    "title": "Image evidence & local vision",
+    "lead": "Paste UI screenshots and ask what you see — without sending code to a cloud API by default. ContextMint normalizes images, previews them in Context Lens, and routes through a local Ollama vision model when one is installed.",
+    "items": [
+      { "strong": "Paste / drop / file picker", "text": "— up to 3 images per message (PNG, JPEG, WebP)" },
+      { "strong": "Local-first routing", "text": "— cloud keys do not force cloud vision on attach" },
+      { "strong": "Context Lens preview", "text": "— thumbnails, vision route label, trust gate support" },
+      { "strong": "Pull vision model CTA", "text": "— Engine → Models when no VLM is installed (<code>moondream</code>, <code>llava</code>, …)" },
+      { "strong": "Lane-aware", "text": "— image + RAG on Repo/Hybrid; image + packs on Work" },
+      { "strong": "Optional BYOK cloud vision", "text": "— explicit model choice only; off by default" }
+    ],
+    "deepDiveBefore": "Deep dive:",
+    "deepDiveLink": "Image evidence & ARGUS"
+  },
+  "argus": {
+    "title": "ARGUS — visual audit",
+    "lead": "Structured UI review on the same vision stack as chat — findings you can act on, never silent fixes.",
+    "items": [
+      { "strong": "Run visual audit", "text": "— from Context Lens or message actions on pasted screenshots" },
+      { "strong": "WCAG-tagged findings", "text": "— severity, category, description, optional rule reference" },
+      { "strong": "Sandbox audit", "text": "— Playwright capture in git preview worktree when sandbox is enabled" },
+      { "strong": "Report only", "text": "— handoff to patch preview (gate 2) if you choose to fix; no auto-apply" },
+      { "strong": "Local VLM default", "text": "— shares Ollama vision with chat; no API key required" }
+    ]
+  },
+  "packs": {
+    "title": "Context packs & conventions",
+    "packsTitle": "Context packs",
+    "packsText": "Per-repo <span class=\"mono\">manifest.yaml</span> plus markdown knowledge. Activate with <span class=\"mono\">@pack:name</span> in chat. Pack panel lists, builds, and auto-syncs when source files change (debounced).",
+    "conventionsTitle": "Conventions learner",
+    "conventionsTextBefore": "Conventions panel surfaces active rules, pending proposals, and audit history — human approval before conventions enter the graph. Complements the quality map and DNA vision on the",
+    "roadmapLink": "roadmap",
+    "conventionsTextMid": "(",
+    "dnaLink": "Repository DNA",
+    "conventionsTextAfter": ")."
+  },
+  "operator": {
+    "title": "Engine operator console",
+    "lead": "Engine is recovery and lifecycle control — not a daily dashboard. Tray-first; open the window when you need to diagnose.",
+    "items": [
+      { "strong": "Overview", "text": "— readiness issues and Start all / Stop all" },
+      { "strong": "Server · Ollama", "text": "— process status and lifecycle actions" },
+      { "strong": "Models", "text": "— pull and apply embedding, chat, and <strong>vision</strong> models (first-run wizard guides setup)" },
+      { "strong": "Indexing", "text": "— multi-repo table with per-workspace status, chunks, and file-type stats" },
+      { "strong": "Quality", "text": "— run scans; findings feed the extension quality map" },
+      { "strong": "Logs · About", "text": "— diagnostics and redacted support bundle export" },
+      { "strong": "Settings", "text": "— paths, ports, start at login, theme (System / Light / Dark)" }
+    ]
+  },
+  "quality": {
+    "title": "Quality map",
+    "text": "Stored governance findings from your repo — clone pairs, near-duplicates, and structure signals. Inform-only by default; optional gates can block assisted apply on high-severity clones. Run scans from the extension command palette or Engine → Quality."
+  },
+  "optional": {
+    "title": "Optional & preview (off by default)",
+    "lead": "Available in settings for teams that opt in — not required for the sovereign local-first path. Several of these are part of the regulated-pilot demo bar for v1.0; product defaults stay off until explicit default-on decisions.",
+    "items": [
+      { "strong": "BYOK cloud routing", "before": "— OpenAI, Anthropic, Groq; keys in VS Code secrets; optional cloud vision when you select a vision model (", "linkText": "trust center", "linkHref": "/trust.html", "after": ")" },
+      { "strong": "Git sandbox worktrees", "text": "— isolated test/apply in a worktree (server + extension flags)" },
+      { "strong": "Inline ghost-text completion", "text": "— local FIM when inline backend is enabled" },
+      { "strong": "In-IDE code review", "text": "— file / branch / feature / flow review with human gates (flagged until default-on)" },
+      { "strong": "Shared on-prem API server", "before": "— regulated pilot with Docker/Helm + OIDC (", "linkText": "deployment models", "linkHref": "/trust.html#deployment", "after": ")" }
+    ]
+  },
+  "roadmapSection": {
+    "title": "On the roadmap",
+    "text": "Three tiers: what ships in v1.0, what design partners co-build in 2026, and the Verification Engine direction ahead — PR gates, blast radius, drift, and enterprise packaging.",
+    "roadmapCta": "View roadmap",
+    "verificationCta": "Verification Engine vision"
+  },
+  "installSection": {
+    "title": "Install",
+    "text": "Engine installer + VS Code extension. First chat in minutes on the local-first path.",
+    "gettingStartedCta": "Getting started",
+    "faqCta": "FAQ"
+  },
+  "cta": {
+    "title": "Want a guided walkthrough?",
+    "text": "Apply as a design partner for a 30-day evaluation pilot (extendable to 90) with direct engineering support and a written summary for stakeholders. Intake opens by start of September 2026."
+  }
 }

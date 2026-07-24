@@ -5,330 +5,42 @@ description: Frequently asked questions about ContextMint Engine, local-first se
 pageCss: product.css
 ---
 
+{% assign t = i18nPageStrings %}
+
 <header class="page-hero">
   <div class="container">
-    <div class="pill">FAQ</div>
-    <h1>Common questions</h1>
+    <div class="pill">{{ t.hero.pill }}</div>
+    <h1>{{ t.hero.title }}</h1>
     <p class="lead">
-      Quick answers for engineers and platform teams evaluating ContextMint.
-      For install steps, see <a href="/getting-started.html" style="color: var(--color-link);">getting started</a>.
-      For symptom fixes, see <a href="/support/troubleshooting.html" style="color: var(--color-link);">troubleshooting</a>.
-      For depth, see <a href="/docs/" style="color: var(--color-link);">user documentation</a>.
+      {{ t.hero.leadBefore }}
+      <a href="{{ '/getting-started.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.hero.gettingStartedLink }}</a>{{ t.hero.leadMid }}
+      <a href="{{ '/support/troubleshooting.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.hero.troubleshootingLink }}</a>{{ t.hero.leadMid2 }}
+      <a href="{{ '/docs/' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.hero.docsLink }}</a>{{ t.hero.leadAfter }}
     </p>
   </div>
 </header>
 
 <section class="section">
   <div class="container container-narrow faq-list">
-    <details class="faq-item" id="what-do-i-need-to-install">
-      <summary>What do I need to install?</summary>
+    {% for item in t.items %}
+    <details class="faq-item" id="{{ item.id }}">
+      <summary>{{ item.q }}</summary>
       <div class="faq-item__body">
-        <p>
-          Two components: <strong>ContextMint Engine</strong> (desktop app) and the
-          <strong>{{ site.extensionName }}</strong> VS Code extension. Engine runs the Python
-          server and Ollama; the extension is the chat and governance UI. See
-          <a href="/getting-started.html">getting started</a> and
-          <a href="/features.html">features (v1.0)</a>.
-        </p>
+        {% for para in item.body %}
+        <p{% if forloop.index > 1 %} style="margin-top: 12px;"{% endif %}>{{ para }}</p>
+        {% endfor %}
       </div>
     </details>
-
-    <details class="faq-item" id="does-my-source-code-leave-my-machine">
-      <summary>Does my source code leave my machine?</summary>
-      <div class="faq-item__body">
-        <p>
-          On the default local-first path, indexing, embeddings, retrieval, and inference run on
-          your infrastructure via Ollama — source is not required to leave your device. If you
-          opt in to BYOK cloud routing, only redacted assembled context is sent to a provider you
-          choose; API keys stay in VS Code secrets and never pass through Engine. See
-          <a href="/trust.html">Trust &amp; Security</a>.
-        </p>
-      </div>
-    </details>
-
-    <details class="faq-item" id="what-is-the-difference-between-engine-and-the-extension">
-      <summary>What is the difference between Engine and the extension?</summary>
-      <div class="faq-item__body">
-        <p>
-          <strong>Engine</strong> owns process lifecycle: server, Ollama, indexing operations,
-          logs, and settings. <strong>{{ site.extensionName }}</strong> connects to
-          <code>localhost:8000</code>, shows chat, Context Lens, quality map, and assisted
-          actions — it does not spawn the server in packaged mode.
-        </p>
-      </div>
-    </details>
-
-    <details class="faq-item" id="why-is-chat-blocked-or-showing-server-offline">
-      <summary>Why is chat blocked or showing “server offline”?</summary>
-      <div class="faq-item__body">
-        <p>
-          <strong>Local-first (default):</strong> open <strong>ContextMint Engine</strong> from the
-          tray and use <strong>Start all</strong>. The extension probes health on loopback; if Engine
-          is stopped, chat is gated until the backend is healthy again.
-        </p>
-        <p style="margin-top: 12px;">
-          <strong>Shared on-prem server:</strong> confirm <code>ContextMint.serverUrl</code> points at
-          your team API host, HTTPS/TLS is valid, and <code>enterpriseMode</code> + OIDC are configured
-          if auth is enabled on the server. The extension does not install or start Engine in remote mode.
-        </p>
-      </div>
-    </details>
-
-    <details class="faq-item" id="can-i-ask-non-code-or-planning-questions-in-chat">
-      <summary>Can I ask non-code or planning questions in chat?</summary>
-      <div class="faq-item__body">
-        <p>
-          Yes — use the compose <strong>Context</strong> selector. <strong>Repo</strong> (default)
-          answers only from your indexed codebase. <strong>Work</strong> is for planning, comms, and
-          concepts using session packs and attachments without a repo file search.
-          <strong>Hybrid</strong> combines repo evidence with reasoned recommendations. ContextMint is
-          not a generic ChatGPT replacement; lanes keep repo answers trustworthy.
-        </p>
-      </div>
-    </details>
-
-    <details class="faq-item" id="why-is-chat-blocked-while-indexing">
-      <summary>Why is chat blocked while “indexing”?</summary>
-      <div class="faq-item__body">
-        <p>
-          Chat is <strong>not</strong> blocked during background indexing — answers use whatever is
-          indexed so far and improve as files finish. The readiness card may show an indexing banner;
-          you can still send messages. If chat is fully blocked, check for server offline or index
-          <strong>error</strong> state in Engine → Health.
-        </p>
-      </div>
-    </details>
-
-    <details class="faq-item" id="do-i-need-ollama">
-      <summary>Do I need Ollama?</summary>
-      <div class="faq-item__body">
-        <p>
-          Yes for local model inference. Engine’s first-run wizard detects Ollama and links to
-          install if missing. If Ollama is offline, repo search may still work but AI generation
-          runs in a degraded <strong>limited</strong> mode.
-        </p>
-      </div>
-    </details>
-
-    <details class="faq-item" id="what-is-context-lens">
-      <summary>What is Context Lens?</summary>
-      <div class="faq-item__body">
-        <p>
-          Context Lens is the pre-send preview: retrieved chunks, relevance scores, routing choice,
-          and optional governance notes — so you approve evidence <em>before</em> the model runs.
-          It is gate 1 in the human-in-the-loop workflow. See
-          <a href="/docs/context-lens-packs.html">Context Lens &amp; packs</a>.
-        </p>
-      </div>
-    </details>
-
-    <details class="faq-item" id="what-are-ask-plan-and-agent-modes">
-      <summary>What are Ask, Plan, and Agent modes?</summary>
-      <div class="faq-item__body">
-        <p>
-          In chat compose, <strong>Ask</strong> scopes the model to answer your question,
-          <strong>Plan</strong> asks for a structured plan before changes, and <strong>Agent</strong>
-          allows broader multi-step assistance — still with Context Lens (gate 1) and patch preview
-          (gate 2) before repo writes. Pair modes with <strong>Repo / Work / Hybrid</strong> lanes for
-          where evidence comes from. See <a href="/docs/chat-and-lanes.html">Chat, modes &amp; lanes</a>
-          and <a href="/features.html">Features (v1.0)</a>.
-        </p>
-      </div>
-    </details>
-
-    <details class="faq-item" id="what-is-patch-preview-gate-2">
-      <summary>What is patch preview (gate 2)?</summary>
-      <div class="faq-item__body">
-        <p>
-          Assisted actions propose unified diffs; <strong>patch preview</strong> is gate 2 — you review
-          and confirm before anything applies to your repo. Quality-map clone signals can block apply on
-          high-severity findings when configured. No silent writes. See
-          <a href="/docs/patches-governance.html">Patches &amp; governance</a>.
-        </p>
-      </div>
-    </details>
-
-    <details class="faq-item" id="what-is-the-quality-map">
-      <summary>What is the quality map?</summary>
-      <div class="faq-item__body">
-        <p>
-          The <strong>quality map</strong> is stored governance findings from your repo at index time —
-          clone pairs, near-duplicates, and structure signals. Chat can answer from this
-          <strong>Findings Store</strong> (lookup) instead of rediscovering issues at question time.
-          Inform-only by default; optional gates can block assisted apply. Run scans from the extension
-          or Engine → Quality. See
-          <a href="/docs/knowledge-and-governance.html">Knowledge &amp; governance</a>.
-        </p>
-      </div>
-    </details>
-
-    <details class="faq-item" id="what-are-context-packs">
-      <summary>What are context packs?</summary>
-      <div class="faq-item__body">
-        <p>
-          <strong>Context packs</strong> are per-repo knowledge bundles (<span class="mono">manifest.yaml</span>
-          plus markdown). Activate with <span class="mono">@pack:name</span> in chat; the pack panel lists,
-          builds, and auto-syncs when sources change. Packs feed Work and Hybrid lanes and appear in
-          Context Lens before send. See
-          <a href="/docs/context-lens-packs.html">Context Lens &amp; packs</a>.
-        </p>
-      </div>
-    </details>
-
-    <details class="faq-item" id="how-is-contextmint-different-from-autocomplete-assistants">
-      <summary>How is ContextMint different from autocomplete assistants?</summary>
-      <div class="faq-item__body">
-        <p>
-          ContextMint is a <strong>decision-control plane</strong>, not a speed-first autocomplete
-          tool. It governs what evidence the model sees and what changes can apply, with
-          audit-friendly telemetry. Human gates before inference and before apply matter more than
-          raw generation throughput for regulated engineering workflows.
-        </p>
-      </div>
-    </details>
-
-    <details class="faq-item" id="can-we-run-a-shared-contextmint-server-on-prem">
-      <summary>Can we run a shared ContextMint server on-prem?</summary>
-      <div class="faq-item__body">
-        <p>
-          Yes — for <strong>enterprise pilots</strong> with platform engineering support. Deploy the
-          API server stack (Docker Compose or Helm) on your infrastructure. Developers set
-          <code>ContextMint.serverUrl</code> to that host and enable <code>enterpriseMode</code> for
-          OIDC Bearer auth. The server must be able to read the workspace path being indexed — typically
-          via <strong>VS Code Remote SSH</strong>, a <strong>mounted monorepo</strong>, or a dev VM where
-          code and API run on the same host.
-        </p>
-        <p style="margin-top: 12px;">
-          This is <strong>not</strong> the Engine desktop app (tray console is local-only). A laptop
-          with a local-only clone cannot index through a remote server URL unless paths align. See
-          <a href="/trust.html">Trust &amp; Security → Deployment models</a>.
-        </p>
-      </div>
-    </details>
-
-    <details class="faq-item" id="what-is-the-difference-between-engine-and-a-team-api-server">
-      <summary>What is the difference between Engine and a team API server?</summary>
-      <div class="faq-item__body">
-        <p>
-          <strong>ContextMint Engine</strong> is the per-machine operator console: tray app, first-run
-          wizard, Ollama lifecycle, logs, and settings. It runs the API on loopback for individual
-          developers — this is the v1.0 default.
-        </p>
-        <p style="margin-top: 12px;">
-          A <strong>team API server</strong> is the same Python backend packaged for Docker/Kubernetes
-          on customer infrastructure — shared Ollama, Chroma index, Redis rate limiting, and SSO. The
-          extension becomes a thin client pointed at <code>serverUrl</code>. Ops owns deploy, mounts,
-          and auth — not the Engine installer.
-        </p>
-      </div>
-    </details>
-
-    <details class="faq-item" id="can-i-use-my-own-cloud-api-keys-byok">
-      <summary>Can I use my own cloud API keys (BYOK)?</summary>
-      <div class="faq-item__body">
-        <p>
-          Yes — <strong>optional and off by default</strong>. Enable cloud routing in extension
-          settings, store provider keys in VS Code secrets (OS keychain), and the extension streams
-          directly to approved providers such as OpenAI, Anthropic, or Groq. Keys never pass through
-          the Python engine. Assembled context is redacted before any cloud dispatch. The default
-          path remains local Ollama on your infrastructure. See
-          <a href="/trust.html">Trust &amp; Security</a>.
-        </p>
-      </div>
-    </details>
-
-    <details class="faq-item" id="can-i-paste-screenshots-in-chat">
-      <summary>Can I paste screenshots in chat?</summary>
-      <div class="faq-item__body">
-        <p>
-          Yes. Paste, drag-drop, or pick <strong>PNG</strong>, <strong>JPEG</strong>, or <strong>WebP</strong>
-          images in the compose bar and ask questions about what you see. ContextMint previews images in
-          Context Lens and routes through a <strong>local Ollama vision model</strong> by default — no cloud
-          API key required. Optional BYOK cloud vision is available when you explicitly select a vision model.
-        </p>
-        <p style="margin-top: 12px;">
-          See <a href="/docs/image-evidence-argus.html">Image evidence &amp; ARGUS</a>.
-        </p>
-      </div>
-    </details>
-
-    <details class="faq-item" id="what-is-argus">
-      <summary>What is ARGUS?</summary>
-      <div class="faq-item__body">
-        <p>
-          <strong>ARGUS</strong> is ContextMint’s structured visual audit on UI screenshots. From Context Lens,
-          click <strong>Run visual audit</strong> to get severity-tagged findings (including WCAG references).
-          ARGUS is <strong>report only</strong> — it never auto-fixes your repo. You can hand off to patch
-          preview if you choose to act on a finding.
-        </p>
-        <p style="margin-top: 12px;">
-          Sandbox audits (Playwright capture in preview worktree) are available when git sandbox is enabled.
-        </p>
-      </div>
-    </details>
-
-    <details class="faq-item" id="what-does-the-30-day-design-partner-pilot-mean">
-      <summary>What does the &ldquo;30-day&rdquo; design partner pilot mean?</summary>
-      <div class="faq-item__body">
-        <p>
-          It is a <strong>one-month evaluation</strong>, not a product subscription that expires.
-          After onboarding, <strong>10–30 developers</strong> on one team or repo use ContextMint in
-          daily work for <strong>30 calendar days</strong>. You give short async feedback at
-          <strong>week 2</strong> and <strong>week 4</strong>; we provide weekly check-ins and a
-          <strong>written pilot summary</strong> for your security and platform stakeholders. Successful
-          pilots can <strong>extend to 90 days</strong>. See
-          <a href="/design-partners.html">Design Partners</a> for the full breakdown.
-        </p>
-      </div>
-    </details>
-
-    <details class="faq-item" id="what-ships-in-v1-0-vs-later-roadmap">
-      <summary>What ships in v1.0 vs later roadmap?</summary>
-      <div class="faq-item__body">
-        <p>
-          <strong>v1.0 (pilot now — GA end of August 2026):</strong> local Engine + extension — Context Lens,
-          Ask/Plan/Agent modes, Repo/Work/Hybrid lanes, Findings Store quality map, image evidence,
-          ARGUS visual audit, context packs, assisted patch preview, glass-box routing, and symbol-aware
-          citations. <a href="/features.html">Full v1.0 list</a>.
-        </p>
-        <p style="margin-top: 12px;">
-          <strong>Later:</strong> v2.0 Engineering Intelligence Platform (Q1 2027), Track B enterprise
-          knowledge and compliance (end 2027), and the long-term
-          <a href="/product/">Verification Engine</a> direction (PR gates, blast radius, drift) —
-          <a href="/roadmap.html">full roadmap</a>.
-        </p>
-      </div>
-    </details>
-
-    <details class="faq-item" id="how-do-i-get-early-access-or-join-as-a-design-partner">
-      <summary>How do I get early access or join as a design partner?</summary>
-      <div class="faq-item__body">
-        <p>
-          <strong>Design partner intake opens by start of September 2026</strong> while we finish
-          v1.0 pilot readiness. The form on
-          <a href="/design-partners.html">Design Partners</a>
-          is visible for reference only — submissions are disabled until intake opens.
-        </p>
-        <p style="margin-top: 12px;">
-          <strong>Available now:</strong> book a walkthrough via
-          <a href="/request-demo.html">Book a Demo</a>, try local-first install via
-          <a href="/getting-started.html">Getting started</a>, review program details on
-          <a href="/pricing.html">Early Access</a>, or ask questions via
-          <a href="/support.html">Support</a> or
-          <a href="{{ site.issuesUrl }}">GitHub issues</a>. When intake opens, design partners run a
-          <strong>30-day evaluation pilot</strong> (10–30 developers, one repo — extendable to 90 days).
-        </p>
-      </div>
-    </details>
+    {% endfor %}
 
     <details class="faq-item" id="where-do-i-report-bugs-or-get-help">
-      <summary>Where do I report bugs or get help?</summary>
+      <summary>{{ t.reportBugs.q }}</summary>
       <div class="faq-item__body">
         <p>
-          Visit <a href="/support.html">Support</a> and open an issue on the release channel:
+          {{ t.reportBugs.before }} <a href="{{ '/support.html' | locale_path: localePrefix }}">{{ t.reportBugs.supportLink }}</a> {{ t.reportBugs.mid }}
           <a href="{{ site.issuesUrl }}">{{ site.issuesUrl }}</a>.
           {% if site.emailVisible %}
-          You can also email <a href="mailto:{{ site.contactEmail }}">{{ site.contactEmail }}</a>.
+          {{ t.reportBugs.emailBefore }} <a href="mailto:{{ site.contactEmail }}">{{ site.contactEmail }}</a>.
           {% endif %}
         </p>
       </div>
@@ -336,4 +48,4 @@ pageCss: product.css
   </div>
 </section>
 
-{% include "cta-band.html", ctaTitle: "Still have questions?", ctaText: "Use Getting started for install, Support or GitHub issues for help. Design partner intake opens by start of September 2026." %}
+{% include "cta-band.html", ctaTitle: t.cta.title, ctaText: t.cta.text %}

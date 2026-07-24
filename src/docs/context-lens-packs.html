@@ -5,69 +5,51 @@ description: Context Lens gate 1 preview, relevance scores, context packs, @pack
 pageCss: product.css
 ---
 
-<h1>Context Lens &amp; context packs</h1>
-<p class="doc-lead">
-  <strong>Context Lens</strong> is gate 1: preview retrieved evidence before the model runs.
-  <strong>Context packs</strong> are curated markdown knowledge you activate per repo or session.
-</p>
+{% assign t = i18nPageStrings %}
 
-<h2>Context Lens workflow</h2>
+<h1>{{ t.h1 }}</h1>
+<p class="doc-lead">{{ t.lead }}</p>
+
+<h2>{{ t.workflow.title }}</h2>
 <ol>
-  <li>Type a question and send (or enable pre-send preview in settings).</li>
-  <li>Context Lens shows retrieved chunks, scores, routing choice, and governance notes.</li>
-  <li>Approve or adjust — exclude chunks you do not want in the prompt.</li>
-  <li>Answer streams after approval (or immediately if preview is off).</li>
+  {% for item in t.workflow.items %}
+  <li>{{ item }}</li>
+  {% endfor %}
 </ol>
 
-<h3>Lens UI regions</h3>
+<h3>{{ t.regions.title }}</h3>
 <ul>
-  <li><strong>Summary strip</strong> — chunk count, model route, vision route when images attached, lane label when applicable</li>
-  <li><strong>Evidence drawer</strong> — per-file chunks with relevance scores; image thumbnail strip when screenshots attached</li>
-  <li><strong>Governance drawer</strong> — quality-map findings (inform-only or gated per policy)</li>
-  <li><strong>Actions</strong> — <strong>Send</strong> (chat) and <strong>Run visual audit</strong> (ARGUS) when image evidence is present</li>
+  {% for item in t.regions.items %}
+  <li>{{ item }}</li>
+  {% endfor %}
 </ul>
 
-<h3>Scores and filtering</h3>
-<p>
-  Scores reflect hybrid retrieval (vector + BM25 + boosts for recent/attached files). Low scores do not
-  always mean “wrong” — structural skeleton fallback may apply when line-level query filters miss.
-</p>
+<h3>{{ t.scores.title }}</h3>
+<p>{{ t.scores.text }}</p>
 
-<h2>Context packs</h2>
-<p>
-  Packs live under <code>.contextmint/packs/</code> in your repo (or session packs for Work lane).
-  Each pack has a <code>manifest.yaml</code> and markdown sources.
-</p>
+<h2>{{ t.packs.title }}</h2>
+<p>{{ t.packs.text }}</p>
 
-<h3>Activate a pack in chat</h3>
-<p>Type <code>@pack:pack-name</code> in the compose bar or select from the packs panel.</p>
+<h3>{{ t.activate.title }}</h3>
+<p>{{ t.activate.text }}</p>
 
-<h3>Scan &amp; learn</h3>
-<p>
-  After indexing completes, use <strong>Scan &amp; learn</strong> in the packs panel to build or refresh
-  packs from repo conventions. Auto-sync can debounce on file changes (configurable).
-</p>
+<h3>{{ t.scanLearn.title }}</h3>
+<p>{{ t.scanLearn.text }}</p>
 
-<h3>Stale packs banner</h3>
-<p>
-  When source files change, you may see a stale-pack prompt — rebuild to keep pack content aligned
-  with the codebase.
-</p>
+<h3>{{ t.stale.title }}</h3>
+<p>{{ t.stale.text }}</p>
 
-<h2>Work lane and packs</h2>
-<p>
-  <strong>Work</strong> context lane relies heavily on session packs and attachments instead of vector
-  search. Build session notes into packs for recurring planning workflows.
-</p>
+<h2>{{ t.workLane.title }}</h2>
+<p>{{ t.workLane.text }}</p>
 
-<h2>Trust gate</h2>
+<h2>{{ t.trustGate.title }}</h2>
 <p>
-  When <code>trustGateEnabled</code> is on, sensitive sends may require an extra confirmation step
-  before Context Lens or inference proceeds — including sends with attached screenshots.
-  See <a href="/docs/patches-governance.html">Patches &amp; governance</a> and
-  <a href="/docs/image-evidence-argus.html">Image evidence &amp; ARGUS</a>.
+  {{ t.trustGate.before }}
+  <a href="{{ t.trustGate.link1Href | locale_path: localePrefix }}">{{ t.trustGate.link1Text }}</a>
+  {{ t.trustGate.andWord }}
+  <a href="{{ t.trustGate.link2Href | locale_path: localePrefix }}">{{ t.trustGate.link2Text }}</a>.
 </p>
 
 <p class="muted">
-  Problems: <a href="/support/troubleshooting.html#lens">Troubleshooting → Context Lens &amp; packs</a>.
+  {{ t.footer.before }} <a href="{{ t.footer.href | locale_path: localePrefix }}">{{ t.footer.text }}</a>.
 </p>

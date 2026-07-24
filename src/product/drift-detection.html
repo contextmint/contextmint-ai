@@ -5,40 +5,46 @@ description: Architecture drift detection — separate bad drift from accepted e
 pageCss: product.css
 ---
 
+{% assign t = i18nPageStrings %}
+
 <header class="page-hero">
   <div class="container">
-    <nav class="breadcrumb"><a href="/product/">Product</a> / Drift Detection</nav>
+    <nav class="breadcrumb"><a href="{{ '/product/' | locale_path: localePrefix }}">{{ t.breadcrumbParent }}</a> / {{ t.breadcrumbCurrent }}</nav>
     {% include "verification-badge.html" %}
-    <h1>Drift Detection</h1>
+    <h1>{{ t.hero.h1 }}</h1>
     <p class="lead">
-      <strong>In plain terms:</strong> spot when code <em>drifts</em> away from agreed architecture — and tell
-      <strong>bad violations</strong> apart from <strong>approved evolution</strong> you meant to allow.
+      <strong>{{ t.hero.leadStrong }}</strong>
+      {{ t.hero.leadBefore }} <em>{{ t.hero.leadEm }}</em>
+      {{ t.hero.leadMid }}
+      <strong>{{ t.hero.leadStrong2 }}</strong>
+      {{ t.hero.leadMid2 }}
+      <strong>{{ t.hero.leadStrong3 }}</strong>
+      {{ t.hero.leadAfter }}
     </p>
   </div>
 </header>
 
 <section class="section">
   <div class="container container-narrow">
-    {% include "roadmap-planned-banner.html", badge: "Verification Engine", title: "Automated drift gates on roadmap", message: "v1.0 quality map surfaces structure and duplicate signals today. Graph-vs-contract drift with accepted baselines ships with PR verification." %}
+    {% include "roadmap-planned-banner.html", badge: t.banner.badge, title: t.banner.title, message: t.banner.message %}
     <div class="grid grid-2">
       <div class="card">
-        <h3 style="margin: 0 0 8px; color: var(--color-danger);">Bad drift</h3>
+        <h3 style="margin: 0 0 8px; color: var(--color-danger);">{{ t.cards[0].title }}</h3>
         <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
-          New direct DB access in API layer violates ADR-12 layering rule. No accepted baseline on record.
+          {{ t.cards[0].text }}
         </p>
       </div>
       <div class="card card--highlight">
-        <h3 style="margin: 0 0 8px; color: var(--color-trust);">Accepted evolution</h3>
+        <h3 style="margin: 0 0 8px; color: var(--color-trust);">{{ t.cards[1].title }}</h3>
         <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
-          Pattern change approved in PR #2102 and recorded as accepted baseline pair. Alert suppressed.
+          {{ t.cards[1].text }}
         </p>
       </div>
     </div>
     <ul class="check-list" style="margin-top: 32px;">
-      <li>Graph vs contract/convention comparison — deterministic</li>
-      <li>Accepted baseline pairs for intentional architecture changes</li>
-      <li>Integration with PR checks and engineering scorecards</li>
-      <li>edge_class and verification_status on fabric edges</li>
+      {% for item in t.checklist %}
+      <li>{{ item }}</li>
+      {% endfor %}
     </ul>
   </div>
 </section>

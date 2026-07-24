@@ -1,4 +1,169 @@
 {
   "title": "إحضار المفتاح الخاص بك (BYOK) والمؤسسات | وثائق ContextMint",
-  "description": "توجيه السحابة باستخدام إحضار المفتاح الخاص بك (BYOK)، وتنقيح السياق، وخادم API مشترك داخل البنية المحلية (On-Premises)، ودعم OIDC، ومواءمة مسارات Remote SSH."
+  "description": "توجيه السحابة باستخدام إحضار المفتاح الخاص بك (BYOK)، وتنقيح السياق، وخادم API مشترك داخل البنية المحلية (On-Premises)، ودعم OIDC، ومواءمة مسارات Remote SSH.",
+  "h1": "BYOK ونشر المؤسسات",
+  "lead": {
+    "before": "ContextMint <strong>محلي الأولوية</strong> افتراضياً. يوثّق أدناه مساران اختياريان — وهما <strong>مستقلان</strong>: يمكنك تفعيل BYOK السحابي على حاسوب محمول مع Engine محلي، أو نشر خادم مؤسسي مشترك بدون خروج سحابي، أو الجمع بينهما. يسرد كل قسم كل مفتاح ذي صلة، وما يفعله، وتعليمات خطوة بخطوة لتغييره. الكتالوجات الكاملة:",
+    "settingsLink": "مرجع الإعدادات"
+  },
+  "onThisPage": {
+    "label": "في هذه الصفحة:",
+    "byokLink": "1 — توجيه BYOK السحابي",
+    "enterpriseLink": "2 — خادم API مؤسسي مشترك"
+  },
+  "surfacesCallout": {
+    "label": "واجهتان:",
+    "vscodeStrong": "VS Code",
+    "vscodeText": "المفاتيح هي <code>contextmint.*</code> في الإعدادات أو <code>settings.json</code> على جهاز كل مطوّر — يُطبَّق معظمها عند الإرسال التالي للمحادثة دون إعادة تشغيل واجهة API.",
+    "serverStrong": "الخادم",
+    "serverText": "تعيش المفاتيح في <code>config/contextmint.defaults.yaml</code> على مضيف API، وتُتجاوَز عبر <code>~/.contextmint/server.defaults.yaml</code> أو <code>.env</code> المضيف — أعد تشغيل واجهة API بعد التغييرات (تبويب <strong>Engine ← الخادم</strong>، أو نشر الحاوية)."
+  },
+  "byok": {
+    "h2": "1 — توجيه BYOK السحابي",
+    "intro": "يتيح <strong>إحضار المفتاح الخاص بك (BYOK)</strong> للمطوّرين توجيه توليد المحادثة إلى مزوّد نموذج لغوي خارجي (OpenAI، Anthropic، Groq) باستخدام مفاتيح API مخزَّنة في VS Code — وليس على الخادم. لا يزال الاسترجاع والفهرسة وتجميع الأدلة يعمل على مضيف API الخاص بـContextMint؛ فقط <em>خطوة التوليد النهائية</em> قد تُخرِج سياقاً منقَّحاً إلى المزوّد الذي اخترته.",
+    "note": "لا يتطلب BYOK خادم مؤسسة مشتركاً <strong>أبداً</strong>. يعمل مع إعداد Engine المحلي الافتراضي <code>http://127.0.0.1:8000</code>.",
+    "checklistTitle": "قائمة تحقق نشر BYOK",
+    "checklistItems": [
+      "<strong>المنصة / المشغّل</strong> — فعّل <code>allow_cloud_dispatch</code> على مضيف API (إن كنت تتحكم فيه).",
+      "<strong>كل مطوّر</strong> — عيّن <code>contextmint.cloudEnabled</code> إلى <code>true</code>.",
+      "<strong>كل مطوّر</strong> — شغّل <strong>ContextMint: Configure Cloud API Key</strong> وخزّن مفتاح مزوّد.",
+      "<strong>كل مطوّر</strong> — اختر <strong>Cloud</strong> أو <strong>Auto</strong> في منتقي نموذج الإنشاء وأرسل رسالة اختبار."
+    ],
+    "checklistVerifyBefore": "<strong>تحقّق</strong> — تُظهر شارة التوجيه <strong>cloud</strong>؛ ويسرد المفتش الطبقة السحابية. إذا بقيت محلية، انظر",
+    "checklistVerifyLink": "استكشاف الأخطاء وإصلاحها ← السحابة",
+    "vscodeSettingsTitle": "إعدادات VS Code (كل مطوّر)",
+    "vscodeSettingsNote": "عدّل عبر <kbd>Ctrl+,</kbd> (ابحث عن <code>contextmint</code>) أو <code>settings.json</code> الخاص بالمستخدم/مساحة العمل.",
+    "cloudEnabled": {
+      "meta": "منطقي · الافتراضي <code>false</code>",
+      "body": "<p><strong>ما تفعله.</strong> تفعيل رئيسي لتوجيه النموذج اللغوي السحابي من الإضافة. عند <code>true</code>، قد تعيّن الإضافة <code>prefer_cloud</code> في طلبات المحادثة إذا وُجد مفتاح مزوّد وسمح منتقي النموذج بالسحابة. عند <code>false</code>، يبقى كل التوليد على Ollama المحلي بغض النظر عن المفاتيح.</p><p><strong>متى تفعّله.</strong> عندما يوافق فريق الأمان لديك على الاستدلال الخارجي لتوليد المحادثة ولديك مفتاح API لمزوّد.</p><p><strong>متى تعطّله.</strong> سير عمل سيادي / معزول، أو تثبيتات تجريبية، أو أي بيئة يجب ألا يغادر فيها سياق مشتق من المصدر شبكتك.</p><p><strong>كيفية التغيير.</strong></p><ol><li>افتح VS Code ← <strong>الإعدادات</strong> ← ابحث عن <code>cloud enabled</code>.</li><li>فعّل <strong>ContextMint: Enable Cloud LLM Provider Routing</strong>، أو أضف إلى <code>settings.json</code>:<pre style=\"margin:0.5rem 0;\"><code>\"contextmint.cloudEnabled\": true</code></pre></li><li>أرسل رسالة محادثة جديدة — لا حاجة لإعادة تشغيل الخادم.</li></ol>"
+    },
+    "cloudApiKey": {
+      "titleBefore": "الأمر:",
+      "titleStrong": "ContextMint: Configure Cloud API Key",
+      "meta": "أمر VS Code · ليس مفتاحاً في settings.json",
+      "body": "<p><strong>ما يفعله.</strong> يخزّن مفاتيح API للمزوّدين في <strong>SecretStorage</strong> الخاص بـVS Code (سلسلة مفاتيح نظام التشغيل المشفَّرة). المزوّدون المدعومون: OpenAI، Anthropic، Groq. تقرأ الإضافة المفاتيح وقت الإرسال — لا تُكتَب أبداً في إعداد Engine أو YAML الخادم أو سجلات الخادم.</p><p><strong>متى تشغّله.</strong> بعد تفعيل <code>contextmint.cloudEnabled</code> وقبل اختيار Cloud / Auto في منتقي النموذج.</p><p><strong>كيفية التغيير.</strong></p><ol><li><kbd>Ctrl+Shift+P</kbd> ← <strong>ContextMint: Configure Cloud API Key (Preview)</strong>.</li><li>اختر المزوّد ← ألصق المفتاح ← أكّد.</li><li>لتدوير مفتاح أو إزالته، شغّل الأمر مجدداً واستبدل القيمة أو امسح المطالبة.</li></ol><p class=\"muted\"><strong>تحقّق:</strong> يجب أن يعرض منتقي نموذج الإنشاء خيارات الطبقة السحابية؛ ولا ينبغي أن يطالب إرسال اختباري باختيار Cloud بمفتاح مفقود.</p>"
+    },
+    "modelPicker": {
+      "title": "منتقي نموذج الإنشاء —",
+      "meta": "واجهة مستخدم · لكل رسالة · ليس مفتاحاً في settings.json",
+      "bodyBefore": "<p><strong>ما يفعله.</strong> يتحكم بالتوجيه <em>لهذا الإرسال فقط</em> (يُتذكَّر الاختيار في مساحة العمل حتى تغيّره). يجب أن يكون BYOK مفعَّلاً بالفعل (<code>contextmint.cloudEnabled</code> + مفتاح مخزَّن واحد على الأقل + <code>allow_cloud_dispatch</code> على الخادم) قبل أن يحدث التسليم السحابي.</p><table class=\"muted\" style=\"width:100%; border-collapse: collapse; font-size: 0.9rem; margin: 0.75rem 0;\"><thead><tr style=\"text-align:left; border-bottom: 1px solid var(--border-default);\"><th style=\"padding:8px 12px 8px 0;\">المنتقي</th><th style=\"padding:8px 0;\">لهذه الرسالة</th></tr></thead><tbody><tr style=\"border-bottom: 1px solid var(--border-subtle);\"><td style=\"padding:10px 12px 10px 0;\"><strong>Local</strong></td><td style=\"padding:10px 0;\">يعمل دائماً على <strong>Ollama المحلي</strong> — حتى لو كان BYOK مفعَّلاً والمفاتيح موجودة. استخدمه عندما يجب ألا تخرج هذه الإجابة.</td></tr><tr style=\"border-bottom: 1px solid var(--border-subtle);\"><td style=\"padding:10px 12px 10px 0;\"><strong>Auto</strong></td><td style=\"padding:10px 0;\">يختار الخادم الطبقة من نية الاستعلام (بحث الرمز ← محلي؛ الشرح ← سحابة متوسطة؛ التوليد ← سحابة متميزة). يحدث التسليم السحابي فقط عندما تنجح بوابات BYOK <em>و</em> تطابق النية طبقة سحابية.</td></tr><tr><td style=\"padding:10px 12px 10px 0;\"><strong>Cloud</strong></td><td style=\"padding:10px 0;\">الاستخدام الأساسي: <strong>رسائل الصور</strong> — يتيح الرؤية السحابية عندما تختار أيضاً نموذج رؤية سحابياً. بالنسبة إلى <strong>النص</strong>، استخدم <strong>Auto</strong> لترك النية تختار طبقة سحابية؛ و<strong>Local</strong> لضمان Ollama.</td></tr></tbody></table><p><strong>كيفية التغيير.</strong> شريط إنشاء المحادثة ← القائمة المنسدلة للنموذج ← اختر <strong>Local</strong> أو <strong>Auto</strong> أو <strong>Cloud</strong> ← أرسل. تُظهر شارة التوجيه على الإجابة الطبقة المحلية أو السحابية المستخدَمة.</p>",
+      "noteBefore": "إذا فشلت السحابة (حد المعدل، انقطاع، مفتاح مفقود)، يمكن للإضافة الرجوع إلى Ollama المحلي لتلك الرسالة. انظر",
+      "noteLink": "استكشاف الأخطاء وإصلاحها ← السحابة"
+    },
+    "multipleKeys": {
+      "title": "مفاتيح مزوّدين متعددة (OpenAI + Anthropic + Groq)",
+      "meta": "SecretStorage في VS Code · مفتاح واحد لكل مزوّد",
+      "body": "<p><strong>ما يفعله.</strong> يمكنك تخزين <strong>حتى ثلاثة مفاتيح</strong> — واحد لكل من <code>openai</code> و<code>anthropic</code> و<code>groq</code>. تعيش في فتحات SecretStorage منفصلة (<code>contextmint.apiKey.openai</code>، إلخ). لا تُدمَج المفاتيح أو تُرسَل إلى خادم Python أبداً.</p><p><strong>أي مفتاح يُستخدَم.</strong> أنت <em>لا</em> تختار المزوّد لكل رسالة في الإعدادات. يسمّي قرار توجيه الخادم نموذجاً (مثل <code>claude-3-5-sonnet</code> ← Anthropic، <code>groq/llama3-70b</code> ← Groq، <code>gpt-4o</code> ← OpenAI)؛ تربط الإضافة ذلك النموذج بالمفتاح المخزَّن المطابق وقت <code>cloud_dispatch</code>. إذا لم يكن للمزوّد الموجَّه إليه مفتاح، يطالب VS Code مرة واحدة عبر تدفق <strong>Configure Cloud API Key</strong>.</p><p><strong>كيفية إضافة المفاتيح أو تدويرها.</strong></p><ol><li><kbd>Ctrl+Shift+P</kbd> ← <strong>ContextMint: Configure Cloud API Key (Preview)</strong>.</li><li>اختر بسرعة <strong>openai</strong> أو <strong>anthropic</strong> أو <strong>groq</strong>.</li><li>ألصق المفتاح ← كرّر لكل مزوّد تحتاجه.</li><li>شغّل مجدداً بقيمة جديدة للتدوير؛ تتم إزالته عبر نفس المطالبة (الإلغاء = بدون تغيير).</li></ol><p class=\"muted\"><strong>نصيحة:</strong> خزّن فقط المزوّدين الذين توافق عليهم مؤسستك. مع منتقي <strong>Auto</strong>، قد يُوجَّه سؤال «اشرح هذه العمارة» إلى Anthropic (طبقة متوسطة) بينما قد يُوجَّه توليد الكود إلى طبقة متميزة — يستخدم كل منهما مفتاحه الخاص إن كان مهيَّأً.</p>"
+    },
+    "cloudThinking": {
+      "meta": "منطقي · الافتراضي <code>true</code>",
+      "body": "<p><strong>ما يفعله.</strong> عند استخدام نماذج الاستدلال الخاصة بك من Anthropic أو OpenAI، يطلب ويبثّ «تفكير» / استدلالاً ممتداً على مستوى النموذج من المزوّد.</p><p><strong>متى تعطّله.</strong> سير عمل حساس لزمن الاستجابة أو مزوّدون لا يدعمون بثوث التفكير.</p><p><strong>كيفية التغيير.</strong> الإعدادات ← ابحث عن <code>cloud thinking</code>، أو:<pre style=\"margin:0.5rem 0;\"><code>\"contextmint.chat.cloudThinkingEnabled\": false</code></pre></p><p class=\"muted\">ميزانيات ذات صلة: <code>contextmint.chat.cloudThinkingBudgetTokens</code> (الافتراضي <code>10000</code>) و<code>contextmint.chat.cloudThinkingBudgetMinTokens</code> (الافتراضي <code>1024</code>) — عدّل في الإعدادات إذا اقتُطع التفكير الممتد لـClaude.</p>"
+    },
+    "serverSettingsTitle": "إعدادات الخادم (مشغّل مضيف API)",
+    "serverSettingsNote": "مطلوب على الجهاز الذي يشغّل واجهة API الخاصة بـContextMint — Engine محلي (<code>127.0.0.1:8000</code>) أو مضيف فريق مشترك. عدّل في <strong>Engine ← إعداد الخادم</strong>، أو ملف التجاوز، أو <code>.env</code>؛ ثم <strong>أعد تشغيل واجهة API</strong>.",
+    "allowCloudDispatch": {
+      "meta": "خادم · منطقي · الافتراضي <code>false</code>",
+      "body": "<p><strong>ما يفعله.</strong> بوابة على جانب الخادم لأحداث SSE الخاصة بـ<code>cloud_dispatch</code>. عند <code>false</code>، تتجاهل واجهة API قيمة <code>prefer_cloud</code> من الإضافة وتشغّل Ollama المحلي دائماً — حتى لو فعّل المطوّر <code>cloudEnabled</code> وأعدّ المفاتيح.</p><p><strong>متى تفعّله.</strong> عندما تسمح سياسة المنصة بالتسليم السحابي وتشغّل تثبيتاً مدفوعاً أو معتمَداً (وليس تجريبياً / سيادياً افتراضياً).</p><p><strong>كيفية التغيير.</strong></p><ol><li><strong>الخيار أ — تجاوز YAML</strong> — أضف إلى <code>~/.contextmint/server.defaults.yaml</code> على مضيف API:<pre style=\"margin:0.5rem 0;\"><code>allow_cloud_dispatch: true</code></pre></li><li><strong>الخيار ب — متغيّر بيئة</strong> — في <code>.env</code> الخادم أو مواصفة الحاوية:<pre style=\"margin:0.5rem 0;\"><code>ALLOW_CLOUD_DISPATCH=true</code></pre></li><li>أعد تشغيل واجهة API (Engine ← <strong>الخادم</strong> ← إعادة تشغيل، أو أعد نشر الحاوية).</li><li>أعد الاختبار: الإضافة مع <code>cloudEnabled</code> + مفتاح ← نموذج سحابي ← يجب أن تُظهر الشارة الطبقة السحابية.</li></ol>"
+    },
+    "imageCloudOptIn": {
+      "meta": "خادم · منطقي · الافتراضي <code>true</code>",
+      "body": "<p><strong>ما يفعله.</strong> عند <code>true</code>، لا تُرسَل مرفقات الصور بصمت إلى الرؤية السحابية — يجب على المستخدم اختيار نموذج رؤية سحابي صراحةً في الإنشاء. يحافظ على الافتراضي السيادي للقطات الشاشة ومقتطفات واجهة المستخدم.</p><p><strong>كيفية التغيير.</strong> في تجاوز الخادم ضمن قسم <code>chat:</code>:<pre style=\"margin:0.5rem 0;\"><code>chat:\n  image_cloud_opt_in_only: true</code></pre>أو متغيّر بيئة: <code>CHAT__IMAGE_CLOUD_OPT_IN_ONLY=true</code>. أعد تشغيل واجهة API.</p>"
+    },
+    "imagePreferCloud": {
+      "meta": "خادم · منطقي · الافتراضي <code>false</code>",
+      "bodyBefore": "<p><strong>ما يفعله.</strong> عندما تتوفر الرؤية المحلية والسحابية معاً واختار المستخدم السحابة، يتحكم فيما إذا كانت السحابة مفضَّلة على رؤية Ollama المحلية. الافتراضي <code>false</code> يبقي الرؤية المحلية أساسية.</p><p><strong>متى تفعّله.</strong> عندما يكون معيار المؤسسة رؤية سحابية فقط وتكون رؤية Ollama المحلية احتياطية فقط.</p><p><strong>كيفية التغيير.</strong> تجاوز الخادم:<pre style=\"margin:0.5rem 0;\"><code>chat:\n  image_prefer_cloud_when_both: false</code></pre>أعد تشغيل واجهة API. التفاصيل:",
+      "linkText": "أدلة الصور وARGUS"
+    },
+    "dataFlowReminder": {
+      "strong": "تذكير بتدفق البيانات:",
+      "text": "يرسل BYOK <em>سياقاً مجمَّعاً منقَّحاً</em> إلى المزوّد الذي اخترته من جهاز المطوّر. لا تلمس مفاتيح API الخادم أبداً. تسجّل شارة التوجيه والمفتش الطبقة السحابية للتدقيق."
+    }
+  },
+  "enterprise": {
+    "h2": "2 — خادم API مؤسسي مشترك",
+    "intro": "يوجّه <strong>وضع الخادم المؤسسي</strong> المطوّرين إلى مكدس API <em>مشترك</em> لـContextMint (Docker / Helm على بنيتك التحتية) بدلاً من تشغيل كل حاسوب محمول لـEngine. يهيّئ المطوّرون VS Code لاستدعاء عنوان URL الخاص بالفريق والمصادقة عبر OIDC. هذا منفصل عن BYOK — يمكنك تشغيل المؤسسة محلياً فقط (بدون خروج سحابي) أو إضافة BYOK لاحقاً عبر القسم 1.",
+    "pathAlignment": {
+      "strong": "مواءمة المسار مطلوبة.",
+      "before": "يفهرس الخادم مسارات نظام الملفات التي يمكنه قراءتها. لا يمكن لحاسوب محمول مع نسخة مستنسخة في <code>C:\\dev\\repo</code> استخدام <code>serverUrl</code> بعيد ما لم ير الخادم نفس المسار (Remote SSH، أو تركيب مشترك، أو مستودع مستنسخ على الخادم). انظر",
+      "linkText": "الثقة ← نماذج النشر"
+    },
+    "checklistTitle": "قائمة تحقق نشر المؤسسة",
+    "checklistItem1Before": "<strong>فريق المنصة</strong> — انشر API + استدلالاً متوافقاً مع OpenAI (غالباً vLLM) + Chroma (+ Redis إن استُخدم) على البنية التحتية الداخلية. انظر",
+    "checklistItem1Link": "نشر الخادم السيادي",
+    "checklistItemsRest": [
+      "<strong>فريق المنصة</strong> — فعّل <code>auth.enabled</code>، واضبط <code>auth.mode</code> على <code>oidc</code>، وهيّئ المُصدِر/الجمهور، واضبط <code>AUTH__JWT_SECRET</code> في <code>.env</code> المضيف.",
+      "<strong>فريق المنصة</strong> — واءم مسارات المستودع (استنساخ على الخادم، تركيب NFS، أو Remote SSH).",
+      "<strong>كل مطوّر</strong> — عيّن <code>contextmint.serverUrl</code> إلى عنوان URL الأساسي HTTPS للفريق.",
+      "<strong>كل مطوّر</strong> — عيّن <code>contextmint.enterpriseMode</code> إلى <code>true</code> و<code>contextmint.oidcProviderId</code> إلى مزوّد الهوية الخاص بكم.",
+      "<strong>كل مطوّر</strong> — سجّل الدخول عبر مصادقة VS Code عند المطالبة؛ تأكد أن شريط الحالة يُظهر الاتصال بخادم الفريق."
+    ],
+    "serverSettingsTitle": "إعدادات الخادم (فريق المنصة)",
+    "serverSettingsNote": "على مضيف API: <strong>Engine ← إعداد الخادم</strong>، أو <code>~/.contextmint/server.defaults.yaml</code>، أو <code>.env</code>. تذهب الأسرار إلى <code>.env</code> فقط — لا تودعها أبداً في YAML على git.",
+    "authEnabled": {
+      "meta": "خادم · منطقي · الافتراضي <code>false</code>",
+      "body": "<p><strong>ما يفعله.</strong> يتطلب JWT من نوع Bearer صالحاً على مسارات <code>/api/v1/*</code> المحمية. معطَّل للتثبيتات المحلية أحادية المستخدم؛ مفعَّل لخوادم الفرق المشتركة.</p><p><strong>كيفية التغيير.</strong></p><ol><li>تجاوز الخادم:<pre style=\"margin:0.5rem 0;\"><code>auth:\n  enabled: true</code></pre></li><li>أو متغيّر بيئة: <code>AUTH__ENABLED=true</code></li><li>عيّن سر JWT (أدناه) قبل التفعيل في الإنتاج.</li><li>أعد تشغيل واجهة API.</li></ol>"
+    },
+    "authMode": {
+      "meta": "خادم · نص · الافتراضي <code>local</code>",
+      "body": "<p><strong>ما يفعله.</strong> <code>local</code> = بدون تحقق من المصادقة. <code>oidc</code> = تحقق من مُصدِر وجمهور وتوقيع JWT في الطلبات الواردة من الإضافة.</p><p><strong>كيفية التغيير.</strong> تجاوز الخادم:<pre style=\"margin:0.5rem 0;\"><code>auth:\n  mode: oidc</code></pre>أو متغيّر بيئة: <code>AUTH__MODE=oidc</code>. أعد تشغيل واجهة API.</p>"
+    },
+    "authOidc": {
+      "title": "و",
+      "meta": "خادم · نصوص · اختياري",
+      "body": "<p><strong>ما تفعله.</strong> عند ضبطها، ترفض واجهة API الرموز التي لا تطابق مطالبات <code>iss</code> أو <code>aud</code> — ما يربط رموز Bearer للإضافة بمزوّد الهوية لديكم (Microsoft Entra ID، Okta، Keycloak، إلخ).</p><p><strong>كيفية التغيير.</strong> تجاوز الخادم (مثال لـEntra ID):<pre style=\"margin:0.5rem 0;\"><code>auth:\n  oidc_issuer: \"https://login.microsoftonline.com/{tenant-id}/v2.0\"\n  oidc_audience: \"{application-client-id}\"</code></pre>أو متغيّرات بيئة: <code>AUTH__OIDC_ISSUER=...</code> و<code>AUTH__OIDC_AUDIENCE=...</code>. أعد تشغيل واجهة API.</p><p class=\"muted\">احصل على المُصدِر والجمهور من تسجيل تطبيق مزوّد الهوية لديكم. يجب أن يطابقا الرموز التي يمرّرها VS Code عند تفعيل <code>enterpriseMode</code>.</p>"
+    },
+    "authJwtSecret": {
+      "titleSuffix": "(متغيّر بيئة)",
+      "meta": "خادم · سر · ليس في YAML",
+      "body": "<p><strong>ما يفعله.</strong> سر HMAC للتحقق من JWT بخوارزمية HS256 (<code>auth.jwt_algorithm</code>). مطلوب عندما يكون <code>auth.enabled</code> صحيحاً. يُطابق <code>auth.jwt_secret</code> في إعداد الخادم.</p><p><strong>كيفية التغيير.</strong></p><ol><li>ولّد سلسلة عشوائية قوية (32 بايت أو أكثر).</li><li>أضفها إلى <code>.env</code> مضيف API (أو مخزن أسرار الحاوية):<pre style=\"margin:0.5rem 0;\"><code>AUTH__JWT_SECRET=your-long-random-secret-here</code></pre></li><li>لا تودعها أبداً في git أو تلصقها في <code>server.defaults.yaml</code>.</li><li>أعد تشغيل واجهة API بعد التدوير؛ يعيد المطوّرون المصادقة في VS Code.</li></ol>"
+    },
+    "authAcl": {
+      "title": "و",
+      "meta": "خادم · منطقي + نص",
+      "body": "<p><strong>ما تفعله.</strong> يفرض <code>require_workspace_acl</code> أدواراً لكل مساحة عمل (<code>viewer</code>، <code>dev</code>، <code>admin</code>) على مسارات الاستعلام. يُمنَح <code>sso_default_role</code> (الافتراضي <code>viewer</code>) عند أول تسجيل دخول SSO حين لا يوجد دور صريح.</p><p><strong>كيفية التغيير.</strong> تجاوز الخادم:<pre style=\"margin:0.5rem 0;\"><code>auth:\n  require_workspace_acl: true\n  sso_default_role: viewer</code></pre>أعد تشغيل واجهة API. أدر أدوار مساحة العمل عبر أدوات ACL أو واجهة API الإدارية لديك.</p>"
+    },
+    "workspaceRoots": {
+      "meta": "خادم · قائمة · الافتراضي فارغة (يسمح بأي شيء)",
+      "body": "<p><strong>ما يفعله.</strong> عندما لا يكون فارغاً، يرفض تسجيل مساحات العمل للمسارات خارج الدلائل المدرَجة — مفيد لحصر الفهرسة في نقاط تركيب معتمَدة.</p><p><strong>كيفية التغيير.</strong> تجاوز الخادم:<pre style=\"margin:0.5rem 0;\"><code>allowed_workspace_roots:\n  - /data/repos\n  - /mnt/shared-engineering</code></pre>أو متغيّر بيئة: <code>ALLOWED_WORKSPACE_ROOTS=/data/repos,/mnt/shared-engineering</code>. أعد تشغيل واجهة API.</p>"
+    },
+    "vscodeSettingsTitle": "إعدادات VS Code (كل مطوّر)",
+    "vscodeSettingsNote": "لكل جهاز — واجهة الإعدادات أو <code>settings.json</code>. بدون إعادة تشغيل الخادم.",
+    "serverUrl": {
+      "meta": "نص · الافتراضي <code>http://127.0.0.1:8000</code>",
+      "body": "<p><strong>ما يفعله.</strong> عنوان URL الأساسي لكل استدعاءات API الخاصة بـContextMint (الصحة، الفهرسة، المحادثة). الافتراضي محلي الأولوية هو الاتصال الداخلي؛ يوجّه وضع المؤسسة إلى مضيف فريقكم.</p><p><strong>كيفية التغيير.</strong></p><ol><li>الإعدادات ← ابحث عن <code>server url</code>، أو:<pre style=\"margin:0.5rem 0;\"><code>\"contextmint.serverUrl\": \"https://contextmint.corp.example\"</code></pre></li><li>استخدم اسم مضيف داخلي HTTPS؛ أضف المنفذ فقط إذا لم يكن 443.</li><li>أعد تحميل النافذة أو انتظر فحص الصحة التالي — يجب أن يُظهر شريط الحالة اتصالاً بخادم الفريق.</li></ol><p class=\"muted\"><strong>محلي الأولوية:</strong> اترك الافتراضي <code>http://127.0.0.1:8000</code> عند استخدام Engine على نفس الجهاز.</p>"
+    },
+    "enterpriseMode": {
+      "meta": "منطقي · الافتراضي <code>false</code>",
+      "body": "<p><strong>ما يفعله.</strong> يحوّل الإضافة إلى اتصال مؤسسي: يمرّر تسجيل دخول OIDC في VS Code رمز Bearer مع كل طلب API. إذا تعذّر الوصول إلى خادم الفريق، يرجع إلى <code>contextmint.localFallbackUrl</code> (إن كان مهيَّأً).</p><p><strong>متى تفعّله.</strong> عندما يشير <code>contextmint.serverUrl</code> إلى خادم مشترك مع <code>auth.enabled: true</code>.</p><p><strong>متى تعطّله.</strong> Engine محلي الأولوية على الاتصال الداخلي، أو شبكة VLAN مختبرية بدون SSO، أو حواسيب محمولة على طراز Hub71 «الإضافة فقط» تتصل بمضيف GPU للفريق بدون JWT.</p><p><strong>كيفية التغيير.</strong><pre style=\"margin:0.5rem 0;\"><code>\"contextmint.enterpriseMode\": true</code></pre>يطالب VS Code بتسجيل الدخول عبر <code>oidcProviderId</code> عند استدعاء API التالي.</p>"
+    },
+    "oidcProvider": {
+      "meta": "نص · الافتراضي فارغ",
+      "body": "<p><strong>ما يفعله.</strong> يخبر VS Code بمزوّد المصادقة المدمج الذي يجب استخدامه لـSSO عندما يكون <code>enterpriseMode</code> مفعَّلاً — مثل <code>microsoft</code> أو <code>github</code> أو معرّف مزوّد مخصَّص من إضافة مصادقة VS Code لديكم.</p><p><strong>كيفية التغيير.</strong><pre style=\"margin:0.5rem 0;\"><code>\"contextmint.oidcProviderId\": \"microsoft\"</code></pre>ينطبق فقط عندما يكون <code>enterpriseMode</code> مساوياً <code>true</code>. سجّل الخروج ثم الدخول مجدداً بعد تغيير المزوّد.</p>"
+    },
+    "localFallback": {
+      "meta": "نص · الافتراضي <code>http://127.0.0.1:8000</code>",
+      "body": "<p><strong>ما يفعله.</strong> عندما يكون <code>enterpriseMode</code> مفعَّلاً ويكون <code>serverUrl</code> الخاص بالفريق معطَّلاً، تعيد الإضافة المحاولة مقابل عنوان URL الاتصال الداخلي هذا لـEngine حتى يستمر المطوّرون بالعمل دون اتصال.</p><p><strong>متى تضبطه.</strong> عندما يشغّل المطوّرون أيضاً Engine محلياً كاحتياط طارئ.</p><p><strong>كيفية التغيير.</strong><pre style=\"margin:0.5rem 0;\"><code>\"contextmint.localFallbackUrl\": \"http://127.0.0.1:8000\"</code></pre>يُتجاهَل عندما يكون <code>enterpriseMode</code> مساوياً <code>false</code>.</p>"
+    },
+    "localJwt": {
+      "meta": "نص · الافتراضي فارغ",
+      "body": "<p><strong>ما يفعله.</strong> سر HS256 اختياري لرموز JWT الموقَّعة تلقائياً على المضيف المحلي عند اختبار المصادقة مقابل Engine محلي. عند تركه فارغاً، تقرأ الإضافة <code>AUTH__JWT_SECRET</code> من ملف <code>.env</code> الخاص بمساحة العمل.</p><p><strong>متى تستخدمه.</strong> للتطوير المحلي فقط — لمطابقة واجهة API محلية مع <code>auth.enabled</code> بدون OIDC كامل. يُفضَّل OIDC + <code>enterpriseMode</code> لخوادم الفرق الحقيقية.</p><p><strong>كيفية التغيير.</strong> الإعدادات ← ابحث عن <code>local jwt</code>، أو اضبطه في <code>settings.json</code>. لا تودع الأسرار في git الخاص بمساحة العمل.</p>"
+    },
+    "combiningTitle": "الجمع بين الخادم المؤسسي وBYOK",
+    "combiningBody": "يتراكب هذان المساران: وجّه <code>contextmint.serverUrl</code> إلى مضيف الفريق <em>و</em> فعّل مفاتيح BYOK على الحاسوب المحمول للتوليد السحابي. يجب على فريق المنصة تفعيل <code>allow_cloud_dispatch</code> على مضيف API <strong>المشترك</strong>؛ ولا يزال على كل مطوّر تعيين <code>contextmint.cloudEnabled</code> وإعداد المفاتيح محلياً. مصادقة المؤسسة وخروج BYOK ضوابط مستقلة."
+  },
+  "securityReview": {
+    "h2": "مواد المراجعة الأمنية",
+    "before": "يتلقى شركاء التصميم ملخصات العمارة، ومخططات تدفق البيانات، ودعم الاستبيانات.",
+    "contactBefore": "تواصل عبر",
+    "orText": "أو",
+    "applyLink": "التقدّم كشريك تصميم"
+  },
+  "footer": {
+    "trustBefore": "نموذج الثقة الكامل:",
+    "trustLink": "الثقة والأمان",
+    "keysBefore": "كل المفاتيح:",
+    "keysLink": "مرجع الإعدادات",
+    "problemsBefore": "المشكلات:",
+    "problemsLink": "استكشاف الأخطاء وإصلاحها ← السحابة والمؤسسات"
+  }
 }

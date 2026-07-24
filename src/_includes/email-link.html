@@ -5,5 +5,5 @@
 {% if site.emailVisible %}
 <a href="mailto:{{ address }}"{% if class %} class="{{ class }}"{% else %} style="color: var(--color-link);"{% endif %}>{{ address }}</a>
 {% else %}
-<span class="muted">Contact email coming soon</span>
+<span class="muted">{{ i18nCommon.emailComingSoon }}</span>
 {% endif %}

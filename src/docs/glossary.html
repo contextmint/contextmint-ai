@@ -5,178 +5,96 @@ description: ContextMint terminology — Engine, context lanes, blast radius, MC
 pageCss: product.css
 ---
 
-<h1>Glossary</h1>
-<p class="doc-lead">Shared vocabulary for ContextMint product, support, and documentation.</p>
+{% assign t = i18nPageStrings %}
+
+<h1>{{ t.h1 }}</h1>
+<p class="doc-lead">{{ t.lead }}</p>
 
 <dl class="faq-list" style="gap: 0;">
-  <details class="faq-item" open>
-    <summary>ContextMint Engine</summary>
-    <div class="faq-item__body"><p>Desktop tray application that runs the Python API server, manages Ollama, indexing, logs, and operator UI tabs.</p></div>
+  {% for item in t.coreBeforeExt %}
+  <details class="faq-item"{% if item.open %} open{% endif %}>
+    <summary>{{ item.term }}</summary>
+    <div class="faq-item__body"><p>{{ item.body }}</p></div>
   </details>
+  {% endfor %}
   <details class="faq-item">
-    <summary>{{ site.extensionName }} (extension)</summary>
-    <div class="faq-item__body"><p>VS Code extension — chat webview, Context Lens, packs panel, quality/governance UI. Connects to Engine over HTTP.</p></div>
+    <summary>{{ site.extensionName }} {{ t.extensionTerm.suffix }}</summary>
+    <div class="faq-item__body"><p>{{ t.extensionTerm.body }}</p></div>
   </details>
+  {% for item in t.coreAfterExt %}
   <details class="faq-item">
-    <summary>Workspace ID</summary>
-    <div class="faq-item__body"><p>12-character hex identifier for a registered folder. Stable per repo path; used in API calls and audit.</p></div>
+    <summary>{{ item.term }}</summary>
+    <div class="faq-item__body"><p>{{ item.body }}</p></div>
   </details>
-  <details class="faq-item">
-    <summary>Context lane</summary>
-    <div class="faq-item__body"><p>Repo (full RAG), Work (packs/attachments only), or Hybrid (RAG + recommendations). Selected in compose ⋯ → Context.</p></div>
-  </details>
-  <details class="faq-item">
-    <summary>Progressive RAG</summary>
-    <div class="faq-item__body"><p>Retrieval uses partial index + active file + grep while background indexing is still running.</p></div>
-  </details>
-  <details class="faq-item">
-    <summary>Context Lens</summary>
-    <div class="faq-item__body"><p>Gate 1 — pre-send preview of chunks, scores, routing, and governance before LLM inference.</p></div>
-  </details>
-  <details class="faq-item">
-    <summary>Context pack</summary>
-    <div class="faq-item__body"><p>Curated markdown knowledge with manifest; activated via @pack:name or packs panel.</p></div>
-  </details>
-  <details class="faq-item">
-    <summary>Glass box</summary>
-    <div class="faq-item__body"><p>Transparent routing — provenance chips, routing badge, reasoning timeline, inspector drawer.</p></div>
-  </details>
-  <details class="faq-item">
-    <summary>Readiness phase</summary>
-    <div class="faq-item__body"><p>Unified UI state: offline, starting, indexing, ready, limited, error. Gates chat send only for offline/starting/error.</p></div>
-  </details>
-  <details class="faq-item">
-    <summary>Ollama</summary>
-    <div class="faq-item__body"><p>Local LLM runtime for embeddings and chat on the default path. Engine manages lifecycle.</p></div>
-  </details>
-  <details class="faq-item">
-    <summary>BYOK</summary>
-    <div class="faq-item__body"><p>Bring your own key — optional cloud provider routing with keys in VS Code secrets.</p></div>
-  </details>
-  <details class="faq-item">
-    <summary>Quality map</summary>
-    <div class="faq-item__body"><p>Stored governance scan results (clones, structure) surfaced in lens governance drawer.</p></div>
-  </details>
-  <details class="faq-item">
-    <summary>Assisted action</summary>
-    <div class="faq-item__body"><p>Structured proposed change with risk level; human confirms before apply.</p></div>
-  </details>
-  <details class="faq-item">
-    <summary>Image evidence</summary>
-    <div class="faq-item__body"><p>Screenshot or image file attached to a chat message — paste, drag-drop, or file picker. Normalized, previewed in Context Lens, and sent to a vision-capable model. Default path is local Ollama; not indexed as repo chunks.</p></div>
-  </details>
-  <details class="faq-item">
-    <summary>Vision route</summary>
-    <div class="faq-item__body"><p>Which tier will answer an image question: <code>local</code> (Ollama VLM), <code>cloud</code> (explicit BYOK vision model), or <code>needs_vlm</code> (pull a vision model in Engine).</p></div>
-  </details>
-  <details class="faq-item">
-    <summary>ARGUS</summary>
-    <div class="faq-item__body"><p>Automated Review for GUI Usability &amp; Standards — structured visual audit on screenshots. Returns severity-tagged findings (including WCAG references). Report only; no auto-fix. Paste path from chat; sandbox path via Playwright in preview worktree.</p></div>
-  </details>
-  <details class="faq-item">
-    <summary>Visual audit</summary>
-    <div class="faq-item__body"><p>User-facing action (<strong>Run visual audit</strong>) that invokes ARGUS on the current image evidence. Distinct from chat Q&amp;A — optimized for findings JSON, not conversational answers.</p></div>
-  </details>
-  <details class="faq-item">
-    <summary>Support bundle</summary>
-    <div class="faq-item__body"><p>Export from Engine → About — versions, redacted config, logs for support tickets.</p></div>
-  </details>
+  {% endfor %}
 </dl>
 
-<h2 id="evidence-assembly">Evidence assembly (v1.0)</h2>
-<p class="muted">Shipped in v1.0 pilot — workspace-agnostic; not tied to one framework layout.</p>
+<h2 id="evidence-assembly">{{ t.evidenceAssembly.sectionTitle }}</h2>
+<p class="muted">{{ t.evidenceAssembly.sectionNote }}</p>
 
 <dl class="faq-list" style="gap: 0;">
-  <details class="faq-item" id="knowledge-objects">
-    <summary>Knowledge objects</summary>
-    <div class="faq-item__body"><p>Structural facts extracted <strong>once at index time</strong> (for example <code>RouteObject</code> for API routes) and stored in registry sidecars. The query router answers deterministic structural questions from these objects before running full search.</p></div>
+  {% assign eaIds = "knowledge-objects,retrieve-expand-infer" | split: "," %}
+  {% for item in t.evidenceAssembly.items %}
+  <details class="faq-item" id="{{ eaIds[forloop.index0] }}">
+    <summary>{{ item.term }}</summary>
+    <div class="faq-item__body"><p>{{ item.body }}</p></div>
   </details>
-  <details class="faq-item" id="retrieve-expand-infer">
-    <summary>Retrieve → Expand → Infer</summary>
-    <div class="faq-item__body"><p>When knowledge lookup misses or the question is semantic, ContextMint runs hybrid search, then <strong>expands</strong> around hits (file windows, workspace grep, dependency-graph neighbours). Optional LLM evidence selection is <strong>last resort only</strong> — tier-gated and off by default.</p></div>
-  </details>
+  {% endfor %}
 </dl>
 
-<h2 id="operational-intelligence">Operational intelligence &amp; reconciliation (v2.0 roadmap)</h2>
-<p class="muted">Planned in <a href="/roadmap.html#v2">v2.0 Engineering Intelligence</a> — see also <a href="/roadmap.html#operational-intelligence">operational intelligence</a> and <a href="/roadmap.html#track-b">Track B</a>. Not shipped in v1.0.</p>
+<h2 id="operational-intelligence">{{ t.operationalIntelligence.sectionTitle }}</h2>
+<p class="muted">
+  {{ t.operationalIntelligence.note.before }}
+  <a href="{{ '/roadmap.html#v2' | locale_path: localePrefix }}">{{ t.operationalIntelligence.note.v2Link }}</a>
+  {{ t.operationalIntelligence.note.mid1 }}
+  <a href="{{ '/roadmap.html#operational-intelligence' | locale_path: localePrefix }}">{{ t.operationalIntelligence.note.opIntelLink }}</a>
+  {{ t.operationalIntelligence.note.mid2 }}
+  <a href="{{ '/roadmap.html#track-b' | locale_path: localePrefix }}">{{ t.operationalIntelligence.note.trackBLink }}</a>{{ t.operationalIntelligence.note.after }}
+</p>
 
 <dl class="faq-list" style="gap: 0;">
-  <details class="faq-item" id="knowledge-reconciliation">
-    <summary>Knowledge reconciliation</summary>
-    <div class="faq-item__body"><p>When sources disagree (e.g. Git blame, CODEOWNERS, team memory, stale docs), return <strong>one scored answer</strong> with supporting and conflicting evidence listed — not four similar snippets. Distinct from <em>index reconciliation</em>, which keeps search indexes in sync with the repo.</p></div>
+  {% assign oiIds = "knowledge-reconciliation,operational-intelligence-retrieval,symbol-aware-retrieval" | split: "," %}
+  {% for item in t.operationalIntelligence.items %}
+  <details class="faq-item" id="{{ oiIds[forloop.index0] }}">
+    <summary>{{ item.term }}</summary>
+    <div class="faq-item__body"><p>{{ item.body }}</p></div>
   </details>
-  <details class="faq-item" id="operational-intelligence-retrieval">
-    <summary>Operational intelligence retrieval (OIR)</summary>
-    <div class="faq-item__body"><p>Retrieval scored by relevance <strong>and</strong> trust, freshness, and evidence coverage — not vector similarity alone. Planned enhancement on the v2.0 Knowledge Fabric; v1.0 ships hybrid search + expand with human gates.</p></div>
-  </details>
-  <details class="faq-item" id="symbol-aware-retrieval">
-    <summary>Symbol-aware retrieval</summary>
-    <div class="faq-item__body"><p>Search returns named artifacts — file, symbol, line range — not anonymous chunks. Ships in v1.0 citations and Context Lens evidence preview.</p></div>
-  </details>
+  {% endfor %}
 </dl>
 
-<h2 id="track-b">Track B — enterprise &amp; compliance (roadmap)</h2>
-<p class="muted">Target <strong>end of 2027</strong> — extends code intelligence to org-wide knowledge:
-<strong>Jira, Confluence, SharePoint, Git</strong>, and partner-selected knowledge bases, with enterprise
-controls. See <a href="/roadmap.html#track-b">Roadmap → Track B</a>.</p>
+<h2 id="track-b">{{ t.trackB.sectionTitle }}</h2>
+<p class="muted">
+  {{ t.trackB.note.before }} <strong>{{ t.trackB.note.strongDate }}</strong> {{ t.trackB.note.mid }}
+  <strong>{{ t.trackB.note.strongSystems }}</strong>{{ t.trackB.note.after }}
+  <a href="{{ '/roadmap.html#track-b' | locale_path: localePrefix }}">{{ t.trackB.note.linkText }}</a>.
+</p>
 
 <dl class="faq-list" style="gap: 0;">
-  <details class="faq-item" id="track-b-term">
-    <summary>Track B</summary>
-    <div class="faq-item__body"><p>Enterprise program: connect <strong>Jira, Confluence, SharePoint, Git</strong>, and other knowledge bases into one governed index; ACL + multi-tenant isolation; SSO/RBAC admin console; tamper-evident audit; SOC 2 evidence packaging — same retrieval core and human-gate model as v1.0.</p></div>
+  {% assign tbIds = "track-b-term,connected-knowledge,knowledge-fabric" | split: "," %}
+  {% for item in t.trackB.items %}
+  <details class="faq-item" id="{{ tbIds[forloop.index0] }}">
+    <summary>{{ item.term }}</summary>
+    <div class="faq-item__body"><p>{{ item.body }}</p></div>
   </details>
-  <details class="faq-item" id="connected-knowledge">
-    <summary>Connected knowledge sources</summary>
-    <div class="faq-item__body"><p>Track B ingests from systems teams already use — tickets (Jira), wikis (Confluence), document libraries (SharePoint), code (Git org-wide), and additional adapters (Notion, internal portals) prioritized with design partners. v1.0 pilots are <strong>Git-first</strong>; connectors ship when gated.</p></div>
-  </details>
-  <details class="faq-item" id="knowledge-fabric">
-    <summary>Knowledge Fabric (v2.0)</summary>
-    <div class="faq-item__body"><p>Unified graph model for code, memory, ownership, conventions, and decisions — all features query projections over one schema. Ships in <a href="/roadmap.html#v2">v2.0</a>; Track B adds org documents and compliance exports on top.</p></div>
-  </details>
+  {% endfor %}
 </dl>
 
-<h2 id="verification-engine">Verification Engine &amp; roadmap terms</h2>
-<p class="muted">These capabilities are <strong>product direction</strong> after v1.0 — see <a href="/roadmap.html">Roadmap</a> and <a href="/product/">Verification Engine</a>. Plain-language overview: <a href="/product/#terminology">Terms explained</a>.</p>
+<h2 id="verification-engine">{{ t.verificationEngine.sectionTitle }}</h2>
+<p class="muted">
+  {{ t.verificationEngine.note.before }} <strong>{{ t.verificationEngine.note.strong }}</strong>
+  {{ t.verificationEngine.note.mid1 }}
+  <a href="{{ '/roadmap.html' | locale_path: localePrefix }}">{{ t.verificationEngine.note.roadmapLink }}</a>
+  {{ t.verificationEngine.note.mid2 }}
+  <a href="{{ '/product/' | locale_path: localePrefix }}">{{ t.verificationEngine.note.productLink }}</a>{{ t.verificationEngine.note.mid3 }}
+  <a href="{{ '/product/#terminology' | locale_path: localePrefix }}">{{ t.verificationEngine.note.termsLink }}</a>.
+</p>
 
 <dl class="faq-list" style="gap: 0;">
-  <details class="faq-item" id="blast-radius">
-    <summary>Blast radius</summary>
-    <div class="faq-item__body"><p>If you change or remove X, what else breaks? ContextMint walks real dependency links (imports, services, features) to list downstream impact — graph traversal, not an LLM guess. Target: under 10 seconds per query at PR review time.</p></div>
+  {% assign veIds = "blast-radius,verification-engine-term,engineering-reality-graph,repository-dna,decision-graph,drift,mcp,agent-governance,fabric-citation,sovereign-server" | split: "," %}
+  {% for item in t.verificationEngine.items %}
+  <details class="faq-item" id="{{ veIds[forloop.index0] }}">
+    <summary>{{ item.term }}</summary>
+    <div class="faq-item__body"><p>{{ item.body }}</p></div>
   </details>
-  <details class="faq-item" id="verification-engine-term">
-    <summary>Verification Engine</summary>
-    <div class="faq-item__body"><p>Future product layer: check every PR or AI change against ownership, blast radius, architecture rules, and policy before merge. v1.0 ships the foundation (Engine, chat, Context Lens, quality map, gates).</p></div>
-  </details>
-  <details class="faq-item" id="engineering-reality-graph">
-    <summary>Engineering Reality Graph (Fabric)</summary>
-    <div class="faq-item__body"><p>Unified map of repo + org facts: ownership, dependencies, ADRs/decisions, policies, and drift baselines. Chat and agents cite this graph instead of inventing structure.</p></div>
-  </details>
-  <details class="faq-item" id="repository-dna">
-    <summary>Repository DNA</summary>
-    <div class="faq-item__body"><p>One-page engineering summary — topology, CODEOWNERS, hotspots, conventions — for fast onboarding and review context.</p></div>
-  </details>
-  <details class="faq-item" id="decision-graph">
-    <summary>Decision graph</summary>
-    <div class="faq-item__body"><p>Links architecture decisions (ADRs), PRs, issues, and docs to the code they explain. Answers &ldquo;why is it built this way?&rdquo; with verification status per edge.</p></div>
-  </details>
-  <details class="faq-item" id="drift">
-    <summary>Drift (architecture drift)</summary>
-    <div class="faq-item__body"><p>Live code diverging from recorded intent. <strong>Bad drift</strong> = unintended violation. <strong>Accepted drift</strong> = deliberate change recorded so alerts stop firing.</p></div>
-  </details>
-  <details class="faq-item" id="mcp">
-    <summary>MCP (Model Context Protocol)</summary>
-    <div class="faq-item__body"><p>Open standard for AI clients to call typed tools (e.g. <code>get_blast_radius</code>) with JSON responses. ContextMint&apos;s MCP server is <strong>planned</strong> — read-only graph tools under RBAC; not available in v1.0. See <a href="/developers/mcp-server.html">MCP server (roadmap)</a>.</p></div>
-  </details>
-  <details class="faq-item" id="agent-governance">
-    <summary>Agent governance</summary>
-    <div class="faq-item__body"><p>Policy and RBAC for AI agents: scoped read tools, queued proposals, audit trail, and mandatory human patch preview before writes. MCP layer on roadmap; Gates 1 &amp; 2 ship in v1.0.</p></div>
-  </details>
-  <details class="faq-item" id="fabric-citation">
-    <summary>Fabric citation</summary>
-    <div class="faq-item__body"><p>Machine-readable pointer in chat metadata to a graph node or edge (decision, feature, dependency path) — so answers trace to evidence, not prose alone. Roadmap enhancement to chat SSE.</p></div>
-  </details>
-  <details class="faq-item" id="sovereign-server">
-    <summary>Sovereign server (deployment profile)</summary>
-    <div class="faq-item__body"><p>Shared on-prem API + heavy models (e.g. vLLM) on customer GPU; developers use extension only with OIDC. Distinct from laptop <strong>local-first</strong> (Engine + Ollama). Planned — see engineering blueprint; not Hub71 demo topology.</p></div>
-  </details>
+  {% endfor %}
 </dl>

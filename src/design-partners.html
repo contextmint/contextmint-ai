@@ -6,45 +6,43 @@ pageCss: product.css
 pageJs: form.js
 ---
 
+{% assign t = i18nPageStrings %}
+
 <header class="page-hero">
   <div class="container">
-    <div class="pill">DESIGN PARTNERS</div>
-    <h1>Co-build governable AI for engineering teams</h1>
+    <div class="pill">{{ t.hero.pill }}</div>
+    <h1>{{ t.hero.title }}</h1>
     <p class="lead">
-      We are recruiting a small cohort of design partners — especially in
-      <strong>fintech, platform engineering, and regulated digital teams</strong> — to pilot
-      ContextMint before general availability. Intake opens
-      <strong>by start of September 2026</strong>. The program outline below is for reference;
-      the form is paused until then.
+      {{ t.hero.leadBefore }}
+      <strong>{{ t.hero.leadStrong1 }}</strong>
+      {{ t.hero.leadMid }}
+      <strong>{{ t.hero.leadStrong2 }}</strong>
+      {{ t.hero.leadAfter }}
     </p>
   </div>
 </header>
 
 <section class="section">
   <div class="container container-narrow">
-    <h2 class="section-title">The 30-day evaluation pilot</h2>
+    <h2 class="section-title">{{ t.pilot.title }}</h2>
     <p class="muted">
-      A design partner pilot is a <strong>bounded one-month proof-of-concept</strong> — not a
-      subscription that ends after 30 days, and not a requirement for a 30-minute sales call to start
-      (async via the form is fine).
+      {{ t.pilot.leadBefore }} <strong>{{ t.pilot.leadStrong }}</strong> {{ t.pilot.leadAfter }}
     </p>
     <div class="grid grid-2" style="margin-top: 20px;">
       <div class="card">
-        <strong>What you commit</strong>
+        <strong>{{ t.pilot.commitTitle }}</strong>
         <ul style="margin: 10px 0 0; padding-left: 1.2rem; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
-          <li>Named pilot lead (platform, security, or engineering)</li>
-          <li><strong>10–30 developers</strong> on <strong>one team or repo</strong></li>
-          <li><strong>30 calendar days</strong> of real dev usage after onboarding</li>
-          <li>Short feedback at <strong>week 2</strong> and <strong>week 4</strong> (async OK)</li>
+          {% for item in t.pilot.commitItems %}
+          <li>{{ item }}</li>
+          {% endfor %}
         </ul>
       </div>
       <div class="card">
-        <strong>What we deliver</strong>
+        <strong>{{ t.pilot.deliverTitle }}</strong>
         <ul style="margin: 10px 0 0; padding-left: 1.2rem; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
-          <li>Install help + deployment path review (local or on-prem)</li>
-          <li>Weekly async check-in during the pilot month</li>
-          <li><strong>Written pilot summary</strong> for security and platform stakeholders</li>
-          <li>Option to <strong>extend to 90 days</strong> if the pilot is going well</li>
+          {% for item in t.pilot.deliverItems %}
+          <li>{{ item }}</li>
+          {% endfor %}
         </ul>
       </div>
     </div>
@@ -54,21 +52,25 @@ pageJs: form.js
 <section class="section section--surface">
   <div class="container container-narrow split">
     <div>
-      <h2>What you get</h2>
+      <h2>{{ t.getGive.getTitle }}</h2>
       <ul>
-        <li>Early access to ContextMint Engine + VS Code extension</li>
-        <li>Local-first deployment — or shared on-prem server with guided path review</li>
-        <li>Context Lens + quality map for audit-friendly AI-assisted development</li>
-        <li>Direct line to product engineering; <a href="/roadmap.html" style="color: var(--color-link);">influence the roadmap</a></li>
-        <li>Pilot summary report for your security and platform stakeholders</li>
+        {% for item in t.getGive.getItems %}
+        <li>
+          {% if item.linkText %}
+          {{ item.before }} <a href="{{ item.linkHref | locale_path: localePrefix }}" style="color: var(--color-link);">{{ item.linkText }}</a>
+          {% else %}
+          {{ item.text }}
+          {% endif %}
+        </li>
+        {% endfor %}
       </ul>
     </div>
     <div>
-      <h2>What we ask</h2>
+      <h2>{{ t.getGive.askTitle }}</h2>
       <ul>
-        <li>Honest assessment of fit for regulated / sovereign AI dev workflows</li>
-        <li>If Track B matters: which systems to connect first (Jira, Confluence, SharePoint, etc.)</li>
-        <li>Willingness to share blocker-level feedback — not a marketing testimonial</li>
+        {% for item in t.getGive.askItems %}
+        <li>{{ item }}</li>
+        {% endfor %}
       </ul>
     </div>
   </div>
@@ -76,58 +78,54 @@ pageJs: form.js
 
 <section class="section">
   <div class="container container-narrow">
-    <h2 class="section-title">What we are building next</h2>
+    <h2 class="section-title">{{ t.next.title }}</h2>
     <p class="muted">
-      Design partners shape three horizons — not just today&rsquo;s pilot. See the full
-      <a href="/roadmap.html" style="color: var(--color-link);">product roadmap</a>.
+      {{ t.next.leadBefore }}
+      <a href="{{ '/roadmap.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.next.roadmapLink }}</a>{{ t.next.leadAfter }}
     </p>
     <div class="grid grid-3" style="margin-top: 20px;">
       <div class="card">
-        <span class="roadmap-status roadmap-status--available" style="margin-bottom: 10px;">v1.0</span>
-        <strong>Decision-control plane</strong>
+        <span class="roadmap-status roadmap-status--available" style="margin-bottom: 10px;">{{ t.next.v1Badge }}</span>
+        <strong>{{ t.next.v1Title }}</strong>
         <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">
-          Engine, Context Lens, quality map, symbol-aware retrieval — shipping end of August 2026.
+          {{ t.next.v1Text }}
         </p>
       </div>
       <div class="card">
-        <span class="roadmap-status roadmap-status--planned" style="margin-bottom: 10px;">v2.0 · Q1 2027</span>
-        <strong>Engineering Intelligence Platform</strong>
+        <span class="roadmap-status roadmap-status--planned" style="margin-bottom: 10px;">{{ t.next.v2Badge }}</span>
+        <strong>{{ t.next.v2Title }}</strong>
         <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">
-          Knowledge Fabric, institutional memory, CHRONOS forensics, operational intelligence
-          retrieval — one digital twin of your engineering system.
+          {{ t.next.v2Text }}
         </p>
       </div>
       <div class="card">
-        <span class="roadmap-status roadmap-status--enterprise" style="margin-bottom: 10px;">Track B · end 2027</span>
-        <strong>Enterprise &amp; compliance</strong>
+        <span class="roadmap-status roadmap-status--enterprise" style="margin-bottom: 10px;">{{ t.next.trackBBadge }}</span>
+        <strong>{{ t.next.trackBTitle }}</strong>
         <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">
-          Jira, Confluence, SharePoint, Git, and org knowledge bases — plus SSO/RBAC, multi-tenant
-          isolation, tamper-evident audit, and SOC 2 evidence packaging.
+          {{ t.next.trackBText }}
         </p>
       </div>
     </div>
     <p class="muted" style="margin-top: 16px; margin-bottom: 0; font-size: 0.9rem;">
-      Especially interested in <strong>v2.0 + Track B</strong> (Jira, Confluence, SharePoint, Git,
-      and other knowledge bases)? Note that in the form when intake opens — we prioritize partners
-      who need unified org knowledge and compliance evidence, not just IDE chat.
+      {{ t.next.footerBefore }} <strong>{{ t.next.footerStrong }}</strong> {{ t.next.footerMid }}
     </p>
   </div>
 </section>
 
 <section class="section">
   <div class="container container-narrow">
-    <h2 class="section-title">Ideal fit</h2>
+    <h2 class="section-title">{{ t.fit.title }}</h2>
     <div class="grid grid-2">
       <div class="card">
-        <strong>You blocked or limited ungoverned AI in the IDE</strong>
+        <strong>{{ t.fit.card1Strong }}</strong>
         <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">
-          Because of data residency, audit requirements, or auto-edits without evidence or approval.
+          {{ t.fit.card1Text }}
         </p>
       </div>
       <div class="card">
-        <strong>You need evidence, not vibes</strong>
+        <strong>{{ t.fit.card2Strong }}</strong>
         <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">
-          Human gates before inference and before apply — with logs your reviewers can trust.
+          {{ t.fit.card2Text }}
         </p>
       </div>
     </div>
@@ -136,30 +134,29 @@ pageJs: form.js
 
 <section class="section">
   <div class="container container-narrow">
-    <h2 class="section-title text-center">Express interest (async)</h2>
+    <h2 class="section-title text-center">{{ t.interest.title }}</h2>
 
     <div class="notice-banner notice-banner--planned" role="status">
-      <span class="roadmap-status roadmap-status--planned">Opens start of September 2026</span>
+      <span class="roadmap-status roadmap-status--planned">{{ t.interest.badge }}</span>
       <p style="margin: 10px 0 0;">
-        <strong>Design partner intake paused.</strong>
-        We are not accepting cohort applications yet. The form below is visible for reference only —
-        submissions are disabled until <strong>start of September 2026</strong>.
-        Until then, follow <a href="/getting-started.html" style="color: var(--color-link);">Getting started</a>
-        for local install,
-        <a href="/request-demo.html" style="color: var(--color-link);">Book a Demo</a>
-        for a walkthrough, or open
-        <a href="{{ site.issuesUrl }}" style="color: var(--color-link);">GitHub issues</a>
-        for questions.
+        <strong>{{ t.interest.noticeStrong }}</strong>
+        {{ t.interest.noticeBefore }} <strong>{{ t.interest.noticeStrong2 }}</strong>{{ t.interest.noticeMid }}
+        <a href="{{ '/getting-started.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.interest.gettingStartedLink }}</a>
+        {{ t.interest.noticeMid2 }}
+        <a href="{{ '/request-demo.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.interest.demoLink }}</a>
+        {{ t.interest.noticeMid3 }}
+        <a href="{{ site.issuesUrl }}" style="color: var(--color-link);">{{ t.interest.issuesLink }}</a>
+        {{ t.interest.noticeAfter }}
       </p>
     </div>
 
     <div class="demo-form-shell demo-form-shell--paused">
       <div class="demo-form-pause-overlay" role="presentation">
-        <p class="demo-form-pause-overlay__title">Not accepting applications yet</p>
+        <p class="demo-form-pause-overlay__title">{{ t.overlay.title }}</p>
         <p class="demo-form-pause-overlay__body">
-          Design partner intake opens <strong>by start of September 2026</strong>.
+          {{ t.overlay.textBefore }} <strong>{{ t.overlay.textStrong }}</strong>{{ t.overlay.textAfter }}
         </p>
-        <a class="btn btn-primary" href="/request-demo.html">Book a demo</a>
+        <a class="btn btn-primary" href="{{ '/request-demo.html' | locale_path: localePrefix }}">{{ t.overlay.cta }}</a>
       </div>
 
     <form
@@ -174,82 +171,82 @@ pageJs: form.js
     >
       <div class="form-fields">
         <div class="form-group">
-          <label for="name">Full name</label>
+          <label for="name">{{ t.form.nameLabel }}</label>
           <input type="text" id="name" name="name" disabled autocomplete="name" tabindex="-1" />
         </div>
         <div class="form-group">
-          <label for="email">Work email</label>
+          <label for="email">{{ t.form.emailLabel }}</label>
           <input type="email" id="email" name="email" disabled autocomplete="email" tabindex="-1" />
         </div>
         <div class="form-group">
-          <label for="company">Organization</label>
+          <label for="company">{{ t.form.companyLabel }}</label>
           <input type="text" id="company" name="company" disabled autocomplete="organization" tabindex="-1" />
         </div>
         <div class="form-group">
-          <label for="role">Role</label>
+          <label for="role">{{ t.form.roleLabel }}</label>
           <select id="role" name="role" disabled tabindex="-1">
-            <option value="">Select…</option>
-            <option value="cto">CTO / VP Engineering</option>
-            <option value="platform">Platform / DevOps</option>
-            <option value="security">Security / Compliance</option>
-            <option value="staff">Staff Engineer / Architect</option>
-            <option value="research">Research / Education</option>
-            <option value="other">Other</option>
+            <option value="">{{ t.form.selectPlaceholder }}</option>
+            <option value="cto">{{ t.form.roleOptions.cto }}</option>
+            <option value="platform">{{ t.form.roleOptions.platform }}</option>
+            <option value="security">{{ t.form.roleOptions.security }}</option>
+            <option value="staff">{{ t.form.roleOptions.staff }}</option>
+            <option value="research">{{ t.form.roleOptions.research }}</option>
+            <option value="other">{{ t.form.roleOptions.other }}</option>
           </select>
         </div>
         <input type="hidden" name="challenge" value="design-partner" />
         <div class="form-group">
-          <label for="team-size">Engineering team size</label>
+          <label for="team-size">{{ t.form.teamSizeLabel }}</label>
           <select id="team-size" name="team-size" disabled tabindex="-1">
-            <option value="">Select…</option>
-            <option value="1-10">1–10</option>
-            <option value="11-50">11–50</option>
-            <option value="51-200">51–200</option>
-            <option value="200+">200+</option>
+            <option value="">{{ t.form.selectPlaceholder }}</option>
+            <option value="1-10">{{ t.form.teamSizeOptions.s1 }}</option>
+            <option value="11-50">{{ t.form.teamSizeOptions.s2 }}</option>
+            <option value="51-200">{{ t.form.teamSizeOptions.s3 }}</option>
+            <option value="200+">{{ t.form.teamSizeOptions.s4 }}</option>
           </select>
         </div>
         <div class="form-group">
-          <label for="roadmap-interest">Roadmap interest (optional)</label>
+          <label for="roadmap-interest">{{ t.form.roadmapInterestLabel }}</label>
           <select id="roadmap-interest" name="roadmap-interest" disabled tabindex="-1">
-            <option value="">Select…</option>
-            <option value="v1-pilot">v1.0 pilot — IDE + local-first governance</option>
-            <option value="v2-fabric">v2.0 — Engineering Intelligence / Knowledge Fabric</option>
-            <option value="track-b">Track B — Jira, Confluence, SharePoint, enterprise SSO</option>
-            <option value="v2-track-b">v2.0 + Track B (both)</option>
-            <option value="verification">Verification Engine — PR gates, blast radius</option>
+            <option value="">{{ t.form.selectPlaceholder }}</option>
+            <option value="v1-pilot">{{ t.form.roadmapInterestOptions.v1 }}</option>
+            <option value="v2-fabric">{{ t.form.roadmapInterestOptions.v2 }}</option>
+            <option value="track-b">{{ t.form.roadmapInterestOptions.trackB }}</option>
+            <option value="v2-track-b">{{ t.form.roadmapInterestOptions.v2TrackB }}</option>
+            <option value="verification">{{ t.form.roadmapInterestOptions.verification }}</option>
           </select>
         </div>
         <div class="form-group">
-          <label for="message">Primary constraint (optional)</label>
+          <label for="message">{{ t.form.messageLabel }}</label>
           <textarea
             id="message"
             name="message"
             disabled
-            placeholder="e.g. Cannot send code to US cloud AI; need Jira + Confluence in one answer; SharePoint policies indexed with ACL…"
+            placeholder="{{ t.form.messagePlaceholder }}"
             tabindex="-1"
           ></textarea>
         </div>
         <button type="submit" class="btn btn-primary" style="width: 100%;" disabled tabindex="-1">
-          Submit interest (opens start of September 2026)
+          {{ t.form.submit }}
         </button>
         <p class="mono text-center" style="margin-top: 16px; font-size: 0.75rem; color: var(--text-tertiary);">
-          Form paused — design partner intake opens by start of September 2026.
+          {{ t.form.pausedNote }}
         </p>
       </div>
       <div class="form-success">
-        <strong>Thank you — we will be in touch.</strong>
+        <strong>{{ t.form.successTitle }}</strong>
         <p style="margin: 8px 0 0; color: var(--text-secondary); font-size: 0.9rem;">
-          We will follow up with a one-page pilot proposal.
+          {{ t.form.successText }}
         </p>
       </div>
     </form>
     </div>
 
     <p class="muted text-center" style="margin-top: 24px; font-size: 0.9rem;">
-      Questions now?
-      <a href="/getting-started.html" style="color: var(--color-link);">Getting started</a>
+      {{ t.footer.questionsBefore }}
+      <a href="{{ '/getting-started.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.footer.gettingStartedLink }}</a>
       ·
-      <a href="{{ site.issuesUrl }}" style="color: var(--color-link);">GitHub issues</a>
+      <a href="{{ site.issuesUrl }}" style="color: var(--color-link);">{{ t.footer.issuesLink }}</a>
     </p>
   </div>
 </section>

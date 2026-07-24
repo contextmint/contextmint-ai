@@ -1,4 +1,142 @@
 {
   "title": "Roadmap | ContextMint",
-  "description": "ContextMint product roadmap — v1.0 end of August 2026, v2.0 Engineering Intelligence Platform, Track B enterprise and compliance, plus Verification Engine direction."
+  "description": "ContextMint product roadmap — v1.0 end of August 2026, v2.0 Engineering Intelligence Platform, Track B enterprise and compliance, plus Verification Engine direction.",
+  "hero": {
+    "pill": "PRODUCT DIRECTION",
+    "title": "Roadmap",
+    "leadHtml": "Three horizons: <strong>v1.0</strong> pilots the decision-control plane now (GA end of August 2026); <strong>v2.0</strong> unifies engineering intelligence on one Knowledge Fabric; <strong>Track B</strong> extends the same core to org-wide knowledge with enterprise controls. Directional — not a delivery schedule.",
+    "horizons": [
+      { "href": "#v1", "statusClass": "pilot", "status": "v1.0 · end of August 2026", "title": "Decision-control plane", "text": "Engine, Context Lens, quality map, federated governance lookup — GA end of August 2026." },
+      { "href": "#v2", "statusClass": "planned", "status": "v2.0 · Q1 2027", "title": "Engineering Intelligence Platform", "text": "Knowledge Fabric, institutional memory, CHRONOS, operational intelligence retrieval." },
+      { "href": "#track-b", "statusClass": "enterprise", "status": "Track B · end 2027", "title": "Enterprise &amp; compliance", "text": "Jira, Confluence, SharePoint, Git, and org knowledge — plus SSO, RBAC, and audit." }
+    ],
+    "ctaDesignPartners": "Design partner details",
+    "ctaFeatures": "Features in v1.0"
+  },
+  "glance": {
+    "title": "At a glance",
+    "footerHtml": "Capabilities and order evolve with design partner feedback. We label <strong>shipping</strong> vs <strong>planned</strong> explicitly — no certification or autonomous-governance claims."
+  },
+  "v1": {
+    "badge": "v1.0 · end of August 2026",
+    "title": "Decision-control plane",
+    "introHtml": "Local-first <strong>decision-control plane</strong> for software teams — evidence before inference, human approval before repo changes. In internal pilot now; design partner intake opens by start of September 2026. General availability <strong>end of August 2026</strong>.",
+    "items": [
+      "<strong>ContextMint Engine</strong> — tray-native operator console (server, Ollama, models, indexing, quality scans, logs, support bundle)",
+      "<strong>VS Code extension</strong> — Ask / Plan / Agent modes, context lanes (Repo / Work / Hybrid), chat sessions, attach context, suggested prompts",
+      "<strong>Context Lens (gate 1)</strong> — preview retrieved chunks, scores, routing, and governance notes before the model runs",
+      "<strong>Patch preview (gate 2)</strong> — review unified diffs before anything applies; no silent writes",
+      "<strong>Quality map</strong> — stored governance findings (clones, near-duplicates, structure signals) with optional apply gates",
+      "<strong>Federated query router v0.1</strong> — governance <em>lookup</em> reads the Findings Store first (store-first, tier-agnostic facts, trust metadata) — not chat-time rediscovery",
+      "<strong>Context packs</strong> — per-repo manifests with <span class=\"mono\">@pack:name</span> activation and auto-sync",
+      "<strong>Glass-box routing</strong> — provenance breakdown, routing badge, reasoning trace for power users",
+      "<strong>Conventions learner</strong> — proposals and audit history with human approval before rules enter the graph",
+      "<strong>Image evidence</strong> — paste UI screenshots in chat; local Ollama vision by default; Context Lens preview before send",
+      "<strong>ARGUS visual audit</strong> — structured WCAG-tagged findings on screenshots; report only, human-gated fixes",
+      "<strong>Workspace-agnostic evidence assembly</strong> — index-time route knowledge when available, then hybrid search + expand (file windows, grep, dependency graph) on any indexed repo",
+      "<strong>Symbol-aware retrieval</strong> — citations name file, symbol, and line range — not anonymous text chunks",
+      "<strong>Local-first default</strong> — Engine + Ollama on loopback; code stays on device"
+    ],
+    "footerHtml": "Optional (off by default): BYOK cloud routing, git sandbox worktrees, inline completion, shared on-prem API server for enterprise pilots — <a href=\"/features.html\">full v1.0 list</a>."
+  },
+  "designPartners": {
+    "badge": "Recruiting design partners",
+    "title": "2026 pilot cohort",
+    "introHtml": "A <strong>30-day evaluation pilot</strong> is a bounded proof-of-concept — not a product subscription limit. After onboarding, <strong>10–30 developers</strong> on one team or repo use ContextMint in real work for <strong>one calendar month</strong>; we review together and deliver a written summary for security and platform leadership. Extendable to <strong>90 days</strong> when the pilot is going well.",
+    "noticeStrong": "What \u201c30 days\u201d means:",
+    "noticeItems": [
+      "<strong>Week 0</strong> — install Engine + extension; index one repo; security path agreed",
+      "<strong>Weeks 1–4</strong> — daily dev usage with Context Lens and patch preview gates",
+      "<strong>Week 2 &amp; 4</strong> — short async feedback (email or form — no standing meetings required)",
+      "<strong>End of month</strong> — pilot summary report + go / extend / stop decision"
+    ],
+    "bodyHtml": "You get direct engineering access; we get honest signal on fit for regulated and sovereign AI dev workflows — and priority input on <a href=\"#v2\">v2.0</a> and <a href=\"#track-b\">Track B</a> (including which knowledge systems to connect first).",
+    "items": [
+      "<strong>Guided pilot playbook</strong> — week-2 and week-4 feedback (async OK)",
+      "<strong>Deployment path review</strong> — local Engine per developer or shared on-prem server (<a href=\"/trust.html#deployment\">deployment models</a>)",
+      "<strong>Security questionnaire support</strong> — architecture summaries for stakeholders",
+      "<strong>Priority input</strong> — influence v2.0 Fabric scope and Track B enterprise packaging",
+      "<strong>Team rollout patterns</strong> — Docker / Helm shared-server pilots with platform engineering",
+      "<strong>Pilot summary report</strong> — outcomes for security and engineering leadership"
+    ],
+    "ctaPrimary": "Design partner details",
+    "ctaSecondary": "Book a demo"
+  },
+  "v2": {
+    "badge": "v2.0 · target Q1 2027",
+    "title": "Engineering Intelligence Platform",
+    "introHtml": "After v1.0 exit, ContextMint becomes one <strong>living digital twin</strong> of the engineering system — not seven siloed tools. Retrieval, memory, health analysis, temporal forensics, and multimodal validation become <strong>query projections</strong> over a single logical model: the <strong>Knowledge Fabric</strong>. Starts post–v1.0 freeze; target MVP <strong>first quarter of 2027 (Q1)</strong>.",
+    "philosophyHtml": "<strong>Philosophy:</strong> Do not build 7 tools. Build 1 Fabric — users experience Memory Tab, Architecture Console, CHRONOS bisect, ORACLE prefetch, ARGUS audit, and MESH delegation as surfaces; engineers maintain one ingestion pipeline and one schema.",
+    "wavesTitle": "Six waves (post–v1.0)",
+    "waves": [
+      { "title": "Wave 1 — Institutional memory", "text": "Fabric shadow-write, learner approval gate, Memory Tab — conventions become graph nodes with evidence." },
+      { "title": "Wave 2 — Temporal &amp; structural", "text": "CHRONOS checkpoint forensics, health analysis, Architecture Tab — graph/metadata first, not commit embeddings." },
+      { "title": "Wave 3 — Zero-latency UX", "text": "ORACLE prefetch — intent + retrieval context cached before you ask; extends v1 PERF layers." },
+      { "title": "Wave 4 — Multimodal validation", "text": "ARGUS audit reports in sandbox — structured findings, human reviews fixes separately." },
+      { "title": "Wave 5 — Distributed compute (lite)", "text": "MESH-Lite — explicit trusted peers for heavy VLM/health jobs; no auto-discovery swarm." },
+      { "title": "Wave 6 — conditional", "text": "Full mesh only if Wave 5 proves measurable runtime benefit in dogfood." }
+    ],
+    "oiTitle": "Operational intelligence (within v2.0)",
+    "oiIntroHtml": "v1.0 assembles <strong>named engineering artifacts</strong> with index-time knowledge objects (routes today), hybrid search + expand, and human gates. v2.0 adds scoring <strong>belief</strong> across more object kinds — and reconciles conflicting signals into one auditable answer.",
+    "oiItems": [
+      "<strong>Knowledge reconciliation</strong> — when Git, CODEOWNERS, team memory, and docs disagree, surface one scored claim with supporting and conflicting evidence",
+      "<strong>Operational intelligence retrieval (OIR)</strong> — rank by relevance <em>and</em> trust, freshness, and evidence coverage",
+      "<strong>Domain-aware retrieval</strong> — files and symbols tagged to domains; filter by ownership and architectural boundaries, not chunks alone",
+      "<strong>Repository DNA + Feature Registry Lite</strong> — deterministic health baselines and feature traceability on the Fabric",
+      "<strong>Summary-first retrieval</strong> — semantic compression at index time; expand to raw code only when confidence is low",
+      "<strong>RBAC + audit foundations</strong> — <span class=\"mono\">tenant_id</span> / <span class=\"mono\">owner_id</span> on Fabric nodes; immutable audit schema (full enterprise packaging continues in <a href=\"#track-b\">Track B</a>)"
+    ],
+    "footerHtml": "We do not claim trust-weighted retrieval or cross-system reconciliation until product gates pass. v1.0 already ships index-time route knowledge, store-first governance lookup, and symbol-aware citations. <a href=\"/docs/glossary.html#operational-intelligence\">Glossary →</a>"
+  },
+  "trackB": {
+    "badge": "Track B · target end 2027",
+    "title": "Enterprise &amp; organizational knowledge",
+    "introHtml": "<strong>Track B</strong> extends ContextMint from developer code intelligence into an <strong>explainable organizational knowledge platform</strong> — same retrieval core and local-first posture, with security and compliance controls that regulated buyers require. Builds on the v2.0 Fabric; target MVP <strong>end of 2027</strong>. After design partner intake opens, cohort feedback will help prioritize which external systems to connect first.",
+    "noticeHtml": "<strong>Connected knowledge (Track B):</strong> One governed index across the systems your teams already use — not code in isolation. v1.0 indexes <strong>Git repos</strong> today; Track B adds adapter-based ingest for <strong>Jira</strong> (issues, epics, ownership), <strong>Confluence</strong> (wikis, ADRs, runbooks), <strong>SharePoint</strong> (document libraries, policies), <strong>Git</strong> (multi-repo and org-wide code graph), and <strong>other knowledge bases</strong> (Notion, internal portals, ticket systems — partner-driven priority). Answers cite the source system with ACL respected per document.",
+    "securityTitle": "Security-first build order",
+    "securityItems": [
+      "<strong>Foundation controls (B0)</strong> — unified authorization on every read path; cache keys scoped to tenant + role; explainable score breakdown fields",
+      "<strong>Security boundary (B3)</strong> — document-level ACL enforcement; hard multi-tenant isolation (scoped storage roots, per-tenant keys, no cross-tenant joins)",
+      "<strong>External knowledge adapters (B1+)</strong> — Jira, Confluence, SharePoint, Git org-graph, and partner-selected knowledge bases; async ingest queue with ACL from each source",
+      "<strong>Document ingestion (B1)</strong> — PDF, DOCX, and exported wiki pages with async queue, backpressure, and quarantine for OCR-heavy workloads",
+      "<strong>Metadata + PII (B2)</strong> — policy-driven redaction modes; metadata boosts bounded so base retrieval ranking stays stable and explainable",
+      "<strong>Enterprise surface (B4)</strong> — OIDC/SAML SSO, API gateway policies, admin console for roles, retention, index health, and audit browsing",
+      "<strong>Compliance packaging (B5)</strong> — GDPR deletion proof, air-gapped Helm/Docker bundles, tamper-evident audit (hash-chain + signed checkpoints), SOC 2 evidence collectors"
+    ],
+    "outcomesTitle": "Outcomes for design partners",
+    "outcomes": [
+      "Ask questions across <strong>code + Jira + Confluence + SharePoint</strong> — one answer with cited evidence, not four conflicting snippets",
+      "One platform for engineering and internal docs — same Context Lens and human-gate model",
+      "Team server deployment with SSO — extension connects to shared on-prem API, not loopback-only",
+      "Compliance exports your security team can run without vendor workshops",
+      "No cloud egress unless explicitly enabled per workspace or tenant"
+    ],
+    "footerHtml": "We do not claim live Jira/Confluence/SharePoint connectors, SOC 2 certification, or FedRAMP until gated. Adapter order follows design-partner demand; v1.0 pilots stay Git-first. <a href=\"/solutions/security-compliance.html\">Security use cases →</a> · <a href=\"/design-partners.html\">Co-shape Track B →</a>"
+  },
+  "verification": {
+    "badge": "Beyond v2.0",
+    "title": "Verification Engine",
+    "introHtml": "Longer-horizon capabilities on top of the Fabric — deterministic graph evidence first; AI narrates with citations, never overrides graph truth without human confirmation. Timing evolves with design partner feedback; many items follow <strong>Track B (end 2027)</strong> and extend into <strong>2028+</strong>.",
+    "items": [
+      "<strong>PR verification gates</strong> — ownership, impact, and policy checked on every change (<a href=\"/product/\">vision</a>)",
+      "<strong>Blast radius</strong> — graph traversal for impacted services, files, and teams (<a href=\"/product/blast-radius.html\">learn more</a>)",
+      "<strong>Repository DNA</strong> — deterministic repo health and convention baselines (<a href=\"/product/repository-dna.html\">learn more</a>)",
+      "<strong>Decision graph</strong> — architecture intent and ADR traceability (<a href=\"/product/decision-graph.html\">learn more</a>)",
+      "<strong>Drift detection</strong> — scorecards for accepted vs violation baselines (<a href=\"/product/drift-detection.html\">learn more</a>)",
+      "<strong>Agent governance</strong> — policy-scoped tool contracts for AI agents in CI (<a href=\"/product/agent-governance.html\">learn more</a>)",
+      "<strong>ARGUS insights tab</strong> — cross-session audit history and team dashboards (beyond v1 paste + sandbox)",
+      "<strong>Enterprise CLI packaging</strong> — graph queries and verification in CI pipelines",
+      "<strong>MCP server for agents</strong> — blast radius, features, and decisions as tool contracts (<a href=\"/developers/mcp-server.html\">contracts</a>)",
+      "<strong>CI/CD deployment graph</strong> — pipeline and release context linked to code changes (after Track B knowledge fabric)"
+    ],
+    "ctaPrimary": "Explore the Verification Engine",
+    "ctaSecondary": "Terms explained"
+  },
+  "footer": {
+    "textHtml": "Capabilities and order may change as we learn from pilots. What ships in v1.0 is documented on <a href=\"/features.html\">Features</a>. Governance and compliance claims follow our <a href=\"/trust.html\">trust center</a> — we do not promise autonomous governance or certification."
+  },
+  "cta": {
+    "title": "Shape what ships next",
+    "text": "When design partner intake opens (start of September 2026), partners get a direct line to product engineering — especially for v2.0 Fabric scope and Track B requirements."
+  }
 }

@@ -5,205 +5,172 @@ description: Paste UI screenshots in chat with local Ollama vision, optional clo
 pageCss: product.css
 ---
 
-<h1>Image evidence &amp; ARGUS</h1>
+{% assign t = i18nPageStrings %}
+
+<h1>{{ t.h1 }}</h1>
 <p class="doc-lead">
-  Paste or attach <strong>screenshots</strong> in chat — PNG, JPEG, or WebP — and ask questions about what you see.
-  ContextMint routes vision through <strong>local Ollama</strong> by default (no API key required). Optional cloud
-  multimodal is available when you opt in with BYOK. <strong>ARGUS</strong> runs a structured visual audit on the
-  same image — WCAG-tagged findings, report only, never auto-fix.
+  {{ t.lead }}
 </p>
 
-<h2>Why image evidence</h2>
+<h2>{{ t.why.title }}</h2>
 <p>
-  Engineers paste UI mockups, error dialogs, and dashboard screenshots every day. ContextMint treats images as
-  first-class evidence alongside retrieved code chunks — with the same human gates: Context Lens preview before
-  inference, routing badge after, and no silent writes.
+  {{ t.why.body }}
 </p>
 <ul>
-  <li><strong>Local-first</strong> — vision models run on your machine via Ollama when installed</li>
-  <li><strong>No cloud key required</strong> — attaching an image does not force cloud routing</li>
-  <li><strong>Lane-aware</strong> — Work and Hybrid lanes support image + packs; Repo lane combines image + RAG</li>
-  <li><strong>Privacy-conscious</strong> — sensitivity notice on first attach; EXIF stripped; images never logged as base64</li>
+  {% for item in t.why.items %}
+  <li>{{ item }}</li>
+  {% endfor %}
 </ul>
 
-<h2>Attach images in chat</h2>
-<h3>Ways to add an image</h3>
+<h2>{{ t.attach.title }}</h2>
+<h3>{{ t.attach.ways.title }}</h3>
 <ul>
-  <li><strong>Paste</strong> — copy a screenshot and paste into the compose bar</li>
-  <li><strong>Drag and drop</strong> — drop image files onto the compose area</li>
-  <li><strong>File picker</strong> — use the attach control and choose an image file</li>
+  {% for item in t.attach.ways.items %}
+  <li>{{ item }}</li>
+  {% endfor %}
 </ul>
 
-<h3>Limits and formats</h3>
+<h3>{{ t.attach.limits.title }}</h3>
 <ul>
-  <li>Formats: <strong>PNG</strong>, <strong>JPEG</strong>, <strong>WebP</strong> (SVG and other types are rejected)</li>
-  <li>Up to <strong>3 images</strong> per message (configurable)</li>
-  <li>Max <strong>5&nbsp;MiB</strong> per image; large images are resized to a max dimension (default 2048&nbsp;px)</li>
-  <li>Image chips appear beside file attachment chips in the compose bar</li>
+  {% for item in t.attach.limits.items %}
+  <li>{{ item }}</li>
+  {% endfor %}
 </ul>
 
 <p>
-  The first time you attach an image in a session, ContextMint may show a
-  <strong>sensitivity notice</strong> — screenshots can contain credentials, PII, or internal URLs.
-  Review Context Lens before sending when the trust gate is enabled.
+  {{ t.attach.sensitivityNotice }}
 </p>
 
-<h2>Vision routing (local default)</h2>
+<h2>{{ t.routing.title }}</h2>
 <p>
-  When images are attached, ContextMint selects a <strong>vision-capable model</strong> — not a text-only coder model.
-  The default path is <strong>local Ollama</strong> using models such as <code>moondream</code>, <code>llava</code>, or
-  <code>qwen2-vl</code>.
+  {{ t.routing.intro }}
 </p>
 
 <table class="muted" style="width:100%; border-collapse: collapse; font-size: 0.9rem;">
   <thead>
     <tr style="text-align:left; border-bottom: 1px solid var(--border-default);">
-      <th style="padding:8px 0;">Lens / badge label</th>
-      <th style="padding:8px 0;">Meaning</th>
+      {% for h in t.routing.table.headers %}
+      <th style="padding:8px 0;">{{ h }}</th>
+      {% endfor %}
     </tr>
   </thead>
   <tbody>
-    <tr style="border-bottom: 1px solid var(--border-subtle);">
-      <td style="padding:10px 0;"><strong>local</strong></td>
-      <td style="padding:10px 0;">Local Ollama vision model will run — default and recommended for sovereign workflows</td>
+    {% for row in t.routing.table.rows %}
+    <tr{% unless forloop.last %} style="border-bottom: 1px solid var(--border-subtle);"{% endunless %}>
+      <td style="padding:10px 0;"><strong>{{ row.label }}</strong></td>
+      <td style="padding:10px 0;">{{ row.meaning }}</td>
     </tr>
-    <tr style="border-bottom: 1px solid var(--border-subtle);">
-      <td style="padding:10px 0;"><strong>cloud</strong></td>
-      <td style="padding:10px 0;">You explicitly chose a cloud vision model and BYOK is enabled with a valid key</td>
-    </tr>
-    <tr>
-      <td style="padding:10px 0;"><strong>needs_vlm</strong></td>
-      <td style="padding:10px 0;">No vision model installed — pull one from Engine → Models (primary CTA); cloud is optional secondary</td>
-    </tr>
+    {% endfor %}
   </tbody>
 </table>
 
 <p>
-  <strong>Important:</strong> configuring a cloud API key does <em>not</em> automatically send images to the cloud.
-  Images stay on the local vision path unless you explicitly select a cloud vision model. This preserves the
-  sovereign default for regulated and air-gapped environments.
+  {{ t.routing.important }}
 </p>
 
-<h3>Pull a vision model</h3>
+<h3>{{ t.routing.pull.title }}</h3>
 <p>
-  If no vision model is installed, Context Lens shows <strong>Pull a vision model</strong> — a deep link to
-  Engine → <strong>Models</strong> where you can pull <code>moondream</code> (small, fast) or <code>llava</code>.
-  Vision models are separate from your chat and embed models; both can coexist in Ollama.
+  {{ t.routing.pull.body }}
 </p>
 
-<h2>Context Lens with images</h2>
+<h2>{{ t.lensImages.title }}</h2>
 <p>
-  When Context Lens preview is enabled, attached images appear in the evidence drawer alongside retrieved chunks:
+  {{ t.lensImages.intro }}
 </p>
 <ul>
-  <li>Thumbnail preview of each attached image</li>
-  <li><strong>Vision route</strong> label (<code>local</code>, <code>cloud</code>, or <code>needs_vlm</code>)</li>
-  <li>Chunk count and RAG evidence (when Repo or Hybrid lane is active)</li>
-  <li>Actions: <strong>Send</strong> (multimodal chat) and <strong>Run visual audit</strong> (ARGUS)</li>
+  {% for item in t.lensImages.items %}
+  <li>{{ item }}</li>
+  {% endfor %}
 </ul>
 <p>
-  The trust gate can require explicit confirmation when images are present — same human-in-the-loop pattern as
-  sensitive text sends. See <a href="/docs/context-lens-packs.html">Context Lens &amp; packs</a>.
+  {{ t.lensImages.gateNoteBefore }}
+  <a href="{{ '/docs/context-lens-packs.html' | locale_path: localePrefix }}">{{ t.lensImages.gateLink }}</a>.
 </p>
 
-<h2>Chat answers with images</h2>
+<h2>{{ t.chatAnswers.title }}</h2>
 <p>
-  After you send, the assistant answers using the image plus any retrieved context. The routing badge on the
-  answer shows <strong>local</strong> or <strong>cloud</strong> vision tier. Inspector / xAI meta includes
-  <code>image_count</code> and <code>vision_route</code> for audit trails — not raw image bytes.
+  {{ t.chatAnswers.body }}
 </p>
 <ul>
-  <li><strong>Repo / Hybrid</strong> — image + hybrid search (vector + BM25 + grep) when indexed</li>
-  <li><strong>Work</strong> — image + session packs and file attachments; no vector repo search</li>
-  <li><strong>Plan / Agent + image</strong> — informational banner; images do not trigger autonomous file apply</li>
+  {% for item in t.chatAnswers.items %}
+  <li>{{ item }}</li>
+  {% endfor %}
 </ul>
 <p>
-  When images are present, extended “thinking” streams are disabled for compatible local models to avoid
-  incompatible multimodal + think modes.
+  {{ t.chatAnswers.thinkingNote }}
 </p>
 
-<h2>ARGUS — visual audit</h2>
+<h2>{{ t.argus.title }}</h2>
 <p>
-  <strong>ARGUS</strong> (Automated Review for GUI Usability &amp; Standards) is ContextMint’s structured visual
-  audit layer. It uses the same local vision stack as chat but returns a <strong>findings report</strong> instead
-  of a conversational answer.
+  {{ t.argus.intro }}
 </p>
 
-<h3>Paste audit (from chat)</h3>
+<h3>{{ t.argus.paste.title }}</h3>
 <ol>
-  <li>Attach a UI screenshot in compose.</li>
-  <li>Open Context Lens (or use the message action after send).</li>
-  <li>Click <strong>Run visual audit</strong>.</li>
-  <li>Review findings inline: severity, category, description, optional WCAG rule reference, screenshot thumb.</li>
+  {% for step in t.argus.paste.steps %}
+  <li>{{ step }}</li>
+  {% endfor %}
 </ol>
 <p>
-  The audit reuses the same normalized image blob — no second upload. ARGUS defaults to <strong>local</strong>
-  vision; it does not require cloud keys.
+  {{ t.argus.paste.note }}
 </p>
 
-<h3>Sandbox audit (from preview worktree)</h3>
+<h3>{{ t.argus.sandbox.title }}</h3>
 <p>
-  When git sandbox preview is enabled, run command palette:
-  <strong>ContextMint: Run visual audit on sandbox</strong>. ContextMint bootstraps dependencies in the
-  isolated worktree, captures a Playwright screenshot of the running preview, and runs the same VLM audit schema.
+  {{ t.argus.sandbox.body }}
 </p>
 <ul>
-  <li>On dependency bootstrap failure, you get a structured <code>deps_unavailable</code> finding — never a blank-page audit</li>
-  <li>Reports are stored with a TTL (default 7 days) under the operator data directory</li>
+  {% for item in t.argus.sandbox.items %}
+  <li>{{ item }}</li>
+  {% endfor %}
 </ul>
 
-<h3>Findings format</h3>
-<p>Each finding includes:</p>
+<h3>{{ t.argus.findings.title }}</h3>
+<p>{{ t.argus.findings.intro }}</p>
 <ul>
-  <li><strong>severity</strong> — e.g. critical, major, minor, info</li>
-  <li><strong>category</strong> — accessibility, contrast, layout, copy, interaction, …</li>
-  <li><strong>description</strong> — what the model observed</li>
-  <li><strong>wcag_rule</strong> — optional WCAG reference when applicable</li>
-  <li><strong>bbox</strong> — optional region hint on the screenshot</li>
+  {% for item in t.argus.findings.items %}
+  <li>{{ item }}</li>
+  {% endfor %}
 </ul>
 
-<h3>Safety — report only</h3>
+<h3>{{ t.argus.safety.title }}</h3>
 <p>
-  ARGUS <strong>never auto-fixes</strong> your codebase. If you act on a finding, ContextMint can hand off to
-  the assisted patch preview (gate 2) — you still review unified diffs before apply. See
-  <a href="/docs/patches-governance.html">Patches &amp; governance</a>.
+  {{ t.argus.safety.bodyBefore }}
+  <a href="{{ '/docs/patches-governance.html' | locale_path: localePrefix }}">{{ t.argus.safety.linkText }}</a>.
 </p>
 
-<h2>Optional cloud vision (BYOK)</h2>
+<h2>{{ t.cloudVision.title }}</h2>
 <p>
-  Teams that approve external inference can enable cloud multimodal when <code>contextmint.cloudEnabled</code>
-  is on and a provider key is configured. You must <strong>explicitly</strong> select a cloud vision-capable model;
-  images are not silently dispatched to text-only cloud models.
+  {{ t.cloudVision.body1 }}
 </p>
 <p>
-  Multimodal context is assembled and redacted in the extension; API keys stay in VS Code SecretStorage.
-  Details: <a href="/docs/byok-enterprise.html">BYOK &amp; enterprise</a>.
+  {{ t.cloudVision.body2Before }}
+  <a href="{{ '/docs/byok-enterprise.html' | locale_path: localePrefix }}">{{ t.cloudVision.body2Link }}</a>.
 </p>
 
-<h2>Settings reference</h2>
-<p>Key extension settings (search “ContextMint” in VS Code Settings):</p>
+<h2>{{ t.settingsRef.title }}</h2>
+<p>{{ t.settingsRef.intro }}</p>
 <ul>
-  <li><code>contextmint.chat.imageAttachmentsEnabled</code> — enable paste / drop / picker</li>
-  <li><code>contextmint.chat.imageMaxCountPerMessage</code> — max images per send</li>
-  <li><code>contextmint.chat.imageMaxBytes</code> — per-file size cap</li>
-  <li><code>contextmint.chat.imageSensitivityNotice</code> — first-attach notice text</li>
-  <li><code>contextmint.argus.auditButtonLabel</code> — Lens action label (default “Run visual audit”)</li>
+  {% for item in t.settingsRef.items %}
+  <li>{{ item }}</li>
+  {% endfor %}
 </ul>
 <p>
-  Server tunables (<code>chat.image_*</code>, <code>argus.*</code>) live in operator defaults on the API host.
-  Full list: <a href="/docs/settings.html#settings-argus">Settings → Image evidence &amp; ARGUS</a>.
+  {{ t.settingsRef.serverNoteBefore }}
+  <a href="{{ '/docs/settings.html#settings-argus' | locale_path: localePrefix }}">{{ t.settingsRef.serverLink }}</a>.
 </p>
 
-<h2>Operator checklist</h2>
+<h2>{{ t.checklist.title }}</h2>
 <ol>
-  <li>Engine → <strong>Start all</strong> — server and Ollama healthy</li>
-  <li>Engine → <strong>Models</strong> — pull one vision model (<code>moondream</code> recommended for laptops)</li>
-  <li>VS Code → paste a screenshot → confirm Lens shows <strong>local</strong> route</li>
-  <li>Optional → <strong>Run visual audit</strong> on a UI screenshot to validate ARGUS</li>
+  {% for item in t.checklist.items %}
+  <li>{{ item }}</li>
+  {% endfor %}
 </ol>
 
 <p class="muted">
-  Problems: <a href="/support/troubleshooting.html#vision-argus">Troubleshooting → Image evidence &amp; ARGUS</a>.
-  Concepts: <a href="/docs/glossary.html">Glossary</a> ·
-  <a href="/docs/chat-and-lanes.html">Chat &amp; lanes</a>.
+  {{ t.footer.problemsBefore }}
+  <a href="{{ '/support/troubleshooting.html#vision-argus' | locale_path: localePrefix }}">{{ t.footer.problemsLink }}</a>.
+  {{ t.footer.conceptsBefore }}
+  <a href="{{ '/docs/glossary.html' | locale_path: localePrefix }}">{{ t.footer.glossaryLink }}</a> ·
+  <a href="{{ '/docs/chat-and-lanes.html' | locale_path: localePrefix }}">{{ t.footer.chatLanesLink }}</a>.
 </p>

@@ -1,4 +1,57 @@
 {
   "title": "Privacy Policy | ContextMint",
-  "description": "ContextMint privacy policy — local-first default, optional BYOK cloud routing, and data handling by tier."
+  "description": "ContextMint privacy policy — local-first default, optional BYOK cloud routing, and data handling by tier.",
+  "hero": {
+    "title": "Privacy Policy",
+    "lead": "Last updated: June 2026"
+  },
+  "overview": {
+    "title": "Overview",
+    "text": "ContextMint Ltd (\u201cContextMint\u201d, \u201cwe\u201d) provides engineering intelligence software. This policy describes how we collect, use, and protect information when you use our website, VS Code extension, and related services."
+  },
+  "localFirst": {
+    "title": "Local-first tier",
+    "text": "On the Developer tier, repository indexing, embeddings, and chat inference run locally on your machine by default (ContextMint Engine + extension). We do not receive your source code unless you explicitly enable optional cloud routing, use a customer-operated shared API server you configure, contact support with diagnostic logs you choose to share, or use team sync features on higher tiers."
+  },
+  "byok": {
+    "title": "Optional cloud (BYOK)",
+    "text": "Cloud LLM routing is opt-in and disabled by default. When enabled, you supply provider API keys stored in VS Code secrets on your device — ContextMint does not store or receive those keys. Assembled context is redacted before dispatch to your chosen provider (for example OpenAI, Anthropic, or Groq). You control whether any cloud path is used; local Ollama remains the default for sovereign workflows."
+  },
+  "onPrem": {
+    "title": "Shared on-prem API server (enterprise)",
+    "text": "When your organization deploys a shared ContextMint API server on infrastructure you control, indexing and inference run on that server — not on ContextMint Ltd infrastructure. Your platform team configures authentication, repository mounts, and data retention. ContextMint Ltd does not host or receive your source code in this model unless you separately enable optional cloud routing or support diagnostics."
+  },
+  "collect": {
+    "title": "Information we collect",
+    "items": [
+      { "strong": "Account data", "text": "— name, email, company when you register or request a demo" },
+      { "strong": "Usage telemetry", "text": "— optional, anonymized product analytics on Team and Enterprise tiers" },
+      { "strong": "Website data", "text": "— standard server logs and cookies for site functionality" },
+      { "strong": "Billing", "text": "— payment information processed by Stripe; we do not store full card numbers" }
+    ]
+  },
+  "use": {
+    "title": "How we use information",
+    "items": [
+      "Provide, maintain, and improve the ContextMint platform",
+      "Respond to demo requests and support inquiries",
+      "Process subscriptions and send billing-related communications",
+      "Comply with legal obligations"
+    ]
+  },
+  "retention": {
+    "title": "Data retention",
+    "textBefore": "Account data is retained while your subscription is active and for a reasonable period afterward for legal and billing purposes. You may request deletion by contacting",
+    "textAfter": "."
+  },
+  "rights": {
+    "title": "Your rights",
+    "text": "Depending on your jurisdiction (including UK GDPR), you may have rights to access, correct, delete, or export your personal data. Contact us to exercise these rights."
+  },
+  "contact": {
+    "title": "Contact",
+    "addressLine": "ContextMint Ltd, United Kingdom",
+    "emailLabel": "Email:",
+    "emailPendingText": "Privacy contact email will be published when our inbox is live."
+  }
 }

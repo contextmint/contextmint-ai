@@ -5,13 +5,15 @@ description: ContextMint developer center — REST API and CLI for v1.0; MCP and
 pageCss: product.css
 ---
 
+{% assign t = i18nPageStrings %}
+
 <header class="page-hero">
   <div class="container">
-    <div class="pill">DEVELOPERS</div>
-    <h1>Build on engineering reality</h1>
+    <div class="pill">{{ t.hero.pill }}</div>
+    <h1>{{ t.hero.h1 }}</h1>
     <p class="lead">
-      <strong>Today (v1.0):</strong> run the local API with <span class="mono">contextmint serve</span> and integrate via REST.
-      <strong>Roadmap:</strong> MCP tools and a fuller CLI for blast radius, packs, and CI gates.
+      <strong>{{ t.hero.leadStrong }}</strong> {{ t.hero.leadBefore }} <span class="mono">contextmint serve</span> {{ t.hero.leadAfter }}
+      <strong>{{ t.hero.roadmapStrong }}</strong> {{ t.hero.roadmapAfter }}
     </p>
   </div>
 </header>
@@ -19,21 +21,21 @@ pageCss: product.css
 <section class="section">
   <div class="container">
     <div class="grid grid-3">
-      <a class="feature-card" href="/developers/api-reference.html">
-        <h3>API Reference</h3>
-        <p>FastAPI backend — health, chat, search, packs, quality, and actions. OpenAPI at <span class="mono">/docs</span> when the server runs.</p>
-        <span class="dev-card-tag dev-card-tag--live">v1.0 · local server</span>
+      <a class="feature-card" href="{{ '/developers/api-reference.html' | locale_path: localePrefix }}">
+        <h3>{{ t.cards.api.title }}</h3>
+        <p>{{ t.cards.api.textBefore }} <span class="mono">/docs</span> {{ t.cards.api.textAfter }}</p>
+        <span class="dev-card-tag dev-card-tag--live">{{ t.cards.api.tag }}</span>
       </a>
-      <a class="feature-card" href="/developers/cli.html">
-        <h3>CLI</h3>
-        <p><span class="mono">contextmint serve</span> starts the API today. Index, health, and graph commands are planned for CI and platform automation.</p>
-        <span class="dev-card-tag dev-card-tag--live">serve available</span>
-        <span class="dev-card-tag dev-card-tag--roadmap">more commands roadmap</span>
+      <a class="feature-card" href="{{ '/developers/cli.html' | locale_path: localePrefix }}">
+        <h3>{{ t.cards.cli.title }}</h3>
+        <p><span class="mono">contextmint serve</span> {{ t.cards.cli.textBefore }}</p>
+        <span class="dev-card-tag dev-card-tag--live">{{ t.cards.cli.tagLive }}</span>
+        <span class="dev-card-tag dev-card-tag--roadmap">{{ t.cards.cli.tagRoadmap }}</span>
       </a>
-      <a class="feature-card" href="/developers/mcp-server.html">
-        <h3>MCP Server</h3>
-        <p>Model Context Protocol tools for blast radius, features, and decisions — agent-native read contracts on the engineering graph.</p>
-        <span class="dev-card-tag dev-card-tag--roadmap">roadmap · verification engine</span>
+      <a class="feature-card" href="{{ '/developers/mcp-server.html' | locale_path: localePrefix }}">
+        <h3>{{ t.cards.mcp.title }}</h3>
+        <p>{{ t.cards.mcp.text }}</p>
+        <span class="dev-card-tag dev-card-tag--roadmap">{{ t.cards.mcp.tag }}</span>
       </a>
     </div>
   </div>
@@ -41,22 +43,22 @@ pageCss: product.css
 
 <section class="section section--surface">
   <div class="container container-narrow">
-    <h2 class="section-title">Quick start (v1.0)</h2>
+    <h2 class="section-title">{{ t.quickstart.title }}</h2>
     <div class="code-block">
-      <span class="cm"># Install extension + Engine — see getting started</span><br />
-      <span class="cm"># Or from a dev checkout:</span><br />
+      <span class="cm">{{ t.quickstart.comment1 }}</span><br />
+      <span class="cm">{{ t.quickstart.comment2 }}</span><br />
       contextmint serve<br /><br />
-      <span class="cm"># Verify health</span><br />
+      <span class="cm">{{ t.quickstart.comment3 }}</span><br />
       curl http://localhost:8000/api/health
     </div>
     <p class="muted" style="margin-top: 24px; margin-bottom: 0;">
-      Full setup: <a href="/getting-started.html" style="color: var(--color-link);">Getting started</a> ·
-      User docs: <a href="/docs/" style="color: var(--color-link);">Documentation</a> ·
-      Terminology: <a href="/docs/glossary.html" style="color: var(--color-link);">Glossary</a>
+      {{ t.quickstart.fullSetup }} <a href="{{ '/getting-started.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.quickstart.fullSetupLink }}</a> ·
+      {{ t.quickstart.userDocs }} <a href="{{ '/docs/' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.quickstart.userDocsLink }}</a> ·
+      {{ t.quickstart.terminology }} <a href="{{ '/docs/glossary.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.quickstart.terminologyLink }}</a>
     </p>
   </div>
 </section>
 
 {% include "jargon-verification.html" %}
 
-{% include "cta-band.html", ctaTitle: "Need integration support?", ctaText: "Design partners get help wiring the local API and preview MCP contracts on the roadmap. Intake opens by start of September 2026." %}
+{% include "cta-band.html", ctaTitle: t.cta.title, ctaText: t.cta.text %}

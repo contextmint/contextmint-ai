@@ -1,5 +1,117 @@
 {
   "title": "توثيق المستخدم | ContextMint",
   "description": "أدلة مفصّلة لمحرك ContextMint ومحادثات VS Code ومسارات السياق وأدلة الصور وARGUS وContext Lens والفهرسة والحوكمة.",
-  "sovereignCard": "نشر المنصة مع استدلال متوافق مع OpenAI (vLLM) وOIDC ومساحات عمل بمحاذاة المسارات."
+  "h1": "توثيق المستخدم",
+  "lead": {
+    "before": "كل ما تحتاجه لتثبيت ContextMint وتشغيله والاستفادة منه — محرك Engine على جهازك، وإضافة VS Code، وسير العمل القائم على المراجعة البشرية. ابدأ بصفحة",
+    "linkText": "البدء السريع",
+    "after": "إن كنت جديداً؛ واستخدم هذه الفصول للتعمّق."
+  },
+  "cards": [
+    {
+      "href": "/docs/installation.html",
+      "title": "التثبيت والإعداد",
+      "text": "المتطلبات الأساسية، والمسار المحلي أولاً، وخطوات التحقق — بالإضافة إلى <strong>دعم التثبيت</strong> (الإصلاحات الأولية)."
+    },
+    {
+      "href": "/docs/chat-and-lanes.html",
+      "title": "المحادثة والأوضاع ومسارات السياق",
+      "text": "أوضاع Ask / Plan / Agent، ومسارات Repo / Work / Hybrid، والمرفقات، والجلسات، والاقتراح التلقائي."
+    },
+    {
+      "href": "/docs/image-evidence-argus.html",
+      "title": "أدلة الصور وARGUS",
+      "text": "إرفاق لقطات الشاشة، ورؤية Ollama المحلية، ومعاينة Context Lens، والتدقيق البصري المنظّم."
+    },
+    {
+      "href": "/docs/context-lens-packs.html",
+      "title": "عدسة السياق والحزم",
+      "text": "معاينة المرحلة الأولى (Gate 1)، ودرجات الصلة، وتفعيل ‎@pack، والفحص والتعلّم، والحزم القديمة."
+    },
+    {
+      "href": "/docs/engine-operator.html",
+      "title": "دليل تشغيل Engine",
+      "text": "علامات تبويب تطبيق الصينية: نظرة عامة، الخادم، Ollama، النماذج، الفهرسة، الجودة، المعرفة، السجلات، الإعدادات."
+    },
+    {
+      "href": "/docs/indexing-readiness.html",
+      "title": "الفهرسة والجاهزية",
+      "text": "استرجاع تدريجي (RAG) أثناء الفهرسة، ومراحل الجاهزية، والملفات ذات الأولوية، والمسارات الساخنة."
+    },
+    {
+      "href": "/docs/patches-governance.html",
+      "title": "التصحيحات والحوكمة",
+      "text": "الإجراءات المساعدة، ومعاينة التصحيح (المرحلة الثانية)، وخريطة الجودة، ونتائج DRY، وسجلّ التدقيق."
+    },
+    {
+      "href": "/docs/knowledge-and-governance.html",
+      "title": "المعرفة والحوكمة",
+      "text": "تبويب Knowledge في Engine — سجلّات هيكلية، وتدقيق النشاط، والاستمرارية، وأمثلة عملية."
+    },
+    {
+      "href": "/docs/settings.html",
+      "title": "مرجع الإعدادات",
+      "part1": "مفاتيح VS Code",
+      "keysWord": "مفتاحاً",
+      "part2": "وإعدادات خادم API الافتراضية",
+      "part3": "مع أدلة الاستخدام."
+    },
+    {
+      "href": "/docs/context-budget-calculator.html",
+      "title": "حاسبة ميزانية السياق",
+      "text": "غيّر قيمة <code>max_context_tokens</code> في الخادم وشاهد ضبط حزمة النظرة العامة والبذرة وشرائح الاسترجاع يتحدّث تناسبياً."
+    },
+    {
+      "href": "/docs/byok-enterprise.html",
+      "title": "BYOK والمؤسسات",
+      "text": "مفاتيح API السحابية، والتنقيح، والخادم المشترك داخل البنية المحلية، وOIDC، ومواءمة مسارات Remote SSH."
+    },
+    {
+      "href": "/docs/sovereign-server.html",
+      "sovereign": true,
+      "text": "نشر المنصة مع استدلال متوافق مع OpenAI (vLLM) وOIDC ومساحات عمل بمحاذاة المسارات."
+    },
+    {
+      "href": "/docs/glossary.html",
+      "title": "مسرد المصطلحات",
+      "text": "مصطلحات الإصدار 1.0 بالإضافة إلى مفردات محرك التحقق: نطاق التأثير، وMCP، والانحراف، ورسم القرار البياني، والمزيد."
+    },
+    {
+      "href": "/support/troubleshooting.html",
+      "title": "استكشاف الأخطاء وإصلاحها",
+      "text": "الأعراض ← السبب ← الحل لكل مشكلة شائعة في التثبيت والمحادثة والفهرسة."
+    }
+  ],
+  "readingOrder": {
+    "title": "ترتيب القراءة الموصى به",
+    "rows": [
+      [
+        { "href": "/docs/installation.html", "text": "التثبيت" },
+        { "href": "/docs/engine-operator.html", "text": "دليل المحرك" }
+      ],
+      [
+        { "href": "/docs/indexing-readiness.html", "text": "الفهرسة والجاهزية" },
+        { "href": "/docs/chat-and-lanes.html", "text": "المحادثة والمسارات" }
+      ],
+      [
+        { "href": "/docs/image-evidence-argus.html", "text": "أدلة الصور وARGUS" },
+        { "href": "/docs/context-lens-packs.html", "text": "عدسة السياق والحزم" }
+      ],
+      [
+        { "href": "/docs/patches-governance.html", "text": "التصحيحات والحوكمة" },
+        { "href": "/docs/knowledge-and-governance.html", "text": "المعرفة والحوكمة" }
+      ]
+    ]
+  },
+  "footer": {
+    "devBefore": "للمطورين:",
+    "devLinkText": "مركز المطورين",
+    "devAfter": "(واجهة API +",
+    "monoLabel": "contextmint serve",
+    "devAfter2": "اليوم؛ MCP على خارطة الطريق).",
+    "securityBefore": "الأمان والنشر:",
+    "trustLinkText": "الثقة والأمان",
+    "jargonBefore": "المصطلحات:",
+    "jargonLinkText": "مصطلحات محرك التحقق"
+  }
 }

@@ -1,31 +1,31 @@
 <div class="powered-by">
-  <p class="powered-by__label">Powered by <span class="roadmap-status roadmap-status--planned" style="margin-left: 8px; vertical-align: middle;">Roadmap</span></p>
-  <p class="muted" style="margin: 0 0 16px; font-size: 0.9rem;">Verification Engine capabilities — v1.0 foundation ships separately on <a href="/features.html" style="color: var(--color-link);">Features</a>.</p>
+  <p class="powered-by__label">{{ i18nCommon.poweredBy.label }} <span class="roadmap-status roadmap-status--planned" style="margin-left: 8px; vertical-align: middle;">{{ i18nCommon.poweredBy.badge }}</span></p>
+  <p class="muted" style="margin: 0 0 16px; font-size: 0.9rem;">{{ i18nCommon.poweredBy.lead }} <a href="{{ '/features.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ i18nCommon.poweredBy.featuresLink }}</a>.</p>
   <div class="grid grid-3">
-    <a class="feature-card" href="/product/repository-dna.html">
-      <h3>Repository DNA</h3>
-      <p>Planned: structure, owners, and conventions in one deterministic report.</p>
+    <a class="feature-card" href="{{ '/product/repository-dna.html' | locale_path: localePrefix }}">
+      <h3>{{ i18nCommon.poweredBy.cards.repositoryDna.title }}</h3>
+      <p>{{ i18nCommon.poweredBy.cards.repositoryDna.text }}</p>
     </a>
-    <a class="feature-card" href="/product/blast-radius.html">
-      <h3>Blast Radius</h3>
-      <p>Planned: dependency-closure impact for PR-time verification.</p>
+    <a class="feature-card" href="{{ '/product/blast-radius.html' | locale_path: localePrefix }}">
+      <h3>{{ i18nCommon.poweredBy.cards.blastRadius.title }}</h3>
+      <p>{{ i18nCommon.poweredBy.cards.blastRadius.text }}</p>
     </a>
-    <a class="feature-card" href="/product/decision-graph.html">
-      <h3>Decision Graph</h3>
-      <p>Planned: architecture intent with traceable ADR and change evidence.</p>
+    <a class="feature-card" href="{{ '/product/decision-graph.html' | locale_path: localePrefix }}">
+      <h3>{{ i18nCommon.poweredBy.cards.decisionGraph.title }}</h3>
+      <p>{{ i18nCommon.poweredBy.cards.decisionGraph.text }}</p>
     </a>
-    <a class="feature-card" href="/product/drift-detection.html">
-      <h3>Drift Detection</h3>
-      <p>Planned: policy and architecture drift against accepted baselines.</p>
+    <a class="feature-card" href="{{ '/product/drift-detection.html' | locale_path: localePrefix }}">
+      <h3>{{ i18nCommon.poweredBy.cards.driftDetection.title }}</h3>
+      <p>{{ i18nCommon.poweredBy.cards.driftDetection.text }}</p>
     </a>
-    <a class="feature-card" href="/product/agent-governance.html">
-      <h3>Agent Governance</h3>
-      <p>Planned: MCP agent RBAC and policy engine. v1.0 uses IDE Gates 1 &amp; 2.</p>
+    <a class="feature-card" href="{{ '/product/agent-governance.html' | locale_path: localePrefix }}">
+      <h3>{{ i18nCommon.poweredBy.cards.agentGovernance.title }}</h3>
+      <p>{{ i18nCommon.poweredBy.cards.agentGovernance.text }}</p>
     </a>
-    <a class="feature-card" href="/trust.html">
-      <h3>Audit &amp; Compliance</h3>
-      <p>Evidence trails, deployment models, and enterprise security posture.</p>
-      <span class="dev-card-tag dev-card-tag--live">trust &amp; deployment · v1.0 docs</span>
+    <a class="feature-card" href="{{ '/trust.html' | locale_path: localePrefix }}">
+      <h3>{{ i18nCommon.poweredBy.cards.auditCompliance.title }}</h3>
+      <p>{{ i18nCommon.poweredBy.cards.auditCompliance.text }}</p>
+      <span class="dev-card-tag dev-card-tag--live">{{ i18nCommon.poweredBy.cards.auditCompliance.tag }}</span>
     </a>
   </div>
 </div>

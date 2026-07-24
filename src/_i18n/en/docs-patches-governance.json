@@ -1,4 +1,67 @@
 {
   "title": "Patches & Governance | ContextMint Docs",
-  "description": "Assisted actions, patch preview gate 2, quality map, DRY governance, and audit-friendly telemetry."
+  "description": "Assisted actions, patch preview gate 2, quality map, DRY governance, and audit-friendly telemetry.",
+  "h1": "Patches &amp; governance",
+  "lead": "ContextMint enforces <strong>human gates</strong>: evidence before inference (Context Lens), diffs before apply (patch preview). Governance signals inform — and optionally gate — high-risk changes.",
+  "gate1": {
+    "title": "Gate 1 — Context Lens",
+    "before": "See",
+    "linkHref": "/docs/context-lens-packs.html",
+    "linkText": "Context Lens &amp; packs",
+    "after": "You approve retrieved context before the model answers."
+  },
+  "gate2": {
+    "title": "Gate 2 — Patch preview",
+    "intro": "In <strong>Agent</strong> mode, proposed edits appear as a unified diff:",
+    "items": [
+      "Review added/removed lines per file",
+      "Accept applies to workspace (or sandbox worktree when enabled)",
+      "Reject discards the proposal — no silent writes"
+    ]
+  },
+  "assisted": {
+    "title": "Assisted actions",
+    "text": "Structured action cards (refactors, test scaffolding, etc.) include risk level and reasoning references. Confirm or cancel explicitly; telemetry mirrors audit metadata (no file contents in telemetry POST)."
+  },
+  "qualityMap": {
+    "title": "Quality map",
+    "text": "Engine → Quality runs scans for clones, near-duplicates, and structure signals. Findings appear in the governance drawer during Context Lens. In <strong>Repo</strong> lane, governed chat may apply DRY shortcuts when high-confidence duplicate patterns match your question."
+  },
+  "scope": {
+    "title": "Governed chat scope",
+    "text": "Quality-map shortcuts apply in <strong>Repo</strong> context lane only. <strong>Work</strong> and <strong>Hybrid</strong> lanes use standard assembly without governed duplicate routing."
+  },
+  "argus": {
+    "title": "ARGUS findings → patch preview",
+    "before": "<strong>ARGUS</strong> visual audit returns structured UI findings — it does <em>not</em> modify your repo. If you choose to fix an issue, ContextMint can hand off to an assisted action and the same <strong>patch preview</strong> flow (gate 2). You still review unified diffs before apply. See",
+    "linkHref": "/docs/image-evidence-argus.html",
+    "linkText": "Image evidence &amp; ARGUS"
+  },
+  "audit": {
+    "title": "Audit &amp; telemetry",
+    "items": [
+      "Server writes audit JSONL per workspace (chat streams, actions, indexing events) under <code>~/.contextmint/audit/</code> — <strong>persisted on disk</strong>; Engine Knowledge → Activity only <em>displays</em> a configurable time window (default 1 h, max 24 h in UI)",
+      {
+        "before": "Engine <strong>Knowledge</strong> tab — verify structural registries and export activity audit for governance reviews —",
+        "linkHref": "/docs/knowledge-and-governance.html",
+        "linkText": "Knowledge &amp; governance guide"
+      },
+      "Optional <code>POST /api/v1/telemetry/action</code> for sampled client mirrors",
+      "Lane metrics on <code>GET /api/observability/metrics</code> for operators"
+    ]
+  },
+  "enterprise": {
+    "title": "Enterprise posture",
+    "before": "Regulated teams pair local-first defaults with shared on-prem API, OIDC, and BYOK cloud routing. See",
+    "link1Href": "/trust.html",
+    "link1Text": "Trust &amp; Security",
+    "andWord": "and",
+    "link2Href": "/docs/byok-enterprise.html",
+    "link2Text": "BYOK &amp; enterprise"
+  },
+  "footer": {
+    "before": "Problems:",
+    "href": "/support/troubleshooting.html#patches",
+    "text": "Troubleshooting → Patches &amp; actions"
+  }
 }

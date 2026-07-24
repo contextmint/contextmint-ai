@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-07-22T22:10:22.668Z",
+  "generated_at": "2026-07-24T13:57:51.728Z",
   "predefined_faqs": [
     {
       "id": "what-do-i-need-to-install",
@@ -335,7 +335,7 @@
         "partner"
       ],
       "question": "How do I get early access or join as a design partner?",
-      "direct_answer": "Design partner intake opens by start of September 2026 while we finish v1.0 pilot readiness. The form on Design Partners is visible for reference only — submissions are disabled until intake opens.\n\nAvailable now: book a walkthrough via Book a Demo , try local-first install via Getting started , review program details on Early Access , or ask questions via Support or GitHub issues . When intake opens, design partners run a 30-day evaluation pilot (10–30 developers, one repo — extendable to 90 days).",
+      "direct_answer": "Design partner intake opens by start of September 2026 while we finish v1.0 pilot readiness. The form on Design Partners is visible for reference only — submissions are disabled until intake opens.\n\nAvailable now: book a walkthrough via Book a Demo , try local-first install via Getting started , review program details on Early Access , or ask questions via Support or GitHub issues. When intake opens, design partners run a 30-day evaluation pilot (10–30 developers, one repo — extendable to 90 days).",
       "source_url": "/faq.html#how-do-i-get-early-access-or-join-as-a-design-partner",
       "source_label": "How do I get early access or join as a design par…"
     },
@@ -351,7 +351,7 @@
         "report"
       ],
       "question": "Where do I report bugs or get help?",
-      "direct_answer": "Visit Support and open an issue on the release channel: https://github.com/contextmint/contextmint/issues . You can also email anis@contextmint.ai .",
+      "direct_answer": "Visit Support and open an issue on the release channel: https://github.com/contextmint/contextmint/issues. You can also email anis@contextmint.ai.",
       "source_url": "/faq.html#where-do-i-report-bugs-or-get-help",
       "source_label": "Where do I report bugs or get help?"
     }

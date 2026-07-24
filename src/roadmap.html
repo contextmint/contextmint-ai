@@ -5,51 +5,39 @@ description: ContextMint product roadmap — v1.0 end of August 2026, v2.0 Engin
 pageCss: product.css
 ---
 
+{% assign t = i18nPageStrings %}
+
 <header class="page-hero">
   <div class="container">
-    <div class="pill">PRODUCT DIRECTION</div>
-    <h1>Roadmap</h1>
-    <p class="lead">
-      Three horizons: <strong>v1.0</strong> pilots the decision-control plane now (GA end of August 2026);
-      <strong>v2.0</strong> unifies engineering intelligence on one Knowledge Fabric;
-      <strong>Track B</strong> extends the same core to org-wide knowledge with enterprise
-      controls. Directional — not a delivery schedule.
-    </p>
+    <div class="pill">{{ t.hero.pill }}</div>
+    <h1>{{ t.hero.title }}</h1>
+    <p class="lead">{{ t.hero.leadHtml }}</p>
     <nav class="roadmap-horizons" aria-label="Roadmap horizons">
-      <a class="roadmap-horizon-card" href="#v1">
-        <span class="roadmap-status roadmap-status--pilot">v1.0 · end of August 2026</span>
-        <strong>Decision-control plane</strong>
-        <span>Engine, Context Lens, quality map, federated governance lookup — GA end of August 2026.</span>
+      {% for h in t.hero.horizons %}
+      <a class="roadmap-horizon-card" href="{{ h.href }}">
+        <span class="roadmap-status roadmap-status--{{ h.statusClass }}">{{ h.status }}</span>
+        <strong>{{ h.title }}</strong>
+        <span>{{ h.text }}</span>
       </a>
-      <a class="roadmap-horizon-card" href="#v2">
-        <span class="roadmap-status roadmap-status--planned">v2.0 · Q1 2027</span>
-        <strong>Engineering Intelligence Platform</strong>
-        <span>Knowledge Fabric, institutional memory, CHRONOS, operational intelligence retrieval.</span>
-      </a>
-      <a class="roadmap-horizon-card" href="#track-b">
-        <span class="roadmap-status roadmap-status--enterprise">Track B · end 2027</span>
-        <strong>Enterprise &amp; compliance</strong>
-        <span>Jira, Confluence, SharePoint, Git, and org knowledge — plus SSO, RBAC, and audit.</span>
-      </a>
+      {% endfor %}
     </nav>
     <div class="cta" style="margin-top: 24px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-      <a class="btn btn-primary" href="/design-partners.html">Design partner details</a>
-      <a class="btn btn-secondary" href="/features.html">Features in v1.0</a>
+      <a class="btn btn-primary" href="{{ '/design-partners.html' | locale_path: localePrefix }}">{{ t.hero.ctaDesignPartners }}</a>
+      <a class="btn btn-secondary" href="{{ '/features.html' | locale_path: localePrefix }}">{{ t.hero.ctaFeatures }}</a>
     </div>
   </div>
 </header>
 
 <section class="section section--surface">
   <div class="container container-narrow">
-    <h2 class="section-title text-center" style="font-size: 1.1rem;">At a glance</h2>
+    <h2 class="section-title text-center" style="font-size: 1.1rem;">{{ t.glance.title }}</h2>
     <pre class="roadmap-timeline" aria-label="Roadmap timeline">2026 H2               2027 Q1                  2027 Q4                 2028+
   │                     │                        │                       │
   v1.0 GA               v2.0 MVP                 Track B MVP             Verification Engine
   Pilot cohort          Knowledge Fabric         Jira · Confluence       PR gates · blast radius
   Git + code (today)    Memory · CHRONOS · OIR   SharePoint · Git · docs SSO at scale</pre>
     <p class="muted text-center" style="margin: 16px 0 0; font-size: 0.85rem;">
-      Capabilities and order evolve with design partner feedback. We label <strong>shipping</strong> vs
-      <strong>planned</strong> explicitly — no certification or autonomous-governance claims.
+      {{ t.glance.footerHtml }}
     </p>
   </div>
 </section>
@@ -58,76 +46,17 @@ pageCss: product.css
   <div class="container container-narrow">
     <article class="roadmap-tier" id="v1">
       <div class="roadmap-tier__head">
-        <span class="roadmap-status roadmap-status--pilot">v1.0 · end of August 2026</span>
-        <h2 class="section-title" style="margin-bottom: 0;">Decision-control plane</h2>
+        <span class="roadmap-status roadmap-status--pilot">{{ t.v1.badge }}</span>
+        <h2 class="section-title" style="margin-bottom: 0;">{{ t.v1.title }}</h2>
       </div>
-      <p class="muted">
-        Local-first <strong>decision-control plane</strong> for software teams — evidence before
-        inference, human approval before repo changes. In internal pilot now; design partner intake
-        opens by start of September 2026. General availability <strong>end of August 2026</strong>.
-      </p>
+      <p class="muted">{{ t.v1.introHtml }}</p>
       <ul class="check-list">
-        <li>
-          <strong>ContextMint Engine</strong> — tray-native operator console (server, Ollama, models,
-          indexing, quality scans, logs, support bundle)
-        </li>
-        <li>
-          <strong>VS Code extension</strong> — Ask / Plan / Agent modes, context lanes (Repo / Work / Hybrid), chat sessions, attach
-          context, suggested prompts
-        </li>
-        <li>
-          <strong>Context Lens (gate 1)</strong> — preview retrieved chunks, scores, routing, and
-          governance notes before the model runs
-        </li>
-        <li>
-          <strong>Patch preview (gate 2)</strong> — review unified diffs before anything applies;
-          no silent writes
-        </li>
-        <li>
-          <strong>Quality map</strong> — stored governance findings (clones, near-duplicates,
-          structure signals) with optional apply gates
-        </li>
-        <li>
-          <strong>Federated query router v0.1</strong> — governance <em>lookup</em> reads the Findings
-          Store first (store-first, tier-agnostic facts, trust metadata) — not chat-time rediscovery
-        </li>
-        <li>
-          <strong>Context packs</strong> — per-repo manifests with <span class="mono">@pack:name</span>
-          activation and auto-sync
-        </li>
-        <li>
-          <strong>Glass-box routing</strong> — provenance breakdown, routing badge, reasoning
-          trace for power users
-        </li>
-        <li>
-          <strong>Conventions learner</strong> — proposals and audit history with human approval
-          before rules enter the graph
-        </li>
-        <li>
-          <strong>Image evidence</strong> — paste UI screenshots in chat; local Ollama vision by default;
-          Context Lens preview before send
-        </li>
-        <li>
-          <strong>ARGUS visual audit</strong> — structured WCAG-tagged findings on screenshots;
-          report only, human-gated fixes
-        </li>
-        <li>
-          <strong>Workspace-agnostic evidence assembly</strong> — index-time route knowledge when
-          available, then hybrid search + expand (file windows, grep, dependency graph) on any
-          indexed repo
-        </li>
-        <li>
-          <strong>Symbol-aware retrieval</strong> — citations name file, symbol, and line range — not
-          anonymous text chunks
-        </li>
-        <li>
-          <strong>Local-first default</strong> — Engine + Ollama on loopback; code stays on device
-        </li>
+        {% for item in t.v1.items %}
+        <li>{{ item }}</li>
+        {% endfor %}
       </ul>
       <p class="muted" style="margin-top: 16px; margin-bottom: 0;">
-        Optional (off by default): BYOK cloud routing, git sandbox worktrees, inline completion,
-        shared on-prem API server for enterprise pilots —
-        <a href="/features.html" style="color: var(--color-link);">full v1.0 list</a>.
+        {{ t.v1.footerHtml }}
       </p>
     </article>
   </div>
@@ -137,46 +66,27 @@ pageCss: product.css
   <div class="container container-narrow">
     <article class="roadmap-tier" id="design-partners">
       <div class="roadmap-tier__head">
-        <span class="roadmap-status roadmap-status--pilot">Recruiting design partners</span>
-        <h2 class="section-title" style="margin-bottom: 0;">2026 pilot cohort</h2>
+        <span class="roadmap-status roadmap-status--pilot">{{ t.designPartners.badge }}</span>
+        <h2 class="section-title" style="margin-bottom: 0;">{{ t.designPartners.title }}</h2>
       </div>
-      <p class="muted">
-        A <strong>30-day evaluation pilot</strong> is a bounded proof-of-concept — not a product
-        subscription limit. After onboarding, <strong>10–30 developers</strong> on one team or repo
-        use ContextMint in real work for <strong>one calendar month</strong>; we review together and
-        deliver a written summary for security and platform leadership. Extendable to
-        <strong>90 days</strong> when the pilot is going well.
-      </p>
+      <p class="muted">{{ t.designPartners.introHtml }}</p>
       <div class="notice-banner notice-banner--available" style="margin: 20px 0;">
-        <strong>What &ldquo;30 days&rdquo; means:</strong>
+        <strong>{{ t.designPartners.noticeStrong }}</strong>
         <ul style="margin: 10px 0 0; padding-left: 1.2rem; line-height: 1.6;">
-          <li><strong>Week 0</strong> — install Engine + extension; index one repo; security path agreed</li>
-          <li><strong>Weeks 1–4</strong> — daily dev usage with Context Lens and patch preview gates</li>
-          <li><strong>Week 2 &amp; 4</strong> — short async feedback (email or form — no standing meetings required)</li>
-          <li><strong>End of month</strong> — pilot summary report + go / extend / stop decision</li>
+          {% for item in t.designPartners.noticeItems %}
+          <li>{{ item }}</li>
+          {% endfor %}
         </ul>
       </div>
-      <p class="muted">
-        You get direct engineering access; we get honest signal on fit for regulated and sovereign
-        AI dev workflows — and priority input on
-        <a href="#v2" style="color: var(--color-link);">v2.0</a> and
-        <a href="#track-b" style="color: var(--color-link);">Track B</a> (including which knowledge
-        systems to connect first).
-      </p>
+      <p class="muted">{{ t.designPartners.bodyHtml }}</p>
       <ul class="check-list">
-        <li><strong>Guided pilot playbook</strong> — week-2 and week-4 feedback (async OK)</li>
-        <li>
-          <strong>Deployment path review</strong> — local Engine per developer or shared on-prem
-          server (<a href="/trust.html#deployment" style="color: var(--color-link);">deployment models</a>)
-        </li>
-        <li><strong>Security questionnaire support</strong> — architecture summaries for stakeholders</li>
-        <li><strong>Priority input</strong> — influence v2.0 Fabric scope and Track B enterprise packaging</li>
-        <li><strong>Team rollout patterns</strong> — Docker / Helm shared-server pilots with platform engineering</li>
-        <li><strong>Pilot summary report</strong> — outcomes for security and engineering leadership</li>
+        {% for item in t.designPartners.items %}
+        <li>{{ item }}</li>
+        {% endfor %}
       </ul>
       <p style="margin-top: 20px; margin-bottom: 0;">
-        <a class="btn btn-primary" href="/design-partners.html">Design partner details</a>
-        <a class="btn btn-secondary" href="/request-demo.html" style="margin-left: 8px;">Book a demo</a>
+        <a class="btn btn-primary" href="{{ '/design-partners.html' | locale_path: localePrefix }}">{{ t.designPartners.ctaPrimary }}</a>
+        <a class="btn btn-secondary" href="{{ '/request-demo.html' | locale_path: localePrefix }}" style="margin-left: 8px;">{{ t.designPartners.ctaSecondary }}</a>
       </p>
     </article>
   </div>
@@ -186,99 +96,33 @@ pageCss: product.css
   <div class="container container-narrow">
     <article class="roadmap-tier" id="v2">
       <div class="roadmap-tier__head">
-        <span class="roadmap-status roadmap-status--planned">v2.0 · target Q1 2027</span>
-        <h2 class="section-title" style="margin-bottom: 0;">Engineering Intelligence Platform</h2>
+        <span class="roadmap-status roadmap-status--planned">{{ t.v2.badge }}</span>
+        <h2 class="section-title" style="margin-bottom: 0;">{{ t.v2.title }}</h2>
       </div>
-      <p class="muted">
-        After v1.0 exit, ContextMint becomes one <strong>living digital twin</strong> of the
-        engineering system — not seven siloed tools. Retrieval, memory, health analysis, temporal
-        forensics, and multimodal validation become <strong>query projections</strong> over a single
-        logical model: the <strong>Knowledge Fabric</strong>. Starts post–v1.0 freeze; target MVP
-        <strong>first quarter of 2027 (Q1)</strong>.
-      </p>
+      <p class="muted">{{ t.v2.introHtml }}</p>
       <div class="notice-banner notice-banner--planned" style="margin: 20px 0;">
-        <strong>Philosophy:</strong> Do not build 7 tools. Build 1 Fabric — users experience Memory Tab,
-        Architecture Console, CHRONOS bisect, ORACLE prefetch, ARGUS audit, and MESH delegation as
-        surfaces; engineers maintain one ingestion pipeline and one schema.
+        {{ t.v2.philosophyHtml }}
       </div>
-      <h3 style="margin: 24px 0 12px; font-size: 1rem;">Six waves (post–v1.0)</h3>
+      <h3 style="margin: 24px 0 12px; font-size: 1rem;">{{ t.v2.wavesTitle }}</h3>
       <div class="grid grid-2" style="gap: 12px;">
+        {% for wave in t.v2.waves %}
         <div class="card" style="padding: 14px;">
-          <strong style="font-size: 0.9rem;">Wave 1 — Institutional memory</strong>
+          <strong style="font-size: 0.9rem;">{{ wave.title }}</strong>
           <p class="muted" style="margin: 6px 0 0; font-size: 0.85rem;">
-            Fabric shadow-write, learner approval gate, Memory Tab — conventions become graph nodes with evidence.
+            {{ wave.text }}
           </p>
         </div>
-        <div class="card" style="padding: 14px;">
-          <strong style="font-size: 0.9rem;">Wave 2 — Temporal &amp; structural</strong>
-          <p class="muted" style="margin: 6px 0 0; font-size: 0.85rem;">
-            CHRONOS checkpoint forensics, health analysis, Architecture Tab — graph/metadata first, not commit embeddings.
-          </p>
-        </div>
-        <div class="card" style="padding: 14px;">
-          <strong style="font-size: 0.9rem;">Wave 3 — Zero-latency UX</strong>
-          <p class="muted" style="margin: 6px 0 0; font-size: 0.85rem;">
-            ORACLE prefetch — intent + retrieval context cached before you ask; extends v1 PERF layers.
-          </p>
-        </div>
-        <div class="card" style="padding: 14px;">
-          <strong style="font-size: 0.9rem;">Wave 4 — Multimodal validation</strong>
-          <p class="muted" style="margin: 6px 0 0; font-size: 0.85rem;">
-            ARGUS audit reports in sandbox — structured findings, human reviews fixes separately.
-          </p>
-        </div>
-        <div class="card" style="padding: 14px;">
-          <strong style="font-size: 0.9rem;">Wave 5 — Distributed compute (lite)</strong>
-          <p class="muted" style="margin: 6px 0 0; font-size: 0.85rem;">
-            MESH-Lite — explicit trusted peers for heavy VLM/health jobs; no auto-discovery swarm.
-          </p>
-        </div>
-        <div class="card" style="padding: 14px;">
-          <strong style="font-size: 0.9rem;">Wave 6 — conditional</strong>
-          <p class="muted" style="margin: 6px 0 0; font-size: 0.85rem;">
-            Full mesh only if Wave 5 proves measurable runtime benefit in dogfood.
-          </p>
-        </div>
+        {% endfor %}
       </div>
-      <h3 id="operational-intelligence" style="margin: 28px 0 12px; font-size: 1rem;">Operational intelligence (within v2.0)</h3>
-      <p class="muted">
-        v1.0 assembles <strong>named engineering artifacts</strong> with index-time knowledge objects
-        (routes today), hybrid search + expand, and human gates. v2.0 adds scoring
-        <strong>belief</strong> across more object kinds — and reconciles conflicting
-        signals into one auditable answer.
-      </p>
+      <h3 id="operational-intelligence" style="margin: 28px 0 12px; font-size: 1rem;">{{ t.v2.oiTitle }}</h3>
+      <p class="muted">{{ t.v2.oiIntroHtml }}</p>
       <ul class="check-list">
-        <li>
-          <strong>Knowledge reconciliation</strong> — when Git, CODEOWNERS, team memory, and docs
-          disagree, surface one scored claim with supporting and conflicting evidence
-        </li>
-        <li>
-          <strong>Operational intelligence retrieval (OIR)</strong> — rank by relevance
-          <em>and</em> trust, freshness, and evidence coverage
-        </li>
-        <li>
-          <strong>Domain-aware retrieval</strong> — files and symbols tagged to domains; filter by
-          ownership and architectural boundaries, not chunks alone
-        </li>
-        <li>
-          <strong>Repository DNA + Feature Registry Lite</strong> — deterministic health baselines and
-          feature traceability on the Fabric
-        </li>
-        <li>
-          <strong>Summary-first retrieval</strong> — semantic compression at index time; expand to
-          raw code only when confidence is low
-        </li>
-        <li>
-          <strong>RBAC + audit foundations</strong> — <span class="mono">tenant_id</span> /
-          <span class="mono">owner_id</span> on Fabric nodes; immutable audit schema (full enterprise
-          packaging continues in <a href="#track-b" style="color: var(--color-link);">Track B</a>)
-        </li>
+        {% for item in t.v2.oiItems %}
+        <li>{{ item }}</li>
+        {% endfor %}
       </ul>
       <p class="muted" style="margin-top: 16px; margin-bottom: 0;">
-        We do not claim trust-weighted retrieval or cross-system reconciliation until product gates
-        pass. v1.0 already ships index-time route knowledge, store-first governance lookup, and
-        symbol-aware citations.
-        <a href="/docs/glossary.html#operational-intelligence" style="color: var(--color-link);">Glossary →</a>
+        {{ t.v2.footerHtml }}
       </p>
     </article>
   </div>
@@ -288,71 +132,27 @@ pageCss: product.css
   <div class="container container-narrow">
     <article class="roadmap-tier" id="track-b">
       <div class="roadmap-tier__head">
-        <span class="roadmap-status roadmap-status--enterprise">Track B · target end 2027</span>
-        <h2 class="section-title" style="margin-bottom: 0;">Enterprise &amp; organizational knowledge</h2>
+        <span class="roadmap-status roadmap-status--enterprise">{{ t.trackB.badge }}</span>
+        <h2 class="section-title" style="margin-bottom: 0;">{{ t.trackB.title }}</h2>
       </div>
-      <p class="muted">
-        <strong>Track B</strong> extends ContextMint from developer code intelligence into an
-        <strong>explainable organizational knowledge platform</strong> — same retrieval core and
-        local-first posture, with security and compliance controls that regulated buyers require.
-        Builds on the v2.0 Fabric; target MVP <strong>end of 2027</strong>. After design partner
-        intake opens, cohort feedback will help prioritize which external systems to connect first.
-      </p>
+      <p class="muted">{{ t.trackB.introHtml }}</p>
       <div class="notice-banner notice-banner--planned" style="margin: 20px 0;">
-        <strong>Connected knowledge (Track B):</strong> One governed index across the systems your
-        teams already use — not code in isolation. v1.0 indexes <strong>Git repos</strong> today;
-        Track B adds adapter-based ingest for
-        <strong>Jira</strong> (issues, epics, ownership),
-        <strong>Confluence</strong> (wikis, ADRs, runbooks),
-        <strong>SharePoint</strong> (document libraries, policies),
-        <strong>Git</strong> (multi-repo and org-wide code graph), and
-        <strong>other knowledge bases</strong> (Notion, internal portals, ticket systems — partner-driven
-        priority). Answers cite the source system with ACL respected per document.
+        {{ t.trackB.noticeHtml }}
       </div>
-      <h3 style="margin: 24px 0 12px; font-size: 1rem;">Security-first build order</h3>
+      <h3 style="margin: 24px 0 12px; font-size: 1rem;">{{ t.trackB.securityTitle }}</h3>
       <ul class="check-list">
-        <li>
-          <strong>Foundation controls (B0)</strong> — unified authorization on every read path;
-          cache keys scoped to tenant + role; explainable score breakdown fields
-        </li>
-        <li>
-          <strong>Security boundary (B3)</strong> — document-level ACL enforcement; hard multi-tenant
-          isolation (scoped storage roots, per-tenant keys, no cross-tenant joins)
-        </li>
-        <li>
-          <strong>External knowledge adapters (B1+)</strong> — Jira, Confluence, SharePoint, Git
-          org-graph, and partner-selected knowledge bases; async ingest queue with ACL from each source
-        </li>
-        <li>
-          <strong>Document ingestion (B1)</strong> — PDF, DOCX, and exported wiki pages with async
-          queue, backpressure, and quarantine for OCR-heavy workloads
-        </li>
-        <li>
-          <strong>Metadata + PII (B2)</strong> — policy-driven redaction modes; metadata boosts bounded
-          so base retrieval ranking stays stable and explainable
-        </li>
-        <li>
-          <strong>Enterprise surface (B4)</strong> — OIDC/SAML SSO, API gateway policies, admin console
-          for roles, retention, index health, and audit browsing
-        </li>
-        <li>
-          <strong>Compliance packaging (B5)</strong> — GDPR deletion proof, air-gapped Helm/Docker
-          bundles, tamper-evident audit (hash-chain + signed checkpoints), SOC 2 evidence collectors
-        </li>
+        {% for item in t.trackB.securityItems %}
+        <li>{{ item }}</li>
+        {% endfor %}
       </ul>
-      <h3 style="margin: 24px 0 12px; font-size: 1rem;">Outcomes for design partners</h3>
+      <h3 style="margin: 24px 0 12px; font-size: 1rem;">{{ t.trackB.outcomesTitle }}</h3>
       <ul class="check-list">
-        <li>Ask questions across <strong>code + Jira + Confluence + SharePoint</strong> — one answer with cited evidence, not four conflicting snippets</li>
-        <li>One platform for engineering and internal docs — same Context Lens and human-gate model</li>
-        <li>Team server deployment with SSO — extension connects to shared on-prem API, not loopback-only</li>
-        <li>Compliance exports your security team can run without vendor workshops</li>
-        <li>No cloud egress unless explicitly enabled per workspace or tenant</li>
+        {% for item in t.trackB.outcomes %}
+        <li>{{ item }}</li>
+        {% endfor %}
       </ul>
       <p class="muted" style="margin-top: 16px; margin-bottom: 0;">
-        We do not claim live Jira/Confluence/SharePoint connectors, SOC 2 certification, or FedRAMP
-        until gated. Adapter order follows design-partner demand; v1.0 pilots stay Git-first.
-        <a href="/solutions/security-compliance.html" style="color: var(--color-link);">Security use cases →</a>
-        · <a href="/design-partners.html" style="color: var(--color-link);">Co-shape Track B →</a>
+        {{ t.trackB.footerHtml }}
       </p>
     </article>
   </div>
@@ -362,51 +162,18 @@ pageCss: product.css
   <div class="container container-narrow">
     <article class="roadmap-tier" id="verification-engine">
       <div class="roadmap-tier__head">
-        <span class="roadmap-status roadmap-status--planned">Beyond v2.0</span>
-        <h2 class="section-title" style="margin-bottom: 0;">Verification Engine</h2>
+        <span class="roadmap-status roadmap-status--planned">{{ t.verification.badge }}</span>
+        <h2 class="section-title" style="margin-bottom: 0;">{{ t.verification.title }}</h2>
       </div>
-      <p class="muted">
-        Longer-horizon capabilities on top of the Fabric — deterministic graph evidence first; AI
-        narrates with citations, never overrides graph truth without human confirmation. Timing
-        evolves with design partner feedback; many items follow <strong>Track B (end 2027)</strong>
-        and extend into <strong>2028+</strong>.
-      </p>
+      <p class="muted">{{ t.verification.introHtml }}</p>
       <ul class="check-list">
-        <li>
-          <strong>PR verification gates</strong> — ownership, impact, and policy checked on every
-          change (<a href="/product/" style="color: var(--color-link);">vision</a>)
-        </li>
-        <li>
-          <strong>Blast radius</strong> — graph traversal for impacted services, files, and teams
-          (<a href="/product/blast-radius.html" style="color: var(--color-link);">learn more</a>)
-        </li>
-        <li>
-          <strong>Repository DNA</strong> — deterministic repo health and convention baselines
-          (<a href="/product/repository-dna.html" style="color: var(--color-link);">learn more</a>)
-        </li>
-        <li>
-          <strong>Decision graph</strong> — architecture intent and ADR traceability
-          (<a href="/product/decision-graph.html" style="color: var(--color-link);">learn more</a>)
-        </li>
-        <li>
-          <strong>Drift detection</strong> — scorecards for accepted vs violation baselines
-          (<a href="/product/drift-detection.html" style="color: var(--color-link);">learn more</a>)
-        </li>
-        <li>
-          <strong>Agent governance</strong> — policy-scoped tool contracts for AI agents in CI
-          (<a href="/product/agent-governance.html" style="color: var(--color-link);">learn more</a>)
-        </li>
-        <li><strong>ARGUS insights tab</strong> — cross-session audit history and team dashboards (beyond v1 paste + sandbox)</li>
-        <li><strong>Enterprise CLI packaging</strong> — graph queries and verification in CI pipelines</li>
-        <li>
-          <strong>MCP server for agents</strong> — blast radius, features, and decisions as tool
-          contracts (<a href="/developers/mcp-server.html" style="color: var(--color-link);">contracts</a>)
-        </li>
-        <li><strong>CI/CD deployment graph</strong> — pipeline and release context linked to code changes (after Track B knowledge fabric)</li>
+        {% for item in t.verification.items %}
+        <li>{{ item }}</li>
+        {% endfor %}
       </ul>
       <p class="muted" style="margin-top: 16px; margin-bottom: 0;">
-        <a class="btn btn-secondary" href="/product/">Explore the Verification Engine</a>
-        <a class="btn btn-secondary" href="/docs/glossary.html#verification-engine" style="margin-left: 8px;">Terms explained</a>
+        <a class="btn btn-secondary" href="{{ '/product/' | locale_path: localePrefix }}">{{ t.verification.ctaPrimary }}</a>
+        <a class="btn btn-secondary" href="{{ '/docs/glossary.html#verification-engine' | locale_path: localePrefix }}" style="margin-left: 8px;">{{ t.verification.ctaSecondary }}</a>
       </p>
     </article>
   </div>
@@ -415,13 +182,9 @@ pageCss: product.css
 <section class="section section--surface">
   <div class="container container-narrow text-center">
     <p class="muted" style="margin: 0; font-size: 0.9rem; line-height: 1.6;">
-      Capabilities and order may change as we learn from pilots. What ships in v1.0 is documented on
-      <a href="/features.html" style="color: var(--color-link);">Features</a>.
-      Governance and compliance claims follow our
-      <a href="/trust.html" style="color: var(--color-link);">trust center</a> — we do not
-      promise autonomous governance or certification.
+      {{ t.footer.textHtml }}
     </p>
   </div>
 </section>
 
-{% include "cta-band.html", ctaTitle: "Shape what ships next", ctaText: "When design partner intake opens (start of September 2026), partners get a direct line to product engineering — especially for v2.0 Fabric scope and Track B requirements." %}
+{% include "cta-band.html", ctaTitle: t.cta.title, ctaText: t.cta.text %}

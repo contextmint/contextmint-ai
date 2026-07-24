@@ -5,44 +5,46 @@ description: Blast radius (roadmap) — know what else breaks when you change a 
 pageCss: product.css
 ---
 
+{% assign t = i18nPageStrings %}
+
 <header class="page-hero">
   <div class="container">
-    <nav class="breadcrumb"><a href="/product/">Product</a> / Blast Radius</nav>
+    <nav class="breadcrumb"><a href="{{ '/product/' | locale_path: localePrefix }}">{{ t.breadcrumbParent }}</a> / {{ t.breadcrumbCurrent }}</nav>
     {% include "verification-badge.html" %}
-    <h1>Blast radius</h1>
+    <h1>{{ t.hero.h1 }}</h1>
     <p class="lead">
-      <strong>In plain terms:</strong> if you change or remove something, what else is affected?
-      Pre-computed dependency closure across services, files, and features — graph math, not model imagination.
+      <strong>{{ t.hero.leadStrong }}</strong>
+      {{ t.hero.leadAfter }}
     </p>
   </div>
 </header>
 
 <section class="section">
   <div class="container container-narrow">
-    {% include "roadmap-planned-banner.html", badge: "Verification Engine", title: "PR-wide blast radius on roadmap", message: "v1.0 includes quality map and governance findings in chat. Sub-10-second impact queries across the full service graph ship with the Verification Engine." %}
+    {% include "roadmap-planned-banner.html", badge: t.banner.badge, title: t.banner.title, message: t.banner.message %}
 
-    <h2 class="section-title">What blast radius means</h2>
+    <h2 class="section-title">{{ t.meaning.title }}</h2>
     <p class="muted">
-      Borrowed from incident response: the <strong>blast radius</strong> of a change is everything that could break downstream.
-      ContextMint builds this from imports, service dependencies, and feature links in your
-      <a href="/docs/glossary.html#engineering-reality-graph" style="color: var(--color-link);">engineering graph</a> —
-      so reviewers see impact <em>before</em> opening a 2,000-line diff.
+      {{ t.meaning.before }} <strong>{{ t.meaning.strong }}</strong>
+      {{ t.meaning.mid }}
+      <a href="{{ t.meaning.linkHref | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.meaning.linkText }}</a> —
+      {{ t.meaning.midAfter }} <em>{{ t.meaning.em }}</em>
+      {{ t.meaning.after }}
     </p>
 
     <div class="metric-row">
-      <div class="metric"><strong>&lt; 10 sec</strong><span>Target query latency</span></div>
-      <div class="metric"><strong>Index-time</strong><span>Closure pre-computed</span></div>
-      <div class="metric"><strong>Evidence</strong><span>Dependency path cited</span></div>
+      {% for metric in t.metrics %}
+      <div class="metric"><strong>{{ metric.value }}</strong><span>{{ metric.label }}</span></div>
+      {% endfor %}
     </div>
     <div class="card card--canvas">
-      <div class="query">What breaks if Payments API is removed?</div>
+      <div class="query">{{ t.example.query }}</div>
       <div class="diagram-box" style="margin-top: 16px; border: none; padding: 0;">
-        <div class="node">Payments API</div>
-        <div class="edge">├─► Checkout Service (direct)</div>
-        <div class="edge">├─► Billing Worker (direct)</div>
-        <div class="edge">├─► Subscription Service (transitive)</div>
-        <div class="edge">└─► 14 more downstream nodes…</div>
-        <div style="margin-top: 12px; color: var(--color-warning);">⚠ ADR-12 event-sourcing boundary touched</div>
+        <div class="node">{{ t.example.node }}</div>
+        {% for edge in t.example.edges %}
+        <div class="edge">{% if forloop.last %}└─►{% else %}├─►{% endif %} {{ edge }}</div>
+        {% endfor %}
+        <div style="margin-top: 12px; color: var(--color-warning);">⚠ {{ t.example.warning }}</div>
       </div>
     </div>
   </div>
@@ -51,12 +53,12 @@ pageCss: product.css
 <section class="section section--surface">
   <div class="container container-narrow split">
     <div>
-      <h2>Built for PR review</h2>
-      <p>Every changed file expands to affected features, teams, and services before reviewers open the diff.</p>
+      <h2>{{ t.split.prReview.title }}</h2>
+      <p>{{ t.split.prReview.text }}</p>
     </div>
     <div>
-      <h2>MCP &amp; API (planned)</h2>
-      <p>Expose <span class="mono">get_blast_radius</span> to agents with the same deterministic graph humans trust — see <a href="/developers/mcp-server.html" style="color: var(--color-link);">MCP server</a>.</p>
+      <h2>{{ t.split.mcpApi.title }}</h2>
+      <p>{{ t.split.mcpApi.before }} <span class="mono">{{ t.split.mcpApi.mono }}</span> {{ t.split.mcpApi.mid }} <a href="{{ '/developers/mcp-server.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.split.mcpApi.linkText }}</a>.</p>
     </div>
   </div>
 </section>

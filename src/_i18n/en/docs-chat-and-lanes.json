@@ -1,4 +1,106 @@
 {
   "title": "Chat, Modes & Context Lanes | ContextMint Docs",
-  "description": "Ask, Plan, and Agent modes; Repo, Work, and Hybrid context lanes; file and image attachments, sessions, provenance chips, and Work-lane auto-suggest."
+  "description": "Ask, Plan, and Agent modes; Repo, Work, and Hybrid context lanes; file and image attachments, sessions, provenance chips, and Work-lane auto-suggest.",
+  "h1": "Chat, modes &amp; context lanes",
+  "lead": "ContextMint chat is a governed copilot — not a generic web chat. You choose <strong>how much autonomy</strong> the model has (mode) and <strong>what evidence</strong> it may use (context lane).",
+  "opening": {
+    "title": "Opening chat",
+    "items": [
+      "Activity bar → ContextMint chat view",
+      "Shortcut: <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>L</kbd> (Windows/Linux; macOS may differ per keymap)"
+    ]
+  },
+  "modes": {
+    "title": "Modes: Ask, Plan, Agent",
+    "headers": ["Mode", "Behavior"],
+    "rows": [
+      { "mode": "Ask", "behavior": "Q&amp;A and explanations; no autonomous file edits" },
+      { "mode": "Plan", "behavior": "Structured plans and todos; still human-gated before apply" },
+      { "mode": "Agent", "behavior": "Proposes patches and assisted actions; gate 2 preview before writes" }
+    ]
+  },
+  "lanes": {
+    "title": "Context lanes: Repo, Work, Hybrid",
+    "intro": "Open the compose <strong>⋯</strong> menu → <strong>Context</strong> to select a lane. The choice persists per workspace.",
+    "headers": ["Lane", "Retrieval", "Best for"],
+    "rows": [
+      {
+        "lane": "Repo",
+        "suffix": "(default)",
+        "retrieval": "Knowledge objects when available, then hybrid search (vector + BM25), window expansion, workspace grep, and dependency-graph neighbours",
+        "bestFor": "\u201cWhat does our code do?\u201d — answers only from assembled evidence"
+      },
+      {
+        "lane": "Work",
+        "retrieval": "Session packs + attachments + editor selection — no vector repo search",
+        "bestFor": "Planning, stakeholder comms, concepts — job-relevant but not file lookups"
+      },
+      {
+        "lane": "Hybrid",
+        "retrieval": "Full evidence assembly (same as Repo) plus labeled recommendations",
+        "bestFor": "\u201cShould we ship X?\u201d — repo evidence plus labeled recommendations"
+      }
+    ]
+  },
+  "evidenceAssembly": {
+    "title": "How evidence is assembled (Repo / Hybrid)",
+    "before": "ContextMint works on <strong>any indexed workspace</strong> — not one repo layout. For structural questions (for example route wiring), the server uses <strong>index-time knowledge objects</strong> when the registry has a hit. For semantic questions, it runs hybrid search, then <strong>expands</strong> around hits: file windows, workspace grep, and dependency-graph neighbours. Optional LLM evidence selection is tier-gated and <strong>off by default</strong> — inference is last resort, not the primary path. See",
+    "linkHref": "/docs/settings.html#settings-server-evidence-assembly",
+    "linkText": "Settings → Evidence assembly"
+  },
+  "provenance": {
+    "title": "Provenance chips (answers)",
+    "intro": "After a response, you may see a small label such as:",
+    "items": [
+      "<strong>From your codebase</strong> — Repo lane with retrieved chunks",
+      "<strong>Work notes</strong> — Work lane (packs/attachments, not a repo search)",
+      "<strong>Repo + recommendations</strong> — Hybrid lane",
+      "<strong>No repo matches</strong> — Repo lane found little indexed context"
+    ]
+  },
+  "autoSuggest": {
+    "title": "Work-lane auto-suggest",
+    "text": "On <strong>Repo</strong> lane, if retrieval is weak for a planning-style question, ContextMint may show a banner: \u201cLittle repo context matched — retry in Work lane?\u201d Click <strong>Use Work lane</strong> to re-send the same question without vector search."
+  },
+  "attachments": {
+    "title": "Attachments &amp; context files",
+    "items": [
+      "Use the attach control to pin files as chips before sending",
+      "Attached paths get full-fidelity chunks in the assembler prompt",
+      "Open editor files are boosted in search and indexed with priority"
+    ]
+  },
+  "images": {
+    "title": "Image evidence (screenshots)",
+    "p1": "Paste, drag-drop, or pick <strong>PNG</strong>, <strong>JPEG</strong>, or <strong>WebP</strong> images in the compose bar. Image chips appear beside file chips. Context Lens shows thumbnails and the <strong>vision route</strong> (<code>local</code> by default) before you send.",
+    "items": [
+      "Local Ollama vision is the default — no cloud API key required to attach images",
+      "Repo and Hybrid lanes combine images with retrieved code; Work lane combines images with packs",
+      "Use <strong>Run visual audit</strong> in Lens for ARGUS structured findings (separate from chat Q&amp;A)"
+    ],
+    "guideBefore": "Full guide:",
+    "guideHref": "/docs/image-evidence-argus.html",
+    "guideLinkText": "Image evidence &amp; ARGUS"
+  },
+  "sessions": {
+    "title": "Chat sessions",
+    "text": "Start a new session from the session list; history is stored per workspace up to configured limits. Sessions are local to your machine (or your team server in enterprise mode)."
+  },
+  "routing": {
+    "title": "Model routing",
+    "text": "Compose bar model selector: <strong>Auto</strong>, <strong>Local</strong> (Ollama), or <strong>Cloud</strong> when BYOK is enabled. The routing badge on answers shows which tier ran."
+  },
+  "blocked": {
+    "title": "When chat is blocked",
+    "p1": "Send is blocked only when readiness is <strong>offline</strong>, <strong>starting</strong>, or <strong>error</strong>.",
+    "p2": "<strong>Indexing</strong> does <em>not</em> block send — answers improve as more files finish indexing."
+  },
+  "footer": {
+    "before": "Deep dive on retrieval:",
+    "linkHref": "/docs/indexing-readiness.html",
+    "linkText": "Indexing &amp; readiness",
+    "problemsBefore": "Problems:",
+    "problemsHref": "/support/troubleshooting.html#chat",
+    "problemsText": "Troubleshooting → Chat"
+  }
 }

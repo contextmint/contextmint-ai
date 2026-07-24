@@ -1,4 +1,45 @@
 {
   "title": "API Reference | ContextMint",
-  "description": "ContextMint REST API overview — v1.0 health, chat, search, packs, quality; Fabric endpoints on the Verification Engine roadmap."
+  "description": "ContextMint REST API overview — v1.0 health, chat, search, packs, quality; Fabric endpoints on the Verification Engine roadmap.",
+  "breadcrumbParent": "Developers",
+  "breadcrumbCurrent": "API Reference",
+  "hero": {
+    "pill": "REST API",
+    "h1": "API reference",
+    "leadBefore": "FastAPI backend on loopback by default. OpenAPI schema at",
+    "leadMid": "when",
+    "leadAfter": "or Engine is running."
+  },
+  "v1": {
+    "title": "v1.0 — available today",
+    "endpoints": [
+      { "method": "GET", "path": "/api/health", "desc": "Server and dependency health check." },
+      { "method": "GET", "path": "/api/engine/status", "desc": "Engine session state — server, Ollama, readiness." },
+      { "method": "POST", "path": "/api/v1/chat/stream", "desc": "Repo-aware chat with SSE; optional image attachments (multimodal)." },
+      { "method": "POST", "path": "/api/search", "desc": "Hybrid BM25 + vector retrieval with workspace scoping." },
+      { "method": "POST", "path": "/api/argus/audit", "descStrong": "ARGUS", "descAfter": "visual audit — structured UI findings (report only)." },
+      { "method": "GET", "path": "/api/packs/*", "desc": "Context pack builder, sync, and manifest APIs." },
+      { "method": "GET", "path": "/api/quality/*", "desc": "Quality map scans, findings store, governance lens data." }
+    ]
+  },
+  "roadmap": {
+    "title": "Verification Engine — roadmap",
+    "banner": {
+      "badge": "Fabric APIs",
+      "title": "Graph verification endpoints planned",
+      "message": "These power blast radius, decision graph, and agent proposals — not required for v1.0 chat and quality map."
+    },
+    "endpoints": [
+      { "method": "GET", "path": "/fabric/explain", "descStrong": "Blast radius", "descAfter": "— impact paths with evidence (graph traversal, not LLM)." },
+      { "method": "POST", "path": "/fabric/correct", "desc": "Human correction on graph edges — sets verification status." },
+      { "method": "POST", "path": "/fabric/propose", "desc": "Queue proposed graph mutations for human review (agents)." }
+    ]
+  },
+  "interactive": {
+    "title": "Interactive docs",
+    "text": "Start the server and open Swagger UI for the full v1.0 schema.",
+    "comment": "# → http://localhost:8000/docs",
+    "terms": "Terms:",
+    "termsLink": "Glossary"
+  }
 }

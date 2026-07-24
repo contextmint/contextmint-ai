@@ -1,24 +1,24 @@
-<aside class="doc-sidebar" aria-label="Support navigation">
-  <p class="doc-sidebar__title"><a href="/support.html">Support</a></p>
+<aside class="doc-sidebar" aria-label="{{ i18nCommon.supportNav.ariaLabel }}">
+  <p class="doc-sidebar__title"><a href="{{ '/support.html' | locale_path: localePrefix }}">{{ i18nCommon.supportNav.supportTitle }}</a></p>
   <nav class="doc-sidebar__nav">
-    <a href="/support.html" class="doc-sidebar__link{% if page.url == '/support.html' %} doc-sidebar__link--active{% endif %}">Support home</a>
-    <a href="/support/troubleshooting.html" class="doc-sidebar__link{% if page.url contains '/support/troubleshooting' %} doc-sidebar__link--active{% endif %}">Troubleshooting</a>
-    <a href="/faq.html" class="doc-sidebar__link">FAQ</a>
-    <a href="/docs/" class="doc-sidebar__link">User documentation</a>
+    <a href="{{ '/support.html' | locale_path: localePrefix }}" class="doc-sidebar__link{% if page.url contains '/support.html' %} doc-sidebar__link--active{% endif %}">{{ i18nCommon.supportNav.supportHomeLink }}</a>
+    <a href="{{ '/support/troubleshooting.html' | locale_path: localePrefix }}" class="doc-sidebar__link{% if page.url contains '/support/troubleshooting' %} doc-sidebar__link--active{% endif %}">{{ i18nCommon.supportNav.troubleshootingLink }}</a>
+    <a href="{{ '/faq.html' | locale_path: localePrefix }}" class="doc-sidebar__link">{{ i18nCommon.supportNav.faqLink }}</a>
+    <a href="{{ '/docs/' | locale_path: localePrefix }}" class="doc-sidebar__link">{{ i18nCommon.supportNav.docsLink }}</a>
   </nav>
-  <p class="doc-sidebar__title doc-sidebar__title--sub">On this page</p>
+  <p class="doc-sidebar__title doc-sidebar__title--sub">{{ i18nCommon.supportNav.onThisPage }}</p>
   <nav class="doc-sidebar__nav doc-sidebar__nav--compact">
-    <a href="#install" class="doc-sidebar__link">Install &amp; first run</a>
-    <a href="#engine" class="doc-sidebar__link">Engine &amp; server</a>
-    <a href="#ollama" class="doc-sidebar__link">Ollama &amp; models</a>
-    <a href="#extension" class="doc-sidebar__link">Extension &amp; connectivity</a>
-    <a href="#indexing" class="doc-sidebar__link">Indexing &amp; search</a>
-    <a href="#chat" class="doc-sidebar__link">Chat &amp; lanes</a>
-    <a href="#vision-argus" class="doc-sidebar__link">Image evidence &amp; ARGUS</a>
-    <a href="#lens" class="doc-sidebar__link">Context Lens &amp; packs</a>
-    <a href="#patches" class="doc-sidebar__link">Patches &amp; actions</a>
-    <a href="#cloud" class="doc-sidebar__link">Cloud &amp; enterprise</a>
-    <a href="#performance" class="doc-sidebar__link">Performance</a>
-    <a href="#diagnostics" class="doc-sidebar__link">Diagnostics</a>
+    <a href="#install" class="doc-sidebar__link">{{ i18nCommon.supportNav.sections.install }}</a>
+    <a href="#engine" class="doc-sidebar__link">{{ i18nCommon.supportNav.sections.engine }}</a>
+    <a href="#ollama" class="doc-sidebar__link">{{ i18nCommon.supportNav.sections.ollama }}</a>
+    <a href="#extension" class="doc-sidebar__link">{{ i18nCommon.supportNav.sections.extension }}</a>
+    <a href="#indexing" class="doc-sidebar__link">{{ i18nCommon.supportNav.sections.indexing }}</a>
+    <a href="#chat" class="doc-sidebar__link">{{ i18nCommon.supportNav.sections.chat }}</a>
+    <a href="#vision-argus" class="doc-sidebar__link">{{ i18nCommon.supportNav.sections.visionArgus }}</a>
+    <a href="#lens" class="doc-sidebar__link">{{ i18nCommon.supportNav.sections.lens }}</a>
+    <a href="#patches" class="doc-sidebar__link">{{ i18nCommon.supportNav.sections.patches }}</a>
+    <a href="#cloud" class="doc-sidebar__link">{{ i18nCommon.supportNav.sections.cloud }}</a>
+    <a href="#performance" class="doc-sidebar__link">{{ i18nCommon.supportNav.sections.performance }}</a>
+    <a href="#diagnostics" class="doc-sidebar__link">{{ i18nCommon.supportNav.sections.diagnostics }}</a>
   </nav>
 </aside>

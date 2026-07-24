@@ -5,55 +5,57 @@ description: ContextMint CLI — contextmint serve for v1.0; extended graph and 
 pageCss: product.css
 ---
 
+{% assign t = i18nPageStrings %}
+
 <header class="page-hero">
   <div class="container">
-    <nav class="breadcrumb"><a href="/developers/">Developers</a> / CLI</nav>
-    <div class="pill">COMMAND LINE</div>
-    <h1>ContextMint CLI</h1>
+    <nav class="breadcrumb"><a href="{{ '/developers/' | locale_path: localePrefix }}">{{ t.breadcrumbParent }}</a> / {{ t.breadcrumbCurrent }}</nav>
+    <div class="pill">{{ t.hero.pill }}</div>
+    <h1>{{ t.hero.h1 }}</h1>
     <p class="lead">
-      <strong>Available today:</strong> <span class="mono">contextmint serve</span> starts the FastAPI backend.
-      Most operators use <strong>ContextMint Engine</strong> (tray app) for lifecycle instead of raw CLI.
-      Extended automation commands are on the <a href="/roadmap.html" style="color: var(--color-link);">roadmap</a>.
+      <strong>{{ t.hero.availableStrong }}</strong> <span class="mono">contextmint serve</span> {{ t.hero.availableAfter }}
+      {{ t.hero.mostOperatorsBefore }} <strong>{{ t.hero.mostOperatorsStrong }}</strong> {{ t.hero.mostOperatorsAfter }}
+      {{ t.hero.extendedBefore }} <a href="{{ '/roadmap.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.hero.roadmapLink }}</a>{{ t.hero.extendedAfter }}
     </p>
   </div>
 </header>
 
 <section class="section">
   <div class="container container-narrow">
-    <h2 class="section-title">Shipped in v1.0</h2>
+    <h2 class="section-title">{{ t.shipped.title }}</h2>
     <div class="code-block" style="margin-bottom: 16px;">
-      <span class="cm"># Start API server (default port 8000)</span><br />
+      <span class="cm">{{ t.shipped.comment1 }}</span><br />
       contextmint serve<br /><br />
-      <span class="cm"># Custom host / port / debug reload</span><br />
+      <span class="cm">{{ t.shipped.comment2 }}</span><br />
       contextmint serve --host 127.0.0.1 --port 9000 --debug
     </div>
     <ul class="check-list">
-      <li>Registered console script in the Python package (<span class="mono">pyproject.toml</span>)</li>
-      <li>Engine supervisor wraps the same entry for managed installs</li>
-      <li>Lifecycle (start/stop Ollama, updates) → <strong>Engine desktop</strong> or <span class="mono">python -m engine.supervisor.main</span></li>
+      {% for item in t.shipped.items %}
+      <li>{% if item.mono %}{{ item.before }}<span class="mono">{{ item.mono }}</span>{{ item.mid }}{{ item.after }}{% else %}{{ item.text }}{% endif %}</li>
+      {% endfor %}
     </ul>
 
-    <h2 class="section-title" style="margin-top: 40px;">Planned commands (roadmap)</h2>
-    {% include "roadmap-planned-banner.html", badge: "Not shipped", title: "Examples below are target design", message: "Do not run these in v1.0 — they will ship with Enterprise CLI packaging and the Verification Engine." %}
+    <h2 class="section-title" style="margin-top: 40px;">{{ t.planned.title }}</h2>
+    {% include "roadmap-planned-banner.html", badge: t.planned.banner.badge, title: t.planned.banner.title, message: t.planned.banner.message %}
 
     <div class="code-block" style="margin-bottom: 16px; opacity: 0.85;">
-      <span class="cm"># Planned — health probe for CI</span><br />
+      <span class="cm">{{ t.planned.comment1 }}</span><br />
       contextmint health --url http://localhost:8000<br /><br />
-      <span class="cm"># Planned — trigger workspace reindex</span><br />
+      <span class="cm">{{ t.planned.comment2 }}</span><br />
       contextmint index --workspace ./my-repo<br /><br />
-      <span class="cm"># Planned — blast radius JSON for gates</span><br />
+      <span class="cm">{{ t.planned.comment3 }}</span><br />
       contextmint blast-radius --target services/payments-api<br /><br />
-      <span class="cm"># Planned — vector store migration (sovereign server)</span><br />
+      <span class="cm">{{ t.planned.comment4 }}</span><br />
       contextmint migrate --from chroma --to qdrant --workspace-id &lt;id&gt;<br /><br />
-      <span class="cm"># Planned — build context pack from terminal</span><br />
+      <span class="cm">{{ t.planned.comment5 }}</span><br />
       contextmint pack build --name architecture
     </div>
     <p class="muted" style="margin-bottom: 0;">
-      <strong>Blast radius</strong> = downstream impact map if a file or service changes — see
-      <a href="/product/blast-radius.html" style="color: var(--color-link);">Blast radius</a> or
-      <a href="/docs/glossary.html" style="color: var(--color-link);">Glossary</a>.
+      <strong>{{ t.planned.footBefore }}</strong> {{ t.planned.footMid }}
+      <a href="{{ '/product/blast-radius.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.planned.footLink1 }}</a> {{ t.planned.footOr }}
+      <a href="{{ '/docs/glossary.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.planned.footLink2 }}</a>{{ t.planned.footAfter }}
     </p>
   </div>
 </section>
 
-{% include "cta-band.html", ctaTitle: "CLI early access", ctaText: "Design partners will pilot Engine + serve first; request preview access when extended CLI ships. Design partner intake opens by start of September 2026." %}
+{% include "cta-band.html", ctaTitle: t.cta.title, ctaText: t.cta.text %}

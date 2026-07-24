@@ -1,4 +1,136 @@
 {
   "title": "Design Partners | ContextMint",
-  "description": "ContextMint design partner intake opens by start of September 2026. Pilot program details for fintech, platform, and regulated engineering teams."
+  "description": "ContextMint design partner intake opens by start of September 2026. Pilot program details for fintech, platform, and regulated engineering teams.",
+  "hero": {
+    "pill": "DESIGN PARTNERS",
+    "title": "Co-build governable AI for engineering teams",
+    "leadBefore": "We are recruiting a small cohort of design partners — especially in",
+    "leadStrong1": "fintech, platform engineering, and regulated digital teams",
+    "leadMid": "— to pilot ContextMint before general availability. Intake opens",
+    "leadStrong2": "by start of September 2026",
+    "leadAfter": ". The program outline below is for reference; the form is paused until then."
+  },
+  "pilot": {
+    "title": "The 30-day evaluation pilot",
+    "leadBefore": "A design partner pilot is a",
+    "leadStrong": "bounded one-month proof-of-concept",
+    "leadAfter": "— not a subscription that ends after 30 days, and not a requirement for a 30-minute sales call to start (async via the form is fine).",
+    "commitTitle": "What you commit",
+    "commitItems": [
+      "Named pilot lead (platform, security, or engineering)",
+      "<strong>10–30 developers</strong> on <strong>one team or repo</strong>",
+      "<strong>30 calendar days</strong> of real dev usage after onboarding",
+      "Short feedback at <strong>week 2</strong> and <strong>week 4</strong> (async OK)"
+    ],
+    "deliverTitle": "What we deliver",
+    "deliverItems": [
+      "Install help + deployment path review (local or on-prem)",
+      "Weekly async check-in during the pilot month",
+      "<strong>Written pilot summary</strong> for security and platform stakeholders",
+      "Option to <strong>extend to 90 days</strong> if the pilot is going well"
+    ]
+  },
+  "getGive": {
+    "getTitle": "What you get",
+    "getItems": [
+      { "text": "Early access to ContextMint Engine + VS Code extension" },
+      { "text": "Local-first deployment — or shared on-prem server with guided path review" },
+      { "text": "Context Lens + quality map for audit-friendly AI-assisted development" },
+      { "before": "Direct line to product engineering;", "linkText": "influence the roadmap", "linkHref": "/roadmap.html" },
+      { "text": "Pilot summary report for your security and platform stakeholders" }
+    ],
+    "askTitle": "What we ask",
+    "askItems": [
+      "Honest assessment of fit for regulated / sovereign AI dev workflows",
+      "If Track B matters: which systems to connect first (Jira, Confluence, SharePoint, etc.)",
+      "Willingness to share blocker-level feedback — not a marketing testimonial"
+    ]
+  },
+  "next": {
+    "title": "What we are building next",
+    "leadBefore": "Design partners shape three horizons — not just today\u2019s pilot. See the full",
+    "roadmapLink": "product roadmap",
+    "leadAfter": ".",
+    "v1Badge": "v1.0",
+    "v1Title": "Decision-control plane",
+    "v1Text": "Engine, Context Lens, quality map, symbol-aware retrieval — shipping end of August 2026.",
+    "v2Badge": "v2.0 · Q1 2027",
+    "v2Title": "Engineering Intelligence Platform",
+    "v2Text": "Knowledge Fabric, institutional memory, CHRONOS forensics, operational intelligence retrieval — one digital twin of your engineering system.",
+    "trackBBadge": "Track B · end 2027",
+    "trackBTitle": "Enterprise & compliance",
+    "trackBText": "Jira, Confluence, SharePoint, Git, and org knowledge bases — plus SSO/RBAC, multi-tenant isolation, tamper-evident audit, and SOC 2 evidence packaging.",
+    "footerBefore": "Especially interested in",
+    "footerStrong": "v2.0 + Track B",
+    "footerMid": "(Jira, Confluence, SharePoint, Git, and other knowledge bases)? Note that in the form when intake opens — we prioritize partners who need unified org knowledge and compliance evidence, not just IDE chat."
+  },
+  "fit": {
+    "title": "Ideal fit",
+    "card1Strong": "You blocked or limited ungoverned AI in the IDE",
+    "card1Text": "Because of data residency, audit requirements, or auto-edits without evidence or approval.",
+    "card2Strong": "You need evidence, not vibes",
+    "card2Text": "Human gates before inference and before apply — with logs your reviewers can trust."
+  },
+  "interest": {
+    "title": "Express interest (async)",
+    "badge": "Opens start of September 2026",
+    "noticeStrong": "Design partner intake paused.",
+    "noticeBefore": "We are not accepting cohort applications yet. The form below is visible for reference only — submissions are disabled until",
+    "noticeStrong2": "start of September 2026",
+    "noticeMid": ". Until then, follow",
+    "gettingStartedLink": "Getting started",
+    "noticeMid2": "for local install,",
+    "demoLink": "Book a Demo",
+    "noticeMid3": "for a walkthrough, or open",
+    "issuesLink": "GitHub issues",
+    "noticeAfter": "for questions."
+  },
+  "overlay": {
+    "title": "Not accepting applications yet",
+    "textBefore": "Design partner intake opens",
+    "textStrong": "by start of September 2026",
+    "textAfter": ".",
+    "cta": "Book a demo"
+  },
+  "form": {
+    "nameLabel": "Full name",
+    "emailLabel": "Work email",
+    "companyLabel": "Organization",
+    "roleLabel": "Role",
+    "selectPlaceholder": "Select…",
+    "roleOptions": {
+      "cto": "CTO / VP Engineering",
+      "platform": "Platform / DevOps",
+      "security": "Security / Compliance",
+      "staff": "Staff Engineer / Architect",
+      "research": "Research / Education",
+      "other": "Other"
+    },
+    "teamSizeLabel": "Engineering team size",
+    "teamSizeOptions": {
+      "s1": "1–10",
+      "s2": "11–50",
+      "s3": "51–200",
+      "s4": "200+"
+    },
+    "roadmapInterestLabel": "Roadmap interest (optional)",
+    "roadmapInterestOptions": {
+      "v1": "v1.0 pilot — IDE + local-first governance",
+      "v2": "v2.0 — Engineering Intelligence / Knowledge Fabric",
+      "trackB": "Track B — Jira, Confluence, SharePoint, enterprise SSO",
+      "v2TrackB": "v2.0 + Track B (both)",
+      "verification": "Verification Engine — PR gates, blast radius"
+    },
+    "messageLabel": "Primary constraint (optional)",
+    "messagePlaceholder": "e.g. Cannot send code to US cloud AI; need Jira + Confluence in one answer; SharePoint policies indexed with ACL…",
+    "submit": "Submit interest (opens start of September 2026)",
+    "pausedNote": "Form paused — design partner intake opens by start of September 2026.",
+    "successTitle": "Thank you — we will be in touch.",
+    "successText": "We will follow up with a one-page pilot proposal."
+  },
+  "footer": {
+    "questionsBefore": "Questions now?",
+    "gettingStartedLink": "Getting started",
+    "issuesLink": "GitHub issues"
+  }
 }

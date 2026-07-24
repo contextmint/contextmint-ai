@@ -1,9 +1,9 @@
 <div class="notice-banner notice-banner--planned" role="note">
-  <span class="roadmap-status roadmap-status--planned">{{ badge | default: "Roadmap" }}</span>
+  <span class="roadmap-status roadmap-status--planned">{{ badge | default: i18nCommon.roadmapBanner.badge }}</span>
   <p style="margin: 10px 0 0;">
-    <strong>{{ title | default: "Not in v1.0 yet" }}</strong> —
-    {{ message | default: "This page describes a planned capability. What ships today is on" }}
-    <a href="/features.html" style="color: var(--color-link);">Features in v1.0</a>.
+    <strong>{{ title | default: i18nCommon.roadmapBanner.title }}</strong> —
+    {{ message | default: i18nCommon.roadmapBanner.message }}
+    <a href="{{ '/features.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ i18nCommon.roadmapBanner.featuresLink }}</a>.
     {% if extraLink %}
     {{ extraLink }}
     {% endif %}

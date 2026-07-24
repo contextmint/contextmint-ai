@@ -1,4 +1,49 @@
 {
   "title": "Security & Compliance | ContextMint",
-  "description": "Security posture for ContextMint — local-first default, human apply gates, optional OIDC shared-server path. SOC 2 certification is roadmap."
+  "description": "Security posture for ContextMint — local-first default, human apply gates, optional OIDC shared-server path. SOC 2 certification is roadmap.",
+  "breadcrumbParent": "Solutions",
+  "breadcrumbCurrent": "Security & Compliance",
+  "badges": {
+    "roadmap": "Roadmap"
+  },
+  "hero": {
+    "pill": "ENTERPRISE · AUDIT",
+    "title": "Defend AI-assisted development with evidence",
+    "leadBefore": "Local-first by default, human Gates 1 & 2 in the IDE, optional sovereign shared-server path with OIDC — built for security reviews of assisted development. We do",
+    "leadStrong": "not",
+    "leadAfter": "claim SOC 2 certification today."
+  },
+  "cards": [
+    {
+      "title": "Human gates (v1.0)",
+      "text": "Context Lens before inference. Patch preview and apply gates before repo writes. No silent auto-apply on the assisted path."
+    },
+    {
+      "title": "Agent accountability",
+      "text": "Planned MCP tool logging and policy engine for agent assistants. v1.0 accountability is IDE gates + operator audit trails — not MCP production controls."
+    }
+  ],
+  "checklist": [
+    { "text": "Local-first default — Engine + extension per developer (v1.0)" },
+    { "text": "Shared on-prem API server — Docker / Helm pilot with platform ops" },
+    { "text": "SSO (OIDC) and role-based access on the shared-server path" },
+    { "text": "Operator audit / support-bundle export for pilot reviews" },
+    { "before": "SOC 2 evidence collectors (", "linkText": "Track B roadmap", "linkHref": "/roadmap.html#track-b", "after": ")" },
+    { "text": "Path alignment required for shared server (Remote SSH or mounted monorepo)" },
+    { "text": "Optional BYOK hybrid routing with egress redaction (off by default)" }
+  ],
+  "deploymentFit": {
+    "title": "Deployment fit for security review",
+    "before": "Most regulated pilots start",
+    "strong1": "local-first",
+    "mid1": "(sovereign Ollama on each workstation). Teams that need a",
+    "strong2": "shared GPU host",
+    "mid2": "use the on-prem API server with VS Code Remote SSH or a mounted monorepo — not laptop clones pointing at a remote URL without path alignment. We document both models and the limitation in the",
+    "linkText": "Trust center"
+  },
+  "footer": {
+    "text": "Need a security questionnaire completed? We provide architecture diagrams, data-flow documentation, and a walkthrough of Gates 1 & 2 for your review process.",
+    "cta1": "Trust center",
+    "cta2": "Book a Demo"
+  }
 }

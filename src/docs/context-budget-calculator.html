@@ -5,35 +5,38 @@ description: Interactive calculator for server chat context budgets — hardware
 pageCss: product.css
 ---
 
-<h1>Context budget calculator</h1>
+{% assign t = i18nPageStrings %}
+
+<h1>{{ t.h1 }}</h1>
 <p class="doc-lead">
-  Pick a <strong>hardware tier</strong> (T0–T9) for preview and a target
-  <code>chat.max_context_tokens</code> (500–200,000). You choose the value in YAML; defaults ship at install.
-  <strong>Generation length</strong> uses <code>chat.max_gen_tokens</code> (operator ceiling for Ollama
-  <code>num_predict</code>) — Engine desktop <strong>Apply</strong> co-writes both keys for your tier.
-  Impact warnings are advisory only.
+  {{ t.lead.pick }} <strong>{{ t.lead.hwTier }}</strong> {{ t.lead.hwRange }}
+  <code>chat.max_context_tokens</code> {{ t.lead.rangeNote }}
+  <strong>{{ t.lead.genLength }}</strong> {{ t.lead.usesNote }} <code>chat.max_gen_tokens</code>
+  {{ t.lead.opCeiling }}
+  <code>num_predict</code>{{ t.lead.applyNote }} <strong>{{ t.lead.apply }}</strong> {{ t.lead.coWrites }}
+  {{ t.lead.warningsNote }}
 </p>
 
 <div class="settings-callout">
-  <strong>Where to apply:</strong>
-  <code>config/contextmint.defaults.yaml</code> on the API host, or overlay
+  <strong>{{ t.callout.whereStrong }}</strong>
+  <code>config/contextmint.defaults.yaml</code> {{ t.callout.onHost }}
   <code>~/.contextmint/server.defaults.yaml</code>.
-  Live values: <code>GET /api/v1/config/context-budget?max_context_tokens=…</code>.
-  Tier in this page models runtime ChatCaps from <code>detector.py</code> — not a config validator.
+  {{ t.callout.liveValues }} <code>GET /api/v1/config/context-budget?max_context_tokens=…</code>.
+  {{ t.callout.tierModels }} <code>detector.py</code> {{ t.callout.notValidator }}
 </div>
 
 <p class="muted settings-meta">
-  Profile generated <span id="budget-profile-date">{{ contextBudgetProfile.generatedAt | default: "—" }}</span> from
+  {{ t.meta.generated }} <span id="budget-profile-date">{{ contextBudgetProfile.generatedAt | default: "—" }}</span> {{ t.meta.from }}
   <span class="mono">{{ contextBudgetProfile.source | default: "config/contextmint.defaults.yaml" }}</span>
-  · baseline <span id="budget-baseline-label">{{ contextBudgetProfile.profile.baseline_tokens | default: 10000 }}</span> tokens
+  · {{ t.meta.baseline }} <span id="budget-baseline-label">{{ contextBudgetProfile.profile.baseline_tokens | default: 10000 }}</span> {{ t.meta.tokens }}
 </p>
 
 <section class="settings-section" id="budget-calculator">
-  <h2>Inputs</h2>
+  <h2>{{ t.inputs.title }}</h2>
 
   <div class="budget-calc-form">
     <div class="budget-calc-field">
-      <label class="settings-filter-label" for="budget-tier">Hardware tier</label>
+      <label class="settings-filter-label" for="budget-tier">{{ t.inputs.tierLabel }}</label>
       <select id="budget-tier" class="budget-calc-select"></select>
       <p class="muted budget-calc-hint" id="budget-tier-host"></p>
     </div>
@@ -60,59 +63,59 @@ pageCss: product.css
           max="200000"
           step="500"
           value="{{ contextBudgetProfile.profile.max_context_tokens | default: 10000 }}"
-          aria-label="max_context_tokens slider (convenience only)"
+          aria-label="{{ t.inputs.sliderAria }}"
         />
       </div>
       <p class="muted budget-calc-hint">
-        Valid range 500–200,000 tokens (server schema max). Presets are shortcuts; type any value in range.
+        {{ t.inputs.tokenHint }}
       </p>
       <div class="budget-calc-presets" id="budget-presets"></div>
     </div>
 
     <div class="budget-calc-field">
-      <label class="settings-filter-label" for="budget-intent">Intent (effective RAG preview)</label>
+      <label class="settings-filter-label" for="budget-intent">{{ t.inputs.intentLabel }}</label>
       <select id="budget-intent" class="budget-calc-select">
-        <option value="default">Default (no floor)</option>
-        <option value="conceptual">Conceptual / code_pattern</option>
-        <option value="overview">Canonical overview</option>
+        <option value="default">{{ t.inputs.intentDefault }}</option>
+        <option value="conceptual">{{ t.inputs.intentConceptual }}</option>
+        <option value="overview">{{ t.inputs.intentOverview }}</option>
       </select>
     </div>
   </div>
 
   <h2 class="budget-calc-section-title">
-    Scaling matrix
+    {{ t.matrix.title }}
     <span id="budget-matrix-cap-label" class="mono budget-calc-cap-label"></span>
   </h2>
   <p class="muted">
-    Derived <code>chat.*</code> fields for your selected <code>max_context_tokens</code> when
-    <code>context_budget.auto_scale</code> is true (ratios from shipped defaults; baseline
+    {{ t.matrix.derivedBefore }} <code>chat.*</code> {{ t.matrix.forSelected }}
+    <code>max_context_tokens</code> {{ t.matrix.whenWord }}
+    <code>context_budget.auto_scale</code> {{ t.matrix.autoScaleNote }}
     {{ contextBudgetProfile.profile.baseline_tokens | default: 10000 }}).
   </p>
   <div class="settings-table-wrap">
     <table class="settings-table settings-table--budget-calc" id="budget-scaling-matrix">
       <thead id="budget-scaling-matrix-head">
         <tr>
-          <th scope="col">Server variable</th>
-          <th scope="col">Calculated value</th>
-          <th scope="col">Formula</th>
+          {% for h in t.matrix.headers %}
+          <th scope="col">{{ h }}</th>
+          {% endfor %}
         </tr>
       </thead>
       <tbody id="budget-scaling-matrix-body"></tbody>
     </table>
   </div>
 
-  <h3 class="settings-usage-subhead">Tier envelope (ChatCaps)</h3>
-  <p class="muted">Startup probe maps RAM/VRAM → tier → these ceilings. Values from <code>detector.py</code>.</p>
+  <h3 class="settings-usage-subhead">{{ t.tierEnvelope.title }}</h3>
+  <p class="muted">{{ t.tierEnvelope.descBefore }} <code>detector.py</code>.</p>
   <div class="settings-table-wrap">
     <table class="settings-table settings-table--compact" id="budget-tier-envelope">
       <tbody id="budget-tier-envelope-body"></tbody>
     </table>
   </div>
 
-  <h3 class="settings-usage-subhead">Effective RAG budget (selected tier)</h3>
+  <h3 class="settings-usage-subhead">{{ t.effective.title }}</h3>
   <p class="muted">
-    Runtime order: config cap → hardware clamp → intent floor (raised up to config cap).
-    Health-policy overrides are not modeled here.
+    {{ t.effective.desc }}
   </p>
   <div class="settings-table-wrap">
     <table class="settings-table settings-table--compact" id="budget-effective-table">
@@ -120,8 +123,8 @@ pageCss: product.css
     </table>
   </div>
 
-  <h3 class="settings-usage-subhead">Tier comparison matrix</h3>
-  <p class="muted">Effective RAG chunk budget per tier for the same <code>max_context_tokens</code>.</p>
+  <h3 class="settings-usage-subhead">{{ t.tierMatrix.title }}</h3>
+  <p class="muted">{{ t.tierMatrix.descBefore }} <code>max_context_tokens</code>.</p>
   <div class="settings-table-wrap budget-calc-matrix-wrap">
     <table class="settings-table settings-table--matrix" id="budget-tier-matrix">
       <thead id="budget-tier-matrix-head"></thead>
@@ -129,33 +132,34 @@ pageCss: product.css
     </table>
   </div>
 
-  <h3 class="settings-usage-subhead">Ratio profile (edit in YAML)</h3>
+  <h3 class="settings-usage-subhead">{{ t.ratios.title }}</h3>
   <div class="settings-table-wrap">
     <table class="settings-table settings-table--compact">
       <thead>
         <tr>
-          <th scope="col">Ratio key</th>
-          <th scope="col">Fraction of max_context_tokens</th>
+          {% for h in t.ratios.headers %}
+          <th scope="col">{{ h }}</th>
+          {% endfor %}
         </tr>
       </thead>
       <tbody id="budget-ratios-body"></tbody>
     </table>
   </div>
 
-  <h3 class="settings-usage-subhead">Example overlay</h3>
+  <h3 class="settings-usage-subhead">{{ t.example.title }}</h3>
   <pre class="mono budget-calc-snippet" id="budget-yaml-snippet"></pre>
 
   <section class="settings-section budget-engine-live" id="budget-engine-live" hidden aria-labelledby="budget-engine-live-title">
-    <h2 id="budget-engine-live-title">Live apply (Engine)</h2>
+    <h2 id="budget-engine-live-title">{{ t.live.title }}</h2>
     <p class="muted">
-      Connected to <code id="budget-engine-base-label"></code>. Writes
-      <code>~/.contextmint/server.defaults.yaml</code> via loopback API — server restart required.
+      {{ t.live.connectedTo }} <code id="budget-engine-base-label"></code>{{ t.live.writesBefore }}
+      <code>~/.contextmint/server.defaults.yaml</code> {{ t.live.restartRequired }}
     </p>
     <div id="budget-engine-status" class="budget-calc-impact budget-calc-impact--info" role="status" hidden></div>
     <div class="budget-calc-presets budget-engine-live-actions">
-      <button type="button" id="budget-engine-preview" class="budget-calc-preset">Preview impact</button>
-      <button type="button" id="budget-engine-apply" class="budget-calc-preset">Apply to server</button>
-      <button type="button" id="budget-engine-restart" class="budget-calc-preset">Restart server</button>
+      <button type="button" id="budget-engine-preview" class="budget-calc-preset">{{ t.live.previewBtn }}</button>
+      <button type="button" id="budget-engine-apply" class="budget-calc-preset">{{ t.live.applyBtn }}</button>
+      <button type="button" id="budget-engine-restart" class="budget-calc-preset">{{ t.live.restartBtn }}</button>
     </div>
     <pre class="mono budget-calc-snippet" id="budget-engine-preview-out" hidden></pre>
   </section>
@@ -163,6 +167,9 @@ pageCss: product.css
 
 <script id="context-budget-profile-data" type="application/json">
 {{ contextBudgetProfile | json }}
+</script>
+<script id="budget-i18n" type="application/json">
+{{ t.js | json }}
 </script>
 <script>
 (function () {
@@ -176,6 +183,17 @@ pageCss: product.css
   var bounds = data.maxContextTokensBounds || { min: 500, max: 200000, step: 500 };
   var installDefault =
     profile.max_context_tokens || baseline || 10000;
+
+  var i18nEl = document.getElementById("budget-i18n");
+  var I18N_JS = i18nEl ? JSON.parse(i18nEl.textContent || "{}") : {};
+
+  /** Replaces `{name}` tokens in a translation template with values from `vars`. */
+  function fmt(template, vars) {
+    if (!template) return "";
+    return String(template).replace(/\{(\w+)\}/g, function (_, key) {
+      return vars && Object.prototype.hasOwnProperty.call(vars, key) ? vars[key] : "";
+    });
+  }
 
   /** Docs-only prefill throughput (tok/s) — mirrors detector.py comments. */
   var CPU_PREFILL_TOK_PER_SEC = { T0: 30, T1: 45, T2: 70 };
@@ -203,12 +221,13 @@ pageCss: product.css
     ["canonical_overview_grep_max_snippets", "grep_max_snippets_at_baseline", 0, 12],
   ];
 
+  var MATRIX_CEILING_LABELS = I18N_JS.matrixCeilingLabels || [];
   var MATRIX_CEILING_ROWS = [
-    ["pack_slot_max_tokens", "Pack slot max tokens"],
-    ["pack_seed_slot_max_tokens", "Pack seed slot max tokens"],
-    ["retrieval_slots_max_tokens", "Retrieval slots max tokens"],
-    ["theoretical_overview_ship_max_tokens", "Overview ship max (theoretical)"],
-    ["canonical_overview_chunk_floor_tokens", "Overview chunk floor"],
+    ["pack_slot_max_tokens", MATRIX_CEILING_LABELS[0] || "Pack slot max tokens"],
+    ["pack_seed_slot_max_tokens", MATRIX_CEILING_LABELS[1] || "Pack seed slot max tokens"],
+    ["retrieval_slots_max_tokens", MATRIX_CEILING_LABELS[2] || "Retrieval slots max tokens"],
+    ["theoretical_overview_ship_max_tokens", MATRIX_CEILING_LABELS[3] || "Overview ship max (theoretical)"],
+    ["canonical_overview_chunk_floor_tokens", MATRIX_CEILING_LABELS[4] || "Overview chunk floor"],
   ];
 
   function formatCapLabel(cap) {
@@ -248,7 +267,7 @@ pageCss: product.css
     var divider = document.createElement("tr");
     divider.className = "budget-calc-matrix-divider";
     divider.innerHTML =
-      "<td colspan=\"3\"><em>Overview ceiling (derived)</em></td>";
+      "<td colspan=\"3\"><em>" + (I18N_JS.matrixDividerLabel || "Overview ceiling (derived)") + "</em></td>";
     body.appendChild(divider);
 
     MATRIX_CEILING_ROWS.forEach(function (row) {
@@ -258,7 +277,9 @@ pageCss: product.css
         "<td class=\"settings-table__default budget-calc-value mono\">" +
         ceiling[row[0]].toLocaleString() +
         "</td>" +
-        "<td class=\"settings-table__desc budget-calc-formula muted\">derived from scaled slots</td>";
+        "<td class=\"settings-table__desc budget-calc-formula muted\">" +
+        (I18N_JS.derivedFromScaledSlots || "derived from scaled slots") +
+        "</td>";
       body.appendChild(tr);
     });
   }
@@ -344,9 +365,13 @@ pageCss: product.css
   function formulaForRow(row) {
     var field = row[0];
     if (field.indexOf("_max_slots") !== -1 || field.indexOf("_max_files") !== -1 || field.indexOf("_snippets") !== -1) {
-      return "baseline_count × max / " + baseline + " (clamped)";
+      return fmt(I18N_JS.formulaBaselineTemplate || "baseline_count × max / {baseline} (clamped)", {
+        baseline: baseline,
+      });
     }
-    return "max × ratio " + (ratios[row[1]] || 0) + " (clamped)";
+    return fmt(I18N_JS.formulaRatioTemplate || "max × ratio {ratio} (clamped)", {
+      ratio: ratios[row[1]] || 0,
+    });
   }
 
   function tierById(id) {
@@ -388,6 +413,7 @@ pageCss: product.css
   /** @returns {Array<{severity: string, title: string, body: string}>} */
   function collectWarnings(maxTokens, tier, intent, scaled, ceiling) {
     if (!tier) return [];
+    var W = I18N_JS.warnings || {};
     var warnings = [];
     var effective = effectiveRag(maxTokens, tier.context_tokens, scaled, ceiling, intent);
     var defaultRag = effectiveRag(maxTokens, tier.context_tokens, scaled, ceiling, "default");
@@ -408,35 +434,37 @@ pageCss: product.css
     var unusedConfig = maxTokens - defaultRag;
 
     if (maxTokens > tier.context_tokens && defaultRag === tier.context_tokens) {
+      var w1 = W.configCapExceeds || {};
       warnings.push({
         severity: "warn",
-        title: "Config cap exceeds tier RAG ceiling (default intents)",
-        body:
-          "On default intents, effective RAG stays at " +
-          tier.context_tokens.toLocaleString() +
-          " tokens (ChatCaps on " +
-          tier.id +
-          "). The extra " +
-          unusedConfig.toLocaleString() +
-          " tokens in your YAML cap are not injected into chat for those queries. " +
-          "Only scaled pack/seed/slot knobs and intent floors change.",
+        title: w1.title || "Config cap exceeds tier RAG ceiling (default intents)",
+        body: fmt(
+          w1.body ||
+            "On default intents, effective RAG stays at {tierTokens} tokens (ChatCaps on {tierId}). The extra {unusedConfig} tokens in your YAML cap are not injected into chat for those queries. Only scaled pack/seed/slot knobs and intent floors change.",
+          {
+            tierTokens: tier.context_tokens.toLocaleString(),
+            tierId: tier.id,
+            unusedConfig: unusedConfig.toLocaleString(),
+          },
+        ),
       });
     }
 
     if (conceptualRag > tier.context_tokens || overviewRag > tier.context_tokens) {
+      var w2 = W.intentFloorsExceed || {};
       warnings.push({
         severity: "warn",
-        title: "Intent floors can exceed the tier RAG cap",
-        body:
-          "Conceptual floor → " +
-          conceptualRag.toLocaleString() +
-          " tokens; overview floor → " +
-          overviewRag.toLocaleString() +
-          " tokens — both above ChatCaps " +
-          tier.context_tokens.toLocaleString() +
-          " on " +
-          tier.id +
-          ". Overview and explanation queries will prefill more context than the tier's latency target assumes.",
+        title: w2.title || "Intent floors can exceed the tier RAG cap",
+        body: fmt(
+          w2.body ||
+            "Conceptual floor → {conceptualRag} tokens; overview floor → {overviewRag} tokens — both above ChatCaps {tierTokens} on {tierId}. Overview and explanation queries will prefill more context than the tier's latency target assumes.",
+          {
+            conceptualRag: conceptualRag.toLocaleString(),
+            overviewRag: overviewRag.toLocaleString(),
+            tierTokens: tier.context_tokens.toLocaleString(),
+            tierId: tier.id,
+          },
+        ),
       });
     }
 
@@ -444,47 +472,53 @@ pageCss: product.css
       ceiling.theoretical_overview_ship_max_tokens > effective * 1.5 &&
       ceiling.theoretical_overview_ship_max_tokens > 2000
     ) {
+      var w3 = W.overviewCeilingOutruns || {};
       warnings.push({
         severity: "warn",
-        title: "Overview slot ceiling outruns effective RAG",
-        body:
-          "Theoretical overview ship max is " +
-          ceiling.theoretical_overview_ship_max_tokens.toLocaleString() +
-          " tokens (" +
-          scaled.canonical_overview_anchor_max_slots +
-          " retrieval slots × " +
-          scaled.canonical_overview_anchor_slot_tokens.toLocaleString() +
-          " tok/slot, plus pack/seed). Effective RAG for your intent is " +
-          effective.toLocaleString() +
-          " tokens — runtime Top-K and chunk budgeting trim what actually ships.",
+        title: w3.title || "Overview slot ceiling outruns effective RAG",
+        body: fmt(
+          w3.body ||
+            "Theoretical overview ship max is {shipMax} tokens ({slots} retrieval slots × {slotTokens} tok/slot, plus pack/seed). Effective RAG for your intent is {effective} tokens — runtime Top-K and chunk budgeting trim what actually ships.",
+          {
+            shipMax: ceiling.theoretical_overview_ship_max_tokens.toLocaleString(),
+            slots: scaled.canonical_overview_anchor_max_slots,
+            slotTokens: scaled.canonical_overview_anchor_slot_tokens.toLocaleString(),
+            effective: effective.toLocaleString(),
+          },
+        ),
       });
     }
 
     if (maxTokens >= 16000) {
+      var w4 = W.highMasterCap || {};
       warnings.push({
         severity: "warn",
-        title: "High master cap scales all YAML knobs",
-        body:
-          "At " +
-          maxTokens.toLocaleString() +
-          " tokens, work-lane pack budget → " +
-          scaled.work_lane_pack_token_budget.toLocaleString() +
-          ", overview pack max → " +
-          scaled.canonical_overview_pack_max_tokens.toLocaleString() +
-          ", anchor slots → " +
-          scaled.canonical_overview_anchor_max_slots +
-          ". Expect heavier pack hydration, larger evidence fusion graphs, and more RAM at assemble time — even when chat RAG is tier-clamped.",
+        title: w4.title || "High master cap scales all YAML knobs",
+        body: fmt(
+          w4.body ||
+            "At {maxTokens} tokens, work-lane pack budget → {workLane}, overview pack max → {overviewMax}, anchor slots → {anchorSlots}. Expect heavier pack hydration, larger evidence fusion graphs, and more RAM at assemble time — even when chat RAG is tier-clamped.",
+          {
+            maxTokens: maxTokens.toLocaleString(),
+            workLane: scaled.work_lane_pack_token_budget.toLocaleString(),
+            overviewMax: scaled.canonical_overview_pack_max_tokens.toLocaleString(),
+            anchorSlots: scaled.canonical_overview_anchor_max_slots,
+          },
+        ),
       });
     }
 
     if (maxTokens > baseline * 1.25) {
+      var w5 = W.aboveBaseline || {};
       warnings.push({
         severity: "info",
-        title: "Above ratio calibration baseline (" + baseline.toLocaleString() + ")",
-        body:
-          "Ratios in contextmint.defaults.yaml were tuned at baseline_tokens=" +
-          baseline.toLocaleString() +
-          ". Higher caps linearly scale slot counts and per-slot token budgets until field clamps hit (e.g. work_lane_pack max 24k).",
+        title: fmt(w5.title || "Above ratio calibration baseline ({baseline})", {
+          baseline: baseline.toLocaleString(),
+        }),
+        body: fmt(
+          w5.body ||
+            "Ratios in contextmint.defaults.yaml were tuned at baseline_tokens={baseline}. Higher caps linearly scale slot counts and per-slot token budgets until field clamps hit (e.g. work_lane_pack max 24k).",
+          { baseline: baseline.toLocaleString() },
+        ),
       });
     }
 
@@ -495,29 +529,25 @@ pageCss: product.css
         var total = prefill + gen;
         var latencyTarget = tier.id === "T0" ? 10 : tier.id === "T1" ? 12 : 16;
         if (total > latencyTarget) {
+          var w6 = W.cpuLatency || {};
           warnings.push({
             severity: total > latencyTarget * 1.35 ? "critical" : "warn",
-            title: "CPU prefill + generation may exceed tier latency target",
-            body:
-              "Rough estimate on " +
-              tier.id +
-              ": ~" +
-              Math.round(prefill) +
-              "s prefill (" +
-              effective.toLocaleString() +
-              " RAG + ~" +
-              (INSTRUCTIONS_TOKENS + HISTORY_CAP_TOKENS + QUERY_TYPICAL_TOKENS) +
-              " history/instructions/query at " +
-              CPU_PREFILL_TOK_PER_SEC[tier.id] +
-              " tok/s) + ~" +
-              gen.toFixed(1) +
-              "s generation (" +
-              tier.max_gen_tokens +
-              " max_gen_tokens) ≈ " +
-              total.toFixed(1) +
-              "s total. Tier design target ≈ " +
-              latencyTarget +
-              "s. Health policy may reduce context under load.",
+            title: w6.title || "CPU prefill + generation may exceed tier latency target",
+            body: fmt(
+              w6.body ||
+                "Rough estimate on {tierId}: ~{prefill}s prefill ({effective} RAG + ~{fixedTokens} history/instructions/query at {rate} tok/s) + ~{gen}s generation ({maxGen} max_gen_tokens) ≈ {total}s total. Tier design target ≈ {latencyTarget}s. Health policy may reduce context under load.",
+              {
+                tierId: tier.id,
+                prefill: Math.round(prefill),
+                effective: effective.toLocaleString(),
+                fixedTokens: INSTRUCTIONS_TOKENS + HISTORY_CAP_TOKENS + QUERY_TYPICAL_TOKENS,
+                rate: CPU_PREFILL_TOK_PER_SEC[tier.id],
+                gen: gen.toFixed(1),
+                maxGen: tier.max_gen_tokens,
+                total: total.toFixed(1),
+                latencyTarget: latencyTarget,
+              },
+            ),
           });
         }
       }
@@ -528,45 +558,50 @@ pageCss: product.css
         var numCtx = estimateNumCtx(inputEst, tier.max_gen_tokens, tier.num_ctx_ceiling);
         var kvGb = (numCtx / 1000) * KV_GB_PER_1K_NUM_CTX;
         if (kvGb >= 2.5) {
+          var w7 = W.kvCache || {};
           warnings.push({
             severity: kvGb >= 3.5 ? "critical" : "warn",
-            title: "KV cache RAM estimate (CPU / Ollama)",
-            body:
-              "Full RAG + saturated history → input ≈ " +
-              inputEst.toLocaleString() +
-              " tokens; dynamic num_ctx ≈ " +
-              numCtx.toLocaleString() +
-              " (ceiling " +
-              tier.num_ctx_ceiling.toLocaleString() +
-              ") → ~" +
-              kvGb.toFixed(1) +
-              " GB KV for a 3B-class model (~0.37 GB per 1k num_ctx), plus ~2 GB weights and OS headroom. Risk of swap or policy DOWNGRADE_AND_REDUCE on tight RAM.",
+            title: w7.title || "KV cache RAM estimate (CPU / Ollama)",
+            body: fmt(
+              w7.body ||
+                "Full RAG + saturated history → input ≈ {inputEst} tokens; dynamic num_ctx ≈ {numCtx} (ceiling {ceiling}) → ~{kvGb} GB KV for a 3B-class model (~0.37 GB per 1k num_ctx), plus ~2 GB weights and OS headroom. Risk of swap or policy DOWNGRADE_AND_REDUCE on tight RAM.",
+              {
+                inputEst: inputEst.toLocaleString(),
+                numCtx: numCtx.toLocaleString(),
+                ceiling: tier.num_ctx_ceiling.toLocaleString(),
+                kvGb: kvGb.toFixed(1),
+              },
+            ),
           });
         }
       }
     } else if (maxTokens > tier.context_tokens) {
+      var w8 = W.gpuFixedCap || {};
       warnings.push({
         severity: "info",
-        title: "GPU tier: YAML scales; ChatCaps RAG cap is fixed",
-        body:
-          "GPU tiers (T3+) keep ChatCaps.context_tokens at " +
-          tier.context_tokens.toLocaleString() +
-          ". Raising max_context_tokens mainly grows overview pack/seed slots and work-lane pack budget — not the hybrid RAG chunk cap. Cloud routing bypasses local ChatCaps entirely.",
+        title: w8.title || "GPU tier: YAML scales; ChatCaps RAG cap is fixed",
+        body: fmt(
+          w8.body ||
+            "GPU tiers (T3+) keep ChatCaps.context_tokens at {tierTokens}. Raising max_context_tokens mainly grows overview pack/seed slots and work-lane pack budget — not the hybrid RAG chunk cap. Cloud routing bypasses local ChatCaps entirely.",
+          { tierTokens: tier.context_tokens.toLocaleString() },
+        ),
       });
     }
 
     if (warnings.length === 0) {
+      var w9 = W.noFlags || {};
       warnings.push({
         severity: "ok",
-        title: "No advisory flags for this combination",
-        body:
-          "For " +
-          tier.id +
-          " at " +
-          maxTokens.toLocaleString() +
-          " tokens, effective RAG is " +
-          effective.toLocaleString() +
-          ". You can still raise or lower the cap freely; the matrix updates scaled YAML variables either way.",
+        title: w9.title || "No advisory flags for this combination",
+        body: fmt(
+          w9.body ||
+            "For {tierId} at {maxTokens} tokens, effective RAG is {effective}. You can still raise or lower the cap freely; the matrix updates scaled YAML variables either way.",
+          {
+            tierId: tier.id,
+            maxTokens: maxTokens.toLocaleString(),
+            effective: effective.toLocaleString(),
+          },
+        ),
       });
     }
 
@@ -587,7 +622,9 @@ pageCss: product.css
     });
     if (!parts.length) {
       parts.push(
-        warnings[0] ? warnings[0].body : "Adjust max_context_tokens to preview scaled YAML variables.",
+        warnings[0]
+          ? warnings[0].body
+          : I18N_JS.fallbackImpact || "Adjust max_context_tokens to preview scaled YAML variables.",
       );
     }
     return { severity: severity, text: parts.join(" ") };
@@ -607,17 +644,20 @@ pageCss: product.css
   function renderTierEnvelope(tier) {
     var body = document.getElementById("budget-tier-envelope-body");
     if (!body || !tier) return;
+    var L = I18N_JS.tierEnvelopeLabels || [];
     var rows = [
-      ["Hardware tier", tier.id],
-      ["Typical host", tier.typical_host],
-      ["RAG cap (context_tokens)", tier.context_tokens.toLocaleString()],
-      ["Max generation (max_gen_tokens)", tier.max_gen_tokens.toLocaleString()],
+      [L[0] || "Hardware tier", tier.id],
+      [L[1] || "Typical host", tier.typical_host],
+      [L[2] || "RAG cap (context_tokens)", tier.context_tokens.toLocaleString()],
+      [L[3] || "Max generation (max_gen_tokens)", tier.max_gen_tokens.toLocaleString()],
       [
-        "num_ctx ceiling",
-        tier.num_ctx_ceiling === 0 ? "0 (Ollama default)" : tier.num_ctx_ceiling.toLocaleString(),
+        L[4] || "num_ctx ceiling",
+        tier.num_ctx_ceiling === 0
+          ? I18N_JS.numCtxOllamaDefault || "0 (Ollama default)"
+          : tier.num_ctx_ceiling.toLocaleString(),
       ],
-      ["Selection max tokens", tier.selection_max_tokens.toLocaleString()],
-      ["Note", tier.note],
+      [L[5] || "Selection max tokens", tier.selection_max_tokens.toLocaleString()],
+      [L[6] || "Note", tier.note],
     ];
     body.innerHTML = "";
     rows.forEach(function (r) {
@@ -633,6 +673,7 @@ pageCss: product.css
   function renderEffective(maxTokens, tier, intent, scaled, ceiling) {
     var body = document.getElementById("budget-effective-body");
     if (!body || !tier) return;
+    var L = I18N_JS.effectiveLabels || [];
     var afterHw = Math.min(maxTokens, tier.context_tokens);
     var final = effectiveRag(maxTokens, tier.context_tokens, scaled, ceiling, intent);
     var floorLabel =
@@ -648,12 +689,12 @@ pageCss: product.css
           ? ceiling.canonical_overview_chunk_floor_tokens
           : "—";
     var rows = [
-      ["chat.max_context_tokens (config cap)", maxTokens.toLocaleString()],
-      ["ChatCaps.context_tokens (tier RAG cap)", tier.context_tokens.toLocaleString()],
-      ["After hardware clamp", afterHw.toLocaleString()],
-      ["Intent floor field", floorLabel],
-      ["Intent floor value", typeof floorVal === "number" ? floorVal.toLocaleString() : floorVal],
-      ["Effective RAG chunk budget", final.toLocaleString()],
+      [L[0] || "chat.max_context_tokens (config cap)", maxTokens.toLocaleString()],
+      [L[1] || "ChatCaps.context_tokens (tier RAG cap)", tier.context_tokens.toLocaleString()],
+      [L[2] || "After hardware clamp", afterHw.toLocaleString()],
+      [L[3] || "Intent floor field", floorLabel],
+      [L[4] || "Intent floor value", typeof floorVal === "number" ? floorVal.toLocaleString() : floorVal],
+      [L[5] || "Effective RAG chunk budget", final.toLocaleString()],
     ];
     body.innerHTML = "";
     rows.forEach(function (r, idx) {
@@ -672,9 +713,10 @@ pageCss: product.css
     var result = compute(maxTokens);
     var scaled = result.scaled;
     var ceiling = result.ceiling;
+    var L = I18N_JS.tierMatrixLabels || [];
 
     head.innerHTML =
-      "<tr><th scope=\"col\">Metric</th>" +
+      "<tr><th scope=\"col\">" + (I18N_JS.metricLabel || "Metric") + "</th>" +
       hardwareTiers
         .map(function (t) {
           return "<th scope=\"col\" class=\"mono\">" + t.id + "</th>";
@@ -684,25 +726,28 @@ pageCss: product.css
 
     var matrixRows = [
       {
-        label: "ChatCaps RAG cap",
+        label: L[0] || "ChatCaps RAG cap",
         fn: function (t) {
           return t.context_tokens;
         },
       },
       {
-        label: "Effective RAG (default)",
+        label: L[1] || "Effective RAG (default)",
+        intent: "default",
         fn: function (t) {
           return effectiveRag(maxTokens, t.context_tokens, scaled, ceiling, "default");
         },
       },
       {
-        label: "Effective RAG (conceptual)",
+        label: L[2] || "Effective RAG (conceptual)",
+        intent: "conceptual",
         fn: function (t) {
           return effectiveRag(maxTokens, t.context_tokens, scaled, ceiling, "conceptual");
         },
       },
       {
-        label: "Effective RAG (overview)",
+        label: L[3] || "Effective RAG (overview)",
+        intent: "overview",
         fn: function (t) {
           return effectiveRag(maxTokens, t.context_tokens, scaled, ceiling, "overview");
         },
@@ -717,14 +762,7 @@ pageCss: product.css
         hardwareTiers
           .map(function (t) {
             var v = row.fn(t);
-            var highlight =
-              intent === "default" && row.label.indexOf("(default)") !== -1
-                ? " budget-calc-matrix-active"
-                : intent === "conceptual" && row.label.indexOf("(conceptual)") !== -1
-                  ? " budget-calc-matrix-active"
-                  : intent === "overview" && row.label.indexOf("(overview)") !== -1
-                    ? " budget-calc-matrix-active"
-                    : "";
+            var highlight = row.intent && intent === row.intent ? " budget-calc-matrix-active" : "";
             return "<td class=\"mono" + highlight + "\">" + v.toLocaleString() + "</td>";
           })
           .join("");
@@ -910,29 +948,39 @@ pageCss: product.css
     if (!panel || !label) return;
     panel.hidden = false;
     label.textContent = engineBase;
+    var E = I18N_JS.engine || {};
 
     engineFetch("/api/engine/context-budget")
       .then(function (data) {
         var running = data && data.running_rag_budget;
         if (running) {
           setEngineStatus(
-            "Running ship cap " +
-              running.effective_rag_cap.toLocaleString() +
-              " (bound by " +
-              running.bound_by +
-              "). Pending overlay changes require restart.",
+            fmt(
+              E.runningShipCap ||
+                "Running ship cap {cap} (bound by {boundBy}). Pending overlay changes require restart.",
+              {
+                cap: running.effective_rag_cap.toLocaleString(),
+                boundBy: running.bound_by,
+              },
+            ),
             "info",
           );
         }
       })
       .catch(function (err) {
-        setEngineStatus("Cannot reach API at " + engineBase + ": " + err.message, "warn");
+        setEngineStatus(
+          fmt(E.cannotReach || "Cannot reach API at {base}: {error}", {
+            base: engineBase,
+            error: err.message,
+          }),
+          "warn",
+        );
       });
 
     document.getElementById("budget-engine-preview")?.addEventListener("click", function () {
       var max = currentState().maxTokens;
       var out = document.getElementById("budget-engine-preview-out");
-      setEngineStatus("Previewing…", "info");
+      setEngineStatus(E.previewing || "Previewing…", "info");
       engineFetch("/api/engine/context-budget/preview", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -945,14 +993,20 @@ pageCss: product.css
           }
           var warnings = (preview && preview.warnings) || [];
           var coGen = preview && preview.co_applied_max_gen_tokens;
-          var msg = "Preview for max_context_tokens=" + max.toLocaleString();
-          if (coGen != null) msg += "; Apply co-writes max_gen_tokens=" + Number(coGen).toLocaleString();
+          var msg = fmt(E.previewResult || "Preview for max_context_tokens={max}", {
+            max: max.toLocaleString(),
+          });
+          if (coGen != null) {
+            msg += fmt(E.coAppliesGen || "; Apply co-writes max_gen_tokens={coGen}", {
+              coGen: Number(coGen).toLocaleString(),
+            });
+          }
           if (warnings.length) msg += ". " + warnings.join(" ");
           setEngineStatus(msg, warnings.length ? "warn" : "ok");
         })
         .catch(function (err) {
           if (out) out.hidden = true;
-          setEngineStatus("Preview failed: " + err.message, "warn");
+          setEngineStatus(fmt(E.previewFailed || "Preview failed: {error}", { error: err.message }), "warn");
         });
     });
 
@@ -966,18 +1020,17 @@ pageCss: product.css
       })
         .then(function (preview) {
           if (preview && preview.co_applied_max_gen_tokens != null) {
-            coMsg =
-              "\nAlso saves max_gen_tokens=" +
-              Number(preview.co_applied_max_gen_tokens).toLocaleString() +
-              ".";
+            coMsg = fmt(E.coAppliesSave || "\nAlso saves max_gen_tokens={coGen}.", {
+              coGen: Number(preview.co_applied_max_gen_tokens).toLocaleString(),
+            });
           }
           if (
             !window.confirm(
-              "Apply max_context_tokens=" +
-                max.toLocaleString() +
-                " to server overlay?" +
-                coMsg +
-                "\n\nServer restart is required before the new budget takes effect.",
+              fmt(
+                E.confirmApply ||
+                  "Apply max_context_tokens={max} to server overlay?{coMsg}\n\nServer restart is required before the new budget takes effect.",
+                { max: max.toLocaleString(), coMsg: coMsg },
+              ),
             )
           ) {
             return null;
@@ -991,25 +1044,28 @@ pageCss: product.css
         .then(function (result) {
           if (!result) return;
           setEngineStatus(
-            "Saved to " +
-              (result.overlay_path || "~/.contextmint/server.defaults.yaml") +
-              ". Restart server to apply.",
+            fmt(E.savedTo || "Saved to {path}. Restart server to apply.", {
+              path: result.overlay_path || "~/.contextmint/server.defaults.yaml",
+            }),
             "ok",
           );
         })
         .catch(function (err) {
-          setEngineStatus("Apply failed: " + err.message, "warn");
+          setEngineStatus(fmt(E.applyFailed || "Apply failed: {error}", { error: err.message }), "warn");
         });
     });
 
     document.getElementById("budget-engine-restart")?.addEventListener("click", function () {
-      setEngineStatus("Requesting server restart…", "info");
+      setEngineStatus(E.restarting || "Requesting server restart…", "info");
       engineFetch("/api/engine/server/restart", { method: "POST" })
         .then(function () {
-          setEngineStatus("Server restart requested — check Engine Logs for progress.", "ok");
+          setEngineStatus(
+            E.restarted || "Server restart requested — check Engine Logs for progress.",
+            "ok",
+          );
         })
         .catch(function (err) {
-          setEngineStatus("Restart failed: " + err.message, "warn");
+          setEngineStatus(fmt(E.restartFailed || "Restart failed: {error}", { error: err.message }), "warn");
         });
     });
   }

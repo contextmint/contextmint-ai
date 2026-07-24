@@ -1,4 +1,135 @@
 {
   "title": "Troubleshooting | ContextMint Support",
-  "description": "Fix common ContextMint problems — install, Engine, Ollama, extension, indexing, chat, image evidence, ARGUS, Context Lens, patches, cloud, and diagnostics."
+  "description": "Fix common ContextMint problems — install, Engine, Ollama, extension, indexing, chat, image evidence, ARGUS, Context Lens, patches, cloud, and diagnostics.",
+  "heading": "Troubleshooting",
+  "causeLabel": "Cause:",
+  "fixLabel": "Fix:",
+  "leadHtml": "Symptom → likely cause → what to do. For concepts and workflows, see <a href=\"/docs/\">user documentation</a>. Quick Q&amp;A: <a href=\"/faq.html\">FAQ</a>.",
+  "groups": [
+    {
+      "id": "install",
+      "title": "Install &amp; first run",
+      "noteHtml": "<strong>Installing now?</strong> Use the dedicated <a href=\"/docs/installation.html#installation-support\">installation support</a> section first — it is the primary guide for setup issues.",
+      "items": [
+        { "q": "Engine installs but tray icon never appears", "cause": "App started minimized or OS blocked startup.", "fix": "Check system tray overflow (^) on Windows. Relaunch Engine from Start menu. On Linux, confirm tray applet is running." },
+        { "q": "Extension installed but no ContextMint activity bar icon", "cause": "Extension disabled, wrong VS Code profile, or activation error.", "fix": "Extensions → enable ContextMint. Reload window. Check Output → \u201cContextMint\u201d for activation errors." },
+        { "q": "First-run wizard loops or cannot find Python", "cause": "Dev layout vs packaged bundle path mismatch.", "fix": "Engine → Settings → set backend path to shipped bundle. Reinstall latest Engine build. For source dev, point pythonPath at project venv." }
+      ]
+    },
+    {
+      "id": "engine",
+      "title": "Engine &amp; server",
+      "items": [
+        { "q": "Status bar shows \u201cserver offline\u201d / chat blocked", "cause": "API not listening on configured URL.", "fix": "Engine → Start all. Verify <code>http://localhost:8000/api/health</code>. Check firewall blocking loopback. If using shared server, verify <code>serverUrl</code> and TLS." },
+        { "q": "Server stuck on \u201cStarting\u201d", "cause": "Port 8000 in use, Python crash on boot, or zombie process.", "fix": "Engine → Logs. Stop all, kill stray python/contextmint processes, change port in Settings if needed, Start all again." },
+        { "q": "Health OK but extension never leaves Starting", "cause": "Stale readiness poll, wrong serverUrl, or index status timeout.", "fix": "Reload VS Code window. Confirm serverUrl has no trailing path typo. Engine → Server → restart server." },
+        { "q": "Redis / data layer warnings on Overview", "cause": "Optional Redis not running (some enterprise configs).", "fix": "For local-first pilot, often safe to ignore if chat works. For team server, start Redis per deployment guide or disable Redis-dependent features in server config." }
+      ]
+    },
+    {
+      "id": "ollama",
+      "title": "Ollama &amp; models",
+      "items": [
+        { "q": "Phase shows Limited — Ollama offline", "cause": "Ollama not running or wrong URL.", "fix": "Engine → Ollama → Start / Restart. Install Ollama if missing. Default URL <code>http://localhost:11434</code>." },
+        { "q": "Chat streams empty or \u201cmodel not found\u201d", "cause": "Chat model not pulled in Ollama.", "fix": "Engine → Models → pull default chat model. Match model name in server defaults." },
+        { "q": "Indexing very slow or embed errors", "cause": "Missing embed model, GPU/CPU overload, or disk pressure.", "fix": "Pull embed model in Models tab. Reduce concurrent indexing if tunable. Exclude large binary dirs via ignore rules." },
+        { "q": "First answer after restart is very slow", "cause": "Cold model load in Ollama.", "fix": "Expected once per restart. Server runs background warmup; send a short ping message to load model before important queries." }
+      ]
+    },
+    {
+      "id": "extension",
+      "title": "Extension &amp; connectivity",
+      "items": [
+        { "q": "Wrong workspace / no retrieval for my repo", "cause": "Multi-root workspace, unregistered folder, or path mismatch on shared server.", "fix": "Open the repo root folder. Engine → Indexing → confirm workspace listed. Enterprise: paths on server must match VS Code folder paths." },
+        { "q": "Remote SSH — extension cannot reach server", "cause": "serverUrl points at localhost on remote host while browser test uses local machine.", "fix": "Run Engine on SSH host or use team serverUrl reachable from remote extension host. Port-forward 8000 if required." },
+        { "q": "enterpriseMode / auth failures (401)", "cause": "OIDC token missing or expired.", "fix": "Re-authenticate per org SSO flow. Confirm oidcProviderId matches server. Check server audit for auth errors." }
+      ]
+    },
+    {
+      "id": "indexing",
+      "title": "Indexing &amp; search",
+      "items": [
+        { "q": "Indexing stuck at 0% or never finishes", "cause": "Permission errors, huge repo, or crashed background task.", "fix": "Engine → Indexing → view errors. Engine → Logs. Trigger manual reindex. Exclude <code>node_modules</code>, build artifacts via ignore config." },
+        { "q": "Chat says \u201cno repo matches\u201d for known files", "cause": "File not indexed yet, wrong lane (Repo with empty index), or query mismatch.", "fix": "Open file in editor (priority index). Wait for indexing. Attach file explicitly. Try Hybrid lane. Use symbol-rich query for code lookups." },
+        { "q": "Reindex after every small change", "cause": "Embed model changed, hash cache cleared, or watcher storm.", "fix": "Stabilize embed model in Models tab. Check logs for repeated full reindex triggers. Pause bulk file operations during initial index." },
+        { "q": "Readiness Error phase", "cause": "Indexer exception, corrupt local store, or disk full.", "fix": "Engine → Indexing error detail. Free disk space. Last resort: clear workspace index data and full reindex (backup first)." }
+      ]
+    },
+    {
+      "id": "chat",
+      "title": "Chat &amp; context lanes",
+      "items": [
+        { "q": "Planning question gets \u201cI don\u2019t have context\u201d in Repo lane", "cause": "Expected — Repo lane refuses to speculate without evidence.", "fix": "Switch to <strong>Work</strong> lane or accept <strong>Use Work lane</strong> banner. Attach notes or activate a session pack." },
+        { "q": "Work lane still feels empty", "cause": "No packs built, no attachments.", "fix": "Build session/repo packs. Attach markdown or spec files. Paste key context as attachment." },
+        { "q": "Stream hangs — spinner never ends", "cause": "Ollama hang, cloud timeout, or SSE disconnect.", "fix": "Click Cancel (send button). Restart Ollama. Check Logs. Reduce context size / attachment count. Retry with Local model only." },
+        { "q": "Cloud routing fails but local works", "cause": "Invalid API key, provider outage, or cloudEnabled false.", "fix": "Re-run Configure Cloud API Key. Enable <code>contextmint.cloudEnabled</code>. Check provider status. Inspect routing badge for tier used." }
+      ]
+    },
+    {
+      "id": "vision-argus",
+      "title": "Image evidence &amp; ARGUS",
+      "items": [
+        { "q": "Paste does nothing / no image chip", "cause": "Image attachments disabled, wrong format, or file too large.", "fix": "Enable <code>contextmint.chat.imageAttachmentsEnabled</code>. Use PNG, JPEG, or WebP — not SVG. Max 5&nbsp;MiB per image. Check Output → ContextMint for validation errors." },
+        { "q": "Lens shows needs_vlm / \u201cPull a vision model\u201d", "cause": "No Ollama vision model installed.", "fix": "Engine → Models → pull <code>moondream</code> (small) or <code>llava</code>. Restart Ollama if pull succeeded but route still fails. Cloud API keys do not replace a local VLM unless you explicitly select cloud vision." },
+        { "q": "Image question answered without using the screenshot", "cause": "Text-only model selected, or vision route fell back after VLM error.", "fix": "Confirm Lens shows <strong>local</strong> or <strong>cloud</strong> vision route before send. Pull/update vision model. Check Engine → Logs for multimodal errors. Retry with Local model + installed VLM." },
+        { "q": "Vision answer very slow or OOM", "cause": "Large VLM on limited VRAM; chat + vision models competing.", "fix": "Use <code>moondream</code> on laptops. Let chat model unload between turns if operator enabled unload-before-vision. Reduce attached image count. Close other GPU-heavy apps." },
+        { "q": "Run visual audit disabled or no findings", "cause": "ARGUS disabled on server, audit running during stream, or VLM returned empty JSON.", "fix": "Wait for chat stream to finish. Confirm local VLM installed. Retry with a clear UI screenshot. Check <code>argus.enabled</code> on server defaults. Engine → Logs for <code>/api/argus/audit</code> errors." },
+        { "q": "Sandbox audit shows deps_unavailable", "cause": "Preview worktree could not install dependencies within timeout.", "fix": "Open sandbox worktree manually and fix <code>npm ci</code> / install errors. Increase <code>argus.deps_install_timeout_sec</code> on server if repo is large. Use paste audit path when sandbox bootstrap is not required." },
+        { "q": "Expected local route but badge shows cloud", "cause": "You explicitly selected a cloud vision model in compose.", "fix": "Select <strong>Local</strong> or <strong>Auto</strong> with local VLM installed. Attaching images alone should not force cloud — if it does, file a bug with support bundle and vision route from Lens." }
+      ],
+      "footerHtml": "Guide: <a href=\"/docs/image-evidence-argus.html\">Image evidence &amp; ARGUS</a>."
+    },
+    {
+      "id": "lens",
+      "title": "Context Lens &amp; packs",
+      "items": [
+        { "q": "Context Lens never appears", "cause": "lensPreviewEnabled off and first-N sends exhausted.", "fix": "Enable <code>contextmint.trust.lensPreviewEnabled</code>. Toggle preview from compose or trust settings." },
+        { "q": "@pack:name not found", "cause": "Pack not built or wrong name in manifest.", "fix": "Packs panel → Scan &amp; learn. Verify <code>manifest.yaml</code> name matches @pack reference." },
+        { "q": "Stale pack banner every session", "cause": "Sources changed faster than auto-sync.", "fix": "Rebuild pack. Enable autoSync with appropriate debounce. Commit pack sources if intentional." }
+      ]
+    },
+    {
+      "id": "patches",
+      "title": "Patches &amp; assisted actions",
+      "items": [
+        { "q": "Propose patch button missing or disabled", "cause": "Not in Agent mode, readiness blocked, or sandbox policy.", "fix": "Switch to Agent mode. Confirm Ready/Limited/Indexing phase. Check sandbox.enabled settings." },
+        { "q": "Apply failed / partial write", "cause": "File permissions, git conflict, or path outside workspace.", "fix": "Review diff in patch preview. Ensure files writable. Use git to revert. Check Output for apply errors." },
+        { "q": "Governance drawer empty", "cause": "No quality scan run for workspace.", "fix": "Engine → Quality → run scan. Wait for completion. Retry chat with governance preview enabled." }
+      ]
+    },
+    {
+      "id": "cloud",
+      "title": "Cloud &amp; enterprise",
+      "items": [
+        { "q": "Shared server — workspace path not found", "cause": "Server indexes <code>/data/repos/foo</code> but VS Code opens <code>C:\\foo</code>.", "fix": "Align paths via Remote SSH same absolute path or server-side path mapping. Re-register workspace on server." },
+        { "q": "TLS / certificate errors to team API", "cause": "Corporate MITM or self-signed cert not trusted.", "fix": "Install org root CA on dev machine. Use valid internal cert on API ingress. Temporary dev-only: trust proxy settings per IT policy." }
+      ]
+    },
+    {
+      "id": "performance",
+      "title": "Performance",
+      "items": [
+        { "q": "High CPU during indexing + chat", "cause": "Embed batch + chat inference competing on same machine.", "fix": "Let initial index complete. Use a smaller chat model. On contested shared Ollama hosts set server <span class=\"mono\">inline.pause_mode</span> to <span class=\"mono\">shared_runtime</span> (extension <span class=\"mono\">contextmint.inline.pauseWhileIndexing</span> only tightens further). Schedule large reindex off-hours." },
+        { "q": "Context Lens slow on large repos", "cause": "Many chunks retrieved before cap.", "fix": "Narrow question. Attach specific files. Exclude irrelevant chunks in lens. Tune max context settings on server if operator." }
+      ]
+    }
+  ],
+  "diagnostics": {
+    "id": "diagnostics",
+    "title": "Diagnostics &amp; getting help",
+    "collect": {
+      "q": "What to collect before contacting support",
+      "steps": [
+        "Engine → About → export <strong>support bundle</strong>",
+        "Engine and extension version numbers",
+        "OS version and VS Code version",
+        "Steps to reproduce, readiness phase, context lane used",
+        "Relevant redacted log lines from Engine → Logs"
+      ]
+    },
+    "escalation": {
+      "q": "Design partner escalation",
+      "bodyHtml": "Pilot cohorts get direct engineering channel. See <a href=\"/design-partners.html\">Design Partners</a> or your onboarding contact."
+    }
+  }
 }
