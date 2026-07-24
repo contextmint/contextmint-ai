@@ -1,18 +1,43 @@
 {% assign localeCount = i18n.locales | size %}
 {% if localeCount > 1 %}
-<div class="lang-switcher">
-  <label class="sr-only" for="lang-switcher-{{ locale }}-{{ i18nPageId }}">{{ i18nCommon.language.label }}</label>
-  <select
-    id="lang-switcher-{{ locale }}-{{ i18nPageId }}"
-    class="lang-switcher__select"
-    data-lang-switcher
-    data-current-locale="{{ locale }}"
+  {% assign unlocalizedPath = page.url %}
+  {% if localePrefix != blank %}
+    {% assign unlocalizedPath = page.url | replace_first: localePrefix, "" %}
+  {% endif %}
+  {% if unlocalizedPath == blank %}
+    {% assign unlocalizedPath = "/" %}
+  {% endif %}
+<nav class="lang-switcher" aria-label="{{ i18nCommon.language.ariaLabel }}">
+  {% for loc in i18n.locales %}
+    {% if loc.code == i18n.default %}
+      {% assign langHref = unlocalizedPath %}
+    {% elsif unlocalizedPath == "/" %}
+      {% assign langHref = "/" | append: loc.code | append: "/" %}
+    {% else %}
+      {% assign langHref = "/" | append: loc.code | append: unlocalizedPath %}
+    {% endif %}
+    {% if forloop.index0 > 0 %}
+  <span class="lang-switcher__sep" aria-hidden="true">|</span>
+    {% endif %}
+    {% if loc.code == locale %}
+  <span
+    class="lang-switcher__option is-active"
+    lang="{{ loc.code }}"
+    {% if loc.dir %}dir="{{ loc.dir }}"{% endif %}
+    aria-current="true"
+  >{{ loc.nativeLabel }}</span>
+    {% else %}
+  <a
+    class="lang-switcher__option"
+    href="{{ langHref }}"
+    hreflang="{{ loc.code }}"
+    lang="{{ loc.code }}"
+    {% if loc.dir %}dir="{{ loc.dir }}"{% endif %}
+    data-lang-switch
+    data-locale="{{ loc.code }}"
     data-default-locale="{{ i18n.default }}"
-    aria-label="{{ i18nCommon.language.ariaLabel }}"
-  >
-    {% for loc in i18n.locales %}
-    <option value="{{ loc.code }}"{% if loc.code == locale %} selected{% endif %}>{{ loc.nativeLabel }}</option>
-    {% endfor %}
-  </select>
-</div>
+  >{{ loc.nativeLabel }}</a>
+    {% endif %}
+  {% endfor %}
+</nav>
 {% endif %}

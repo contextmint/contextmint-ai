@@ -159,6 +159,10 @@
       if (!href || href.startsWith("//")) {
         return;
       }
+      // Language switcher targets the unlocalized path on purpose — do not re-prefix.
+      if (anchor.hasAttribute("data-lang-switch")) {
+        return;
+      }
       if (href === prefix || href === prefix + "/" || href.startsWith(prefix + "/")) {
         return;
       }
@@ -175,38 +179,29 @@
   }
 
   function initLanguageSwitcher() {
-    var switchers = document.querySelectorAll("[data-lang-switcher]");
-    if (!switchers.length) {
+    var links = document.querySelectorAll("[data-lang-switch]");
+    if (!links.length) {
       return;
     }
 
-    var defaultLocale = switchers[0].getAttribute("data-default-locale") || "en";
-
-    function pathForLocale(nextLocale) {
-      var current = window.location.pathname || "/";
-      var activePrefix = document.documentElement.getAttribute("data-locale-prefix") || "";
-      var unlocalized = current;
-      if (activePrefix && (current === activePrefix || current.indexOf(activePrefix + "/") === 0)) {
-        unlocalized = current.slice(activePrefix.length) || "/";
-      }
-      if (nextLocale === defaultLocale) {
-        return unlocalized;
-      }
-      if (unlocalized === "/") {
-        return "/" + nextLocale + "/";
-      }
-      return "/" + nextLocale + unlocalized;
-    }
-
-    switchers.forEach(function (select) {
-      select.addEventListener("change", function () {
-        var next = select.value;
+    links.forEach(function (link) {
+      link.addEventListener("click", function () {
+        var next = link.getAttribute("data-locale");
+        if (!next) {
+          return;
+        }
         try {
           localStorage.setItem("contextmint-site-locale", next);
         } catch (err) {
           /* ignore */
         }
-        window.location.assign(pathForLocale(next));
+        // Keep hash when switching locale via the same-page link.
+        if (window.location.hash && link.getAttribute("href")) {
+          var target = link.getAttribute("href");
+          if (target.indexOf("#") === -1) {
+            link.setAttribute("href", target + window.location.hash);
+          }
+        }
       });
     });
   }
