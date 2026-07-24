@@ -20,15 +20,15 @@
     </button>
 
     <div class="navbar__links" id="navbar-menu">
-      <a href="{{ '/product/' | locale_path: localePrefix }}">{{ i18nCommon.nav.product }}</a>
-      <a href="{{ '/docs/' | locale_path: localePrefix }}">{{ i18nCommon.nav.docs }}</a>
-      <a href="{{ '/support.html' | locale_path: localePrefix }}">{{ i18nCommon.nav.support }}</a>
-      <a href="{{ '/roadmap.html' | locale_path: localePrefix }}">{{ i18nCommon.nav.roadmap }}</a>
-      <a href="{{ '/solutions/' | locale_path: localePrefix }}">{{ i18nCommon.nav.useCases }}</a>
-      <a href="{{ '/design-partners.html' | locale_path: localePrefix }}">{{ i18nCommon.nav.designPartners }}</a>
-      <a href="{{ '/trust.html' | locale_path: localePrefix }}">{{ i18nCommon.nav.trust }}</a>
-      <a href="{{ '/developers/' | locale_path: localePrefix }}">{{ i18nCommon.nav.developers }}</a>
-      <a class="btn btn-primary btn-sm" href="{{ '/request-demo.html' | locale_path: localePrefix }}">{{ i18nCommon.nav.demo }}</a>
+      <a href="{{ '/product/' | locale_path: localePrefix }}"{% if page.url contains '/product/' %} class="is-active" aria-current="page"{% endif %}>{{ i18nCommon.nav.product }}</a>
+      <a href="{{ '/docs/' | locale_path: localePrefix }}"{% if page.url contains '/docs/' %} class="is-active" aria-current="page"{% endif %}>{{ i18nCommon.nav.docs }}</a>
+      <a href="{{ '/support.html' | locale_path: localePrefix }}"{% if page.url contains '/support' %} class="is-active" aria-current="page"{% endif %}>{{ i18nCommon.nav.support }}</a>
+      <a href="{{ '/roadmap.html' | locale_path: localePrefix }}"{% if page.url contains '/roadmap' %} class="is-active" aria-current="page"{% endif %}>{{ i18nCommon.nav.roadmap }}</a>
+      <a href="{{ '/solutions/' | locale_path: localePrefix }}"{% if page.url contains '/solutions/' %} class="is-active" aria-current="page"{% endif %}>{{ i18nCommon.nav.useCases }}</a>
+      <a href="{{ '/design-partners.html' | locale_path: localePrefix }}"{% if page.url contains '/design-partners' %} class="is-active" aria-current="page"{% endif %}>{{ i18nCommon.nav.designPartners }}</a>
+      <a href="{{ '/trust.html' | locale_path: localePrefix }}"{% if page.url contains '/trust' %} class="is-active" aria-current="page"{% endif %}>{{ i18nCommon.nav.trust }}</a>
+      <a href="{{ '/developers/' | locale_path: localePrefix }}"{% if page.url contains '/developers/' %} class="is-active" aria-current="page"{% endif %}>{{ i18nCommon.nav.developers }}</a>
+      <a class="btn btn-primary btn-sm{% if page.url contains '/request-demo' %} is-active{% endif %}" href="{{ '/request-demo.html' | locale_path: localePrefix }}"{% if page.url contains '/request-demo' %} aria-current="page"{% endif %}>{{ i18nCommon.nav.demo }}</a>
       {% include "language-selector.html" %}
     </div>
   </div>

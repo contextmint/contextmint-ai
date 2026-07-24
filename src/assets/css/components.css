@@ -262,10 +262,25 @@ body.announcement-dismissed .navbar {
   color: var(--text-secondary);
   font-size: 0.9rem;
   font-weight: 500;
+  padding-block: 0.2rem;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
 }
 
 .navbar__links a:not(.btn):hover {
   color: var(--text-primary);
+}
+
+.navbar__links a:not(.btn).is-active,
+.navbar__links a:not(.btn)[aria-current="page"] {
+  color: var(--text-primary);
+  border-bottom-color: var(--color-action);
+  font-weight: 600;
+}
+
+.navbar__links .btn.is-active,
+.navbar__links .btn[aria-current="page"] {
+  box-shadow: 0 0 0 2px var(--bg-canvas), 0 0 0 4px rgba(29, 78, 216, 0.55);
 }
 
 .navbar__toggle {
