@@ -85,6 +85,19 @@ pageCss: product.css
   {% endfor %}
 </ul>
 
+{% if t.settings %}
+<h2>{{ t.settings.title }}</h2>
+<ul>
+  {% for item in t.settings.items %}
+  <li><strong>{{ item.strong }}</strong> {{ item.text }}</li>
+  {% endfor %}
+</ul>
+<p>
+  {{ t.settings.docsBefore }}
+  <a href="{{ t.settings.docsHref | locale_path: localePrefix }}">{{ t.settings.docsLink }}</a>.
+</p>
+{% endif %}
+
 <h2>{{ t.related.title }}</h2>
 <ul>
   {% for item in t.related.items %}

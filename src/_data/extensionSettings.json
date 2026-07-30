@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-07-24",
+  "generatedAt": "2026-07-30",
   "source": "extensions/contextmint-vscode/package.json",
-  "totalCount": 149,
+  "totalCount": 152,
   "operatorKeys": [
     "contextmint.serverUrl",
     "contextmint.engine.dashboardUrl",
@@ -115,6 +115,27 @@
           "usage": {
             "whenEnable": "Adjust localFallbackUrl in VS Code Settings when the default does not match your workflow.",
             "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.mcpExport.operatorUiEnabled",
+          "description": "Show MCP export operator commands (list/call tools). Requires agent.moat.mcp_* on the server. Default off.",
+          "default": "false",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Show MCP export operator commands (list/call tools). Requires agent.moat.mcp_* on the server. Default off.",
+            "whenDisable": "When false — show MCP export operator commands (list/call tools). Requires agent.moat.mcp_* on the server. Default off.",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
               "Applies on next chat send or webview reload — no server restart for most keys"
@@ -241,6 +262,27 @@
           "usage": {
             "whenEnable": "Adjust serverTimeoutMs in VS Code Settings when the default does not match your workflow.",
             "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.ssMu.operatorUiEnabled",
+          "description": "Show SS-MU operator palette commands (status/presence). Requires ss_mu.enabled on the server. Default off.",
+          "default": "false",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Show SS-MU operator palette commands (status/presence). Requires ss_mu.enabled on the server. Default off.",
+            "whenDisable": "When false — show SS-MU operator palette commands (status/presence). Requires ss_mu.enabled on the server. Default off.",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
               "Applies on next chat send or webview reload — no server restart for most keys"
@@ -1467,6 +1509,27 @@
           "usage": {
             "whenEnable": "Adjust governance.drawerMaxFindings in VS Code Settings when the default does not match your workflow.",
             "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.governance.operatorUiEnabled",
+          "description": "Show governance operator palette commands (authority/audit export). Requires governance APIs + admin ACL. Default off.",
+          "default": "false",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Show governance operator palette commands (authority/audit export). Requires governance APIs + admin ACL. Default off.",
+            "whenDisable": "When false — show governance operator palette commands (authority/audit export). Requires governance APIs + admin ACL. Default off.",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
               "Applies on next chat send or webview reload — no server restart for most keys"

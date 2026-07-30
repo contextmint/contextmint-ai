@@ -29,7 +29,7 @@ export const SERVER_SECTIONS = [
     description:
       "Turn and history limits, Repo / Work / Hybrid lanes, trivial-query fast path, and image attachment caps. Server-side mirrors of several extension chat keys.",
     match: (id) =>
-      /^chat\.(max_history|max_msg_chars|max_turns|token_chars|prompt_store|tier_complexity|context_lanes|work_lane|lane_suggest|image_|trivial_query|pack_skip|pack_trust|history_policy|default_local_vision)/.test(
+      /^chat\.(max_history|max_msg_chars|max_turns|token_chars|prompt_store|tier_complexity|context_lanes|work_lane|lane_suggest|image_|trivial_query|pack_skip|pack_trust|history_policy|default_local_vision|mechanism_|pack_meta_|pack_name_|prefix_layout_|sse_keepalive|state_trace_|structural_|uat_regression|vision_admission)/.test(
         id,
       ),
   },
@@ -183,6 +183,84 @@ export const SERVER_SECTIONS = [
     match: (id) => id.startsWith("inline."),
   },
   {
+    id: "agent-core",
+    title: "Agent loop & Apply Gate (server)",
+    description:
+      "Governed agent runtime — tool rounds, Apply Gate, ChangeSet, investigation depth, terminal allowlist. Off by default until operator enables agent.enabled after dogfood.",
+    match: (id) =>
+      id.startsWith("agent.") &&
+      !id.startsWith("agent.intel.") &&
+      !id.startsWith("agent.moat.") &&
+      !id.startsWith("agent.network.") &&
+      !id.startsWith("agent.spec_tools."),
+  },
+  {
+    id: "agent-intel",
+    title: "Agent intel (LSP · packs · git · tree)",
+    description:
+      "GATE-AG-INTEL navigation tools — extension LSP proxy, pack query, git porcelain, tree_view. Nested under agent.intel.*; defaults off.",
+    match: (id) => id.startsWith("agent.intel."),
+  },
+  {
+    id: "agent-moat-network",
+    title: "Agent moat · network · Spec tools",
+    description:
+      "Deep blast / ADR context / MCP export (agent.moat.*), policy-gated fetch_url/search_web (agent.network.*), and Spec tools (read_image / insert_text). Defaults off; Sovereign blocks network by policy.",
+    match: (id) =>
+      id.startsWith("agent.moat.") ||
+      id.startsWith("agent.network.") ||
+      id.startsWith("agent.spec_tools."),
+  },
+  {
+    id: "review",
+    title: "Code review (server)",
+    description:
+      "CR-1…CR-4 review programme — file/branch/feature/flow. All review.* switches shipped off until explicit default-on after GATE-R-FINAL dogfood.",
+    match: (id) => id.startsWith("review."),
+  },
+  {
+    id: "governance-control-plane",
+    title: "Governance control plane",
+    description:
+      "GATE-GOV-POLICY — PolicyDecision, admit plugins, audit sinks, policy push. Shipped switches default off; dogfood via overlay.",
+    match: (id) => id.startsWith("governance."),
+  },
+  {
+    id: "oir-reconciliation",
+    title: "OIR & knowledge reconciliation (Block RO)",
+    description:
+      "Operational intelligence / reconciliation tunables (oir.* · reconciliation.*). FOI product claims stay gated; defaults off.",
+    match: (id) => id.startsWith("oir.") || id.startsWith("reconciliation."),
+  },
+  {
+    id: "ss-mu",
+    title: "Sovereign multi-user (SS-MU)",
+    description:
+      "Dual-plane local WIP + sovereign main — post mid-Sept demo programme. ss_mu.enabled false until PO dogfood PASS.",
+    match: (id) => id.startsWith("ss_mu."),
+  },
+  {
+    id: "fabric",
+    title: "Knowledge Fabric (Block U thin)",
+    description:
+      "Institutional memory graph spine — fabric.enabled false; list/get only. Not GATE-W1 / Memory Tab.",
+    match: (id) => id.startsWith("fabric."),
+  },
+  {
+    id: "inference-vector",
+    title: "Inference profile & vector store",
+    description:
+      "Sovereign openai_compat / vLLM profile (inference.*) and optional Qdrant path (vector_store.*). Default remain local Ollama + Chroma unless operator changes profile.",
+    match: (id) => id.startsWith("inference.") || id.startsWith("vector_store."),
+  },
+  {
+    id: "airgap-cors",
+    title: "Air-gap & CORS",
+    description:
+      "N+ air-gap kill switches (telemetry/update/cloud) and CORS allowlists for remote extension→server.",
+    match: (id) => id.startsWith("airgap.") || id.startsWith("cors."),
+  },
+  {
     id: "auth-audit",
     title: "Auth & audit",
     description: "JWT auth mode, workspace ACL, and audit JSONL flush batching.",
@@ -206,6 +284,12 @@ export const SERVER_SECTIONS = [
     title: "UI catalog (visual regression)",
     description: "Viewport and diff thresholds for UI catalog visual regression — internal tooling.",
     match: (id) => id.startsWith("ui_catalog."),
+  },
+  {
+    id: "resource-scheduler",
+    title: "Resource scheduler",
+    description: "Embed/chat slot scheduling on shared hosts.",
+    match: (id) => id.startsWith("resource_scheduler."),
   },
 ];
 
@@ -399,6 +483,46 @@ export const SERVER_SETTING_DESCRIPTIONS = {
     "HTTP timeout (seconds) for Ollama /api/ps health probe.",
   "engine.server_port":
     "API port Engine expects when managing the Python server (default 8000).",
+  "agent.enabled":
+    "Master switch for the governed agent loop (tools + Apply Gate). Off by default until GATE-AG / TOOLING default-on.",
+  "agent.apply_gate_required":
+    "Require Apply Gate decision before governed writes. Keep true in production.",
+  "agent.intel.enabled":
+    "GATE-AG-INTEL umbrella — LSP / packs / git / tree agent tools. Off until dogfood overlay.",
+  "agent.intel.lsp.enabled":
+    "LSP proxy tools (go_to_definition, find_references, …). Needs extension loopback proxy header.",
+  "agent.moat.enabled":
+    "Moat tools umbrella — deepen blast, ADR context, MCP export. Off by default.",
+  "agent.moat.mcp_export_enabled":
+    "Expose list_mcp_export_tools + optional HTTP MCP export. Runtime stays MCP-optional.",
+  "agent.moat.mcp_http_export_enabled":
+    "GET /api/v1/mcp/export/tools when moat MCP export is on.",
+  "agent.moat.mcp_http_call_enabled":
+    "POST /api/v1/mcp/export/call — execute allowlisted export tools only.",
+  "agent.network.enabled":
+    "Allow registering fetch_url / search_web. Sovereign policy may still BLOCK.",
+  "agent.terminal.enabled":
+    "Allowlisted run_terminal tool. Off until enterprise tooling default-on.",
+  "agent.spec_tools.enabled":
+    "Spec tools (read_image / insert_text_at_cursor). Off by default.",
+  "review.enabled":
+    "Master review programme switch. Off until explicit default-on after GATE-R-FINAL.",
+  "ss_mu.enabled":
+    "Sovereign dual-plane multi-user. Off until GATE-SS-MU PO dogfood PASS.",
+  "fabric.enabled":
+    "Knowledge Fabric graph APIs (list/get). Off — thin eng only; not GATE-W1.",
+  "airgap.mode":
+    "When true, force off telemetry / update / cloud dispatch (N+ air-gap kill switches).",
+  "governance.policy_push_enabled":
+    "Allow central policy rule push to trays (N+ / GOV-POLICY). Off by default.",
+  "inference.provider":
+    "Inference provider profile — local Ollama vs openai_compat (sovereign vLLM).",
+  "vector_store.backend":
+    "Vector backend — chroma (default) or qdrant (GATE-SS-SCALE).",
+  "retrieval.live_progress_enabled":
+    "SSE pipeline_progress for RT-VIEW. Off until explicit default-on.",
+  "oir.enabled":
+    "Operational intelligence router / OIR surface. Keep aligned with Block RO dogfood; defaults off.",
 };
 
 /** Keys surfaced as operator-priority in the settings table. */
@@ -478,6 +602,26 @@ export const SERVER_OPERATOR_KEYS = new Set([
   "inline.pause_mode",
   "inline.pause_while_indexing",
   "resource_scheduler.embed_slots",
+  "agent.enabled",
+  "agent.apply_gate_required",
+  "agent.intel.enabled",
+  "agent.intel.lsp.enabled",
+  "agent.moat.enabled",
+  "agent.moat.mcp_export_enabled",
+  "agent.moat.mcp_http_export_enabled",
+  "agent.moat.mcp_http_call_enabled",
+  "agent.network.enabled",
+  "agent.terminal.enabled",
+  "agent.spec_tools.enabled",
+  "review.enabled",
+  "ss_mu.enabled",
+  "fabric.enabled",
+  "airgap.mode",
+  "governance.policy_push_enabled",
+  "inference.provider",
+  "vector_store.backend",
+  "retrieval.live_progress_enabled",
+  "oir.enabled",
 ]);
 
 /**
@@ -487,6 +631,8 @@ export const SERVER_OPERATOR_KEYS = new Set([
 export const SERVER_SETTING_CHOICES = {
   "inline.pause_mode": ["off", "shared_runtime", "on_embed_busy"],
   "retrieval.live_progress_granularity": ["summary", "stage", "verbose"],
+  "inference.provider": ["ollama", "openai_compat"],
+  "vector_store.backend": ["chroma", "qdrant"],
 };
 
 /**

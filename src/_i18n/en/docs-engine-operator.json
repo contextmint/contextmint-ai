@@ -84,7 +84,8 @@
     "items": [
       "Python path, backend bundle path",
       "Server URL override, Ollama URL",
-      "Operator tunables mirrored from server defaults where exposed"
+      "Server Config — full YAML catalog (agent, review, AG-INTEL, SS-MU, governance, inference, …) grouped for operators; defaults stay off until dogfood default-on",
+      "Changes write ~/.contextmint/server.defaults.yaml — restart server after Apply"
     ]
   },
   "budget": {

@@ -88,17 +88,41 @@
     "items": [
       {
         "strong": "Not",
-        "text": "dual-plane multi-user (local WIP + sovereign main) — that is GATE-SS-MU after the mid-Sept demo"
+        "text": "dual-plane multi-user (local WIP + sovereign main) — that is GATE-SS-MU after the mid-Sept demo (eng ready; defaults off; PO dogfood open)"
       },
       {
         "strong": "Not",
-        "text": "full ownership / CODEOWNERS product (Block RO) — branch review may show thin owner teaser labels only"
+        "text": "full ownership / CODEOWNERS product (Block RO) — branch review may show thin owner teaser labels only; FOI claims stay gated"
       },
       {
         "strong": "Not",
-        "text": "Engine tray as the server control plane — operators use compose, logs, and health endpoints"
+        "text": "Engine tray as the server control plane — operators use compose, logs, health endpoints, and Engine → Server Config for YAML overlays"
+      },
+      {
+        "strong": "Not",
+        "text": "agent, review, inline, or AG-INTEL tools on by default — those are engineered behind server switches (agent.enabled / review.* / inline.enabled / agent.intel.*) until explicit default-on after dogfood"
       }
     ]
+  },
+  "settings": {
+    "title": "Where settings live",
+    "items": [
+      {
+        "strong": "Server",
+        "text": "— config/contextmint.defaults.yaml (+ ~/.contextmint/server.defaults.yaml overlay). Browse grouped keys in Engine → Server Config or site Settings docs."
+      },
+      {
+        "strong": "VS Code extension",
+        "text": "— contextmint.* in VS Code Settings (ui.defaults.json). Points at ContextMint.serverUrl; does not replace server agent/review toggles."
+      },
+      {
+        "strong": "Desktop Engine",
+        "text": "— lifecycle (supervisor) + Server Config catalog mirrored from the same YAML defaults."
+      }
+    ],
+    "docsBefore": "Full catalogs:",
+    "docsLink": "Settings reference",
+    "docsHref": "/docs/settings.html"
   },
   "related": {
     "title": "Related",
