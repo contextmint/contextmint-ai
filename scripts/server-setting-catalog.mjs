@@ -243,7 +243,7 @@ export const SERVER_SECTIONS = [
     id: "fabric",
     title: "Knowledge Fabric (Block U thin)",
     description:
-      "Institutional memory graph spine — fabric.enabled false; list/get only. Not GATE-W1 / Memory Tab.",
+      "Institutional memory graph spine — defaults off. List/get, shadow dual-write, and thin Memory Tab APIs behind fabric.* flags. Not GATE-W1 / FOI; read_cutover stays false.",
     match: (id) => id.startsWith("fabric."),
   },
   {
@@ -510,7 +510,15 @@ export const SERVER_SETTING_DESCRIPTIONS = {
   "ss_mu.enabled":
     "Sovereign dual-plane multi-user. Off until GATE-SS-MU PO dogfood PASS.",
   "fabric.enabled":
-    "Knowledge Fabric graph APIs (list/get). Off — thin eng only; not GATE-W1.",
+    "Master switch for Fabric graph APIs (list/get) and delete cascade. Off by default — not GATE-W1.",
+  "fabric.shadow_write_enabled":
+    "When true with fabric.enabled, finalize dual-writes file nodes (and optional edges) into Fabric. Default off.",
+  "fabric.shadow_write_conventions":
+    "When true with shadow write, upsert convention candidate nodes (hubs + naming) for Memory Tab. Default off — not GATE-W1.",
+  "fabric.memory_tab_enabled":
+    "Admit Memory Tab convention list/approve/dismiss APIs (still requires fabric.enabled). Default off — not GATE-W1.",
+  "fabric.read_cutover_enabled":
+    "Reserved read-path cutover from legacy stores. Must stay false until GATE-W1.",
   "airgap.mode":
     "When true, force off telemetry / update / cloud dispatch (N+ air-gap kill switches).",
   "governance.policy_push_enabled":

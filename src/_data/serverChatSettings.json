@@ -2,7 +2,7 @@
   "generatedAt": "2026-07-30",
   "source": "config/contextmint.defaults.yaml",
   "overlayPath": "~/.contextmint/server.defaults.yaml",
-  "totalCount": 1212,
+  "totalCount": 1218,
   "planDefinition": {
     "planId": "api_registration_chain",
     "intent": "structural_lookup",
@@ -21926,8 +21926,48 @@
     {
       "id": "fabric",
       "title": "Knowledge Fabric (Block U thin)",
-      "description": "Institutional memory graph spine — fabric.enabled false; list/get only. Not GATE-W1 / Memory Tab.",
+      "description": "Institutional memory graph spine — defaults off. List/get, shadow dual-write, and thin Memory Tab APIs behind fabric.* flags. Not GATE-W1 / FOI; read_cutover stays false.",
       "settings": [
+        {
+          "id": "fabric.convention_candidate_max",
+          "default": "50",
+          "description": "Convention Candidate Max — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune convention candidate max when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.convention_hub_fan_in_min",
+          "default": "3",
+          "description": "Convention Hub Fan In Min — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune convention hub fan in min when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
         {
           "id": "fabric.db_filename",
           "default": "fabric.sqlite",
@@ -21951,11 +21991,11 @@
         {
           "id": "fabric.enabled",
           "default": "false",
-          "description": "Knowledge Fabric graph APIs (list/get). Off — thin eng only; not GATE-W1.",
+          "description": "Master switch for Fabric graph APIs (list/get) and delete cascade. Off by default — not GATE-W1.",
           "operator": true,
           "type": "boolean",
           "usage": {
-            "whenEnable": "When true — Knowledge Fabric graph APIs (list/get). Off — thin eng only; not GATE-W1.",
+            "whenEnable": "When true — Master switch for Fabric graph APIs (list/get) and delete cascade. Off by default — not GATE-W1.",
             "whenDisable": "When false — disables or falls back for enabled.",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
@@ -22009,13 +22049,33 @@
           }
         },
         {
-          "id": "fabric.read_cutover_enabled",
+          "id": "fabric.memory_tab_enabled",
           "default": "false",
-          "description": "Read Cutover Enabled — server tunable from contextmint.defaults.yaml.",
+          "description": "Admit Memory Tab convention list/approve/dismiss APIs (still requires fabric.enabled). Default off — not GATE-W1.",
           "operator": false,
           "type": "boolean",
           "usage": {
-            "whenEnable": "When true — Read Cutover Enabled — server tunable from contextmint.defaults.yaml.",
+            "whenEnable": "When true — Admit Memory Tab convention list/approve/dismiss APIs (still requires fabric.enabled). Default off — not GATE-W1.",
+            "whenDisable": "When false — disables or falls back for memory tab enabled.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.read_cutover_enabled",
+          "default": "false",
+          "description": "Reserved read-path cutover from legacy stores. Must stay false until GATE-W1.",
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Reserved read-path cutover from legacy stores. Must stay false until GATE-W1.",
             "whenDisable": "When false — disables or falls back for read cutover enabled.",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
@@ -22036,6 +22096,46 @@
           "type": "number",
           "usage": {
             "whenEnable": "Tune shadow batch size when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.shadow_chunk_max_per_file",
+          "default": "10000",
+          "description": "Shadow Chunk Max Per File — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune shadow chunk max per file when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.shadow_chunk_page_size",
+          "default": "500",
+          "description": "Shadow Chunk Page Size — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune shadow chunk page size when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
             "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
@@ -22109,6 +22209,26 @@
           }
         },
         {
+          "id": "fabric.shadow_write_conventions",
+          "default": "false",
+          "description": "When true with shadow write, upsert convention candidate nodes (hubs + naming) for Memory Tab. Default off — not GATE-W1.",
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — When true with shadow write, upsert convention candidate nodes (hubs + naming) for Memory Tab. Default off — not GATE-W1.",
+            "whenDisable": "When false — disables or falls back for shadow write conventions.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
           "id": "fabric.shadow_write_edges",
           "default": "true",
           "description": "Shadow Write Edges — server tunable from contextmint.defaults.yaml.",
@@ -22131,11 +22251,11 @@
         {
           "id": "fabric.shadow_write_enabled",
           "default": "false",
-          "description": "Shadow Write Enabled — server tunable from contextmint.defaults.yaml.",
+          "description": "When true with fabric.enabled, finalize dual-writes file nodes (and optional edges) into Fabric. Default off.",
           "operator": false,
           "type": "boolean",
           "usage": {
-            "whenEnable": "When true — Shadow Write Enabled — server tunable from contextmint.defaults.yaml.",
+            "whenEnable": "When true — When true with fabric.enabled, finalize dual-writes file nodes (and optional edges) into Fabric. Default off.",
             "whenDisable": "When false — disables or falls back for shadow write enabled.",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",

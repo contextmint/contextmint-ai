@@ -101,6 +101,10 @@
       {
         "strong": "Not",
         "text": "agent, review, inline, or AG-INTEL tools on by default — those are engineered behind server switches (agent.enabled / review.* / inline.enabled / agent.intel.*) until explicit default-on after dogfood"
+      },
+      {
+        "strong": "Not",
+        "text": "GATE-W1 / shipped Memory Tab product — Fabric list/get + shadow + thin Memory Tab commands exist behind fabric.* flags (defaults off; PO dogfood open); read_cutover stays false"
       }
     ]
   },

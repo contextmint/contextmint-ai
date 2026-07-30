@@ -1,7 +1,7 @@
 {
   "generatedAt": "2026-07-30",
   "source": "extensions/contextmint-vscode/package.json",
-  "totalCount": 152,
+  "totalCount": 154,
   "operatorKeys": [
     "contextmint.serverUrl",
     "contextmint.engine.dashboardUrl",
@@ -105,6 +105,27 @@
       "title": "Server & connectivity",
       "description": "How the extension reaches the API. For remote/team servers set serverUrl to your on-prem host and see BYOK & enterprise.",
       "settings": [
+        {
+          "id": "contextmint.fabric.memoryTabEnabled",
+          "description": "Show Fabric Memory Tab convention commands (list/approve/dismiss). Requires fabric.enabled + fabric.memory_tab_enabled on the server. Default off — not GATE-W1.",
+          "default": "false",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Show Fabric Memory Tab convention commands (list/approve/dismiss). Requires fabric.enabled + fabric.memory_tab_enabled on the server. Default off — not GATE-W1.",
+            "whenDisable": "When false — show Fabric Memory Tab convention commands (list/approve/dismiss). Requires fabric.enabled + fabric.memory_tab_enabled on the server. Default off — not GATE-W1.",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
         {
           "id": "contextmint.localFallbackUrl",
           "description": "Fallback engine URL used when the enterprise server (serverUrl) is unreachable. Only applies when enterpriseMode is enabled.",
@@ -1508,6 +1529,27 @@
           "type": "number",
           "usage": {
             "whenEnable": "Adjust governance.drawerMaxFindings in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.governance.operatorUiAuditMaxEvents",
+          "description": "Max audit events requested/shown in governance operator audit export QuickPick.",
+          "default": "50",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust governance.operatorUiAuditMaxEvents in VS Code Settings when the default does not match your workflow.",
             "whenDisable": "N/A — value setting (not a boolean toggle).",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
