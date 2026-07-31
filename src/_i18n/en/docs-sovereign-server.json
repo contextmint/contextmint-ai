@@ -104,7 +104,7 @@
       },
       {
         "strong": "Not",
-        "text": "GATE-W1 / shipped Memory Tab product — Fabric list/get + shadow + Memory Tab + thin learner/decay + thin audit/RBAC foundations + Memory Tab filter/audit UX exist behind fabric.* flags (defaults off; PO dogfood open); read_cutover stays false"
+        "text": "GATE-W1 / shipped Memory Tab product — Fabric list/get + shadow + Memory Tab + thin learner/decay + thin audit/RBAC foundations + Memory Tab filter/audit UX + domain filter thin exist behind fabric.* flags (defaults off; PO dogfood open); read_cutover stays false"
       }
     ]
   },

@@ -243,7 +243,7 @@ export const SERVER_SECTIONS = [
     id: "fabric",
     title: "Knowledge Fabric (Block U thin)",
     description:
-      "Institutional memory graph spine — defaults off. List/get, shadow dual-write, Memory Tab, learner/decay, and thin audit/RBAC foundations behind fabric.* flags. Not GATE-W1 / FOI; read_cutover stays false.",
+      "Institutional memory graph spine — defaults off. List/get, shadow dual-write, Memory Tab, learner/decay, thin audit/RBAC, Memory Tab UX, and domain filter thin behind fabric.* flags. Not GATE-W1 / FOI; read_cutover stays false.",
     match: (id) => id.startsWith("fabric."),
   },
   {
@@ -529,6 +529,12 @@ export const SERVER_SETTING_DESCRIPTIONS = {
     "Deny-by-default Fabric route ACL via workspace roles (still requires fabric.enabled). Default off — not GATE-W1.",
   "fabric.require_auth":
     "Require authenticated principal on Fabric list/mutate when auth is on. Default off — not GATE-W1.",
+  "fabric.domain_tagging_enabled":
+    "When true with shadow write, stamp payload.domain on file/convention nodes from fabric.domain_rules globs. Default off — not GATE-W1.",
+  "fabric.domain_filter_enabled":
+    "Admit GET /fabric/domains and conventions?domain= (still requires fabric.enabled + memory_tab_enabled for Memory Tab). Default off — not GATE-W1.",
+  "fabric.domain_rules":
+    "Ordered workspace-agnostic path glob rules; first match wins as primary domain id. Not golden/repo paths.",
   "fabric.read_cutover_enabled":
     "Reserved read-path cutover from legacy stores. Must stay false until GATE-W1.",
   "airgap.mode":
