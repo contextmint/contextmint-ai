@@ -104,7 +104,7 @@
       },
       {
         "strong": "ليس",
-        "text": "GATE-W1 / تبويب Memory كمنتج جاهز — واجهات Fabric خلف مفاتيح fabric.* (معطّلة افتراضياً؛ اختبار المنتج مفتوح)؛ read_cutover يبقى false"
+        "text": "GATE-W1 / تبويب Memory كمنتج جاهز — واجهات Fabric (قائمة/ظل/Memory Tab/متعلّم-اضمحلال رفيع) خلف مفاتيح fabric.* (معطّلة افتراضياً؛ اختبار المنتج مفتوح)؛ read_cutover يبقى false"
       }
     ]
   },
