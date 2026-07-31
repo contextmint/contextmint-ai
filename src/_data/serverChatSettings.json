@@ -2,7 +2,7 @@
   "generatedAt": "2026-07-31",
   "source": "config/contextmint.defaults.yaml",
   "overlayPath": "~/.contextmint/server.defaults.yaml",
-  "totalCount": 1236,
+  "totalCount": 1238,
   "planDefinition": {
     "planId": "api_registration_chain",
     "intent": "structural_lookup",
@@ -21926,7 +21926,7 @@
     {
       "id": "fabric",
       "title": "Knowledge Fabric (Block U thin)",
-      "description": "Institutional memory graph spine — defaults off. List/get, shadow dual-write, Memory Tab, learner/decay, thin audit/RBAC, Memory Tab UX, domain filter, and graph neighborhood thin behind fabric.* flags. Not GATE-W1 / FOI; read_cutover stays false.",
+      "description": "Institutional memory graph spine — defaults off. List/get, shadow dual-write, Memory Tab, learner/decay, thin audit/RBAC, Memory Tab UX, domain filter, graph neighborhood, and convention↔file about links thin behind fabric.* flags. Not GATE-W1 / FOI; read_cutover stays false.",
       "settings": [
         {
           "id": "fabric.audit_events_enabled",
@@ -21957,6 +21957,26 @@
           "usage": {
             "whenEnable": "When true — When audit_events_enabled, raise on table insert failure (default soft log-and-continue).",
             "whenDisable": "When false — disables or falls back for audit fail closed.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.convention_about_max_edges",
+          "default": "8",
+          "description": "Max about edges written per convention node per shadow pass.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune convention about max edges when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
               "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
@@ -22557,6 +22577,26 @@
           "usage": {
             "whenEnable": "When true — Shadow Write Chunks — server tunable from contextmint.defaults.yaml.",
             "whenDisable": "When false — disables or falls back for shadow write chunks.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.shadow_write_convention_edges",
+          "default": "false",
+          "description": "When true with shadow conventions, upsert about edges from convention nodes to file nodes (file_key / evidence_files). Default off — not GATE-W1.",
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — When true with shadow conventions, upsert about edges from convention nodes to file nodes (file_key / evidence_files). Default off — not GATE-W1.",
+            "whenDisable": "When false — disables or falls back for shadow write convention edges.",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
               "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
