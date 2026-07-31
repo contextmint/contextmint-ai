@@ -2,7 +2,7 @@
   "generatedAt": "2026-07-31",
   "source": "config/contextmint.defaults.yaml",
   "overlayPath": "~/.contextmint/server.defaults.yaml",
-  "totalCount": 1225,
+  "totalCount": 1229,
   "planDefinition": {
     "planId": "api_registration_chain",
     "intent": "structural_lookup",
@@ -21926,8 +21926,48 @@
     {
       "id": "fabric",
       "title": "Knowledge Fabric (Block U thin)",
-      "description": "Institutional memory graph spine — defaults off. List/get, shadow dual-write, Memory Tab, and thin learner/decay behind fabric.* flags. Not GATE-W1 / FOI; read_cutover stays false.",
+      "description": "Institutional memory graph spine — defaults off. List/get, shadow dual-write, Memory Tab, learner/decay, and thin audit/RBAC foundations behind fabric.* flags. Not GATE-W1 / FOI; read_cutover stays false.",
       "settings": [
+        {
+          "id": "fabric.audit_events_enabled",
+          "default": "false",
+          "description": "Dual-write immutable audit_events SQLite rows alongside Memory JSONL. Default off — not GATE-W1.",
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Dual-write immutable audit_events SQLite rows alongside Memory JSONL. Default off — not GATE-W1.",
+            "whenDisable": "When false — disables or falls back for audit events enabled.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.audit_fail_closed",
+          "default": "false",
+          "description": "When audit_events_enabled, raise on table insert failure (default soft log-and-continue).",
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — When audit_events_enabled, raise on table insert failure (default soft log-and-continue).",
+            "whenDisable": "When false — disables or falls back for audit fail closed.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
         {
           "id": "fabric.convention_candidate_max",
           "default": "50",
@@ -22209,6 +22249,26 @@
           }
         },
         {
+          "id": "fabric.rbac_enabled",
+          "default": "false",
+          "description": "Deny-by-default Fabric route ACL via workspace roles (still requires fabric.enabled). Default off — not GATE-W1.",
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Deny-by-default Fabric route ACL via workspace roles (still requires fabric.enabled). Default off — not GATE-W1.",
+            "whenDisable": "When false — disables or falls back for rbac enabled.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
           "id": "fabric.read_cutover_enabled",
           "default": "false",
           "description": "Reserved read-path cutover from legacy stores. Must stay false until GATE-W1.",
@@ -22217,6 +22277,26 @@
           "usage": {
             "whenEnable": "When true — Reserved read-path cutover from legacy stores. Must stay false until GATE-W1.",
             "whenDisable": "When false — disables or falls back for read cutover enabled.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.require_auth",
+          "default": "false",
+          "description": "Require authenticated principal on Fabric list/mutate when auth is on. Default off — not GATE-W1.",
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Require authenticated principal on Fabric list/mutate when auth is on. Default off — not GATE-W1.",
+            "whenDisable": "When false — disables or falls back for require auth.",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
               "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"

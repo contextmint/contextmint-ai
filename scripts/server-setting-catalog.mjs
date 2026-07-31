@@ -243,7 +243,7 @@ export const SERVER_SECTIONS = [
     id: "fabric",
     title: "Knowledge Fabric (Block U thin)",
     description:
-      "Institutional memory graph spine — defaults off. List/get, shadow dual-write, Memory Tab, and thin learner/decay behind fabric.* flags. Not GATE-W1 / FOI; read_cutover stays false.",
+      "Institutional memory graph spine — defaults off. List/get, shadow dual-write, Memory Tab, learner/decay, and thin audit/RBAC foundations behind fabric.* flags. Not GATE-W1 / FOI; read_cutover stays false.",
     match: (id) => id.startsWith("fabric."),
   },
   {
@@ -521,6 +521,14 @@ export const SERVER_SETTING_DESCRIPTIONS = {
     "Enrich convention payloads from Memory audit JSONL (hints only — never auto-approve). Default off — not GATE-W1.",
   "fabric.decay_enabled":
     "Decay/retract stale pending conventions; never deletes approved/dismissed. Default off — not GATE-W1.",
+  "fabric.audit_events_enabled":
+    "Dual-write immutable audit_events SQLite rows alongside Memory JSONL. Default off — not GATE-W1.",
+  "fabric.audit_fail_closed":
+    "When audit_events_enabled, raise on table insert failure (default soft log-and-continue).",
+  "fabric.rbac_enabled":
+    "Deny-by-default Fabric route ACL via workspace roles (still requires fabric.enabled). Default off — not GATE-W1.",
+  "fabric.require_auth":
+    "Require authenticated principal on Fabric list/mutate when auth is on. Default off — not GATE-W1.",
   "fabric.read_cutover_enabled":
     "Reserved read-path cutover from legacy stores. Must stay false until GATE-W1.",
   "airgap.mode":
