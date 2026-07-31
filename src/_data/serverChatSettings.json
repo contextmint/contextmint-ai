@@ -2,7 +2,7 @@
   "generatedAt": "2026-07-31",
   "source": "config/contextmint.defaults.yaml",
   "overlayPath": "~/.contextmint/server.defaults.yaml",
-  "totalCount": 1238,
+  "totalCount": 1240,
   "planDefinition": {
     "planId": "api_registration_chain",
     "intent": "structural_lookup",
@@ -21926,7 +21926,7 @@
     {
       "id": "fabric",
       "title": "Knowledge Fabric (Block U thin)",
-      "description": "Institutional memory graph spine — defaults off. List/get, shadow dual-write, Memory Tab, learner/decay, thin audit/RBAC, Memory Tab UX, domain filter, graph neighborhood, and convention↔file about links thin behind fabric.* flags. Not GATE-W1 / FOI; read_cutover stays false.",
+      "description": "Institutional memory graph spine — defaults off. List/get, shadow dual-write, Memory Tab, learner/decay, thin audit/RBAC, Memory Tab UX, domain filter, graph neighborhood, convention↔file about links, and convention kind/q query thin behind fabric.* flags. Not GATE-W1 / FOI; read_cutover stays false.",
       "settings": [
         {
           "id": "fabric.audit_events_enabled",
@@ -22016,6 +22016,46 @@
           "type": "number",
           "usage": {
             "whenEnable": "Tune convention hub fan in min when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.convention_query_enabled",
+          "default": "false",
+          "description": "Admit kind= and q= on GET /fabric/conventions (still requires fabric.enabled + memory_tab_enabled). Default off — not GATE-W1.",
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Admit kind= and q= on GET /fabric/conventions (still requires fabric.enabled + memory_tab_enabled). Default off — not GATE-W1.",
+            "whenDisable": "When false — disables or falls back for convention query enabled.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.convention_query_q_max_len",
+          "default": "64",
+          "description": "Max length of conventions list q= search string.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune convention query q max len when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
             "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
