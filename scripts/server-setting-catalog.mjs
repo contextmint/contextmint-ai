@@ -516,13 +516,13 @@ export const SERVER_SETTING_DESCRIPTIONS = {
   "fabric.shadow_write_conventions":
     "When true with shadow write, upsert convention candidate nodes (hubs + naming) for Memory Tab. Default off — not GATE-W1.",
   "fabric.memory_tab_enabled":
-    "Admit Memory Tab convention list/approve/dismiss APIs (still requires fabric.enabled). Default off — not GATE-W1.",
+    "Admit Memory Tab convention list/approve/dismiss APIs (still requires fabric.enabled). Extension filter + audit trail when audit_events_enabled. Default off — not GATE-W1.",
   "fabric.learner_enabled":
     "Enrich convention payloads from Memory audit JSONL (hints only — never auto-approve). Default off — not GATE-W1.",
   "fabric.decay_enabled":
     "Decay/retract stale pending conventions; never deletes approved/dismissed. Default off — not GATE-W1.",
   "fabric.audit_events_enabled":
-    "Dual-write immutable audit_events SQLite rows alongside Memory JSONL. Default off — not GATE-W1.",
+    "Dual-write immutable audit_events SQLite rows alongside Memory JSONL (Memory Tab audit trail reads this). Default off — not GATE-W1.",
   "fabric.audit_fail_closed":
     "When audit_events_enabled, raise on table insert failure (default soft log-and-continue).",
   "fabric.rbac_enabled":

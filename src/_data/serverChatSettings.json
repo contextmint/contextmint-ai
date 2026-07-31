@@ -21931,11 +21931,11 @@
         {
           "id": "fabric.audit_events_enabled",
           "default": "false",
-          "description": "Dual-write immutable audit_events SQLite rows alongside Memory JSONL. Default off — not GATE-W1.",
+          "description": "Dual-write immutable audit_events SQLite rows alongside Memory JSONL (Memory Tab audit trail reads this). Default off — not GATE-W1.",
           "operator": false,
           "type": "boolean",
           "usage": {
-            "whenEnable": "When true — Dual-write immutable audit_events SQLite rows alongside Memory JSONL. Default off — not GATE-W1.",
+            "whenEnable": "When true — Dual-write immutable audit_events SQLite rows alongside Memory JSONL (Memory Tab audit trail reads this). Default off — not GATE-W1.",
             "whenDisable": "When false — disables or falls back for audit events enabled.",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
@@ -22231,11 +22231,11 @@
         {
           "id": "fabric.memory_tab_enabled",
           "default": "false",
-          "description": "Admit Memory Tab convention list/approve/dismiss APIs (still requires fabric.enabled). Default off — not GATE-W1.",
+          "description": "Admit Memory Tab convention list/approve/dismiss APIs (still requires fabric.enabled). Extension filter + audit trail when audit_events_enabled. Default off — not GATE-W1.",
           "operator": false,
           "type": "boolean",
           "usage": {
-            "whenEnable": "When true — Admit Memory Tab convention list/approve/dismiss APIs (still requires fabric.enabled). Default off — not GATE-W1.",
+            "whenEnable": "When true — Admit Memory Tab convention list/approve/dismiss APIs (still requires fabric.enabled). Extension filter + audit trail when audit_events_enabled. Default off — not GATE-W1.",
             "whenDisable": "When false — disables or falls back for memory tab enabled.",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
