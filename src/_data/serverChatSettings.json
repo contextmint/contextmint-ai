@@ -21926,7 +21926,7 @@
     {
       "id": "fabric",
       "title": "Knowledge Fabric (Block U thin)",
-      "description": "Institutional memory graph spine — defaults off. List/get, shadow dual-write, Memory Tab, learner/decay, thin audit/RBAC, Memory Tab UX, domain filter, graph neighborhood, convention↔file about links, convention kind/q query, and parity summary/CI thin behind fabric.* flags. Not GATE-W1 / FOI; read_cutover stays false.",
+      "description": "Institutional memory graph spine — defaults off. List/get, shadow dual-write, Memory Tab, learner/decay, thin audit/RBAC, Memory Tab UX, domain filter, graph neighborhood, convention↔file about links, convention kind/q query, and parity summary/CI slices 1–2 behind fabric.* flags. Not GATE-W1 / FOI; read_cutover stays false.",
       "settings": [
         {
           "id": "fabric.audit_events_enabled",
@@ -22451,11 +22451,11 @@
         {
           "id": "fabric.parity_enabled",
           "default": "false",
-          "description": "Admit GET /fabric/parity/summary (still requires fabric.enabled). Default off — not GATE-W1; does not enable read_cutover.",
+          "description": "Admit GET /fabric/parity/summary and parity CI slices 1–2 (still requires fabric.enabled). Default off — not GATE-W1; does not enable read_cutover.",
           "operator": false,
           "type": "boolean",
           "usage": {
-            "whenEnable": "When true — Admit GET /fabric/parity/summary (still requires fabric.enabled). Default off — not GATE-W1; does not enable read_cutover.",
+            "whenEnable": "When true — Admit GET /fabric/parity/summary and parity CI slices 1–2 (still requires fabric.enabled). Default off — not GATE-W1; does not enable read_cutover.",
             "whenDisable": "When false — disables or falls back for parity enabled.",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",

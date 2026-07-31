@@ -244,7 +244,7 @@ export const SERVER_SECTIONS = [
     id: "fabric",
     title: "Knowledge Fabric (Block U thin)",
     description:
-      "Institutional memory graph spine — defaults off. List/get, shadow dual-write, Memory Tab, learner/decay, thin audit/RBAC, Memory Tab UX, domain filter, graph neighborhood, convention↔file about links, convention kind/q query, and parity summary/CI thin behind fabric.* flags. Not GATE-W1 / FOI; read_cutover stays false.",
+      "Institutional memory graph spine — defaults off. List/get, shadow dual-write, Memory Tab, learner/decay, thin audit/RBAC, Memory Tab UX, domain filter, graph neighborhood, convention↔file about links, convention kind/q query, and parity summary/CI slices 1–2 behind fabric.* flags. Not GATE-W1 / FOI; read_cutover stays false.",
     match: (id) => id.startsWith("fabric."),
   },
   {
@@ -525,7 +525,7 @@ export const SERVER_SETTING_DESCRIPTIONS = {
   "fabric.convention_query_q_max_len":
     "Max length of conventions list q= search string.",
   "fabric.parity_enabled":
-    "Admit GET /fabric/parity/summary (still requires fabric.enabled). Default off — not GATE-W1; does not enable read_cutover.",
+    "Admit GET /fabric/parity/summary and parity CI slices 1–2 (still requires fabric.enabled). Default off — not GATE-W1; does not enable read_cutover.",
   "fabric.memory_tab_enabled":
     "Admit Memory Tab convention list/approve/dismiss APIs (still requires fabric.enabled). Extension filter + audit trail when audit_events_enabled. Default off — not GATE-W1.",
   "fabric.learner_enabled":
