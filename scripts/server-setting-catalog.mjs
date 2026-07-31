@@ -11,7 +11,8 @@ export const SERVER_SECTIONS = [
     title: "Server runtime",
     description:
       "HTTP bind address, logging, debug mode, and Ollama timeouts (chat stream read + model preload). Configure in contextmint.defaults.yaml or ~/.contextmint/server.defaults.yaml — restart required.",
-    match: (id) => id.startsWith("server."),
+    match: (id) =>
+      id.startsWith("server.") && id !== "server.ollama_narration_model",
   },
   {
     id: "context-budget",
@@ -29,7 +30,7 @@ export const SERVER_SECTIONS = [
     description:
       "Turn and history limits, Repo / Work / Hybrid lanes, trivial-query fast path, and image attachment caps. Server-side mirrors of several extension chat keys.",
     match: (id) =>
-      /^chat\.(max_history|max_msg_chars|max_turns|token_chars|prompt_store|tier_complexity|context_lanes|work_lane|lane_suggest|image_|trivial_query|pack_skip|pack_trust|history_policy|default_local_vision|mechanism_|pack_meta_|pack_name_|prefix_layout_|sse_keepalive|state_trace_|structural_|uat_regression|vision_admission)/.test(
+      /^chat\.(max_history|max_msg_chars|max_turns|token_chars|prompt_store|tier_complexity|context_lanes|work_lane|lane_suggest|image_|trivial_query|pack_skip|pack_trust|history_policy|default_local_vision|mechanism_|pack_meta_|pack_name_|prefix_layout_|sse_keepalive|state_trace_|structural_plan_|uat_regression|vision_admission)/.test(
         id,
       ),
   },
@@ -54,9 +55,9 @@ export const SERVER_SECTIONS = [
     description:
       "Citation-bound LLM narration on sanitized excerpts, clarification recovery when evidence is insufficient, and final insufficient-evidence stop after max turns. Server restart required.",
     match: (id) =>
-      /^chat\.(narration_|clarification_|insufficient_evidence_|fact_template_only|meaning_pack|inference_requires_llm)/.test(
+      /^chat\.(narration_|clarification_|insufficient_evidence_|fact_template_only|meaning_pack|inference_requires_llm|structural_template_primary_)/.test(
         id,
-      ),
+      ) || id === "server.ollama_narration_model",
   },
   {
     id: "api-surface",
@@ -243,7 +244,7 @@ export const SERVER_SECTIONS = [
     id: "fabric",
     title: "Knowledge Fabric (Block U thin)",
     description:
-      "Institutional memory graph spine — defaults off. List/get, shadow dual-write, Memory Tab, learner/decay, thin audit/RBAC, Memory Tab UX, and domain filter thin behind fabric.* flags. Not GATE-W1 / FOI; read_cutover stays false.",
+      "Institutional memory graph spine — defaults off. List/get, shadow dual-write, Memory Tab, learner/decay, thin audit/RBAC, Memory Tab UX, domain filter, and graph neighborhood thin behind fabric.* flags. Not GATE-W1 / FOI; read_cutover stays false.",
     match: (id) => id.startsWith("fabric."),
   },
   {
@@ -535,6 +536,14 @@ export const SERVER_SETTING_DESCRIPTIONS = {
     "Admit GET /fabric/domains and conventions?domain= (still requires fabric.enabled + memory_tab_enabled for Memory Tab). Default off — not GATE-W1.",
   "fabric.domain_rules":
     "Ordered workspace-agnostic path glob rules; first match wins as primary domain id. Not golden/repo paths.",
+  "fabric.neighborhood_enabled":
+    "Admit GET /fabric/neighborhood over fabric_edges (still requires fabric.enabled). Default off — not GATE-W1.",
+  "fabric.neighborhood_max_hops":
+    "Max BFS hops from the seed node for neighborhood reads (0 = seed only).",
+  "fabric.neighborhood_max_nodes":
+    "Hard cap on nodes returned by /fabric/neighborhood (including seed).",
+  "fabric.neighborhood_edge_types":
+    "Edge types walked in both directions for neighborhood (empty falls back to depends_on).",
   "fabric.read_cutover_enabled":
     "Reserved read-path cutover from legacy stores. Must stay false until GATE-W1.",
   "airgap.mode":
@@ -607,6 +616,11 @@ export const SERVER_OPERATOR_KEYS = new Set([
   "chat.narration_insufficient_expand_max_passes",
   "chat.module_consumer_registry_enabled",
   "chat.fact_template_only_when_no_meaning_intent",
+  "chat.structural_template_primary_enabled",
+  "chat.structural_template_primary_min_obligations",
+  "chat.narration_map_reduce_per_obligation",
+  "chat.narration_json_schema_enabled",
+  "server.ollama_narration_model",
   "chat.clarification_enabled",
   "chat.clarification_max_turns",
   "chat.clarification_merge_entity_terms",

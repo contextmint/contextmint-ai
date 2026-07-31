@@ -2,7 +2,7 @@
   "generatedAt": "2026-07-31",
   "source": "config/contextmint.defaults.yaml",
   "overlayPath": "~/.contextmint/server.defaults.yaml",
-  "totalCount": 1232,
+  "totalCount": 1236,
   "planDefinition": {
     "planId": "api_registration_chain",
     "intent": "structural_lookup",
@@ -364,26 +364,6 @@
           "type": "string",
           "usage": {
             "whenEnable": "Tune ollama embed url when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
-            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
-            "pros": [
-              "Documented in config/contextmint.defaults.yaml on the API host",
-              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
-            ],
-            "cons": [
-              "Server restart required after overlay changes",
-              "Not exposed in Engine desktop or VS Code Settings for most keys"
-            ],
-            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
-          }
-        },
-        {
-          "id": "server.ollama_narration_model",
-          "default": "qwen2.5-coder:3b-instruct",
-          "description": "Ollama Narration Model — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
-          "type": "string",
-          "usage": {
-            "whenEnable": "Tune ollama narration model when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
             "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
@@ -2511,86 +2491,6 @@
           }
         },
         {
-          "id": "chat.structural_probe_r3_min_graph_completeness",
-          "default": "0.7",
-          "description": "Structural Probe R3 Min Graph Completeness — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
-          "type": "number",
-          "usage": {
-            "whenEnable": "Tune structural probe r3 min graph completeness when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
-            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
-            "pros": [
-              "Documented in config/contextmint.defaults.yaml on the API host",
-              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
-            ],
-            "cons": [
-              "Server restart required after overlay changes",
-              "Not exposed in Engine desktop or VS Code Settings for most keys"
-            ],
-            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
-          }
-        },
-        {
-          "id": "chat.structural_probe_r4_min_graph_completeness",
-          "default": "0.4",
-          "description": "Structural Probe R4 Min Graph Completeness — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
-          "type": "number",
-          "usage": {
-            "whenEnable": "Tune structural probe r4 min graph completeness when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
-            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
-            "pros": [
-              "Documented in config/contextmint.defaults.yaml on the API host",
-              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
-            ],
-            "cons": [
-              "Server restart required after overlay changes",
-              "Not exposed in Engine desktop or VS Code Settings for most keys"
-            ],
-            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
-          }
-        },
-        {
-          "id": "chat.structural_template_primary_enabled",
-          "default": "true",
-          "description": "Structural Template Primary Enabled — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
-          "type": "boolean",
-          "usage": {
-            "whenEnable": "When true — Structural Template Primary Enabled — server tunable from contextmint.defaults.yaml.",
-            "whenDisable": "When false — disables or falls back for structural template primary enabled.",
-            "pros": [
-              "Documented in config/contextmint.defaults.yaml on the API host",
-              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
-            ],
-            "cons": [
-              "Server restart required after overlay changes",
-              "Not exposed in Engine desktop or VS Code Settings for most keys"
-            ],
-            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
-          }
-        },
-        {
-          "id": "chat.structural_template_primary_min_obligations",
-          "default": "2",
-          "description": "Structural Template Primary Min Obligations — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
-          "type": "number",
-          "usage": {
-            "whenEnable": "Tune structural template primary min obligations when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
-            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
-            "pros": [
-              "Documented in config/contextmint.defaults.yaml on the API host",
-              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
-            ],
-            "cons": [
-              "Server restart required after overlay changes",
-              "Not exposed in Engine desktop or VS Code Settings for most keys"
-            ],
-            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
-          }
-        },
-        {
           "id": "chat.tier_complexity.fast",
           "default": "0.4",
           "description": "Fast — server tunable from contextmint.defaults.yaml.",
@@ -4535,7 +4435,7 @@
           "id": "chat.narration_json_schema_enabled",
           "default": "true",
           "description": "Narration Json Schema Enabled — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
+          "operator": true,
           "type": "boolean",
           "usage": {
             "whenEnable": "When true — Narration Json Schema Enabled — server tunable from contextmint.defaults.yaml.",
@@ -4555,7 +4455,7 @@
           "id": "chat.narration_map_reduce_per_obligation",
           "default": "false",
           "description": "Narration Map Reduce Per Obligation — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
+          "operator": true,
           "type": "boolean",
           "usage": {
             "whenEnable": "When true — Narration Map Reduce Per Obligation — server tunable from contextmint.defaults.yaml.",
@@ -4859,6 +4759,66 @@
           "type": "number",
           "usage": {
             "whenEnable": "Tune narration validator retry max passes when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.structural_template_primary_enabled",
+          "default": "true",
+          "description": "Structural Template Primary Enabled — server tunable from contextmint.defaults.yaml.",
+          "operator": true,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Structural Template Primary Enabled — server tunable from contextmint.defaults.yaml.",
+            "whenDisable": "When false — disables or falls back for structural template primary enabled.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.structural_template_primary_min_obligations",
+          "default": "2",
+          "description": "Structural Template Primary Min Obligations — server tunable from contextmint.defaults.yaml.",
+          "operator": true,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune structural template primary min obligations when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "server.ollama_narration_model",
+          "default": "qwen2.5-coder:3b-instruct",
+          "description": "Ollama Narration Model — server tunable from contextmint.defaults.yaml.",
+          "operator": true,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Tune ollama narration model when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
             "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
@@ -5755,6 +5715,46 @@
           "usage": {
             "whenEnable": "When true — Index-time service registry for Type B service questions.",
             "whenDisable": "When false — disables or falls back for service registry enabled.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.structural_probe_r3_min_graph_completeness",
+          "default": "0.7",
+          "description": "Structural Probe R3 Min Graph Completeness — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune structural probe r3 min graph completeness when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.structural_probe_r4_min_graph_completeness",
+          "default": "0.4",
+          "description": "Structural Probe R4 Min Graph Completeness — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune structural probe r4 min graph completeness when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
               "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
@@ -21926,7 +21926,7 @@
     {
       "id": "fabric",
       "title": "Knowledge Fabric (Block U thin)",
-      "description": "Institutional memory graph spine — defaults off. List/get, shadow dual-write, Memory Tab, learner/decay, thin audit/RBAC, Memory Tab UX, and domain filter thin behind fabric.* flags. Not GATE-W1 / FOI; read_cutover stays false.",
+      "description": "Institutional memory graph spine — defaults off. List/get, shadow dual-write, Memory Tab, learner/decay, thin audit/RBAC, Memory Tab UX, domain filter, and graph neighborhood thin behind fabric.* flags. Not GATE-W1 / FOI; read_cutover stays false.",
       "settings": [
         {
           "id": "fabric.audit_events_enabled",
@@ -22297,6 +22297,86 @@
           "usage": {
             "whenEnable": "When true — Admit Memory Tab convention list/approve/dismiss APIs (still requires fabric.enabled). Extension filter + audit trail when audit_events_enabled. Default off — not GATE-W1.",
             "whenDisable": "When false — disables or falls back for memory tab enabled.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.neighborhood_edge_types",
+          "default": "[\"depends_on\"]",
+          "description": "Edge types walked in both directions for neighborhood (empty falls back to depends_on).",
+          "operator": false,
+          "type": "array",
+          "usage": {
+            "whenEnable": "Tune neighborhood edge types when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.neighborhood_enabled",
+          "default": "false",
+          "description": "Admit GET /fabric/neighborhood over fabric_edges (still requires fabric.enabled). Default off — not GATE-W1.",
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Admit GET /fabric/neighborhood over fabric_edges (still requires fabric.enabled). Default off — not GATE-W1.",
+            "whenDisable": "When false — disables or falls back for neighborhood enabled.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.neighborhood_max_hops",
+          "default": "1",
+          "description": "Max BFS hops from the seed node for neighborhood reads (0 = seed only).",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune neighborhood max hops when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.neighborhood_max_nodes",
+          "default": "50",
+          "description": "Hard cap on nodes returned by /fabric/neighborhood (including seed).",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune neighborhood max nodes when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
               "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"

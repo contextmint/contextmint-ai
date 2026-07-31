@@ -46,7 +46,7 @@
     "usage": {
       "narration": {
         "title": "Evidence narration &amp; clarification",
-        "meta": "11 operator keys",
+        "meta": "16 operator keys",
         "intro": "Controls citation-bound LLM narration on sanitized excerpts, clarification recovery when evidence is insufficient, and the final honest stop after max clarification turns. See master plan §6.1 in <span class=\"mono\">documentation/CONTEXTMINT-EVIDENCE-NARRATION-MASTER-PLAN.md</span>.",
         "tableHeaders": ["Key", "Default", "Operator", "When to change", "Restart"],
         "rows": [
@@ -56,6 +56,11 @@
           { "key": "chat.narration_timeout_ms", "default": "15000", "operator": "yes", "whenToChange": "Raise on CPU-only hosts when narration times out", "restart": "yes" },
           { "key": "chat.narration_require_citations", "default": "true", "operator": "yes", "whenToChange": "Keep true in production — rejects uncited narration", "restart": "yes" },
           { "key": "chat.fact_template_only_when_no_meaning_intent", "default": "true", "operator": "yes", "whenToChange": "When true, skip narration LLM when query has no role/behavior intent", "restart": "yes" },
+          { "key": "chat.structural_template_primary_enabled", "default": "true", "operator": "yes", "whenToChange": "Prefer template-primary answers for multi-obligation structural turns (ADR-019)", "restart": "yes" },
+          { "key": "chat.structural_template_primary_min_obligations", "default": "2", "operator": "yes", "whenToChange": "Raise to require more obligations before template-primary lane", "restart": "yes" },
+          { "key": "chat.narration_map_reduce_per_obligation", "default": "false", "operator": "yes", "whenToChange": "Enable for dogfood when narrating one obligation at a time", "restart": "yes" },
+          { "key": "chat.narration_json_schema_enabled", "default": "true", "operator": "yes", "whenToChange": "Keep true so narration LLM returns structured citation JSON", "restart": "yes" },
+          { "key": "server.ollama_narration_model", "default": "qwen2.5-coder:3b-instruct", "operator": "yes", "whenToChange": "Point at a capable instruct model for meaning-lane narration", "restart": "yes" },
           { "key": "chat.clarification_enabled", "default": "true", "operator": "yes", "whenToChange": "Disable only when you want immediate insufficient stop with no follow-up ask", "restart": "yes" },
           { "key": "chat.clarification_max_turns", "default": "2", "operator": "yes", "whenToChange": "Raise for dogfood UAT; lower for stricter production UX", "restart": "yes" },
           { "key": "chat.clarification_merge_entity_terms", "default": "true", "operator": "yes", "whenToChange": "Keep true so user replies boost obligation entity grep", "restart": "yes" },

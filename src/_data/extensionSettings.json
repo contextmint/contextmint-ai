@@ -1,7 +1,7 @@
 {
   "generatedAt": "2026-07-31",
   "source": "extensions/contextmint-vscode/package.json",
-  "totalCount": 154,
+  "totalCount": 158,
   "operatorKeys": [
     "contextmint.serverUrl",
     "contextmint.engine.dashboardUrl",
@@ -365,6 +365,27 @@
           }
         },
         {
+          "id": "contextmint.chat.canonicalOverviewGrepExcludePatterns",
+          "description": "Relative path prefixes excluded from architecture/overview entry-point grep.",
+          "default": "[5 items] .contextmint/packs/session/, .contextmint/packs/security/, .contextmint/eval-fixtures/…",
+          "deprecated": false,
+          "operator": false,
+          "type": "array",
+          "usage": {
+            "whenEnable": "Adjust chat.canonicalOverviewGrepExcludePatterns in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
           "id": "contextmint.chat.canonicalOverviewGrepHeadLines",
           "description": "File head lines used when entry-point grep has no keyword match.",
           "default": "10",
@@ -400,6 +421,27 @@
               "More grep slots on a query type sensitive to noise"
             ],
             "recommendation": "Leave default unless entry files are missing from overview answers."
+          }
+        },
+        {
+          "id": "contextmint.chat.canonicalOverviewGrepSkipWhenPackActive",
+          "description": "Skip architecture/overview entry-point grep when a pack is already active.",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Skip architecture/overview entry-point grep when a pack is already active.",
+            "whenDisable": "When false — Skip architecture/overview entry-point grep when a pack is already active.",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
           }
         },
         {
@@ -1007,6 +1049,27 @@
           }
         },
         {
+          "id": "contextmint.chat.packTrustChipEnabled",
+          "description": "Show active-pack trust chip under assistant answers when a pack is applied.",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Show active-pack trust chip under assistant answers when a pack is applied.",
+            "whenDisable": "When false — show active-pack trust chip under assistant answers when a pack is applied.",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
           "id": "contextmint.chat.placement",
           "description": "Where chat opens: auto (sidebar, then editor tab fallback), sidePanel (Activity Bar only), or editor (tab beside code).",
           "default": "auto",
@@ -1099,6 +1162,27 @@
           "type": "string",
           "usage": {
             "whenEnable": "Adjust chat.repoLanePlaceholder in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.chat.retrievalPosture",
+          "description": "Retrieval posture hint for chat evidence framing (default developer).",
+          "default": "developer",
+          "deprecated": false,
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Adjust chat.retrievalPosture in VS Code Settings when the default does not match your workflow.",
             "whenDisable": "N/A — value setting (not a boolean toggle).",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",

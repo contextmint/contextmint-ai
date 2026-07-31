@@ -46,7 +46,7 @@
     "usage": {
       "narration": {
         "title": "سرد الأدلة والتوضيح",
-        "meta": "11 مفتاح مشغّل",
+        "meta": "16 مفتاح مشغّل",
         "intro": "يتحكم في سرد النموذج اللغوي المرتبط بالاستشهاد على مقتطفات منقَّحة، واسترداد التوضيح عندما تكون الأدلة غير كافية، والتوقف الصادق النهائي بعد الحد الأقصى لأدوار التوضيح. انظر الخطة الرئيسية §6.1 في <span class=\"mono\">documentation/CONTEXTMINT-EVIDENCE-NARRATION-MASTER-PLAN.md</span>.",
         "tableHeaders": ["المفتاح", "الافتراضي", "المشغّل", "متى تغيّره", "إعادة التشغيل"],
         "rows": [
@@ -56,6 +56,11 @@
           { "key": "chat.narration_timeout_ms", "default": "15000", "operator": "نعم", "whenToChange": "ارفعه على مضيفات المعالج فقط عندما تنتهي مهلة السرد", "restart": "نعم" },
           { "key": "chat.narration_require_citations", "default": "true", "operator": "نعم", "whenToChange": "أبقه صحيحاً في الإنتاج — يرفض السرد غير المستشهد", "restart": "نعم" },
           { "key": "chat.fact_template_only_when_no_meaning_intent", "default": "true", "operator": "نعم", "whenToChange": "عند صحيح، تخطَّ نموذج السرد اللغوي عندما لا يكون للاستعلام نية دور/سلوك", "restart": "نعم" },
+          { "key": "chat.structural_template_primary_enabled", "default": "true", "operator": "نعم", "whenToChange": "فضّل الإجابات بالقوالب أولاً للأسئلة البنيوية متعددة الالتزامات (ADR-019)", "restart": "نعم" },
+          { "key": "chat.structural_template_primary_min_obligations", "default": "2", "operator": "نعم", "whenToChange": "ارفعه لطلب المزيد من الالتزامات قبل مسار القوالب أولاً", "restart": "نعم" },
+          { "key": "chat.narration_map_reduce_per_obligation", "default": "false", "operator": "نعم", "whenToChange": "فعّله للاختبار الداخلي عند سرد التزام واحد في كل مرة", "restart": "نعم" },
+          { "key": "chat.narration_json_schema_enabled", "default": "true", "operator": "نعم", "whenToChange": "أبقه صحيحاً حتى يعيد نموذج السرد JSON منظّماً بالاستشهادات", "restart": "نعم" },
+          { "key": "server.ollama_narration_model", "default": "qwen2.5-coder:3b-instruct", "operator": "نعم", "whenToChange": "وجّهه إلى نموذج instruct قادر لسرد مسار المعنى", "restart": "نعم" },
           { "key": "chat.clarification_enabled", "default": "true", "operator": "نعم", "whenToChange": "عطّله فقط عندما تريد توقفاً فورياً غير كافٍ بدون سؤال متابعة", "restart": "نعم" },
           { "key": "chat.clarification_max_turns", "default": "2", "operator": "نعم", "whenToChange": "ارفعه لاختبار القبول الداخلي؛ خفّضه لتجربة إنتاج أكثر صرامة", "restart": "نعم" },
           { "key": "chat.clarification_merge_entity_terms", "default": "true", "operator": "نعم", "whenToChange": "أبقه صحيحاً حتى تعزّز ردود المستخدم بحث grep لكيان الالتزام", "restart": "نعم" },
