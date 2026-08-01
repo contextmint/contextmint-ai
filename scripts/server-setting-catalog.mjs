@@ -244,7 +244,7 @@ export const SERVER_SECTIONS = [
     id: "fabric",
     title: "Knowledge Fabric (Block U thin)",
     description:
-      "Institutional memory graph spine — defaults off. List/get, shadow dual-write, Memory Tab, learner/decay, thin audit/RBAC, Memory Tab UX, domain filter, graph neighborhood, convention↔file about links, convention kind/q query, parity summary/CI slices 1–4 + F5/scale, and Block UA Repository DNA thin behind fabric.* flags. Not GATE-W1 product / not GATE-AHA; read_cutover stays false.",
+      "Institutional memory graph spine — defaults off. List/get, shadow dual-write, Memory Tab, learner/decay, thin audit/RBAC, Memory Tab UX, domain filter, graph neighborhood, convention↔file about links, convention kind/q query, parity summary/CI slices 1–4 + F5/scale, Block UA Repository DNA thin, and Block UB Feature Registry Lite thin behind fabric.* flags. Not GATE-W1 product / not GATE-AHA / not GATE-FEATURE-LITE product; read_cutover stays false.",
     match: (id) => id.startsWith("fabric."),
   },
   {
@@ -586,6 +586,26 @@ export const SERVER_SETTING_DESCRIPTIONS = {
     "GATE-AHA eng floor for risk hotspot count (scaffold only).",
   "fabric.dna_aha_max_ms":
     "GATE-AHA eng wall-clock budget (ms) for DNA projector path (scaffold only).",
+  "fabric.feature_lite_enabled":
+    "Admit Feature Lite finalize materialization + GET /fabric/features (still requires fabric.enabled). Default off — not GATE-FEATURE-LITE product.",
+  "fabric.feature_lite_max_features":
+    "Max draft feature nodes upserted per finalize pass.",
+  "fabric.feature_lite_max_implements_per_feature":
+    "Max implements edges written per draft feature (seeds + import closure).",
+  "fabric.feature_lite_max_files_per_draft_feature":
+    "Auto-generated packs at or below this seed count stay one draft feature; above this, split by top-level directory.",
+  "fabric.feature_lite_max_key_len":
+    "Max characters for feature/owner/domain node keys after sanitize.",
+  "fabric.feature_lite_owner_edge_max":
+    "Max owns edges (owner→feature) per draft feature.",
+  "fabric.feature_lite_implements_confidence":
+    "Default confidence stamped on import-closure implements edges.",
+  "fabric.feature_lite_seed_confidence":
+    "Confidence stamped on pack seed implements edges.",
+  "fabric.feature_lite_closure_hops":
+    "Dep-graph hops for import-closure tagging (0 = seeds only).",
+  "fabric.feature_lite_pattern_match_max":
+    "Max pack pattern matches when seeding a draft feature.",
   "fabric.read_cutover_enabled":
     "Reserved read-path cutover from legacy stores. Must stay false until GATE-W1.",
   "airgap.mode":

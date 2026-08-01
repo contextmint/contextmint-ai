@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-07-31",
+  "generatedAt": "2026-08-01",
   "source": "config/contextmint.defaults.yaml",
   "overlayPath": "~/.contextmint/server.defaults.yaml",
-  "totalCount": 1241,
+  "totalCount": 1271,
   "planDefinition": {
     "planId": "api_registration_chain",
     "intent": "structural_lookup",
@@ -21926,7 +21926,7 @@
     {
       "id": "fabric",
       "title": "Knowledge Fabric (Block U thin)",
-      "description": "Institutional memory graph spine — defaults off. List/get, shadow dual-write, Memory Tab, learner/decay, thin audit/RBAC, Memory Tab UX, domain filter, graph neighborhood, convention↔file about links, convention kind/q query, and parity summary/CI slices 1–4 + F5/scale behind fabric.* flags (GATE-W1 eng prep). Not GATE-W1 product / FOI; read_cutover stays false.",
+      "description": "Institutional memory graph spine — defaults off. List/get, shadow dual-write, Memory Tab, learner/decay, thin audit/RBAC, Memory Tab UX, domain filter, graph neighborhood, convention↔file about links, convention kind/q query, parity summary/CI slices 1–4 + F5/scale, Block UA Repository DNA thin, and Block UB Feature Registry Lite thin behind fabric.* flags. Not GATE-W1 product / not GATE-AHA / not GATE-FEATURE-LITE product; read_cutover stays false.",
       "settings": [
         {
           "id": "fabric.audit_events_enabled",
@@ -22016,6 +22016,26 @@
           "type": "number",
           "usage": {
             "whenEnable": "Tune convention hub fan in min when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.convention_naming_example_max",
+          "default": "5",
+          "description": "Convention Naming Example Max — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune convention naming example max when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
             "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
@@ -22169,6 +22189,326 @@
           }
         },
         {
+          "id": "fabric.dna_aha_max_ms",
+          "default": "60000",
+          "description": "GATE-AHA eng wall-clock budget (ms) for DNA projector path (scaffold only).",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune dna aha max ms when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.dna_aha_min_domains",
+          "default": "3",
+          "description": "GATE-AHA eng floor for domain count (scaffold only; not product exit).",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune dna aha min domains when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.dna_aha_min_owners",
+          "default": "1",
+          "description": "GATE-AHA eng floor for owner count (scaffold only).",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune dna aha min owners when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.dna_aha_min_risks",
+          "default": "1",
+          "description": "GATE-AHA eng floor for risk hotspot count (scaffold only).",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune dna aha min risks when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.dna_enabled",
+          "default": "false",
+          "description": "Admit DNA finalize write + GET /fabric/dna (still requires fabric.enabled). Default off — not GATE-AHA / not GATE-W1 product.",
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Admit DNA finalize write + GET /fabric/dna (still requires fabric.enabled). Default off — not GATE-AHA / not GATE-W1 product.",
+            "whenDisable": "When false — disables or falls back for dna enabled.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.dna_fan_in_min",
+          "default": "3",
+          "description": "Min dependents for a file to count as a DNA risk hotspot.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune dna fan in min when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.dna_llm_summary_enabled",
+          "default": "false",
+          "description": "Optional LLM polish on DNA report text. Default off — never invents paths; not GATE-AHA.",
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Optional LLM polish on DNA report text. Default off — never invents paths; not GATE-AHA.",
+            "whenDisable": "When false — disables or falls back for dna llm summary enabled.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.dna_max_conventions",
+          "default": "5",
+          "description": "Max convention candidates in the Repository DNA report.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune dna max conventions when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.dna_max_domains",
+          "default": "3",
+          "description": "Max domains listed in the Repository DNA report.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune dna max domains when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.dna_max_owners",
+          "default": "8",
+          "description": "Max distinct owner labels in the Repository DNA report.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune dna max owners when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.dna_max_risks",
+          "default": "5",
+          "description": "Max fan-in risk hotspot modules in the Repository DNA report.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune dna max risks when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.dna_max_surprise",
+          "default": "5",
+          "description": "Max surprise signals listed in the Repository DNA report.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune dna max surprise when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.dna_report_filename_prefix",
+          "default": "dna",
+          "description": "Filename prefix for DNA reports: {prefix}-{generation}.json.",
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Tune dna report filename prefix when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.dna_reports_dirname",
+          "default": "reports",
+          "description": "Directory name under .contextmint for DNA JSON reports (workspace-relative).",
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Tune dna reports dirname when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.dna_summary_preview_n",
+          "default": "3",
+          "description": "How many domain/owner/risk lines previewed in DNA status summary text.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune dna summary preview n when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.dna_surprise_types",
+          "default": "[\"risk_hotspot\",\"convention_candidate\",\"hidden_dependency\"]",
+          "description": "Allowed surprise signal kinds for DNA (workspace-agnostic).",
+          "operator": false,
+          "type": "array",
+          "usage": {
+            "whenEnable": "Tune dna surprise types when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
           "id": "fabric.domain_filter_enabled",
           "default": "false",
           "description": "Admit GET /fabric/domains and conventions?domain= (still requires fabric.enabled + memory_tab_enabled for Memory Tab). Default off — not GATE-W1.",
@@ -22237,6 +22577,206 @@
           "usage": {
             "whenEnable": "When true — Master switch for Fabric graph APIs (list/get) and delete cascade. Off by default — not GATE-W1.",
             "whenDisable": "When false — disables or falls back for enabled.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.feature_lite_closure_hops",
+          "default": "1",
+          "description": "Dep-graph hops for import-closure tagging (0 = seeds only).",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune feature lite closure hops when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.feature_lite_enabled",
+          "default": "false",
+          "description": "Admit Feature Lite finalize materialization + GET /fabric/features (still requires fabric.enabled). Default off — not GATE-FEATURE-LITE product.",
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Admit Feature Lite finalize materialization + GET /fabric/features (still requires fabric.enabled). Default off — not GATE-FEATURE-LITE product.",
+            "whenDisable": "When false — disables or falls back for feature lite enabled.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.feature_lite_implements_confidence",
+          "default": "0.35",
+          "description": "Default confidence stamped on import-closure implements edges.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune feature lite implements confidence when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.feature_lite_max_features",
+          "default": "100",
+          "description": "Max draft feature nodes upserted per finalize pass.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune feature lite max features when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.feature_lite_max_files_per_draft_feature",
+          "default": "30",
+          "description": "Auto-generated packs at or below this seed count stay one draft feature; above this, split by top-level directory.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune feature lite max files per draft feature when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.feature_lite_max_implements_per_feature",
+          "default": "80",
+          "description": "Max implements edges written per draft feature (seeds + import closure).",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune feature lite max implements per feature when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.feature_lite_max_key_len",
+          "default": "240",
+          "description": "Max characters for feature/owner/domain node keys after sanitize.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune feature lite max key len when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.feature_lite_owner_edge_max",
+          "default": "16",
+          "description": "Max owns edges (owner→feature) per draft feature.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune feature lite owner edge max when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.feature_lite_pattern_match_max",
+          "default": "200",
+          "description": "Max pack pattern matches when seeding a draft feature.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune feature lite pattern match max when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.feature_lite_seed_confidence",
+          "default": "0.7",
+          "description": "Confidence stamped on pack seed implements edges.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune feature lite seed confidence when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
               "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
@@ -22449,13 +22989,73 @@
           }
         },
         {
+          "id": "fabric.parity_bench_edge_count",
+          "default": "4000",
+          "description": "Parity Bench Edge Count — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune parity bench edge count when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.parity_bench_max_ms",
+          "default": "50",
+          "description": "Parity Bench Max Ms — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune parity bench max ms when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.parity_bench_node_count",
+          "default": "2000",
+          "description": "Parity Bench Node Count — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune parity bench node count when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
           "id": "fabric.parity_enabled",
           "default": "false",
-          "description": "Admit GET /fabric/parity/summary and parity CI slices 1–4 (still requires fabric.enabled). Default off — not GATE-W1; does not enable read_cutover.",
+          "description": "Admit GET /fabric/parity/summary and parity CI slices 1–3 (still requires fabric.enabled). Default off — not GATE-W1; does not enable read_cutover.",
           "operator": false,
           "type": "boolean",
           "usage": {
-            "whenEnable": "When true — Admit GET /fabric/parity/summary and parity CI slices 1–4 (still requires fabric.enabled). Default off — not GATE-W1; does not enable read_cutover.",
+            "whenEnable": "When true — Admit GET /fabric/parity/summary and parity CI slices 1–3 (still requires fabric.enabled). Default off — not GATE-W1; does not enable read_cutover.",
             "whenDisable": "When false — disables or falls back for parity enabled.",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
