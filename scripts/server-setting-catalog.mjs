@@ -244,7 +244,7 @@ export const SERVER_SECTIONS = [
     id: "fabric",
     title: "Knowledge Fabric (Block U thin)",
     description:
-      "Institutional memory graph spine — defaults off. List/get, shadow dual-write, Memory Tab, learner/decay, thin audit/RBAC, Memory Tab UX, domain filter, graph neighborhood, convention↔file about links, convention kind/q query, parity summary/CI slices 1–4 + F5/scale, Block UA Repository DNA thin, and Block UB Feature Registry Lite thin behind fabric.* flags. Not GATE-W1 product / not GATE-AHA / not GATE-FEATURE-LITE product; read_cutover stays false.",
+      "Institutional memory graph spine — defaults off. List/get, shadow dual-write, Memory Tab, learner/decay, thin audit/RBAC, Memory Tab UX, domain filter, graph neighborhood, convention↔file about links, convention kind/q query, parity summary/CI slices 1–4 + F5/scale, Block UA Repository DNA thin, Block UB Feature Registry Lite thin, and Block V Health/Architecture Tab behind fabric.* flags. Not GATE-W1 product / not GATE-AHA / not GATE-FEATURE-LITE product / not GATE-W2 product; read_cutover stays false.",
     match: (id) => id.startsWith("fabric."),
   },
   {
@@ -606,6 +606,80 @@ export const SERVER_SETTING_DESCRIPTIONS = {
     "Dep-graph hops for import-closure tagging (0 = seeds only).",
   "fabric.feature_lite_pattern_match_max":
     "Max pack pattern matches when seeding a draft feature.",
+  "fabric.health_enabled":
+    "Admit health projector + GET /fabric/health (requires fabric.enabled). Default false — not GATE-W2 product.",
+  "fabric.architecture_tab_enabled":
+    "Admit architecture projection, domain mermaid, Architecture Tab APIs. Default false — not GATE-W2 product.",
+  "fabric.health_top_k":
+    "Max risk rows returned by GET /fabric/health.",
+  "fabric.health_weight_cycle":
+    "Risk weight for cyclic dependency SCCs.",
+  "fabric.health_weight_churn":
+    "Risk weight for commit churn signals.",
+  "fabric.health_weight_test_gap":
+    "Risk weight for test-gap heuristic.",
+  "fabric.health_churn_window_commits":
+    "How many recent commit nodes to scan for churn scores.",
+  "fabric.health_test_code_globs":
+    "Workspace-agnostic globs for production-like source paths (health test-gap).",
+  "fabric.health_test_file_globs":
+    "Workspace-agnostic globs that mark a path as a test file.",
+  "fabric.health_feature_rollup_enabled":
+    "When Feature Lite draft features exist, include per-feature risk rollups.",
+  "fabric.architecture_depends_scan_multiplier":
+    "When filtering depends_on edges for a domain file set, scan up to this multiple of the mermaid edge cap before filtering.",
+  "fabric.architecture_mermaid_max_edges":
+    "Cap edges in domain Mermaid export.",
+  "fabric.health_feature_rollup_max_rows":
+    "Cap on feature→path implements rows scanned for health rollups.",
+  "fabric.health_cycle_scc_member_cap":
+    "Max SCC member paths retained in each cycle risk detail.",
+  "fabric.health_scan_max_rows":
+    "Safety cap on file/edge rows one health or architecture projection reads.",
+  "chronos.enabled":
+    "Admit CHRONOS indexer + /chronos APIs + sandbox bisect. Default false — not GATE-W2 product.",
+  "chronos.checkpoint_refs":
+    "Git refs resolved into checkpoints (workspace-agnostic).",
+  "chronos.include_merge_commits":
+    "Also index recent merge commits as checkpoint candidates.",
+  "chronos.include_tags":
+    "Also index recent tags as checkpoints.",
+  "chronos.max_tag_refs":
+    "Cap on tag refs indexed.",
+  "chronos.max_merge_refs":
+    "Cap on merge commits indexed.",
+  "chronos.max_files_per_commit":
+    "Max paths written as modified_by edges per commit.",
+  "chronos.max_parallel_checkpoints":
+    "Semaphore cap for concurrent index passes.",
+  "chronos.idle_only":
+    "Skip index when heavy indexing is ACTIVE.",
+  "chronos.idle_retry_max":
+    "Max quiet-period retry fires after idle/parallel/index skip. 0 disables deferred retries; after this many fires sticky retries continue.",
+  "chronos.idle_retry_min_delay_ms":
+    "Floor for deferred retry delay when idle_quiet_period_ms is 0 (prevents Timer(0) tight loops).",
+  "chronos.idle_retry_sticky_multiplier":
+    "Delay multiplier after idle_retry_max fires so a long busy stretch cannot leave CHRONOS permanently dark.",
+  "chronos.commit_title_max_len":
+    "Max characters stored on commit node titles.",
+  "chronos.idle_quiet_period_ms":
+    "Require this quiet window after embed activity before index.",
+  "chronos.bisect_min_agree_runs":
+    "Runs per bisect step (forced even). Tie or timeout → git bisect skip.",
+  "chronos.bisect_max_steps":
+    "Hard cap on git bisect mark steps before giving up.",
+  "chronos.bisect_command_timeout_sec":
+    "Per-run timeout for bisect test command.",
+  "chronos.bisect_wall_timeout_sec":
+    "Wall-clock cap for one bisect job (keep under extension chronos.bisectTimeoutMs).",
+  "chronos.bisect_wall_step_slack_sec":
+    "Reserved seconds beyond one majority vote for drain + git bisect mark before refusing another step.",
+  "chronos.git_timeout_sec":
+    "Timeout for CHRONOS git metadata commands.",
+  "chronos.list_default_limit":
+    "Default page size for GET /chronos/checkpoints.",
+  "chronos.list_max_limit":
+    "Hard cap on CHRONOS list page size.",
   "fabric.read_cutover_enabled":
     "Reserved read-path cutover from legacy stores. Must stay false until GATE-W1.",
   "airgap.mode":
