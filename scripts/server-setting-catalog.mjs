@@ -244,7 +244,7 @@ export const SERVER_SECTIONS = [
     id: "fabric",
     title: "Knowledge Fabric (Block U thin)",
     description:
-      "Institutional memory graph spine — defaults off. List/get, shadow dual-write, Memory Tab, learner/decay, thin audit/RBAC, Memory Tab UX, domain filter, graph neighborhood, convention↔file about links, convention kind/q query, and parity summary/CI slices 1–3 behind fabric.* flags. Not GATE-W1 / FOI; read_cutover stays false.",
+      "Institutional memory graph spine — defaults off. List/get, shadow dual-write, Memory Tab, learner/decay, thin audit/RBAC, Memory Tab UX, domain filter, graph neighborhood, convention↔file about links, convention kind/q query, parity summary/CI slices 1–4 + F5/scale, and Block UA Repository DNA thin behind fabric.* flags. Not GATE-W1 product / not GATE-AHA; read_cutover stays false.",
     match: (id) => id.startsWith("fabric."),
   },
   {
@@ -554,6 +554,38 @@ export const SERVER_SETTING_DESCRIPTIONS = {
     "Hard cap on nodes returned by /fabric/neighborhood (including seed).",
   "fabric.neighborhood_edge_types":
     "Edge types walked in both directions for neighborhood (empty falls back to depends_on).",
+  "fabric.dna_enabled":
+    "Admit DNA finalize write + GET /fabric/dna (still requires fabric.enabled). Default off — not GATE-AHA / not GATE-W1 product.",
+  "fabric.dna_llm_summary_enabled":
+    "Optional LLM polish on DNA report text. Default off — never invents paths; not GATE-AHA.",
+  "fabric.dna_max_domains":
+    "Max domains listed in the Repository DNA report.",
+  "fabric.dna_max_owners":
+    "Max distinct owner labels in the Repository DNA report.",
+  "fabric.dna_max_risks":
+    "Max fan-in risk hotspot modules in the Repository DNA report.",
+  "fabric.dna_max_conventions":
+    "Max convention candidates in the Repository DNA report.",
+  "fabric.dna_max_surprise":
+    "Max surprise signals listed in the Repository DNA report.",
+  "fabric.dna_summary_preview_n":
+    "How many domain/owner/risk lines previewed in DNA status summary text.",
+  "fabric.dna_fan_in_min":
+    "Min dependents for a file to count as a DNA risk hotspot.",
+  "fabric.dna_reports_dirname":
+    "Directory name under .contextmint for DNA JSON reports (workspace-relative).",
+  "fabric.dna_report_filename_prefix":
+    "Filename prefix for DNA reports: {prefix}-{generation}.json.",
+  "fabric.dna_surprise_types":
+    "Allowed surprise signal kinds for DNA (workspace-agnostic).",
+  "fabric.dna_aha_min_domains":
+    "GATE-AHA eng floor for domain count (scaffold only; not product exit).",
+  "fabric.dna_aha_min_owners":
+    "GATE-AHA eng floor for owner count (scaffold only).",
+  "fabric.dna_aha_min_risks":
+    "GATE-AHA eng floor for risk hotspot count (scaffold only).",
+  "fabric.dna_aha_max_ms":
+    "GATE-AHA eng wall-clock budget (ms) for DNA projector path (scaffold only).",
   "fabric.read_cutover_enabled":
     "Reserved read-path cutover from legacy stores. Must stay false until GATE-W1.",
   "airgap.mode":
