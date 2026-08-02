@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-01",
+  "generatedAt": "2026-08-02",
   "source": "config/contextmint.defaults.yaml",
   "overlayPath": "~/.contextmint/server.defaults.yaml",
-  "totalCount": 1325,
+  "totalCount": 1328,
   "planDefinition": {
     "planId": "api_registration_chain",
     "intent": "structural_lookup",
@@ -26007,11 +26007,11 @@
         {
           "id": "chains.enabled",
           "default": "false",
-          "description": "Admit /chains stub APIs (Recipe A deterministic critic, Recipe C text plan). Default false — not GATE-W3 product.",
+          "description": "Admit /chains APIs (Recipe A critic, Recipe C text plan). Default false — not GATE-W3 / not GATE-W4 product.",
           "operator": false,
           "type": "boolean",
           "usage": {
-            "whenEnable": "When true — Admit /chains stub APIs (Recipe A deterministic critic, Recipe C text plan). Default false — not GATE-W3 product.",
+            "whenEnable": "When true — Admit /chains APIs (Recipe A critic, Recipe C text plan). Default false — not GATE-W3 / not GATE-W4 product.",
             "whenDisable": "When false — disables or falls back for enabled.",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
@@ -26033,6 +26033,26 @@
           "usage": {
             "whenEnable": "When true — When chains.enabled, allow deterministic idle health summary.",
             "whenDisable": "When false — disables or falls back for idle health summary enabled.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chains.recipe_a_html_max_chars",
+          "default": "200000",
+          "description": "Max HTML characters accepted by Recipe A generator.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune recipe a html max chars when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
               "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
@@ -26073,6 +26093,46 @@
           "usage": {
             "whenEnable": "Tune recipe a max findings when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
             "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chains.recipe_a_preview_filename",
+          "default": "argus-preview.html",
+          "description": "Relative filename written under worktree when Recipe A generates HTML.",
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Tune recipe a preview filename when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chains.recipe_a_vlm_enabled",
+          "default": "false",
+          "description": "When chains.enabled + argus.enabled, Recipe A uses Generator→VLM critic via ARGUS. Default false — not GATE-W4 product; report-only.",
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — When chains.enabled + argus.enabled, Recipe A uses Generator→VLM critic via ARGUS. Default false — not GATE-W4 product; report-only.",
+            "whenDisable": "When false — disables or falls back for recipe a vlm enabled.",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
               "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"

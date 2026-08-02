@@ -647,9 +647,15 @@ export const SERVER_SETTING_DESCRIPTIONS = {
   "oracle.max_inflight_prefetch_per_file":
     "Coalesce cap for in-flight prefetches per workspace+file.",
   "chains.enabled":
-    "Admit /chains stub APIs (Recipe A deterministic critic, Recipe C text plan). Default false — not GATE-W3 product.",
+    "Admit /chains APIs (Recipe A critic, Recipe C text plan). Default false — not GATE-W3 / not GATE-W4 product.",
   "chains.idle_health_summary_enabled":
     "When chains.enabled, allow deterministic idle health summary.",
+  "chains.recipe_a_vlm_enabled":
+    "When chains.enabled + argus.enabled, Recipe A uses Generator→VLM critic via ARGUS. Default false — not GATE-W4 product; report-only.",
+  "chains.recipe_a_preview_filename":
+    "Relative filename written under worktree when Recipe A generates HTML.",
+  "chains.recipe_a_html_max_chars":
+    "Max HTML characters accepted by Recipe A generator.",
   "chronos.checkpoint_refs":
     "Git refs resolved into checkpoints (workspace-agnostic).",
   "chronos.include_merge_commits":

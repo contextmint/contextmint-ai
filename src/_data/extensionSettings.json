@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-01",
+  "generatedAt": "2026-08-02",
   "source": "extensions/contextmint-vscode/package.json",
-  "totalCount": 169,
+  "totalCount": 170,
   "operatorKeys": [
     "contextmint.serverUrl",
     "contextmint.engine.dashboardUrl",
@@ -105,6 +105,27 @@
       "title": "Server & connectivity",
       "description": "How the extension reaches the API. For remote/team servers set serverUrl to your on-prem host and see BYOK & enterprise.",
       "settings": [
+        {
+          "id": "contextmint.chains.recipeAVlmEnabled",
+          "description": "Enable Recipe A VLM chain command (Generator→ARGUS critic). Requires chains.enabled + chains.recipe_a_vlm_enabled + argus.enabled on the server. Default off — not GATE-W4 product.",
+          "default": "false",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Enable Recipe A VLM chain command (Generator→ARGUS critic). Requires chains.enabled + chains.recipe_a_vlm_enabled + argus.enabled on the server. Default off — not GATE-W4 product.",
+            "whenDisable": "When false — enable Recipe A VLM chain command (Generator→ARGUS critic). Requires chains.enabled + chains.recipe_a_vlm_enabled + argus.enabled on the server. Default off — not GATE-W4 product.",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
         {
           "id": "contextmint.chronos.bisectTimeoutMs",
           "description": "Client wait for POST /chronos/bisect (ms). Keep above server chronos.bisect_wall_timeout_sec (default ~28 min / 1680s).",
