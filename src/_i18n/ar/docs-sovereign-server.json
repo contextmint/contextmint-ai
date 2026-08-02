@@ -104,7 +104,7 @@
       },
       {
         "strong": "ليس",
-        "text": "GATE-W1 / تبويب Memory كمنتج جاهز / GATE-AHA / منتج GATE-FEATURE-LITE / منتج GATE-W2 — واجهات Fabric (قائمة/ظل/Memory Tab/متعلّم-اضمحلال/أسس تدقيق-RBAC/تصفية-مسار تدقيق/تصفية نطاق رفيعة/جوار الرسم البياني الرفيع/روابط الاصطلاح الرفيعة/استعلام الاصطلاح الرفيع/شرائح مقارنة التكافؤ 1–4 + F5/scale إغلاق eng + DNA مستودع Block UA رفيع + Feature Registry Lite Block UB رفيع + CHRONOS/Health/Architecture Block V رفيع) خلف مفاتيح fabric.* / chronos.* (معطّلة افتراضياً؛ eng جاهز لـ W1 وDNA وFeature Lite وCHRONOS+Health وPO soak مفتوح؛ ليس منتج GATE-W1؛ ليس GATE-AHA؛ ليس منتج GATE-FEATURE-LITE؛ ليس منتج GATE-W2)؛ read_cutover يبقى false"
+        "text": "GATE-W1 / تبويب Memory كمنتج جاهز / GATE-AHA / منتج GATE-FEATURE-LITE / منتج GATE-W2 / منتج GATE-W3 — واجهات Fabric (قائمة/ظل/Memory Tab/متعلّم-اضمحلال/أسس تدقيق-RBAC/تصفية-مسار تدقيق/تصفية نطاق رفيعة/جوار الرسم البياني الرفيع/روابط الاصطلاح الرفيعة/استعلام الاصطلاح الرفيع/شرائح مقارنة التكافؤ 1–4 + F5/scale إغلاق eng + DNA مستودع Block UA رفيع + Feature Registry Lite Block UB رفيع + CHRONOS/Health/Architecture Block V رفيع + ORACLE أساسي + stubs سلاسل Block W) خلف مفاتيح fabric.* / chronos.* / oracle.* / chains.* (معطّلة افتراضياً؛ eng جاهز لـ W1 وDNA وFeature Lite وCHRONOS+Health وORACLE وPO soak مفتوح؛ ليس منتج GATE-W1؛ ليس GATE-AHA؛ ليس منتج GATE-FEATURE-LITE؛ ليس منتج GATE-W2؛ ليس منتج GATE-W3؛ ليس ORACLE رسومي)؛ read_cutover يبقى false"
       }
     ]
   },

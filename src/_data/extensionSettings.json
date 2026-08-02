@@ -1,7 +1,7 @@
 {
   "generatedAt": "2026-08-01",
   "source": "extensions/contextmint-vscode/package.json",
-  "totalCount": 165,
+  "totalCount": 169,
   "operatorKeys": [
     "contextmint.serverUrl",
     "contextmint.engine.dashboardUrl",
@@ -105,6 +105,48 @@
       "title": "Server & connectivity",
       "description": "How the extension reaches the API. For remote/team servers set serverUrl to your on-prem host and see BYOK & enterprise.",
       "settings": [
+        {
+          "id": "contextmint.chronos.bisectTimeoutMs",
+          "description": "Client wait for POST /chronos/bisect (ms). Keep above server chronos.bisect_wall_timeout_sec (default ~28 min / 1680s).",
+          "default": "1800000",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust chronos.bisectTimeoutMs in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.chronos.diffSampleMax",
+          "description": "Max paths shown in the CHRONOS panel diff summary line.",
+          "default": "12",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust chronos.diffSampleMax in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
         {
           "id": "contextmint.chronos.enabled",
           "description": "Show CHRONOS panel (checkpoints + bisect). Requires chronos.enabled on the server. Default off — not GATE-W2.",
@@ -304,6 +346,48 @@
           "usage": {
             "whenEnable": "When true — Show MCP export operator commands (list/call tools). Requires agent.moat.mcp_* on the server. Default off.",
             "whenDisable": "When false — show MCP export operator commands (list/call tools). Requires agent.moat.mcp_* on the server. Default off.",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.oracle.dwellMs",
+          "description": "Idle dwell before POST /oracle/prefetch (ms). Typing or tab switch aborts in-flight prefetch.",
+          "default": "800",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust oracle.dwellMs in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.oracle.enabled",
+          "description": "Enable ORACLE dwell prefetch + context-ready indicator. Requires oracle.enabled on the server. Default off — not GATE-W3 product.",
+          "default": "false",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Enable ORACLE dwell prefetch + context-ready indicator. Requires oracle.enabled on the server. Default off — not GATE-W3 product.",
+            "whenDisable": "When false — enable ORACLE dwell prefetch + context-ready indicator. Requires oracle.enabled on the server. Default off — not GATE-W3 product.",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
               "Applies on next chat send or webview reload — no server restart for most keys"

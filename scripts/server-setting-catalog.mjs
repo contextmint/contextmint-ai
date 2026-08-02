@@ -638,6 +638,18 @@ export const SERVER_SETTING_DESCRIPTIONS = {
     "Safety cap on file/edge rows one health or architecture projection reads.",
   "chronos.enabled":
     "Admit CHRONOS indexer + /chronos APIs + sandbox bisect. Default false — not GATE-W2 product.",
+  "oracle.enabled":
+    "Admit ORACLE prefetch APIs + assemble cache-hit + Extension dwell. Default false — not GATE-W3 product; not graph-enhanced ORACLE.",
+  "oracle.cache_ttl_sec":
+    "TTL for ORACLE prefetch cache entries.",
+  "oracle.ttft_p95_budget_ms":
+    "Bench gate budget for cache-hit assembly p95 (milliseconds).",
+  "oracle.max_inflight_prefetch_per_file":
+    "Coalesce cap for in-flight prefetches per workspace+file.",
+  "chains.enabled":
+    "Admit /chains stub APIs (Recipe A deterministic critic, Recipe C text plan). Default false — not GATE-W3 product.",
+  "chains.idle_health_summary_enabled":
+    "When chains.enabled, allow deterministic idle health summary.",
   "chronos.checkpoint_refs":
     "Git refs resolved into checkpoints (workspace-agnostic).",
   "chronos.include_merge_commits":
