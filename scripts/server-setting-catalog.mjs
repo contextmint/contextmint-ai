@@ -588,6 +588,8 @@ export const SERVER_SETTING_DESCRIPTIONS = {
     "GATE-AHA eng wall-clock budget (ms) for DNA projector path (scaffold only).",
   "fabric.feature_lite_enabled":
     "Admit Feature Lite finalize materialization + GET /fabric/features (still requires fabric.enabled). Default off — not GATE-FEATURE-LITE product.",
+  "fabric.feature_registry_enabled":
+    "Admit Feature Registry promote/correct/propose + wizard APIs (requires fabric.enabled + feature_lite_enabled). Default false — not GATE-V3 / not Feature Registry product.",
   "fabric.feature_lite_max_features":
     "Max draft feature nodes upserted per finalize pass.",
   "fabric.feature_lite_max_implements_per_feature":
