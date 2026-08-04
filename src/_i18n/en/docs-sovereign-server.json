@@ -100,7 +100,7 @@
       },
       {
         "strong": "Not",
-        "text": "agent, review, inline, or AG-INTEL tools on by default — those are engineered behind server switches (agent.enabled / review.* / inline.enabled / agent.intel.*) until explicit default-on after dogfood"
+        "text": "AG-INTEL tools (LSP/git/packs) on by default without overlay — enable via full-parity / ag-intel dogfood; agent/review/inline are Wave J1 default-on"
       },
       {
         "strong": "Not",

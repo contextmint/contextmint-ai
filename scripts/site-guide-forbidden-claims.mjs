@@ -43,6 +43,16 @@ export const FORBIDDEN_CLAIM_PATTERNS = [
     pattern: /unlimited\s+chatgpt/i,
     reason: "Repo / Work / Hybrid lanes — not generic chat",
   },
+  {
+    id: "one-seat-claim",
+    pattern: /one[\s-]?seat|cancel\s+(copilot|cursor)|without\s+(reopening|another)\s+(ai|copilot|cursor)|full\s+parity\s+(claimed|ready|ships)|zero[\s-]?reopen\s+(day|engineering)/i,
+    reason: "One-seat / Full Parity claim waits for GATE-FULL-PARITY continuous dogfood PASS",
+  },
+  {
+    id: "replace-copilot-cursor",
+    pattern: /replaces?\s+(github\s+)?copilot|replaces?\s+cursor|copilot[\s-]?killer|cursor[\s-]?killer/i,
+    reason: "Do not claim Copilot/Cursor replacement before GATE-FULL-PARITY",
+  },
 ];
 
 /**

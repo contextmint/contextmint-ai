@@ -180,14 +180,14 @@ export const SERVER_SECTIONS = [
     id: "inline",
     title: "Inline completion (server)",
     description:
-      "Ghost-text completion endpoint — off by default. Pause policy (pause_mode) controls whether completions yield while embed/reindex is busy.",
+      "Ghost-text completion endpoint — Wave J1 default-on. Pause policy (pause_mode) controls whether completions yield while embed/reindex is busy.",
     match: (id) => id.startsWith("inline."),
   },
   {
     id: "agent-core",
     title: "Agent loop & Apply Gate (server)",
     description:
-      "Governed agent runtime — tool rounds, Apply Gate, ChangeSet, investigation depth, terminal allowlist. Off by default until operator enables agent.enabled after dogfood.",
+      "Governed agent runtime — tool rounds, Apply Gate, ChangeSet, investigation depth, terminal allowlist. Wave J1 default-on; mutations stay preview-first; fill allowed_commands or apply full-parity overlay.",
     match: (id) =>
       id.startsWith("agent.") &&
       !id.startsWith("agent.intel.") &&
@@ -199,7 +199,7 @@ export const SERVER_SECTIONS = [
     id: "agent-intel",
     title: "Agent intel (LSP · packs · git · tree)",
     description:
-      "GATE-AG-INTEL navigation tools — extension LSP proxy, pack query, git porcelain, tree_view. Nested under agent.intel.*; defaults off.",
+      "GATE-AG-INTEL navigation tools — extension LSP proxy, pack query, git porcelain, tree_view. Nested under agent.intel.*; shipped defaults off; enable via full-parity / ag-intel overlay.",
     match: (id) => id.startsWith("agent.intel."),
   },
   {
@@ -216,7 +216,7 @@ export const SERVER_SECTIONS = [
     id: "review",
     title: "Code review (server)",
     description:
-      "CR-1…CR-4 review programme — file/branch/feature/flow. All review.* switches shipped off until explicit default-on after GATE-R-FINAL dogfood.",
+      "CR-1…CR-4 review programme — file/branch/feature/flow. Wave J1 Parity default-on after GATE-R-FINAL dogfood.",
     match: (id) => id.startsWith("review."),
   },
   {
@@ -370,7 +370,7 @@ export const SERVER_SETTING_DESCRIPTIONS = {
   "retrieval.excerpt_select_infer_enabled":
     "Enable L5 excerpt-select infer stage in expand ladder — last resort only; off by default until certified.",
   "retrieval.live_progress_enabled":
-    "Emit pipeline_progress SSE events during chat retrieval so the VS Code extension live timeline can show retrieval phases. Off by default until RT-VIEW dogfood; extension renders events when the server emits them.",
+    "Emit pipeline_progress SSE events during chat retrieval so the VS Code extension live timeline can show retrieval phases. Wave J1 Parity default-on.",
   "retrieval.live_progress_granularity":
     "Live progress detail level: summary (user-meaningful phases only), stage (each pipeline stage), or verbose (includes meta).",
   "retrieval.live_progress_max_events_per_turn":
@@ -384,7 +384,7 @@ export const SERVER_SETTING_DESCRIPTIONS = {
   "inline.pause_while_indexing":
     "DEPRECATED mirror of pause_mode — prefer inline.pause_mode. True alone maps to on_embed_busy; pause_mode wins when both are set. Default false.",
   "inline.enabled":
-    "Enable the ghost-text /api/v1/complete endpoint — off by default until product default-on.",
+    "Enable the ghost-text /api/v1/complete endpoint — Wave J1 Parity default-on.",
   "server.ollama_url":
     "Chat Ollama base URL (Mode A shared host, or Mode B chat host). Example: http://192.168.1.248:11434.",
   "server.ollama_embed_url":
@@ -485,7 +485,7 @@ export const SERVER_SETTING_DESCRIPTIONS = {
   "engine.server_port":
     "API port Engine expects when managing the Python server (default 8000).",
   "agent.enabled":
-    "Master switch for the governed agent loop (tools + Apply Gate). Off by default until GATE-AG / TOOLING default-on.",
+    "Master switch for the governed agent loop (tools + Apply Gate). Wave J1 Parity default-on.",
   "agent.apply_gate_required":
     "Require Apply Gate decision before governed writes. Keep true in production.",
   "agent.intel.enabled":
@@ -503,11 +503,11 @@ export const SERVER_SETTING_DESCRIPTIONS = {
   "agent.network.enabled":
     "Allow registering fetch_url / search_web. Sovereign policy may still BLOCK.",
   "agent.terminal.enabled":
-    "Allowlisted run_terminal tool. Off until enterprise tooling default-on.",
+    "Allowlisted run_terminal tool. Wave J1 default-on; populate allowed_commands or apply full-parity overlay.",
   "agent.spec_tools.enabled":
     "Spec tools (read_image / insert_text_at_cursor). Off by default.",
   "review.enabled":
-    "Master review programme switch. Off until explicit default-on after GATE-R-FINAL.",
+    "Master review programme switch. Wave J1 Parity default-on after GATE-R-FINAL.",
   "ss_mu.enabled":
     "Sovereign dual-plane multi-user. Off until GATE-SS-MU PO dogfood PASS.",
   "fabric.enabled":

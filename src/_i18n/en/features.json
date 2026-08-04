@@ -111,13 +111,13 @@
     "text": "Stored governance findings from your repo — clone pairs, near-duplicates, and structure signals. Inform-only by default; optional gates can block assisted apply on high-severity clones. Run scans from the extension command palette or Engine → Quality."
   },
   "optional": {
-    "title": "Optional & preview (off by default)",
-    "lead": "Available in settings for teams that opt in — not required for the sovereign local-first path. Several of these are part of the regulated-pilot demo bar for v1.0; product defaults stay off until explicit default-on decisions.",
+    "title": "Optional & preview",
+    "lead": "BYOK cloud and Differentiator surfaces stay opt-in. Coding-day Parity defaults (agent, review, inline, live progress) are on after Wave J1 — Full Parity / one-seat claim still requires continuous dogfood (GATE-FULL-PARITY).",
     "items": [
       { "strong": "BYOK cloud routing", "before": "— OpenAI, Anthropic, Groq; keys in VS Code secrets; optional cloud vision when you select a vision model (", "linkText": "trust center", "linkHref": "/trust.html", "after": ")" },
       { "strong": "Git sandbox worktrees", "text": "— isolated test/apply in a worktree (server + extension flags)" },
-      { "strong": "Inline ghost-text completion", "text": "— local FIM when inline backend is enabled" },
-      { "strong": "In-IDE code review", "text": "— file / branch / feature / flow review with human gates (flagged until default-on)" },
+      { "strong": "Inline ghost-text completion", "text": "— local FIM; server inline.enabled default-on (Wave J1)" },
+      { "strong": "In-IDE code review", "text": "— file / branch / feature / flow with human gates (Wave J1 default-on; claim ≠ dogfood PASS)" },
       { "strong": "Shared on-prem API server", "before": "— regulated pilot with Docker/Helm + OIDC (", "linkText": "deployment models", "linkHref": "/trust.html#deployment", "after": ")" }
     ]
   },
