@@ -53,6 +53,11 @@ export const FORBIDDEN_CLAIM_PATTERNS = [
     pattern: /replaces?\s+(github\s+)?copilot|replaces?\s+cursor|copilot[\s-]?killer|cursor[\s-]?killer/i,
     reason: "Do not claim Copilot/Cursor replacement before GATE-FULL-PARITY",
   },
+  {
+    id: "agent-mode-complete",
+    pattern: /agent\s+mode\s+(complete|done|ready|ships)|fully\s+autonomous\s+agent|autonomous\s+agent\s+mode/i,
+    reason: "Agent Mode Experience eng ≠ Agent-complete claim; wait GATE-FULL-PARITY continuous PASS",
+  },
 ];
 
 /**
