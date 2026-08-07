@@ -199,7 +199,7 @@ export const SERVER_SECTIONS = [
     id: "agent-intel",
     title: "Agent intel (LSP · packs · git · tree)",
     description:
-      "GATE-AG-INTEL navigation tools — extension LSP proxy, pack query, git porcelain, tree_view. Nested under agent.intel.*; shipped defaults off; enable via full-parity / ag-intel overlay.",
+      "GATE-AG-INTEL navigation tools — extension LSP proxy, pack query, git porcelain, tree_view. Nested under agent.intel.*; Full Parity eng default-on; one-seat claim still requires continuous PO dogfood.",
     match: (id) => id.startsWith("agent.intel."),
   },
   {
@@ -489,9 +489,11 @@ export const SERVER_SETTING_DESCRIPTIONS = {
   "agent.apply_gate_required":
     "Require Apply Gate decision before governed writes. Keep true in production.",
   "agent.intel.enabled":
-    "GATE-AG-INTEL umbrella — LSP / packs / git / tree agent tools. Off until dogfood overlay.",
+    "GATE-AG-INTEL umbrella — LSP / packs / git / tree agent tools. Full Parity eng default-on; claim still PO dogfood.",
   "agent.intel.lsp.enabled":
     "LSP proxy tools (go_to_definition, find_references, …). Needs extension loopback proxy header.",
+  "agent.experience_v2.enabled":
+    "Wave FPX repair_context SSE for in-seat Iterate. Eng default-on; one-seat claim still GATE-FULL-PARITY PO dogfood.",
   "agent.moat.enabled":
     "Moat tools umbrella — deepen blast, ADR context, MCP export. Off by default.",
   "agent.moat.mcp_export_enabled":
@@ -503,7 +505,7 @@ export const SERVER_SETTING_DESCRIPTIONS = {
   "agent.network.enabled":
     "Allow registering fetch_url / search_web. Sovereign policy may still BLOCK.",
   "agent.terminal.enabled":
-    "Allowlisted run_terminal tool. Wave J1 default-on; populate allowed_commands or apply full-parity overlay.",
+    "Allowlisted run_terminal tool. Wave J1 default-on; allowed_commands stays empty until operator fills (or dogfood overlay seeds this repo).",
   "agent.spec_tools.enabled":
     "Spec tools (read_image / insert_text_at_cursor). Off by default.",
   "review.enabled":
