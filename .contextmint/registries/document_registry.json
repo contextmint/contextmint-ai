@@ -1,0 +1,5703 @@
+{
+  "schema_version": "rxi048.document.v1",
+  "extracted_at": "2026-08-09T08:57:30.179201+00:00",
+  "source_commit": null,
+  "objects": [
+    {
+      "object_id": "document:readme.md:contextmint-marketing-site",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "readme.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "contextmint-marketing-site",
+        "title": "ContextMint Marketing Site",
+        "level": 1,
+        "start_line": 1,
+        "end_line": 9,
+        "anchor": "contextmint-marketing-site",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:readme.md:prerequisites",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "readme.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "prerequisites",
+        "title": "Prerequisites",
+        "level": 2,
+        "start_line": 10,
+        "end_line": 15,
+        "anchor": "prerequisites",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:readme.md:run-and-build-locally",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "readme.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "run-and-build-locally",
+        "title": "Run and build locally",
+        "level": 2,
+        "start_line": 16,
+        "end_line": 20,
+        "anchor": "run-and-build-locally",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:readme.md:1-install-dependencies-first-time-or-after-package-json-changes",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "readme.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "1-install-dependencies-first-time-or-after-package-json-changes",
+        "title": "1. Install dependencies (first time, or after package.json changes)",
+        "level": 1,
+        "start_line": 21,
+        "end_line": 23,
+        "anchor": "1-install-dependencies-first-time-or-after-package-json-changes",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:readme.md:2-development-server-live-reload-at-http-localhost-8080",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "readme.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "2-development-server-live-reload-at-http-localhost-8080",
+        "title": "2. Development server \u2014 live reload at http://localhost:8080",
+        "level": 1,
+        "start_line": 24,
+        "end_line": 26,
+        "anchor": "2-development-server-live-reload-at-http-localhost-8080",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:readme.md:3-production-build-output-in-site",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "readme.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "3-production-build-output-in-site",
+        "title": "3. Production build \u2014 output in _site/",
+        "level": 1,
+        "start_line": 27,
+        "end_line": 29,
+        "anchor": "3-production-build-output-in-site",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:readme.md:4-optional-regenerate-settings-catalogs-if-package-sources-are-present",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "readme.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "4-optional-regenerate-settings-catalogs-if-package-sources-are-present",
+        "title": "4. Optional: regenerate settings catalogs (if package sources are present)",
+        "level": 1,
+        "start_line": 30,
+        "end_line": 32,
+        "anchor": "4-optional-regenerate-settings-catalogs-if-package-sources-are-present",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:readme.md:5-regenerate-site-guide-json-from-faq-html",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "readme.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "5-regenerate-site-guide-json-from-faq-html",
+        "title": "5. Regenerate site guide JSON from faq.html",
+        "level": 1,
+        "start_line": 33,
+        "end_line": 35,
+        "anchor": "5-regenerate-site-guide-json-from-faq-html",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:readme.md:6-run-site-guide-matcher-copy-review-tests",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "readme.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "6-run-site-guide-matcher-copy-review-tests",
+        "title": "6. Run site guide matcher + copy review tests",
+        "level": 1,
+        "start_line": 36,
+        "end_line": 38,
+        "anchor": "6-run-site-guide-matcher-copy-review-tests",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:readme.md:7-rebuild-pagefind-index-after-manual-site-changes-also-runs-on-build",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "readme.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "7-rebuild-pagefind-index-after-manual-site-changes-also-runs-on-build",
+        "title": "7. Rebuild Pagefind index after manual _site changes (also runs on build)",
+        "level": 1,
+        "start_line": 39,
+        "end_line": 41,
+        "anchor": "7-rebuild-pagefind-index-after-manual-site-changes-also-runs-on-build",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:readme.md:8-optional-clean-build-output",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "readme.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "8-optional-clean-build-output",
+        "title": "8. Optional: clean build output",
+        "level": 1,
+        "start_line": 42,
+        "end_line": 49,
+        "anchor": "8-optional-clean-build-output",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:readme.md:settings-reference-pages",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "readme.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "settings-reference-pages",
+        "title": "Settings reference pages",
+        "level": 3,
+        "start_line": 50,
+        "end_line": 53,
+        "anchor": "settings-reference-pages",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:readme.md:project-structure",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "readme.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "project-structure",
+        "title": "Project structure",
+        "level": 2,
+        "start_line": 54,
+        "end_line": 75,
+        "anchor": "project-structure",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:readme.md:documentation",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "readme.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "documentation",
+        "title": "Documentation",
+        "level": 2,
+        "start_line": 76,
+        "end_line": 86,
+        "anchor": "documentation",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:readme.md:accessibility",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "readme.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "accessibility",
+        "title": "Accessibility",
+        "level": 2,
+        "start_line": 87,
+        "end_line": 96,
+        "anchor": "accessibility",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:readme.md:adding-a-page",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "readme.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "adding-a-page",
+        "title": "Adding a page",
+        "level": 2,
+        "start_line": 97,
+        "end_line": 116,
+        "anchor": "adding-a-page",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:readme.md:deploy",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "readme.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "deploy",
+        "title": "Deploy",
+        "level": 2,
+        "start_line": 117,
+        "end_line": 122,
+        "anchor": "deploy",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:.contextmint/packs/search/content.md:mechanism-retrieval-auto-generated",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": ".contextmint/packs/search/content.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "mechanism-retrieval-auto-generated",
+        "title": "Mechanism retrieval (auto-generated)",
+        "level": 1,
+        "start_line": 1,
+        "end_line": 8,
+        "anchor": "mechanism-retrieval-auto-generated",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/go-live-checklist.md:contextmint-website-go-live-checklist",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/go-live-checklist.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "contextmint-website-go-live-checklist",
+        "title": "ContextMint website \u2014 go-live checklist",
+        "level": 1,
+        "start_line": 1,
+        "end_line": 6,
+        "anchor": "contextmint-website-go-live-checklist",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/go-live-checklist.md:before-deploy",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/go-live-checklist.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "before-deploy",
+        "title": "Before deploy",
+        "level": 2,
+        "start_line": 7,
+        "end_line": 25,
+        "anchor": "before-deploy",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/go-live-checklist.md:dns-github-pages",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/go-live-checklist.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "dns-github-pages",
+        "title": "DNS + GitHub Pages",
+        "level": 2,
+        "start_line": 26,
+        "end_line": 35,
+        "anchor": "dns-github-pages",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/go-live-checklist.md:after-live",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/go-live-checklist.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "after-live",
+        "title": "After live",
+        "level": 2,
+        "start_line": 36,
+        "end_line": 44,
+        "anchor": "after-live",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/go-live-checklist.md:accessibility-wcag-2-2-aa-manual",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/go-live-checklist.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "accessibility-wcag-2-2-aa-manual",
+        "title": "Accessibility (WCAG 2.2 AA \u2014 manual)",
+        "level": 2,
+        "start_line": 45,
+        "end_line": 58,
+        "anchor": "accessibility-wcag-2-2-aa-manual",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/i18n.md:marketing-site-i18n",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/i18n.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "marketing-site-i18n",
+        "title": "Marketing site i18n",
+        "level": 1,
+        "start_line": 1,
+        "end_line": 4,
+        "anchor": "marketing-site-i18n",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/i18n.md:layout",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/i18n.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "layout",
+        "title": "Layout",
+        "level": 2,
+        "start_line": 5,
+        "end_line": 21,
+        "anchor": "layout",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/i18n.md:activation-rules",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/i18n.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "activation-rules",
+        "title": "Activation rules",
+        "level": 2,
+        "start_line": 22,
+        "end_line": 30,
+        "anchor": "activation-rules",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/i18n.md:what-is-wired-today",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/i18n.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "what-is-wired-today",
+        "title": "What is wired today",
+        "level": 2,
+        "start_line": 31,
+        "end_line": 48,
+        "anchor": "what-is-wired-today",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/i18n.md:adding-arabic-copy",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/i18n.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "adding-arabic-copy",
+        "title": "Adding Arabic copy",
+        "level": 2,
+        "start_line": 49,
+        "end_line": 55,
+        "anchor": "adding-arabic-copy",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/i18n.md:template-helpers",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/i18n.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "template-helpers",
+        "title": "Template helpers",
+        "level": 2,
+        "start_line": 56,
+        "end_line": 61,
+        "anchor": "template-helpers",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/i18n.md:regenerating-english-page-meta-packs",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/i18n.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "regenerating-english-page-meta-packs",
+        "title": "Regenerating English page meta packs",
+        "level": 2,
+        "start_line": 62,
+        "end_line": 68,
+        "anchor": "regenerating-english-page-meta-packs",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/readme.md:contextmint-ai-site-documentation",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/readme.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "contextmint-ai-site-documentation",
+        "title": "contextmint.ai \u2014 site documentation",
+        "level": 1,
+        "start_line": 1,
+        "end_line": 12,
+        "anchor": "contextmint-ai-site-documentation",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:site-guide-chat-implementation-plan-standalone",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "site-guide-chat-implementation-plan-standalone",
+        "title": "Site Guide Chat \u2014 Implementation Plan (standalone)",
+        "level": 1,
+        "start_line": 1,
+        "end_line": 14,
+        "anchor": "site-guide-chat-implementation-plan-standalone",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:0-start-here-external-team-checklist",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "0-start-here-external-team-checklist",
+        "title": "0. Start here (external team checklist)",
+        "level": 2,
+        "start_line": 15,
+        "end_line": 32,
+        "anchor": "0-start-here-external-team-checklist",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:table-of-contents",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "table-of-contents",
+        "title": "Table of contents",
+        "level": 2,
+        "start_line": 33,
+        "end_line": 55,
+        "anchor": "table-of-contents",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:1-problem-and-solution",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "1-problem-and-solution",
+        "title": "1. Problem and solution",
+        "level": 2,
+        "start_line": 56,
+        "end_line": 57,
+        "anchor": "1-problem-and-solution",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:problem",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "problem",
+        "title": "Problem",
+        "level": 3,
+        "start_line": 58,
+        "end_line": 61,
+        "anchor": "problem",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:solution-v1",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "solution-v1",
+        "title": "Solution (v1)",
+        "level": 3,
+        "start_line": 62,
+        "end_line": 73,
+        "anchor": "solution-v1",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:2-product-primer-read-before-writing-copy",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "2-product-primer-read-before-writing-copy",
+        "title": "2. Product primer (read before writing copy)",
+        "level": 2,
+        "start_line": 74,
+        "end_line": 77,
+        "anchor": "2-product-primer-read-before-writing-copy",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:what-contextmint-is",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "what-contextmint-is",
+        "title": "What ContextMint is",
+        "level": 3,
+        "start_line": 78,
+        "end_line": 84,
+        "anchor": "what-contextmint-is",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:how-users-install-critical-common-wrong-assumption",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "how-users-install-critical-common-wrong-assumption",
+        "title": "How users install (critical \u2014 common wrong assumption)",
+        "level": 3,
+        "start_line": 85,
+        "end_line": 94,
+        "anchor": "how-users-install-critical-common-wrong-assumption",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:pricing-critical",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "pricing-critical",
+        "title": "Pricing (critical)",
+        "level": 3,
+        "start_line": 95,
+        "end_line": 104,
+        "anchor": "pricing-critical",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:privacy-sovereign-story",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "privacy-sovereign-story",
+        "title": "Privacy / sovereign story",
+        "level": 3,
+        "start_line": 105,
+        "end_line": 110,
+        "anchor": "privacy-sovereign-story",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:widget-naming",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "widget-naming",
+        "title": "Widget naming",
+        "level": 3,
+        "start_line": 111,
+        "end_line": 123,
+        "anchor": "widget-naming",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:3-repository-map",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "3-repository-map",
+        "title": "3. Repository map",
+        "level": 2,
+        "start_line": 124,
+        "end_line": 174,
+        "anchor": "3-repository-map",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:4-build-and-deploy-eleventy-github-pages",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "4-build-and-deploy-eleventy-github-pages",
+        "title": "4. Build and deploy (Eleventy + GitHub Pages)",
+        "level": 2,
+        "start_line": 175,
+        "end_line": 176,
+        "anchor": "4-build-and-deploy-eleventy-github-pages",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:prerequisites",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "prerequisites",
+        "title": "Prerequisites",
+        "level": 3,
+        "start_line": 177,
+        "end_line": 181,
+        "anchor": "prerequisites",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:local-development",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "local-development",
+        "title": "Local development",
+        "level": 3,
+        "start_line": 182,
+        "end_line": 186,
+        "anchor": "local-development",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:http-localhost-8080-eleventy-serve-live-reload",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "http-localhost-8080-eleventy-serve-live-reload",
+        "title": "\u2192 http://localhost:8080 (Eleventy --serve, live reload)",
+        "level": 1,
+        "start_line": 187,
+        "end_line": 189,
+        "anchor": "http-localhost-8080-eleventy-serve-live-reload",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:production-build",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "production-build",
+        "title": "Production build",
+        "level": 3,
+        "start_line": 190,
+        "end_line": 193,
+        "anchor": "production-build",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:writes-static-site-to-site",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "writes-static-site-to-site",
+        "title": "\u2192 writes static site to _site/",
+        "level": 1,
+        "start_line": 194,
+        "end_line": 196,
+        "anchor": "writes-static-site-to-site",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:how-eleventy-works-here",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "how-eleventy-works-here",
+        "title": "How Eleventy works here",
+        "level": 3,
+        "start_line": 197,
+        "end_line": 206,
+        "anchor": "how-eleventy-works-here",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:deploy",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "deploy",
+        "title": "Deploy",
+        "level": 3,
+        "start_line": 207,
+        "end_line": 212,
+        "anchor": "deploy",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:existing-generator-pattern",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "existing-generator-pattern",
+        "title": "Existing generator pattern",
+        "level": 3,
+        "start_line": 213,
+        "end_line": 224,
+        "anchor": "existing-generator-pattern",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:5-goals-and-non-goals",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "5-goals-and-non-goals",
+        "title": "5. Goals and non-goals",
+        "level": 2,
+        "start_line": 225,
+        "end_line": 226,
+        "anchor": "5-goals-and-non-goals",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:goals-v1",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "goals-v1",
+        "title": "Goals (v1)",
+        "level": 3,
+        "start_line": 227,
+        "end_line": 237,
+        "anchor": "goals-v1",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:non-goals-v1",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "non-goals-v1",
+        "title": "Non-goals (v1)",
+        "level": 3,
+        "start_line": 238,
+        "end_line": 250,
+        "anchor": "non-goals-v1",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:6-architecture-tiers-1-and-2-only",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "6-architecture-tiers-1-and-2-only",
+        "title": "6. Architecture \u2014 Tiers 1 and 2 only",
+        "level": 2,
+        "start_line": 251,
+        "end_line": 274,
+        "anchor": "6-architecture-tiers-1-and-2-only",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:7-content-schema-and-match-rules",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "7-content-schema-and-match-rules",
+        "title": "7. Content schema and match rules",
+        "level": 2,
+        "start_line": 275,
+        "end_line": 276,
+        "anchor": "7-content-schema-and-match-rules",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:file-src-data-site-guide-json",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "file-src-data-site-guide-json",
+        "title": "File: `src/_data/site-guide.json`",
+        "level": 3,
+        "start_line": 277,
+        "end_line": 314,
+        "anchor": "file-src-data-site-guide-json",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:match-rules-implement-exactly",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "match-rules-implement-exactly",
+        "title": "Match rules (implement exactly)",
+        "level": 3,
+        "start_line": 315,
+        "end_line": 327,
+        "anchor": "match-rules-implement-exactly",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:response-shape-all-tiers",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "response-shape-all-tiers",
+        "title": "Response shape (all tiers)",
+        "level": 3,
+        "start_line": 328,
+        "end_line": 341,
+        "anchor": "response-shape-all-tiers",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:8-ordered-implementation-sgc-001-sgc-010",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "8-ordered-implementation-sgc-001-sgc-010",
+        "title": "8. Ordered implementation (SGC-001\u2013SGC-010)",
+        "level": 2,
+        "start_line": 342,
+        "end_line": 345,
+        "anchor": "8-ordered-implementation-sgc-001-sgc-010",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:8-1-master-step-index",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "8-1-master-step-index",
+        "title": "8.1 Master step index",
+        "level": 3,
+        "start_line": 346,
+        "end_line": 360,
+        "anchor": "8-1-master-step-index",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:8-2-phase-summary",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "8-2-phase-summary",
+        "title": "8.2 Phase summary",
+        "level": 3,
+        "start_line": 361,
+        "end_line": 369,
+        "anchor": "8-2-phase-summary",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:8-3-day-by-day-schedule-suggested",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "8-3-day-by-day-schedule-suggested",
+        "title": "8.3 Day-by-day schedule (suggested)",
+        "level": 3,
+        "start_line": 370,
+        "end_line": 379,
+        "anchor": "8-3-day-by-day-schedule-suggested",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:8-4-per-step-detail",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "8-4-per-step-detail",
+        "title": "8.4 Per-step detail",
+        "level": 3,
+        "start_line": 380,
+        "end_line": 381,
+        "anchor": "8-4-per-step-detail",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:sgc-001-build-generator-scripts-gen-site-guide-mjs",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "sgc-001-build-generator-scripts-gen-site-guide-mjs",
+        "title": "SGC-001 \u2014 Build generator `scripts/gen-site-guide.mjs`",
+        "level": 4,
+        "start_line": 382,
+        "end_line": 412,
+        "anchor": "sgc-001-build-generator-scripts-gen-site-guide-mjs",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:sgc-002-wire-package-json",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "sgc-002-wire-package-json",
+        "title": "SGC-002 \u2014 Wire `package.json`",
+        "level": 4,
+        "start_line": 413,
+        "end_line": 420,
+        "anchor": "sgc-002-wire-package-json",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:sgc-003-curated-keywords-scripts-site-guide-pages-mjs",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "sgc-003-curated-keywords-scripts-site-guide-pages-mjs",
+        "title": "SGC-003 \u2014 Curated keywords `scripts/site-guide-pages.mjs`",
+        "level": 4,
+        "start_line": 421,
+        "end_line": 429,
+        "anchor": "sgc-003-curated-keywords-scripts-site-guide-pages-mjs",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:sgc-004-widget-ui",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "sgc-004-widget-ui",
+        "title": "SGC-004 \u2014 Widget UI",
+        "level": 4,
+        "start_line": 430,
+        "end_line": 451,
+        "anchor": "sgc-004-widget-ui",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:sgc-005-matcher-src-assets-js-site-guide-matcher-js",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "sgc-005-matcher-src-assets-js-site-guide-matcher-js",
+        "title": "SGC-005 \u2014 Matcher `src/assets/js/site-guide-matcher.js`",
+        "level": 4,
+        "start_line": 452,
+        "end_line": 467,
+        "anchor": "sgc-005-matcher-src-assets-js-site-guide-matcher-js",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:sgc-006-include-on-all-pages",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "sgc-006-include-on-all-pages",
+        "title": "SGC-006 \u2014 Include on all pages",
+        "level": 4,
+        "start_line": 468,
+        "end_line": 484,
+        "anchor": "sgc-006-include-on-all-pages",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:sgc-007-source-link-rendering",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "sgc-007-source-link-rendering",
+        "title": "SGC-007 \u2014 Source link rendering",
+        "level": 4,
+        "start_line": 485,
+        "end_line": 499,
+        "anchor": "sgc-007-source-link-rendering",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:sgc-008-optional-was-this-helpful-nice-to-have",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "sgc-008-optional-was-this-helpful-nice-to-have",
+        "title": "SGC-008 \u2014 Optional \u201cWas this helpful?\u201d (nice-to-have)",
+        "level": 4,
+        "start_line": 500,
+        "end_line": 505,
+        "anchor": "sgc-008-optional-was-this-helpful-nice-to-have",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:sgc-009-copy-review",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "sgc-009-copy-review",
+        "title": "SGC-009 \u2014 Copy review",
+        "level": 4,
+        "start_line": 506,
+        "end_line": 511,
+        "anchor": "sgc-009-copy-review",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:sgc-010-optional-pagefind-out-of-v1-scope",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "sgc-010-optional-pagefind-out-of-v1-scope",
+        "title": "SGC-010 \u2014 Optional Pagefind (out of v1 scope)",
+        "level": 4,
+        "start_line": 512,
+        "end_line": 517,
+        "anchor": "sgc-010-optional-pagefind-out-of-v1-scope",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:9-ui-specification",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "9-ui-specification",
+        "title": "9. UI specification",
+        "level": 2,
+        "start_line": 518,
+        "end_line": 519,
+        "anchor": "9-ui-specification",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:placement",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "placement",
+        "title": "Placement",
+        "level": 3,
+        "start_line": 520,
+        "end_line": 524,
+        "anchor": "placement",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:colors-reuse-from-src-assets-css-main-css",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "colors-reuse-from-src-assets-css-main-css",
+        "title": "Colors (reuse from `src/assets/css/main.css`)",
+        "level": 3,
+        "start_line": 525,
+        "end_line": 534,
+        "anchor": "colors-reuse-from-src-assets-css-main-css",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:bubble-button",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "bubble-button",
+        "title": "Bubble button",
+        "level": 3,
+        "start_line": 535,
+        "end_line": 540,
+        "anchor": "bubble-button",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:panel",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "panel",
+        "title": "Panel",
+        "level": 3,
+        "start_line": 541,
+        "end_line": 551,
+        "anchor": "panel",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:states",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "states",
+        "title": "States",
+        "level": 3,
+        "start_line": 552,
+        "end_line": 560,
+        "anchor": "states",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:wireframe",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "wireframe",
+        "title": "Wireframe",
+        "level": 3,
+        "start_line": 561,
+        "end_line": 584,
+        "anchor": "wireframe",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:10-reference-code-copy-paste-starting-points",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "10-reference-code-copy-paste-starting-points",
+        "title": "10. Reference code (copy-paste starting points)",
+        "level": 2,
+        "start_line": 585,
+        "end_line": 586,
+        "anchor": "10-reference-code-copy-paste-starting-points",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:10-1-scripts-site-guide-faq-keywords-mjs",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "10-1-scripts-site-guide-faq-keywords-mjs",
+        "title": "10.1 `scripts/site-guide-faq-keywords.mjs`",
+        "level": 3,
+        "start_line": 587,
+        "end_line": 598,
+        "anchor": "10-1-scripts-site-guide-faq-keywords-mjs",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:10-2-src-assets-js-site-guide-matcher-js",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "10-2-src-assets-js-site-guide-matcher-js",
+        "title": "10.2 `src/assets/js/site-guide-matcher.js`",
+        "level": 3,
+        "start_line": 599,
+        "end_line": 665,
+        "anchor": "10-2-src-assets-js-site-guide-matcher-js",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:10-3-src-includes-site-guide-html",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "10-3-src-includes-site-guide-html",
+        "title": "10.3 `src/_includes/site-guide.html`",
+        "level": 3,
+        "start_line": 666,
+        "end_line": 709,
+        "anchor": "10-3-src-includes-site-guide-html",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:10-4-src-assets-js-site-guide-js-skeleton",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "10-4-src-assets-js-site-guide-js-skeleton",
+        "title": "10.4 `src/assets/js/site-guide.js` (skeleton)",
+        "level": 3,
+        "start_line": 710,
+        "end_line": 785,
+        "anchor": "10-4-src-assets-js-site-guide-js-skeleton",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:10-5-scripts-gen-site-guide-mjs-core-parse-logic",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "10-5-scripts-gen-site-guide-mjs-core-parse-logic",
+        "title": "10.5 `scripts/gen-site-guide.mjs` (core parse logic)",
+        "level": 3,
+        "start_line": 786,
+        "end_line": 873,
+        "anchor": "10-5-scripts-gen-site-guide-mjs-core-parse-logic",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:11-forbidden-claims-and-copy-rules",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "11-forbidden-claims-and-copy-rules",
+        "title": "11. Forbidden claims and copy rules",
+        "level": 2,
+        "start_line": 874,
+        "end_line": 875,
+        "anchor": "11-forbidden-claims-and-copy-rules",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:never-state-in-widget-answers",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "never-state-in-widget-answers",
+        "title": "Never state in widget answers",
+        "level": 3,
+        "start_line": 876,
+        "end_line": 886,
+        "anchor": "never-state-in-widget-answers",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:when-editing-content",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "when-editing-content",
+        "title": "When editing content",
+        "level": 3,
+        "start_line": 887,
+        "end_line": 894,
+        "anchor": "when-editing-content",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:12-testing-and-acceptance",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "12-testing-and-acceptance",
+        "title": "12. Testing and acceptance",
+        "level": 2,
+        "start_line": 895,
+        "end_line": 896,
+        "anchor": "12-testing-and-acceptance",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:automated-npm-run-test-site-guide",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "automated-npm-run-test-site-guide",
+        "title": "Automated (`npm run test:site-guide`)",
+        "level": 3,
+        "start_line": 897,
+        "end_line": 906,
+        "anchor": "automated-npm-run-test-site-guide",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:manual-uat",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "manual-uat",
+        "title": "Manual UAT",
+        "level": 3,
+        "start_line": 907,
+        "end_line": 917,
+        "anchor": "manual-uat",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:gate-sgc-merge-criteria",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "gate-sgc-merge-criteria",
+        "title": "GATE-SGC (merge criteria)",
+        "level": 3,
+        "start_line": 918,
+        "end_line": 926,
+        "anchor": "gate-sgc-merge-criteria",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:13-rollback",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "13-rollback",
+        "title": "13. Rollback",
+        "level": 2,
+        "start_line": 927,
+        "end_line": 934,
+        "anchor": "13-rollback",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:14-tier-3-deferred-gpt-openai",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "14-tier-3-deferred-gpt-openai",
+        "title": "14. Tier 3 \u2014 deferred (GPT / OpenAI)",
+        "level": 2,
+        "start_line": 935,
+        "end_line": 938,
+        "anchor": "14-tier-3-deferred-gpt-openai",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:why-deferred",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "why-deferred",
+        "title": "Why deferred",
+        "level": 3,
+        "start_line": 939,
+        "end_line": 947,
+        "anchor": "why-deferred",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:future-architecture-when-product-owner-approves",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "future-architecture-when-product-owner-approves",
+        "title": "Future architecture (when product owner approves)",
+        "level": 3,
+        "start_line": 948,
+        "end_line": 956,
+        "anchor": "future-architecture-when-product-owner-approves",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:future-pickup-gate",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "future-pickup-gate",
+        "title": "Future pickup gate",
+        "level": 3,
+        "start_line": 957,
+        "end_line": 965,
+        "anchor": "future-pickup-gate",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:15-0-faq-content-prerequisite-src-faq-html",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "15-0-faq-content-prerequisite-src-faq-html",
+        "title": "15.0 FAQ content prerequisite (`src/faq.html`)",
+        "level": 2,
+        "start_line": 966,
+        "end_line": 985,
+        "anchor": "15-0-faq-content-prerequisite-src-faq-html",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:15-faq-inventory-seed-content",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "15-faq-inventory-seed-content",
+        "title": "15. FAQ inventory (seed content)",
+        "level": 2,
+        "start_line": 986,
+        "end_line": 1018,
+        "anchor": "15-faq-inventory-seed-content",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:16-page-keyword-inventory-seed-content",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "16-page-keyword-inventory-seed-content",
+        "title": "16. Page keyword inventory (seed content)",
+        "level": 2,
+        "start_line": 1019,
+        "end_line": 1042,
+        "anchor": "16-page-keyword-inventory-seed-content",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:17-open-questions",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "17-open-questions",
+        "title": "17. Open questions",
+        "level": 2,
+        "start_line": 1043,
+        "end_line": 1052,
+        "anchor": "17-open-questions",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-chat-plan.md:document-history",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-chat-plan.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "document-history",
+        "title": "Document history",
+        "level": 2,
+        "start_line": 1053,
+        "end_line": 1061,
+        "anchor": "document-history",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:site-guide-settings-configuration-questions",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "site-guide-settings-configuration-questions",
+        "title": "Site guide \u2014 settings & configuration questions",
+        "level": 1,
+        "start_line": 1,
+        "end_line": 10,
+        "anchor": "site-guide-settings-configuration-questions",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:enterprise-on-prem-overview",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "enterprise-on-prem-overview",
+        "title": "Enterprise & On-Prem (overview)",
+        "level": 2,
+        "start_line": 11,
+        "end_line": 12,
+        "anchor": "enterprise-on-prem-overview",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:on-prem-extension-server-setup",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "on-prem-extension-server-setup",
+        "title": "On-prem extension + server setup",
+        "level": 3,
+        "start_line": 13,
+        "end_line": 24,
+        "anchor": "on-prem-extension-server-setup",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:server-backend-configuration",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "server-backend-configuration",
+        "title": "Server & Backend Configuration",
+        "level": 2,
+        "start_line": 25,
+        "end_line": 26,
+        "anchor": "server-backend-configuration",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:port-settings",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "port-settings",
+        "title": "Port settings",
+        "level": 3,
+        "start_line": 27,
+        "end_line": 38,
+        "anchor": "port-settings",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:host-address-bind",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "host-address-bind",
+        "title": "Host address / bind",
+        "level": 3,
+        "start_line": 39,
+        "end_line": 50,
+        "anchor": "host-address-bind",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:ssl-tls-setup",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "ssl-tls-setup",
+        "title": "SSL / TLS setup",
+        "level": 3,
+        "start_line": 51,
+        "end_line": 62,
+        "anchor": "ssl-tls-setup",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:index-storage-chroma",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "index-storage-chroma",
+        "title": "Index storage (Chroma)",
+        "level": 3,
+        "start_line": 63,
+        "end_line": 74,
+        "anchor": "index-storage-chroma",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:server-log-level",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "server-log-level",
+        "title": "Server log level",
+        "level": 3,
+        "start_line": 75,
+        "end_line": 86,
+        "anchor": "server-log-level",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:log-rotation",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "log-rotation",
+        "title": "Log rotation",
+        "level": 3,
+        "start_line": 87,
+        "end_line": 98,
+        "anchor": "log-rotation",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:cors",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "cors",
+        "title": "CORS",
+        "level": 3,
+        "start_line": 99,
+        "end_line": 110,
+        "anchor": "cors",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:server-authentication-oidc",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "server-authentication-oidc",
+        "title": "Server authentication (OIDC)",
+        "level": 3,
+        "start_line": 111,
+        "end_line": 122,
+        "anchor": "server-authentication-oidc",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:vs-code-extension-settings",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "vs-code-extension-settings",
+        "title": "VS Code Extension Settings",
+        "level": 2,
+        "start_line": 123,
+        "end_line": 124,
+        "anchor": "vs-code-extension-settings",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:extension-setup",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "extension-setup",
+        "title": "Extension setup",
+        "level": 3,
+        "start_line": 125,
+        "end_line": 136,
+        "anchor": "extension-setup",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:server-url-in-vs-code",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "server-url-in-vs-code",
+        "title": "Server URL in VS Code",
+        "level": 3,
+        "start_line": 137,
+        "end_line": 148,
+        "anchor": "server-url-in-vs-code",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:authentication-in-the-editor",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "authentication-in-the-editor",
+        "title": "Authentication in the editor",
+        "level": 3,
+        "start_line": 149,
+        "end_line": 160,
+        "anchor": "authentication-in-the-editor",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:indexing-when-workspace-opens",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "indexing-when-workspace-opens",
+        "title": "Indexing when workspace opens",
+        "level": 3,
+        "start_line": 161,
+        "end_line": 172,
+        "anchor": "indexing-when-workspace-opens",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:excluded-files-directories",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "excluded-files-directories",
+        "title": "Excluded files & directories",
+        "level": 3,
+        "start_line": 173,
+        "end_line": 184,
+        "anchor": "excluded-files-directories",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:chat-pane-placement",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "chat-pane-placement",
+        "title": "Chat pane placement",
+        "level": 3,
+        "start_line": 185,
+        "end_line": 196,
+        "anchor": "chat-pane-placement",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:telemetry-sample-rates",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "telemetry-sample-rates",
+        "title": "Telemetry sample rates",
+        "level": 3,
+        "start_line": 197,
+        "end_line": 208,
+        "anchor": "telemetry-sample-rates",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:byok-cloud-routing",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "byok-cloud-routing",
+        "title": "BYOK cloud routing",
+        "level": 3,
+        "start_line": 209,
+        "end_line": 220,
+        "anchor": "byok-cloud-routing",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:project-indexing-context-rules",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "project-indexing-context-rules",
+        "title": "Project Indexing & Context Rules",
+        "level": 2,
+        "start_line": 221,
+        "end_line": 222,
+        "anchor": "project-indexing-context-rules",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:max-file-size",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "max-file-size",
+        "title": "Max file size",
+        "level": 3,
+        "start_line": 223,
+        "end_line": 234,
+        "anchor": "max-file-size",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:token-context-budget-limits",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "token-context-budget-limits",
+        "title": "Token / context budget limits",
+        "level": 3,
+        "start_line": 235,
+        "end_line": 246,
+        "anchor": "token-context-budget-limits",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:ignored-formats-extensions",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "ignored-formats-extensions",
+        "title": "Ignored formats & extensions",
+        "level": 3,
+        "start_line": 247,
+        "end_line": 258,
+        "anchor": "ignored-formats-extensions",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:configuration-hierarchy",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "configuration-hierarchy",
+        "title": "Configuration hierarchy",
+        "level": 3,
+        "start_line": 259,
+        "end_line": 270,
+        "anchor": "configuration-hierarchy",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:project-context-packs",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "project-context-packs",
+        "title": "Project context packs",
+        "level": 3,
+        "start_line": 271,
+        "end_line": 282,
+        "anchor": "project-context-packs",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:indexed-file-extensions",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "indexed-file-extensions",
+        "title": "Indexed file extensions",
+        "level": 3,
+        "start_line": 283,
+        "end_line": 294,
+        "anchor": "indexed-file-extensions",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:usage-validation-troubleshooting",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "usage-validation-troubleshooting",
+        "title": "Usage, Validation & Troubleshooting",
+        "level": 2,
+        "start_line": 295,
+        "end_line": 296,
+        "anchor": "usage-validation-troubleshooting",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:verify-setup",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "verify-setup",
+        "title": "Verify setup",
+        "level": 3,
+        "start_line": 297,
+        "end_line": 308,
+        "anchor": "verify-setup",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:reset-configuration",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "reset-configuration",
+        "title": "Reset configuration",
+        "level": 3,
+        "start_line": 309,
+        "end_line": 320,
+        "anchor": "reset-configuration",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:connection-errors",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "connection-errors",
+        "title": "Connection errors",
+        "level": 3,
+        "start_line": 321,
+        "end_line": 332,
+        "anchor": "connection-errors",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:force-re-index",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "force-re-index",
+        "title": "Force re-index",
+        "level": 3,
+        "start_line": 333,
+        "end_line": 344,
+        "anchor": "force-re-index",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:context-lens-gates",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "context-lens-gates",
+        "title": "Context Lens & gates",
+        "level": 3,
+        "start_line": 345,
+        "end_line": 356,
+        "anchor": "context-lens-gates",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/site-guide-settings-questions.md:chat-lanes-modes",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/site-guide-settings-questions.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "chat-lanes-modes",
+        "title": "Chat lanes & modes",
+        "level": 3,
+        "start_line": 357,
+        "end_line": 370,
+        "anchor": "chat-lanes-modes",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/wcag-22-aa-audit.md:wcag-2-2-aa-marketing-site-audit-baseline",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/wcag-22-aa-audit.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "wcag-2-2-aa-marketing-site-audit-baseline",
+        "title": "WCAG 2.2 AA \u2014 marketing site audit baseline",
+        "level": 1,
+        "start_line": 1,
+        "end_line": 7,
+        "anchor": "wcag-2-2-aa-marketing-site-audit-baseline",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/wcag-22-aa-audit.md:strengths-already-present",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/wcag-22-aa-audit.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "strengths-already-present",
+        "title": "Strengths already present",
+        "level": 2,
+        "start_line": 8,
+        "end_line": 16,
+        "anchor": "strengths-already-present",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/wcag-22-aa-audit.md:findings-mapped-to-success-criteria",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/wcag-22-aa-audit.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "findings-mapped-to-success-criteria",
+        "title": "Findings mapped to success criteria",
+        "level": 2,
+        "start_line": 17,
+        "end_line": 33,
+        "anchor": "findings-mapped-to-success-criteria",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/wcag-22-aa-audit.md:n-a-for-this-site",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/wcag-22-aa-audit.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "n-a-for-this-site",
+        "title": "N/A for this site",
+        "level": 2,
+        "start_line": 34,
+        "end_line": 39,
+        "anchor": "n-a-for-this-site",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/wcag-22-aa-audit.md:out-of-scope",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/wcag-22-aa-audit.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "out-of-scope",
+        "title": "Out of scope",
+        "level": 2,
+        "start_line": 40,
+        "end_line": 45,
+        "anchor": "out-of-scope",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/wcag-22-aa-audit.md:exit-criteria",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/wcag-22-aa-audit.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "exit-criteria",
+        "title": "Exit criteria",
+        "level": 2,
+        "start_line": 46,
+        "end_line": 51,
+        "anchor": "exit-criteria",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/wcag-22-aa-audit.md:remediation-status-22-july-2026",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/wcag-22-aa-audit.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "remediation-status-22-july-2026",
+        "title": "Remediation status (22 July 2026)",
+        "level": 2,
+        "start_line": 52,
+        "end_line": 56,
+        "anchor": "remediation-status-22-july-2026",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/website-go-live.md:website-go-live-contextmint-ai",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/website-go-live.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "website-go-live-contextmint-ai",
+        "title": "Website Go-Live \u2014 contextmint.ai",
+        "level": 1,
+        "start_line": 1,
+        "end_line": 9,
+        "anchor": "website-go-live-contextmint-ai",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/website-go-live.md:content-alignment-already-on-site",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/website-go-live.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "content-alignment-already-on-site",
+        "title": "Content alignment (already on site)",
+        "level": 2,
+        "start_line": 10,
+        "end_line": 28,
+        "anchor": "content-alignment-already-on-site",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/website-go-live.md:before-deploy-edit-src-data-site-json",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/website-go-live.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "before-deploy-edit-src-data-site-json",
+        "title": "Before deploy \u2014 edit `src/_data/site.json`",
+        "level": 2,
+        "start_line": 29,
+        "end_line": 45,
+        "anchor": "before-deploy-edit-src-data-site-json",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/website-go-live.md:local-verify",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/website-go-live.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "local-verify",
+        "title": "Local verify",
+        "level": 2,
+        "start_line": 46,
+        "end_line": 63,
+        "anchor": "local-verify",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/website-go-live.md:push-to-github",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/website-go-live.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "push-to-github",
+        "title": "Push to GitHub",
+        "level": 2,
+        "start_line": 64,
+        "end_line": 75,
+        "anchor": "push-to-github",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/website-go-live.md:dns-github-pages",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/website-go-live.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "dns-github-pages",
+        "title": "DNS + GitHub Pages",
+        "level": 2,
+        "start_line": 76,
+        "end_line": 89,
+        "anchor": "dns-github-pages",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/website-go-live.md:after-live",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/website-go-live.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "after-live",
+        "title": "After live",
+        "level": 2,
+        "start_line": 90,
+        "end_line": 98,
+        "anchor": "after-live",
+        "page": null
+      }
+    },
+    {
+      "object_id": "document:documentation/website-go-live.md:messaging-website-vs-product-reality",
+      "object_kind": "document",
+      "agreement_score": 1.0,
+      "revision": 1,
+      "extracted_at": "2026-08-09T08:57:30.171114+00:00",
+      "source_commit": null,
+      "lifecycle_state": "active",
+      "source_file": "documentation/website-go-live.md",
+      "format": "markdown",
+      "section": {
+        "section_id": "messaging-website-vs-product-reality",
+        "title": "Messaging: website vs product reality",
+        "level": 2,
+        "start_line": 99,
+        "end_line": 114,
+        "anchor": "messaging-website-vs-product-reality",
+        "page": null
+      }
+    }
+  ],
+  "raw": {
+    "documents": [
+      {
+        "source_file": "readme.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "contextmint-marketing-site",
+          "title": "ContextMint Marketing Site",
+          "level": 1,
+          "start_line": 1,
+          "end_line": 9,
+          "anchor": "contextmint-marketing-site",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "readme.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "prerequisites",
+          "title": "Prerequisites",
+          "level": 2,
+          "start_line": 10,
+          "end_line": 15,
+          "anchor": "prerequisites",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "readme.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "run-and-build-locally",
+          "title": "Run and build locally",
+          "level": 2,
+          "start_line": 16,
+          "end_line": 20,
+          "anchor": "run-and-build-locally",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "readme.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "1-install-dependencies-first-time-or-after-package-json-changes",
+          "title": "1. Install dependencies (first time, or after package.json changes)",
+          "level": 1,
+          "start_line": 21,
+          "end_line": 23,
+          "anchor": "1-install-dependencies-first-time-or-after-package-json-changes",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "readme.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "2-development-server-live-reload-at-http-localhost-8080",
+          "title": "2. Development server \u2014 live reload at http://localhost:8080",
+          "level": 1,
+          "start_line": 24,
+          "end_line": 26,
+          "anchor": "2-development-server-live-reload-at-http-localhost-8080",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "readme.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "3-production-build-output-in-site",
+          "title": "3. Production build \u2014 output in _site/",
+          "level": 1,
+          "start_line": 27,
+          "end_line": 29,
+          "anchor": "3-production-build-output-in-site",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "readme.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "4-optional-regenerate-settings-catalogs-if-package-sources-are-present",
+          "title": "4. Optional: regenerate settings catalogs (if package sources are present)",
+          "level": 1,
+          "start_line": 30,
+          "end_line": 32,
+          "anchor": "4-optional-regenerate-settings-catalogs-if-package-sources-are-present",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "readme.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "5-regenerate-site-guide-json-from-faq-html",
+          "title": "5. Regenerate site guide JSON from faq.html",
+          "level": 1,
+          "start_line": 33,
+          "end_line": 35,
+          "anchor": "5-regenerate-site-guide-json-from-faq-html",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "readme.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "6-run-site-guide-matcher-copy-review-tests",
+          "title": "6. Run site guide matcher + copy review tests",
+          "level": 1,
+          "start_line": 36,
+          "end_line": 38,
+          "anchor": "6-run-site-guide-matcher-copy-review-tests",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "readme.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "7-rebuild-pagefind-index-after-manual-site-changes-also-runs-on-build",
+          "title": "7. Rebuild Pagefind index after manual _site changes (also runs on build)",
+          "level": 1,
+          "start_line": 39,
+          "end_line": 41,
+          "anchor": "7-rebuild-pagefind-index-after-manual-site-changes-also-runs-on-build",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "readme.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "8-optional-clean-build-output",
+          "title": "8. Optional: clean build output",
+          "level": 1,
+          "start_line": 42,
+          "end_line": 49,
+          "anchor": "8-optional-clean-build-output",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "readme.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "settings-reference-pages",
+          "title": "Settings reference pages",
+          "level": 3,
+          "start_line": 50,
+          "end_line": 53,
+          "anchor": "settings-reference-pages",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "readme.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "project-structure",
+          "title": "Project structure",
+          "level": 2,
+          "start_line": 54,
+          "end_line": 75,
+          "anchor": "project-structure",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "readme.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "documentation",
+          "title": "Documentation",
+          "level": 2,
+          "start_line": 76,
+          "end_line": 86,
+          "anchor": "documentation",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "readme.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "accessibility",
+          "title": "Accessibility",
+          "level": 2,
+          "start_line": 87,
+          "end_line": 96,
+          "anchor": "accessibility",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "readme.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "adding-a-page",
+          "title": "Adding a page",
+          "level": 2,
+          "start_line": 97,
+          "end_line": 116,
+          "anchor": "adding-a-page",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "readme.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "deploy",
+          "title": "Deploy",
+          "level": 2,
+          "start_line": 117,
+          "end_line": 122,
+          "anchor": "deploy",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": ".contextmint/packs/search/content.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "mechanism-retrieval-auto-generated",
+          "title": "Mechanism retrieval (auto-generated)",
+          "level": 1,
+          "start_line": 1,
+          "end_line": 8,
+          "anchor": "mechanism-retrieval-auto-generated",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/go-live-checklist.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "contextmint-website-go-live-checklist",
+          "title": "ContextMint website \u2014 go-live checklist",
+          "level": 1,
+          "start_line": 1,
+          "end_line": 6,
+          "anchor": "contextmint-website-go-live-checklist",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/go-live-checklist.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "before-deploy",
+          "title": "Before deploy",
+          "level": 2,
+          "start_line": 7,
+          "end_line": 25,
+          "anchor": "before-deploy",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/go-live-checklist.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "dns-github-pages",
+          "title": "DNS + GitHub Pages",
+          "level": 2,
+          "start_line": 26,
+          "end_line": 35,
+          "anchor": "dns-github-pages",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/go-live-checklist.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "after-live",
+          "title": "After live",
+          "level": 2,
+          "start_line": 36,
+          "end_line": 44,
+          "anchor": "after-live",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/go-live-checklist.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "accessibility-wcag-2-2-aa-manual",
+          "title": "Accessibility (WCAG 2.2 AA \u2014 manual)",
+          "level": 2,
+          "start_line": 45,
+          "end_line": 58,
+          "anchor": "accessibility-wcag-2-2-aa-manual",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/i18n.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "marketing-site-i18n",
+          "title": "Marketing site i18n",
+          "level": 1,
+          "start_line": 1,
+          "end_line": 4,
+          "anchor": "marketing-site-i18n",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/i18n.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "layout",
+          "title": "Layout",
+          "level": 2,
+          "start_line": 5,
+          "end_line": 21,
+          "anchor": "layout",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/i18n.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "activation-rules",
+          "title": "Activation rules",
+          "level": 2,
+          "start_line": 22,
+          "end_line": 30,
+          "anchor": "activation-rules",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/i18n.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "what-is-wired-today",
+          "title": "What is wired today",
+          "level": 2,
+          "start_line": 31,
+          "end_line": 48,
+          "anchor": "what-is-wired-today",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/i18n.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "adding-arabic-copy",
+          "title": "Adding Arabic copy",
+          "level": 2,
+          "start_line": 49,
+          "end_line": 55,
+          "anchor": "adding-arabic-copy",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/i18n.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "template-helpers",
+          "title": "Template helpers",
+          "level": 2,
+          "start_line": 56,
+          "end_line": 61,
+          "anchor": "template-helpers",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/i18n.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "regenerating-english-page-meta-packs",
+          "title": "Regenerating English page meta packs",
+          "level": 2,
+          "start_line": 62,
+          "end_line": 68,
+          "anchor": "regenerating-english-page-meta-packs",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/readme.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "contextmint-ai-site-documentation",
+          "title": "contextmint.ai \u2014 site documentation",
+          "level": 1,
+          "start_line": 1,
+          "end_line": 12,
+          "anchor": "contextmint-ai-site-documentation",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "site-guide-chat-implementation-plan-standalone",
+          "title": "Site Guide Chat \u2014 Implementation Plan (standalone)",
+          "level": 1,
+          "start_line": 1,
+          "end_line": 14,
+          "anchor": "site-guide-chat-implementation-plan-standalone",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "0-start-here-external-team-checklist",
+          "title": "0. Start here (external team checklist)",
+          "level": 2,
+          "start_line": 15,
+          "end_line": 32,
+          "anchor": "0-start-here-external-team-checklist",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "table-of-contents",
+          "title": "Table of contents",
+          "level": 2,
+          "start_line": 33,
+          "end_line": 55,
+          "anchor": "table-of-contents",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "1-problem-and-solution",
+          "title": "1. Problem and solution",
+          "level": 2,
+          "start_line": 56,
+          "end_line": 57,
+          "anchor": "1-problem-and-solution",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "problem",
+          "title": "Problem",
+          "level": 3,
+          "start_line": 58,
+          "end_line": 61,
+          "anchor": "problem",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "solution-v1",
+          "title": "Solution (v1)",
+          "level": 3,
+          "start_line": 62,
+          "end_line": 73,
+          "anchor": "solution-v1",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "2-product-primer-read-before-writing-copy",
+          "title": "2. Product primer (read before writing copy)",
+          "level": 2,
+          "start_line": 74,
+          "end_line": 77,
+          "anchor": "2-product-primer-read-before-writing-copy",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "what-contextmint-is",
+          "title": "What ContextMint is",
+          "level": 3,
+          "start_line": 78,
+          "end_line": 84,
+          "anchor": "what-contextmint-is",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "how-users-install-critical-common-wrong-assumption",
+          "title": "How users install (critical \u2014 common wrong assumption)",
+          "level": 3,
+          "start_line": 85,
+          "end_line": 94,
+          "anchor": "how-users-install-critical-common-wrong-assumption",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "pricing-critical",
+          "title": "Pricing (critical)",
+          "level": 3,
+          "start_line": 95,
+          "end_line": 104,
+          "anchor": "pricing-critical",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "privacy-sovereign-story",
+          "title": "Privacy / sovereign story",
+          "level": 3,
+          "start_line": 105,
+          "end_line": 110,
+          "anchor": "privacy-sovereign-story",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "widget-naming",
+          "title": "Widget naming",
+          "level": 3,
+          "start_line": 111,
+          "end_line": 123,
+          "anchor": "widget-naming",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "3-repository-map",
+          "title": "3. Repository map",
+          "level": 2,
+          "start_line": 124,
+          "end_line": 174,
+          "anchor": "3-repository-map",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "4-build-and-deploy-eleventy-github-pages",
+          "title": "4. Build and deploy (Eleventy + GitHub Pages)",
+          "level": 2,
+          "start_line": 175,
+          "end_line": 176,
+          "anchor": "4-build-and-deploy-eleventy-github-pages",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "prerequisites",
+          "title": "Prerequisites",
+          "level": 3,
+          "start_line": 177,
+          "end_line": 181,
+          "anchor": "prerequisites",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "local-development",
+          "title": "Local development",
+          "level": 3,
+          "start_line": 182,
+          "end_line": 186,
+          "anchor": "local-development",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "http-localhost-8080-eleventy-serve-live-reload",
+          "title": "\u2192 http://localhost:8080 (Eleventy --serve, live reload)",
+          "level": 1,
+          "start_line": 187,
+          "end_line": 189,
+          "anchor": "http-localhost-8080-eleventy-serve-live-reload",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "production-build",
+          "title": "Production build",
+          "level": 3,
+          "start_line": 190,
+          "end_line": 193,
+          "anchor": "production-build",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "writes-static-site-to-site",
+          "title": "\u2192 writes static site to _site/",
+          "level": 1,
+          "start_line": 194,
+          "end_line": 196,
+          "anchor": "writes-static-site-to-site",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "how-eleventy-works-here",
+          "title": "How Eleventy works here",
+          "level": 3,
+          "start_line": 197,
+          "end_line": 206,
+          "anchor": "how-eleventy-works-here",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "deploy",
+          "title": "Deploy",
+          "level": 3,
+          "start_line": 207,
+          "end_line": 212,
+          "anchor": "deploy",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "existing-generator-pattern",
+          "title": "Existing generator pattern",
+          "level": 3,
+          "start_line": 213,
+          "end_line": 224,
+          "anchor": "existing-generator-pattern",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "5-goals-and-non-goals",
+          "title": "5. Goals and non-goals",
+          "level": 2,
+          "start_line": 225,
+          "end_line": 226,
+          "anchor": "5-goals-and-non-goals",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "goals-v1",
+          "title": "Goals (v1)",
+          "level": 3,
+          "start_line": 227,
+          "end_line": 237,
+          "anchor": "goals-v1",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "non-goals-v1",
+          "title": "Non-goals (v1)",
+          "level": 3,
+          "start_line": 238,
+          "end_line": 250,
+          "anchor": "non-goals-v1",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "6-architecture-tiers-1-and-2-only",
+          "title": "6. Architecture \u2014 Tiers 1 and 2 only",
+          "level": 2,
+          "start_line": 251,
+          "end_line": 274,
+          "anchor": "6-architecture-tiers-1-and-2-only",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "7-content-schema-and-match-rules",
+          "title": "7. Content schema and match rules",
+          "level": 2,
+          "start_line": 275,
+          "end_line": 276,
+          "anchor": "7-content-schema-and-match-rules",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "file-src-data-site-guide-json",
+          "title": "File: `src/_data/site-guide.json`",
+          "level": 3,
+          "start_line": 277,
+          "end_line": 314,
+          "anchor": "file-src-data-site-guide-json",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "match-rules-implement-exactly",
+          "title": "Match rules (implement exactly)",
+          "level": 3,
+          "start_line": 315,
+          "end_line": 327,
+          "anchor": "match-rules-implement-exactly",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "response-shape-all-tiers",
+          "title": "Response shape (all tiers)",
+          "level": 3,
+          "start_line": 328,
+          "end_line": 341,
+          "anchor": "response-shape-all-tiers",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "8-ordered-implementation-sgc-001-sgc-010",
+          "title": "8. Ordered implementation (SGC-001\u2013SGC-010)",
+          "level": 2,
+          "start_line": 342,
+          "end_line": 345,
+          "anchor": "8-ordered-implementation-sgc-001-sgc-010",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "8-1-master-step-index",
+          "title": "8.1 Master step index",
+          "level": 3,
+          "start_line": 346,
+          "end_line": 360,
+          "anchor": "8-1-master-step-index",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "8-2-phase-summary",
+          "title": "8.2 Phase summary",
+          "level": 3,
+          "start_line": 361,
+          "end_line": 369,
+          "anchor": "8-2-phase-summary",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "8-3-day-by-day-schedule-suggested",
+          "title": "8.3 Day-by-day schedule (suggested)",
+          "level": 3,
+          "start_line": 370,
+          "end_line": 379,
+          "anchor": "8-3-day-by-day-schedule-suggested",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "8-4-per-step-detail",
+          "title": "8.4 Per-step detail",
+          "level": 3,
+          "start_line": 380,
+          "end_line": 381,
+          "anchor": "8-4-per-step-detail",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "sgc-001-build-generator-scripts-gen-site-guide-mjs",
+          "title": "SGC-001 \u2014 Build generator `scripts/gen-site-guide.mjs`",
+          "level": 4,
+          "start_line": 382,
+          "end_line": 412,
+          "anchor": "sgc-001-build-generator-scripts-gen-site-guide-mjs",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "sgc-002-wire-package-json",
+          "title": "SGC-002 \u2014 Wire `package.json`",
+          "level": 4,
+          "start_line": 413,
+          "end_line": 420,
+          "anchor": "sgc-002-wire-package-json",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "sgc-003-curated-keywords-scripts-site-guide-pages-mjs",
+          "title": "SGC-003 \u2014 Curated keywords `scripts/site-guide-pages.mjs`",
+          "level": 4,
+          "start_line": 421,
+          "end_line": 429,
+          "anchor": "sgc-003-curated-keywords-scripts-site-guide-pages-mjs",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "sgc-004-widget-ui",
+          "title": "SGC-004 \u2014 Widget UI",
+          "level": 4,
+          "start_line": 430,
+          "end_line": 451,
+          "anchor": "sgc-004-widget-ui",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "sgc-005-matcher-src-assets-js-site-guide-matcher-js",
+          "title": "SGC-005 \u2014 Matcher `src/assets/js/site-guide-matcher.js`",
+          "level": 4,
+          "start_line": 452,
+          "end_line": 467,
+          "anchor": "sgc-005-matcher-src-assets-js-site-guide-matcher-js",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "sgc-006-include-on-all-pages",
+          "title": "SGC-006 \u2014 Include on all pages",
+          "level": 4,
+          "start_line": 468,
+          "end_line": 484,
+          "anchor": "sgc-006-include-on-all-pages",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "sgc-007-source-link-rendering",
+          "title": "SGC-007 \u2014 Source link rendering",
+          "level": 4,
+          "start_line": 485,
+          "end_line": 499,
+          "anchor": "sgc-007-source-link-rendering",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "sgc-008-optional-was-this-helpful-nice-to-have",
+          "title": "SGC-008 \u2014 Optional \u201cWas this helpful?\u201d (nice-to-have)",
+          "level": 4,
+          "start_line": 500,
+          "end_line": 505,
+          "anchor": "sgc-008-optional-was-this-helpful-nice-to-have",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "sgc-009-copy-review",
+          "title": "SGC-009 \u2014 Copy review",
+          "level": 4,
+          "start_line": 506,
+          "end_line": 511,
+          "anchor": "sgc-009-copy-review",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "sgc-010-optional-pagefind-out-of-v1-scope",
+          "title": "SGC-010 \u2014 Optional Pagefind (out of v1 scope)",
+          "level": 4,
+          "start_line": 512,
+          "end_line": 517,
+          "anchor": "sgc-010-optional-pagefind-out-of-v1-scope",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "9-ui-specification",
+          "title": "9. UI specification",
+          "level": 2,
+          "start_line": 518,
+          "end_line": 519,
+          "anchor": "9-ui-specification",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "placement",
+          "title": "Placement",
+          "level": 3,
+          "start_line": 520,
+          "end_line": 524,
+          "anchor": "placement",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "colors-reuse-from-src-assets-css-main-css",
+          "title": "Colors (reuse from `src/assets/css/main.css`)",
+          "level": 3,
+          "start_line": 525,
+          "end_line": 534,
+          "anchor": "colors-reuse-from-src-assets-css-main-css",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "bubble-button",
+          "title": "Bubble button",
+          "level": 3,
+          "start_line": 535,
+          "end_line": 540,
+          "anchor": "bubble-button",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "panel",
+          "title": "Panel",
+          "level": 3,
+          "start_line": 541,
+          "end_line": 551,
+          "anchor": "panel",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "states",
+          "title": "States",
+          "level": 3,
+          "start_line": 552,
+          "end_line": 560,
+          "anchor": "states",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "wireframe",
+          "title": "Wireframe",
+          "level": 3,
+          "start_line": 561,
+          "end_line": 584,
+          "anchor": "wireframe",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "10-reference-code-copy-paste-starting-points",
+          "title": "10. Reference code (copy-paste starting points)",
+          "level": 2,
+          "start_line": 585,
+          "end_line": 586,
+          "anchor": "10-reference-code-copy-paste-starting-points",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "10-1-scripts-site-guide-faq-keywords-mjs",
+          "title": "10.1 `scripts/site-guide-faq-keywords.mjs`",
+          "level": 3,
+          "start_line": 587,
+          "end_line": 598,
+          "anchor": "10-1-scripts-site-guide-faq-keywords-mjs",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "10-2-src-assets-js-site-guide-matcher-js",
+          "title": "10.2 `src/assets/js/site-guide-matcher.js`",
+          "level": 3,
+          "start_line": 599,
+          "end_line": 665,
+          "anchor": "10-2-src-assets-js-site-guide-matcher-js",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "10-3-src-includes-site-guide-html",
+          "title": "10.3 `src/_includes/site-guide.html`",
+          "level": 3,
+          "start_line": 666,
+          "end_line": 709,
+          "anchor": "10-3-src-includes-site-guide-html",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "10-4-src-assets-js-site-guide-js-skeleton",
+          "title": "10.4 `src/assets/js/site-guide.js` (skeleton)",
+          "level": 3,
+          "start_line": 710,
+          "end_line": 785,
+          "anchor": "10-4-src-assets-js-site-guide-js-skeleton",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "10-5-scripts-gen-site-guide-mjs-core-parse-logic",
+          "title": "10.5 `scripts/gen-site-guide.mjs` (core parse logic)",
+          "level": 3,
+          "start_line": 786,
+          "end_line": 873,
+          "anchor": "10-5-scripts-gen-site-guide-mjs-core-parse-logic",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "11-forbidden-claims-and-copy-rules",
+          "title": "11. Forbidden claims and copy rules",
+          "level": 2,
+          "start_line": 874,
+          "end_line": 875,
+          "anchor": "11-forbidden-claims-and-copy-rules",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "never-state-in-widget-answers",
+          "title": "Never state in widget answers",
+          "level": 3,
+          "start_line": 876,
+          "end_line": 886,
+          "anchor": "never-state-in-widget-answers",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "when-editing-content",
+          "title": "When editing content",
+          "level": 3,
+          "start_line": 887,
+          "end_line": 894,
+          "anchor": "when-editing-content",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "12-testing-and-acceptance",
+          "title": "12. Testing and acceptance",
+          "level": 2,
+          "start_line": 895,
+          "end_line": 896,
+          "anchor": "12-testing-and-acceptance",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "automated-npm-run-test-site-guide",
+          "title": "Automated (`npm run test:site-guide`)",
+          "level": 3,
+          "start_line": 897,
+          "end_line": 906,
+          "anchor": "automated-npm-run-test-site-guide",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "manual-uat",
+          "title": "Manual UAT",
+          "level": 3,
+          "start_line": 907,
+          "end_line": 917,
+          "anchor": "manual-uat",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "gate-sgc-merge-criteria",
+          "title": "GATE-SGC (merge criteria)",
+          "level": 3,
+          "start_line": 918,
+          "end_line": 926,
+          "anchor": "gate-sgc-merge-criteria",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "13-rollback",
+          "title": "13. Rollback",
+          "level": 2,
+          "start_line": 927,
+          "end_line": 934,
+          "anchor": "13-rollback",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "14-tier-3-deferred-gpt-openai",
+          "title": "14. Tier 3 \u2014 deferred (GPT / OpenAI)",
+          "level": 2,
+          "start_line": 935,
+          "end_line": 938,
+          "anchor": "14-tier-3-deferred-gpt-openai",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "why-deferred",
+          "title": "Why deferred",
+          "level": 3,
+          "start_line": 939,
+          "end_line": 947,
+          "anchor": "why-deferred",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "future-architecture-when-product-owner-approves",
+          "title": "Future architecture (when product owner approves)",
+          "level": 3,
+          "start_line": 948,
+          "end_line": 956,
+          "anchor": "future-architecture-when-product-owner-approves",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "future-pickup-gate",
+          "title": "Future pickup gate",
+          "level": 3,
+          "start_line": 957,
+          "end_line": 965,
+          "anchor": "future-pickup-gate",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "15-0-faq-content-prerequisite-src-faq-html",
+          "title": "15.0 FAQ content prerequisite (`src/faq.html`)",
+          "level": 2,
+          "start_line": 966,
+          "end_line": 985,
+          "anchor": "15-0-faq-content-prerequisite-src-faq-html",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "15-faq-inventory-seed-content",
+          "title": "15. FAQ inventory (seed content)",
+          "level": 2,
+          "start_line": 986,
+          "end_line": 1018,
+          "anchor": "15-faq-inventory-seed-content",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "16-page-keyword-inventory-seed-content",
+          "title": "16. Page keyword inventory (seed content)",
+          "level": 2,
+          "start_line": 1019,
+          "end_line": 1042,
+          "anchor": "16-page-keyword-inventory-seed-content",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "17-open-questions",
+          "title": "17. Open questions",
+          "level": 2,
+          "start_line": 1043,
+          "end_line": 1052,
+          "anchor": "17-open-questions",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-chat-plan.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "document-history",
+          "title": "Document history",
+          "level": 2,
+          "start_line": 1053,
+          "end_line": 1061,
+          "anchor": "document-history",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "site-guide-settings-configuration-questions",
+          "title": "Site guide \u2014 settings & configuration questions",
+          "level": 1,
+          "start_line": 1,
+          "end_line": 10,
+          "anchor": "site-guide-settings-configuration-questions",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "enterprise-on-prem-overview",
+          "title": "Enterprise & On-Prem (overview)",
+          "level": 2,
+          "start_line": 11,
+          "end_line": 12,
+          "anchor": "enterprise-on-prem-overview",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "on-prem-extension-server-setup",
+          "title": "On-prem extension + server setup",
+          "level": 3,
+          "start_line": 13,
+          "end_line": 24,
+          "anchor": "on-prem-extension-server-setup",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "server-backend-configuration",
+          "title": "Server & Backend Configuration",
+          "level": 2,
+          "start_line": 25,
+          "end_line": 26,
+          "anchor": "server-backend-configuration",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "port-settings",
+          "title": "Port settings",
+          "level": 3,
+          "start_line": 27,
+          "end_line": 38,
+          "anchor": "port-settings",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "host-address-bind",
+          "title": "Host address / bind",
+          "level": 3,
+          "start_line": 39,
+          "end_line": 50,
+          "anchor": "host-address-bind",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "ssl-tls-setup",
+          "title": "SSL / TLS setup",
+          "level": 3,
+          "start_line": 51,
+          "end_line": 62,
+          "anchor": "ssl-tls-setup",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "index-storage-chroma",
+          "title": "Index storage (Chroma)",
+          "level": 3,
+          "start_line": 63,
+          "end_line": 74,
+          "anchor": "index-storage-chroma",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "server-log-level",
+          "title": "Server log level",
+          "level": 3,
+          "start_line": 75,
+          "end_line": 86,
+          "anchor": "server-log-level",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "log-rotation",
+          "title": "Log rotation",
+          "level": 3,
+          "start_line": 87,
+          "end_line": 98,
+          "anchor": "log-rotation",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "cors",
+          "title": "CORS",
+          "level": 3,
+          "start_line": 99,
+          "end_line": 110,
+          "anchor": "cors",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "server-authentication-oidc",
+          "title": "Server authentication (OIDC)",
+          "level": 3,
+          "start_line": 111,
+          "end_line": 122,
+          "anchor": "server-authentication-oidc",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "vs-code-extension-settings",
+          "title": "VS Code Extension Settings",
+          "level": 2,
+          "start_line": 123,
+          "end_line": 124,
+          "anchor": "vs-code-extension-settings",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "extension-setup",
+          "title": "Extension setup",
+          "level": 3,
+          "start_line": 125,
+          "end_line": 136,
+          "anchor": "extension-setup",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "server-url-in-vs-code",
+          "title": "Server URL in VS Code",
+          "level": 3,
+          "start_line": 137,
+          "end_line": 148,
+          "anchor": "server-url-in-vs-code",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "authentication-in-the-editor",
+          "title": "Authentication in the editor",
+          "level": 3,
+          "start_line": 149,
+          "end_line": 160,
+          "anchor": "authentication-in-the-editor",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "indexing-when-workspace-opens",
+          "title": "Indexing when workspace opens",
+          "level": 3,
+          "start_line": 161,
+          "end_line": 172,
+          "anchor": "indexing-when-workspace-opens",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "excluded-files-directories",
+          "title": "Excluded files & directories",
+          "level": 3,
+          "start_line": 173,
+          "end_line": 184,
+          "anchor": "excluded-files-directories",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "chat-pane-placement",
+          "title": "Chat pane placement",
+          "level": 3,
+          "start_line": 185,
+          "end_line": 196,
+          "anchor": "chat-pane-placement",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "telemetry-sample-rates",
+          "title": "Telemetry sample rates",
+          "level": 3,
+          "start_line": 197,
+          "end_line": 208,
+          "anchor": "telemetry-sample-rates",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "byok-cloud-routing",
+          "title": "BYOK cloud routing",
+          "level": 3,
+          "start_line": 209,
+          "end_line": 220,
+          "anchor": "byok-cloud-routing",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "project-indexing-context-rules",
+          "title": "Project Indexing & Context Rules",
+          "level": 2,
+          "start_line": 221,
+          "end_line": 222,
+          "anchor": "project-indexing-context-rules",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "max-file-size",
+          "title": "Max file size",
+          "level": 3,
+          "start_line": 223,
+          "end_line": 234,
+          "anchor": "max-file-size",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "token-context-budget-limits",
+          "title": "Token / context budget limits",
+          "level": 3,
+          "start_line": 235,
+          "end_line": 246,
+          "anchor": "token-context-budget-limits",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "ignored-formats-extensions",
+          "title": "Ignored formats & extensions",
+          "level": 3,
+          "start_line": 247,
+          "end_line": 258,
+          "anchor": "ignored-formats-extensions",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "configuration-hierarchy",
+          "title": "Configuration hierarchy",
+          "level": 3,
+          "start_line": 259,
+          "end_line": 270,
+          "anchor": "configuration-hierarchy",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "project-context-packs",
+          "title": "Project context packs",
+          "level": 3,
+          "start_line": 271,
+          "end_line": 282,
+          "anchor": "project-context-packs",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "indexed-file-extensions",
+          "title": "Indexed file extensions",
+          "level": 3,
+          "start_line": 283,
+          "end_line": 294,
+          "anchor": "indexed-file-extensions",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "usage-validation-troubleshooting",
+          "title": "Usage, Validation & Troubleshooting",
+          "level": 2,
+          "start_line": 295,
+          "end_line": 296,
+          "anchor": "usage-validation-troubleshooting",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "verify-setup",
+          "title": "Verify setup",
+          "level": 3,
+          "start_line": 297,
+          "end_line": 308,
+          "anchor": "verify-setup",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "reset-configuration",
+          "title": "Reset configuration",
+          "level": 3,
+          "start_line": 309,
+          "end_line": 320,
+          "anchor": "reset-configuration",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "connection-errors",
+          "title": "Connection errors",
+          "level": 3,
+          "start_line": 321,
+          "end_line": 332,
+          "anchor": "connection-errors",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "force-re-index",
+          "title": "Force re-index",
+          "level": 3,
+          "start_line": 333,
+          "end_line": 344,
+          "anchor": "force-re-index",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "context-lens-gates",
+          "title": "Context Lens & gates",
+          "level": 3,
+          "start_line": 345,
+          "end_line": 356,
+          "anchor": "context-lens-gates",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/site-guide-settings-questions.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "chat-lanes-modes",
+          "title": "Chat lanes & modes",
+          "level": 3,
+          "start_line": 357,
+          "end_line": 370,
+          "anchor": "chat-lanes-modes",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/wcag-22-aa-audit.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "wcag-2-2-aa-marketing-site-audit-baseline",
+          "title": "WCAG 2.2 AA \u2014 marketing site audit baseline",
+          "level": 1,
+          "start_line": 1,
+          "end_line": 7,
+          "anchor": "wcag-2-2-aa-marketing-site-audit-baseline",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/wcag-22-aa-audit.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "strengths-already-present",
+          "title": "Strengths already present",
+          "level": 2,
+          "start_line": 8,
+          "end_line": 16,
+          "anchor": "strengths-already-present",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/wcag-22-aa-audit.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "findings-mapped-to-success-criteria",
+          "title": "Findings mapped to success criteria",
+          "level": 2,
+          "start_line": 17,
+          "end_line": 33,
+          "anchor": "findings-mapped-to-success-criteria",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/wcag-22-aa-audit.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "n-a-for-this-site",
+          "title": "N/A for this site",
+          "level": 2,
+          "start_line": 34,
+          "end_line": 39,
+          "anchor": "n-a-for-this-site",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/wcag-22-aa-audit.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "out-of-scope",
+          "title": "Out of scope",
+          "level": 2,
+          "start_line": 40,
+          "end_line": 45,
+          "anchor": "out-of-scope",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/wcag-22-aa-audit.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "exit-criteria",
+          "title": "Exit criteria",
+          "level": 2,
+          "start_line": 46,
+          "end_line": 51,
+          "anchor": "exit-criteria",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/wcag-22-aa-audit.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "remediation-status-22-july-2026",
+          "title": "Remediation status (22 July 2026)",
+          "level": 2,
+          "start_line": 52,
+          "end_line": 56,
+          "anchor": "remediation-status-22-july-2026",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/website-go-live.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "website-go-live-contextmint-ai",
+          "title": "Website Go-Live \u2014 contextmint.ai",
+          "level": 1,
+          "start_line": 1,
+          "end_line": 9,
+          "anchor": "website-go-live-contextmint-ai",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/website-go-live.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "content-alignment-already-on-site",
+          "title": "Content alignment (already on site)",
+          "level": 2,
+          "start_line": 10,
+          "end_line": 28,
+          "anchor": "content-alignment-already-on-site",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/website-go-live.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "before-deploy-edit-src-data-site-json",
+          "title": "Before deploy \u2014 edit `src/_data/site.json`",
+          "level": 2,
+          "start_line": 29,
+          "end_line": 45,
+          "anchor": "before-deploy-edit-src-data-site-json",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/website-go-live.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "local-verify",
+          "title": "Local verify",
+          "level": 2,
+          "start_line": 46,
+          "end_line": 63,
+          "anchor": "local-verify",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/website-go-live.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "push-to-github",
+          "title": "Push to GitHub",
+          "level": 2,
+          "start_line": 64,
+          "end_line": 75,
+          "anchor": "push-to-github",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/website-go-live.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "dns-github-pages",
+          "title": "DNS + GitHub Pages",
+          "level": 2,
+          "start_line": 76,
+          "end_line": 89,
+          "anchor": "dns-github-pages",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/website-go-live.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "after-live",
+          "title": "After live",
+          "level": 2,
+          "start_line": 90,
+          "end_line": 98,
+          "anchor": "after-live",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      },
+      {
+        "source_file": "documentation/website-go-live.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "messaging-website-vs-product-reality",
+          "title": "Messaging: website vs product reality",
+          "level": 2,
+          "start_line": 99,
+          "end_line": 114,
+          "anchor": "messaging-website-vs-product-reality",
+          "page": null
+        },
+        "heading_found": true,
+        "structure_match": true
+      }
+    ]
+  },
+  "revision_history": [
+    {
+      "object_id": "document:documentation/wcag-22-aa-audit.md:exit-criteria",
+      "revision": {
+        "object_id": "document:documentation/wcag-22-aa-audit.md:exit-criteria",
+        "object_kind": "document",
+        "agreement_score": 1.0,
+        "revision": 1,
+        "extracted_at": "2026-08-08T08:11:22.163009+00:00",
+        "source_commit": null,
+        "lifecycle_state": "active",
+        "source_file": "documentation/wcag-22-aa-audit.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "exit-criteria",
+          "title": "Exit criteria",
+          "level": 2,
+          "start_line": 46,
+          "end_line": 51,
+          "anchor": "exit-criteria",
+          "page": null
+        }
+      }
+    },
+    {
+      "object_id": "document:documentation/wcag-22-aa-audit.md:remediation-status-22-july-2026",
+      "revision": {
+        "object_id": "document:documentation/wcag-22-aa-audit.md:remediation-status-22-july-2026",
+        "object_kind": "document",
+        "agreement_score": 1.0,
+        "revision": 1,
+        "extracted_at": "2026-08-08T08:11:22.163009+00:00",
+        "source_commit": null,
+        "lifecycle_state": "active",
+        "source_file": "documentation/wcag-22-aa-audit.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "remediation-status-22-july-2026",
+          "title": "Remediation status (22 July 2026)",
+          "level": 2,
+          "start_line": 52,
+          "end_line": 56,
+          "anchor": "remediation-status-22-july-2026",
+          "page": null
+        }
+      }
+    },
+    {
+      "object_id": "document:documentation/website-go-live.md:website-go-live-contextmint-ai",
+      "revision": {
+        "object_id": "document:documentation/website-go-live.md:website-go-live-contextmint-ai",
+        "object_kind": "document",
+        "agreement_score": 1.0,
+        "revision": 1,
+        "extracted_at": "2026-08-08T08:11:22.163009+00:00",
+        "source_commit": null,
+        "lifecycle_state": "active",
+        "source_file": "documentation/website-go-live.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "website-go-live-contextmint-ai",
+          "title": "Website Go-Live \u2014 contextmint.ai",
+          "level": 1,
+          "start_line": 1,
+          "end_line": 9,
+          "anchor": "website-go-live-contextmint-ai",
+          "page": null
+        }
+      }
+    },
+    {
+      "object_id": "document:documentation/website-go-live.md:content-alignment-already-on-site",
+      "revision": {
+        "object_id": "document:documentation/website-go-live.md:content-alignment-already-on-site",
+        "object_kind": "document",
+        "agreement_score": 1.0,
+        "revision": 1,
+        "extracted_at": "2026-08-08T08:11:22.163009+00:00",
+        "source_commit": null,
+        "lifecycle_state": "active",
+        "source_file": "documentation/website-go-live.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "content-alignment-already-on-site",
+          "title": "Content alignment (already on site)",
+          "level": 2,
+          "start_line": 10,
+          "end_line": 28,
+          "anchor": "content-alignment-already-on-site",
+          "page": null
+        }
+      }
+    },
+    {
+      "object_id": "document:documentation/website-go-live.md:before-deploy-edit-src-data-site-json",
+      "revision": {
+        "object_id": "document:documentation/website-go-live.md:before-deploy-edit-src-data-site-json",
+        "object_kind": "document",
+        "agreement_score": 1.0,
+        "revision": 1,
+        "extracted_at": "2026-08-08T08:11:22.163009+00:00",
+        "source_commit": null,
+        "lifecycle_state": "active",
+        "source_file": "documentation/website-go-live.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "before-deploy-edit-src-data-site-json",
+          "title": "Before deploy \u2014 edit `src/_data/site.json`",
+          "level": 2,
+          "start_line": 29,
+          "end_line": 45,
+          "anchor": "before-deploy-edit-src-data-site-json",
+          "page": null
+        }
+      }
+    },
+    {
+      "object_id": "document:documentation/website-go-live.md:local-verify",
+      "revision": {
+        "object_id": "document:documentation/website-go-live.md:local-verify",
+        "object_kind": "document",
+        "agreement_score": 1.0,
+        "revision": 1,
+        "extracted_at": "2026-08-08T08:11:22.163009+00:00",
+        "source_commit": null,
+        "lifecycle_state": "active",
+        "source_file": "documentation/website-go-live.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "local-verify",
+          "title": "Local verify",
+          "level": 2,
+          "start_line": 46,
+          "end_line": 63,
+          "anchor": "local-verify",
+          "page": null
+        }
+      }
+    },
+    {
+      "object_id": "document:documentation/website-go-live.md:push-to-github",
+      "revision": {
+        "object_id": "document:documentation/website-go-live.md:push-to-github",
+        "object_kind": "document",
+        "agreement_score": 1.0,
+        "revision": 1,
+        "extracted_at": "2026-08-08T08:11:22.163009+00:00",
+        "source_commit": null,
+        "lifecycle_state": "active",
+        "source_file": "documentation/website-go-live.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "push-to-github",
+          "title": "Push to GitHub",
+          "level": 2,
+          "start_line": 64,
+          "end_line": 75,
+          "anchor": "push-to-github",
+          "page": null
+        }
+      }
+    },
+    {
+      "object_id": "document:documentation/website-go-live.md:dns-github-pages",
+      "revision": {
+        "object_id": "document:documentation/website-go-live.md:dns-github-pages",
+        "object_kind": "document",
+        "agreement_score": 1.0,
+        "revision": 1,
+        "extracted_at": "2026-08-08T08:11:22.163009+00:00",
+        "source_commit": null,
+        "lifecycle_state": "active",
+        "source_file": "documentation/website-go-live.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "dns-github-pages",
+          "title": "DNS + GitHub Pages",
+          "level": 2,
+          "start_line": 76,
+          "end_line": 89,
+          "anchor": "dns-github-pages",
+          "page": null
+        }
+      }
+    },
+    {
+      "object_id": "document:documentation/website-go-live.md:after-live",
+      "revision": {
+        "object_id": "document:documentation/website-go-live.md:after-live",
+        "object_kind": "document",
+        "agreement_score": 1.0,
+        "revision": 1,
+        "extracted_at": "2026-08-08T08:11:22.163009+00:00",
+        "source_commit": null,
+        "lifecycle_state": "active",
+        "source_file": "documentation/website-go-live.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "after-live",
+          "title": "After live",
+          "level": 2,
+          "start_line": 90,
+          "end_line": 98,
+          "anchor": "after-live",
+          "page": null
+        }
+      }
+    },
+    {
+      "object_id": "document:documentation/website-go-live.md:messaging-website-vs-product-reality",
+      "revision": {
+        "object_id": "document:documentation/website-go-live.md:messaging-website-vs-product-reality",
+        "object_kind": "document",
+        "agreement_score": 1.0,
+        "revision": 1,
+        "extracted_at": "2026-08-08T08:11:22.163009+00:00",
+        "source_commit": null,
+        "lifecycle_state": "active",
+        "source_file": "documentation/website-go-live.md",
+        "format": "markdown",
+        "section": {
+          "section_id": "messaging-website-vs-product-reality",
+          "title": "Messaging: website vs product reality",
+          "level": 2,
+          "start_line": 99,
+          "end_line": 114,
+          "anchor": "messaging-website-vs-product-reality",
+          "page": null
+        }
+      }
+    }
+  ]
+}

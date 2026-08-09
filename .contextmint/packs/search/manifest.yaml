@@ -1,0 +1,32 @@
+name: search
+version: 1.0.0
+description: Auto-generated — hybrid retrieval, scoring, and blend mechanisms (symbol
+  registry)
+auto_generated: true
+stale: false
+priority: 0.85
+max_tokens: 2500
+boost_multiplier: 2.5
+files:
+- content.md
+triggers:
+  keywords:
+  - blend
+  - bm25
+  - cosine
+  - embed
+  - embedding
+  - hybrid
+  - recall
+  - rerank
+  - retrieval
+  - score
+  - scorer
+  - search
+  - similarity
+  - threshold
+  - vector
+  file_patterns: []
+  frameworks: []
+source_files: []
+evidence_plane: product
