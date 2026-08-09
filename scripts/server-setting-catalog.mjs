@@ -30,7 +30,7 @@ export const SERVER_SECTIONS = [
     description:
       "Turn and history limits, Repo / Work / Hybrid lanes, trivial-query fast path, and image attachment caps. Server-side mirrors of several extension chat keys.",
     match: (id) =>
-      /^chat\.(max_history|max_msg_chars|max_turns|token_chars|prompt_store|tier_complexity|context_lanes|work_lane|lane_suggest|image_|trivial_query|pack_skip|pack_trust|history_policy|default_local_vision|mechanism_|pack_meta_|pack_name_|prefix_layout_|sse_keepalive|state_trace_|structural_plan_|uat_regression|vision_admission)/.test(
+      /^chat\.(max_history|max_msg_chars|max_turns|token_chars|prompt_store|tier_complexity|context_lanes|work_lane|lane_suggest|image_|trivial_query|pack_skip|pack_trust|history_policy|default_local_vision|mechanism_|pack_meta_|pack_name_|prefix_layout_|cloud_provider_allowed_hosts|sse_keepalive|state_trace_|structural_plan_|uat_regression|vision_admission)/.test(
         id,
       ),
   },
@@ -301,6 +301,8 @@ export const SERVER_SETTING_DESCRIPTIONS = {
     "Operator ceiling for RAG chunk budget (ship + assemble). Saved in overlay ships unchanged; tier ratios are guidelines only until Apply.",
   "chat.max_gen_tokens":
     "Operator ceiling for Ollama num_predict on chat streams. Engine Apply co-writes tier default when saving max_context_tokens.",
+  "chat.cloud_provider_allowed_hosts":
+    "Optional hostname allowlist for cloud provider base URLs (BYOK / PRC). Empty list = allow any host that passes SSRF HTTPS guards. Restart API after change.",
   "chat.api_surface_enabled":
     "Legacy pattern-detection bridge for route-wiring questions. Superseded by the query router and knowledge layer — disable in production unless debugging a regression.",
   "chat.route_registry_enabled":
@@ -722,6 +724,7 @@ export const SERVER_SETTING_DESCRIPTIONS = {
 export const SERVER_OPERATOR_KEYS = new Set([
   "chat.max_context_tokens",
   "chat.max_gen_tokens",
+  "chat.cloud_provider_allowed_hosts",
   "chat.api_surface_enabled",
   "chat.route_registry_enabled",
   "chat.service_registry_enabled",

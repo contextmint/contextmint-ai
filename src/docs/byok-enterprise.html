@@ -16,6 +16,7 @@ pageCss: product.css
 <nav class="muted" aria-label="On this page" style="margin-bottom: 1.5rem;">
   <strong>{{ t.onThisPage.label }}</strong>
   <a href="#byok">{{ t.onThisPage.byokLink }}</a> ·
+  <a href="#byok-catalog">{{ t.onThisPage.catalogLink }}</a> ·
   <a href="#enterprise">{{ t.onThisPage.enterpriseLink }}</a>
 </nav>
 
@@ -36,6 +37,19 @@ pageCss: product.css
 <p class="muted">
   {{ t.byok.note }}
 </p>
+
+<h3 id="byok-catalog">{{ t.byok.catalogTitle }}</h3>
+<div class="settings-groups">
+<details class="settings-group" id="byok-provider-catalog" open>
+  <summary class="settings-group__summary">
+    <span class="settings-group__title"><code>providers.yaml</code> + overlay</span>
+    <span class="settings-group__meta"><code>GET /api/v1/providers</code></span>
+  </summary>
+  <div class="settings-group__body">
+    {{ t.byok.catalogBody }}
+  </div>
+</details>
+</div>
 
 <h3>{{ t.byok.checklistTitle }}</h3>
 <ol>
@@ -144,6 +158,16 @@ pageCss: product.css
   <div class="settings-group__body">
     {{ t.byok.imagePreferCloud.bodyBefore }}
     <a href="{{ '/docs/image-evidence-argus.html' | locale_path: localePrefix }}">{{ t.byok.imagePreferCloud.linkText }}</a>.</p>
+  </div>
+</details>
+
+<details class="settings-group" id="byok-server-cloud-provider-allowed-hosts">
+  <summary class="settings-group__summary">
+    <span class="settings-group__title"><code>chat.cloud_provider_allowed_hosts</code></span>
+    <span class="settings-group__meta">{{ t.byok.cloudProviderAllowedHosts.meta }}</span>
+  </summary>
+  <div class="settings-group__body">
+    {{ t.byok.cloudProviderAllowedHosts.body }}
   </div>
 </details>
 
