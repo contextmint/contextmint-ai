@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-02",
+  "generatedAt": "2026-08-15",
   "source": "extensions/contextmint-vscode/package.json",
-  "totalCount": 170,
+  "totalCount": 193,
   "operatorKeys": [
     "contextmint.serverUrl",
     "contextmint.engine.dashboardUrl",
@@ -190,6 +190,27 @@
           }
         },
         {
+          "id": "contextmint.commandCenter.enabled",
+          "description": "Show Chat/Insights/Actions Command Center tabs. Requires scorecards.enabled on the server. Default off — not GATE-SCORECARD product.",
+          "default": "false",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Show Chat/Insights/Actions Command Center tabs. Requires scorecards.enabled on the server. Default off — not GATE-SCORECARD product.",
+            "whenDisable": "When false — show Chat/Insights/Actions Command Center tabs. Requires scorecards.enabled on the server. Default off — not GATE-SCORECARD product.",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
           "id": "contextmint.fabric.architectureTabEnabled",
           "description": "Show Architecture Tab. Requires fabric.enabled + fabric.architecture_tab_enabled (health_enabled for risks). Default off — not GATE-W2.",
           "default": "false",
@@ -199,6 +220,48 @@
           "usage": {
             "whenEnable": "When true — Show Architecture Tab. Requires fabric.enabled + fabric.architecture_tab_enabled (health_enabled for risks). Default off — not GATE-W2.",
             "whenDisable": "When false — show Architecture Tab. Requires fabric.enabled + fabric.architecture_tab_enabled (health_enabled for risks). Default off — not GATE-W2.",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.fabric.blastRadiusEnabled",
+          "description": "Show Impact sidebar. Requires fabric.enabled + fabric.blast_radius_enabled on the server. Default off — not GATE-IMPACT / not GATE-EXPLAIN product.",
+          "default": "false",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Show Impact sidebar. Requires fabric.enabled + fabric.blast_radius_enabled on the server. Default off — not GATE-IMPACT / not GATE-EXPLAIN product.",
+            "whenDisable": "When false — show Impact sidebar. Requires fabric.enabled + fabric.blast_radius_enabled on the server. Default off — not GATE-IMPACT / not GATE-EXPLAIN product.",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.fabric.decisionGraphEnabled",
+          "description": "Show Decision View panel. Requires fabric.enabled + fabric.decision_graph_enabled on the server. Default off — not Decision Graph product / not GATE-EVIDENCE.",
+          "default": "false",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Show Decision View panel. Requires fabric.enabled + fabric.decision_graph_enabled on the server. Default off — not Decision Graph product / not GATE-EVIDENCE.",
+            "whenDisable": "When false — show Decision View panel. Requires fabric.enabled + fabric.decision_graph_enabled on the server. Default off — not Decision Graph product / not GATE-EVIDENCE.",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
               "Applies on next chat send or webview reload — no server restart for most keys"
@@ -295,6 +358,27 @@
           }
         },
         {
+          "id": "contextmint.fabric.driftEnabled",
+          "description": "Show Drift panel. Requires fabric.enabled + fabric.drift_enabled on the server. Default off — not GATE-DRIFT product.",
+          "default": "false",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Show Drift panel. Requires fabric.enabled + fabric.drift_enabled on the server. Default off — not GATE-DRIFT product.",
+            "whenDisable": "When false — show Drift panel. Requires fabric.enabled + fabric.drift_enabled on the server. Default off — not GATE-DRIFT product.",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
           "id": "contextmint.fabric.featureLiteEnabled",
           "description": "Show Features (draft) panel. Requires fabric.enabled + fabric.feature_lite_enabled on the server. Default off — not GATE-FEATURE-LITE.",
           "default": "false",
@@ -316,6 +400,27 @@
           }
         },
         {
+          "id": "contextmint.fabric.featureRegistryEnabled",
+          "description": "Enable Feature Registry onboarding wizard (confirm/dismiss). Requires featureLiteEnabled + fabric.feature_registry_enabled. Default off — not GATE-V3 / not product Feature Registry.",
+          "default": "false",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Enable Feature Registry onboarding wizard (confirm/dismiss). Requires featureLiteEnabled + fabric.feature_registry_enabled. Default off — not GATE-V3 / not product Feature Registry.",
+            "whenDisable": "When false — enable Feature Registry onboarding wizard (confirm/dismiss). Requires featureLiteEnabled + fabric.feature_registry_enabled. Default off — not GATE-V3 / not product Feature Registry.",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
           "id": "contextmint.fabric.memoryTabEnabled",
           "description": "Show Fabric Memory Tab convention commands (list/approve/dismiss). Requires fabric.enabled + fabric.memory_tab_enabled on the server. Default off — not GATE-W1.",
           "default": "false",
@@ -325,6 +430,90 @@
           "usage": {
             "whenEnable": "When true — Show Fabric Memory Tab convention commands (list/approve/dismiss). Requires fabric.enabled + fabric.memory_tab_enabled on the server. Default off — not GATE-W1.",
             "whenDisable": "When false — show Fabric Memory Tab convention commands (list/approve/dismiss). Requires fabric.enabled + fabric.memory_tab_enabled on the server. Default off — not GATE-W1.",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.fullParity.agentExperienceAttemptHistoryMax",
+          "description": "Max ChangeSet attempt titles shown in Agent Experience history strip.",
+          "default": "8",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust fullParity.agentExperienceAttemptHistoryMax in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.fullParity.agentExperienceEnabled",
+          "description": "Wave FPX Agent Mode Experience (repair-first · attempt history · alternative approach). Eng default-on with experience_v2; not a one-seat claim by itself.",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Wave FPX Agent Mode Experience (repair-first · attempt history · alternative approach). Eng default-on with experience_v2; not a one-seat claim by itself.",
+            "whenDisable": "When false — Wave FPX Agent Mode Experience (repair-first · attempt history · alternative approach). Eng default-on with experience_v2; not a one-seat claim by itself.",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.fullParity.codeActionsEnabled",
+          "description": "Full Parity Habit-8 code actions (Explain / Fix / Suggest tests on selection). Eng default-on; one-seat marketing claim still requires continuous PO dogfood (GATE-FULL-PARITY).",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Full Parity Habit-8 code actions (Explain / Fix / Suggest tests on selection). Eng default-on; one-seat marketing claim still requires continuous PO dogfood (GATE-FULL-PARITY).",
+            "whenDisable": "When false — Full Parity Habit-8 code actions (Explain / Fix / Suggest tests on selection). Eng default-on; one-seat marketing claim still requires continuous PO dogfood (GATE-FULL-PARITY).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.fullParity.shipChromeEnabled",
+          "description": "Full Parity Ship chrome (git status / diff / branch / commit / ChangeSet / PR / merge-readiness). Requires agent.intel.git on server. Claim still PO.",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Full Parity Ship chrome (git status / diff / branch / commit / ChangeSet / PR / merge-readiness). Requires agent.intel.git on server. Claim still PO.",
+            "whenDisable": "When false — Full Parity Ship chrome (git status / diff / branch / commit / ChangeSet / PR / merge-readiness). Requires agent.intel.git on server. Claim still PO.",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
               "Applies on next chat send or webview reload — no server restart for most keys"
@@ -409,6 +598,90 @@
           "usage": {
             "whenEnable": "When true — Enable ORACLE dwell prefetch + context-ready indicator. Requires oracle.enabled on the server. Default off — not GATE-W3 product.",
             "whenDisable": "When false — enable ORACLE dwell prefetch + context-ready indicator. Requires oracle.enabled on the server. Default off — not GATE-W3 product.",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.planPersist.enabled",
+          "description": "GATE-PLAN-ARTIFACTS — show Save Plan in Plan mode and allow Open Plans (default off until dogfood).",
+          "default": "false",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — GATE-PLAN-ARTIFACTS — show Save Plan in Plan mode and allow Open Plans (default off until dogfood).",
+            "whenDisable": "When false — GATE-PLAN-ARTIFACTS — show Save Plan in Plan mode and allow Open Plans (default off until dogfood).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.planPersist.maxBodyChars",
+          "description": "Max characters of Plan body written into a saved plan file.",
+          "default": "200000",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust planPersist.maxBodyChars in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.planPersist.plansRelpath",
+          "description": "Workspace-relative directory for saved Plan markdown files.",
+          "default": ".contextmint/plans",
+          "deprecated": false,
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Adjust planPersist.plansRelpath in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.planPersist.warnMissingPaths",
+          "description": "Warn when Plan checklist file paths are not found in the workspace (does not block Save).",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Warn when Plan checklist file paths are not found in the workspace (does not block Save).",
+            "whenDisable": "When false — Warn when Plan checklist file paths are not found in the workspace (does not block Save).",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
               "Applies on next chat send or webview reload — no server restart for most keys"
@@ -860,6 +1133,27 @@
           }
         },
         {
+          "id": "contextmint.chat.cloudThinkingEmptyReplyText",
+          "description": "Assistant message when a BYOK cloud stream yields thinking but no answer content.",
+          "default": "The model returned thinking only (no answer text). Retry with Thinking off, or raise the generation token limit.",
+          "deprecated": false,
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Adjust chat.cloudThinkingEmptyReplyText in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
           "id": "contextmint.chat.cloudThinkingEnabled",
           "description": "Request and stream model-level thinking from BYOC/BYOK cloud providers (Claude extended thinking, OpenAI reasoning models).",
           "default": "true",
@@ -1259,6 +1553,27 @@
           }
         },
         {
+          "id": "contextmint.chat.maxOpenEditorTabs",
+          "description": "Max ContextMint chat tabs open in the sidebar Chat view at once. Opening New Chat never closes existing tabs.",
+          "default": "8",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust chat.maxOpenEditorTabs in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
           "id": "contextmint.chat.maxSessionsStored",
           "description": "Max chat sessions kept in extension storage.",
           "default": "30",
@@ -1267,6 +1582,27 @@
           "type": "number",
           "usage": {
             "whenEnable": "Adjust chat.maxSessionsStored in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.chat.maxTabStreamBufferEvents",
+          "description": "Max buffered stream events kept for a background sidebar chat tab so reasoning can resume when you switch back.",
+          "default": "500",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust chat.maxTabStreamBufferEvents in VS Code Settings when the default does not match your workflow.",
             "whenDisable": "N/A — value setting (not a boolean toggle).",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
@@ -1386,8 +1722,8 @@
         },
         {
           "id": "contextmint.chat.reasoningThinkingMaxHeightPx",
-          "description": "Max height (px) of the live model-reasoning area while streaming.",
-          "default": "160",
+          "description": "Max height (px) of the live Thinking stream (~3–4 lines at default).",
+          "default": "64",
           "deprecated": false,
           "operator": false,
           "type": "number",
@@ -2242,6 +2578,69 @@
       "description": "Ghost-text completions in the editor. Off by default.",
       "settings": [
         {
+          "id": "contextmint.inline.allowCloud",
+          "description": "Opt-in client gate for inline BYOK (server inline.allow_cloud must also be true).",
+          "default": "false",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Opt-in client gate for inline BYOK (server inline.allow_cloud must also be true).",
+            "whenDisable": "When false — Opt-in client gate for inline BYOK (server inline.allow_cloud must also be true).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.inline.chainAfterAccept",
+          "description": "After Tab-accept, automatically request the next inline ghost at the new caret (Copilot-style ladder).",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — After Tab-accept, automatically request the next inline ghost at the new caret (Copilot-style ladder).",
+            "whenDisable": "When false — After Tab-accept, automatically request the next inline ghost at the new caret (Copilot-style ladder).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.inline.chainMaxSteps",
+          "description": "Maximum automatic chain steps after consecutive Tab accepts; resets when you type.",
+          "default": "8",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust inline.chainMaxSteps in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
           "id": "contextmint.inline.clientTimeoutMs",
           "description": "Abort inline completion request after this many milliseconds.",
           "default": "1500",
@@ -2250,6 +2649,27 @@
           "type": "number",
           "usage": {
             "whenEnable": "Adjust inline.clientTimeoutMs in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.inline.cloudModel",
+          "description": "Cloud model id for inline BYOK (e.g. gpt-4o-mini). Required when prefer_cloud.",
+          "default": "",
+          "deprecated": false,
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Adjust inline.cloudModel in VS Code Settings when the default does not match your workflow.",
             "whenDisable": "N/A — value setting (not a boolean toggle).",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
@@ -2284,15 +2704,36 @@
           }
         },
         {
-          "id": "contextmint.inline.enabled",
-          "description": "Enable local inline ghost-text completion — code FIM and prose/sentence (requires inline backend). Off until PO default-on after GATE-IC-RT / G7.",
-          "default": "false",
+          "id": "contextmint.inline.docstringExplicitOnly",
+          "description": "When true, automatic Tab is suppressed inside open triple-quoted strings (docstrings). Use Command Palette “ContextMint: Trigger Inline Completion” or Alt+\\\\ to invoke explicitly.",
+          "default": "true",
           "deprecated": false,
           "operator": false,
           "type": "boolean",
           "usage": {
-            "whenEnable": "When true — Enable local inline ghost-text completion — code FIM and prose/sentence (requires inline backend). Off until PO default-on after GATE-IC-RT / G7.",
-            "whenDisable": "When false — enable local inline ghost-text completion — code FIM and prose/sentence (requires inline backend). Off until PO default-on after GATE-IC-RT / G7.",
+            "whenEnable": "When true — When true, automatic Tab is suppressed inside open triple-quoted strings (docstrings). Use Command Palette “ContextMint: Trigger Inline Completion” or Alt+\\\\ to invoke explicitly.",
+            "whenDisable": "When false — When true, automatic Tab is suppressed inside open triple-quoted strings (docstrings). Use Command Palette “ContextMint: Trigger Inline Completion” or Alt+\\\\ to invoke explicitly.",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.inline.enabled",
+          "description": "Enable local inline ghost-text completion — code FIM and prose/sentence (requires inline backend). Wave J1 Parity default-on after GATE-IC-RT / G7.",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Enable local inline ghost-text completion — code FIM and prose/sentence (requires inline backend). Wave J1 Parity default-on after GATE-IC-RT / G7.",
+            "whenDisable": "When false — enable local inline ghost-text completion — code FIM and prose/sentence (requires inline backend). Wave J1 Parity default-on after GATE-IC-RT / G7.",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
               "Applies on next chat send or webview reload — no server restart for most keys"
@@ -2390,14 +2831,14 @@
         },
         {
           "id": "contextmint.inline.multiline",
-          "description": "Allow multi-line inline completions (opt-in).",
+          "description": "Allow multi-line inline completions (opt-in; uses larger server budgets).",
           "default": "false",
           "deprecated": false,
           "operator": false,
           "type": "boolean",
           "usage": {
-            "whenEnable": "When true — Allow multi-line inline completions (opt-in).",
-            "whenDisable": "When false — Allow multi-line inline completions (opt-in).",
+            "whenEnable": "When true — Allow multi-line inline completions (opt-in; uses larger server budgets).",
+            "whenDisable": "When false — Allow multi-line inline completions (opt-in; uses larger server budgets).",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
               "Applies on next chat send or webview reload — no server restart for most keys"
@@ -2432,7 +2873,7 @@
         },
         {
           "id": "contextmint.inline.postAcceptCooldownMs",
-          "description": "After Tab-accept, suppress automatic inline requests for this many milliseconds (stops busy-spinner chaining).",
+          "description": "After Tab-accept, wait this many ms before the next automatic inline request (Copilot-style chain gap).",
           "default": "2500",
           "deprecated": false,
           "operator": false,
@@ -2440,6 +2881,27 @@
           "usage": {
             "whenEnable": "Adjust inline.postAcceptCooldownMs in VS Code Settings when the default does not match your workflow.",
             "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.inline.preferCloud",
+          "description": "When routingPreference=auto, prefer BYOK inline_dispatch if cloud is allowed.",
+          "default": "false",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — When routingPreference=auto, prefer BYOK inline_dispatch if cloud is allowed.",
+            "whenDisable": "When false — When routingPreference=auto, prefer BYOK inline_dispatch if cloud is allowed.",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
               "Applies on next chat send or webview reload — no server restart for most keys"
@@ -2460,6 +2922,27 @@
           "type": "string",
           "usage": {
             "whenEnable": "Adjust inline.proseLanguages in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.inline.routingPreference",
+          "description": "Inline venue preference (independent of chat). cloud requires trust.cloudEnabled + inline.allowCloud.",
+          "default": "auto",
+          "deprecated": false,
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Adjust inline.routingPreference in VS Code Settings when the default does not match your workflow.",
             "whenDisable": "N/A — value setting (not a boolean toggle).",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",

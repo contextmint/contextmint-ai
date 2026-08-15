@@ -199,7 +199,7 @@ export const SERVER_SECTIONS = [
     id: "agent-intel",
     title: "Agent intel (LSP · packs · git · tree)",
     description:
-      "GATE-AG-INTEL navigation tools — extension LSP proxy, pack query, git porcelain, tree_view. Nested under agent.intel.*; Full Parity eng default-on; one-seat claim still requires continuous PO dogfood.",
+      "GATE-AG-INTEL navigation tools — extension LSP proxy, pack query, git porcelain, tree_view. Nested under agent.intel.*; Full Parity eng default-on; git commit/PR/merge/branch mutate flags remain default-off until GATE-SHIP S6; one-seat claim still requires continuous PO dogfood.",
     match: (id) => id.startsWith("agent.intel."),
   },
   {
@@ -285,6 +285,13 @@ export const SERVER_SECTIONS = [
     title: "UI catalog (visual regression)",
     description: "Viewport and diff thresholds for UI catalog visual regression — internal tooling.",
     match: (id) => id.startsWith("ui_catalog."),
+  },
+  {
+    id: "planning-paep-epa",
+    title: "Planning (PAEP + EPA)",
+    description:
+      "PAEP persist contract and optional Engineering Plan Arbitration (EPA). EPA defaults off; persist remains PAEP Save.",
+    match: (id) => id.startsWith("chat.paep.") || id.startsWith("chat.plan_arbitration."),
   },
   {
     id: "resource-scheduler",
@@ -494,6 +501,38 @@ export const SERVER_SETTING_DESCRIPTIONS = {
     "GATE-AG-INTEL umbrella — LSP / packs / git / tree agent tools. Full Parity eng default-on; claim still PO dogfood.",
   "agent.intel.lsp.enabled":
     "LSP proxy tools (go_to_definition, find_references, …). Needs extension loopback proxy header.",
+  "agent.intel.git.commit_enabled":
+    "GATE-SHIP SH-2 — when false, propose_git_commit previews only (default off until PO dogfood).",
+  "agent.intel.git.commit_require_confirm":
+    "GATE-SHIP SH-2 — when true, mutate only if propose_git_commit confirm is true.",
+  "agent.intel.git.commit_message_min_chars":
+    "GATE-SHIP SH-2 — minimum stripped commit message length.",
+  "agent.intel.git.commit_max_paths":
+    "GATE-SHIP SH-2 — cap on workspace-relative paths staged in one propose_git_commit.",
+  "agent.intel.git.commit_include_submodules":
+    "GATE-SHIP SH-2 — when false, skip submodule gitlinks and list them as skipped.",
+  "agent.intel.git.pr.create_enabled":
+    "GATE-SHIP SH-3 — when false, create_pull_request previews only (default off until PO dogfood).",
+  "agent.intel.git.pr.require_confirm":
+    "GATE-SHIP SH-3 — when true, mutate only if create_pull_request confirm is true.",
+  "agent.intel.git.pr.title_min_chars":
+    "GATE-SHIP SH-3 — minimum stripped PR title length.",
+  "agent.intel.git.pr.body_min_chars":
+    "GATE-SHIP SH-8 — mutate-only minimum stripped PR body length (preview may be shorter).",
+  "agent.intel.git.pr.body_max_chars":
+    "GATE-SHIP SH-3 — cap on PR body characters.",
+  "agent.intel.git.pr.push_on_create":
+    "GATE-SHIP SH-3 — git push --set-upstream current branch on mutate; never --force.",
+  "agent.intel.git.pr.base_branch":
+    "GATE-SHIP SH-3 — PR base ref. Empty uses origin/HEAD (not a hardcoded main).",
+  "agent.intel.git.merge.readiness_enabled":
+    "GATE-SHIP SH-4 — when false, get_merge_readiness returns ready=false with that reason.",
+  "agent.intel.git.branch.create_enabled":
+    "GATE-SHIP SH-7 — when false, propose_git_branch previews only (default off until PO dogfood).",
+  "agent.intel.git.branch.require_confirm":
+    "GATE-SHIP SH-7 — when true, mutate only if propose_git_branch confirm is true.",
+  "agent.intel.git.branch.name_max_chars":
+    "GATE-SHIP SH-7 — maximum stripped branch name length.",
   "agent.experience_v2.enabled":
     "Wave FPX repair_context SSE for in-seat Iterate. Eng default-on; one-seat claim still GATE-FULL-PARITY PO dogfood.",
   "agent.moat.enabled":
