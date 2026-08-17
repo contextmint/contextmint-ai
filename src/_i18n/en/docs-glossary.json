@@ -78,6 +78,18 @@
     {
       "term": "Support bundle",
       "body": "Export from Engine → About — versions, redacted config, logs for support tickets."
+    },
+    {
+      "term": "PAEP",
+      "body": "Planning Authority &amp; Evidence Pipeline — authoritative plan persist boundary (<code>POST /plan/paep/save</code> / Save Plan). Only PAEP authorizes persistence of PlanIR."
+    },
+    {
+      "term": "Plan Studio",
+      "body": "Optional proposal-hygiene plane (default off): verify EXISTING claims against the workspace, derive a SanitizationView, optionally critique/synthesize, and <strong>freeze</strong> exportable PlanIR snapshots. Improves cleanliness/quality of proposals — <em>not</em> their authority. Freeze ≠ EPA decision."
+    },
+    {
+      "term": "EPA",
+      "body": "Engineering Plan Arbitration — optional intelligence plane (default off) that compares ordinary writer PlanIRs under one AuthorityLock, observes FACT in the workspace, and records a RESOLUTION. Does not Save; EPA must re-observe independently of Studio marks."
     }
   ],
   "evidenceAssembly": {

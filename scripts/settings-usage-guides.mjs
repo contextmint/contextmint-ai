@@ -601,6 +601,36 @@ export const EXTENSION_SETTING_USAGE = {
     recommendation:
       "Leave false; ask operators to set server inline.pause_mode=shared_runtime on contested shared hosts.",
   },
+  "contextmint.planStudio.enabled": {
+    whenEnable:
+      "Dogfood Plan Studio — verify EXISTING claims, sanitize unsupported assertions, freeze PlanIR under .contextmint/studio/.",
+    whenDisable:
+      "Default — Studio pane hidden; Plan mode and Save Plan / EPA flows unchanged.",
+    pros: [
+      "Catches false EXISTING claims before EPA or Save",
+      "Freeze exports candidates without claiming EPA authority",
+    ],
+    cons: [
+      "Requires matching server chat.plan_studio.enabled",
+      "Freeze is not Save and not an EPA decision",
+    ],
+    recommendation: "Keep off until GATE-PLAN-STUDIO dogfood; enable with the server overlay together.",
+  },
+  "contextmint.planStudio.exportRelpath": {
+    whenEnable: "N/A — workspace-relative tray for frozen Studio PlanIR JSON.",
+    whenDisable: "N/A",
+    pros: ["Keeps Studio exports out of Save Plan / PAEP paths"],
+    cons: ["Wrong path can write outside the intended tray"],
+    recommendation: "Leave default .contextmint/studio unless your ops policy relocates trays.",
+  },
+  "contextmint.planArbitration.enabled": {
+    whenEnable:
+      "Dogfood EPA review — multi-writer PlanIR compare with workspace FACT observation.",
+    whenDisable: "Default — EPA review chrome hidden; Save Plan remains the persist path.",
+    pros: ["Typed conflicts and HITL Accept before PAEP"],
+    cons: ["Requires writer PlanIRs and server chat.plan_arbitration.enabled"],
+    recommendation: "Keep off until GATE-EPA dogfood; never treat Accept as Save.",
+  },
 };
 
 export const SERVER_ROLLOUT_SCENARIOS = [

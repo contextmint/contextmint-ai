@@ -84,7 +84,7 @@
     "items": [
       "Python path, backend bundle path",
       "Server URL override, Ollama URL",
-      "Server Config — full YAML catalog (agent, review, AG-INTEL, SS-MU, governance, inference, …) grouped for operators; defaults stay off until dogfood default-on",
+      "Server Config — full YAML catalog (agent, review, AG-INTEL, Planning PAEP/Plan Studio/EPA, SS-MU, governance, inference, …) grouped for operators; Studio and EPA defaults stay off until dogfood default-on",
       "Changes write ~/.contextmint/server.defaults.yaml — restart server after Apply"
     ]
   },

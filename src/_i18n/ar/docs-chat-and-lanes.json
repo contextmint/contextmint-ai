@@ -15,7 +15,7 @@
     "headers": ["الوضع", "السلوك"],
     "rows": [
       { "mode": "Ask", "behavior": "أسئلة وأجوبة وشروحات؛ بلا تعديل ملفات مستقل" },
-      { "mode": "Plan", "behavior": "خطط ومهام منظّمة؛ لا تزال تتطلب موافقة بشرية قبل التطبيق" },
+      { "mode": "Plan", "behavior": "خطط ومهام منظّمة؛ لا تزال تتطلب موافقة بشرية قبل التطبيق. مستويات Plan Studio / EPA الاختيارية تبقى معطّلة حتى تفعيلها — انظر التخطيط أدناه." },
       { "mode": "Agent", "behavior": "يقترح تصحيحات وإجراءات مساعدة؛ معاينة المرحلة الثانية قبل الكتابة" }
     ]
   },
@@ -89,6 +89,16 @@
   "routing": {
     "title": "توجيه النموذج",
     "text": "محدّد النموذج في شريط الإنشاء: <strong>Auto</strong>، أو <strong>Local</strong> (Ollama)، أو <strong>Cloud</strong> عند تفعيل BYOK. تُظهر شارة التوجيه على الإجابات المستوى الذي عمل."
+  },
+  "planning": {
+    "title": "وضع Plan ← Studio ← EPA ← الحفظ (معطّل افتراضياً)",
+    "intro": "يمكن لوضع Plan إصدار PlanIR منظَّم. مستويات اختيارية (كلها <strong>معطّلة افتراضياً</strong>) تقع بين الاقتراح والحفظ:",
+    "items": [
+      "<strong>Save Plan / PAEP</strong> — المسار الوحيد الذي يحفظ خطة موثوقة تحت <code>.contextmint/plans/</code>",
+      "<strong>Plan Studio</strong> — يتحقق من مطالبات EXISTING، وينقّي الادعاءات غير المدعومة، ويجمّد لقطات PlanIR قابلة للتصدير تحت <code>.contextmint/studio/</code>. يحسّن نظافة الاقتراح — <em>وليس</em> سلطته. فعِّل <code>contextmint.planStudio.enabled</code> (الإضافة) و<code>chat.plan_studio.enabled</code> (الخادم).",
+      "<strong>EPA (تحكيم خطة الهندسة)</strong> — يقارن PlanIR للكتّاب العاديين، ويعيد ملاحظة FACT، ويسجّل RESOLUTION. لا يحفظ. فعِّل <code>contextmint.planArbitration.enabled</code> / <code>chat.plan_arbitration.enabled</code>."
+    ],
+    "note": "تجميد Studio ليس قرار EPA. يجب أن يعيد EPA ملاحظة FACT بشكل مستقل. PAEP وحده يصرّح بالحفظ."
   },
   "blocked": {
     "title": "متى تُحظر المحادثة",

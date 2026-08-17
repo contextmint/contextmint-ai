@@ -78,6 +78,18 @@
     {
       "term": "حزمة الدعم (Support bundle)",
       "body": "تصدير من Engine ← حول — الإصدارات، والإعداد المنقّح، والسجلات لتذاكر الدعم."
+    },
+    {
+      "term": "PAEP",
+      "body": "خط أنابيب سلطة التخطيط والأدلة (Planning Authority &amp; Evidence Pipeline) — حدود الحفظ الموثوقة للخطة (<code>POST /plan/paep/save</code> / Save Plan). PAEP وحده يصرّح بحفظ PlanIR."
+    },
+    {
+      "term": "Plan Studio",
+      "body": "مستوى اختياري لنظافة الاقتراحات (معطّل افتراضياً): يتحقق من مطالبات EXISTING مقابل مساحة العمل، ويشتق SanitizationView، ويمكنه النقد/التركيب، و<strong>يجمّد</strong> لقطات PlanIR قابلة للتصدير. يحسّن نظافة/جودة الاقتراحات — <em>وليس</em> سلطتها. التجميد ≠ قرار EPA."
+    },
+    {
+      "term": "EPA",
+      "body": "تحكيم خطة الهندسة (Engineering Plan Arbitration) — مستوى ذكاء اختياري (معطّل افتراضياً) يقارن PlanIR للكتّاب العاديين تحت AuthorityLock واحد، ويلاحظ FACT في مساحة العمل، ويسجّل RESOLUTION. لا يحفظ؛ يجب أن يعيد EPA الملاحظة بشكل مستقل عن علامات Studio."
     }
   ],
   "evidenceAssembly": {

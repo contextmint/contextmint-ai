@@ -1,6 +1,6 @@
 {
   "title": "Chat, Modes & Context Lanes | ContextMint Docs",
-  "description": "Ask, Plan, and Agent modes; Repo, Work, and Hybrid context lanes; file and image attachments, sessions, provenance chips, and Work-lane auto-suggest.",
+  "description": "Ask, Plan, and Agent modes; Repo, Work, and Hybrid context lanes; optional Plan Studio and EPA (defaults off); file and image attachments, sessions, provenance chips, and Work-lane auto-suggest.",
   "h1": "Chat, modes &amp; context lanes",
   "lead": "ContextMint chat is a governed copilot — not a generic web chat. You choose <strong>how much autonomy</strong> the model has (mode) and <strong>what evidence</strong> it may use (context lane).",
   "opening": {
@@ -15,7 +15,7 @@
     "headers": ["Mode", "Behavior"],
     "rows": [
       { "mode": "Ask", "behavior": "Q&amp;A and explanations; no autonomous file edits" },
-      { "mode": "Plan", "behavior": "Structured plans and todos; still human-gated before apply" },
+      { "mode": "Plan", "behavior": "Structured plans and todos; still human-gated before apply. Optional Plan Studio / EPA planes stay off until enabled — see Planning below." },
       { "mode": "Agent", "behavior": "Proposes patches and assisted actions; gate 2 preview before writes" }
     ]
   },
@@ -89,6 +89,16 @@
   "routing": {
     "title": "Model routing",
     "text": "Compose bar model selector: <strong>Auto</strong>, <strong>Local</strong> (Ollama), or <strong>Cloud</strong> when BYOK is enabled. The routing badge on answers shows which tier ran."
+  },
+  "planning": {
+    "title": "Plan mode → Studio → EPA → Save (defaults off)",
+    "intro": "Plan mode can emit structured PlanIR. Optional planes (all <strong>default off</strong>) sit between proposal and persist:",
+    "items": [
+      "<strong>Save Plan / PAEP</strong> — only path that persists an authoritative plan under <code>.contextmint/plans/</code>",
+      "<strong>Plan Studio</strong> — verify EXISTING claims, sanitize unsupported assertions, freeze exportable PlanIR snapshots under <code>.contextmint/studio/</code>. Improves proposal cleanliness — <em>not</em> authority. Enable <code>contextmint.planStudio.enabled</code> (extension) and <code>chat.plan_studio.enabled</code> (server).",
+      "<strong>EPA (Engineering Plan Arbitration)</strong> — compare ordinary writer PlanIRs, re-observe FACT, record a RESOLUTION. Does not Save. Enable <code>contextmint.planArbitration.enabled</code> / <code>chat.plan_arbitration.enabled</code>."
+    ],
+    "note": "Studio freeze is not an EPA decision. EPA must re-observe FACT independently. PAEP alone authorizes persistence."
   },
   "blocked": {
     "title": "When chat is blocked",

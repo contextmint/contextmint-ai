@@ -288,10 +288,13 @@ export const SERVER_SECTIONS = [
   },
   {
     id: "planning-paep-epa",
-    title: "Planning (PAEP + EPA)",
+    title: "Planning (PAEP + Plan Studio + EPA)",
     description:
-      "PAEP persist contract and optional Engineering Plan Arbitration (EPA). EPA defaults off; persist remains PAEP Save.",
-    match: (id) => id.startsWith("chat.paep.") || id.startsWith("chat.plan_arbitration."),
+      "PAEP persist contract, optional Plan Studio (verify/sanitize/freeze proposals), and optional Engineering Plan Arbitration (EPA). Studio and EPA default off; freeze ≠ EPA decision; persist remains PAEP Save.",
+    match: (id) =>
+      id.startsWith("chat.paep.") ||
+      id.startsWith("chat.plan_arbitration.") ||
+      id.startsWith("chat.plan_studio."),
   },
   {
     id: "resource-scheduler",
@@ -757,9 +760,32 @@ export const SERVER_SETTING_DESCRIPTIONS = {
     "SSE pipeline_progress for RT-VIEW. Off until explicit default-on.",
   "oir.enabled":
     "Operational intelligence router / OIR surface. Keep aligned with Block RO dogfood; defaults off.",
+  "chat.plan_studio.enabled":
+    "GATE-PLAN-STUDIO — when false, /plan/studio/* returns enabled=false (default off until PO dogfood). Verify/sanitize/freeze only; not EPA; not PAEP Save.",
+  "chat.plan_studio.max_turns":
+    "GATE-PLAN-STUDIO — turn budget (0 = Wave 1 / no auto turn loop). Reaching max_turns exits the run; it does not grant FREEZE_ALLOWED.",
+  "chat.plan_studio.synthesis_venue":
+    "GATE-PLAN-STUDIO — proposal-producing venue id for synthesis. Empty = no auto synthesis (host ingest only).",
+  "chat.plan_studio.critic_venues":
+    "GATE-PLAN-STUDIO — critic venue ids (presentation routing only). Empty = no auto critics.",
+  "chat.plan_studio.live_emit":
+    "GATE-PLAN-STUDIO — when true, allow live model emit for critic/synthesis. Default false.",
+  "chat.plan_studio.export_relpath":
+    "GATE-PLAN-STUDIO — workspace-relative tray for frozen PlanIR JSON (.contextmint/studio). Not Save Plan / PAEP.",
+  "chat.plan_studio.claim_id_stable":
+    "GATE-PLAN-STUDIO — when true, claim_id participates in sticky claim_key; when false, subject-level identity only.",
+  "chat.plan_studio.exit_require_freeze_request":
+    "GATE-PLAN-STUDIO — FREEZE_ALLOWED requires an explicit freeze request (studio_freeze).",
+  "chat.plan_studio.exit_max_open_fact_failures":
+    "GATE-PLAN-STUDIO — max EXISTING+INCORRECT failures still asserted after sanitize (default 0).",
+  "chat.plan_studio.exit_forbid_rank_only":
+    "GATE-PLAN-STUDIO — reject rank-only exit as FREEZE_ALLOWED.",
+  "chat.plan_studio.exit_require_authority_scope":
+    "GATE-PLAN-STUDIO — every freeze candidate must match the immutable Studio lock (work_id + objective).",
 };
 
 /** Keys surfaced as operator-priority in the settings table. */
+/** @type {Set<string>} */
 export const SERVER_OPERATOR_KEYS = new Set([
   "chat.max_context_tokens",
   "chat.max_gen_tokens",
@@ -778,6 +804,9 @@ export const SERVER_OPERATOR_KEYS = new Set([
   "chat.context_receipt_enabled",
   "chat.canonical_overview_enabled",
   "chat.evidence_fusion_enabled",
+  "chat.plan_studio.enabled",
+  "chat.plan_studio.max_turns",
+  "chat.plan_studio.export_relpath",
   "retrieval.inference_enabled",
   "retrieval.window_expand_enabled",
   "retrieval.parallel_grep_enabled",

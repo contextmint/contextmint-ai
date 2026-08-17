@@ -106,6 +106,14 @@ const DESCRIPTION_OVERRIDES = {
     "Maximum file cards shown in the Context Lens drawer.",
   "contextmint.sandbox.enabled":
     "Enable git worktree sandbox for isolated test and apply. Requires sandbox enabled on the server.",
+  "contextmint.planStudio.enabled":
+    "GATE-PLAN-STUDIO — show Plan Studio verify/freeze pane (default off). Does not persist; EPA re-observes; Save remains PAEP.",
+  "contextmint.planStudio.exportRelpath":
+    "Workspace-relative folder for frozen PlanIR JSON from Plan Studio (not Save Plan / PAEP).",
+  "contextmint.planArbitration.enabled":
+    "GATE-EPA — show Engineering Plan Arbitration review (default off). Persist remains Save Plan / PAEP.",
+  "contextmint.planArbitration.exportRelpath":
+    "Workspace-relative folder for Export PlanIR JSON (EPA inject tray). Not Save Plan / PAEP persist.",
 };
 
 /**

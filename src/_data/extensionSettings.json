@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-15",
+  "generatedAt": "2026-08-17",
   "source": "extensions/contextmint-vscode/package.json",
-  "totalCount": 193,
+  "totalCount": 198,
   "operatorKeys": [
     "contextmint.serverUrl",
     "contextmint.engine.dashboardUrl",
@@ -199,6 +199,27 @@
           "usage": {
             "whenEnable": "When true — Show Chat/Insights/Actions Command Center tabs. Requires scorecards.enabled on the server. Default off — not GATE-SCORECARD product.",
             "whenDisable": "When false — show Chat/Insights/Actions Command Center tabs. Requires scorecards.enabled on the server. Default off — not GATE-SCORECARD product.",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.debugUi.enabled",
+          "description": "Show testing/debug chrome in the chat webview (e.g. EPA run telemetry). Default off for normal users.",
+          "default": "false",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Show testing/debug chrome in the chat webview (e.g. EPA run telemetry). Default off for normal users.",
+            "whenDisable": "When false — show testing/debug chrome in the chat webview (e.g. EPA run telemetry). Default off for normal users.",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
               "Applies on next chat send or webview reload — no server restart for most keys"
@@ -610,6 +631,46 @@
           }
         },
         {
+          "id": "contextmint.planArbitration.enabled",
+          "description": "GATE-EPA — show Engineering Plan Arbitration review (default off). Persist remains Save Plan / PAEP.",
+          "default": "false",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "Dogfood EPA review — multi-writer PlanIR compare with workspace FACT observation.",
+            "whenDisable": "Default — EPA review chrome hidden; Save Plan remains the persist path.",
+            "pros": [
+              "Typed conflicts and HITL Accept before PAEP"
+            ],
+            "cons": [
+              "Requires writer PlanIRs and server chat.plan_arbitration.enabled"
+            ],
+            "recommendation": "Keep off until GATE-EPA dogfood; never treat Accept as Save."
+          }
+        },
+        {
+          "id": "contextmint.planArbitration.exportRelpath",
+          "description": "Workspace-relative folder for Export PlanIR JSON (EPA inject tray). Not Save Plan / PAEP persist.",
+          "default": ".contextmint/epa",
+          "deprecated": false,
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Adjust planArbitration.exportRelpath in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
           "id": "contextmint.planPersist.enabled",
           "description": "GATE-PLAN-ARTIFACTS — show Save Plan in Plan mode and allow Open Plans (default off until dogfood).",
           "default": "false",
@@ -691,6 +752,46 @@
               "Engine-managed keys may be hidden when ContextMint Engine is installed"
             ],
             "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.planStudio.enabled",
+          "description": "GATE-PLAN-STUDIO — show Plan Studio verify/freeze pane (default off). Does not persist; EPA re-observes; Save remains PAEP.",
+          "default": "false",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "Dogfood Plan Studio — verify EXISTING claims, sanitize unsupported assertions, freeze PlanIR under .contextmint/studio/.",
+            "whenDisable": "Default — Studio pane hidden; Plan mode and Save Plan / EPA flows unchanged.",
+            "pros": [
+              "Catches false EXISTING claims before EPA or Save",
+              "Freeze exports candidates without claiming EPA authority"
+            ],
+            "cons": [
+              "Requires matching server chat.plan_studio.enabled",
+              "Freeze is not Save and not an EPA decision"
+            ],
+            "recommendation": "Keep off until GATE-PLAN-STUDIO dogfood; enable with the server overlay together."
+          }
+        },
+        {
+          "id": "contextmint.planStudio.exportRelpath",
+          "description": "Workspace-relative folder for frozen PlanIR JSON from Plan Studio (not Save Plan / PAEP).",
+          "default": ".contextmint/studio",
+          "deprecated": false,
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "N/A — workspace-relative tray for frozen Studio PlanIR JSON.",
+            "whenDisable": "N/A",
+            "pros": [
+              "Keeps Studio exports out of Save Plan / PAEP paths"
+            ],
+            "cons": [
+              "Wrong path can write outside the intended tray"
+            ],
+            "recommendation": "Leave default .contextmint/studio unless your ops policy relocates trays."
           }
         },
         {

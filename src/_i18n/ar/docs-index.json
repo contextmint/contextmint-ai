@@ -16,7 +16,7 @@
     {
       "href": "/docs/chat-and-lanes.html",
       "title": "المحادثة والأوضاع ومسارات السياق",
-      "text": "أوضاع Ask / Plan / Agent، ومسارات Repo / Work / Hybrid، والمرفقات، والجلسات، والاقتراح التلقائي."
+      "text": "أوضاع Ask / Plan / Agent، ومسارات Repo / Work / Hybrid، وPlan Studio / EPA الاختياريان (معطّلان افتراضياً)، والمرفقات، والجلسات."
     },
     {
       "href": "/docs/image-evidence-argus.html",

@@ -1,7 +1,7 @@
 ---
 layout: doc.html
 title: Chat, Modes & Context Lanes | ContextMint Docs
-description: Ask, Plan, and Agent modes; Repo, Work, and Hybrid context lanes; file and image attachments, sessions, provenance chips, and Work-lane auto-suggest.
+description: Ask, Plan, and Agent modes; Repo, Work, and Hybrid context lanes; optional Plan Studio and EPA (defaults off); file and image attachments, sessions, provenance chips, and Work-lane auto-suggest.
 pageCss: product.css
 ---
 
@@ -98,6 +98,15 @@ pageCss: product.css
 
 <h2>{{ t.routing.title }}</h2>
 <p>{{ t.routing.text }}</p>
+
+<h2>{{ t.planning.title }}</h2>
+<p>{{ t.planning.intro }}</p>
+<ul>
+  {% for item in t.planning.items %}
+  <li>{{ item }}</li>
+  {% endfor %}
+</ul>
+<p class="muted">{{ t.planning.note }}</p>
 
 <h2>{{ t.blocked.title }}</h2>
 <p>{{ t.blocked.p1 }}
