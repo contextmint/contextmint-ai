@@ -510,7 +510,7 @@ export const SERVER_SETTING_DESCRIPTIONS = {
   "agent.intel.git.commit_max_paths":
     "GATE-SHIP SH-2 — cap on workspace-relative paths staged in one propose_git_commit.",
   "agent.intel.git.commit_include_submodules":
-    "GATE-SHIP SH-2 — when false, skip submodule gitlinks and list them as skipped.",
+    "GATE-SHIP SH-2 — when false, skip nested git repos. When true, commit inside a nested repo or stage a clean parent gitlink; never stage a dirty gitlink.",
   "agent.intel.git.pr.create_enabled":
     "GATE-SHIP SH-3 — when false, create_pull_request previews only (default off until PO dogfood).",
   "agent.intel.git.pr.require_confirm":

@@ -2,10 +2,10 @@
   "title": "Features in v1.0 | ContextMint",
   "description": "What ships in ContextMint v1.0 — Engine operator console, VS Code chat modes, image evidence, ARGUS visual audit, Context Lens, packs, quality map, and glass-box routing.",
   "hero": {
-    "pill": "IN PILOT · V1.0 END OF AUGUST 2026",
+    "pill": "TESTING · V1.0 30 SEPTEMBER 2026",
     "title": "What ships in v1.0",
     "leadBefore": "ContextMint v1.0 ships",
-    "leadStrong1": "end of August 2026",
+    "leadStrong1": "30 September 2026",
     "leadMid1": ". The pilot delivers a",
     "leadStrong2": "local-first decision-control plane",
     "leadMid2": "— not generic chat. This page lists capabilities in the Engine desktop app and VS Code extension. PR verification, blast-radius product SKUs, and the standalone CLI remain on the",

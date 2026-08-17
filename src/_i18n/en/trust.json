@@ -15,7 +15,7 @@
       "title": "Human verification gates",
       "textBefore": "Context Lens before inference. Patch preview and apply gates before repo writes. AI narrates; humans approve material changes. Graph-computed blast radius and drift SKUs are",
       "textStrong": "roadmap",
-      "textAfter": "— not the August GA package."
+      "textAfter": "— not the September GA package."
     },
     {
       "title": "RBAC & agent governance",

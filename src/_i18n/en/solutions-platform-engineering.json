@@ -9,7 +9,7 @@
   "hero": {
     "pill": "PLATFORM · DEVOPS",
     "title": "Decision-control in every developer IDE",
-    "leadStrong1": "v1.0 (end of August 2026):",
+    "leadStrong1": "v1.0 (30 September 2026):",
     "leadMid": "context packs and local-first Engine in the IDE, with human gates before inference and apply.",
     "leadStrong2": "Roadmap:",
     "leadAfter": "CI/CD deployment graph, MCP agent tools, and PR verification on the Verification Engine."
@@ -46,7 +46,7 @@
     "title": "PR gate for AI-generated code",
     "textBefore": "After v1.0, the Verification Engine direction targets ownership, blast radius, ADR, and policy checks on pull requests — with evidence attached. That is",
     "textStrong": "not",
-    "textAfter": "in the August GA package. Today: Context Lens, quality map, and patch preview in the IDE.",
+    "textAfter": "in the September GA package. Today: Context Lens, quality map, and patch preview in the IDE.",
     "cta1": "Verification Engine vision",
     "cta2": "v1.0 features"
   }

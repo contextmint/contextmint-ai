@@ -1,6 +1,6 @@
 {
   "title": "ContextMint | AI Writes Code. We Decide What Can Ship.",
-  "description": "ContextMint is a local-first AI decision-control plane — evidence before inference, human approval before repo changes. v1.0 ships end of August 2026.",
+  "description": "ContextMint is a local-first AI decision-control plane — evidence before inference, human approval before repo changes. v1.0 ships 30 September 2026 while testing continues.",
   "hero": {
     "titleLine1": "AI writes code.",
     "titleLine2": "ContextMint decides what ships.",
@@ -19,9 +19,9 @@
     "trust": "Trust & Security"
   },
   "pilotNow": {
-    "title": "In pilot now",
-    "introStrong": "v1.0 ships end of August 2026.",
-    "introRest": "We are finishing internal pilot readiness; design partner intake opens by start of September 2026. Evidence before inference. Human approval before code changes.",
+    "title": "In testing now",
+    "introStrong": "v1.0 ships 30 September 2026 while testing continues.",
+    "introRest": "Testing is in progress. Design partner intake still opens by start of September 2026. Evidence before inference. Human approval before code changes.",
     "cards": [
       {
         "title": "ContextMint Engine",
@@ -49,7 +49,7 @@
       "byokText": "Optional BYOK cloud routing is off by default.",
       "roadmapLabel": "Roadmap:",
       "v1Link": "v1.0",
-      "v1Suffix": "(pilot now) ·",
+      "v1Suffix": "(testing now) ·",
       "v2Link": "v2.0",
       "v2Suffix": "Engineering Intelligence ·",
       "trackBLink": "Track B",
@@ -120,12 +120,12 @@
       "badge": "Roadmap",
       "textBefore": "PR verification gates, blast-radius SKU, and CI packaging are the",
       "linkText": "Verification Engine",
-      "textAfter": "direction — after v1.0, not in the August GA package."
+      "textAfter": "direction — after v1.0, not in the September GA package."
     }
   },
   "productHeaded": {
     "title": "Where the product is headed",
-    "lead": "After v1.0, the Verification Engine direction adds deterministic graph checks for PR-time verification. Capabilities below are labeled roadmap — not the August GA package.",
+    "lead": "After v1.0, the Verification Engine direction adds deterministic graph checks for PR-time verification. Capabilities below are labeled roadmap — not the September GA package.",
     "ctaSecondary": "Verification Engine vision",
     "ctaPrimary": "v1.0 features"
   },

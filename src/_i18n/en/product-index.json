@@ -1,9 +1,9 @@
 {
   "title": "Product | ContextMint Verification Engine",
-  "description": "ContextMint Verification Engine — product direction after v1.0 for PR-time verification. v1.0 ships end of August 2026 as the decision-control plane foundation.",
+  "description": "ContextMint Verification Engine — product direction after v1.0 for PR-time verification. v1.0 ships 30 September 2026 while testing continues as the decision-control plane foundation.",
   "badges": {
     "roadmap": "Roadmap",
-    "pilot": "v1.0 · end of August 2026"
+    "pilot": "v1.0 · 30 September 2026"
   },
   "hero": {
     "pill": "PRODUCT DIRECTION",
@@ -16,14 +16,14 @@
   },
   "outcome": {
     "title": "Target outcome (roadmap)",
-    "intro": "One outcome when the Verification Engine is fully delivered — not five separate products in the August GA package.",
+    "intro": "One outcome when the Verification Engine is fully delivered — not five separate products in the September GA package.",
     "statement": "Verify every change before it ships",
     "detail": "Policy checks &middot; ownership resolution &middot; blast radius &middot; architecture validation &middot; drift detection &middot; agent governance &middot; audit trail",
     "caption": "Directional — gated after v1.0 · see roadmap"
   },
   "poweredBy": {
     "title": "Powered by (planned)",
-    "text": "These capabilities exist to deliver the verification promise — labeled roadmap, not August GA."
+    "text": "These capabilities exist to deliver the verification promise — labeled roadmap, not September GA."
   },
   "underHood": {
     "title": "Under the hood (vision)",

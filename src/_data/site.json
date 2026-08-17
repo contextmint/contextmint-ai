@@ -15,9 +15,9 @@
   "year": 2026,
   "announcement": {
     "enabled": true,
-    "id": "design-partners-august-2026",
-    "label": "Design partners",
-    "text": "v1.0 ships end of August 2026 — design partner intake opens by start of September.",
+    "id": "v1-launch-30-september-2026",
+    "label": "Launch update",
+    "text": "v1.0 now ships 30 September 2026 while testing continues — design partner intake still opens at the start of September.",
     "ctaText": "Program details",
     "ctaHref": "/design-partners.html",
     "dismissible": true

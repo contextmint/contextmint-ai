@@ -44,8 +44,8 @@
   "emailComingSoon": "Contact email coming soon",
   "announcement": {
     "ariaLabel": "Site announcement",
-    "label": "Design partners",
-    "text": "v1.0 ships end of August 2026 — design partner intake opens by start of September.",
+    "label": "Launch update",
+    "text": "v1.0 now ships 30 September 2026 while testing continues — design partner intake still opens at the start of September.",
     "ctaText": "Program details",
     "dismiss": "Dismiss announcement",
     "learnMore": "Learn more"
@@ -96,7 +96,7 @@
   },
   "ctaBand": {
     "title": "Discuss your AI governance challenges",
-    "text": "See the local-first decision-control plane — Context Lens, quality map, and human apply gates. v1.0 ships end of August 2026.",
+    "text": "See the local-first decision-control plane — Context Lens, quality map, and human apply gates. v1.0 ships 30 September 2026 while testing continues.",
     "demo": "Book a Demo",
     "trust": "Trust & Security"
   },

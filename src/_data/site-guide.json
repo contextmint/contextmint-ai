@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-07-24T13:57:51.728Z",
+  "generated_at": "2026-08-17T09:52:59.123Z",
   "predefined_faqs": [
     {
       "id": "what-do-i-need-to-install",
@@ -310,7 +310,7 @@
         "later"
       ],
       "question": "What ships in v1.0 vs later roadmap?",
-      "direct_answer": "v1.0 (pilot now — GA end of August 2026): local Engine + extension — Context Lens, Ask/Plan/Agent modes, Repo/Work/Hybrid lanes, Findings Store quality map, image evidence, ARGUS visual audit, context packs, assisted patch preview, glass-box routing, and symbol-aware citations. Full v1.0 list .\n\nLater: v2.0 Engineering Intelligence Platform (Q1 2027), Track B enterprise knowledge and compliance (end 2027), and the long-term Verification Engine direction (PR gates, blast radius, drift) — full roadmap .",
+      "direct_answer": "v1.0 (testing in progress — GA 30 September 2026): local Engine + extension — Context Lens, Ask/Plan/Agent modes, Repo/Work/Hybrid lanes, Findings Store quality map, image evidence, ARGUS visual audit, context packs, assisted patch preview, glass-box routing, and symbol-aware citations. Full v1.0 list .\n\nLater: v2.0 Engineering Intelligence Platform (Q1 2027), Track B enterprise knowledge and compliance (end 2027), and the long-term Verification Engine direction (PR gates, blast radius, drift) — full roadmap .",
       "source_url": "/faq.html#what-ships-in-v1-0-vs-later-roadmap",
       "source_label": "What ships in v1.0 vs later roadmap?"
     },
@@ -335,7 +335,7 @@
         "partner"
       ],
       "question": "How do I get early access or join as a design partner?",
-      "direct_answer": "Design partner intake opens by start of September 2026 while we finish v1.0 pilot readiness. The form on Design Partners is visible for reference only — submissions are disabled until intake opens.\n\nAvailable now: book a walkthrough via Book a Demo , try local-first install via Getting started , review program details on Early Access , or ask questions via Support or GitHub issues. When intake opens, design partners run a 30-day evaluation pilot (10–30 developers, one repo — extendable to 90 days).",
+      "direct_answer": "Design partner intake opens by start of September 2026 while v1.0 testing continues. The form on Design Partners is visible for reference only — submissions are disabled until intake opens.\n\nAvailable now: book a walkthrough via Book a Demo , try local-first install via Getting started , review program details on Early Access , or ask questions via Support or GitHub issues. When intake opens, design partners run a 30-day evaluation pilot (10–30 developers, one repo — extendable to 90 days).",
       "source_url": "/faq.html#how-do-i-get-early-access-or-join-as-a-design-partner",
       "source_label": "How do I get early access or join as a design par…"
     },

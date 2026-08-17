@@ -155,7 +155,7 @@
       "id": "what-ships-in-v1-0-vs-later-roadmap",
       "q": "What ships in v1.0 vs later roadmap?",
       "body": [
-        "<strong>v1.0 (pilot now \u2014 GA end of August 2026):</strong> local Engine + extension \u2014 Context Lens, Ask/Plan/Agent modes, Repo/Work/Hybrid lanes, Findings Store quality map, image evidence, ARGUS visual audit, context packs, assisted patch preview, glass-box routing, and symbol-aware citations. <a href=\"/features.html\">Full v1.0 list</a>.",
+        "<strong>v1.0 (testing in progress \u2014 GA 30 September 2026):</strong> local Engine + extension \u2014 Context Lens, Ask/Plan/Agent modes, Repo/Work/Hybrid lanes, Findings Store quality map, image evidence, ARGUS visual audit, context packs, assisted patch preview, glass-box routing, and symbol-aware citations. <a href=\"/features.html\">Full v1.0 list</a>.",
         "<strong>Later:</strong> v2.0 Engineering Intelligence Platform (Q1 2027), Track B enterprise knowledge and compliance (end 2027), and the long-term <a href=\"/product/\">Verification Engine</a> direction (PR gates, blast radius, drift) \u2014 <a href=\"/roadmap.html\">full roadmap</a>."
       ]
     },
@@ -163,7 +163,7 @@
       "id": "how-do-i-get-early-access-or-join-as-a-design-partner",
       "q": "How do I get early access or join as a design partner?",
       "body": [
-        "<strong>Design partner intake opens by start of September 2026</strong> while we finish v1.0 pilot readiness. The form on <a href=\"/design-partners.html\">Design Partners</a> is visible for reference only \u2014 submissions are disabled until intake opens.",
+        "<strong>Design partner intake opens by start of September 2026</strong> while v1.0 testing continues. The form on <a href=\"/design-partners.html\">Design Partners</a> is visible for reference only \u2014 submissions are disabled until intake opens.",
         "<strong>Available now:</strong> book a walkthrough via <a href=\"/request-demo.html\">Book a Demo</a>, try local-first install via <a href=\"/getting-started.html\">Getting started</a>, review program details on <a href=\"/pricing.html\">Early Access</a>, or ask questions via <a href=\"/support.html\">Support</a> or GitHub issues. When intake opens, design partners run a <strong>30-day evaluation pilot</strong> (10\u201330 developers, one repo \u2014 extendable to 90 days)."
       ]
     }

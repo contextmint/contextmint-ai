@@ -1,12 +1,12 @@
 {
   "title": "Roadmap | ContextMint",
-  "description": "ContextMint product roadmap — v1.0 end of August 2026, v2.0 Engineering Intelligence Platform, Track B enterprise and compliance, plus Verification Engine direction.",
+  "description": "ContextMint product roadmap — v1.0 30 September 2026, v2.0 Engineering Intelligence Platform, Track B enterprise and compliance, plus Verification Engine direction.",
   "hero": {
     "pill": "PRODUCT DIRECTION",
     "title": "Roadmap",
-    "leadHtml": "Three horizons: <strong>v1.0</strong> pilots the decision-control plane now (GA end of August 2026); <strong>v2.0</strong> unifies engineering intelligence on one Knowledge Fabric; <strong>Track B</strong> extends the same core to org-wide knowledge with enterprise controls. Directional — not a delivery schedule.",
+    "leadHtml": "Three horizons: <strong>v1.0</strong> is in testing now (GA 30 September 2026); <strong>v2.0</strong> unifies engineering intelligence on one Knowledge Fabric; <strong>Track B</strong> extends the same core to org-wide knowledge with enterprise controls. Directional — not a delivery schedule.",
     "horizons": [
-      { "href": "#v1", "statusClass": "pilot", "status": "v1.0 · end of August 2026", "title": "Decision-control plane", "text": "Engine, Context Lens, quality map, federated governance lookup — GA end of August 2026." },
+      { "href": "#v1", "statusClass": "pilot", "status": "v1.0 · 30 September 2026", "title": "Decision-control plane", "text": "Engine, Context Lens, quality map, federated governance lookup — GA 30 September 2026." },
       { "href": "#v2", "statusClass": "planned", "status": "v2.0 · Q1 2027", "title": "Engineering Intelligence Platform", "text": "Knowledge Fabric, institutional memory, CHRONOS, operational intelligence retrieval." },
       { "href": "#track-b", "statusClass": "enterprise", "status": "Track B · end 2027", "title": "Enterprise &amp; compliance", "text": "Jira, Confluence, SharePoint, Git, and org knowledge — plus SSO, RBAC, and audit." }
     ],
@@ -18,9 +18,9 @@
     "footerHtml": "Capabilities and order evolve with design partner feedback. We label <strong>shipping</strong> vs <strong>planned</strong> explicitly — no certification or autonomous-governance claims."
   },
   "v1": {
-    "badge": "v1.0 · end of August 2026",
+    "badge": "v1.0 · 30 September 2026",
     "title": "Decision-control plane",
-    "introHtml": "Local-first <strong>decision-control plane</strong> for software teams — evidence before inference, human approval before repo changes. In internal pilot now; design partner intake opens by start of September 2026. General availability <strong>end of August 2026</strong>.",
+    "introHtml": "Local-first <strong>decision-control plane</strong> for software teams — evidence before inference, human approval before repo changes. Testing is in progress; design partner intake still opens by start of September 2026. General availability <strong>30 September 2026</strong>.",
     "items": [
       "<strong>ContextMint Engine</strong> — tray-native operator console (server, Ollama, models, indexing, quality scans, logs, support bundle)",
       "<strong>VS Code extension</strong> — Ask / Plan / Agent modes, context lanes (Repo / Work / Hybrid), chat sessions, attach context, suggested prompts",
