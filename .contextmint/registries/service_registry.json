@@ -1,7 +1,7 @@
 {
   "schema_version": "rxi045.v1",
-  "extracted_at": "2026-08-18T20:57:06.891146+00:00",
-  "source_commit": "02dc6086d81ce2547422d1a5beb358bba56c0323",
+  "extracted_at": "2026-08-19T14:45:15.721646+00:00",
+  "source_commit": "d6afeb2e61dd77dbb205f09395c1d717c601683a",
   "objects": [],
   "raw": {
     "services": []

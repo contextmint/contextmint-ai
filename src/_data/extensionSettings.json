@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-17",
+  "generatedAt": "2026-08-19",
   "source": "extensions/contextmint-vscode/package.json",
-  "totalCount": 198,
+  "totalCount": 199,
   "operatorKeys": [
     "contextmint.serverUrl",
     "contextmint.engine.dashboardUrl",
@@ -743,6 +743,27 @@
           "usage": {
             "whenEnable": "When true — Warn when Plan checklist file paths are not found in the workspace (does not block Save).",
             "whenDisable": "When false — Warn when Plan checklist file paths are not found in the workspace (does not block Save).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.planStudio.composeDefault",
+          "description": "GATE-ACA — default Use Plan Studio checkbox (unchecked). Does not run Studio on Ask.",
+          "default": "false",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — GATE-ACA — default Use Plan Studio checkbox (unchecked). Does not run Studio on Ask.",
+            "whenDisable": "When false — GATE-ACA — default Use Plan Studio checkbox (unchecked). Does not run Studio on Ask.",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
               "Applies on next chat send or webview reload — no server restart for most keys"
@@ -1823,8 +1844,8 @@
         },
         {
           "id": "contextmint.chat.reasoningThinkingMaxHeightPx",
-          "description": "Max height (px) of the live Thinking stream (~3–4 lines at default).",
-          "default": "64",
+          "description": "Max height (px) of the live Model thinking stream when expanded.",
+          "default": "160",
           "deprecated": false,
           "operator": false,
           "type": "number",
