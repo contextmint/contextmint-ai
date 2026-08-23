@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-17",
+  "generatedAt": "2026-08-23",
   "source": "config/contextmint.defaults.yaml",
   "overlayPath": "~/.contextmint/server.defaults.yaml",
-  "totalCount": 1540,
+  "totalCount": 1575,
   "planDefinition": {
     "planId": "api_registration_chain",
     "intent": "structural_lookup",
@@ -3086,7 +3086,7 @@
         },
         {
           "id": "chat.canonical_overview_grep_exclude_patterns",
-          "default": "[\".contextmint/packs/session/\",\".contextmint/packs/security/\",\".contextmint/eval-fixtures/\",\"eval-fixtures/\",\"_fix_\"]",
+          "default": "[6 items] .contextmint/packs/session/, .contextmint/packs/security/, .contextmint/eval-fixtures/, eval-fixtures/…",
           "description": "Canonical Overview Grep Exclude Patterns — server tunable from contextmint.defaults.yaml.",
           "operator": false,
           "type": "array",
@@ -3899,6 +3899,26 @@
           "type": "string",
           "usage": {
             "whenEnable": "Tune ship law exhausted when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.clarification_reentry_max_chars",
+          "default": "160",
+          "description": "If a new message is longer than this while clarification is pending, treat it as a fresh question (0 disables).",
+          "operator": true,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune clarification reentry max chars when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
             "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
@@ -23669,6 +23689,46 @@
           }
         },
         {
+          "id": "fabric.convention_inject_max_entries",
+          "default": "20",
+          "description": "Max approved conventions seated into Ask/Agent prompt per turn.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune convention inject max entries when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "fabric.convention_inject_max_tokens",
+          "default": "500",
+          "description": "Approximate token budget for approved-convention Ask/Agent prompt seating.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune convention inject max tokens when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
           "id": "fabric.convention_naming_example_max",
           "default": "5",
           "description": "Convention Naming Example Max — server tunable from contextmint.defaults.yaml.",
@@ -23690,12 +23750,12 @@
         },
         {
           "id": "fabric.convention_query_enabled",
-          "default": "false",
-          "description": "Admit kind= and q= on GET /fabric/conventions (still requires fabric.enabled + memory_tab_enabled). Default off — not GATE-W1.",
+          "default": "true",
+          "description": "Admit kind= and q= on GET /fabric/conventions (still requires fabric.enabled + memory_tab_enabled). Default on with Memory Tab — not GATE-W1 umbrella.",
           "operator": false,
           "type": "boolean",
           "usage": {
-            "whenEnable": "When true — Admit kind= and q= on GET /fabric/conventions (still requires fabric.enabled + memory_tab_enabled). Default off — not GATE-W1.",
+            "whenEnable": "When true — Admit kind= and q= on GET /fabric/conventions (still requires fabric.enabled + memory_tab_enabled). Default on with Memory Tab — not GATE-W1 umbrella.",
             "whenDisable": "When false — disables or falls back for convention query enabled.",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
@@ -24470,12 +24530,12 @@
         },
         {
           "id": "fabric.enabled",
-          "default": "false",
-          "description": "Master switch for Fabric graph APIs (list/get) and delete cascade. Off by default — not GATE-W1.",
+          "default": "true",
+          "description": "Master switch for Fabric graph APIs (list/get) and delete cascade. Default on after GATE-FABRIC-MEMORY PO PASS (not GATE-W1 umbrella).",
           "operator": true,
           "type": "boolean",
           "usage": {
-            "whenEnable": "When true — Master switch for Fabric graph APIs (list/get) and delete cascade. Off by default — not GATE-W1.",
+            "whenEnable": "When true — Master switch for Fabric graph APIs (list/get) and delete cascade. Default on after GATE-FABRIC-MEMORY PO PASS (not GATE-W1 umbrella).",
             "whenDisable": "When false — disables or falls back for enabled.",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
@@ -25090,12 +25150,12 @@
         },
         {
           "id": "fabric.memory_tab_enabled",
-          "default": "false",
-          "description": "Admit Memory Tab convention list/approve/dismiss APIs (still requires fabric.enabled). Extension filter + audit trail when audit_events_enabled. Default off — not GATE-W1.",
+          "default": "true",
+          "description": "Admit Memory Tab convention list/approve/dismiss APIs (still requires fabric.enabled). Default on after GATE-FABRIC-MEMORY PO PASS — not GATE-W1 umbrella / not learner auto-activate.",
           "operator": false,
           "type": "boolean",
           "usage": {
-            "whenEnable": "When true — Admit Memory Tab convention list/approve/dismiss APIs (still requires fabric.enabled). Extension filter + audit trail when audit_events_enabled. Default off — not GATE-W1.",
+            "whenEnable": "When true — Admit Memory Tab convention list/approve/dismiss APIs (still requires fabric.enabled). Default on after GATE-FABRIC-MEMORY PO PASS — not GATE-W1 umbrella / not learner auto-activate.",
             "whenDisable": "When false — disables or falls back for memory tab enabled.",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
@@ -25610,12 +25670,12 @@
         },
         {
           "id": "fabric.shadow_write_convention_edges",
-          "default": "false",
-          "description": "When true with shadow conventions, upsert about edges from convention nodes to file nodes (file_key / evidence_files). Default off — not GATE-W1.",
+          "default": "true",
+          "description": "When true with shadow conventions, upsert about edges from convention nodes to file nodes (file_key / evidence_files). Default on with Memory Tab — not GATE-W1 umbrella.",
           "operator": false,
           "type": "boolean",
           "usage": {
-            "whenEnable": "When true — When true with shadow conventions, upsert about edges from convention nodes to file nodes (file_key / evidence_files). Default off — not GATE-W1.",
+            "whenEnable": "When true — When true with shadow conventions, upsert about edges from convention nodes to file nodes (file_key / evidence_files). Default on with Memory Tab — not GATE-W1 umbrella.",
             "whenDisable": "When false — disables or falls back for shadow write convention edges.",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
@@ -25630,12 +25690,12 @@
         },
         {
           "id": "fabric.shadow_write_conventions",
-          "default": "false",
-          "description": "When true with shadow write, upsert convention candidate nodes (hubs + naming) for Memory Tab. Default off — not GATE-W1.",
+          "default": "true",
+          "description": "When true with shadow write, upsert convention candidate nodes (hubs + naming) for Memory Tab. Default on with Memory Tab.",
           "operator": false,
           "type": "boolean",
           "usage": {
-            "whenEnable": "When true — When true with shadow write, upsert convention candidate nodes (hubs + naming) for Memory Tab. Default off — not GATE-W1.",
+            "whenEnable": "When true — When true with shadow write, upsert convention candidate nodes (hubs + naming) for Memory Tab. Default on with Memory Tab.",
             "whenDisable": "When false — disables or falls back for shadow write conventions.",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
@@ -25670,12 +25730,12 @@
         },
         {
           "id": "fabric.shadow_write_enabled",
-          "default": "false",
-          "description": "When true with fabric.enabled, finalize dual-writes file nodes (and optional edges) into Fabric. Default off.",
+          "default": "true",
+          "description": "When true with fabric.enabled, finalize dual-writes file nodes (and optional edges) into Fabric. Default on with Memory Tab.",
           "operator": false,
           "type": "boolean",
           "usage": {
-            "whenEnable": "When true — When true with fabric.enabled, finalize dual-writes file nodes (and optional edges) into Fabric. Default off.",
+            "whenEnable": "When true — When true with fabric.enabled, finalize dual-writes file nodes (and optional edges) into Fabric. Default on with Memory Tab.",
             "whenDisable": "When false — disables or falls back for shadow write enabled.",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
@@ -28099,7 +28159,7 @@
         },
         {
           "id": "chat.paep.contract_must_lines",
-          "default": "[\"Plan only the supplied authoritative work_id.\",\"Use supplied authority; distinguish EXISTING vs PROPOSED vs UNKNOWN.\",\"Identify missing evidence before inventing paths; emit PlanIR first.\",\"User-pasted text may be used to compare this turn; EXISTING repo claims still require ContextMint-hydrated paths.\"]",
+          "default": "[\"If the contract prints a locked work_id, plan only that id (copy-through). If none is locked, plan from supplied planning evidence; work_id is optional.\",\"A present work_id without a lock is a writer claim from that evidence, not assigned by PAEP.\",\"Use supplied authority; distinguish EXISTING vs PROPOSED vs UNKNOWN.\",\"Identify missing evidence before inventing paths; emit PlanIR first.\",\"User-pasted text may be used to compare this turn; EXISTING repo claims still require ContextMint-hydrated paths.\"]",
           "description": "Contract Must Lines — server tunable from contextmint.defaults.yaml.",
           "operator": false,
           "type": "array",
@@ -28119,7 +28179,7 @@
         },
         {
           "id": "chat.paep.contract_must_not_lines",
-          "default": "[\"Select another PENDING item or replace the authoritative work_id.\",\"Treat implementation evidence as authority.\",\"Invent EXISTING repository paths without evidence.\",\"Reinterpret CONFLICT/DEFERRED as CONFIRMED.\"]",
+          "default": "[\"Replace a locked work_id.\",\"Invent a backlog id.\",\"Treat implementation evidence as authority.\",\"Invent EXISTING repository paths without evidence.\",\"Reinterpret CONFLICT/DEFERRED as CONFIRMED.\"]",
           "description": "Contract Must Not Lines — server tunable from contextmint.defaults.yaml.",
           "operator": false,
           "type": "array",
@@ -28258,6 +28318,26 @@
           }
         },
         {
+          "id": "chat.paep.defer_task_markers",
+          "default": "[\"PO continuous dogfood\",\"PO journal\",\"dry-run\",\"do not staff\",\"not ahead of\"]",
+          "description": "Defer Task Markers — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "array",
+          "usage": {
+            "whenEnable": "Tune defer task markers when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
           "id": "chat.paep.done_glyphs",
           "default": "[\"☑\"]",
           "description": "Done Glyphs — server tunable from contextmint.defaults.yaml.",
@@ -28320,11 +28400,11 @@
         {
           "id": "chat.paep.enabled",
           "default": "true",
-          "description": "Enabled — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
+          "description": "Master switch for the Planning Authority & Evidence Pipeline. When false, the envelope stage returns and the writer is admitted.",
+          "operator": true,
           "type": "boolean",
           "usage": {
-            "whenEnable": "When true — Enabled — server tunable from contextmint.defaults.yaml.",
+            "whenEnable": "When true — Master switch for the Planning Authority & Evidence Pipeline. When false, the envelope stage returns and the writer is admitted.",
             "whenDisable": "When false — disables or falls back for enabled.",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
@@ -28339,7 +28419,7 @@
         },
         {
           "id": "chat.paep.envelope_max_tokens",
-          "default": "1800",
+          "default": "3600",
           "description": "Envelope Max Tokens — server tunable from contextmint.defaults.yaml.",
           "operator": false,
           "type": "number",
@@ -28599,7 +28679,7 @@
         },
         {
           "id": "chat.paep.queue_document_relpaths",
-          "default": "[\"documentation/PENDING-WORK.md\"]",
+          "default": "[]",
           "description": "Queue Document Relpaths — server tunable from contextmint.defaults.yaml.",
           "operator": false,
           "type": "array",
@@ -28619,7 +28699,7 @@
         },
         {
           "id": "chat.paep.queue_index_relpath",
-          "default": "documentation/pending-work.index.yaml",
+          "default": "\"\"",
           "description": "Queue Index Relpath — server tunable from contextmint.defaults.yaml.",
           "operator": false,
           "type": "string",
@@ -28919,7 +28999,7 @@
         },
         {
           "id": "chat.paep.work_id_query_patterns",
-          "default": "[\"\\\\b(\\\\d+(?:\\\\.\\\\d+)?[a-z]?)\\\\b\",\"\\\\b([A-Z]{2,}-\\\\d+)\\\\b\"]",
+          "default": "[]",
           "description": "Work Id Query Patterns — server tunable from contextmint.defaults.yaml.",
           "operator": false,
           "type": "array",
@@ -28958,6 +29038,46 @@
           }
         },
         {
+          "id": "chat.plan_arbitration.emit_max_output_tokens",
+          "default": "2048",
+          "description": "Emit Max Output Tokens — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune emit max output tokens when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.plan_arbitration.emit_thinking",
+          "default": "false",
+          "description": "Emit Thinking — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Emit Thinking — server tunable from contextmint.defaults.yaml.",
+            "whenDisable": "When false — disables or falls back for emit thinking.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
           "id": "chat.plan_arbitration.enabled",
           "default": "false",
           "description": "Enabled — server tunable from contextmint.defaults.yaml.",
@@ -28966,6 +29086,66 @@
           "usage": {
             "whenEnable": "When true — Enabled — server tunable from contextmint.defaults.yaml.",
             "whenDisable": "When false — disables or falls back for enabled.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.plan_arbitration.evidence_card_enabled",
+          "default": "true",
+          "description": "Evidence Card Enabled — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Evidence Card Enabled — server tunable from contextmint.defaults.yaml.",
+            "whenDisable": "When false — disables or falls back for evidence card enabled.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.plan_arbitration.evidence_card_max_chars_per_window",
+          "default": "1600",
+          "description": "Evidence Card Max Chars Per Window — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune evidence card max chars per window when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.plan_arbitration.evidence_card_max_windows",
+          "default": "8",
+          "description": "Evidence Card Max Windows — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune evidence card max windows when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
               "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
@@ -29118,6 +29298,26 @@
           }
         },
         {
+          "id": "chat.plan_arbitration.max_parallel_writers",
+          "default": "2",
+          "description": "Max Parallel Writers — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune max parallel writers when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
           "id": "chat.plan_arbitration.max_rounds",
           "default": "0",
           "description": "Max Rounds — server tunable from contextmint.defaults.yaml.",
@@ -29146,6 +29346,66 @@
           "usage": {
             "whenEnable": "Tune max writers when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
             "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.plan_arbitration.min_writers",
+          "default": "2",
+          "description": "Min Writers — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune min writers when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.plan_arbitration.objective_summary_max_chars",
+          "default": "120",
+          "description": "Objective Summary Max Chars — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune objective summary max chars when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.plan_arbitration.observe_replay_enabled",
+          "default": "false",
+          "description": "Observe Replay Enabled — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Observe Replay Enabled — server tunable from contextmint.defaults.yaml.",
+            "whenDisable": "When false — disables or falls back for observe replay enabled.",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
               "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
@@ -29258,6 +29518,26 @@
           }
         },
         {
+          "id": "chat.plan_arbitration.writer_prompt_max_chars",
+          "default": "8000",
+          "description": "Writer Prompt Max Chars — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune writer prompt max chars when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
           "id": "chat.plan_arbitration.writer_timeout_ms",
           "default": "120000",
           "description": "Writer Timeout Ms — server tunable from contextmint.defaults.yaml.",
@@ -29286,6 +29566,26 @@
           "usage": {
             "whenEnable": "When true — GATE-PLAN-STUDIO — when true, claim_id participates in sticky claim_key; when false, subject-level identity only.",
             "whenDisable": "When false — disables or falls back for claim id stable.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.plan_studio.compose_default",
+          "default": "false",
+          "description": "Compose Default — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Compose Default — server tunable from contextmint.defaults.yaml.",
+            "whenDisable": "When false — disables or falls back for compose default.",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
               "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
@@ -29612,6 +29912,166 @@
       "description": "Additional keys from contextmint.defaults.yaml not yet grouped — file an issue if a section is missing.",
       "settings": [
         {
+          "id": "agent_task.enabled",
+          "default": "false",
+          "description": "Enabled — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Enabled — server tunable from contextmint.defaults.yaml.",
+            "whenDisable": "When false — disables or falls back for enabled.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "agent_task.job_ttl_seconds",
+          "default": "3600",
+          "description": "Job Ttl Seconds — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune job ttl seconds when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "agent_task.max_iterations",
+          "default": "10",
+          "description": "Max Iterations — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune max iterations when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "agent_task.max_jobs",
+          "default": "32",
+          "description": "Max Jobs — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune max jobs when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "agent_task.max_repairs",
+          "default": "3",
+          "description": "Max Repairs — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune max repairs when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "agent_task.mutate_enabled",
+          "default": "false",
+          "description": "Mutate Enabled — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Mutate Enabled — server tunable from contextmint.defaults.yaml.",
+            "whenDisable": "When false — disables or falls back for mutate enabled.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "agent_task.poll_interval_ms",
+          "default": "400",
+          "description": "Poll Interval Ms — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune poll interval ms when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "agent_task.ship_enabled",
+          "default": "false",
+          "description": "Ship Enabled — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Ship Enabled — server tunable from contextmint.defaults.yaml.",
+            "whenDisable": "When false — disables or falls back for ship enabled.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
           "id": "chains.enabled",
           "default": "false",
           "description": "Admit /chains APIs (Recipe A critic, Recipe C text plan). Default false — not GATE-W3 / not GATE-W4 product.",
@@ -29759,6 +30219,66 @@
           "type": "number",
           "usage": {
             "whenEnable": "Tune recipe c max steps when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.aca.enabled",
+          "default": "false",
+          "description": "Enabled — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Enabled — server tunable from contextmint.defaults.yaml.",
+            "whenDisable": "When false — disables or falls back for enabled.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.aca.min_query_chars",
+          "default": "48",
+          "description": "Min Query Chars — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune min query chars when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "chat.aca.planning_markers",
+          "default": "[10 items] architect, migrat, refactor, subsystem…",
+          "description": "Planning Markers — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "array",
+          "usage": {
+            "whenEnable": "Tune planning markers when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
             "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",
@@ -29973,7 +30493,7 @@
         },
         {
           "id": "chat.plan_grounding.parallel_invent_deny_patterns",
-          "default": "[\"(?i)\\\\bapp/services/ship(?:/|\\\\b)\",\"(?i)\\\\bShipService\\\\b\",\"(?i)\\\\bpr_bridge\\\\.py\\\\b\",\"(?i)\\\\bMergeReadinessGate\\\\b\"]",
+          "default": "[]",
           "description": "Parallel Invent Deny Patterns — server tunable from contextmint.defaults.yaml.",
           "operator": false,
           "type": "array",
@@ -30073,7 +30593,7 @@
         },
         {
           "id": "chat.plan_grounding.plan_authority_preamble_substrate_slots",
-          "default": "2",
+          "default": "0",
           "description": "Plan Authority Preamble Substrate Slots — server tunable from contextmint.defaults.yaml.",
           "operator": false,
           "type": "number",
@@ -30112,8 +30632,28 @@
           }
         },
         {
+          "id": "chat.plan_grounding.plan_substrate_require_term_in_query",
+          "default": "true",
+          "description": "Plan Substrate Require Term In Query — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Plan Substrate Require Term In Query — server tunable from contextmint.defaults.yaml.",
+            "whenDisable": "When false — disables or falls back for plan substrate require term in query.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
           "id": "chat.plan_grounding.prefer_center_terms",
-          "default": "[8 items] merge readiness, partial accept, commit · PR, commit / PR…",
+          "default": "[]",
           "description": "Prefer Center Terms — server tunable from contextmint.defaults.yaml.",
           "operator": false,
           "type": "array",
@@ -30133,7 +30673,7 @@
         },
         {
           "id": "chat.plan_grounding.priority_promote_pack_names",
-          "default": "[\"engineering-promote\"]",
+          "default": "[]",
           "description": "Priority Promote Pack Names — server tunable from contextmint.defaults.yaml.",
           "operator": false,
           "type": "array",
@@ -30173,7 +30713,7 @@
         },
         {
           "id": "chat.plan_grounding.seed_grep_terms",
-          "default": "[17 items] Active queue, PENDING, schema_version, migrations…",
+          "default": "[\"schema_version\",\"migrations\"]",
           "description": "Seed Grep Terms — server tunable from contextmint.defaults.yaml.",
           "operator": false,
           "type": "array",
@@ -30193,7 +30733,7 @@
         },
         {
           "id": "chat.plan_grounding.substrate_grep_terms",
-          "default": "[12 items] get_git_status, get_git_diff, propose_git_commit, propose_git_branch…",
+          "default": "[]",
           "description": "Substrate Grep Terms — server tunable from contextmint.defaults.yaml.",
           "operator": false,
           "type": "array",
@@ -30679,6 +31219,146 @@
           "type": "number",
           "usage": {
             "whenEnable": "Tune max tag refs when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "compliance.gitleaks_config_path",
+          "default": ".gitleaks.toml",
+          "description": "Gitleaks Config Path — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Tune gitleaks config path when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "compliance.npm_audit_fail_level",
+          "default": "critical",
+          "description": "Npm Audit Fail Level — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Tune npm audit fail level when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "compliance.npm_audit_package_dir",
+          "default": "extensions/contextmint-vscode",
+          "description": "Npm Audit Package Dir — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Tune npm audit package dir when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "compliance.pip_audit_fail_severities",
+          "default": "[\"critical\"]",
+          "description": "Pip Audit Fail Severities — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "array",
+          "usage": {
+            "whenEnable": "Tune pip audit fail severities when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "compliance.restore_row_count",
+          "default": "3",
+          "description": "Restore Row Count — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune restore row count when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "compliance.restore_table",
+          "default": "cert_now_drill",
+          "description": "Restore Table — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Tune restore table when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "compliance.waiver_path",
+          "default": "documentation/compliance/vuln-waivers.yaml",
+          "description": "Waiver Path — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Tune waiver path when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
             "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",

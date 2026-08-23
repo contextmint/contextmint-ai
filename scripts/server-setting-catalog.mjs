@@ -445,6 +445,8 @@ export const SERVER_SETTING_DESCRIPTIONS = {
     "Ask the user for symbol, route, or file hints when evidence is insufficient — before final insufficient stop.",
   "chat.clarification_max_turns":
     "Maximum clarification rounds before insufficient_evidence_final_message (default 2).",
+  "chat.clarification_reentry_max_chars":
+    "If a new message is longer than this while clarification is pending, treat it as a fresh question (0 disables).",
   "chat.clarification_merge_entity_terms":
     "Merge entity tokens from clarification replies into session obligation hints for the next retrieval pass.",
   "chat.insufficient_evidence_enabled":
@@ -557,23 +559,27 @@ export const SERVER_SETTING_DESCRIPTIONS = {
   "ss_mu.enabled":
     "Sovereign dual-plane multi-user. Off until GATE-SS-MU PO dogfood PASS.",
   "fabric.enabled":
-    "Master switch for Fabric graph APIs (list/get) and delete cascade. Off by default — not GATE-W1.",
+    "Master switch for Fabric graph APIs (list/get) and delete cascade. Default on after GATE-FABRIC-MEMORY PO PASS (not GATE-W1 umbrella).",
   "fabric.shadow_write_enabled":
-    "When true with fabric.enabled, finalize dual-writes file nodes (and optional edges) into Fabric. Default off.",
+    "When true with fabric.enabled, finalize dual-writes file nodes (and optional edges) into Fabric. Default on with Memory Tab.",
   "fabric.shadow_write_conventions":
-    "When true with shadow write, upsert convention candidate nodes (hubs + naming) for Memory Tab. Default off — not GATE-W1.",
+    "When true with shadow write, upsert convention candidate nodes (hubs + naming) for Memory Tab. Default on with Memory Tab.",
   "fabric.shadow_write_convention_edges":
-    "When true with shadow conventions, upsert about edges from convention nodes to file nodes (file_key / evidence_files). Default off — not GATE-W1.",
+    "When true with shadow conventions, upsert about edges from convention nodes to file nodes (file_key / evidence_files). Default on with Memory Tab — not GATE-W1 umbrella.",
   "fabric.convention_about_max_edges":
     "Max about edges written per convention node per shadow pass.",
   "fabric.convention_query_enabled":
-    "Admit kind= and q= on GET /fabric/conventions (still requires fabric.enabled + memory_tab_enabled). Default off — not GATE-W1.",
+    "Admit kind= and q= on GET /fabric/conventions (still requires fabric.enabled + memory_tab_enabled). Default on with Memory Tab — not GATE-W1 umbrella.",
   "fabric.convention_query_q_max_len":
     "Max length of conventions list q= search string.",
+  "fabric.convention_inject_max_tokens":
+    "Approximate token budget for approved-convention Ask/Agent prompt seating.",
+  "fabric.convention_inject_max_entries":
+    "Max approved conventions seated into Ask/Agent prompt per turn.",
   "fabric.parity_enabled":
     "Admit GET /fabric/parity/summary and parity CI slices 1–3 (still requires fabric.enabled). Default off — not GATE-W1; does not enable read_cutover.",
   "fabric.memory_tab_enabled":
-    "Admit Memory Tab convention list/approve/dismiss APIs (still requires fabric.enabled). Extension filter + audit trail when audit_events_enabled. Default off — not GATE-W1.",
+    "Admit Memory Tab convention list/approve/dismiss APIs (still requires fabric.enabled). Default on after GATE-FABRIC-MEMORY PO PASS — not GATE-W1 umbrella / not learner auto-activate.",
   "fabric.learner_enabled":
     "Enrich convention payloads from Memory audit JSONL (hints only — never auto-approve). Default off — not GATE-W1.",
   "fabric.decay_enabled":
@@ -760,6 +766,8 @@ export const SERVER_SETTING_DESCRIPTIONS = {
     "SSE pipeline_progress for RT-VIEW. Off until explicit default-on.",
   "oir.enabled":
     "Operational intelligence router / OIR surface. Keep aligned with Block RO dogfood; defaults off.",
+  "chat.paep.enabled":
+    "Master switch for the Planning Authority & Evidence Pipeline. When false, the envelope stage returns and the writer is admitted.",
   "chat.plan_studio.enabled":
     "GATE-PLAN-STUDIO — when false, /plan/studio/* returns enabled=false (default off until PO dogfood). Verify/sanitize/freeze only; not EPA; not PAEP Save.",
   "chat.plan_studio.max_turns":
@@ -807,6 +815,7 @@ export const SERVER_OPERATOR_KEYS = new Set([
   "chat.plan_studio.enabled",
   "chat.plan_studio.max_turns",
   "chat.plan_studio.export_relpath",
+  "chat.paep.enabled",
   "retrieval.inference_enabled",
   "retrieval.window_expand_enabled",
   "retrieval.parallel_grep_enabled",
@@ -852,6 +861,7 @@ export const SERVER_OPERATOR_KEYS = new Set([
   "server.ollama_narration_model",
   "chat.clarification_enabled",
   "chat.clarification_max_turns",
+  "chat.clarification_reentry_max_chars",
   "chat.clarification_merge_entity_terms",
   "chat.insufficient_evidence_enabled",
   "chat.insufficient_evidence_partial_facts_allowed",
