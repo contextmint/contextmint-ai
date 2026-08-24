@@ -33,9 +33,8 @@ export function formatYamlDefault(value, type) {
     const arr = /** @type {unknown[]} */ (value);
     if (arr.length === 0) return "[]";
     if (typeof arr[0] === "string") {
-      return arr.length <= 5
-        ? JSON.stringify(arr)
-        : `[${arr.length} items] ${arr.slice(0, 4).join(", ")}…`;
+      // Always emit parseable JSON — catalog consumers compare to factory defaults.
+      return JSON.stringify(arr);
     }
     return `[${arr.length} items]`;
   }
