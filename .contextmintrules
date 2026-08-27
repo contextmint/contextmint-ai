@@ -1,0 +1,19 @@
+# .contextmintrules — ContextMint workspace conventions (customer workspace).
+# Created on workspace open so you can see which product folders exist.
+# Empty sections are intentional defaults — fill in as your team adopts features.
+# This file is create-if-missing only (never overwritten).
+
+# Packs (indexed knowledge packs under .contextmint/packs/)
+# packs:
+
+# Plans (Save Plan → .contextmint/plans/)
+# plans:
+
+# EPA / PlanIR exports (.contextmint/epa/)
+# epa:
+
+# Studio freezes (.contextmint/studio/)
+# studio:
+
+# Live evidence / state traces (.contextmint/evidence/live/)
+# evidence:

@@ -1,0 +1,26 @@
+# .contextmintignore — paths excluded from ContextMint indexing (customer workspace).
+# Git-style patterns. Built-in safety skips (node_modules, .git, secrets) always apply.
+# This file is created on workspace open; edit freely. Existing files are never overwritten.
+
+# Regenerated / machine-local ContextMint state
+.contextmint/registries/
+.contextmint/pack_fingerprint.txt
+.contextmint/pack-fingerprints/
+.contextmint/evidence/
+.contextmint/agent/
+.contextmint/review/
+.contextmint/reports/
+
+# Optional session / security packs (keep hand-authored packs tracked if you prefer)
+.contextmint/packs/session/
+.contextmint/packs/security/
+
+# Common noise
+.vscode/
+*.map
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.ico
