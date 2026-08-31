@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-19",
+  "generatedAt": "2026-08-30",
   "source": "extensions/contextmint-vscode/package.json",
-  "totalCount": 199,
+  "totalCount": 216,
   "operatorKeys": [
     "contextmint.serverUrl",
     "contextmint.engine.dashboardUrl",
@@ -443,14 +443,14 @@
         },
         {
           "id": "contextmint.fabric.memoryTabEnabled",
-          "description": "Show Fabric Memory Tab convention commands (list/approve/dismiss). Requires fabric.enabled + fabric.memory_tab_enabled on the server. Default off — not GATE-W1.",
-          "default": "false",
+          "description": "Show Fabric Memory Tab convention commands (list/approve/dismiss). Requires fabric.enabled + fabric.memory_tab_enabled on the server. Default on after GATE-FABRIC-MEMORY PO PASS — not GATE-W1 umbrella.",
+          "default": "true",
           "deprecated": false,
           "operator": false,
           "type": "boolean",
           "usage": {
-            "whenEnable": "When true — Show Fabric Memory Tab convention commands (list/approve/dismiss). Requires fabric.enabled + fabric.memory_tab_enabled on the server. Default off — not GATE-W1.",
-            "whenDisable": "When false — show Fabric Memory Tab convention commands (list/approve/dismiss). Requires fabric.enabled + fabric.memory_tab_enabled on the server. Default off — not GATE-W1.",
+            "whenEnable": "When true — Show Fabric Memory Tab convention commands (list/approve/dismiss). Requires fabric.enabled + fabric.memory_tab_enabled on the server. Default on after GATE-FABRIC-MEMORY PO PASS — not GATE-W1 umbrella.",
+            "whenDisable": "When false — show Fabric Memory Tab convention commands (list/approve/dismiss). Requires fabric.enabled + fabric.memory_tab_enabled on the server. Default on after GATE-FABRIC-MEMORY PO PASS — not GATE-W1 umbrella.",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
               "Applies on next chat send or webview reload — no server restart for most keys"
@@ -631,6 +631,48 @@
           }
         },
         {
+          "id": "contextmint.planArbitration.cloudComposeEnabled",
+          "description": "Allow Cloud writer chips on the Arbitrate tray (host BYOK / inject).",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Allow Cloud writer chips on the Arbitrate tray (host BYOK / inject).",
+            "whenDisable": "When false — Allow Cloud writer chips on the Arbitrate tray (host BYOK / inject).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.planArbitration.composeDefault",
+          "description": "Default Arbitrate compose toggle in Plan mode (capability, not a fourth mode).",
+          "default": "false",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Default Arbitrate compose toggle in Plan mode (capability, not a fourth mode).",
+            "whenDisable": "When false — Default Arbitrate compose toggle in Plan mode (capability, not a fourth mode).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
           "id": "contextmint.planArbitration.enabled",
           "description": "GATE-EPA — show Engineering Plan Arbitration review (default off). Persist remains Save Plan / PAEP.",
           "default": "false",
@@ -659,6 +701,132 @@
           "usage": {
             "whenEnable": "Adjust planArbitration.exportRelpath in VS Code Settings when the default does not match your workflow.",
             "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.planArbitration.lastReviewMaxChars",
+          "description": "Max serialized size of EPA lastReview store (current + previous). Oversized writes leave the store untouched.",
+          "default": "512000",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust planArbitration.lastReviewMaxChars in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.planArbitration.maxParallelWriters",
+          "description": "Max concurrent writer emits in one Arbitrate batch (local+cloud).",
+          "default": "2",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust planArbitration.maxParallelWriters in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.planArbitration.maxWriters",
+          "description": "Maximum writer chips allowed on the compose tray (Engine still rejects over-cap lists).",
+          "default": "3",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust planArbitration.maxWriters in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.planArbitration.minWriters",
+          "description": "Minimum distinct writer venues required to Send an Arbitrate run.",
+          "default": "2",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust planArbitration.minWriters in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.planArbitration.pollIntervalMs",
+          "description": "How often chat polls GET /plan/arbitrate/jobs/{id} while an EPA job is running. Not a run timeout.",
+          "default": "2000",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust planArbitration.pollIntervalMs in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.planArtifactPublish.authorityDefaultOptIn",
+          "description": "Default checked state for opt-in planning-authority.yaml registration on artifact Accept.",
+          "default": "false",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Default checked state for opt-in planning-authority.yaml registration on artifact Accept.",
+            "whenDisable": "When false — Default checked state for opt-in planning-authority.yaml registration on artifact Accept.",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
               "Applies on next chat send or webview reload — no server restart for most keys"
@@ -1444,6 +1612,27 @@
           }
         },
         {
+          "id": "contextmint.chat.imageEmptyPlaceholder",
+          "description": "Compose placeholder when an image is attached and the prompt is empty.",
+          "default": "No prompt needed — Send to read the screenshot",
+          "deprecated": false,
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Adjust chat.imageEmptyPlaceholder in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
           "id": "contextmint.chat.imageEvidenceGateEnabled",
           "description": "U-071a: when images are attached, open Image Evidence Gate before chat streams (Send | Run visual audit | Cancel). Independent of lensPreviewFirstNSends.",
           "default": "true",
@@ -1494,6 +1683,27 @@
           "type": "number",
           "usage": {
             "whenEnable": "Adjust chat.imageMaxCountPerMessage in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.chat.imageOnlyInstruction",
+          "description": "Default instruction posted with image-only Send (not shown in the user bubble).",
+          "default": "Transcribe every visible word in the screenshot first (verbatim). Then evaluate. If it is a question or multiple-choice, answer it and explain why — never reply with only a letter or option label.",
+          "deprecated": false,
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Adjust chat.imageOnlyInstruction in VS Code Settings when the default does not match your workflow.",
             "whenDisable": "N/A — value setting (not a boolean toggle).",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
@@ -1801,6 +2011,27 @@
           }
         },
         {
+          "id": "contextmint.chat.planThisButtonLabel",
+          "description": "Ask A3 CTA: switch to Plan mode with the last consultative query.",
+          "default": "Plan this",
+          "deprecated": false,
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Adjust chat.planThisButtonLabel in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
           "id": "contextmint.chat.pullVisionModelPrompt",
           "description": "Primary call-to-action when no local vision model is installed.",
           "default": "Pull a vision model… (free, local)",
@@ -1831,6 +2062,27 @@
           "usage": {
             "whenEnable": "When true — Collapse the Reasoning panel automatically when the assistant answer finishes.",
             "whenDisable": "When false — Collapse the Reasoning panel automatically when the assistant answer finishes.",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.chat.reasoningStepsMaxHeightPx",
+          "description": "Max height (px) of the Reasoning steps list when the drawer is expanded.",
+          "default": "280",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust chat.reasoningStepsMaxHeightPx in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
               "Applies on next chat send or webview reload — no server restart for most keys"
@@ -3232,6 +3484,90 @@
           }
         },
         {
+          "id": "contextmint.design.imageBubblePreviewMaxHeightPx",
+          "description": "Max height of a contain-fit screenshot preview in a chat bubble.",
+          "default": "180",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust design.imageBubblePreviewMaxHeightPx in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.design.imageComposePreviewMaxHeightPx",
+          "description": "Max height of a contain-fit screenshot card in compose.",
+          "default": "220",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust design.imageComposePreviewMaxHeightPx in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.design.imageGatePreviewMaxHeightPx",
+          "description": "Max height of a contain-fit screenshot preview in Image Evidence Gate.",
+          "default": "280",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust design.imageGatePreviewMaxHeightPx in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.design.imageLightboxMaxHeightVh",
+          "description": "Max viewport height of the screenshot lightbox.",
+          "default": "80",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust design.imageLightboxMaxHeightVh in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
           "id": "contextmint.design.maxContextLensFiles",
           "description": "Maximum file cards shown in the Context Lens drawer.",
           "default": "12",
@@ -3492,6 +3828,27 @@
           "type": "number",
           "usage": {
             "whenEnable": "Adjust design.timelineStepDurationMs in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.design.writersTrayHitTargetPx",
+          "description": "Hit-target size for Arbitrate writers tray chips and add buttons.",
+          "default": "32",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust design.writersTrayHitTargetPx in VS Code Settings when the default does not match your workflow.",
             "whenDisable": "N/A — value setting (not a boolean toggle).",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",

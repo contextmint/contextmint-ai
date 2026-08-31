@@ -506,20 +506,14 @@ export const SERVER_SETTING_DESCRIPTIONS = {
     "GATE-AG-INTEL umbrella — LSP / packs / git / tree agent tools. Full Parity eng default-on; claim still PO dogfood.",
   "agent.intel.lsp.enabled":
     "LSP proxy tools (go_to_definition, find_references, …). Needs extension loopback proxy header.",
-  "agent.intel.git.commit_enabled":
-    "GATE-SHIP SH-2 — when false, propose_git_commit previews only (default off until PO dogfood).",
-  "agent.intel.git.commit_require_confirm":
-    "GATE-SHIP SH-2 — when true, mutate only if propose_git_commit confirm is true.",
+  "agent.intel.git.enabled":
+    "GATE-SHIP — when false, hide git status/diff/commit/PR/merge/branch tools. Mutations still require confirm=true.",
   "agent.intel.git.commit_message_min_chars":
     "GATE-SHIP SH-2 — minimum stripped commit message length.",
   "agent.intel.git.commit_max_paths":
     "GATE-SHIP SH-2 — cap on workspace-relative paths staged in one propose_git_commit.",
   "agent.intel.git.commit_include_submodules":
     "GATE-SHIP SH-2 — when false, skip nested git repos. When true, commit inside a nested repo or stage a clean parent gitlink; never stage a dirty gitlink.",
-  "agent.intel.git.pr.create_enabled":
-    "GATE-SHIP SH-3 — when false, create_pull_request previews only (default off until PO dogfood).",
-  "agent.intel.git.pr.require_confirm":
-    "GATE-SHIP SH-3 — when true, mutate only if create_pull_request confirm is true.",
   "agent.intel.git.pr.title_min_chars":
     "GATE-SHIP SH-3 — minimum stripped PR title length.",
   "agent.intel.git.pr.body_min_chars":
@@ -530,12 +524,6 @@ export const SERVER_SETTING_DESCRIPTIONS = {
     "GATE-SHIP SH-3 — git push --set-upstream current branch on mutate; never --force.",
   "agent.intel.git.pr.base_branch":
     "GATE-SHIP SH-3 — PR base ref. Empty uses origin/HEAD (not a hardcoded main).",
-  "agent.intel.git.merge.readiness_enabled":
-    "GATE-SHIP SH-4 — when false, get_merge_readiness returns ready=false with that reason.",
-  "agent.intel.git.branch.create_enabled":
-    "GATE-SHIP SH-7 — when false, propose_git_branch previews only (default off until PO dogfood).",
-  "agent.intel.git.branch.require_confirm":
-    "GATE-SHIP SH-7 — when true, mutate only if propose_git_branch confirm is true.",
   "agent.intel.git.branch.name_max_chars":
     "GATE-SHIP SH-7 — maximum stripped branch name length.",
   "agent.experience_v2.enabled":
