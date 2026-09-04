@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-30",
+  "generatedAt": "2026-09-04",
   "source": "extensions/contextmint-vscode/package.json",
-  "totalCount": 216,
+  "totalCount": 234,
   "operatorKeys": [
     "contextmint.serverUrl",
     "contextmint.engine.dashboardUrl",
@@ -105,6 +105,237 @@
       "title": "Server & connectivity",
       "description": "How the extension reaches the API. For remote/team servers set serverUrl to your on-prem host and see BYOK & enterprise.",
       "settings": [
+        {
+          "id": "contextmint.byok.charsPerToken",
+          "description": "Chars per token for conservative BYOK TPM estimates.",
+          "default": "4",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust byok.charsPerToken in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.byok.minIntervalMs",
+          "description": "Optional BYOK burst smoother between admits (0 = off). Not a substitute for RPM admission.",
+          "default": "0",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust byok.minIntervalMs in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.byok.rateLimitFallbackRetryMs",
+          "description": "Wait ms when provider 429 has no Retry-After / parseable duration.",
+          "default": "10000",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust byok.rateLimitFallbackRetryMs in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.byok.rateLimitMaxRetries",
+          "description": "Bounded BYOK retries after temporary provider 429 (Retry-After). HTTP recovery only — does not create a new Agent round.",
+          "default": "3",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust byok.rateLimitMaxRetries in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.byok.rateLimitMaxRetryBudgetMs",
+          "description": "Max sum of BYOK 429 waits across retries before failing clear.",
+          "default": "60000",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust byok.rateLimitMaxRetryBudgetMs in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.byok.rateLimitMaxRetryWaitMs",
+          "description": "Cap for a single BYOK 429 wait (clamp Retry-After).",
+          "default": "60000",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust byok.rateLimitMaxRetryWaitMs in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.byok.rateLimitMinRetryMs",
+          "description": "Floor for each BYOK 429 wait.",
+          "default": "2000",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust byok.rateLimitMinRetryMs in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.byok.rpmLimit",
+          "description": "Configured BYOK requests per rolling window (0 = admission off / unknown). Not a universal provider constant.",
+          "default": "0",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust byok.rpmLimit in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.byok.rpmWindowMs",
+          "description": "Rolling window ms for BYOK RPM admission.",
+          "default": "60000",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust byok.rpmWindowMs in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.byok.tpmLimit",
+          "description": "Configured BYOK tokens per rolling window (0 = off). Conservative local estimate; provider 429 remains authoritative.",
+          "default": "0",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust byok.tpmLimit in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.byok.tpmWindowMs",
+          "description": "Rolling window ms for BYOK TPM reservations.",
+          "default": "60000",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust byok.tpmWindowMs in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
         {
           "id": "contextmint.chains.recipeAVlmEnabled",
           "description": "Enable Recipe A VLM chain command (Generator→ARGUS critic). Requires chains.enabled + chains.recipe_a_vlm_enabled + argus.enabled on the server. Default off — not GATE-W4 product.",
@@ -1549,6 +1780,132 @@
           }
         },
         {
+          "id": "contextmint.chat.formatGeneratedCodeEnabled",
+          "description": "Format fenced code blocks after assistant replies complete (FormatPort).",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Format fenced code blocks after assistant replies complete (FormatPort).",
+            "whenDisable": "When false — Format fenced code blocks after assistant replies complete (FormatPort).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.chat.formatLanguageAliases",
+          "description": "Markdown fence tag → generic language id for FormatPort adapters.",
+          "default": "{\"py\":\"python\",\"js\":\"javascript\",\"ts\":\"typescript\",\"tsx\":\"typescriptreact\",\"jsx\":\"javascriptreact\",\"sh\":\"shellscript\",\"bash\":\"shellscript\",\"yml\":\"yaml\",\"md\":\"markdown\",\"cs\":\"csharp\",\"cpp\":\"cpp\",\"rs\":\"rust\",\"go\":\"go\",\"rb\":\"ruby\"}",
+          "deprecated": false,
+          "operator": false,
+          "type": "object",
+          "usage": {
+            "whenEnable": "Adjust chat.formatLanguageAliases in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.chat.formatLayoutFallbackEnabled",
+          "description": "When no editor formatter is available, apply layout-only normalize (JSON indent, trim).",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — When no editor formatter is available, apply layout-only normalize (JSON indent, trim).",
+            "whenDisable": "When false — When no editor formatter is available, apply layout-only normalize (JSON indent, trim).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.chat.formatMaxChars",
+          "description": "Skip formatting when a fenced block exceeds this many characters.",
+          "default": "20000",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust chat.formatMaxChars in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.chat.formatOnChangeSetAccept",
+          "description": "Run host Format Document on files after ChangeSet Accept (wrote=true).",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Run host Format Document on files after ChangeSet Accept (wrote=true).",
+            "whenDisable": "When false — Run host Format Document on files after ChangeSet Accept (wrote=true).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.chat.formatTimeoutMs",
+          "description": "Max wait per formatSnippet/formatFiles call before fail-open.",
+          "default": "4000",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust chat.formatTimeoutMs in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
           "id": "contextmint.chat.governanceTrustChipEnabled",
           "description": "Show HIGH/MEDIUM/LOW trust chip under store-backed quality answers.",
           "default": "true",
@@ -1957,6 +2314,27 @@
           "usage": {
             "whenEnable": "Adjust chat.maxTraceDisplay in VS Code Settings when the default does not match your workflow.",
             "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.chat.notifyOnBackgroundCompletion",
+          "description": "Show a VS Code notification when a Chat, Plan, or Agent turn finishes or fails while the VS Code window is not focused.",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Show a VS Code notification when a Chat, Plan, or Agent turn finishes or fails while the VS Code window is not focused.",
+            "whenDisable": "When false — show a VS Code notification when a Chat, Plan, or Agent turn finishes or fails while the VS Code window is not focused.",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
               "Applies on next chat send or webview reload — no server restart for most keys"

@@ -507,25 +507,11 @@ export const SERVER_SETTING_DESCRIPTIONS = {
   "agent.intel.lsp.enabled":
     "LSP proxy tools (go_to_definition, find_references, …). Needs extension loopback proxy header.",
   "agent.intel.git.enabled":
-    "GATE-SHIP — when false, hide git status/diff/commit/PR/merge/branch tools. Mutations still require confirm=true.",
-  "agent.intel.git.commit_message_min_chars":
-    "GATE-SHIP SH-2 — minimum stripped commit message length.",
-  "agent.intel.git.commit_max_paths":
-    "GATE-SHIP SH-2 — cap on workspace-relative paths staged in one propose_git_commit.",
-  "agent.intel.git.commit_include_submodules":
-    "GATE-SHIP SH-2 — when false, skip nested git repos. When true, commit inside a nested repo or stage a clean parent gitlink; never stage a dirty gitlink.",
-  "agent.intel.git.pr.title_min_chars":
-    "GATE-SHIP SH-3 — minimum stripped PR title length.",
-  "agent.intel.git.pr.body_min_chars":
-    "GATE-SHIP SH-8 — mutate-only minimum stripped PR body length (preview may be shorter).",
-  "agent.intel.git.pr.body_max_chars":
-    "GATE-SHIP SH-3 — cap on PR body characters.",
+    "GATE-SHIP — when false, hide git status/diff/commit/PR/merge/branch tools. propose_git_commit mutates when called; branch/PR still use confirm.",
   "agent.intel.git.pr.push_on_create":
     "GATE-SHIP SH-3 — git push --set-upstream current branch on mutate; never --force.",
   "agent.intel.git.pr.base_branch":
     "GATE-SHIP SH-3 — PR base ref. Empty uses origin/HEAD (not a hardcoded main).",
-  "agent.intel.git.branch.name_max_chars":
-    "GATE-SHIP SH-7 — maximum stripped branch name length.",
   "agent.experience_v2.enabled":
     "Wave FPX repair_context SSE for in-seat Iterate. Eng default-on; one-seat claim still GATE-FULL-PARITY PO dogfood.",
   "agent.moat.enabled":
