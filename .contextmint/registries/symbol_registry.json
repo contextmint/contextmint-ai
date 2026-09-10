@@ -1,7 +1,7 @@
 {
   "schema_version": "eop-c1.v1",
-  "extracted_at": "2026-09-05T16:24:47.162842+00:00",
-  "source_commit": "cc05c81f81287eec856d83b62400e0049e91ecb6",
+  "extracted_at": "2026-09-09T22:07:40.170641+00:00",
+  "source_commit": "a36e73ccb481419a81bb1043fc739ad09fd4971a",
   "objects": [],
   "raw": {
     "symbols": []
