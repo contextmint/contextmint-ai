@@ -19680,26 +19680,6 @@
           }
         },
         {
-          "id": "agent.terminal.max_terminal_retries",
-          "default": "3",
-          "description": "Max Terminal Retries — server tunable from contextmint.defaults.yaml.",
-          "operator": false,
-          "type": "number",
-          "usage": {
-            "whenEnable": "Tune max terminal retries when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
-            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
-            "pros": [
-              "Documented in config/contextmint.defaults.yaml on the API host",
-              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
-            ],
-            "cons": [
-              "Server restart required after overlay changes",
-              "Not exposed in Engine desktop or VS Code Settings for most keys"
-            ],
-            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
-          }
-        },
-        {
           "id": "agent.terminal.max_tracked_children",
           "default": "32",
           "description": "Max Tracked Children — server tunable from contextmint.defaults.yaml.",
