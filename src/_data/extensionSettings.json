@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-09-04",
+  "generatedAt": "2026-09-24",
   "source": "extensions/contextmint-vscode/package.json",
-  "totalCount": 234,
+  "totalCount": 240,
   "operatorKeys": [
     "contextmint.serverUrl",
     "contextmint.engine.dashboardUrl",
@@ -409,6 +409,90 @@
           "usage": {
             "whenEnable": "When true — Show CHRONOS panel (checkpoints + bisect). Requires chronos.enabled on the server. Default off — not GATE-W2.",
             "whenDisable": "When false — show CHRONOS panel (checkpoints + bisect). Requires chronos.enabled on the server. Default off — not GATE-W2.",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.cloudModelsCacheTtlDays",
+          "description": "Days to cache BYOK provider model lists from GET /models (Refresh forces reload).",
+          "default": "30",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust cloudModelsCacheTtlDays in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.cloudModelsPicker.datedSnapshotRegex",
+          "description": "Regex for dated snapshot model ids hidden when hideDatedSnapshots is on.",
+          "default": "-\\d{4}-\\d{2}-\\d{2}(?:$|-)|-\\d{8}$",
+          "deprecated": false,
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Adjust cloudModelsPicker.datedSnapshotRegex in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.cloudModelsPicker.excludeIdSubstrings",
+          "description": "Substring excludes for Cloud chat picker (audio/embed kept in cache for later voice).",
+          "default": "[18 items] embedding, embed-, -embed…",
+          "deprecated": false,
+          "operator": false,
+          "type": "array",
+          "usage": {
+            "whenEnable": "Adjust cloudModelsPicker.excludeIdSubstrings in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.cloudModelsPicker.hideDatedSnapshots",
+          "description": "Hide dated snapshot aliases in the Cloud model picker (full list remains cached).",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Hide dated snapshot aliases in the Cloud model picker (full list remains cached).",
+            "whenDisable": "When false — Hide dated snapshot aliases in the Cloud model picker (full list remains cached).",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
               "Applies on next chat send or webview reload — no server restart for most keys"
@@ -1533,14 +1617,14 @@
         },
         {
           "id": "contextmint.chat.clientGrepKeepPanelOpen",
-          "description": "Keep the Reasoning panel expanded after chat when local grep found files (demo visibility).",
-          "default": "true",
+          "description": "Keep the Reasoning panel expanded after chat when local grep found files (legacy; client grep path list UI is retired).",
+          "default": "false",
           "deprecated": false,
           "operator": false,
           "type": "boolean",
           "usage": {
-            "whenEnable": "When true — Keep the Reasoning panel expanded after chat when local grep found files (demo visibility).",
-            "whenDisable": "When false — Keep the Reasoning panel expanded after chat when local grep found files (demo visibility).",
+            "whenEnable": "When true — Keep the Reasoning panel expanded after chat when local grep found files (legacy; client grep path list UI is retired).",
+            "whenDisable": "When false — Keep the Reasoning panel expanded after chat when local grep found files (legacy; client grep path list UI is retired).",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
               "Applies on next chat send or webview reload — no server restart for most keys"
@@ -2327,14 +2411,35 @@
         },
         {
           "id": "contextmint.chat.notifyOnBackgroundCompletion",
-          "description": "Show a VS Code notification when a Chat, Plan, or Agent turn finishes or fails while the VS Code window is not focused.",
+          "description": "Show an OS desktop notification (with Open Chat) when a Chat, Plan, or Agent turn finishes or fails while the VS Code window is not focused. Falls back to a VS Code toast if OS delivery fails.",
           "default": "true",
           "deprecated": false,
           "operator": false,
           "type": "boolean",
           "usage": {
-            "whenEnable": "When true — Show a VS Code notification when a Chat, Plan, or Agent turn finishes or fails while the VS Code window is not focused.",
-            "whenDisable": "When false — show a VS Code notification when a Chat, Plan, or Agent turn finishes or fails while the VS Code window is not focused.",
+            "whenEnable": "When true — Show an OS desktop notification (with Open Chat) when a Chat, Plan, or Agent turn finishes or fails while the VS Code window is not focused. Falls back to a VS Code toast if OS delivery fails.",
+            "whenDisable": "When false — show an OS desktop notification (with Open Chat) when a Chat, Plan, or Agent turn finishes or fails while the VS Code window is not focused. Falls back to a VS Code toast if OS delivery fails.",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.chat.notifyOsDeliveryTimeoutMs",
+          "description": "Timeout (ms) for handing off a background-completion OS notification to the platform.",
+          "default": "15000",
+          "deprecated": false,
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Adjust chat.notifyOsDeliveryTimeoutMs in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
               "Applies on next chat send or webview reload — no server restart for most keys"
@@ -2440,6 +2545,27 @@
           "usage": {
             "whenEnable": "When true — Collapse the Reasoning panel automatically when the assistant answer finishes.",
             "whenDisable": "When false — Collapse the Reasoning panel automatically when the assistant answer finishes.",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.chat.reasoningPreference",
+          "description": "Provider-neutral reasoning preference (default none). Low/medium/high map to family wire effort.",
+          "default": "none",
+          "deprecated": false,
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Adjust chat.reasoningPreference in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
               "Applies on next chat send or webview reload — no server restart for most keys"
