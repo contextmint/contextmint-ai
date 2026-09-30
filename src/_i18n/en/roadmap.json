@@ -1,26 +1,26 @@
 {
   "title": "Roadmap | ContextMint",
-  "description": "ContextMint product roadmap — v1.0 30 September 2026, v2.0 Engineering Intelligence Platform, Track B enterprise and compliance, plus Verification Engine direction.",
+  "description": "ContextMint product roadmap — coding assistant coming soon, v2.0 Engineering Intelligence Platform, Track B enterprise and compliance, plus Verification Engine direction.",
   "hero": {
     "pill": "PRODUCT DIRECTION",
     "title": "Roadmap",
-    "leadHtml": "Three horizons: <strong>v1.0</strong> is in testing now (GA 30 September 2026); <strong>v2.0</strong> unifies engineering intelligence on one Knowledge Fabric; <strong>Track B</strong> extends the same core to org-wide knowledge with enterprise controls. Directional — not a delivery schedule.",
+    "leadHtml": "Three horizons: the <strong>coding assistant</strong> is coming soon; <strong>v2.0</strong> unifies engineering intelligence on one Knowledge Fabric; <strong>Track B</strong> extends the same core to org-wide knowledge with enterprise controls. Directional — not a delivery schedule.",
     "horizons": [
-      { "href": "#v1", "statusClass": "pilot", "status": "v1.0 · 30 September 2026", "title": "Decision-control plane", "text": "Engine, Context Lens, quality map, federated governance lookup — GA 30 September 2026." },
+      { "href": "#v1", "statusClass": "pilot", "status": "Coming soon", "title": "AI coding assistant", "text": "Engine, Ask / Plan / Agent, Context Lens, and human approval before repo changes." },
       { "href": "#v2", "statusClass": "planned", "status": "v2.0 · Q1 2027", "title": "Engineering Intelligence Platform", "text": "Knowledge Fabric, institutional memory, CHRONOS, operational intelligence retrieval." },
       { "href": "#track-b", "statusClass": "enterprise", "status": "Track B · end 2027", "title": "Enterprise &amp; compliance", "text": "Jira, Confluence, SharePoint, Git, and org knowledge — plus SSO, RBAC, and audit." }
     ],
-    "ctaDesignPartners": "Design partner details",
-    "ctaFeatures": "Features in v1.0"
+    "ctaFeatures": "What it does",
+    "ctaDemo": "Talk to us"
   },
   "glance": {
     "title": "At a glance",
-    "footerHtml": "Capabilities and order evolve with design partner feedback. We label <strong>shipping</strong> vs <strong>planned</strong> explicitly — no certification or autonomous-governance claims."
+    "footerHtml": "Capabilities and order evolve as we learn from teams. We label <strong>shipping</strong> vs <strong>planned</strong> explicitly — no certification or autonomous-governance claims."
   },
   "v1": {
-    "badge": "v1.0 · 30 September 2026",
-    "title": "Decision-control plane",
-    "introHtml": "Local-first <strong>decision-control plane</strong> for software teams — evidence before inference, human approval before repo changes. Testing is in progress; design partner intake still opens by start of September 2026. General availability <strong>30 September 2026</strong>.",
+    "badge": "Coming soon",
+    "title": "AI coding assistant",
+    "introHtml": "A local <strong>AI coding assistant</strong> — Ask, Plan, and Agent in VS Code, with evidence before the model answers and human approval before repo changes. A solo developer runs it on one machine. A small company or enterprise can add a shared server. <strong>Coming soon.</strong>",
     "items": [
       "<strong>ContextMint Engine</strong> — tray-native operator console (server, Ollama, models, indexing, quality scans, logs, support bundle)",
       "<strong>VS Code extension</strong> — Ask / Plan / Agent modes, context lanes (Repo / Work / Hybrid), chat sessions, attach context, suggested prompts",
@@ -37,7 +37,7 @@
       "<strong>Symbol-aware retrieval</strong> — citations name file, symbol, and line range — not anonymous text chunks",
       "<strong>Local-first default</strong> — Engine + Ollama on loopback; code stays on device"
     ],
-    "footerHtml": "Optional (off by default): BYOK cloud routing, git sandbox worktrees, inline completion, shared on-prem API server for enterprise pilots — <a href=\"/features.html\">full v1.0 list</a>."
+    "footerHtml": "On for a normal install: Ask, Plan, Agent, inline completion, and in-editor review. Optional: bring-your-own-key cloud and a shared on-prem server. <a href=\"/features.html\">Full list</a>."
   },
   "designPartners": {
     "badge": "Recruiting design partners",
@@ -91,7 +91,7 @@
   "trackB": {
     "badge": "Track B · target end 2027",
     "title": "Enterprise &amp; organizational knowledge",
-    "introHtml": "<strong>Track B</strong> extends ContextMint from developer code intelligence into an <strong>explainable organizational knowledge platform</strong> — same retrieval core and local-first posture, with security and compliance controls that regulated buyers require. Builds on the v2.0 Fabric; target MVP <strong>end of 2027</strong>. After design partner intake opens, cohort feedback will help prioritize which external systems to connect first.",
+    "introHtml": "<strong>Track B</strong> extends ContextMint from developer code intelligence into an <strong>explainable organizational knowledge platform</strong> — same retrieval core and local-first posture, with security and compliance controls that regulated buyers require. Builds on the v2.0 Fabric; target MVP <strong>end of 2027</strong>. Team conversations will help prioritize which external systems to connect first.",
     "noticeHtml": "<strong>Connected knowledge (Track B):</strong> One governed index across the systems your teams already use — not code in isolation. v1.0 indexes <strong>Git repos</strong> today; Track B adds adapter-based ingest for <strong>Jira</strong> (issues, epics, ownership), <strong>Confluence</strong> (wikis, ADRs, runbooks), <strong>SharePoint</strong> (document libraries, policies), <strong>Git</strong> (multi-repo and org-wide code graph), and <strong>other knowledge bases</strong> (Notion, internal portals, ticket systems — partner-driven priority). Answers cite the source system with ACL respected per document.",
     "securityTitle": "Security-first build order",
     "securityItems": [
@@ -103,7 +103,7 @@
       "<strong>Enterprise surface (B4)</strong> — OIDC/SAML SSO, API gateway policies, admin console for roles, retention, index health, and audit browsing",
       "<strong>Compliance packaging (B5)</strong> — GDPR deletion proof, air-gapped Helm/Docker bundles, tamper-evident audit (hash-chain + signed checkpoints), SOC 2 evidence collectors"
     ],
-    "outcomesTitle": "Outcomes for design partners",
+    "outcomesTitle": "Outcomes for a team",
     "outcomes": [
       "Ask questions across <strong>code + Jira + Confluence + SharePoint</strong> — one answer with cited evidence, not four conflicting snippets",
       "One platform for engineering and internal docs — same Context Lens and human-gate model",
@@ -111,12 +111,12 @@
       "Compliance exports your security team can run without vendor workshops",
       "No cloud egress unless explicitly enabled per workspace or tenant"
     ],
-    "footerHtml": "We do not claim live Jira/Confluence/SharePoint connectors, SOC 2 certification, or FedRAMP until gated. Adapter order follows design-partner demand; v1.0 pilots stay Git-first. <a href=\"/solutions/security-compliance.html\">Security use cases →</a> · <a href=\"/design-partners.html\">Co-shape Track B →</a>"
+    "footerHtml": "We do not claim live Jira/Confluence/SharePoint connectors, SOC 2 certification, or FedRAMP until gated. The coding assistant stays Git-first. <a href=\"/solutions/security-compliance.html\">Security use cases →</a> · <a href=\"/request-demo.html\">Talk to us →</a>"
   },
   "verification": {
     "badge": "Beyond v2.0",
     "title": "Verification Engine",
-    "introHtml": "Longer-horizon capabilities on top of the Fabric — deterministic graph evidence first; AI narrates with citations, never overrides graph truth without human confirmation. Timing evolves with design partner feedback; many items follow <strong>Track B (end 2027)</strong> and extend into <strong>2028+</strong>.",
+    "introHtml": "Longer-horizon capabilities on top of the Fabric — deterministic graph evidence first; AI narrates with citations, and a human confirms before graph truth changes. Timing follows the coding assistant; many items follow <strong>Track B (end 2027)</strong> and extend into <strong>2028+</strong>.",
     "items": [
       "<strong>PR verification gates</strong> — ownership, impact, and policy checked on every change (<a href=\"/product/\">vision</a>)",
       "<strong>Blast radius</strong> — graph traversal for impacted services, files, and teams (<a href=\"/product/blast-radius.html\">learn more</a>)",
@@ -137,6 +137,6 @@
   },
   "cta": {
     "title": "Shape what ships next",
-    "text": "When design partner intake opens (start of September 2026), partners get a direct line to product engineering — especially for v2.0 Fabric scope and Track B requirements."
+    "text": "Coming soon. Talk to us if a small company or enterprise wants the shared-server path, especially for v2.0 Fabric scope and Track B requirements."
   }
 }

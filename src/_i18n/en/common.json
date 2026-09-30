@@ -44,15 +44,15 @@
   "emailComingSoon": "Contact email coming soon",
   "announcement": {
     "ariaLabel": "Site announcement",
-    "label": "Launch update",
-    "text": "v1.0 now ships 30 September 2026 while testing continues — design partner intake still opens at the start of September.",
-    "ctaText": "Program details",
+    "label": "Coming soon",
+    "text": "ContextMint is coming soon — a local AI coding assistant for solo developers, with shared control for small companies and enterprises.",
+    "ctaText": "See who it is for",
     "dismiss": "Dismiss announcement",
     "learnMore": "Learn more"
   },
   "footer": {
     "homeAria": "{{siteName}} home",
-    "extensionLine": "Local-first decision-control — evidence before inference",
+    "extensionLine": "Local AI coding assistant — evidence before code changes",
     "documentation": "Documentation",
     "userDocs": "User docs",
     "installation": "Installation",
@@ -95,15 +95,15 @@
     "terms": "Terms"
   },
   "ctaBand": {
-    "title": "Discuss your AI governance challenges",
-    "text": "See the local-first decision-control plane — Context Lens, quality map, and human apply gates. v1.0 ships 30 September 2026 while testing continues.",
+    "title": "See ContextMint on your codebase",
+    "text": "A local AI coding assistant for a solo developer. The same product adds a shared server and human approval for a small company or enterprise. Coming soon.",
     "demo": "Book a Demo",
     "trust": "Trust & Security"
   },
   "poweredBy": {
     "label": "Powered by",
     "badge": "Roadmap",
-    "lead": "Verification Engine capabilities — v1.0 foundation ships separately on",
+    "lead": "Verification Engine capabilities come after the coding assistant. See",
     "featuresLink": "Features",
     "cards": {
       "repositoryDna": {
@@ -124,7 +124,7 @@
       },
       "agentGovernance": {
         "title": "Agent Governance",
-        "text": "Planned: MCP agent RBAC and policy engine. v1.0 uses IDE Gates 1 & 2."
+        "text": "The IDE agent proposes changes with human approval. Policy-scoped MCP tools for CI agents are planned."
       },
       "auditCompliance": {
         "title": "Audit & Compliance",
@@ -134,7 +134,7 @@
     }
   },
   "productInAction": {
-    "title": "Your machine, governed",
+    "title": "Your machine, your coding session",
     "leadBefore": "ContextMint Engine is a",
     "leadStrong": "tray-native operator console",
     "leadAfter": "— like Ollama or Docker Desktop, not a SaaS dashboard. It follows your OS theme, shows readiness at a glance, and stays out of the way until you need to start, stop, or diagnose.",
@@ -150,7 +150,7 @@
       "ariaLabel": "VS Code extension workflow screenshots",
       "placeholderHint": "Where developers work",
       "tag": "Work surface",
-      "caption": "Readiness → compose → chat → inspector → patch preview. Evidence before inference."
+      "caption": "Readiness → compose → chat → inspector → patch preview. Ask, Plan, and Agent in the editor."
     },
     "contextLens": {
       "ariaLabel": "Context Lens screenshots",
@@ -159,7 +159,7 @@
       "caption": "Summary strip, retrieved evidence, and governance notes before the model runs."
     },
     "gettingStartedBtn": "Getting started guide",
-    "featuresBtn": "Features (v1.0)",
+    "featuresBtn": "What it does",
     "lightbox": {
       "closeEnlarged": "Close enlarged view",
       "close": "Close",

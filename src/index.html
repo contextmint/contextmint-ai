@@ -1,7 +1,7 @@
 ---
 layout: base.html
-title: ContextMint | AI Writes Code. We Decide What Can Ship.
-description: ContextMint is a local-first AI decision-control plane — evidence before inference, human approval before repo changes. v1.0 ships 30 September 2026 while testing continues.
+title: ContextMint | Local AI coding assistant
+description: ContextMint is a local AI coding assistant and a decision-control plane. Ask, Plan, and Agent on your machine, with evidence and human approval before anything writes. Coming soon.
 pageCss: home.css
 pageJs: product-carousel.js
 ---
@@ -34,7 +34,31 @@ pageJs: product-carousel.js
   </div>
 </header>
 
-<!-- IN PILOT (v1.0 30 September 2026 — testing in progress) -->
+<section class="section section--surface" id="who-its-for">
+  <div class="container container-narrow">
+    <h2 class="section-title">{{ t.audiences.title }}</h2>
+    <p class="muted">{{ t.audiences.lead }}</p>
+    <div class="grid grid-2" style="margin-top: 24px;">
+      {% for path in t.audiences.paths %}
+      <div class="card">
+        <div class="mono" style="font-size: 0.75rem; letter-spacing: 0.04em; color: var(--color-link);">{{ path.eyebrow }}</div>
+        <strong style="display: block; margin-top: 8px;">{{ path.title }}</strong>
+        <p class="muted" style="margin: 8px 0 0; font-size: 0.9rem;">{{ path.text }}</p>
+        <ul class="check-list" style="margin-top: 12px;">
+          {% for point in path.points %}
+          <li>{{ point }}</li>
+          {% endfor %}
+        </ul>
+        <p style="margin: 16px 0 0;">
+          <a class="btn {% if forloop.first %}btn-primary{% else %}btn-secondary{% endif %}" href="{{ path.ctaHref | locale_path: localePrefix }}">{{ path.ctaText }}</a>
+        </p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Coding day -->
 <section class="section section--surface" id="pilot-now">
   <div class="container container-narrow">
     <h2 class="section-title">{{ t.pilotNow.title }}</h2>

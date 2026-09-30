@@ -1,6 +1,6 @@
 {
   "name": "ContextMint",
-  "tagline": "Evidence-based AI decisions with human oversight",
+  "tagline": "Local AI coding assistant with evidence before changes",
   "url": "https://contextmint.ai",
   "extensionName": "ContextMint",
   "releasesUrl": "https://github.com/contextmint/contextmint/releases",
@@ -15,11 +15,11 @@
   "year": 2026,
   "announcement": {
     "enabled": true,
-    "id": "v1-launch-30-september-2026",
-    "label": "Launch update",
-    "text": "v1.0 now ships 30 September 2026 while testing continues — design partner intake still opens at the start of September.",
-    "ctaText": "Program details",
-    "ctaHref": "/design-partners.html",
+    "id": "coming-soon",
+    "label": "Coming soon",
+    "text": "ContextMint is coming soon — a local AI coding assistant for solo developers, with shared control for small companies and enterprises.",
+    "ctaText": "See who it is for",
+    "ctaHref": "/#who-its-for",
     "dismissible": true
   },
   "operatorConsoleCarousel": {

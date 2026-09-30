@@ -1,12 +1,12 @@
 {
   "title": "About | ContextMint",
-  "description": "ContextMint is a local-first AI decision-control plane — mission, vision, and principles.",
+  "description": "ContextMint is a local AI coding assistant — Ask, Plan, and Agent on your machine, with evidence and human approval before code changes.",
   "hero": {
     "pill": "OUR MISSION",
-    "title": "Evidence before AI ships",
+    "title": "A local AI coding assistant",
     "leadBefore": "ContextMint is a",
-    "leadStrong": "local-first AI decision-control plane",
-    "leadAfter": "for software teams — so engineers see evidence before inference and approve changes before they apply."
+    "leadStrong": "local AI coding assistant",
+    "leadAfter": "for VS Code. A solo developer starts on one machine. A team sees evidence before the model answers and approves changes before they apply."
   },
   "problem": {
     "title": "The problem we solve",
@@ -31,8 +31,8 @@
         "text": "— patch preview; no silent auto-apply"
       },
       {
-        "strong": "Agent-native (roadmap)",
-        "text": "— planned MCP tools; v1.0 uses IDE Gates 1 & 2"
+        "strong": "Coding assistant",
+        "text": "— Ask, Plan, and Agent in the editor, with patch preview before writes"
       }
     ]
   },
@@ -56,11 +56,11 @@
   "founder": {
     "title": "Founder",
     "blurb": "Building local-first, governable AI for software teams.",
-    "cta": "Design partner programme"
+    "cta": "Talk to us"
   },
   "platform": {
     "title": "The ContextMint platform",
-    "beforeLink": "v1.0 (30 September 2026) delivers ContextMint Engine and the VS Code extension — evidence chat, quality map, Context Lens, and human apply gates. DNA reports, blast-radius SKU, and PR-time Verification Engine checks are",
+    "beforeLink": "Coming soon: ContextMint Engine and the VS Code extension — a local coding assistant, quality map, Context Lens, and human approval before writes. DNA reports, blast-radius, and PR-time Verification Engine checks are",
     "linkText": "roadmap",
     "afterLink": "."
   }

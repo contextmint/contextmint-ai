@@ -170,7 +170,7 @@
     "escalateTitle": "When to escalate",
     "escalateStep1": "Engine → <strong>About</strong> → <strong>Download support bundle</strong> (or Logs tab).",
     "escalateStep2": "Note Engine version, OS, and steps you already tried from this page.",
-    "escalateStep4": "Design partners: use your named engineering channel.",
+    "escalateStep4": "Still stuck: email support or open a GitHub issue with the bundle attached.",
     "footerBefore": "Broader symptom index:",
     "footerLinks": [
       { "href": "/support/troubleshooting.html", "text": "Full troubleshooting" },

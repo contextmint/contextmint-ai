@@ -149,7 +149,7 @@
       },
       {
         "term": "Connected knowledge sources",
-        "body": "Track B ingests from systems teams already use — tickets (Jira), wikis (Confluence), document libraries (SharePoint), code (Git org-wide), and additional adapters (Notion, internal portals) prioritized with design partners. v1.0 pilots are <strong>Git-first</strong>; connectors ship when gated."
+        "body": "Track B ingests from systems teams already use — tickets (Jira), wikis (Confluence), document libraries (SharePoint), code (Git org-wide), and additional adapters (Notion, internal portals) added when a team needs them. The coding assistant is <strong>Git-first</strong>; connectors ship when gated."
       },
       {
         "term": "Knowledge Fabric (v2.0)",

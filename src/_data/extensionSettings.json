@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-09-24",
+  "generatedAt": "2026-09-30",
   "source": "extensions/contextmint-vscode/package.json",
-  "totalCount": 240,
+  "totalCount": 241,
   "operatorKeys": [
     "contextmint.serverUrl",
     "contextmint.engine.dashboardUrl",
@@ -430,69 +430,6 @@
           "usage": {
             "whenEnable": "Adjust cloudModelsCacheTtlDays in VS Code Settings when the default does not match your workflow.",
             "whenDisable": "N/A — value setting (not a boolean toggle).",
-            "pros": [
-              "Changed in VS Code → Settings (search contextmint) or settings.json",
-              "Applies on next chat send or webview reload — no server restart for most keys"
-            ],
-            "cons": [
-              "Does not replace server-side evidence assembly for structural or overview questions",
-              "Engine-managed keys may be hidden when ContextMint Engine is installed"
-            ],
-            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
-          }
-        },
-        {
-          "id": "contextmint.cloudModelsPicker.datedSnapshotRegex",
-          "description": "Regex for dated snapshot model ids hidden when hideDatedSnapshots is on.",
-          "default": "-\\d{4}-\\d{2}-\\d{2}(?:$|-)|-\\d{8}$",
-          "deprecated": false,
-          "operator": false,
-          "type": "string",
-          "usage": {
-            "whenEnable": "Adjust cloudModelsPicker.datedSnapshotRegex in VS Code Settings when the default does not match your workflow.",
-            "whenDisable": "N/A — value setting (not a boolean toggle).",
-            "pros": [
-              "Changed in VS Code → Settings (search contextmint) or settings.json",
-              "Applies on next chat send or webview reload — no server restart for most keys"
-            ],
-            "cons": [
-              "Does not replace server-side evidence assembly for structural or overview questions",
-              "Engine-managed keys may be hidden when ContextMint Engine is installed"
-            ],
-            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
-          }
-        },
-        {
-          "id": "contextmint.cloudModelsPicker.excludeIdSubstrings",
-          "description": "Substring excludes for Cloud chat picker (audio/embed kept in cache for later voice).",
-          "default": "[18 items] embedding, embed-, -embed…",
-          "deprecated": false,
-          "operator": false,
-          "type": "array",
-          "usage": {
-            "whenEnable": "Adjust cloudModelsPicker.excludeIdSubstrings in VS Code Settings when the default does not match your workflow.",
-            "whenDisable": "N/A — value setting (not a boolean toggle).",
-            "pros": [
-              "Changed in VS Code → Settings (search contextmint) or settings.json",
-              "Applies on next chat send or webview reload — no server restart for most keys"
-            ],
-            "cons": [
-              "Does not replace server-side evidence assembly for structural or overview questions",
-              "Engine-managed keys may be hidden when ContextMint Engine is installed"
-            ],
-            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
-          }
-        },
-        {
-          "id": "contextmint.cloudModelsPicker.hideDatedSnapshots",
-          "description": "Hide dated snapshot aliases in the Cloud model picker (full list remains cached).",
-          "default": "true",
-          "deprecated": false,
-          "operator": false,
-          "type": "boolean",
-          "usage": {
-            "whenEnable": "When true — Hide dated snapshot aliases in the Cloud model picker (full list remains cached).",
-            "whenDisable": "When false — Hide dated snapshot aliases in the Cloud model picker (full list remains cached).",
             "pros": [
               "Changed in VS Code → Settings (search contextmint) or settings.json",
               "Applies on next chat send or webview reload — no server restart for most keys"
@@ -2558,8 +2495,8 @@
         },
         {
           "id": "contextmint.chat.reasoningPreference",
-          "description": "Provider-neutral reasoning preference (default none). Low/medium/high map to family wire effort.",
-          "default": "none",
+          "description": "Provider-neutral reasoning preference. Unset omits wire effort (provider default). None sends explicit none.",
+          "default": "unset",
           "deprecated": false,
           "operator": false,
           "type": "string",
@@ -4484,6 +4421,90 @@
       "title": "Model catalogs (Engine-managed)",
       "description": "Curated embed/chat/vision model lists and RAM heuristics. Managed by Engine in normal installs; extension reads models from the API.",
       "settings": [
+        {
+          "id": "contextmint.cloudModelsPicker.datedSnapshotRegex",
+          "description": "Regex for dated snapshot model ids hidden when hideDatedSnapshots is on.",
+          "default": "-\\d{4}-\\d{2}-\\d{2}(?:$|-)|-\\d{8}$",
+          "deprecated": false,
+          "operator": false,
+          "type": "string",
+          "usage": {
+            "whenEnable": "Adjust cloudModelsPicker.datedSnapshotRegex in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.cloudModelsPicker.excludeIdSubstrings",
+          "description": "Substring excludes for Cloud chat picker (audio/embed kept in cache for later voice).",
+          "default": "[18 items] embedding, embed-, -embed…",
+          "deprecated": false,
+          "operator": false,
+          "type": "array",
+          "usage": {
+            "whenEnable": "Adjust cloudModelsPicker.excludeIdSubstrings in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.cloudModelsPicker.hideDatedSnapshots",
+          "description": "Hide dated snapshot aliases in the Cloud model picker (full list remains cached).",
+          "default": "true",
+          "deprecated": false,
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Hide dated snapshot aliases in the Cloud model picker (full list remains cached).",
+            "whenDisable": "When false — Hide dated snapshot aliases in the Cloud model picker (full list remains cached).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
+        {
+          "id": "contextmint.cloudModelsPicker.openaiProductModels",
+          "description": "OpenAI product allowlist for the Cloud model picker (exact id ∩ live /models). Empty disables the allowlist.",
+          "default": "[14 presets] gpt-6-astra, gpt-6-sol, gpt-6-luna, gpt-5.6…",
+          "deprecated": false,
+          "operator": false,
+          "type": "array",
+          "usage": {
+            "whenEnable": "Adjust cloudModelsPicker.openaiProductModels in VS Code Settings when the default does not match your workflow.",
+            "whenDisable": "N/A — value setting (not a boolean toggle).",
+            "pros": [
+              "Changed in VS Code → Settings (search contextmint) or settings.json",
+              "Applies on next chat send or webview reload — no server restart for most keys"
+            ],
+            "cons": [
+              "Does not replace server-side evidence assembly for structural or overview questions",
+              "Engine-managed keys may be hidden when ContextMint Engine is installed"
+            ],
+            "recommendation": "Leave default unless troubleshooting a specific UX or latency issue."
+          }
+        },
         {
           "id": "contextmint.models.hfApiTimeoutMs",
           "description": "Hugging Face model metadata fetch timeout.",

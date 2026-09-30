@@ -29,7 +29,7 @@
         "stackBefore": "API containers +",
         "stackStrong": "vLLM",
         "stackAfter": "(or other OpenAI-compat) + OIDC",
-        "when": "Bank / gov design partners needing one audit boundary"
+        "when": "Regulated teams that need one audit boundary"
       }
     ],
     "trustBefore": "Trust overview:",
@@ -100,7 +100,7 @@
       },
       {
         "strong": "Not",
-        "text": "AG-INTEL tools (LSP/git/packs) on by default without overlay — enable via full-parity / ag-intel dogfood; agent/review/inline are Wave J1 default-on"
+        "text": "a claim that every advanced agent tool is on without operator setup — Ask, Plan, Agent, review, and inline completion are on for a normal install; extra tools follow their own settings"
       },
       {
         "strong": "Not",

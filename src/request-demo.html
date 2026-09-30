@@ -65,7 +65,8 @@ pageJs: form.js
             <option value="agents">{{ t.form.challengeOptions.agents }}</option>
             <option value="compliance">{{ t.form.challengeOptions.compliance }}</option>
             <option value="velocity">{{ t.form.challengeOptions.velocity }}</option>
-            <option value="design-partner">{{ t.form.challengeOptions.designPartner }}</option>
+            <option value="solo">{{ t.form.challengeOptions.solo }}</option>
+            <option value="team">{{ t.form.challengeOptions.team }}</option>
           </select>
         </div>
         <div class="form-group">
@@ -100,9 +101,6 @@ pageJs: form.js
     </form>
 
     <p class="muted text-center" style="margin-top: 24px; font-size: 0.9rem;">
-      {{ t.footer.preferBefore }}
-      <a href="{{ '/design-partners.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.footer.designPartnersLink }}</a>
-      ·
       <a href="{{ '/getting-started.html' | locale_path: localePrefix }}" style="color: var(--color-link);">{{ t.footer.gettingStartedLink }}</a>
       ·
       <a href="{{ site.issuesUrl }}" style="color: var(--color-link);">{{ t.footer.issuesLink }}</a>

@@ -6,8 +6,8 @@
   "hero": {
     "pill": "EXECUTIVE",
     "title": "Govern AI velocity with evidence gates",
-    "leadStrong": "v1.0 (30 September 2026):",
-    "leadAfter": "local-first decision-control for engineering teams — Context Lens, quality map, and human apply gates. Board scorecards and PR-time verification are roadmap — we do not claim them as shipped."
+    "leadStrong": "Coming soon:",
+    "leadAfter": "a local AI coding assistant for the team — Ask, Plan, and Agent, Context Lens, and human approval before writes. Board scorecards and PR-time verification stay on the roadmap."
   },
   "cards": [
     {
@@ -27,6 +27,6 @@
   ],
   "cta": {
     "title": "Brief your leadership team",
-    "text": "Walkthrough of the v1.0 decision-control plane and the honest roadmap for PR verification and scorecards."
+    "text": "Walkthrough of the coding assistant and the honest roadmap for PR verification and scorecards."
   }
 }

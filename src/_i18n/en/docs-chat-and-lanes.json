@@ -2,7 +2,7 @@
   "title": "Chat, Modes & Context Lanes | ContextMint Docs",
   "description": "Ask, Plan, and Agent modes; Repo, Work, and Hybrid context lanes; optional Plan Studio and EPA (defaults off); file and image attachments, sessions, provenance chips, and Work-lane auto-suggest.",
   "h1": "Chat, modes &amp; context lanes",
-  "lead": "ContextMint chat is a governed copilot — not a generic web chat. You choose <strong>how much autonomy</strong> the model has (mode) and <strong>what evidence</strong> it may use (context lane).",
+  "lead": "ContextMint chat is a local AI coding assistant. You choose <strong>how much autonomy</strong> the model has (mode) and <strong>what evidence</strong> it may use (context lane).",
   "opening": {
     "title": "Opening chat",
     "items": [

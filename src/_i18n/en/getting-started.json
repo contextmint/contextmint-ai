@@ -1,6 +1,6 @@
 {
   "title": "Getting Started | ContextMint",
-  "description": "Install ContextMint Engine and the VS Code extension — local-first default, plus enterprise shared-server pilot notes.",
+  "description": "Install ContextMint — frictionless on one machine for a solo developer, or a shared on-prem server for a small company or enterprise. Coming soon.",
   "hero": {
     "pill": "GETTING STARTED",
     "title": "Install Engine + extension",
@@ -17,15 +17,15 @@
     "leadAfter": "first."
   },
   "choose": {
-    "title": "Choose your deployment",
-    "localTitle": "Local-first (start here)",
-    "localText": "Engine + extension on the same machine. Sovereign local-first path, no shared server. Follow Steps 1–3 below.",
-    "sovereignTitle": "Sovereign on-prem API (enterprise pilot)",
-    "sovereignText": "Platform team deploys API + OpenAI-compat inference (vLLM). Extension sets ContextMint.serverUrl + enterpriseMode. Requires path alignment (Remote SSH or mounted repo).",
+    "title": "Choose your path",
+    "localTitle": "Solo developer — frictionless by default",
+    "localText": "Engine and the extension on the same machine. Frictionless by default. Turn on controlled checks when you want evidence review and patch approval. No shared server, no SSO. Follow Steps 1–3 below and start coding.",
+    "sovereignTitle": "Small company / enterprise",
+    "sovereignText": "Everything in the solo path, plus a shared on-prem API (OpenAI-compat / vLLM), SSO, and an admin lock so a developer cannot change posture or cloud. The extension sets ContextMint.serverUrl and enterpriseMode. The server must see the workspace path (Remote SSH or a mounted repo).",
     "sovereignLink": "Sovereign guide →"
   },
   "need": {
-    "title": "Local-first — what you need",
+    "title": "Solo developer — what you need",
     "items": [
       { "text": "Windows 10+, macOS 12+, or Linux x64" },
       { "text": "VS Code 1.85 or later" },
@@ -84,7 +84,7 @@
   },
   "byok": {
     "title": "Optional — cloud routing (BYOK)",
-    "textBefore": "Not required for the default workflow. If your team approves hybrid inference, enable",
+    "textBefore": "Not required for the default local workflow. A solo install or a team server can enable",
     "textStrong1": "cloud routing",
     "textMid": "in extension settings and add provider API keys via",
     "textStrong2": "ContextMint: Configure Cloud API Key",
@@ -110,7 +110,7 @@
     "sovereignLink": "Sovereign server deployment",
     "footerMid": ". Contact us for a design-partner pilot — architecture review, path strategy, and security questionnaire support:",
     "trustLink": "Trust center",
-    "partnersLink": "Design partners"
+    "partnersLink": "Talk to us"
   },
   "operate": {
     "title": "Operate from the tray",
@@ -136,6 +136,6 @@
   },
   "cta": {
     "title": "Need a guided pilot?",
-    "text": "Apply as a design partner for a 30-day evaluation pilot (extendable to 90) with direct engineering support and a written summary for stakeholders. Intake opens by start of September 2026."
+    "text": "A small company or enterprise can talk to us about a shared server and a design-partner pilot. Coming soon. A solo developer can follow the install steps above."
   }
 }

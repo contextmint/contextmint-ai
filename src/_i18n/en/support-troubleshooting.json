@@ -128,8 +128,8 @@
       ]
     },
     "escalation": {
-      "q": "Design partner escalation",
-      "bodyHtml": "Pilot cohorts get direct engineering channel. See <a href=\"/design-partners.html\">Design Partners</a> or your onboarding contact."
+      "q": "Need a person",
+      "bodyHtml": "Write to support or <a href=\"/request-demo.html\">talk to us</a> about a shared-server walkthrough."
     }
   }
 }

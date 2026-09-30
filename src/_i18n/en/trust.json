@@ -94,8 +94,8 @@
     "limitEm": "local-only",
     "limitMid": "clone (e.g. C:\\dev\\repo) at a remote corporate server URL does",
     "limitStrong": "not",
-    "limitAfter": "work out of the box — the server cannot read paths that exist only on the developer machine. Platform teams must align repo location, mounts, or Remote SSH before indexing. We help teams validate this during the design partner evaluation pilot (see",
-    "partnersLink": "Design Partners",
+    "limitAfter": "work out of the box — the server cannot read paths that exist only on the developer machine. Platform teams must align repo location, mounts, or Remote SSH before indexing. We can walk through that path with a small company or enterprise (see",
+    "partnersLink": "Talk to us",
     "limitEnd": ")."
   },
   "controls": {
@@ -110,7 +110,7 @@
     ],
     "footerBefore": "SOC 2 Type II and formal compliance packaging are on the",
     "footerLink": "Track B roadmap",
-    "footerAfter": ". Shared-server auth hardening and path alignment are part of the regulated pilot path — design partner intake opens by start of September 2026."
+    "footerAfter": ". Shared-server auth and path alignment are part of the small-company and enterprise path. Coming soon."
   },
   "cta": {
     "prompt": "Need a security questionnaire or architecture review for local-first vs shared-server deployment?",

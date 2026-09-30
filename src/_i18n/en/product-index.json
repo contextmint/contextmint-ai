@@ -1,22 +1,22 @@
 {
   "title": "Product | ContextMint Verification Engine",
-  "description": "ContextMint Verification Engine — product direction after v1.0 for PR-time verification. v1.0 ships 30 September 2026 while testing continues as the decision-control plane foundation.",
+  "description": "ContextMint Verification Engine — product direction after the coding assistant, for PR-time verification. The coding assistant is coming soon.",
   "badges": {
     "roadmap": "Roadmap",
-    "pilot": "v1.0 · 30 September 2026"
+    "pilot": "Coding assistant · coming soon"
   },
   "hero": {
     "pill": "PRODUCT DIRECTION",
     "h1": "The Verification Engine",
-    "leadStrong": "Product direction (after v1.0):",
-    "leadAfter": "PR-time verification of AI-generated changes with deterministic graph evidence — ownership, blast radius, architecture intent, drift, and policy. Built on the v1.0 decision-control plane (Engine + VS Code). Not a separate SKU today.",
-    "seeShipsLink": "See what ships in v1.0 →",
-    "cta1": "v1.0 features",
+    "leadStrong": "Product direction (after the coding assistant):",
+    "leadAfter": "PR-time verification of AI-generated changes with deterministic graph evidence — ownership, blast radius, architecture intent, drift, and policy. Built on the local coding assistant (Engine + VS Code). Coming after that assistant. Not a separate product today.",
+    "seeShipsLink": "See the coding assistant →",
+    "cta1": "What it does",
     "cta2": "Roadmap timing"
   },
   "outcome": {
     "title": "Target outcome (roadmap)",
-    "intro": "One outcome when the Verification Engine is fully delivered — not five separate products in the September GA package.",
+    "intro": "One outcome when the Verification Engine is fully delivered. It comes after the coding assistant.",
     "statement": "Verify every change before it ships",
     "detail": "Policy checks &middot; ownership resolution &middot; blast radius &middot; architecture validation &middot; drift detection &middot; agent governance &middot; audit trail",
     "caption": "Directional — gated after v1.0 · see roadmap"

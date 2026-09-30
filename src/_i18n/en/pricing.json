@@ -1,66 +1,52 @@
 {
   "title": "Early Access | ContextMint",
-  "description": "Join ContextMint early access or design partner program — enterprise AI governance verification for engineering teams.",
+  "description": "ContextMint coming soon — a frictionless local AI coding assistant for a solo developer, and a shared-control path for a small company or enterprise.",
   "hero": {
-    "pill": "GET ACCESS",
-    "title": "Join early access",
-    "leadBefore": "We are recruiting design partners for a 30-day evaluation pilot. Intake opens by start of September 2026;",
-    "leadStrong": "v1.0 ships 30 September 2026",
-    "leadAfter": ". We are not publishing seat pricing until packaging is finalized with pilot buyers."
+    "pill": "COMING SOON",
+    "title": "Two ways in",
+    "leadBefore": "ContextMint is",
+    "leadStrong": "coming soon",
+    "leadAfter": ". A solo developer starts frictionless on one machine and can turn on controlled checks. A small company or enterprise adds a shared server, SSO, and an admin lock for posture and cloud. Seat pricing stays unpublished until packaging is set with early teams."
   },
   "cards": [
     {
-      "name": "Early Access",
-      "tagline": "Individual engineers & small teams",
-      "price": "Waitlist",
-      "priceNote": "Local-first · ContextMint extension · Engine",
+      "name": "Solo developer",
+      "tagline": "Frictionless by default · one machine",
+      "price": "Coming soon",
+      "priceNote": "Engine + VS Code extension · local model",
       "features": [
-        { "text": "Context Lens — preview before inference" },
-        { "text": "Local hybrid search + chat" },
-        { "text": "Quality map governance findings" },
-        { "text": "Code stays on your device" }
+        { "text": "Ask how the codebase fits together, plan a change, and let Agent propose it" },
+        { "text": "Frictionless by default; controlled when you turn on evidence review and patch approval" },
+        { "text": "Optional bring-your-own-key cloud, off until you turn it on" },
+        { "text": "Context Lens before the model answers" },
+        { "text": "Code and the index stay on your machine" }
       ],
-      "ctaText": "Join Waitlist",
-      "ctaHref": "/request-demo.html"
+      "ctaText": "Getting started",
+      "ctaHref": "/getting-started.html"
     },
     {
-      "name": "Design Partner",
-      "tagline": "Platform & security teams",
-      "price": "Apply",
-      "priceNote": "Co-build structured pilots",
+      "name": "Small company / enterprise",
+      "tagline": "Everything in solo, plus",
+      "price": "Talk to us",
+      "priceNote": "Shared server and SSO for the team",
       "features": [
-        { "text": "30-day evaluation pilot (extendable to 90)" },
-        { "before": "Local Engine ", "em": "or", "after": " shared on-prem server path review" },
-        { "text": "Security questionnaire assistance" },
-        { "text": "Direct product engineering access" },
-        { "before": "Influence ", "linkText": "roadmap priorities", "linkHref": "/roadmap.html", "after": "" }
+        { "text": "Everything in the solo path" },
+        { "text": "Shared on-prem API server (Docker / Helm)" },
+        { "text": "SSO (OIDC) and workspace roles" },
+        { "text": "Admin lock so a developer cannot change posture or cloud" },
+        { "text": "Quality map and operator audit for the team" }
       ],
-      "ctaText": "Design partner details",
-      "ctaHref": "/design-partners.html"
-    },
-    {
-      "name": "Enterprise",
-      "tagline": "SSO · shared server · audit · air-gap",
-      "price": "Contact Sales",
-      "priceNote": "Annual agreement · pilot-led rollout",
-      "features": [
-        { "text": "Shared on-prem API server path (Docker / Helm) for regulated pilots" },
-        { "text": "SSO (OIDC) & workspace RBAC on the shared-server path" },
-        { "text": "Optional BYOK cloud routing with egress redaction (off by default)" },
-        { "text": "Security review & questionnaire support" },
-        { "before": "SOC 2 evidence packaging, air-gapped Helm, scorecards — ", "em": "roadmap", "after": "" }
-      ],
-      "ctaText": "Contact Sales",
+      "ctaText": "Talk to us",
       "ctaHref": "/request-demo.html"
     }
   ],
   "why": {
     "title": "Why no public pricing?",
-    "textBefore": "AI governance and verification for enterprise engineering is priced on deployment model (local Engine per developer vs shared on-prem server), compliance requirements, and scale — not per-seat commodity SaaS. We will validate value with design partners, then publish tiers.",
+    "textBefore": "Pricing follows the path: one machine for a solo developer, or a shared on-prem server for a small company or enterprise, plus compliance and scale. Tiers stay unpublished until that packaging is set.",
     "linkText": "Compare deployment models →"
   },
   "cta": {
     "title": "Ready to explore fit?",
-    "text": "Tell us about your AI governance challenges and team size — we will recommend the right path."
+    "text": "Tell us whether you are a solo developer or a team — we will point you at the local install or the shared-server path."
   }
 }

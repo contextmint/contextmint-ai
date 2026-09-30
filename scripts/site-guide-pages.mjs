@@ -116,23 +116,16 @@ export const PAGE_KEYWORDS = [
   {
     page_url: "/pricing.html",
     page_title: "Early access",
-    keywords: ["pricing", "waitlist", "design partner", "early access"],
+    keywords: ["pricing", "solo developer", "enterprise", "early access", "coming soon"],
     page_summary:
-      "ContextMint is not publishing seat pricing until packaging is finalized. Join the early access waitlist or apply for a 30-day design partner pilot — intake may be paused during v1.0 readiness.",
-  },
-  {
-    page_url: "/design-partners.html",
-    page_title: "Design partners",
-    keywords: ["design partner", "pilot", "30 day", "30-day"],
-    page_summary:
-      "The design partner program is a 30-day evaluation pilot for 10–30 developers on one repo, with weekly check-ins and a written summary for security stakeholders. Successful pilots can extend to 90 days.",
+      "ContextMint is coming soon. A solo developer uses Engine and the VS Code extension on one machine. A small company or enterprise adds a shared server and human approval. Seat pricing stays unpublished.",
   },
   {
     page_url: "/features.html",
-    page_title: "Features v1.0",
-    keywords: ["features", "v1", "what ships", "v1.0"],
+    page_title: "Features",
+    keywords: ["features", "coding assistant", "ask plan agent", "coming soon"],
     page_summary:
-      "Shipped v1.0 capabilities: Context Lens, Ask/Plan/Agent modes, Repo/Work/Hybrid lanes, quality map, image evidence, ARGUS, context packs, patch preview, and symbol-aware citations.",
+      "Coming soon: a local AI coding assistant with Ask, Plan, and Agent, inline completion, in-editor review, Context Lens, lanes, quality map, image evidence, ARGUS, context packs, and patch preview.",
   },
   {
     page_url: "/roadmap.html",

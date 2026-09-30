@@ -104,6 +104,23 @@ export const FAQ_KEYWORD_OVERRIDES = {
   "what-are-context-packs": {
     keywords: ["context pack", "@pack", "manifest", "context packs"],
   },
+  "is-contextmint-an-ai-coding-assistant": {
+    keywords: [
+      "coding assistant",
+      "ai coding",
+      "ask plan agent",
+      "copilot",
+    ],
+  },
+  "who-is-contextmint-for": {
+    keywords: [
+      "solo developer",
+      "small company",
+      "enterprise",
+      "who is it for",
+      "frictionless",
+    ],
+  },
   "how-is-contextmint-different-from-autocomplete-assistants": {
     keywords: [
       "copilot",
@@ -185,8 +202,8 @@ export const FAQ_KEYWORD_OVERRIDES = {
       "demo",
       "waitlist",
       "apply",
-      "intake paused",
-      "september 2026",
+      "coming soon",
+      "talk to us",
       "pricing",
       "cost",
       "how much",

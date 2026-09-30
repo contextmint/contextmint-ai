@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-08-17T09:52:59.123Z",
+  "generated_at": "2026-09-30T11:33:23.412Z",
   "predefined_faqs": [
     {
       "id": "what-do-i-need-to-install",
@@ -184,6 +184,35 @@
       "source_label": "What are context packs?"
     },
     {
+      "id": "is-contextmint-an-ai-coding-assistant",
+      "keywords": [
+        "coding assistant",
+        "ai coding",
+        "ask plan agent",
+        "copilot",
+        "coding",
+        "assistant"
+      ],
+      "question": "Is ContextMint an AI coding assistant?",
+      "direct_answer": "Yes. ContextMint is a local AI coding assistant in VS Code: Ask, Plan, and Agent, plus inline completion and in-editor review. It runs on your machine by default. A team can also review evidence in Context Lens and approve patches before anything writes.",
+      "source_url": "/faq.html#is-contextmint-an-ai-coding-assistant",
+      "source_label": "Is ContextMint an AI coding assistant?"
+    },
+    {
+      "id": "who-is-contextmint-for",
+      "keywords": [
+        "solo developer",
+        "small company",
+        "enterprise",
+        "who is it for",
+        "frictionless"
+      ],
+      "question": "Who is ContextMint for?",
+      "direct_answer": "Solo developer: install Engine and the extension on one machine. Frictionless by default. Turn on controlled checks when you want evidence review and patch approval. Optional bring-your-own-key cloud stays off until you turn it on. No signup, shared server, or SSO. Start at Getting started .\n\nSmall company or enterprise: everything in the solo path, plus a shared on-prem server, SSO, operator audit, and an admin lock so a developer cannot change posture or cloud. Talk to us .",
+      "source_url": "/faq.html#who-is-contextmint-for",
+      "source_label": "Who is ContextMint for?"
+    },
+    {
       "id": "how-is-contextmint-different-from-autocomplete-assistants",
       "keywords": [
         "copilot",
@@ -195,7 +224,7 @@
         "assistants"
       ],
       "question": "How is ContextMint different from autocomplete assistants?",
-      "direct_answer": "ContextMint is a decision-control plane , not a speed-first autocomplete tool. It governs what evidence the model sees and what changes can apply, with audit-friendly telemetry. Human gates before inference and before apply matter more than raw generation throughput for regulated engineering workflows.",
+      "direct_answer": "ContextMint includes inline completion and also works as a full coding assistant: Ask, Plan, and Agent over your indexed workspace. Context Lens shows the evidence, and patch preview waits for approval before writes.",
       "source_url": "/faq.html#how-is-contextmint-different-from-autocomplete-assistants",
       "source_label": "How is ContextMint different from autocomplete as…"
     },
@@ -280,23 +309,6 @@
       "source_label": "What is ARGUS?"
     },
     {
-      "id": "what-does-the-30-day-design-partner-pilot-mean",
-      "keywords": [
-        "pilot",
-        "30 day",
-        "design partner pilot",
-        "30-day",
-        "30 day pilot",
-        "“30-day”",
-        "design",
-        "partner"
-      ],
-      "question": "What does the “30-day” design partner pilot mean?",
-      "direct_answer": "It is a one-month evaluation , not a product subscription that expires. After onboarding, 10–30 developers on one team or repo use ContextMint in daily work for 30 calendar days . You give short async feedback at week 2 and week 4 ; we provide weekly check-ins and a written pilot summary for your security and platform stakeholders. Successful pilots can extend to 90 days . See Design Partners for the full breakdown.",
-      "source_url": "/faq.html#what-does-the-30-day-design-partner-pilot-mean",
-      "source_label": "What does the “30-day” design partner pilot mean?"
-    },
-    {
       "id": "what-ships-in-v1-0-vs-later-roadmap",
       "keywords": [
         "roadmap",
@@ -310,7 +322,7 @@
         "later"
       ],
       "question": "What ships in v1.0 vs later roadmap?",
-      "direct_answer": "v1.0 (testing in progress — GA 30 September 2026): local Engine + extension — Context Lens, Ask/Plan/Agent modes, Repo/Work/Hybrid lanes, Findings Store quality map, image evidence, ARGUS visual audit, context packs, assisted patch preview, glass-box routing, and symbol-aware citations. Full v1.0 list .\n\nLater: v2.0 Engineering Intelligence Platform (Q1 2027), Track B enterprise knowledge and compliance (end 2027), and the long-term Verification Engine direction (PR gates, blast radius, drift) — full roadmap .",
+      "direct_answer": "Coming soon: local Engine + extension — Ask/Plan/Agent, inline completion, in-editor review, Context Lens, Repo/Work/Hybrid lanes, quality map, image evidence, ARGUS, context packs, patch preview, and symbol-aware citations. Full list .\n\nLater: v2.0 Engineering Intelligence Platform (Q1 2027), Track B enterprise knowledge and compliance (end 2027), and the long-term Verification Engine direction (PR gates, blast radius, drift) — full roadmap .",
       "source_url": "/faq.html#what-ships-in-v1-0-vs-later-roadmap",
       "source_label": "What ships in v1.0 vs later roadmap?"
     },
@@ -320,8 +332,8 @@
         "demo",
         "waitlist",
         "apply",
-        "intake paused",
-        "september 2026",
+        "coming soon",
+        "talk to us",
         "pricing",
         "cost",
         "how much",
@@ -330,14 +342,12 @@
         "design partner",
         "join as design partner",
         "early",
-        "access",
-        "design",
-        "partner"
+        "access"
       ],
-      "question": "How do I get early access or join as a design partner?",
-      "direct_answer": "Design partner intake opens by start of September 2026 while v1.0 testing continues. The form on Design Partners is visible for reference only — submissions are disabled until intake opens.\n\nAvailable now: book a walkthrough via Book a Demo , try local-first install via Getting started , review program details on Early Access , or ask questions via Support or GitHub issues. When intake opens, design partners run a 30-day evaluation pilot (10–30 developers, one repo — extendable to 90 days).",
+      "question": "How do I get early access?",
+      "direct_answer": "ContextMint is coming soon . A solo developer follows Getting started . A small company or enterprise books a walkthrough via Talk to us . Paths are also on Early access . Questions go to Support or GitHub issues.",
       "source_url": "/faq.html#how-do-i-get-early-access-or-join-as-a-design-partner",
-      "source_label": "How do I get early access or join as a design par…"
+      "source_label": "How do I get early access?"
     },
     {
       "id": "where-do-i-report-bugs-or-get-help",
@@ -494,33 +504,23 @@
       "page_title": "Early access",
       "keywords": [
         "pricing",
-        "waitlist",
-        "design partner",
-        "early access"
+        "solo developer",
+        "enterprise",
+        "early access",
+        "coming soon"
       ],
-      "page_summary": "ContextMint is not publishing seat pricing until packaging is finalized. Join the early access waitlist or apply for a 30-day design partner pilot — intake may be paused during v1.0 readiness."
-    },
-    {
-      "page_url": "/design-partners.html",
-      "page_title": "Design partners",
-      "keywords": [
-        "design partner",
-        "pilot",
-        "30 day",
-        "30-day"
-      ],
-      "page_summary": "The design partner program is a 30-day evaluation pilot for 10–30 developers on one repo, with weekly check-ins and a written summary for security stakeholders. Successful pilots can extend to 90 days."
+      "page_summary": "ContextMint is coming soon. A solo developer uses Engine and the VS Code extension on one machine. A small company or enterprise adds a shared server and human approval. Seat pricing stays unpublished."
     },
     {
       "page_url": "/features.html",
-      "page_title": "Features v1.0",
+      "page_title": "Features",
       "keywords": [
         "features",
-        "v1",
-        "what ships",
-        "v1.0"
+        "coding assistant",
+        "ask plan agent",
+        "coming soon"
       ],
-      "page_summary": "Shipped v1.0 capabilities: Context Lens, Ask/Plan/Agent modes, Repo/Work/Hybrid lanes, quality map, image evidence, ARGUS, context packs, patch preview, and symbol-aware citations."
+      "page_summary": "Coming soon: a local AI coding assistant with Ask, Plan, and Agent, inline completion, in-editor review, Context Lens, lanes, quality map, image evidence, ARGUS, context packs, and patch preview."
     },
     {
       "page_url": "/roadmap.html",

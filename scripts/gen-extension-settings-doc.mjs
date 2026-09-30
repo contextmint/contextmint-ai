@@ -196,7 +196,13 @@ function categorize(key) {
   if (key.startsWith("contextmint.argus.")) return "argus";
   if (key.startsWith("contextmint.design.")) return "design";
   if (key.startsWith("contextmint.engine.")) return "engine";
-  if (key.startsWith("contextmint.models.") || key.includes("ollama")) return "models";
+  if (
+    key.startsWith("contextmint.models.") ||
+    key.startsWith("contextmint.cloudModelsPicker.") ||
+    key.includes("ollama")
+  ) {
+    return "models";
+  }
   if (key === "contextmint.localFallbackUrl" || key === "contextmint.serverTimeoutMs") {
     return "connectivity";
   }

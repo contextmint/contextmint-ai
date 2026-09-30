@@ -8,8 +8,8 @@
   },
   "hero": {
     "pill": "PLATFORM · DEVOPS",
-    "title": "Decision-control in every developer IDE",
-    "leadStrong1": "v1.0 (30 September 2026):",
+    "title": "A coding assistant in every developer IDE",
+    "leadStrong1": "Coming soon:",
     "leadMid": "context packs and local-first Engine in the IDE, with human gates before inference and apply.",
     "leadStrong2": "Roadmap:",
     "leadAfter": "CI/CD deployment graph, MCP agent tools, and PR verification on the Verification Engine."

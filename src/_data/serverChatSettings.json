@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-09-24",
+  "generatedAt": "2026-09-30",
   "source": "config/contextmint.defaults.yaml",
   "overlayPath": "~/.contextmint/server.defaults.yaml",
-  "totalCount": 1675,
+  "totalCount": 1679,
   "planDefinition": {
     "planId": "api_registration_chain",
     "intent": "structural_lookup",
@@ -17461,7 +17461,7 @@
         },
         {
           "id": "agent.investigation.allowlisted_tools",
-          "default": "[\"read_file\",\"grep_search\",\"vector_search\",\"list_directory\",\"symbol_index\",\"expand_window\",\"list_external_directory\",\"read_external_file\",\"query_packs\",\"get_git_status\",\"get_git_diff\",\"go_to_definition\",\"find_references\",\"get_hover_info\",\"list_symbols_in_file\"]",
+          "default": "[\"read_file\",\"grep_search\",\"vector_search\",\"list_directory\",\"symbol_index\",\"expand_window\",\"slice_value\",\"list_external_directory\",\"read_external_file\",\"query_packs\",\"get_git_status\",\"get_git_diff\",\"go_to_definition\",\"find_references\",\"get_hover_info\",\"list_symbols_in_file\"]",
           "description": "Allowlisted Tools — server tunable from contextmint.defaults.yaml.",
           "operator": false,
           "type": "array",
@@ -18420,6 +18420,26 @@
           }
         },
         {
+          "id": "agent.loop_baseline_enabled",
+          "default": "true",
+          "description": "Loop Baseline Enabled — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "boolean",
+          "usage": {
+            "whenEnable": "When true — Loop Baseline Enabled — server tunable from contextmint.defaults.yaml.",
+            "whenDisable": "When false — disables or falls back for loop baseline enabled.",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
           "id": "agent.max_tool_result_chars",
           "default": "200000",
           "description": "Max Tool Result Chars — server tunable from contextmint.defaults.yaml.",
@@ -19307,6 +19327,66 @@
           "type": "number",
           "usage": {
             "whenEnable": "Tune resolve min evidence paths when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "agent.slice_value_max_depth",
+          "default": "2",
+          "description": "Slice Value Max Depth — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune slice value max depth when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "agent.slice_value_max_files",
+          "default": "30",
+          "description": "Slice Value Max Files — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune slice value max files when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
+            "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
+            "pros": [
+              "Documented in config/contextmint.defaults.yaml on the API host",
+              "Override via ~/.contextmint/server.defaults.yaml or CHAT__* / CONTEXTMINT__* env vars"
+            ],
+            "cons": [
+              "Server restart required after overlay changes",
+              "Not exposed in Engine desktop or VS Code Settings for most keys"
+            ],
+            "recommendation": "Keep the shipped default unless you are actively tuning with Context Receipt or operator metrics."
+          }
+        },
+        {
+          "id": "agent.slice_value_max_statements",
+          "default": "40",
+          "description": "Slice Value Max Statements — server tunable from contextmint.defaults.yaml.",
+          "operator": false,
+          "type": "number",
+          "usage": {
+            "whenEnable": "Tune slice value max statements when receipts, latency, or UAT evidence show the shipped default is wrong for your tier.",
             "whenDisable": "N/A — numeric, string, or structured value (not a boolean toggle).",
             "pros": [
               "Documented in config/contextmint.defaults.yaml on the API host",

@@ -1,55 +1,87 @@
 {
-  "title": "ContextMint | AI Writes Code. We Decide What Can Ship.",
-  "description": "ContextMint is a local-first AI decision-control plane — evidence before inference, human approval before repo changes. v1.0 ships 30 September 2026 while testing continues.",
+  "title": "ContextMint | Local AI coding assistant",
+  "description": "ContextMint is a local AI coding assistant and a decision-control plane. Ask, Plan, and Agent on your machine, with evidence and human approval before anything writes. Coming soon.",
   "hero": {
-    "titleLine1": "AI writes code.",
+    "titleLine1": "A local AI coding assistant.",
     "titleLine2": "ContextMint decides what ships.",
-    "subBefore": "A",
-    "subStrong": "local-first AI decision-control plane",
-    "subAfter": "for software teams — not generic chat. Review retrieved evidence before the model answers. Approve patches before anything applies. Code stays on your infrastructure by default.",
+    "subBefore": "",
+    "subStrong": "Ask, Plan, and Agent",
+    "subAfter": "on your machine, with evidence and human approval before anything writes. Coming soon.",
     "ctaPrimary": "Getting started",
-    "ctaSecondary": "What ships in v1.0",
-    "pill": "DECISION-CONTROL PLANE · LOCAL-FIRST · HUMAN OVERSIGHT"
+    "ctaSecondary": "What it does",
+    "pill": "AI CODING ASSISTANT · DECISION-CONTROL PLANE · COMING SOON"
   },
   "finalCta": {
-    "title": "Govern AI velocity without silent applies",
-    "line1": "The question is no longer whether AI writes your code.",
-    "line2": "It is whether humans see evidence before it ships.",
+    "title": "Start coding locally. Add team control when you need it.",
+    "line1": "A solo developer installs Engine and the extension and starts in VS Code.",
+    "line2": "A small company or enterprise adds a shared server, SSO, and human approval.",
     "demo": "Book a Demo",
     "trust": "Trust & Security"
   },
+  "audiences": {
+    "title": "Solo developer, or a team",
+    "lead": "One product. A solo developer starts frictionless on one machine and can turn on controlled checks. A small company or enterprise adds a shared server, SSO, and an admin lock so the team cannot change posture or cloud.",
+    "paths": [
+      {
+        "eyebrow": "Frictionless by default",
+        "title": "Solo developer",
+        "text": "Install Engine and the VS Code extension. The default is frictionless. Turn on controlled checks when you want evidence review and patch approval. No signup, shared server, or SSO.",
+        "points": [
+          "Ask how the codebase fits together, plan the change, and let Agent propose it",
+          "Frictionless by default; controlled when you turn on evidence review and patch approval",
+          "Optional bring-your-own-key cloud, off until you turn it on",
+          "Code and the index stay on your machine"
+        ],
+        "ctaText": "Getting started",
+        "ctaHref": "/getting-started.html"
+      },
+      {
+        "eyebrow": "Everything in solo, plus",
+        "title": "Small company / enterprise",
+        "text": "Everything in the solo path. An admin can lock posture and cloud so a developer cannot change them.",
+        "points": [
+          "Shared on-prem server for the team",
+          "SSO and workspace roles",
+          "Admin lock for frictionless or controlled, and for bring-your-own-key cloud",
+          "Quality map and operator audit for the team"
+        ],
+        "ctaText": "Talk to us",
+        "ctaHref": "/request-demo.html"
+      }
+    ]
+  },
   "pilotNow": {
-    "title": "In testing now",
-    "introStrong": "v1.0 ships 30 September 2026 while testing continues.",
-    "introRest": "Testing is in progress. Design partner intake still opens by start of September 2026. Evidence before inference. Human approval before code changes.",
+    "title": "On a coding day",
+    "introStrong": "Coming soon.",
+    "introRest": "Ask how the repo fits together and plan a change across the files it touches. Frictionless by default. Turn on approval when you want the patch to wait.",
     "cards": [
       {
-        "title": "ContextMint Engine",
-        "text": "Tray-native operator console — readiness, server, and Ollama status. System, Light, or Dark theme."
+        "title": "Ask, Plan, Agent",
+        "text": "Explain the repo, write a plan for the change, or propose the patch. Approval waits for you when controlled checks are on."
+      },
+      {
+        "title": "Change scope",
+        "text": "Work spans the files a change touches, with citations from the indexed workspace."
+      },
+      {
+        "title": "Review the change",
+        "text": "Review a file, branch, feature, or flow, then decide what to accept."
       },
       {
         "title": "Context Lens",
-        "text": "Review what will be retrieved and which model runs — <em>before</em> the model answers."
-      },
-      {
-        "title": "Quality map",
-        "text": "Stored governance findings (duplicates, structure signals) with human apply gates."
-      },
-      {
-        "title": "Image evidence",
-        "text": "Paste UI screenshots — local Ollama vision and ARGUS visual audit with human gates."
+        "text": "See the retrieved evidence and the chosen model before the assistant answers."
       }
     ],
     "footer": {
       "defaultLabel": "Default:",
       "defaultText": "local Engine + Ollama per developer.",
-      "whatShipsLink": "What ships in v1.0 →",
+      "whatShipsLink": "What it does →",
       "sharedServerText": "Shared on-prem API server path for regulated pilots —",
       "deploymentModelsLink": "deployment models",
       "byokText": "Optional BYOK cloud routing is off by default.",
       "roadmapLabel": "Roadmap:",
       "v1Link": "v1.0",
-      "v1Suffix": "(testing now) ·",
+      "v1Suffix": "(coming soon) ·",
       "v2Link": "v2.0",
       "v2Suffix": "Engineering Intelligence ·",
       "trackBLink": "Track B",
@@ -60,11 +92,11 @@
     }
   },
   "outcomes": {
-    "ariaLabel": "v1.0 outcomes",
+    "ariaLabel": "What you get",
     "items": [
-      { "label": "Gate 1", "text": "Context Lens — evidence before inference" },
-      { "label": "Gate 2", "text": "Patch preview — humans approve applies" },
-      { "label": "Local-first", "text": "Index and chat on your infrastructure" }
+      { "label": "Code", "text": "Ask, Plan, and Agent in VS Code" },
+      { "label": "Evidence", "text": "Context Lens before the model answers" },
+      { "label": "Approval", "text": "Patch preview before anything writes" }
     ]
   },
   "problem": {
@@ -93,10 +125,10 @@
     }
   },
   "decisionControl": {
-    "title": "What v1.0 delivers",
-    "lead": "Evidence-based generative chat, store-first governance lookup from the quality map, and grounded recommendations with human approval — on your machine or a guided sovereign server path.",
+    "title": "A coding assistant with a record",
+    "lead": "Ask, Plan, and Agent use the indexed workspace. Context Lens shows the evidence. Patch preview waits for your approval — on your machine, or on a shared server for a team.",
     "figure": {
-      "header": "Decision-control plane | Scenario: assisted change in VS Code",
+      "header": "Coding assistant | Scenario: assisted change in VS Code",
       "queryLabel": "Checks before the model answers or applies",
       "checks": [
         { "status": "ok", "text": "Context Lens — retrieved chunks, scores, routing" },
@@ -114,20 +146,20 @@
         { "label": "Patch preview", "text": "unified diff" },
         { "label": "Routing badge", "text": "local model path" }
       ],
-      "caption": "v1.0 decision-control example: Context Lens, quality map, citations, apply gate, and patch preview with human approval and cited evidence."
+      "caption": "Coding-assistant example: Context Lens, quality map, citations, apply gate, and patch preview with human approval and cited evidence."
     },
     "footer": {
       "badge": "Roadmap",
-      "textBefore": "PR verification gates, blast-radius SKU, and CI packaging are the",
+      "textBefore": "PR verification gates, blast-radius, and CI packaging are the",
       "linkText": "Verification Engine",
-      "textAfter": "direction — after v1.0, not in the September GA package."
+      "textAfter": "direction — after the coding assistant."
     }
   },
   "productHeaded": {
     "title": "Where the product is headed",
-    "lead": "After v1.0, the Verification Engine direction adds deterministic graph checks for PR-time verification. Capabilities below are labeled roadmap — not the September GA package.",
+    "lead": "After the coding assistant, the Verification Engine direction adds deterministic graph checks for PR-time verification. Capabilities below stay labeled roadmap.",
     "ctaSecondary": "Verification Engine vision",
-    "ctaPrimary": "v1.0 features"
+    "ctaPrimary": "What it does"
   },
   "whyNotCi": {
     "title": "Why CI Tools Don't Solve This Alone",
@@ -138,8 +170,8 @@
       { "title": "Jira / Confluence", "subtitle": "Plans & docs", "note": "Disconnected from indexed workspace evidence" }
     ],
     "highlight": {
-      "title": "ContextMint v1.0",
-      "text": "Decision-control in the IDE — Lens, quality map, patch preview, local-first"
+      "title": "ContextMint",
+      "text": "Local AI coding assistant — Ask, Plan, Agent, Context Lens, patch preview"
     }
   }
 }

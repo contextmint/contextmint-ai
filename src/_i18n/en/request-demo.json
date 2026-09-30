@@ -1,10 +1,10 @@
 {
   "title": "Book a Demo | ContextMint",
-  "description": "Book a ContextMint live demo. Discuss AI governance challenges with the team. Getting started and GitHub issues are also available.",
+  "description": "Talk to ContextMint about a solo install or a shared-server path for a small company or enterprise. Coming soon.",
   "hero": {
     "pill": "DEMO",
-    "title": "Discuss your AI governance challenges",
-    "leadBefore": "Buyers care about outcomes — not architecture reviews. Tell us about your stack and constraints; we will schedule a focused walkthrough. Prefer to try first? See",
+    "title": "Talk to us",
+    "leadBefore": "Tell us whether you are a solo developer or a small company or enterprise. We will schedule a walkthrough of the coding assistant. Prefer to try the local path? See",
     "gettingStartedLink": "getting started",
     "leadMid": "for local-first install or",
     "issuesLink": "GitHub issues",
@@ -29,7 +29,8 @@
       "agents": "MCP / agent tool governance",
       "compliance": "Audit trail & compliance evidence",
       "velocity": "Review bottleneck at AI velocity",
-      "designPartner": "Design partner / early access"
+      "solo": "Solo developer — local install",
+      "team": "Small company / enterprise — shared server"
     },
     "teamSizeLabel": "Engineering team size",
     "teamSizeOptions": {

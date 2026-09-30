@@ -18,14 +18,11 @@ const siteRoot = path.resolve(__dirname, "..", "_site");
 const PAGES = [
   "/",
   "/request-demo.html",
-  "/design-partners.html",
   "/faq.html",
   "/docs/",
   "/docs/sovereign-server.html",
   "/getting-started.html",
   "/trust.html",
-  "/ar/trust.html",
-  "/ar/docs/sovereign-server.html",
   "/accessibility.html",
 ];
 

@@ -160,10 +160,10 @@
   },
   "securityReview": {
     "h2": "Security review artifacts",
-    "before": "Design partners receive architecture summaries, data-flow diagrams, and questionnaire support.",
+    "before": "A small company or enterprise can ask for architecture summaries, data-flow diagrams, and questionnaire support.",
     "contactBefore": "Contact",
     "orText": "or",
-    "applyLink": "apply as a design partner"
+    "applyLink": "talk to us"
   },
   "footer": {
     "trustBefore": "Full trust model:",
